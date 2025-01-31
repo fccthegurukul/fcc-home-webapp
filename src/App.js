@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import StudentAdmission from './pages/StudentAdmission';
 import StudentsAttendance from './pages/StudentsAttendance';
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";  // Import SpeedInsights
 
 import './App.css';
 import StudentList from './pages/StudentList';
@@ -27,7 +29,6 @@ const App = () => {
   return (
     <div className="App">
       <h1>Coaching Management System</h1>
-
       {/* Navigation Bar */}
       <nav className="navbar">
         {/* Hamburger Icon for Mobile */}
@@ -68,6 +69,10 @@ const App = () => {
         <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
         <Route path="/quiz/:skill_topic" element={<Quiz />} /> {/* Quiz route with topic parameter */}
       </Routes>
+        {/* Add Analytics here */}
+        <Analytics />
+        {/* Add SpeedInsights here */}
+        <SpeedInsights />
     </div>
   );
 };
