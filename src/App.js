@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';  // Import Link for navigation
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, Link } from 'react-router-dom';  
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import StudentAdmission from './pages/StudentAdmission';
 import StudentsAttendance from './pages/StudentsAttendance';
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";  // Import SpeedInsights
+import { SpeedInsights } from "@vercel/speed-insights/react"; 
 
 import './App.css';
 import StudentList from './pages/StudentList';
 import FileUpload from './components/FileUpload';
-// FeeManagement
 import FeeManagement from './components/FeeManagement';
-import Report from './components/Report'
+import Report from './components/Report';
 import StudentManagement from './components/StudentManagement';
 import StudentProfile from './pages/StudentProfile';
 import CardHub from './pages/CardHub';
@@ -26,19 +25,28 @@ const App = () => {
     setMenuOpen(!isMenuOpen);
   };
 
+  // Reset menu on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="App">
       <h1>Coaching Management System</h1>
-      {/* Navigation Bar */}
       <nav className="navbar">
-        {/* Hamburger Icon for Mobile */}
         <div className="hamburger-menu" onClick={toggleMenu}>
           <div></div>
           <div></div>
           <div></div>
         </div>
 
-        {/* Navbar Links */}
         <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/dashboard" className="nav-link">Dashboard</Link>
@@ -53,9 +61,8 @@ const App = () => {
         </div>
       </nav>
 
-      {/* Routes */}
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/student-admission" element={<StudentAdmission />} />
         <Route path="/student-attendance" element={<StudentsAttendance />} />
@@ -67,12 +74,11 @@ const App = () => {
         <Route path="/student-profile" element={<StudentProfile />} />
         <Route path="/card-hub" element={<CardHub />} />
         <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
-        <Route path="/quiz/:skill_topic" element={<Quiz />} /> {/* Quiz route with topic parameter */}
+        <Route path="/quiz/:skill_topic" element={<Quiz />} />
       </Routes>
-        {/* Add Analytics here */}
-        <Analytics />
-        {/* Add SpeedInsights here */}
-        <SpeedInsights />
+
+      <Analytics />
+      <SpeedInsights />
     </div>
   );
 };
