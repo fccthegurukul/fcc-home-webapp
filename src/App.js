@@ -5,7 +5,6 @@ import Dashboard from './pages/Dashboard';
 import StudentAdmission from './pages/StudentAdmission';
 import StudentsAttendance from './pages/StudentsAttendance';
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import './App.css';
 import StudentList from './pages/StudentList';
@@ -78,7 +77,6 @@ const App = () => {
       </Routes>
 
       <Analytics />
-      <SpeedInsights />
     </div>
   );
 };
