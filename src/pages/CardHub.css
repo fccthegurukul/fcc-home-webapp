@@ -1,0 +1,560 @@
+ /* Existing CSS (keep from the previous response) */
+ /* General Styles */
+ .container {
+  padding: 20px;
+  font-family: 'Roboto', Arial, sans-serif;
+  max-width: 1000px;
+  margin: auto;
+  color: #2c3e50;
+}
+
+.error {
+  color: #c0392b;
+  background-color: #f2dede;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ebccd1;
+}
+
+/* Back Button Group */
+.back-button-group {
+  margin-bottom: 20px;
+}
+
+/* Back Button Styles */
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.back-button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Card List Layout */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Modified card size */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Individual Card Styling */
+.card {
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+  box-shadow: 4px 4px 10px #d1d1d1, -4px -4px 10px #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 6px 6px 15px #c1c1c1, -6px -6px 15px #ffffff;
+}
+
+/* Card Heading */
+.card h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.card:hover h2 {
+  color: #3498db;
+}
+
+/* Card Content */
+.card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Skill Level Label */
+.label {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #333; /* Default */
+}
+
+.label[data-skill="DONE"] {
+    background-color: #2ecc71;
+  }
+
+  .label[data-skill="EXPERT"] {
+    background-color: #e74c3c;
+  }
+
+  .label[data-skill="INTERMEDIATE"] {
+    background-color: #f39c12;
+  }
+
+  .label[data-skill="BEGINNER"] {
+    background-color: #3498db;
+  }
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Window */
+.modal {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.modal p {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.modal .close-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.modal .close-button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Image Styling */
+.image-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  position: relative;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Image with Blur effect */
+.skill-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(4px);
+  transition: filter 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.skill-image:hover {
+    transform: scale(1.05);
+  }
+
+  /* Enlarge image effect */
+  .skill-image.enlarged {
+      filter: blur(0px); /* Remove blur when image is enlarged */
+      transform: scale(1.2); /* Enlarge the image */
+  }
+
+/* Zoom Icon */
+.zoom-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #252273;
+  border-radius: 50%;
+  padding: 8px;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.zoom-icon:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+/* Search and Filter Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.controls .filter-group,
+.controls .search-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 180px;
+}
+
+.controls label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+.controls select,
+.controls input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.controls select:focus,
+.controls input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 4px rgba(52, 152, 219, 0.5);
+}
+
+/* Enlarged Modal Image Styling */
+.modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure the image is centered */
+}
+
+.modal-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: relative; /* Ensure the close button can be positioned relative to the image */
+  display: block; /* Ensures image takes full width */
+  margin: 0 auto; /* Centers the image inside the modal */
+}
+
+.modal-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Close Button Styling */
+.modal-close {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 35px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close:hover {
+  background: rgba(255, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.modal-close:focus {
+  outline: none;
+  box-shadow: 0 0 8px 3px rgba(255, 0, 0, 0.6);
+}
+
+/* Skill Log Styles */
+.skill-log {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .skill-log ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .skill-log li {
+    margin-bottom: 15px;
+  }
+
+  .skill-log li strong {
+    display: block;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  .skill-log li ul {
+    padding-left: 20px;
+  }
+
+/* Video Container Styles */
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the player horizontally */
+  margin-top: 20px; /* Add some space above the video */
+}
+
+.video-container button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.video-container button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.card {
+  position: relative; /* Added relative positioning */
+  width: 300px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  cursor: pointer;
+}
+
+.play-icon-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  background-color: #131240;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.play-icon {
+  font-size: 14px;
+  color: white;
+}
+
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.controls input, .controls select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .card-list {
+      grid-template-columns: 1fr;
+    }
+
+  .modal {
+    width: 95%;
+    max-width: 95%;
+  }
+
+  .modal h2 {
+    font-size: 1.3rem;
+  }
+
+    .controls {
+        flex-direction: column;
+    }
+    .controls .filter-group,
+    .controls .search-group {
+        min-width: 100%;
+    }
+
+    .zoom-icon {
+        font-size: 20px;
+        padding: 5px;
+        top: 5px;
+        right: 5px;
+    }
+
+    .skill-image {
+      filter: blur(2px); /* Reduce the blur */
+    }
+
+    .skill-image:hover {
+      transform: scale(1.02); /* Slightly reduce scale up */
+    }
+
+    .skill-image.enlarged {
+      transform: scale(1.05);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card-list {
+        grid-template-columns: 1fr; /* Single column on smaller devices */
+      }
+
+    .modal {
+      width: 95%;
+      max-width: 95%;
+      padding: 15px;
+    }
+
+    .modal h2 {
+      font-size: 1.2rem;
+    }
+}
+
+/* Video Container Styles */
+.video-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the player horizontally */
+  margin-top: 20px; /* Add some space above the video */
+}
+
+/* Additional Video Styling to remove default YouTube player controls */
+.react-player__play-button,
+.react-player__preview,
+.react-player__shadow {
+  display: none !important;
+}
+
+.react-player__playback-rate {
+  display: none !important;
+}
+.react-player__control-bar{
+  display: none;
+}
+
+
+/* Optional: Style the Play/Pause Button */
+.video-container button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.video-container button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+.card {
+  position: relative; /* Added relative positioning */
+  width: 300px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  cursor: pointer;
+}
+
+.play-icon-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.play-icon {
+  font-size: 18px; /* Adjust the size as needed */
+  color: white;
+}

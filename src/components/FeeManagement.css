@@ -1,0 +1,76 @@
+.fee-management {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  form label {
+    font-size: 1rem;
+  }
+  
+  form input,
+  form select {
+    padding: 8px;
+    font-size: 1rem;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  .qr-code {
+    position: fixed;
+    top: 50%;
+    right: 20%; /* Adjust this value as needed */
+    transform: translateY(-50%);
+    z-index: 1000;
+    text-align: right;
+    padding: 10px;
+  }
+  
+  .qr-code-img {
+    width: 100%; /* Makes the image's width flexible */
+    max-width: 150px; /* Max width ensures it doesn't get too big */
+    height: auto; /* Keeps the aspect ratio intact */
+  }
+  

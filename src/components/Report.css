@@ -1,0 +1,33 @@
+.report-page {
+    padding: 20px;
+  }
+  
+  .filters {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .filters label {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .payments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .payments-table th,
+  .payments-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .payments-table th {
+    background-color: #f4f4f4;
+  }
+  

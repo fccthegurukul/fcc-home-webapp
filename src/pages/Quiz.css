@@ -1,0 +1,229 @@
+/* Quiz कंटेनर */
+.quiz-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out forwards;
+    display: flex; /* फ्लेक्स कंटेनर का उपयोग करें */
+    flex-direction: column; /* कंटेंट को कॉलम में रखें */
+    align-items: center; /* क्षैतिज रूप से आइटम सेंटर करें */
+}
+
+/* रिजल्ट हेडर (शीर्ष पर स्कोर दिखाने के लिए) */
+.result-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #e6f7e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #d4ecd4;
+    width: 100%; /* उपलब्ध स्थान भरें */
+}
+
+.result-header h2 {
+    color: #3c763d;
+    margin-bottom: 10px;
+}
+
+.result-header p {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.congrats-message {
+    font-weight: bold; /* बधाई संदेश हाइलाइट करें */
+    color: #007bff;
+    margin-top: 10px;
+}
+
+
+/* प्रश्न कार्ड स्टाइलिंग (एक-एक करके प्रश्नों के लिए) */
+.question-card {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    width: 100%; /* उपलब्ध स्थान भरें */
+    max-width: 700px; /* प्रश्नों के लिए मैक्सिमम चौड़ाई सेट करें */
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+
+.question-card h3.question-number {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.question-card p.question-text {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.question-card .options label {
+    display: block;
+    margin-bottom: 12px;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fefefe;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.question-card .options label:hover {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+}
+
+.question-card .options label input[type="radio"] {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* प्रश्न नेविगेशन */
+.question-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.question-navigation button {
+    background-color: #007bff; /* नीला बटन नेविगेशन के लिए */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.question-navigation button:hover {
+    background-color: #0056b3; /* गहरा नीला हॉवर पर */
+    transform: scale(1.03);
+}
+
+
+.question-navigation button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* प्रश्न-वार रिपोर्ट सेक्शन */
+.quiz-report {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9; /* प्रश्न रिपोर्ट के लिए हल्का बैकग्राउंड */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+}
+
+.quiz-report h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.report-item {
+    background-color: #fff;
+    border-left: 5px solid #eee; /* इंडिकेटर बार */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.report-item.correct-answer {
+    border-left-color: #5cb85c; /* हरे रंग का इंडिकेटर सही उत्तर के लिए */
+    background-color: #f0fdf0;
+}
+
+.report-item.incorrect-answer {
+    border-left-color: #d9534f; /* लाल रंग का इंडिकेटर गलत उत्तर के लिए */
+    background-color: #fdefef;
+}
+
+
+.report-question-text {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.report-item p {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.answer-status.correct {
+    color: #5cb85c;
+    font-weight: bold;
+}
+
+.answer-status.incorrect {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+
+/* प्रोफाइल बटन को क्विज़ रिपोर्ट में स्टाइल करें (रिजल्ट बटन से अलग स्टाइल देने के लिए) */
+.quiz-report button.profile-button {
+    background-color: #6c757d; /* ग्रे प्रोफाइल बटन */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    display: block; /* बटन सेंटर करें */
+    margin: 20px auto 0; /* ऊपर और नीचे मार्जिन और ऑटो हॉरिज़ॉन्टल मार्जिन */
+}
+
+.quiz-report button.profile-button:hover {
+    background-color: #5a6268; /* गहरा ग्रे हॉवर पर */
+}
+
+
+/* पिछली सीएसएस स्टाइल को बनाए रखें, जैसे .error, और .loading paragraph */
+/* ... पिछली सीएसएस फाइल से पिछली स्टाइल डालें ... */
+
+/* एरर मैसेज */
+.error {
+    color: #d9534f; /* लाल रंग एरर के लिए */
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* लोडिंग इंडिकेटर */
+p {
+    text-align: center;
+    font-size: 1.1em;
+    color: #777;
+}
