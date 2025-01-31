@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StudentProfile.css";
+// Importing the default image from assets (if required)
+import NotFoundImage from "../assets/pro-not-found.jpg";
 
 const StudentProfile = () => {
   const [fccId, setFccId] = useState("");
@@ -101,11 +103,11 @@ const StudentProfile = () => {
           onClick={() => handleRecentProfileClick(profile)}
         >
           {profile.photo_url ? (
-            <img
-              src={profile.photo_url}
-              alt={`${profile.name} का प्रोफाइल`}
-              className="recent-profile-picture"
-            />
+           <img
+           src={student.photo_url || NotFoundImage} // Use default image if not found
+           alt={`${student.name} का प्रोफाइल`}
+           className="profile-picture"
+         />         
           ) : (
             <p>कोई फोटो उपलब्ध नहीं है</p>
           )}
