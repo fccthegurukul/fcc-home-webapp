@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';  
+import { Route, Routes, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import StudentAdmission from './pages/StudentAdmission';
 import StudentsAttendance from './pages/StudentsAttendance';
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react"; 
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import './App.css';
 import StudentList from './pages/StudentList';
