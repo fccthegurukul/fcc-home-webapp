@@ -177,7 +177,8 @@ h1 {
 }
 
 .profile-picture {
-  background: url('F:\Projects\Coaching\coaching-management-app\src\assets\pro-not-found.jpg') no-repeat center center;
+  background: url('../assets/404-image.jpg') no-repeat center center;
+
   background-size: contain;
 }
 

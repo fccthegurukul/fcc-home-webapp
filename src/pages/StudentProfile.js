@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StudentProfile.css";
 // Importing the default image from assets (if required)
-import NotFoundImage from "../assets/pro-not-found.jpg";
+import NotFoundImage from "../assets/404-image.jpg";
+
 
 const StudentProfile = () => {
   const [fccId, setFccId] = useState("");
