@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@mui/icons-material": "^6.4.0",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/speed-insights": "^1.1.0",
     "@zxing/browser": "^0.1.5",
     "@zxing/library": "^0.21.3",
     "axios": "^1.7.9",
