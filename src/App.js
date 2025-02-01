@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import StudentAdmission from './pages/StudentAdmission';
@@ -7,7 +7,8 @@ import StudentsAttendance from './pages/StudentsAttendance';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
-import './App.css';
+import './App.css'; // Make sure your base CSS is still imported
+import './BottomNav.css'; // Import CSS for Bottom Navigation
 import StudentList from './pages/StudentList';
 import FileUpload from './components/FileUpload';
 import FeeManagement from './components/FeeManagement';
@@ -16,9 +17,11 @@ import StudentManagement from './components/StudentManagement';
 import CardHub from './pages/CardHub';
 import ViewCtcCtg from "./pages/ViewCtcCtg";
 import Quiz from './pages/Quiz';
+import './BottomNav.css';
 
 const App = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const location = useLocation(); // To highlight active bottom nav item
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -59,21 +62,48 @@ const App = () => {
         </div>
       </nav>
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/student-admission" element={<StudentAdmission />} />
-        <Route path="/student-attendance" element={<StudentsAttendance />} />
-        <Route path="/student-list" element={<StudentList />} />
-        <Route path="/download-upload-data" element={<FileUpload />} />
-        <Route path="/fee-management" element={<FeeManagement />} />
-        <Route path="/report" element={<Report />} />
-        <Route path="/student-management" element={<StudentManagement />} />
-        {/* <Route path="/student-profile" element={<StudentProfile />} /> */}
-        <Route path="/card-hub" element={<CardHub />} />
-        <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
-        <Route path="/quiz/:skill_topic" element={<Quiz />} />
-      </Routes>
+      <div className="content-area"> {/* Add content area to adjust spacing */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/student-admission" element={<StudentAdmission />} />
+          <Route path="/student-attendance" element={<StudentsAttendance />} />
+          <Route path="/student-list" element={<StudentList />} />
+          <Route path="/download-upload-data" element={<FileUpload />} />
+          <Route path="/fee-management" element={<FeeManagement />} />
+          <Route path="/report" element={<Report />} />
+          <Route path="/student-management" element={<StudentManagement />} />
+          {/* <Route path="/student-profile" element={<StudentProfile />} /> */}
+          <Route path="/card-hub" element={<CardHub />} />
+          <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
+          <Route path="/quiz/:skill_topic" element={<Quiz />} />
+        </Routes>
+      </div>
+
+
+      <nav className="bottom-navbar">
+        <Link to="/" className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`}>
+          <i className="fas fa-home"></i> {/* Example icon - replace with your choice or text */}
+          <span>Home</span>
+        </Link>
+        <Link to="/dashboard" className={`bottom-nav-link ${location.pathname === '/dashboard' ? 'active' : ''}`}>
+          <i className="fas fa-tachometer-alt"></i> {/* Example icon - replace with your choice or text */}
+          <span>Dashboard</span>
+        </Link>
+        <Link to="/student-list" className={`bottom-nav-link ${location.pathname === '/student-list' ? 'active' : ''}`}>
+          <i className="fas fa-list-ul"></i> {/* Example icon - replace with your choice or text */}
+          <span>Students</span>
+        </Link>
+        <Link to="/fee-management" className={`bottom-nav-link ${location.pathname === '/fee-management' ? 'active' : ''}`}>
+          <i className="fas fa-money-bill-wave"></i> {/* Example icon - replace with your choice or text */}
+          <span>Fees</span>
+        </Link>
+        <Link to="/report" className={`bottom-nav-link ${location.pathname === '/report' ? 'active' : ''}`}>
+          <i className="fas fa-chart-bar"></i> {/* Example icon - replace with your choice or text */}
+          <span>Report</span>
+        </Link>
+      </nav>
+
 
       <Analytics />
       <SpeedInsights />

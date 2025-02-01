@@ -204,7 +204,7 @@ const ViewCtcCtg = () => {
     <div className="view-ctc-ctg-container">
    <div className="back-button-group">
       <button
-        onClick={() => navigate("/student-profile")}
+        onClick={() => navigate("/")}
         className="back-button"
       >
         <ArrowLeft className="icon" size={18} />

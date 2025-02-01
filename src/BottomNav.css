@@ -1,0 +1,46 @@
+/* Bottom Navigation Styles */
+.bottom-navbar {
+    position: fixed; /* Fixed to the bottom of the viewport */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Light background, adjust as needed */
+    display: flex;
+    justify-content: space-around; /* Distribute links evenly */
+    padding: 10px 0;
+    border-top: 1px solid #dee2e6; /* Light border for separation */
+    z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.bottom-nav-link {
+    display: flex;
+    flex-direction: column; /* Icon and text vertical */
+    align-items: center;
+    justify-content: center;
+    color: #495057; /* Default link color */
+    text-decoration: none;
+    font-size: 0.9rem; /* Adjust font size for bottom nav */
+    padding: 5px 10px; /* Padding for touch area */
+}
+
+.bottom-nav-link i {
+    margin-bottom: 5px; /* Space between icon and text */
+    font-size: 1.2rem; /* Icon size, adjust as needed */
+}
+
+
+.bottom-nav-link.active {
+    color: #007bff; /* Active link color (primary blue), adjust as needed */
+}
+
+/* Hide Bottom Nav on larger screens (optional - if you only want it on mobile) */
+@media (min-width: 769px) { /* Example breakpoint, adjust to your needs */
+    .bottom-navbar {
+        display: none;
+    }
+}
+
+/* Adjust content area to prevent bottom nav overlap */
+.content-area {
+    padding-bottom: 60px; /* Height of bottom navbar + some extra space */
+}

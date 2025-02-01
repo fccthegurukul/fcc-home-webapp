@@ -166,7 +166,7 @@ const handlePracticeClick = () => {
   return (
     <div className="container">
       <div className="back-button-group">
-        <button onClick={() => navigate("/student-profile")} className="back-button">
+        <button onClick={() => navigate("/")} className="back-button">
           <ArrowLeft className="icon" size={18} />
           Back to Profile
         </button>
