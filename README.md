@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# FCC Home - Coaching Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to **FCC Home**, a Coaching Management System designed to streamline the management of students, attendance, fee collection, and more. Built with **React**, this app provides an interactive, user-friendly interface and a wide range of features to simplify coaching operations.
 
-## Available Scripts
+### Features:
+- **Student Admission**: Effortlessly manage student registrations and track their progress.
+- **Attendance Tracking**: Record and monitor student attendance with ease.
+- **Fee Management**: Simplify fee collection and manage fee reports efficiently.
+- **Student List & Profiles**: Access a comprehensive list of students along with detailed profiles.
+- **File Upload**: Upload important files and documents related to students or courses.
+- **Quiz Section**: Engage students with quizzes to enhance learning and track their skills.
+- **Card Hub**: Store and manage coaching-related cards and materials.
+- **CTC/CTG View**: View CTC (Cost to Company) and CTG (Cost to Group) details for better financial analysis.
 
-In the project directory, you can run:
+### Live Demo:
+You can try out the live version of this app here:  
+[https://fcc-home-webapp.vercel.app/](https://fcc-home-webapp.vercel.app/)
 
-### `npm start`
+### Installation:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To run the project locally, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/fcc-home-webapp.git
+   cd fcc-home-webapp
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install the dependencies:
+   ```bash
+   npm install
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Start the app locally:
+   ```bash
+   npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Open your browser and go to http://localhost:3000/ to view the app.
+   
+### Technologies Used:
+- React: A JavaScript library for building user interfaces.
+- React Router: For navigating between different pages and components.
+- Vercel Analytics: For performance tracking and analytics.
+- Vercel Speed Insights: For monitoring the speed and performance of the app.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Contributing:**
+Feel free to fork this repository and submit pull requests. If you encounter any issues or have suggestions, please create an issue on GitHub, and we will get back to you as soon as possible.
