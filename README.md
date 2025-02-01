@@ -40,50 +40,48 @@ To run the project locally, follow these steps:
 5.  Backend:
     ```bash
    cd backend
-
 6. Install the backend dependencies:
    ```bash
    npm install
-7. Set up your environment variables in a .env file:
-   
-DB_USER=your-database-user
-DB_HOST=your-database-host
-DB_NAME=your-database-name
-DB_PASSWORD=your-database-password
-DB_PORT=your-database-port
+
+7. To run this project, you will need to add the following environment variables to your .env file
+
+`DB_USER`
+`DB_HOST`
+`DB_NAME`
+`DB_PASSWORD`
+`DB_PORT`
+
+`DB_HOST`
 
 8. Start the backend server:
     ```bash
    node server.js
 
 -- The backend will run on http://localhost:5000/.
-
-
-
-   
    
 ### Technologies Used:
-**React:** A JavaScript library for building user interfaces.
-**React Router:** For navigating between different pages and components.
-**Vercel Analytics:** For performance tracking and analytics.
-**Vercel Speed Insights:** For monitoring the speed and performance of the app.
-**Express:** Backend framework for handling server-side requests.
-**PostgreSQL:** Database management system for storing data.
-**Multer:** For handling file uploads.
-**PDFKit:** For generating PDF receipts and reports.
-**QRCode:** For generating QR codes.
+- **React:** A JavaScript library for building user interfaces.
+- **React Router:** For navigating between different pages and components.
+- **Vercel Analytics:** For performance tracking and analytics.
+- **Vercel Speed Insights:** For monitoring the speed and performance of the app.
+- **Express:** Backend framework for handling server-side requests.
+- **PostgreSQL:** Database management system for storing data.
+- **Multer:** For handling file uploads.
+- **PDFKit:** For generating PDF receipts and reports.
+- **QRCode:** For generating QR codes.
 
 ### Scripts:
-**start:** Run the app in development mode.
-**build:** Build the app for production.
-**test:** Run the tests.
-**eject**: Eject the app from Create React App configurations.
+-  **start:** Run the app in development mode.
+-  **build:** Build the app for production.
+-  **test:** Run the tests.
+-  **eject**: Eject the app from Create React App configurations.
 
 **Contributing:**
 Feel free to fork this repository and submit pull requests. If you encounter any issues or have suggestions, please create an issue on GitHub, and we will get back to you as soon as possible.
 
 **License:**
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License - see the LICENSE file for details.
 
 
 ### Key Updates:
@@ -92,4 +90,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Included **PostgreSQL** setup instructions to configure the database.
 
 You can update your `.env` file with the necessary credentials for your PostgreSQL database. This will allow you to run both the backend and frontend locally.
+
 
