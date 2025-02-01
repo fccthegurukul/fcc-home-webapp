@@ -13,7 +13,6 @@ import FileUpload from './components/FileUpload';
 import FeeManagement from './components/FeeManagement';
 import Report from './components/Report';
 import StudentManagement from './components/StudentManagement';
-import StudentProfile from './pages/StudentProfile';
 import CardHub from './pages/CardHub';
 import ViewCtcCtg from "./pages/ViewCtcCtg";
 import Quiz from './pages/Quiz';
@@ -56,7 +55,6 @@ const App = () => {
           <Link to="/fee-management" className="nav-link">Fee Collection</Link>
           <Link to="/report" className="nav-link">Fee Report</Link>
           <Link to="/student-management" className="nav-link">Student Management Mini</Link>
-          <Link to="/student-profile" className="nav-link">Student Profile</Link>
           <Link to="/download-upload-data" className="nav-link">Download-Upload</Link>
         </div>
       </nav>
@@ -71,7 +69,7 @@ const App = () => {
         <Route path="/fee-management" element={<FeeManagement />} />
         <Route path="/report" element={<Report />} />
         <Route path="/student-management" element={<StudentManagement />} />
-        <Route path="/student-profile" element={<StudentProfile />} />
+        {/* <Route path="/student-profile" element={<StudentProfile />} /> */}
         <Route path="/card-hub" element={<CardHub />} />
         <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
         <Route path="/quiz/:skill_topic" element={<Quiz />} />

@@ -1,14 +1,14 @@
-require('dotenv').config();
+const path = require('path');  // Only declare path once
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
 const express = require("express");
 const { Pool } = require("pg");
 const cors = require("cors");
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const multer = require("multer");
-const path = require("path");`z`
 const PDFDocument = require('pdfkit');
 const QRCode = require("qrcode");
-// const { startDate, endDate } = req.query;
 
 const app = express();
 const port = 5000;
@@ -22,9 +22,15 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.log('Error connecting to DB:', err);
+  } else {
+    console.log('Database connected, response:', res.rows);
+  }
+});
 // Serve the 'receipts' directory as static files
 app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
-
 
 // Middleware
 app.use(cors());

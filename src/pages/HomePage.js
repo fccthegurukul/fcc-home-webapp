@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import StudentProfile from './StudentProfile'; // StudentProfile component ko import kare
 
 const HomePage = () => {
   return (
@@ -18,6 +19,9 @@ const HomePage = () => {
           </li>
         </ul>
       </nav>
+
+      {/* StudentProfile component ko yaha render kare */}
+      <StudentProfile />
     </div>
   );
 };
