@@ -41,6 +41,7 @@ To run the project locally, follow these steps:
    ```bash
    cd backend
 
+
 6. Install the backend dependencies:
    ```bash
    npm install
