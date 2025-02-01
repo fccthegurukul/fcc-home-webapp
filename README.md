@@ -44,6 +44,7 @@ To run the project locally, follow these steps:
    ```bash
    npm install
 
+
 7. To run this project, you will need to add the following environment variables to your .env file
 
 `DB_USER`
