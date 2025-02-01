@@ -40,10 +40,10 @@ To run the project locally, follow these steps:
 5.  Backend:
     ```bash
    cd backend
+
 6. Install the backend dependencies:
    ```bash
    npm install
-
 
 7. To run this project, you will need to add the following environment variables to your .env file
 
