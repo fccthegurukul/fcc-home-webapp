@@ -1,10 +1,11 @@
+require('dotenv').config();
 const express = require("express");
 const { Pool } = require("pg");
 const cors = require("cors");
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const multer = require("multer");
-const path = require("path");
+const path = require("path");`z`
 const PDFDocument = require('pdfkit');
 const QRCode = require("qrcode");
 // const { startDate, endDate } = req.query;
@@ -12,13 +13,13 @@ const QRCode = require("qrcode");
 const app = express();
 const port = 5000;
 
-// PostgreSQL Pool Configuration
+// PostgreSQL Pool Configuration using environment variables
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "coaching_management",
-  password: "Hanuman@21",
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 // Serve the 'receipts' directory as static files

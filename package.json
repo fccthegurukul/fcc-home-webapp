@@ -12,6 +12,7 @@
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "cra-template": "1.2.0",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "html5-qrcode": "^2.3.8",
     "jspdf": "^2.5.2",
@@ -32,7 +33,7 @@
     "react-qr-barcode-scanner": "^2.0.0",
     "react-qr-code": "^2.0.15",
     "react-router-dom": "^7.1.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^11.0.2",
     "webrtc-adapter": "^9.0.1"
   },
