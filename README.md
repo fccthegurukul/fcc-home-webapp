@@ -36,17 +36,15 @@ To run the project locally, follow these steps:
    npm start
 
 4. Open your browser and go to http://localhost:3000/ to view the app.
-
-5.  Backend:
+5. Backend:
    ```bash
    cd backend
 
-
-6. Install the backend dependencies:
+7. Install the backend dependencies:
    ```bash
    npm install
 
-7. To run this project, you will need to add the following environment variables to your .env file
+8. To run this project, you will need to add the following environment variables to your .env file
 
 `DB_USER`
 `DB_HOST`
