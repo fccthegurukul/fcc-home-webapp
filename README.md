@@ -38,7 +38,7 @@ To run the project locally, follow these steps:
 4. Open your browser and go to http://localhost:3000/ to view the app.
 
 5.  Backend:
-    ```bash
+   ```bash
    cd backend
 
 6. Install the backend dependencies:
