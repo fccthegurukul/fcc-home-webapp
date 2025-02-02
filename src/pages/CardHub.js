@@ -1,9 +1,12 @@
+// CardHub.js
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft } from "lucide-react";
 import { Play } from "lucide-react";
 import ReactPlayer from 'react-player'; // Import ReactPlayer
 import './CardHub.css';
+import NotFoundImage from '../assets/404-image.jpg'; // Import default image
 
 const CardHub = () => {
   const [skills, setSkills] = useState([]);
@@ -15,15 +18,31 @@ const CardHub = () => {
   const [playing, setPlaying] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const initialFccId = location.state?.fccId;
+  const recentProfilesData = location.state?.recentProfiles || []; // Get recentProfiles from state
+  const initialStudent = location.state?.student || null; // Get student object from state
+  const [fccId, setFccId] = useState(initialFccId || localStorage.getItem("lastViewedFccId") || ""); // Load from localStorage or state
+  const [recentProfiles, setRecentProfiles] = useState(recentProfilesData);
+  const [student, setStudent] = useState(initialStudent); // State for current student
 
-  const fccId = location.state?.fccId;
 
   // Static options (you can replace these if your options are dynamic)
   const skillLevels = ['Beginner', 'Intermediate', 'Expert', 'Done'];
   const skillStatuses = ['Learning', 'Completed', 'Next Step'];
 
+
+  useEffect(() => {
+    // If recentProfiles are not passed from StudentProfile, try to get from localStorage
+    if (recentProfiles.length === 0) {
+      const savedRecentProfiles = JSON.parse(localStorage.getItem("recentProfiles")) || [];
+      setRecentProfiles(savedRecentProfiles);
+    }
+  }, []);
+
+
   useEffect(() => {
     const fetchSkills = async () => {
+      if (!fccId) return; // Don't fetch if fccId is not available
       try {
         const response = await fetch(`http://localhost:5000/get-student-skills/${fccId}`);
         const data = await response.json();
@@ -39,8 +58,35 @@ const CardHub = () => {
         setError('An error occurred while fetching skills');
       }
     };
-    if (fccId) fetchSkills();
-  }, [fccId]);
+
+    // Fetch student profile again if not passed in state or if fccId changes and student in state is outdated
+    const fetchStudentProfile = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/get-student-profile/${fccId}`);
+        if (response.ok) {
+          const studentData = await response.json();
+          setStudent(studentData);
+          localStorage.setItem("studentProfile", JSON.stringify(studentData)); // Update localStorage student profile if needed
+        } else {
+          console.error("Failed to fetch student profile");
+          setStudent(null);
+        }
+      } catch (error) {
+        console.error("Error fetching student profile:", error);
+        setStudent(null);
+      }
+    };
+
+
+    if (!initialStudent || initialStudent.fcc_id !== fccId) {
+      fetchStudentProfile(); // Fetch student profile if not available or outdated
+    }
+
+
+    fetchSkills();
+    localStorage.setItem("lastViewedFccId", fccId); // Update last viewed FCC ID in localStorage
+  }, [fccId, initialStudent]); // Refetch skills and student when fccId changes, include initialStudent to check for updates
+
 
   const filteredSkills = skills.filter(skill => {
     const level = skill.skill_level ? skill.skill_level.toUpperCase() : '';
@@ -148,14 +194,6 @@ const CardHub = () => {
   };
 
 
-// const handlePracticeClick = () => {
-//   if (selectedSkill && selectedSkill.skill_topic) {
-//      navigate(`/quiz/${selectedSkill.skill_topic.replace(/ /g, '-')}`, { state: { fccId: fccId, skillTopic: selectedSkill.skill_topic } });
-//   }
-//   console.log("Practice Clicked!", selectedSkill.skill_topic, fccId);
-// };
-
-
 const handlePracticeClick = () => {
   if (selectedSkill && selectedSkill.skill_topic) {
      navigate(`/quiz/${selectedSkill.skill_topic.replace(/ /g, '-')}`, { state: { fccId: fccId, skillTopic: selectedSkill.skill_topic } });
@@ -163,16 +201,52 @@ const handlePracticeClick = () => {
   console.log("Practice Clicked!", selectedSkill.skill_topic, fccId);
 };
 
+const handleProfileSwitch = (selectedFccId) => {
+  setFccId(selectedFccId); // Update fccId state, which will trigger useEffect to fetch new data
+};
+
+
   return (
     <div className="container">
       <div className="back-button-group">
-        <button onClick={() => navigate("/")} className="back-button">
-          <ArrowLeft className="icon" size={18} />
-          Back to Profile
-        </button>
+        {/* Current Student Profile Image */}
+        {student?.photo_url && (
+          <img
+            src={student.photo_url}
+            alt={`${student.name} Profile`}
+            className="current-profile-image"
+            onError={(e) => { e.target.src = NotFoundImage; }}
+          />
+        )}
+
+        {/* Profile Switcher Dropdown */}
+        {recentProfiles.length > 0 && (
+          <select
+            className="profile-switcher"
+            value={fccId}
+            onChange={(e) => handleProfileSwitch(e.target.value)}
+            aria-label="Switch Student Profile"
+          >
+            <option value="">प्रोफ़ाइल बदलें</option>
+            {recentProfiles.map((profile) => (
+              <option key={profile.fcc_id} value={profile.fcc_id} className="profile-option">
+                {profile.photo_url && (
+                  <img
+                    src={profile.photo_url}
+                    alt={`${profile.name} का प्रोफाइल`}
+                    className="profile-switcher-image"
+                    onError={(e) => { e.target.src = NotFoundImage; }}
+                  />
+                )}
+                <span className="profile-switcher-name">{profile.name} ({profile.fcc_id})</span>
+              </option>
+            ))}
+          </select>
+        )}
       </div>
 
-      <h1>Card Hub</h1>
+
+      <h1>Skill Hub</h1>
       {error && <p className="error">{error}</p>}
 
       <div className="controls">
@@ -224,9 +298,10 @@ const handlePracticeClick = () => {
 
             <div className="image-container" onClick={handleImageClick}>
               <img
-                src={selectedSkill.skill_image_url}
+                src={selectedSkill.skill_image_url || NotFoundImage}
                 alt="Skill"
                 className={`skill-image ${modalOpen ? 'enlarged' : ''}`}
+                onError={(e) => { e.target.src = NotFoundImage; }} // Fallback image
               />
               <div className="zoom-icon" onClick={handleZoomClick}>
                 <i className="fas fa-search-plus"></i>
@@ -263,6 +338,7 @@ const handlePracticeClick = () => {
                     src={selectedSkill.skill_image_url}
                     alt="Enlarged Skill"
                     className="modal-image"
+                    onError={(e) => { e.target.src = NotFoundImage; }} // Fallback image
                   />
                   <span className="modal-close" onClick={handleCloseModal}>×</span>
                 </div>

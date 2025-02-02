@@ -83,24 +83,24 @@ const App = () => {
 
       <nav className="bottom-navbar">
         <Link to="/" className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`}>
-          <i className="fas fa-home"></i> {/* Example icon - replace with your choice or text */}
+          <i className="fas fa-home"></i>
           <span>Home</span>
         </Link>
-        <Link to="/dashboard" className={`bottom-nav-link ${location.pathname === '/dashboard' ? 'active' : ''}`}>
-          <i className="fas fa-tachometer-alt"></i> {/* Example icon - replace with your choice or text */}
-          <span>Dashboard</span>
+        <Link to="/view-ctc-ctg" className={`bottom-nav-link ${location.pathname ===  '/view-ctc-ctg'}`}>
+          <i className="fas fa-calendar-day"></i>
+          <span>Today</span>
         </Link>
-        <Link to="/student-list" className={`bottom-nav-link ${location.pathname === '/student-list' ? 'active' : ''}`}>
-          <i className="fas fa-list-ul"></i> {/* Example icon - replace with your choice or text */}
-          <span>Students</span>
+        <Link to="/card-hub" className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`}>
+          <i className="fas fa-graduation-cap"></i>
+          <span>Skill</span>
         </Link>
-        <Link to="/fee-management" className={`bottom-nav-link ${location.pathname === '/fee-management' ? 'active' : ''}`}>
-          <i className="fas fa-money-bill-wave"></i> {/* Example icon - replace with your choice or text */}
-          <span>Fees</span>
+        <Link to="/leaderboard" className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`}>
+          <i className="fas fa-trophy"></i>
+          <span>LeaderBoard</span>
         </Link>
-        <Link to="/report" className={`bottom-nav-link ${location.pathname === '/report' ? 'active' : ''}`}>
-          <i className="fas fa-chart-bar"></i> {/* Example icon - replace with your choice or text */}
-          <span>Report</span>
+        <Link to="/archives" className={`bottom-nav-link ${location.pathname === '/archives' ? 'active' : ''}`}>
+          <i className="fas fa-archive"></i>
+          <span>Achives</span>
         </Link>
       </nav>
 

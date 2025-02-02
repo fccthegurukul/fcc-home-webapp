@@ -1,259 +1,293 @@
-/* General Reset */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-/* Container */
+/* ViewCtcCtg.css */
 .view-ctc-ctg-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
   padding: 20px;
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-/* Section Titles */
-.section-title {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #004aad; /* Branding color */
-  border-bottom: 2px solid #004aad;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-/* Student Details */
-.ctc-ctg-details {
-  margin-bottom: 20px;
-}
-
-.detail-item {
-  padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.detail-item:last-child {
-  border-bottom: none;
-}
-
-.detail-item p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.detail-item strong {
-  color: #004aad; /* Highlight key labels */
-}
-
-/* Filters Dropdown */
-.filters {
-  margin: 20px 0;
+  background-color: #f9f9f9; /* Light background */
+  min-height: 100vh; /* Ensure full viewport height */
   display: flex;
-  justify-content: flex-start;
-}
-
-.filters select {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #333;
-  transition: border-color 0.3s;
-}
-
-.filters select:hover,
-.filters select:focus {
-  border-color: #004aad;
-  outline: none;
-}
-
-/* Table Styles */
-.log-details table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-
-.log-details th,
-.log-details td {
-  text-align: left;
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-
-.log-details th {
-  background-color: #004aad;
-  color: #fff;
-  font-size: 1rem;
-}
-
-.log-details tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.log-details tr:hover {
-  background-color: #e6f7ff;
-}
-
-/* Buttons */
-.button-group {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.back-button,
-.download-pdf-button {
-  padding: 10px 15px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.back-button {
-  background-color: #f44336; /* Red for back */
-  color: #fff;
-}
-
-.back-button:hover {
-  background-color: #d32f2f;
-  transform: scale(1.05);
-}
-
-.download-pdf-button {
-  background-color: #004aad; /* Blue for download */
-  color: #fff;
-}
-
-.download-pdf-button:hover {
-  background-color: #003a7c;
-  transform: scale(1.05);
-}
-
-/* Error and Loading Styles */
-.error {
-  color: #d32f2f;
-  background-color: #fdecea;
-  padding: 10px;
-  border: 1px solid #f5c2c7;
-  border-radius: 5px;
-  margin-bottom: 15px;
-}
-
-.loading {
-  color: #004aad;
-  font-size: 1.2rem;
-  text-align: center;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally on larger screens */
 }
 
 .back-button-group {
   display: flex;
+  justify-content: flex-start; /* Align buttons to the start */
   align-items: center;
-  justify-content: flex-start;
-  margin: 1rem 0;
+  width: 100%;
+  max-width: 960px; /* Max width for larger screens, adjust as needed */
+  margin-bottom: 20px;
 }
 
 .back-button {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  color: white;
-  background-color: #131240;
-  border: none;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff; /* White button background */
+  color: #333; /* Dark text color */
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
+  margin-right: 15px; /* Space between back button and switcher */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .back-button:hover {
-  background-color: #1a1a5e;
-  transform: translateY(-2px);
+  background-color: #f0f0f0;
 }
 
-.back-button:active {
-  background-color: #0f0f4a;
-  transform: translateY(0);
+.back-button .icon {
+  margin-right: 8px;
 }
 
-.icon {
-  margin-right: 0.5rem;
+.current-profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px; /* Space between switcher and profile image */
+    object-fit: cover;
+    border: 1px solid #ddd;
 }
 
-/* Responsive Design */
+
+.profile-switcher {
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  appearance: none; /* Remove default styling in some browsers */
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow icon */
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
+  margin-left: 10px; /* Space after image if profile image exists */
+}
+
+.profile-switcher::-ms-expand {
+    display: none; /* Remove default arrow in IE */
+}
+
+.profile-switcher:focus {
+  outline: none;
+  border-color: #007bff; /* Highlight on focus */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Focus ring */
+}
+
+
+.profile-option {
+    display: flex; /* To align image and text */
+    align-items: center; /* Center vertically */
+    padding: 8px 10px;
+}
+
+.profile-switcher-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.profile-switcher-name {
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;        /* Hide overflowing text */
+    text-overflow: ellipsis; /* Ellipsis for overflow */
+    max-width: 150px;       /* Limit the width as needed */
+}
+
+
+.view-ctc-ctg-container h2.section-title {
+  color: #007bff; /* Primary color for titles */
+  margin-top: 20px;
+  margin-bottom: 15px;
+  text-align: center; /* Center titles */
+  font-size: 1.5em;
+}
+
+.ctc-ctg-details {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 960px;
+}
+
+.detail-item {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: #555;
+  border-bottom: 1px solid #eee; /* Light separator lines */
+  padding-bottom: 8px;
+}
+
+.detail-item:last-child {
+  border-bottom: none; /* No separator for the last item */
+}
+
+
+.detail-item strong {
+  font-weight: bold;
+  color: #333; /* Strong text color */
+  margin-right: 5px;
+}
+
+.filters {
+  display: flex;
+  justify-content: center; /* Center filter dropdown */
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 960px;
+}
+
+.filters select {
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom dropdown arrow */
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
+  margin-left: 10px;
+}
+
+.filters select::-ms-expand {
+    display: none; /* Remove default arrow in IE */
+}
+
+
+.filters select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+
+.log-details {
+  width: 100%;
+  max-width: 960px;
+  margin-bottom: 20px;
+}
+
+.log-details h2 {
+  color: #007bff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.log-details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden; /* For rounded corners on table */
+}
+
+.log-details th, .log-details td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.log-details th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #333;
+}
+
+.log-details tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 960px;
+  margin-bottom: 20px;
+}
+
+.download-pdf-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.download-pdf-button:hover {
+  background-color: #0056b3;
+}
+
+
+.error {
+  color: #dc3545; /* Red error color */
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .view-ctc-ctg-container {
-    padding: 15px;
-  }
-
-  .section-title {
-    font-size: 1.25rem;
-  }
-
-  .filters select {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
-
-  .log-details table {
-    font-size: 0.9rem;
-  }
-
-  .button-group {
-    flex-direction: column;
-  }
-
-  .back-button,
-  .download-pdf-button {
-    width: 100%;
     padding: 10px;
-    font-size: 1rem;
   }
 
   .back-button-group {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 1rem 0;
-    margin-top: -15px;
+    flex-direction: column; /* Stack back button and switcher on mobile */
+    align-items: flex-start; /* Align items to the start in column layout */
   }
-  
-  .back-button {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    color: white;
-    background-color: #131240;
-    border: none;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+
+  .back-button, .profile-switcher, .current-profile-image {
+    margin-bottom: 10px; /* Space between elements when stacked */
+    margin-right: 0;      /* Remove right margin when stacked */
+    margin-left: 0;
   }
-  
-  .back-button:hover {
-    background-color: #1a1a5e;
-    transform: translateY(-2px);
+
+
+  .profile-switcher {
+    width: 100%; /* Full width on mobile */
   }
-  
-  .back-button:active {
-    background-color: #0f0f4a;
-    transform: translateY(0);
+
+  .filters {
+    justify-content: flex-start; /* Align filters to start on mobile */
   }
-  
-  .icon {
-    margin-right: 0.5rem;
+
+  .filters select {
+    margin-left: 0; /* Remove left margin on mobile */
+    margin-bottom: 10px; /* Space below filter dropdowns on mobile */
+    width: calc(50% - 5px); /* Adjust width for two filter items in row if you add more */
+  }
+
+
+  .log-details table {
+    display: block; /* Enable horizontal scroll for table on small screens */
+    overflow-x: auto;
+    white-space: nowrap; /* Prevent wrapping of table content */
+  }
+
+  .log-details th, .log-details td {
+    padding: 8px; /* Reduce padding in table cells on smaller screens */
+    font-size: 0.9rem; /* Reduce font size in table cells on smaller screens */
+  }
+
+  .download-pdf-button {
+    font-size: 0.9rem; /* Slightly smaller font on mobile button */
   }
 }
