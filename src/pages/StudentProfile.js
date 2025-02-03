@@ -113,12 +113,16 @@ const StudentProfile = () => {
           placeholder="FCC ID डालें"
           className="search-input"
           aria-label="FCC ID खोजें"
+          autoComplete="off"
+          inputMode="numeric"
+          pattern="[0-9]*"
         />
         <button
           onClick={handleSearchClick}
           className="search-button"
           disabled={loading || !fccId.trim()}
           aria-label="प्रोफाइल खोजें"
+          aria-busy={loading}
         >
           {loading ? <ClipLoader color="#ffffff" loading={loading} size={15} /> : "खोजें"}
         </button>
@@ -228,6 +232,18 @@ const StudentProfile = () => {
             <span className="button-title">{student.name} का पढ़ाई विवरण</span>
             <span className="button-subtext">सभी जानकारी देखें ➤</span>
           </button>
+          <button
+                className="view-leaderboard-button"
+                onClick={() =>
+                    navigate("/leaderboard", {
+                        state: { fccId: student.fcc_id }, // Pass fccId as state
+                    })
+                }
+                aria-label="लीडरबोर्ड देखें"
+            >
+                <span className="button-title">लीडरबोर्ड</span>
+                <span className="button-subtext">रैंक और टास्क देखें ➤</span>
+            </button>
         </div>
       )}
       {error && <p className="error">{error}</p>}

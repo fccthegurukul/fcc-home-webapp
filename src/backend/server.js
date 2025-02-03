@@ -890,6 +890,142 @@ app.post('/submit-quiz-attempt', async (req, res) => {
   }
 });
 
+// ... (existing imports and setup) ...
+// Endpoint to fetch personalized leaderboard data for a student
+// app.get('/leaderboard/:fccId', async (req, res) => {
+//   const { fccId } = req.params;
+//   try {
+//     // 1. Get leaderboard data for all students (or top N) – यह आपके business logic पर निर्भर करता है
+//     const leaderboardResult = await pool.query(
+//       `SELECT * FROM Leaderboard ORDER BY total_score DESC LIMIT 100`
+//     );
+
+//     // 2. Get personalized scoring tasks and task history for the given FCC ID
+//     const tasksResult = await pool.query(
+//       `SELECT st.task_id, st.task_name, st.description, st.max_score,
+//               COALESCE(stl.score_earned, 0) as score_earned, stl.status, stl.completed_at
+//          FROM Leaderboard_Scoring_Task st
+//          LEFT JOIN Scoring_Task_Log stl 
+//             ON st.task_id = stl.task_id AND stl.student_fcc_id = $1
+//          ORDER BY st.task_id`,
+//       [fccId]
+//     );
+
+//     // 3. Optionally, fetch student's leaderboard record
+//     const studentRecord = await pool.query(
+//       `SELECT * FROM Leaderboard WHERE student_fcc_id = $1`,
+//       [fccId]
+//     );
+
+//     res.json({
+//       leaderboard: leaderboardResult.rows,
+//       tasks: tasksResult.rows,
+//       student: studentRecord.rows[0] || null,
+//     });
+//   } catch (err) {
+//     console.error('Error fetching leaderboard data:', err);
+//     res.status(500).json({ error: 'Server error fetching leaderboard data' });
+//   }
+// });
+// Endpoint to fetch personalized leaderboard data for a student
+app.get('/leaderboard/:fccId', async (req, res) => {
+  const { fccId } = req.params;
+  try {
+      // 1. Fetch student profile to get fcc_class
+      const studentProfileResponse = await fetch(`http://localhost:${port}/get-student-profile/${fccId}`);
+      if (!studentProfileResponse.ok) {
+          console.error('Error fetching student profile:', studentProfileResponse.statusText);
+          return res.status(500).json({ error: 'Student profile fetch failed' });
+      }
+      const studentProfileData = await studentProfileResponse.json();
+      const studentClass = studentProfileData?.fcc_class; // Get numerical fcc_class from student profile
+
+      if (!studentClass) {
+          console.error('Student class not found for FCC ID:', fccId);
+          return res.status(400).json({ error: 'Student class not found' });
+      }
+
+
+      // 2. Get leaderboard data for all students (or top N)
+      const leaderboardResult = await pool.query(
+          `SELECT * FROM Leaderboard ORDER BY total_score DESC LIMIT 100`
+      );
+
+      // 3. Get personalized scoring tasks and task history for the given FCC ID
+      // FILTER tasks by student's numerical class
+
+      // ******** IMPORTANT *********
+      // Yahan par WHERE clause me condition `st.class = $2::VARCHAR` use ki gayi hai
+      // taki numerical class value ko STRING (VARCHAR) me convert karke compare kare.
+      const tasksResult = await pool.query(
+          `SELECT st.task_id, st.task_name, st.description, st.max_score,
+                  COALESCE(stl.score_earned, 0) as score_earned, stl.status, stl.completed_at
+             FROM Leaderboard_Scoring_Task st
+             LEFT JOIN Scoring_Task_Log stl
+                ON st.task_id = stl.task_id AND stl.student_fcc_id = $1
+             WHERE st.class = $2::VARCHAR  -- Filter tasks by student's numerical class (cast to VARCHAR for comparison)
+             ORDER BY st.task_id`,
+          [fccId, studentClass] // Pass studentClass (numerical value) as second parameter
+      );
+
+      // 4. Optionally, fetch student's leaderboard record (as before)
+      const studentRecord = await pool.query(
+          `SELECT * FROM Leaderboard WHERE student_fcc_id = $1`,
+          [fccId]
+      );
+
+      res.json({
+          leaderboard: leaderboardResult.rows,
+          tasks: tasksResult.rows,
+          student: studentRecord.rows[0] || null,
+      });
+  } catch (err) {
+      console.error('Error fetching leaderboard data:', err);
+      res.status(500).json({ error: 'Server error fetching leaderboard data' });
+  }
+});
+
+// Endpoint to mark a task as completed and update the score
+app.post('/complete-task', async (req, res) => {
+  const { fccId, taskId, scoreEarned } = req.body;
+  try {
+    // 1. Insert a record in Scoring_Task_Log
+    const insertResult = await pool.query(
+      `INSERT INTO Scoring_Task_Log (student_fcc_id, task_id, score_earned, status, completed_at)
+       VALUES ($1, $2, $3, 'COMPLETED', NOW())
+       RETURNING *`,
+      [fccId, taskId, scoreEarned]
+    );
+
+    // 2. Update the student's total score in Leaderboard table (Add the new score)
+    const updateResult = await pool.query(
+      `UPDATE Leaderboard
+       SET total_score = total_score + $1, last_updated = NOW()
+       WHERE student_fcc_id = $2
+       RETURNING *`,
+      [scoreEarned, fccId]
+    );
+
+    // 3. Log the update in Leaderboard_Log
+    await pool.query(
+      `INSERT INTO Leaderboard_Log (leaderboard_id, action, description)
+       VALUES ($1, 'UPDATE', 'Score updated by task completion')`,
+      [updateResult.rows[0].id]
+    );
+
+    res.json({
+      message: 'Task completed and score updated successfully',
+      taskLog: insertResult.rows[0],
+      updatedLeaderboard: updateResult.rows[0],
+    });
+  } catch (err) {
+    console.error('Error completing task:', err);
+    res.status(500).json({ error: 'Server error while completing task' });
+  }
+});
+
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

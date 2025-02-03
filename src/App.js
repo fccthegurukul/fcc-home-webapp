@@ -18,6 +18,7 @@ import CardHub from './pages/CardHub';
 import ViewCtcCtg from "./pages/ViewCtcCtg";
 import Quiz from './pages/Quiz';
 import './BottomNav.css';
+import Leaderboard from './components/Leaderboard'; // Import Leaderboard 
 
 const App = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -77,6 +78,7 @@ const App = () => {
           <Route path="/card-hub" element={<CardHub />} />
           <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
           <Route path="/quiz/:skill_topic" element={<Quiz />} />
+          <Route path="/leaderboard" element={<Leaderboard />} /> {/* Leaderboard route add */}
         </Routes>
       </div>
 

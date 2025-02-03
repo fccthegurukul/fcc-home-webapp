@@ -5,6 +5,10 @@ body {
   padding: 0;
   background-color: #f4f4f9;
   color: #333;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -304,12 +308,162 @@ button span {
   display: block;
 }
 
-
-/* Responsive Styles for Buttons (for Mobile/Small Screens) */
+/* Mobile and Responsive Enhancements */
 @media screen and (max-width: 768px) {
+  .profile-container {
+    width: 95%;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .search-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .recent-profiles-slider {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scroll-snap-type: x mandatory;
+    padding: 15px 10px;
+  }
+
+  .recent-profile-card {
+    flex: 0 0 70%; /* Make cards wider on mobile */
+    scroll-snap-align: center;
+    margin-right: 15px;
+  }
+
+  .profile-card {
+    padding: 15px;
+  }
+
+  .profile-picture {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-card p {
+    font-size: 15px;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .view-ctc-ctg-button,
   .card-hub-button {
     width: 100%;
-    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
+/* Touch Interaction Enhancements */
+@media (hover: hover) and (pointer: fine) {
+  .recent-profile-card:hover,
+  .view-ctc-ctg-button:hover,
+  .card-hub-button:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .recent-profile-card,
+  .view-ctc-ctg-button,
+  .card-hub-button {
+    transition: background-color 0.3s ease;
+  }
+
+  .recent-profile-card:active,
+  .view-ctc-ctg-button:active,
+  .card-hub-button:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Accessibility and Performance Tweaks */
+* {
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  box-sizing: border-box;
+}
+
+input, button {
+  touch-action: manipulation; /* Prevent zooming on input focus */
+}
+
+
+/* StudentProfile.css */
+/* ... existing styles ... */
+
+.student-tasks {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.student-tasks h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.student-tasks ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.student-tasks li {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.student-tasks li strong {
+    font-weight: bold;
+}
+
+/* Dark Mode Compatibility */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  .profile-container {
+    background-color: #1E1E1E;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  }
+
+  .recent-profile-card {
+    background-color: #2C2C2C;
+    border-color: #444;
+  }
+
+  .profile-card {
+    background-color: #2C2C2C;
+    border-color: #444;
+  }
+
+  .profile-card p,
+  .profile-card strong {
+    color: #e0e0e0;
   }
 }

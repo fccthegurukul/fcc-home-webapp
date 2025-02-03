@@ -1,0 +1,189 @@
+/* Leaderboard.css */
+.leaderboard-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .leaderboard-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .loader, .error {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .error {
+    color: #e74c3c;
+  }
+  
+  .student-info-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: calc(100% - 40px); /* Account for padding */
+    max-width: 700px; /* Maximum width for larger screens */
+  }
+  
+  .student-name {
+    font-size: 1.8rem;
+    color: #3498db;
+    margin-bottom: 10px;
+  }
+  
+  .student-score {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+  }
+  
+  
+  .section-title {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center; /* Keep titles centered */
+    width: 100%; /* Ensure title takes full width in its container */
+  }
+  
+  
+  .leaderboard-table-container, .tasks-section, .personalized-message-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Enable horizontal scrolling for tables if needed */
+    width: 100%; /* Take full width of parent */
+    max-width: 900px; /* Maximum width for content */
+  }
+  
+  .table-responsive {
+    overflow-x: auto; /* Enable horizontal scrolling if table is too wide */
+    padding: 10px 20px; /* Add padding inside table container */
+  }
+  
+  
+  .leaderboard-table, .tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px; /* Space below table */
+  }
+  
+  .leaderboard-table th, .leaderboard-table td,
+  .tasks-table th, .tasks-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left; /* Align text left for readability */
+  }
+  
+  .leaderboard-table th, .tasks-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .leaderboard-table tbody tr:nth-child(even), .tasks-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Optional: Even row background */
+  }
+  
+  .leaderboard-table tbody tr:last-child td, .tasks-table tbody tr:last-child td {
+    border-bottom: none; /* No border for the last row */
+  }
+  
+  .current-student {
+    background-color: #e6f7ff !important; /* Highlight color for current student row */
+    font-weight: bold;
+  }
+  
+  
+  .personalized-message-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .message-card {
+    background-color: #f0f8ff; /* Very light blue background */
+    border: 1px solid #b0e0e6; /* Light blue border */
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+  }
+  
+  .message-text {
+    font-size: 1rem;
+    color: #34495e;
+  }
+  
+  
+  .tasks-section {
+    padding: 20px;
+  }
+  
+  .tasks-table td {
+    vertical-align: top; /* Align task descriptions to the top in table cells */
+  }
+  
+  
+  .no-tasks-message {
+    text-align: center;
+    padding: 15px;
+    color: #777;
+  }
+  
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .leaderboard-title {
+      font-size: 1.75rem;
+    }
+    .section-title {
+      font-size: 1.4rem;
+    }
+    .student-info-card {
+      padding: 15px;
+    }
+    .student-name {
+      font-size: 1.6rem;
+    }
+    .student-score {
+      font-size: 1.1rem;
+    }
+    .leaderboard-table th, .leaderboard-table td,
+    .tasks-table th, .tasks-table td {
+      padding: 10px;
+      font-size: 0.9rem; /* Slightly smaller font on smaller screens */
+    }
+    .message-text {
+      font-size: 0.95rem;
+    }
+    .personalized-message-container, .tasks-section, .leaderboard-table-container {
+      padding: 15px;
+    }
+  }
+  
+  /* Even smaller screens, e.g., mobile */
+  @media (max-width: 576px) {
+    .leaderboard-title {
+      font-size: 1.5rem;
+    }
+    .section-title {
+      font-size: 1.2rem;
+    }
+    .student-name {
+      font-size: 1.4rem;
+    }
+    .leaderboard-table th, .leaderboard-table td,
+    .tasks-table th, .tasks-table td {
+      padding: 8px;
+      font-size: 0.8rem;
+    }
+  }
