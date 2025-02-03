@@ -236,7 +236,8 @@ const StudentProfile = () => {
                 className="view-leaderboard-button"
                 onClick={() =>
                     navigate("/leaderboard", {
-                        state: { fccId: student.fcc_id }, // Pass fccId as state
+                        // state: { fccId: student.fcc_id }, // Pass fccId as state
+                        state: { fccId: student.fcc_id, student: student },
                     })
                 }
                 aria-label="लीडरबोर्ड देखें"

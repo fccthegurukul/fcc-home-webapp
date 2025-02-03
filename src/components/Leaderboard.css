@@ -1,189 +1,580 @@
-/* Leaderboard.css */
+/* Leaderboard.css - और उन्नत शैलियाँ */
+
+/* चर परिभाषित करें (पहले से परिभाषित चर का उपयोग और विस्तार) */
+:root {
+    --primary-color: #007bff;          /* चमकीला नीला (बदल दिया गया) */
+    --primary-color-dark: #0056b3;     /* गहरा नीला (बदल दिया गया) */
+    --secondary-color: #6c757d;        /* ग्रे (बदल दिया गया) */
+    --background-color: #f8f9fa;       /* हल्का धूसर पृष्ठभूमि (बदल दिया गया, और भी हल्का) */
+    --white-color: #ffffff;
+    --text-color-dark: #212529;       /* और गहरा टेक्स्ट रंग (बदल दिया गया) */
+    --text-color-light: #6c757d;      /* हल्का टेक्स्ट रंग (द्वितीयक रंग के साथ संरेखित) */
+    --error-color: #dc3545;          /* त्रुटि रंग - लाल (मानक त्रुटि लाल) */
+    --success-color: #28a745;        /* सफलता रंग - हरा (मानक सफलता हरा) */
+    --pending-color: #ffc107;        /* लंबित रंग - पीला/एंबर (मानक चेतावनी रंग) */
+    --failed-color: #c0392b;         /* विफल रंग - गहरा लाल (जैसा है, या थोड़ा गहरा करें) */
+    --table-header-bg: #e9ecef;      /* और हल्का तालिका शीर्षलेख रंग (बदल दिया गया) */
+    --table-row-even-bg: #ffffff;     /* सम पंक्ति पृष्ठभूमि को सफ़ेद करें (अधिक साफ) */
+    --current-student-bg: #e0f7fa; /* वर्तमान छात्र पंक्ति पृष्ठभूमि (जैसा है) */
+    --current-student-highlight-bg: #ccebff; /* वर्तमान छात्र पंक्ति हाइलाइट (जैसा है) */
+    --message-card-bg: #e7f3ff;      /* हल्का नीला संदेश कार्ड पृष्ठभूमि (बदल दिया गया, और भी हल्का) */
+    --message-card-border: #b3d9ff;   /* हल्का नीला सीमा (बदल दिया गया, हल्का) */
+    --box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --box-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.08); /* बॉक्स छाया को सूक्ष्म बनाएँ (बदल दिया गया) */
+    --border-radius-base: 10px;
+    --font-family-base: 'Arial', sans-serif;
+    --transition-duration-base: 0.3s;
+    --transition-easing-function: ease-in-out;
+}
 .leaderboard-container {
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
-    background-color: #f4f7f6;
-    color: #333;
+    font-family: var(--font-family-base);
+    padding: 35px 20px; /* पैडिंग बढ़ाएं और साइड पैडिंग सेट करें */
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-  }
-  
-  .leaderboard-title {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 15px;
+    gap: 30px; /* बड़ा अंतर */
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, var(--background-color), #e8edf0);
+    transition: background-color var(--transition-duration-base) var(--transition-easing-function); /* बैकग्राउंड पर चिकना ट्रांजीशन */
+}
+
+.leaderboard-title {
+    font-size: 2.8rem; /* बड़ा शीर्षक फ़ॉन्ट */
+    color: var(--primary-color);
+    margin-bottom: 25px;
     text-align: center;
-  }
-  
-  .loader, .error {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.07); /* कम गहरा पाठ छाया - और सूक्ष्म */
+    letter-spacing: 0.8px; /* अधिक स्पेस्ड अक्षर */
+    font-weight: 600; /* सेमी-बोल्ड फ़ॉन्ट */
+    text-transform: uppercase; /* सभी कैप्स में शीर्षक */
+}
+
+.loader, .error {
     text-align: center;
-    margin: 20px 0;
-  }
-  
-  .error {
-    color: #e74c3c;
-  }
-  
-  .student-info-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 25px 0;
+    padding: 15px;
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-medium); /* मीडियम छाया */
+}
+
+.error {
+    color: var(--error-color);
+    font-weight: bold;
+    background-color: #fbe9e7; /* हल्का त्रुटि बैकग्राउंड रंग */
+    border: 1px solid var(--error-color); /* त्रुटि बॉर्डर रंग */
+}
+
+.student-summary-card {
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-medium); /* मीडियम छाया */
+    padding: 30px; /* बड़ी पैडिंग */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px; /* बड़ा अंतर */
+    border: 1px solid #dee2e6; /* हल्का बॉर्डर रंग - Bootstrap ग्रे */ /* **सुधार:** हल्के बॉर्डर का उपयोग करें */
+    transition: box-shadow var(--transition-duration-base) var(--transition-easing-function), transform 0.2s ease-out; /* बॉक्स शैडो और ट्रांसफॉर्म ट्रांजीशन */
+}
+
+.student-summary-card:hover {
+    box-shadow: var(--box-shadow-light); /* लाइटर होवर शैडो */
+    transform: scale(1.02); /* होवर पर स्केल-अप इफ़ेक्ट */
+}
+
+
+.student-info-card {
+    display: flex;
+    align-items: center;
+    text-align: left; /* टेक्स्ट को बाएँ अलाइन करें */
+}
+
+
+.leaderboard-profile-picture {
+    width: 70px; /* बड़ा प्रोफ़ाइल पिक्चर आकार */
+    height: 70px;
+    border-radius: 50%;
+    margin-right: 20px; /* बड़ा मार्जिन */
+    object-fit: cover;
+    border: 3px solid var(--white-color); /* मोटा सफ़ेद बॉर्डर */
+    box-shadow: var(--box-shadow-light);
+    transition: border-color var(--transition-duration-base) var(--transition-easing-function); /* बॉर्डर ट्रांजीशन */
+}
+
+.student-info-card:hover .leaderboard-profile-picture {
+    border-color: var(--primary-color); /* होवर पर बॉर्डर रंग बदलें */
+}
+
+
+.student-name {
+    font-size: 2.2rem; /* बड़ा फ़ॉन्ट आकार */
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    text-transform: capitalize;
+    font-weight: 500; /* मध्यम-बोल्ड फ़ॉन्ट वज़न */
+    transition: color var(--transition-duration-base) var(--transition-easing-function); /* कलर ट्रांजीशन */
+}
+
+.student-info-card:hover .student-name {
+    color: var(--primary-color-dark); /* होवर पर गहरा प्राइमरी रंग */
+}
+
+
+.student-score {
+    font-size: 1.4rem;
+    color: var(--text-color-light);
+    font-weight: 400; /* रेगुलर फ़ॉन्ट वज़न */
+}
+
+
+.student-rank-card {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: var(--border-radius-base);
     text-align: center;
-    width: calc(100% - 40px); /* Account for padding */
-    max-width: 700px; /* Maximum width for larger screens */
-  }
-  
-  .student-name {
-    font-size: 1.8rem;
-    color: #3498db;
-    margin-bottom: 10px;
-  }
-  
-  .student-score {
-    font-size: 1.2rem;
-    color: #7f8c8d;
-  }
-  
-  
-  .section-title {
+    box-shadow: var(--box-shadow-light);
+    border: 1px solid #dee2e6; /* हल्का बॉर्डर रंग - Bootstrap ग्रे */ /* **सुधार:** हल्के बॉर्डर का उपयोग करें */
+    margin-bottom: 0; /* `.student-summary-card` कंटेनर में बॉटम मार्जिन हटाएं */
+}
+
+.student-rank-title {
     font-size: 1.6rem;
-    color: #2c3e50;
-    margin-bottom: 15px;
-    text-align: center; /* Keep titles centered */
-    width: 100%; /* Ensure title takes full width in its container */
-  }
-  
-  
-  .leaderboard-table-container, .tasks-section, .personalized-message-container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; /* Enable horizontal scrolling for tables if needed */
-    width: 100%; /* Take full width of parent */
-    max-width: 900px; /* Maximum width for content */
-  }
-  
-  .table-responsive {
-    overflow-x: auto; /* Enable horizontal scrolling if table is too wide */
-    padding: 10px 20px; /* Add padding inside table container */
-  }
-  
-  
-  .leaderboard-table, .tasks-table {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    font-weight: 500; /* मध्यम-बोल्ड */
+}
+
+.student-rank {
+    font-size: 3.5rem; /* बड़ा फ़ॉन्ट */
+    font-weight: 700; /* बोल्ड */
+    color: var(--primary-color);
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.08); /* हल्की पाठ छाया और भी सूक्ष्म */ /* **सुधार:** पाठ छाया को कम गहरा करें */
+    transition: color var(--transition-duration-base) var(--transition-easing-function); /* कलर ट्रांजीशन */
+}
+
+.student-rank-card:hover .student-rank {
+    color: var(--primary-color-dark); /* होवर पर गहरा प्राइमरी रंग */
+}
+
+
+.section-title {
+    font-size: 2rem; /* बड़ा फ़ॉन्ट */
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 12px;
+    font-weight: 600; /* सेमी-बोल्ड सेक्शन शीर्षक */
+    text-transform: capitalize; /* पूंजीकृत सेक्शन शीर्षक */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px; /* थोड़ी मोटी रेखा */
+    width: 60px; /* चौड़ी रेखा */
+    background-color: var(--primary-color);
+    border-radius: 3px; /* और भी गोल */
+    transition: background-color var(--transition-duration-base) var(--transition-easing-function); /* बैकग्राउंड ट्रांजीशन */
+}
+
+.section-title:hover::after {
+    background-color: var(--primary-color-dark); /* होवर पर गहरा प्राइमरी रंग */
+}
+
+
+
+.leaderboard-table-container, .tasks-section, .personalized-message-container {
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-medium); /* मीडियम छाया */
+    overflow-x: auto;
+    width: 100%;
+    max-width: 1200px; /* और भी चौड़ी अधिकतम चौड़ाई */
+    border: 1px solid #dee2e6; /* हल्का बॉर्डर रंग - Bootstrap ग्रे */ /* **सुधार:** हल्के बॉर्डर का उपयोग करें */
+    padding: 15px; /* थोड़ी बड़ी पैडिंग */
+    margin-bottom: 25px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    padding: 20px 30px; /* और बड़ी तालिका पैडिंग */
+}
+
+
+.leaderboard-table, .tasks-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 15px; /* Space below table */
-  }
-  
-  .leaderboard-table th, .leaderboard-table td,
-  .tasks-table th, .tasks-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
-    text-align: left; /* Align text left for readability */
-  }
-  
-  .leaderboard-table th, .tasks-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  .leaderboard-table tbody tr:nth-child(even), .tasks-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Optional: Even row background */
-  }
-  
-  .leaderboard-table tbody tr:last-child td, .tasks-table tbody tr:last-child td {
-    border-bottom: none; /* No border for the last row */
-  }
-  
-  .current-student {
-    background-color: #e6f7ff !important; /* Highlight color for current student row */
-    font-weight: bold;
-  }
-  
-  
-  .personalized-message-container {
-    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+    box-shadow: var(--box-shadow-light);
+    border-spacing: 0; /* बॉर्डर स्पेसिंग 0 */
+    /* border: 1px solid #dee2e6; */ /* **सुधार:** तालिका के लिए बाहरी बॉर्डर हटाएँ, क्योंकि यह ओवरलेअर्ड लग सकता है */
+}
+
+.leaderboard-table th, .leaderboard-table td,
+.tasks-table th, .tasks-table td {
+    padding: 18px 22px; /* और बड़ी तालिका कक्ष पैडिंग */
+    border-bottom: 1px solid #dee2e6; /* तालिका विभाजक बॉर्डर को हल्का करें - Bootstrap ग्रे */ /* **सुधार:** हल्के बॉर्डर का उपयोग करें */
+    text-align: left;
+    white-space: nowrap;
+    font-size: 1rem; /* तालिका फ़ॉन्ट आकार */
+    color: var(--text-color-dark);
+}
+
+.leaderboard-table th, .tasks-table th {
+    background-color: var(--table-header-bg);
+    font-weight: 700; /* बोल्ड हेडर फ़ॉन्ट */
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-bottom: 2px solid #ced4da; /* तालिका हेडर बॉटम बॉर्डर को हल्का करें - Bootstrap हल्के धूसर रंग */ /* **सुधार:** हल्के बॉर्डर का उपयोग करें */
+}
+
+.leaderboard-table tbody tr:nth-child(even), .tasks-table tbody tr:nth-child(even) {
+    background-color: var(--table-row-even-bg);
+}
+
+
+.leaderboard-table tbody tr:hover, .tasks-table tbody tr:hover {
+    background-color: #f0f0f0; /* होवर पंक्ति का बैकग्राउंड रंग */
+    transition: background-color 0.2s ease-in-out; /* स्मूथ बैकग्राउंड ट्रांजीशन */
+}
+
+
+.leaderboard-table tbody tr:last-child td, .tasks-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.current-student {
+    background-color: var(--current-student-bg) !important;
+    font-weight: 600;
+    box-shadow: inset 0 0 0 3px var(--primary-color); /* वर्तमान छात्र पंक्ति के लिए मोटा इनसेट बॉर्डर */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* बॉक्स शैडो ट्रांजीशन */
+}
+
+.leaderboard-table tbody tr.current-student:hover, .tasks-table tbody tr.current-student:hover {
+    background-color: var(--current-student-highlight-bg) !important; /* हाइलाइट होवर रंग */
+}
+
+
+
+.personalized-message-container {
+    padding: 35px;
     text-align: center;
-  }
-  
-  .message-card {
-    background-color: #f0f8ff; /* Very light blue background */
-    border: 1px solid #b0e0e6; /* Light blue border */
-    border-radius: 8px;
-    padding: 15px;
-    margin-top: 10px;
-  }
-  
-  .message-text {
-    font-size: 1rem;
-    color: #34495e;
-  }
-  
-  
-  .tasks-section {
-    padding: 20px;
-  }
-  
-  .tasks-table td {
-    vertical-align: top; /* Align task descriptions to the top in table cells */
-  }
-  
-  
-  .no-tasks-message {
+    background-color: var(--white-color); /* **सुधार:** कार्ड कंटेनर के समान बैकग्राउंड रंग का उपयोग करें */
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-medium); /* मीडियम छाया */
+    margin-bottom: 25px;
+    border: 1px solid #dee2e6; /* हल्का बॉर्डर रंग - Bootstrap ग्रे */ /* **सुधार:** हल्के बॉर्डर का उपयोग करें */
+}
+
+.message-card {
+    background-color: var(--message-card-bg);
+    border: 1px solid var(--message-card-border);
+    border-radius: var(--border-radius-base);
+    padding: 25px;
+    margin-top: 15px;
+    box-shadow: none; /* संदेश कार्ड आंतरिक छाया को हटाएँ - सादगी के लिए */ /* **सुधार:** आंतरिक छाया हटाएं - स्वच्छ UI */
+}
+
+.message-text {
+    font-size: 1.15rem; /* बड़ा फ़ॉन्ट आकार */
+    color: var(--secondary-color);
+    line-height: 1.7; /* लाइन ऊंचाई बढ़ाएं */
+    font-weight: 400;
+}
+
+
+.tasks-section {
+    padding: 30px;
+}
+
+.tasks-table td {
+    vertical-align: top;
+}
+
+
+.no-tasks-message {
     text-align: center;
-    padding: 15px;
-    color: #777;
-  }
-  
-  
-  /* Responsive adjustments for smaller screens */
-  @media (max-width: 768px) {
+    padding: 25px;
+    color: var(--text-color-light);
+    font-style: italic;
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-medium);
+    margin-bottom: 25px;
+    border: 1px solid #dee2e6; /* हल्का बॉर्डर रंग - Bootstrap ग्रे */ /* **सुधार:** हल्के बॉर्डर का उपयोग करें */
+}
+
+
+.student-rank-card {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: var(--border-radius-base);
+    text-align: center;
+    box-shadow: var(--box-shadow-light);
+    border: 1px solid #dee2e6; /* हल्का बॉर्डर रंग - Bootstrap ग्रे */ /* **सुधार:** हल्के बॉर्डर का उपयोग करें */
+    margin-bottom: 0; /* `.student-summary-card` कंटेनर में बॉटम मार्जिन हटाएं */
+}
+
+
+.task-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* गैप बढ़ाएं */
+    font-weight: 500;
+    font-size: 1.1rem; /* बड़ा फ़ॉन्ट आकार स्थिति टेक्स्ट के लिए */
+}
+
+.status-icon {
+    font-size: 1.4em; /* बड़े आइकन */
+}
+
+.task-status.COMPLETED {
+    color: var(--success-color);
+}
+
+.task-status.PENDING {
+    color: var(--pending-color);
+}
+
+.task-status.FAILED {
+    color: var(--failed-color);
+}
+
+.status-icon.failed {
+    color: var(--failed-color);
+}
+
+.status-icon.pending {
+    color: var(--pending-color);
+}
+
+/* New Filters Card Styles */
+.filters-card {
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-medium);
+    padding: 15px 20px; /* कम पैडिंग */
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6; /* हल्का बॉर्डर रंग - Bootstrap ग्रे */ /* **सुधार:** हल्के बॉर्डर का उपयोग करें */
+    display: flex;
+    flex-direction: column; /* स्टैक कंट्रोल्स ऑन छोटे स्क्रीन */
+    gap: 15px;
+}
+
+@media (min-width: 769px) { /* बड़ी स्क्रीन */
+    .filters-card {
+        flex-direction: row; /* बड़ी स्क्रीन पर रो में कंट्रोल्स */
+        align-items: center;
+        justify-content: space-around; /* स्थान कंट्रोल्स हॉरिजॉन्टली */
+    }
+}
+
+
+.tasks-controls, .leaderboard-controls {
+    /* Remove background, boxShadow, borderRadius, padding, marginBottom from here */
+    /* As they are now styled within .filters-card */
+    margin-bottom: 0; /* रिमूव बॉटम मार्जिन ताकि फिल्टर्स कार्ड में कंट्रोल्स में कोई एक्स्ट्रा मार्जिन न हो */
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: 0;
+    display: flex;
+    gap: 20px; /* रिड्यूस gap between controls */
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* अलाइन फिल्टर्स टु स्टार्ट */
+
+}
+.tasks-controls {
+    justify-content: flex-end; /* अलाइन टास्क फिल्टर्स टु द एंड */
+}
+
+.tasks-filter, .tasks-sort, .leaderboard-filter {
+    gap: 10px; /* रिड्यूस gap in filter/sort items */
+}
+
+.tasks-filter label, .tasks-sort label, .leaderboard-filter label {
+    font-size: 1rem; /* स्लाइटली रिड्यूस label font-size */
+    color: var(--text-color-light); /* फ़िल्टर लेबलों को और भी अधिक ग्रे करें */ /* **सुधार:** हल्के रंग के फ़िल्टर लेबल */
+}
+
+.tasks-filter select, .tasks-sort select, .leaderboard-filter select {
+    padding: 10px 12px; /* रिड्यूस select padding */
+    font-size: 0.9rem; /* रिड्यूस select font-size */
+    border: 1px solid #ced4da; /* हल्के रंग के सेलेक्ट बॉर्डर का उपयोग करें - Bootstrap हल्के धूसर रंग */ /* **सुधार:** हल्के रंग के सेलेक्ट बॉर्डर */
+    border-radius: 0.25rem; /* एक छोटा सीमा त्रिज्या प्रदान करें */ /* **सुधार:** सेलेक्ट के लिए छोटा बॉर्डर त्रिज्या */
+}
+
+.tasks-filter select:focus, .tasks-sort select:focus, .leaderboard-filter select:focus {
+    border-color: var(--primary-color); /* फोकस पर प्राइमरी रंग बॉर्डर */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* मानक Bootstrap फोकस छाया */
+    outline: 0;
+}
+
+
+/* छोटे स्क्रीन के लिए अनुक्रियाशील समायोजन */
+@media (max-width: 768px) {
+    .leaderboard-container {
+        padding: 25px 15px;
+        gap: 25px;
+    }
     .leaderboard-title {
-      font-size: 1.75rem;
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+        letter-spacing: 0.6px;
     }
     .section-title {
-      font-size: 1.4rem;
+        font-size: 1.7rem;
+        margin-bottom: 18px;
     }
+    .section-title::after {
+        width: 50px;
+        height: 3px;
+    }
+    .student-summary-card {
+        padding: 20px;
+        width: calc(100% - 30px);
+        flex-direction: column; /* वर्टिकली स्टैक ऑन छोटे स्क्रीन */
+        align-items: stretch; /* फुल-विड्थ तक खिंचाव चाइल्ड आइटम */
+        text-align: center; /* सेंटर टेक्स्ट ऑन छोटे स्क्रीन */
+    }
+
+    .student-info-card, .student-rank-card {
+        text-align: center; /* सेंटर टेक्स्ट ऑन छोटे स्क्रीन */
+        display: block; /* चाइल्ड आइटम को ब्लॉक लेवल बनाएँ */
+    }
+
+
     .student-info-card {
-      padding: 15px;
+        margin-bottom: 15px; /* नीचे मार्जिन जोड़ें स्टैक्ड व्यू में info-card के लिए */
     }
+
+
     .student-name {
-      font-size: 1.6rem;
+        font-size: 1.9rem;
+        margin-bottom: 10px;
     }
     .student-score {
-      font-size: 1.1rem;
+        font-size: 1.2rem;
     }
+    .student-rank-title {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+    }
+    .student-rank {
+        font-size: 2.8rem;
+    }
+    .leaderboard-profile-picture {
+        width: 60px;
+        height: 60px;
+        margin-right: 0; /* राइट मार्जिन हटाएं जब स्टैक्ड हों */
+        margin-bottom: 15px; /* बॉटम मार्जिन जोड़ें */
+    }
+
     .leaderboard-table th, .leaderboard-table td,
     .tasks-table th, .tasks-table td {
-      padding: 10px;
-      font-size: 0.9rem; /* Slightly smaller font on smaller screens */
+        padding: 14px 18px;
+        font-size: 0.9rem;
+        white-space: normal; /* टेक्स्ट लपेटने को एनेबल करें छोटे स्क्रीन पर */
+    }
+    .table-responsive {
+        padding: 15px;
     }
     .message-text {
-      font-size: 0.95rem;
+        font-size: 1.05rem;
     }
     .personalized-message-container, .tasks-section, .leaderboard-table-container {
-      padding: 15px;
+        padding: 20px;
     }
-  }
-  
-  /* Even smaller screens, e.g., mobile */
-  @media (max-width: 576px) {
+    .tasks-controls, .leaderboard-controls {
+        gap: 20px;
+        padding: 0px; /* रिमूव पैडिंग फ्रॉम कंट्रोल्स ऑन स्मॉलर स्क्रीन */
+        justify-content: space-around; /* फैलाव नियंत्रण */
+        background-color: transparent; /* ट्रांस्पेरेंट बैकग्राउंड ऑन स्मॉलर स्क्रीन */
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .tasks-filter, .tasks-sort, .leaderboard-filter {
+        flex-direction: column; /* स्टैक फ़िल्टर/सॉर्ट ऑन छोटे स्क्रीन */
+        align-items: flex-start;
+        width: 100%; /* फुल-विड्थ फ़िल्टर/सॉर्ट ऑन छोटे स्क्रीन */
+    }
+    .tasks-filter label, .tasks-sort label, .leaderboard-filter label {
+        margin-bottom: 8px;
+        font-size: 1rem;
+    }
+
+    .tasks-filter select, .tasks-sort select, .leaderboard-filter select {
+        padding: 12px; /* सेलेक्ट पैडिंग */
+        font-size: 0.9rem;
+        width: 100%; /* फुल-विड्थ सेलेक्ट ऑन छोटे स्क्रीन */
+        margin-bottom: 10px; /* सेलेक्ट के बीच मार्जिन */
+        background-position-x: 96%; /* एरो पोजीशन एडजस्ट करें छोटे स्क्रीन के लिए */
+    }
+
+    .filters-card {
+        padding: 10px; /* रिड्यूस filters card padding for small screen */
+        flex-direction: column; /* फिल्टर्स कार्ड वर्टिकल डायरेक्शन फॉर स्मॉल स्क्रीन */
+    }
+}
+
+
+/* और भी छोटे स्क्रीन, उदाहरण के लिए, मोबाइल */
+@media (max-width: 576px) {
     .leaderboard-title {
-      font-size: 1.5rem;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
     }
     .section-title {
-      font-size: 1.2rem;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
     }
     .student-name {
-      font-size: 1.4rem;
+        font-size: 1.6rem;
+    }
+    .student-rank {
+        font-size: 2.4rem;
+    }
+    .leaderboard-profile-picture {
+        width: 55px;
+        height: 55px;
     }
     .leaderboard-table th, .leaderboard-table td,
     .tasks-table th, .tasks-table td {
-      padding: 8px;
-      font-size: 0.8rem;
+        padding: 10px 12px;
+        font-size: 0.85rem;
     }
-  }
+    .message-text {
+        font-size: 0.95rem;
+    }
+    .tasks-controls, .leaderboard-controls {
+        gap: 15px;
+    }
+
+    /* मोबाइल व्यू के लिए कॉलम छिपाएं, अगर टेबल अभी भी ओवरफ्लो हो रही है */
+    .leaderboard-table th:nth-child(5), /* FCC ID Column */
+    .leaderboard-table td:nth-child(5),
+    .tasks-table th:nth-child(8),       /* टास्क ID Column */
+    .tasks-table td:nth-child(8)
+     {
+        display: none;
+    }
+
+    .filters-card {
+        padding: 5px; /* रिड्यूस filters card padding even more for mobile */
+    }
+}

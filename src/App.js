@@ -19,6 +19,7 @@ import ViewCtcCtg from "./pages/ViewCtcCtg";
 import Quiz from './pages/Quiz';
 import './BottomNav.css';
 import Leaderboard from './components/Leaderboard'; // Import Leaderboard 
+import FcchomeAI from './pages/fcchome-ai';
 
 const App = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -42,7 +43,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Coaching Management System</h1>
+      <h1 className='branding-name' >एफसीसी होम</h1>
       <nav className="navbar">
         <div className="hamburger-menu" onClick={toggleMenu}>
           <div></div>
@@ -79,6 +80,7 @@ const App = () => {
           <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
           <Route path="/quiz/:skill_topic" element={<Quiz />} />
           <Route path="/leaderboard" element={<Leaderboard />} /> {/* Leaderboard route add */}
+          <Route path="/fcchome-ai" element={<FcchomeAI />} />
         </Routes>
       </div>
 
@@ -100,10 +102,10 @@ const App = () => {
           <i className="fas fa-trophy"></i>
           <span>LeaderBoard</span>
         </Link>
-        <Link to="/archives" className={`bottom-nav-link ${location.pathname === '/archives' ? 'active' : ''}`}>
-          <i className="fas fa-archive"></i>
-          <span>Achives</span>
-        </Link>
+        <Link to="/fcchome-ai" className={`bottom-nav-link ${location.pathname === '/fcchome-ai' ? 'active' : ''}`}>
+  <i className="fas fa-robot"></i> {/* या fa-brain, fa-microchip */}
+  <span>AI</span>
+</Link>
       </nav>
 
 

@@ -1,6 +1,7 @@
 const path = require('path');  // Only declare path once
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
-
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const Anthropic = require('@anthropic-ai/sdk'); // Anthropic SDK इम्पोर्ट करें
 const express = require("express");
 const { Pool } = require("pg");
 const cors = require("cors");
@@ -9,6 +10,13 @@ const fs = require('fs');
 const multer = require("multer");
 const PDFDocument = require('pdfkit');
 const QRCode = require("qrcode");
+const fetch = require('node-fetch'); // fetch API इम्पोर्ट करें (पुराने Node.js के लिए)
+
+// मॉडल्स इनिशियलाइज़ करें
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" }); // <-- यहाँ ठीक से परिभाषित!
+
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const app = express();
 const port = 5000;
@@ -890,48 +898,34 @@ app.post('/submit-quiz-attempt', async (req, res) => {
   }
 });
 
-// ... (existing imports and setup) ...
-// Endpoint to fetch personalized leaderboard data for a student
-// app.get('/leaderboard/:fccId', async (req, res) => {
-//   const { fccId } = req.params;
-//   try {
-//     // 1. Get leaderboard data for all students (or top N) – यह आपके business logic पर निर्भर करता है
-//     const leaderboardResult = await pool.query(
-//       `SELECT * FROM Leaderboard ORDER BY total_score DESC LIMIT 100`
-//     );
 
-//     // 2. Get personalized scoring tasks and task history for the given FCC ID
-//     const tasksResult = await pool.query(
-//       `SELECT st.task_id, st.task_name, st.description, st.max_score,
-//               COALESCE(stl.score_earned, 0) as score_earned, stl.status, stl.completed_at
-//          FROM Leaderboard_Scoring_Task st
-//          LEFT JOIN Scoring_Task_Log stl 
-//             ON st.task_id = stl.task_id AND stl.student_fcc_id = $1
-//          ORDER BY st.task_id`,
-//       [fccId]
-//     );
+// Endpoint to get all classes
+app.get('/get-classes', async (req, res) => {
+  try {
+      // Query to fetch distinct class names from Leaderboard_Scoring_Task table
+      const classesResult = await pool.query(
+          `SELECT DISTINCT class FROM Leaderboard_Scoring_Task WHERE class IS NOT NULL AND class != '' ORDER BY class`
+      );
 
-//     // 3. Optionally, fetch student's leaderboard record
-//     const studentRecord = await pool.query(
-//       `SELECT * FROM Leaderboard WHERE student_fcc_id = $1`,
-//       [fccId]
-//     );
+      // Extract class names from the result rows
+      const classNames = classesResult.rows.map(row => row.class);
 
-//     res.json({
-//       leaderboard: leaderboardResult.rows,
-//       tasks: tasksResult.rows,
-//       student: studentRecord.rows[0] || null,
-//     });
-//   } catch (err) {
-//     console.error('Error fetching leaderboard data:', err);
-//     res.status(500).json({ error: 'Server error fetching leaderboard data' });
-//   }
-// });
-// Endpoint to fetch personalized leaderboard data for a student
+      res.json({ classes: classNames }); // Send the class names as JSON response
+  } catch (error) {
+      console.error('Error fetching classes:', error);
+      res.status(500).json({ error: 'Server error fetching classes' });
+  }
+});
+
+
+// Endpoint to fetch personalized leaderboard data for a student (MODIFIED to fetch fcc_class from Leaderboard)
+// Endpoint to fetch personalized leaderboard data for a student (MODIFIED to fetch fcc_class from Leaderboard AND include start_time and end_time for tasks)
 app.get('/leaderboard/:fccId', async (req, res) => {
   const { fccId } = req.params;
+  const { leaderboardClassFilter } = req.query; // Get class filter from query params
+
   try {
-      // 1. Fetch student profile to get fcc_class
+      // 1. Fetch student profile to get fcc_class (Optional - keep for consistency or fallback)
       const studentProfileResponse = await fetch(`http://localhost:${port}/get-student-profile/${fccId}`);
       if (!studentProfileResponse.ok) {
           console.error('Error fetching student profile:', studentProfileResponse.statusText);
@@ -945,27 +939,29 @@ app.get('/leaderboard/:fccId', async (req, res) => {
           return res.status(400).json({ error: 'Student class not found' });
       }
 
+      // 2. Get leaderboard data for all students (or top N) -  NOW FETCHING fcc_class from Leaderboard
+      let leaderboardQuery = `SELECT * FROM Leaderboard`;
+      let leaderboardParams = [];
 
-      // 2. Get leaderboard data for all students (or top N)
-      const leaderboardResult = await pool.query(
-          `SELECT * FROM Leaderboard ORDER BY total_score DESC LIMIT 100`
-      );
+      if (leaderboardClassFilter && leaderboardClassFilter !== 'ALL') {
+          leaderboardQuery += ` WHERE fcc_class = $1`;
+          leaderboardParams = [leaderboardClassFilter];
+      }
 
-      // 3. Get personalized scoring tasks and task history for the given FCC ID
-      // FILTER tasks by student's numerical class
+      leaderboardQuery += ` ORDER BY total_score DESC LIMIT 100`; // Always apply limit
 
-      // ******** IMPORTANT *********
-      // Yahan par WHERE clause me condition `st.class = $2::VARCHAR` use ki gayi hai
-      // taki numerical class value ko STRING (VARCHAR) me convert karke compare kare.
+      const leaderboardResult = await pool.query(leaderboardQuery, leaderboardParams);
+
+      // 3. Get personalized scoring tasks and task history for the given FCC ID (MODIFIED QUERY TO INCLUDE start_time and end_time)
       const tasksResult = await pool.query(
-          `SELECT st.task_id, st.task_name, st.description, st.max_score,
+          `SELECT st.task_id, st.task_name, st.description, st.max_score, st.start_time, st.end_time, /* ADDED start_time, end_time */
                   COALESCE(stl.score_earned, 0) as score_earned, stl.status, stl.completed_at
              FROM Leaderboard_Scoring_Task st
              LEFT JOIN Scoring_Task_Log stl
                 ON st.task_id = stl.task_id AND stl.student_fcc_id = $1
-             WHERE st.class = $2::VARCHAR  -- Filter tasks by student's numerical class (cast to VARCHAR for comparison)
+             WHERE st.class = $2::VARCHAR  -- Filter tasks by student's class
              ORDER BY st.task_id`,
-          [fccId, studentClass] // Pass studentClass (numerical value) as second parameter
+          [fccId, studentClass] // Pass studentClass for task filtering
       );
 
       // 4. Optionally, fetch student's leaderboard record (as before)
@@ -1024,9 +1020,82 @@ app.post('/complete-task', async (req, res) => {
   }
 });
 
+// app.post('/api/chat', async (req, res) => {
+//   const userMessage = req.body.message;
+
+//   if (!userMessage) {
+//       return res.status(400).json({ error: 'Message is required' });
+//   }
+
+//   try {
+//       const result = await model.generateContent(userMessage);
+//       const responseText = result.response.text();
+//       res.json({ response: responseText });
+//   } catch (error) {
+//       console.error("Gemini API error:", error);
+//       res.status(500).json({ error: 'Failed to get response from Gemini API' });
+//   }
+// });
+
+
+app.post('/api/chat', async (req, res) => {
+  const userMessage = req.body.message;
+  const selectedModel = req.body.model;
+
+  if (!userMessage) {
+      return res.status(400).json({ error: 'Message is required' });
+  }
+
+  try {
+      let responseText = "";
+      if (selectedModel === 'deepseek') {
+          // DeepSeek via OpenRouter
+          const openRouterApiKey = "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"; // **OpenRouter API key यहाँ डालें**
+          const deepseekResponse = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+              method: "POST",
+              headers: {
+                  "Authorization": `Bearer ${openRouterApiKey}`,
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                  "model": "deepseek/deepseek-r1:free",
+                  "messages": [
+                      {
+                          "role": "user",
+                          "content": userMessage
+                      }
+                  ]
+              })
+          });
+
+          if (!deepseekResponse.ok) {
+              const errorDetails = await deepseekResponse.json();
+              console.error("OpenRouter/DeepSeek API error:", errorDetails);
+              throw new Error(`DeepSeek API request failed with status ${deepseekResponse.status}: ${errorDetails.error ? errorDetails.error.message : deepseekResponse.statusText}`);
+          }
+
+          const deepseekData = await deepseekResponse.json();
+          responseText = deepseekData.choices[0].message.content;
+
+      } else  if (selectedModel === 'gemini' || !selectedModel) {
+          // Google Gemini (डिफ़ॉल्ट)
+          const geminiResult = await geminiModel.generateContent(userMessage);
+          responseText = geminiResult.response.text();
+      } else {
+          return res.status(400).json({ error: 'Invalid model selected' });
+      }
+
+      res.json({ response: responseText });
+
+  } catch (error) {
+      console.error("API error:", error);
+      res.status(500).json({ error: 'Failed to get response from AI model' });
+  }
+});
 
 
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
+  
 });
