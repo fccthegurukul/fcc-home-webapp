@@ -70,7 +70,7 @@
   
   .qr-code-img {
     width: 100%; /* Makes the image's width flexible */
-    max-width: 150px; /* Max width ensures it doesn't get too big */
+    max-width: 200px; /* Max width ensures it doesn't get too big */
     height: auto; /* Keeps the aspect ratio intact */
   }
   

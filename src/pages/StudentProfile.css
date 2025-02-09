@@ -1,469 +1,619 @@
-/* Global Styles */
-body {
-  font-family: Arial, sans-serif;
+/* StudentProfile.css */
+
+/* बेस रीसेट और बेसिक सेटिंग्स */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+p,
+input,
+button {
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
-  color: #333;
-  line-height: 1.6;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Arial', sans-serif;
 }
 
-h1 {
-  text-align: center;
-  margin-top: 20px;
-  color: #444;
-}
-
-/* Profile Container */
+/* मुख्य कंटेनर */
 .profile-container {
-  width: 90%;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  padding-bottom: 100px; /* नीचे की नेविगेशन को ध्यान में रखते हुए */
+  background-color: #f9f9f9;
 }
 
-/* Search Bar */
+/* हेडिंग स्टाइल */
+.profile-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* सर्च बार स्टाइल */
 .search-bar {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 10px;
-  margin: 20px 0;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .search-input {
-  width: 70%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  flex: 1;
+  padding: 10px 15px;
   font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
 }
 
-.search-button {
-  padding: 10px 20px;
-  background-color: #252273;
-  color: white;
+.search-input:focus {
+  border-color: #4A90E2;
+  outline: none;
+}
+
+/* सामान्य बटन स्टाइल */
+.search-button,
+.scan-button,
+.scan-cancel-button,
+.view-ctc-ctg-button,
+.card-hub-button,
+.view-leaderboard-button {
+  padding: 10px 15px;
+  font-size: 14px;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.search-button:hover {
-  background-color: #252273;
+/* सर्च बटन */
+.search-button {
+  background-color: #4A90E2;
+  color: #fff;
 }
 
-/* Error Message */
-.error {
-  color: red;
-  text-align: center;
+.search-button:hover:not(:disabled) {
+  background-color: #3a7acb;
+}
+
+/* QR स्कैन बटन */
+.scan-button {
+  background-color: #28a745;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.scan-button:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+/* स्कैन रद्द करने का बटन */
+.scan-cancel-button {
+  background-color: #dc3545;
+  color: #fff;
   margin-top: 10px;
 }
 
-/* Recent Profiles Slider */
-.recent-profiles {
+.scan-cancel-button:hover {
+  background-color: #c82333;
+}
+
+/* डिसएबल्ड बटन */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* लोडर कंटेनर */
+.loader-container {
+  text-align: center;
   margin: 20px 0;
 }
 
-.recent-profiles h2 {
+.loader-container p {
+  margin-top: 10px;
+  color: #555;
+}
+
+/* एरर मैसेज */
+.error {
+  color: #dc3545;
+  margin: 10px 0;
   text-align: center;
-  color: #444;
+}
+
+/* QR स्कैनर कंटेनर */
+.qr-scanner-container {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #fff;
+  border: 2px dashed #4A90E2;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.qr-scanner-view {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* हाल ही में देखे गए प्रोफाइल */
+.recent-profiles {
+  margin-top: 30px;
+}
+
+.recent-profiles h2 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 18px;
 }
 
 .recent-profiles-slider {
   display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
   gap: 15px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  overflow-x: auto;
+  padding-bottom: 10px;
 }
 
-.recent-profiles-slider::-webkit-scrollbar {
-  height: 8px;
-}
-
-.recent-profiles-slider::-webkit-scrollbar-thumb {
-  background: #aaa;
-  border-radius: 4px;
-}
-
-.recent-profiles-slider::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Mini Profile Card */
 .recent-profile-card {
-  flex: 0 0 auto;
-  width: 160px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px; /* Rounded corners for a smoother look */
-  padding: 15px;
+  position: relative;
+  min-width: 120px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  opacity: 0.95; /* Slight transparency for a modern feel */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.profile-card p {
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  text-align: left; /* Text alignment left side में सेट किया गया */
 }
 
 .recent-profile-card:hover {
-  transform: translateY(-5px); /* Hover effect that slightly lifts the card */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-  opacity: 1; /* Full opacity on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.recent-profile-picture {
-  width: 100px;
-  height: 100px;
+.recent-profile-card img.profile-picture {
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 10px;
-  border: 2px solid #ddd; /* Soft border */
-  background-color: #f4f4f4; /* Light background for profile images */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.recent-profile-card:hover .recent-profile-picture {
-  transform: scale(1.1); /* Slight zoom-in effect on image when card is hovered */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance image shadow */
+  margin-bottom: 8px;
+  border: 2px solid #4A90E2;
 }
 
 .recent-profile-name {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333; /* Darker text for readability */
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  margin-top: 5px;
+  font-size: 14px;
+  color: #333;
+  word-break: break-all;
 }
 
-.recent-profile-name:hover {
-  color: #05F2DB; /* Highlight text on hover */
-  text-decoration: underline; /* Subtle underline on hover */
+/* Recent profile हटाने का बटन */
+.remove-recent-profile {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #dc3545;
 }
 
-/* Profile Card */
+.remove-recent-profile:hover {
+  color: #c82333;
+}
+
+/* विद्यार्थी प्रोफाइल कार्ड */
 .profile-card {
-  margin-top: 20px;
-  padding: 20px;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
 }
 
 .profile-card h2 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 20px;
   text-align: center;
-  color: #444;
-  margin-bottom: 20px;
 }
 
-.profile-picture {
+.profile-card .profile-picture {
   display: block;
+  margin: 0 auto 15px auto;
   width: 150px;
   height: 150px;
-  margin: 0 auto 20px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid #252273;
+  border: 3px solid #4A90E2;
 }
-
-.profile-picture {
-  background: url('../assets/404-image.jpg') no-repeat center center;
-
-  background-size: contain;
-}
-
-.profile-picture:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease-in-out;
-}
-
 
 .profile-card p {
-  font-size: 16px;
   margin: 8px 0;
   color: #555;
+  line-height: 1.5;
 }
 
 .profile-card strong {
-  color: #131240;
+  color: #333;
 }
 
-/* Button Group Styles */
+/* बटन ग्रुप (प्रोफाइल कार्ड के अंदर) */
+/* Button Group Container */
 .button-group {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 15px;
   margin: 20px 0;
 }
 
-/* View CTC/CTG Button */
-.view-ctc-ctg-button,
-.card-hub-button {
-  padding: 12px 25px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 30px;
-  cursor: pointer;
-  border: none;
-  color: white;
-  transition: all 0.3s ease-in-out;
-  width: 48%;
-}
-
-.view-ctc-ctg-button {
-  background-color: #007bff; /* Blue color */
-}
-
-.card-hub-button {
-  background-color: #28a745; /* Green color */
-}
-
-.view-ctc-ctg-button:hover,
-.card-hub-button:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.view-ctc-ctg-button:active,
-.card-hub-button:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-/* Focused Button Styles */
-.view-ctc-ctg-button:focus,
-.card-hub-button:focus {
-  outline: none;
-  box-shadow: 0 0 5px 2px rgba(0, 123, 255, 0.6);
-}
-
-/* Button Text Styles */
-.view-ctc-ctg-button span,
-.card-hub-button span {
+/* Common Button Styles (यदि आप अन्य बटनों पर भी समान स्टाइल चाहें) */
+.button-group button,
+.card-hub-button,
+.view-leaderboard-button {
   display: block;
-  font-size: 14px;
-  font-weight: normal;
-  margin-top: 8px;
-  opacity: 0.9;
-}
-
-.view-ctc-ctg-button:hover span,
-.card-hub-button:hover span {
-  opacity: 1;
-}
-
-.button-group {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-button {
-  background-color: #131240; /* Fresh green color */
-  color: white;
+  width: 100%;
+  padding: 15px 20px;
   border: none;
   border-radius: 8px;
-  padding: 7px 15px;
-  font-size: 16px;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
-  background-color: #131240; /* Slightly darker green on hover */
-  transform: scale(1.05); /* Button grows slightly on hover */
+/* View CTC/CTG Button */
+.view-ctc-ctg-button {
+  background-color: #4A90E2;
+  color: #fff;
+}
+.view-ctc-ctg-button:hover {
+  background-color: #357ABD;
+  transform: scale(1.02);
 }
 
+/* Card Hub Button */
+.card-hub-button {
+  background-color: #28a745;
+  color: #fff;
+  margin-top: 15px;
+}
+.card-hub-button:hover {
+  background-color: #218838;
+  transform: scale(1.02);
+}
+
+/* View Leaderboard Button */
+.view-leaderboard-button {
+  background-color: #6d3615;
+  color: #fff;
+  margin-top: 15px;
+}
+.view-leaderboard-button:hover {
+  background-color: #a72403;
+  transform: scale(1.02);
+}
+
+/* Button Title & Subtext Styling */
 .button-title {
-  font-weight: bold;
+  display: block;
   font-size: 18px;
+  font-weight: bold;
 }
-
 .button-subtext {
+  display: block;
   font-size: 14px;
-  font-weight: normal;
-  color: #dcdcdc; /* Light grey for subtext */
-  display: block;
-  margin-top: 5px;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-button span {
-  display: block;
-}
-
-/* Mobile and Responsive Enhancements */
-@media screen and (max-width: 768px) {
-  .profile-container {
-    width: 95%;
-    padding: 10px;
-    margin: 0 auto;
+/* Responsive Adjustments for Smaller Screens */
+@media (max-width: 600px) {
+  .button-group button,
+  .card-hub-button,
+  .view-leaderboard-button {
+    padding: 12px 16px;
   }
+  
+  .button-title {
+    font-size: 16px;
+  }
+  
+  .button-subtext {
+    font-size: 12px;
+  }
+}
 
+
+/* Skeleton loading styles */
+.skeleton {
+  animation: shimmer 1.5s infinite;
+  background: linear-gradient(
+    to right,
+    #eeeeee 8%,
+    #dddddd 18%,
+    #eeeeee 33%
+  );
+  background-size: 800px 104px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 15px auto;
+  background-color: #ccc;
+}
+
+.skeleton-line {
+  height: 16px;
+  width: 100%;
+  background-color: #ccc;
+  margin: 8px 0;
+  border-radius: 4px;
+}
+
+.skeleton-line-short {
+  width: 50%;
+  margin: 8px auto;
+}
+
+/* फीस विवरण टेबल स्टाइल */
+/* Fee Details Container */
+.fee-details {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 2px dashed #4A90E2;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;  /* Responsive Table के लिए horizontal scrolling */
+}
+
+/* Fee Details Heading */
+.fee-details h3 {
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Fee Details Table */
+.fee-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table Headers & Data Cells */
+.fee-details th,
+.fee-details td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+/* Table Header Styling */
+.fee-details th {
+  background-color: #4A90E2;
+  color: #fff;
+}
+
+/* Hover Effect for Table Rows */
+.fee-details tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .fee-details th,
+  .fee-details td {
+    font-size: 14px;
+    padding: 8px;
+  }
+  
+  .fee-details h3 {
+    font-size: 18px;
+  }
+}
+
+/* Modal Overlay: स्क्रीन पर dim background और fade-in एनिमेशन */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeInOverlay 0.5s ease-out;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Card: आकर्षक बॉर्डर, बॉक्स-शैडो, और slide-in एनिमेशन */
+.modal-card {
+  background: #fff;
+  border: 2px dashed #4A90E2; /* मुख्य आकर्षक बॉर्डर */
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Close Button: गोलाकार, आकर्षक रंग के साथ */
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff5e57;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.modal-close-button:hover {
+  background: #e04e47;
+}
+
+/* UPI QR Image: बॉर्डर, बॉर्डर-रेडियस और हल्का शेडो */
+.upi-qr {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 2px solid #4A90E2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Payment Button: ग्रेडिएंट बैकग्राउंड, scale hover effect */
+.payment-button {
+  background: linear-gradient(45deg, #28a745, #218838);
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.payment-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #218838, #1e7732);
+}
+
+.payment-note {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+  font-style: italic;
+}
+
+
+/* Fade in animation */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Shimmer animation for skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -800px 0;
+  }
+  100% {
+    background-position: 800px 0;
+  }
+}
+
+
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  animation: slideIn 0.3s forwards;
+}
+
+.toast-info {
+  background-color: #4A90E2;
+}
+
+.toast-warning {
+  background-color: #f0ad4e;
+}
+
+.toast-error {
+  background-color: #dc3545;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* रिस्पॉन्सिव डिज़ाइन */
+@media (max-width: 600px) {
   .search-bar {
     flex-direction: column;
+    align-items: stretch;
+  }
+  .search-button,
+  .scan-button {
+    width: 100%;
+  }
+  .recent-profiles-slider {
     gap: 10px;
   }
-
-  .search-input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  .search-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  .recent-profiles-slider {
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    scroll-snap-type: x mandatory;
-    padding: 15px 10px;
-  }
-
   .recent-profile-card {
-    flex: 0 0 70%; /* Make cards wider on mobile */
-    scroll-snap-align: center;
-    margin-right: 15px;
+    min-width: 100px;
   }
-
-  .profile-card {
-    padding: 15px;
-  }
-
-  .profile-picture {
+  .profile-card .profile-picture {
     width: 120px;
     height: 120px;
-  }
-
-  .profile-card p {
-    font-size: 15px;
-  }
-
-  .button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .view-ctc-ctg-button,
-  .card-hub-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 15px;
-  }
-}
-
-/* Touch Interaction Enhancements */
-@media (hover: hover) and (pointer: fine) {
-  .recent-profile-card:hover,
-  .view-ctc-ctg-button:hover,
-  .card-hub-button:hover {
-    transform: scale(1.02);
-    transition: transform 0.2s ease;
-  }
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .recent-profile-card,
-  .view-ctc-ctg-button,
-  .card-hub-button {
-    transition: background-color 0.3s ease;
-  }
-
-  .recent-profile-card:active,
-  .view-ctc-ctg-button:active,
-  .card-hub-button:active {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-}
-
-/* Accessibility and Performance Tweaks */
-* {
-  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-  box-sizing: border-box;
-}
-
-input, button {
-  touch-action: manipulation; /* Prevent zooming on input focus */
-}
-
-
-/* StudentProfile.css */
-/* ... existing styles ... */
-
-.student-tasks {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
-
-.student-tasks h2 {
-    margin-top: 0;
-    color: #333;
-    font-size: 1.5em;
-}
-
-.student-tasks ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-.student-tasks li {
-    margin-bottom: 8px;
-    line-height: 1.4;
-}
-
-.student-tasks li strong {
-    font-weight: bold;
-}
-
-/* Dark Mode Compatibility */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #e0e0e0;
-  }
-
-  .profile-container {
-    background-color: #1E1E1E;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-  }
-
-  .recent-profile-card {
-    background-color: #2C2C2C;
-    border-color: #444;
-  }
-
-  .profile-card {
-    background-color: #2C2C2C;
-    border-color: #444;
-  }
-
-  .profile-card p,
-  .profile-card strong {
-    color: #e0e0e0;
   }
 }

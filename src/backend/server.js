@@ -1,5 +1,6 @@
 const path = require('path');  // Only declare path once
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+const logoPath = path.join(__dirname, "..", "assets", "logo.png");
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const Anthropic = require('@anthropic-ai/sdk'); // Anthropic SDK इम्पोर्ट करें
 const express = require("express");
@@ -11,6 +12,7 @@ const multer = require("multer");
 const PDFDocument = require('pdfkit');
 const QRCode = require("qrcode");
 const fetch = require('node-fetch'); // fetch API इम्पोर्ट करें (पुराने Node.js के लिए)
+
 
 // मॉडल्स इनिशियलाइज़ करें
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -396,13 +398,22 @@ const imageWidth = 70; // Width of the logo image
 const marginRight = 40; // Right margin from the edge of the page
 const rightX = doc.page.width - imageWidth - marginRight; // Calculate X position for right alignment
 
-doc.image("F:/Projects/Coaching/coaching-management-app/src/assets/logo.png", {
-  fit: [imageWidth, 70],
-  align: "right", // Align logo to the right
-  valign: "top",
-  x: rightX, // Use calculated right X position
-  y: doc.y, // Place the image at the current Y position
-});
+// Check if the logo file exists before loading it
+if (fs.existsSync(logoPath)) {
+  const imageWidth = 70; // Width of the logo image
+  const marginRight = 40; // Right margin from the edge of the page
+  const rightX = doc.page.width - imageWidth - marginRight; // Calculate X position for right alignment
+
+  doc.image(logoPath, {
+    fit: [imageWidth, 70],
+    align: "right",
+    valign: "top",
+    x: rightX,
+    y: doc.y,
+  });
+} else {
+  console.error("Logo file not found:", logoPath);
+}
 doc.moveDown(0.5);
 doc.moveDown(0.5);
 doc
@@ -531,7 +542,7 @@ doc
   .text("FCC The Gurukul © 2025. All rights reserved | www.fccthegurukul.in", { align: "center" });
 
   // Add Footer Image
-const footerImgPath = "F:/Projects/Coaching/coaching-management-app/src/assets/footerimg.png";
+const footerImgPath = "C:/Users/FCC The Gurukul/My Projects/fcc-home-webapp/src/assets/footerimg.png";
 const footerImageHeight = 100;
 const footerYPosition = doc.page.height - footerImageHeight - 20;
 
@@ -627,25 +638,6 @@ app.get("/api/payments", async (req, res) => {
 });
 
 
-// Route to fetch student by FCC ID
-// app.get("/get-student-profile/:fcc_id", async (req, res) => {
-//   const { fcc_id } = req.params;
-
-//   try {
-//     const query = 'SELECT * FROM "New_Student_Admission" WHERE fcc_id = $1';
-//     const result = await pool.query(query, [fcc_id]);
-
-//     if (result.rows.length === 0) {
-//       return res.status(404).json({ error: 'Student not found' });
-//     }
-
-//     res.json(result.rows[0]); // Return the student data
-//   } catch (error) {
-//     console.error('Error fetching student:', error);
-//     res.status(500).json({ error: 'Failed to fetch student data' });
-//   }
-// });
-
 const studentPhotos = {
   "4949200024": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FIMG_20241112_150831_462.jpg?alt=media&token=e75bd57c-f944-4061-94e7-381b15a519f1",
   "9631200024": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519",
@@ -674,56 +666,6 @@ app.get("/get-student-profile/:fcc_id", async (req, res) => {
   }
 });
 
-// Route to fetch student skills by FCC ID
-// app.get('/get-student-skills/:fcc_id', async (req, res) => {
-//   const { fcc_id } = req.params;
-
-//   try {
-//     const query = `
-//       SELECT skill_topic, skill_level
-//       FROM student_skills
-//       WHERE fcc_id = $1
-//     `;
-//     const result = await pool.query(query, [fcc_id]);
-
-//     if (result.rows.length === 0) {
-//       return res.status(404).json({ error: 'No skills found for this student' });
-//     }
-
-//     res.json(result.rows); // Send the skills data as JSON
-//   } catch (error) {
-//     console.error('Error fetching skills:', error);
-//     res.status(500).json({ error: 'Failed to fetch student skills' });
-//   }
-// });
-
-// app.get('/get-student-skills/:fcc_id', async (req, res) => {
-//   const { fcc_id } = req.params;
-
-//   try {
-//     const query = `
-//       SELECT
-//         skill_topic,
-//         skill_level,
-//         skill_description,
-//         skill_image_url,
-//         status,
-//         jsonb_pretty(skill_log) AS skill_log -- Make the log more readable
-//       FROM student_skills
-//       WHERE fcc_id = $1
-//     `;
-//     const result = await pool.query(query, [fcc_id]);
-
-//     if (result.rows.length === 0) {
-//       return res.status(404).json({ error: 'No skills found for this student' });
-//     }
-
-//     res.json(result.rows);
-//   } catch (error) {
-//     console.error('Error fetching skills:', error);
-//     res.status(500).json({ error: 'Failed to fetch student skills' });
-//   }
-// });
 
 app.get('/get-student-skills/:fcc_id', async (req, res) => {
   const { fcc_id } = req.params;
@@ -1093,6 +1035,33 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
+// FCC ID के आधार पर अपडेटेड टेबल से फीस विवरण प्राप्त करने वाला API endpoint
+app.get("/get-tuition-fee-details/:fcc_id", async (req, res) => {
+  const { fcc_id } = req.params;
+  try {
+    const queryText = `
+      SELECT total_fee,
+             fee_paid,
+             fee_remaining,
+             due_date,
+             offer_price,
+             offer_valid_till,
+             class
+      FROM tuition_fee_details
+      WHERE fcc_id = $1
+    `;
+    const { rows } = await pool.query(queryText, [fcc_id]);
+    if (rows.length === 0) {
+      return res
+        .status(404)
+        .json({ error: "उस FCC ID के लिए कोई फीस विवरण नहीं मिला" });
+    }
+    res.json(rows[0]);
+  } catch (error) {
+    console.error("फीस विवरण प्राप्त करने में त्रुटि:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 // Start the server
 app.listen(port, () => {
