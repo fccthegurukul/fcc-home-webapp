@@ -28,7 +28,7 @@ const ViewCtcCtg = () => {
   const [student, setStudent] = useState(initialStudent); // State for current student
 
 
-    // Filter logs based on selected filter  **MOVE FUNCTION DEFINITION HERE - BEFORE useEffect**
+    // Filter logs based on selected filter  **MOVE FUNCTION DE`FINITION HERE - BEFORE useEffect**
     const filterLogs = (logs, filterType) => {
       const today = new Date();
       let filtered = [...logs];

@@ -23,6 +23,7 @@ const StudentProfile = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const profileCardRef = useRef(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // Helper: UPI Payment Amount (यदि ऑफ़र वैध है तो offer_price, अन्यथा fee_remaining)
   const getPaymentAmount = () => {
@@ -59,8 +60,8 @@ const StudentProfile = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/get-student-profile/${fccToSearch}`
-      );
+  `${apiUrl}/get-student-profile/${fccToSearch}`
+);
       const data = await response.json();
 
       if (response.ok) {
@@ -137,7 +138,7 @@ const StudentProfile = () => {
   useEffect(() => {
     if (student && student.tutionfee_paid) {
       setFeeLoading(true);
-      fetch(`http://localhost:5000/get-tuition-fee-details/${student.fcc_id}`)
+      fetch(`${process.env.REACT_APP_API_URL}/get-tuition-fee-details/${student.fcc_id}`)
         .then((res) => res.json())
         .then((data) => {
           setFeeDetails(data);
@@ -150,7 +151,7 @@ const StudentProfile = () => {
     } else {
       setFeeDetails(null);
     }
-  }, [student]);
+  }, [student]);  
 
   // रीयल-टाइम इनपुट वैलिडेशन: केवल अंकों की अनुमति दें
   const handleInputChange = (e) => {
