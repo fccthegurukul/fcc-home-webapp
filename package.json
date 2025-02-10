@@ -46,7 +46,8 @@
     "react-spinners": "^0.15.0",
     "react-toastify": "^11.0.2",
     "react-zxing": "^2.0.2",
-    "webrtc-adapter": "^9.0.1"
+    "webrtc-adapter": "^9.0.1",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -73,7 +74,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/istanbul-reports": "^3.0.4",
     "file-loader": "^6.2.0",
     "source-map-loader": "^5.0.0",
