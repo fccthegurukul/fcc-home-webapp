@@ -1,13 +1,13 @@
 // StudentProfile.js
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StudentProfile.css";
 import { ClipLoader } from "react-spinners";
 import NotFoundImage from "../assets/404-image.jpg";
 import QrScanner from "react-qr-scanner";
 import { QrCode, ScanLine, XCircle } from "lucide-react";
-import upiQR from "../assets/upiqr.png"; // UPI QR image import
+import upiQR from "../assets/upiqr.png";
 
 const StudentProfile = () => {
   const [fccId, setFccId] = useState("");
@@ -19,7 +19,7 @@ const StudentProfile = () => {
   const [toast, setToast] = useState(null);
   const [feeDetails, setFeeDetails] = useState(null);
   const [feeLoading, setFeeLoading] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false); // Payment modal state
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const profileCardRef = useRef(null);
@@ -30,7 +30,6 @@ const StudentProfile = () => {
     const now = new Date();
     if (feeDetails.offer_valid_till) {
       const offerValidTill = new Date(feeDetails.offer_valid_till);
-      // ऑफ़र तब लागू होगा जब वर्तमान तारीख ऑफ़र की अंतिम तारीख से पहले हो और offer_price उपलब्ध हो
       if (now <= offerValidTill && feeDetails.offer_price) {
         return feeDetails.offer_price;
       }
@@ -46,63 +45,8 @@ const StudentProfile = () => {
     }, 3000);
   };
 
-  // Component mount पर recent profiles और last viewed FCC ID लोड करें
-  useEffect(() => {
-    const savedRecentProfiles =
-      JSON.parse(localStorage.getItem("recentProfiles")) || [];
-    setRecentProfiles(savedRecentProfiles);
-
-    const storedFccId = localStorage.getItem("lastViewedFccId");
-    if (storedFccId) {
-      setFccId(storedFccId);
-      handleSearch(storedFccId);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (student?.fcc_id) {
-      localStorage.setItem("lastViewedFccId", student.fcc_id);
-    }
-  }, [student]);
-
-  // जब छात्र का प्रोफ़ाइल लोड हो जाए, तो उसे फोकस में लाने के लिए scrollIntoView करें
-  useEffect(() => {
-    if (student && profileCardRef.current) {
-      profileCardRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [student]);
-
-  // जब छात्र का डेटा बदलता है और फीस "बाकि ⏳" है, तो फीस विवरण API से लाएँ
-  useEffect(() => {
-    if (student && student.tutionfee_paid) {
-      setFeeLoading(true);
-      fetch(`http://localhost:5000/get-tuition-fee-details/${student.fcc_id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setFeeDetails(data);
-          setFeeLoading(false);
-        })
-        .catch((err) => {
-          console.error("फीस विवरण लोड करने में त्रुटि:", err);
-          setFeeLoading(false);
-        });
-    } else {
-      setFeeDetails(null);
-    }
-  }, [student]);
-
-  // रीयल-टाइम इनपुट वैलिडेशन: केवल अंकों की अनुमति दें
-  const handleInputChange = (e) => {
-    const input = e.target.value;
-    const numericValue = input.replace(/[^0-9]/g, "");
-    if (input !== numericValue) {
-      showToast("केवल संख्याएँ मान्य हैं", "warning");
-    }
-    setFccId(numericValue);
-  };
-
-  // FCC ID के आधार पर प्रोफ़ाइल खोजें
-  const handleSearch = async (searchFccId) => {
+  // handleSearch को useCallback में रैप करें ताकि यह स्टेबल रहे
+  const handleSearch = useCallback(async (searchFccId) => {
     const fccToSearch = searchFccId;
     if (!fccToSearch || !fccToSearch.trim()) {
       setError("FCC ID खाली नहीं हो सकता");
@@ -161,6 +105,61 @@ const StudentProfile = () => {
         inputRef.current.value = "";
       }
     }
+  }, []);
+
+  // Component mount पर recent profiles और last viewed FCC ID लोड करें
+  useEffect(() => {
+    const savedRecentProfiles =
+      JSON.parse(localStorage.getItem("recentProfiles")) || [];
+    setRecentProfiles(savedRecentProfiles);
+
+    const storedFccId = localStorage.getItem("lastViewedFccId");
+    if (storedFccId) {
+      setFccId(storedFccId);
+      handleSearch(storedFccId);
+    }
+  }, [handleSearch]);
+
+  useEffect(() => {
+    if (student?.fcc_id) {
+      localStorage.setItem("lastViewedFccId", student.fcc_id);
+    }
+  }, [student]);
+
+  // जब छात्र का प्रोफ़ाइल लोड हो जाए, तो उसे फोकस में लाने के लिए scrollIntoView करें
+  useEffect(() => {
+    if (student && profileCardRef.current) {
+      profileCardRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [student]);
+
+  // जब छात्र का डेटा बदलता है और फीस "बाकी ⏳" है, तो फीस विवरण API से लाएँ
+  useEffect(() => {
+    if (student && student.tutionfee_paid) {
+      setFeeLoading(true);
+      fetch(`http://localhost:5000/get-tuition-fee-details/${student.fcc_id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setFeeDetails(data);
+          setFeeLoading(false);
+        })
+        .catch((err) => {
+          console.error("फीस विवरण लोड करने में त्रुटि:", err);
+          setFeeLoading(false);
+        });
+    } else {
+      setFeeDetails(null);
+    }
+  }, [student]);
+
+  // रीयल-टाइम इनपुट वैलिडेशन: केवल अंकों की अनुमति दें
+  const handleInputChange = (e) => {
+    const input = e.target.value;
+    const numericValue = input.replace(/[^0-9]/g, "");
+    if (input !== numericValue) {
+      showToast("केवल संख्याएँ मान्य हैं", "warning");
+    }
+    setFccId(numericValue);
   };
 
   // सर्च बटन या एंटर की से सर्च ट्रिगर करें
@@ -190,13 +189,16 @@ const StudentProfile = () => {
     showToast("प्रोफ़ाइल हटा दी गई", "info");
   };
 
-  // QR स्कैनिंग हैंडलिंग
-  const handleScan = (result, error) => {
-    if (result) {
-      setScanning(false);
-      const numericData = result.text.replace(/[^0-9]/g, "");
-      setFccId(numericData);
+  // ==== QR स्कैनिंग (react-qr-scanner) ====
 
+  const handleScan = (data) => {
+    if (data) {
+      // यदि data स्ट्रिंग नहीं है, तो data.text से स्ट्रिंग प्राप्त करें
+      const scannedText =
+        typeof data === "string" ? data : data.text ? data.text : "";
+      const numericData = scannedText.replace(/[^0-9]/g, "");
+      setFccId(numericData);
+      setScanning(false);
       setTimeout(() => {
         handleSearch(numericData);
         if (inputRef.current) {
@@ -204,11 +206,15 @@ const StudentProfile = () => {
         }
       }, 1000);
     }
-    if (error) {
-      console.warn("QR scan error:", error);
-    }
   };
 
+  const handleError = (err) => {
+    console.error("QR स्कैनर त्रुटि:", err);
+    setError("QR स्कैनर में त्रुटि: " + err.message);
+    setScanning(false);
+  };
+
+  // QR स्कैन बटन क्लिक पर स्कैनिंग प्रारंभ करें
   const handleScanClick = () => {
     setScanning(true);
     setError("");
@@ -216,8 +222,10 @@ const StudentProfile = () => {
     setFccId("");
   };
 
+  // स्कैनिंग रद्द करने के लिए
   const handleScanCancel = () => {
     setScanning(false);
+    setError("");
   };
 
   // लोडिंग के दौरान दिखाने के लिए skeleton component
@@ -287,13 +295,14 @@ const StudentProfile = () => {
         <div className="qr-scanner-container">
           <QrScanner
             delay={300}
-            onError={handleScan}
+            onError={handleError}
             onScan={handleScan}
-            className="qr-scanner-view"
+            style={{ width: "100%" }}
           />
           <button className="scan-cancel-button" onClick={handleScanCancel}>
             रद्द करें
           </button>
+          {error && <p className="error">{error}</p>}
         </div>
       )}
 
@@ -404,7 +413,7 @@ const StudentProfile = () => {
           </p>
           <p>
             <strong>ट्यूशन शुल्क भुगतान:</strong>{" "}
-            {student.tutionfee_paid ? "बाकि ⏳" : "जम्मा ✅"}
+            {student.tutionfee_paid ? "बाकी ⏳" : "जम्मा ✅"}
           </p>
 
           {/* यदि फीस अभी भी बाकी है, तो नीचे फीस विवरण टेबल दिखाएँ */}
@@ -432,9 +441,7 @@ const StudentProfile = () => {
                           : "-"}
                       </td>
                       <td>
-                        {feeDetails.offer_price
-                          ? feeDetails.offer_price
-                          : "-"}
+                        {feeDetails.offer_price ? feeDetails.offer_price : "-"}
                       </td>
                       <td>
                         {feeDetails.offer_valid_till
@@ -542,8 +549,8 @@ const StudentProfile = () => {
               <strong>मोबाईल नंबर:</strong> 9135365331
             </p>
             <p className="payment-note">
-  ध्यान दें: भुगतान करने के बाद, कृपया चिंता न करें—आपका डेटा कुछ देर में स्वचालित रूप से अपडेट हो जाएगा।
-</p>
+              ध्यान दें: भुगतान करने के बाद, आपका डेटा कुछ देर में स्वचालित रूप से अपडेट हो जाएगा।
+            </p>
             <p>
               <strong>रुपये:</strong> ₹{getPaymentAmount()}
             </p>
@@ -552,7 +559,7 @@ const StudentProfile = () => {
                 <p style={{ color: "red", fontWeight: "bold" }}>
                   Offer Expired
                 </p>
-            )}
+              )}
           </div>
         </div>
       )}

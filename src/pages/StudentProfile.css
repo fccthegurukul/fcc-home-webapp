@@ -323,6 +323,34 @@ button:disabled {
   color: rgba(255, 255, 255, 0.9);
 }
 
+/* StudentProfile.css (Example - adjust values as needed) */
+.qr-scanner-container {
+  position: relative; /* ya jo bhi aapko layout chahiye */
+  width: 400px;      /* video width set karein */
+  height: 300px;     /* video height set karein */
+  /* Agar aap chahein toh border aur margin add kar sakte hain */
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  display: block; /* Ensure it's displayed */
+  overflow: hidden; /* Optional: To clip content if it overflows */
+}
+
+.qr-scanner-view {
+  width: 100%;      /* Video fills the container width */
+  height: 100%;     /* Video fills the container height */
+  display: block;  /* Make sure it's a block element */
+  object-fit: cover; /* ya contain ya fill depending on desired behavior */
+}
+
+.scan-cancel-button {
+  /* Cancel button styles */
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+}
+
 /* Responsive Adjustments for Smaller Screens */
 @media (max-width: 600px) {
   .button-group button,
