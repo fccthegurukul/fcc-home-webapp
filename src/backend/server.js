@@ -42,10 +42,19 @@ pool.query('SELECT NOW()', (err, res) => {
 // Serve the 'receipts' directory as static files
 app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
 
-// Middleware
-app.use(cors());
+const corsOptions = {
+  origin: 'https://fcchome-by-fccthegurukul.vercel.app', // Your frontend's Vercel URL
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
+
+// Middleware
+// app.use(cors());
+// app.use(express.json());
+// app.use(bodyParser.json());
 
 // Route to insert a new student record
 app.post("/add-student", async (req, res) => {
