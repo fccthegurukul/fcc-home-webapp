@@ -51,6 +51,7 @@ const StudentProfile = () => {
     const fccToSearch = searchFccId;
     if (!fccToSearch || !fccToSearch.trim()) {
       setError("FCC ID खाली नहीं हो सकता");
+      showToast("FCC ID खाली नहीं हो सकता", "warning"); // Added toast for empty FCC ID
       return;
     }
 
@@ -60,11 +61,26 @@ const StudentProfile = () => {
 
     try {
       const response = await fetch(
-  `${apiUrl}/get-student-profile/${fccToSearch}`
-);
-      const data = await response.json();
+        `${apiUrl}/get-student-profile/${fccToSearch}`
+      );
 
-      if (response.ok) {
+      if (!response.ok) {
+        const message = `HTTP error! status: ${response.status}`;
+        console.error("API error:", message); // Log HTTP error for debugging
+        let errorMessage = "विद्यार्थी नहीं मिला"; // Default error message
+        try {
+          const errorData = await response.json(); // Attempt to parse JSON error response
+          errorMessage = errorData.error || errorMessage; // Use error from JSON if available
+        } catch (jsonError) {
+          console.error("Failed to parse error JSON:", jsonError);
+          // If JSON parsing fails, use default message or a more generic one
+          errorMessage = `विद्यार्थी नहीं मिला (HTTP ${response.status})`;
+        }
+        setError(errorMessage);
+        showToast(errorMessage, "error");
+        setStudent(null); // Ensure student state is reset on error
+      } else {
+        const data = await response.json();
         setStudent(data);
         setError("");
         localStorage.setItem("lastViewedFccId", data.fcc_id);
@@ -90,14 +106,12 @@ const StudentProfile = () => {
           "recentProfiles",
           JSON.stringify(updatedRecentProfiles)
         );
-      } else {
-        setStudent(null);
-        setError(data.error || "विद्यार्थी नहीं मिला");
-        showToast(data.error || "विद्यार्थी नहीं मिला", "error");
       }
     } catch (error) {
+      console.error("Error during fetch operation:", error); // Log error during fetch
       setError("कुछ त्रुटि हो गयी, कृपया बाद में पुनः प्रयास करें। ");
       showToast("कुछ त्रुटि हो गयी, कृपया बाद में पुनः प्रयास करें।", "error");
+      setStudent(null); // Ensure student state is reset on error
     } finally {
       setLoading(false);
       setScanning(false);
@@ -106,7 +120,7 @@ const StudentProfile = () => {
         inputRef.current.value = "";
       }
     }
-  }, []);
+  }, [apiUrl, showToast, setError, setLoading, setStudent, setRecentProfiles]); // Added missing dependencies
 
   // Component mount पर recent profiles और last viewed FCC ID लोड करें
   useEffect(() => {
@@ -139,19 +153,26 @@ const StudentProfile = () => {
     if (student && student.tutionfee_paid) {
       setFeeLoading(true);
       fetch(`${process.env.REACT_APP_API_URL}/get-tuition-fee-details/${student.fcc_id}`)
-        .then((res) => res.json())
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.json();
+        })
         .then((data) => {
           setFeeDetails(data);
           setFeeLoading(false);
         })
         .catch((err) => {
           console.error("फीस विवरण लोड करने में त्रुटि:", err);
+          showToast("फीस विवरण लोड करने में त्रुटि", "error");
           setFeeLoading(false);
+          setFeeDetails(null); // Reset feeDetails on error
         });
     } else {
       setFeeDetails(null);
     }
-  }, [student]);  
+  }, [student, showToast]);
 
   // रीयल-टाइम इनपुट वैलिडेशन: केवल अंकों की अनुमति दें
   const handleInputChange = (e) => {
@@ -212,6 +233,7 @@ const StudentProfile = () => {
   const handleError = (err) => {
     console.error("QR स्कैनर त्रुटि:", err);
     setError("QR स्कैनर में त्रुटि: " + err.message);
+    showToast("QR स्कैनर त्रुटि: " + err.message, "error"); // Added toast for QR scanner error
     setScanning(false);
   };
 
