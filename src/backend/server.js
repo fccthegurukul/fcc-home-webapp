@@ -20,7 +20,9 @@ const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" }); // <-- рд
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-const app = express();
+const cors = require('cors'); // Make sure cors is required at the top
+const express = require("express"); // Make sure express is required at the top
+const app = express(); // Make sure app is defined at the top
 const port = 5000;
 
 // PostgreSQL Pool Configuration using environment variables
@@ -42,11 +44,16 @@ pool.query('SELECT NOW()', (err, res) => {
 // Serve the 'receipts' directory as static files
 app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
 
-const corsOptions = {
-  origin: 'https://fcchome-by-fccthegurukul.vercel.app', // Your frontend's Vercel URL
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+// ADD THIS LOGGING MIDDLEWARE RIGHT HERE, BEFORE app.use(cors()) and other middlewares
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}, Origin: ${req.headers.origin}`);
+  next();
+});
 
+const corsOptions = {
+origin: 'https://fcchome-by-fccthegurukul.vercel.app',
+optionsSuccessStatus: 200
+};
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
