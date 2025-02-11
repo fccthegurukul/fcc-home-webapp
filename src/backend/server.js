@@ -5,7 +5,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const privateKeyPath = path.resolve(__dirname, './selfsigned.key');
 const certificatePath = path.resolve(__dirname, './selfsigned.crt');
 const logoPath = path.join(__dirname, "..", "assets", "logo.png");
-const { GoogleGenerativeAI } = require('@google-generative-ai');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const Anthropic = require('@anthropic-ai/sdk'); // Anthropic SDK इम्पोर्ट करें
 const express = require("express");
 const { Pool } = require("pg");
@@ -23,6 +23,9 @@ const httpsOptions = {
   key: fs.readFileSync(privateKeyPath),
   cert: fs.readFileSync(certificatePath),
 };
+
+console.log('Private Key Path:', privateKeyPath);
+console.log('Certificate Path:', certificatePath);
 
 // मॉडल्स इनिशियलाइज़ करें
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
