@@ -60,7 +60,7 @@ const StudentProfile = () => {
 
     try {
       const response = await fetch(
-  `${apiUrl}/get-student-profile/${fccToSearch}`
+  `${apiUrl}/get-students/${fccToSearch}`
 );
       const data = await response.json();
 
