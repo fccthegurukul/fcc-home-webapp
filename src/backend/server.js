@@ -63,28 +63,10 @@ app.use((req, res, next) => {
   next();
 });
 
-const allowedOrigins = [
-  // 'https://fcchome-by-fccthegurukul.vercel.app',
-  'https://fcc-home-webapp.onrender.com/'
-];
-
 const corsOptions = {
-  origin: (origin, callback) => {
-    // Agar origin undefined ya null ho (jaise ki curl ya Postman ke liye), toh allow kar dein
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  optionsSuccessStatus: 200
+origin: 'https://fcc-home-webapp.onrender.com/',
+optionsSuccessStatus: 200
 };
-
-app.use(cors(corsOptions));
-
-
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
