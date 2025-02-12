@@ -67,7 +67,7 @@ app.use((req, res, next) => {
 
 // **CORS Configuration - ENSURE NO TRAILING SLASH IN ORIGIN**
 const corsOptions = {
-  origin: 'https://fcc-home-webapp.onrender.com', // **IMPORTANT: NO trailing slash here**
+  origin: 'https://fcchome-by-fccthegurukul.vercel.app', // **IMPORTANT: NO trailing slash here**
   optionsSuccessStatus: 200
 };
 
