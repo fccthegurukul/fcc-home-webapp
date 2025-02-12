@@ -57,17 +57,23 @@ pool.query('SELECT NOW()', (err, res) => {
 // Serve the 'receipts' directory as static files
 app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
 
+// ... (rest of your server.js code above) ...
+
 // ADD THIS LOGGING MIDDLEWARE RIGHT HERE, BEFORE app.use(cors()) and other middlewares
 app.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.url}, Origin: ${req.headers.origin}`);
   next();
 });
 
+// **CORS Configuration - ENSURE NO TRAILING SLASH IN ORIGIN**
 const corsOptions = {
-  origin: '*', // Allow all origins (TEMPORARY - FOR DEBUGGING ONLY)
+  origin: 'https://fcc-home-webapp.onrender.com', // **IMPORTANT: NO trailing slash here**
   optionsSuccessStatus: 200
 };
 
+app.use(cors(corsOptions));
+
+// ... (rest of your server.js code below) ...
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
