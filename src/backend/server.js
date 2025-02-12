@@ -64,7 +64,7 @@ app.use((req, res, next) => {
 });
 
 const corsOptions = {
-  origin: 'https://fcc-home-webapp.onrender.com',
+  origin: '*', // Allow all origins (TEMPORARY - FOR DEBUGGING ONLY)
   optionsSuccessStatus: 200
 };
 
