@@ -64,9 +64,10 @@ app.use((req, res, next) => {
 });
 
 const corsOptions = {
-origin: 'https://fcc-home-webapp.onrender.com/',
-optionsSuccessStatus: 200
+  origin: 'https://fcc-home-webapp.onrender.com',
+  optionsSuccessStatus: 200
 };
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
