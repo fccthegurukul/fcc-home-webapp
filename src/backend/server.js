@@ -1,6 +1,5 @@
 const path = require('path');  // Only declare path once
-// const https = require('https'); // HTTPS मॉड्यूल इम्पोर्ट करें
-const http = require('http'); // HTTP module import karen
+const https = require('https'); // HTTPS मॉड्यूल इम्पोर्ट करें
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 // सेल्फ-साइंड सर्टिफिकेट पाथ (फाइलों को उसी डायरेक्टरी में मानकर जहाँ आपकी server.js है)
 const privateKeyPath = path.resolve(__dirname, './selfsigned.key');
@@ -20,10 +19,10 @@ const fetch = require('node-fetch'); // fetch API इम्पोर्ट क�
 
 
 // SSL सर्टिफिकेट और प्राइवेट की के लिए विकल्प
-// const httpsOptions = {
-//   key: fs.readFileSync(privateKeyPath),
-//   cert: fs.readFileSync(certificatePath),
-// };
+const httpsOptions = {
+  key: fs.readFileSync(privateKeyPath),
+  cert: fs.readFileSync(certificatePath),
+};
 
 console.log('Private Key Path:', privateKeyPath);
 console.log('Certificate Path:', certificatePath);
@@ -71,6 +70,7 @@ const corsOptions = {
   origin: 'https://fcc-home-webapp.onrender.com', // **IMPORTANT: NO trailing slash here**
   optionsSuccessStatus: 200
 };
+
 
 // ... (rest of your server.js code below) ...
 app.use(cors(corsOptions));
@@ -1098,7 +1098,7 @@ app.get("/get-tuition-fee-details/:fcc_id", async (req, res) => {
   }
 });
 
-// HTTP सर्वर बनाएँ और शुरू करें
-http.createServer(app).listen(port, () => {
-  console.log(`HTTP सर्वर पोर्ट ${port} पर चल रहा है`);
+// HTTPS सर्वर बनाएँ और शुरू करें
+https.createServer(httpsOptions, app).listen(port, () => {
+  console.log(`HTTPS सर्वर पोर्ट ${port} पर चल रहा है`);
 });
