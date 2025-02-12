@@ -1,12 +1,13 @@
-const path = require('path');  // Only declare path once
-const https = require('https'); // HTTPS मॉड्यूल इम्पोर्ट करें
+const path = require('path');  
+const https = require('https'); 
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
-// सेल्फ-साइंड सर्टिफिकेट पाथ (फाइलों को उसी डायरेक्टरी में मानकर जहाँ आपकी server.js है)
+
 const privateKeyPath = path.resolve(__dirname, './selfsigned.key');
 const certificatePath = path.resolve(__dirname, './selfsigned.crt');
 const logoPath = path.join(__dirname, "..", "assets", "logo.png");
+
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const Anthropic = require('@anthropic-ai/sdk'); // Anthropic SDK इम्पोर्ट करें
+const Anthropic = require('@anthropic-ai/sdk'); 
 const express = require("express");
 const { Pool } = require("pg");
 const cors = require("cors");
@@ -15,30 +16,42 @@ const fs = require('fs');
 const multer = require("multer");
 const PDFDocument = require('pdfkit');
 const QRCode = require("qrcode");
-const fetch = require('node-fetch'); // fetch API इम्पोर्ट करें (पुराने Node.js के लिए)
+const fetch = require('node-fetch');
 
-
-// SSL सर्टिफिकेट और प्राइवेट की के लिए विकल्प
 const httpsOptions = {
   key: fs.readFileSync(privateKeyPath),
   cert: fs.readFileSync(certificatePath),
 };
 
-console.log('Private Key Path:', privateKeyPath);
-console.log('Certificate Path:', certificatePath);
+console.log('✅ Private Key Path:', privateKeyPath);
+console.log('✅ Certificate Path:', certificatePath);
 
-// मॉडल्स इनिशियलाइज़ करें
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" }); // <-- यहाँ ठीक से परिभाषित!
+const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" }); 
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-// const cors = require('cors'); // Make sure cors is required at the top - हटाएँ, पहले ही इम्पोर्ट किया गया है
-// const express = require("express"); // Make sure express is required at the top - हटाएँ, पहले ही इम्पोर्ट किया गया है
-const app = express(); // Make sure app is defined at the top
+const app = express();
 const port = 5000;
 
-// PostgreSQL Pool Configuration using environment variables
+// ✅ **CORS Configuration - Allow All Origins**
+app.use(cors({ origin: "*" }));
+
+// ✅ **Allow JSON & URL Encoded Requests**
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// ✅ **Log Incoming Requests for Debugging**
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  console.log(`Origin: ${req.headers.origin}, User-Agent: ${req.headers['user-agent']}`);
+  next();
+});
+
+// ✅ **Serve Static Files**
+app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
+
+// ✅ **PostgreSQL Database Connection**
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -49,38 +62,12 @@ const pool = new Pool({
 
 pool.query('SELECT NOW()', (err, res) => {
   if (err) {
-    console.log('Error connecting to DB:', err);
+    console.error('❌ Database Connection Error:', err);
   } else {
-    console.log('Database connected, response:', res.rows);
+    console.log('✅ Database Connected:', res.rows);
   }
 });
-// Serve the 'receipts' directory as static files
-app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
 
-// ... (rest of your server.js code above) ...
-
-// ADD THIS LOGGING MIDDLEWARE RIGHT HERE, BEFORE app.use(cors()) and other middlewares
-app.use((req, res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.url}, Origin: ${req.headers.origin}`);
-  next();
-});
-
-// **CORS Configuration - ENSURE NO TRAILING SLASH IN ORIGIN**
-const corsOptions = {
-  origin: 'https://fcchome-by-fccthegurukul.vercel.app', // **IMPORTANT: NO trailing slash here**
-  optionsSuccessStatus: 200
-};
-
-
-// ... (rest of your server.js code below) ...
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use(bodyParser.json());
-
-// Middleware
-// app.use(cors()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
-// app.use(express.json()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
-// app.use(bodyParser.json()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
 
 // Route to insert a new student record
 app.post("/add-student", async (req, res) => {
@@ -1098,7 +1085,8 @@ app.get("/get-tuition-fee-details/:fcc_id", async (req, res) => {
   }
 });
 
-// HTTPS सर्वर बनाएँ और शुरू करें
-https.createServer(httpsOptions, app).listen(port, () => {
-  console.log(`HTTPS सर्वर पोर्ट ${port} पर चल रहा है`);
+
+// ✅ **HTTPS Server Listening on IPv4 & IPv6**
+https.createServer(httpsOptions, app).listen(port, "0.0.0.0", () => {
+  console.log(`🚀 HTTPS Server running on port ${port}`);
 });
