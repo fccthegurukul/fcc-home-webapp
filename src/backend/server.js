@@ -64,8 +64,8 @@ app.use((req, res, next) => {
 });
 
 const allowedOrigins = [
-  'https://fcchome-by-fccthegurukul.vercel.app',
-  'https://fcc-home-webapp.onrender.com'
+  // 'https://fcchome-by-fccthegurukul.vercel.app',
+  'https://fcc-home-webapp.onrender.com/'
 ];
 
 const corsOptions = {
