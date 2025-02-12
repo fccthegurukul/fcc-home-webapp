@@ -1,13 +1,8 @@
-const path = require('path');  
-const https = require('https'); 
+const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
-
-const privateKeyPath = path.resolve(__dirname, './selfsigned.key');
-const certificatePath = path.resolve(__dirname, './selfsigned.crt');
 const logoPath = path.join(__dirname, "..", "assets", "logo.png");
-
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const Anthropic = require('@anthropic-ai/sdk'); 
+const Anthropic = require('@anthropic-ai/sdk');
 const express = require("express");
 const { Pool } = require("pg");
 const cors = require("cors");
@@ -18,40 +13,16 @@ const PDFDocument = require('pdfkit');
 const QRCode = require("qrcode");
 const fetch = require('node-fetch');
 
-const httpsOptions = {
-  key: fs.readFileSync(privateKeyPath),
-  cert: fs.readFileSync(certificatePath),
-};
-
-console.log('✅ Private Key Path:', privateKeyPath);
-console.log('✅ Certificate Path:', certificatePath);
-
+// मॉडल्स इनिशियलाइज़ करें
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" }); 
+const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const app = express();
 const port = 5000;
 
-// ✅ **CORS Configuration - Allow All Origins**
-app.use(cors({ origin: "*" }));
-
-// ✅ **Allow JSON & URL Encoded Requests**
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// ✅ **Log Incoming Requests for Debugging**
-app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-  console.log(`Origin: ${req.headers.origin}, User-Agent: ${req.headers['user-agent']}`);
-  next();
-});
-
-// ✅ **Serve Static Files**
-app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
-
-// ✅ **PostgreSQL Database Connection**
+// PostgreSQL Pool Configuration using environment variables
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -62,12 +33,38 @@ const pool = new Pool({
 
 pool.query('SELECT NOW()', (err, res) => {
   if (err) {
-    console.error('❌ Database Connection Error:', err);
+    console.log('Error connecting to DB:', err);
   } else {
-    console.log('✅ Database Connected:', res.rows);
+    console.log('Database connected, response:', res.rows);
   }
 });
+// Serve the 'receipts' directory as static files
+app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
 
+// ... (rest of your server.js code above) ...
+
+// ADD THIS LOGGING MIDDLEWARE RIGHT HERE, BEFORE app.use(cors()) and other middlewares
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}, Origin: ${req.headers.origin}`);
+  next();
+});
+
+// **CORS Configuration - ENSURE NO TRAILING SLASH IN ORIGIN**
+const corsOptions = {
+  origin: 'http://localhost:3000', // frontend running on localhost:3000 during development
+  optionsSuccessStatus: 200
+};
+
+
+// ... (rest of your server.js code below) ...
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(bodyParser.json());
+
+// Middleware
+// app.use(cors()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
+// app.use(express.json()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
+// app.use(bodyParser.json()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
 
 // Route to insert a new student record
 app.post("/add-student", async (req, res) => {
@@ -92,7 +89,7 @@ app.post("/add-student", async (req, res) => {
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
     RETURNING *;
   `;
-  
+
   try {
     const result = await pool.query(insertQuery, [
       name,
@@ -236,7 +233,7 @@ app.post("/api/update-student", async (req, res) => {
 
       // Update the CTC, CTG, and task completed fields
       const updateStudentQuery = `
-        UPDATE students 
+        UPDATE students
         SET ctc_time = CASE WHEN $1 THEN NOW() ELSE ctc_time END,
             ctg_time = CASE WHEN $2 THEN NOW() ELSE ctg_time END,
             task_completed = $3
@@ -298,7 +295,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
 
     // Insert file data into the PostgreSQL database, including the uploaded_at field
     const query = `
-      INSERT INTO files (filename, filetype, filedata, description, uploaded_at) 
+      INSERT INTO files (filename, filetype, filedata, description, uploaded_at)
       VALUES ($1, $2, $3, $4, NOW()) RETURNING *`;
     const result = await pool.query(query, [originalname, mimetype, buffer, description]);
 
@@ -393,7 +390,7 @@ app.post("/api/payments", async (req, res) => {
 
     // Insert payment data into the 'payments' table
     const paymentResult = await pool.query(
-      `INSERT INTO payments (fcc_id, amount, payment_method, payment_status, student_name, monthly_cycle_days) 
+      `INSERT INTO payments (fcc_id, amount, payment_method, payment_status, student_name, monthly_cycle_days)
        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
       [fcc_id, grandTotal, payment_method, payment_status, student_name, monthly_cycle_days]
     );
@@ -1086,7 +1083,7 @@ app.get("/get-tuition-fee-details/:fcc_id", async (req, res) => {
 });
 
 
-// ✅ **HTTPS Server Listening on IPv4 & IPv6**
-https.createServer(httpsOptions, app).listen(port, "0.0.0.0", () => {
-  console.log(`🚀 HTTPS Server running on port ${port}`);
+// ✅ **HTTP Server Listening on IPv4 & IPv6 for localhost**
+app.listen(port, "0.0.0.0", () => {
+  console.log(`🚀 HTTP Server running on port ${port}`);
 });
