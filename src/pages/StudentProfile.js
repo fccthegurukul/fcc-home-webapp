@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./StudentProfile.css";
 import { ClipLoader } from "react-spinners";
 import NotFoundImage from "../assets/404-image.jpg";
-import QrScanner, { MediaTrackConstraints } from "react-qr-scanner"; // Import MediaTrackConstraints
+import QrScanner from "react-qr-scanner";
 import { QrCode, ScanLine, XCircle } from "lucide-react";
 import upiQR from "../assets/upiqr.png";
 
@@ -23,10 +23,7 @@ const StudentProfile = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const profileCardRef = useRef(null);
-  const qrScannerRef = useRef(null); // Create a ref for QrScanner
-
-  // API URL (उदाहरण के लिए Ngrok URL)
-  const apiUrl = process.env.REACT_APP_API_URL; // सुनिश्चित करें कि .env में सही URL सेट है
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // Helper: UPI Payment Amount (यदि ऑफ़र वैध है तो offer_price, अन्यथा fee_remaining)
   const getPaymentAmount = () => {
@@ -63,14 +60,8 @@ const StudentProfile = () => {
 
     try {
       const response = await fetch(
-        `${apiUrl}/get-student-profile/${fccToSearch}`,
-        {
-          method: "GET",
-          headers: {
-            "ngrok-skip-browser-warning": "true", // Warning को बायपास करने के लिए हेडर
-          },
-        }
-      );
+  `${apiUrl}/get-student-profile/${fccToSearch}`
+);
       const data = await response.json();
 
       if (response.ok) {
@@ -115,7 +106,7 @@ const StudentProfile = () => {
         inputRef.current.value = "";
       }
     }
-  }, [apiUrl]);
+  }, []);
 
   // Component mount पर recent profiles और last viewed FCC ID लोड करें
   useEffect(() => {
@@ -143,19 +134,11 @@ const StudentProfile = () => {
     }
   }, [student]);
 
-  // छात्र का डेटा बदलने पर और फीस विवरण लाने के लिए
+  // जब छात्र का डेटा बदलता है और फीस "बाकी ⏳" है, तो फीस विवरण API से लाएँ
   useEffect(() => {
     if (student && student.tutionfee_paid) {
       setFeeLoading(true);
-      fetch(
-        `${apiUrl}/get-tuition-fee-details/${student.fcc_id}`,
-        {
-          method: "GET",
-          headers: {
-            "ngrok-skip-browser-warning": "true", // Warning बायपास करने के लिए हेडर
-          },
-        }
-      )
+      fetch(`${process.env.REACT_APP_API_URL}/get-tuition-fee-details/${student.fcc_id}`)
         .then((res) => res.json())
         .then((data) => {
           setFeeDetails(data);
@@ -168,7 +151,7 @@ const StudentProfile = () => {
     } else {
       setFeeDetails(null);
     }
-  }, [student, apiUrl]); // apiUrl added to dependency array
+  }, [student]);  
 
   // रीयल-टाइम इनपुट वैलिडेशन: केवल अंकों की अनुमति दें
   const handleInputChange = (e) => {
@@ -312,12 +295,10 @@ const StudentProfile = () => {
       {scanning && (
         <div className="qr-scanner-container">
           <QrScanner
-            ref={qrScannerRef} // Attach the ref
             delay={300}
             onError={handleError}
             onScan={handleScan}
             style={{ width: "100%" }}
-            constraints={{ facingMode: "environment" }} // Add constraints prop here to specify back camera
           />
           <button className="scan-cancel-button" onClick={handleScanCancel}>
             रद्द करें
@@ -390,7 +371,7 @@ const StudentProfile = () => {
       {/* विद्यार्थी प्रोफ़ाइल कार्ड */}
       {student && !loading && !scanning && (
         <div className="profile-card fade-in" ref={profileCardRef}>
-          <h2>विद्यार्थी प्रोफ़ाइल</h2>
+          <h2>विद्यार्थी प्रोफाइल</h2>
           {student.photo_url ? (
             <img
               src={student.photo_url}
