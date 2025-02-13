@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./StudentProfile.css";
 import { ClipLoader } from "react-spinners";
 import NotFoundImage from "../assets/404-image.jpg";
-import QrScanner from "react-qr-scanner";
+import QrScanner from "react-qr-scanner"; // Import the QrScanner component
 import { QrCode, ScanLine, XCircle } from "lucide-react";
 import upiQR from "../assets/upiqr.png";
 
@@ -23,7 +23,8 @@ const StudentProfile = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const profileCardRef = useRef(null);
-  
+  const qrScannerRef = useRef(null); // Create a ref for QrScanner
+
   // API URL (उदाहरण के लिए Ngrok URL)
   const apiUrl = process.env.REACT_APP_API_URL; // सुनिश्चित करें कि .env में सही URL सेट है
 
@@ -147,7 +148,7 @@ const StudentProfile = () => {
     if (student && student.tutionfee_paid) {
       setFeeLoading(true);
       fetch(
-        `${process.env.REACT_APP_API_URL}/get-tuition-fee-details/${student.fcc_id}`,
+        `${apiUrl}/get-tuition-fee-details/${student.fcc_id}`,
         {
           method: "GET",
           headers: {
@@ -167,7 +168,7 @@ const StudentProfile = () => {
     } else {
       setFeeDetails(null);
     }
-  }, [student]);
+  }, [student, apiUrl]); // apiUrl added to dependency array
 
   // रीयल-टाइम इनपुट वैलिडेशन: केवल अंकों की अनुमति दें
   const handleInputChange = (e) => {
@@ -311,10 +312,12 @@ const StudentProfile = () => {
       {scanning && (
         <div className="qr-scanner-container">
           <QrScanner
+            ref={qrScannerRef} // Attach the ref
             delay={300}
             onError={handleError}
             onScan={handleScan}
             style={{ width: "100%" }}
+            constraints={{ facingMode: "environment" }} // Add constraints prop here to specify back camera
           />
           <button className="scan-cancel-button" onClick={handleScanCancel}>
             रद्द करें
