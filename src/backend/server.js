@@ -38,27 +38,39 @@ pool.query('SELECT NOW()', (err, res) => {
     console.log('Database connected, response:', res.rows);
   }
 });
+
 // Serve the 'receipts' directory as static files
 app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
 
-// ... (rest of your server.js code above) ...
-
-// ADD THIS LOGGING MIDDLEWARE RIGHT HERE, BEFORE app.use(cors()) and other middlewares
+// लॉगिंग मिडलवेयर: सभी इनकमिंग रिक्वेस्ट्स का लॉग दिखाएँ
 app.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.url}, Origin: ${req.headers.origin}`);
   next();
 });
 
-// **CORS Configuration - ENSURE NO TRAILING SLASH IN ORIGIN**
+// CORS Configuration - अब दोनों origins की अनुमति है
+const allowedOrigins = [
+  'http://localhost:3000',          // Development Frontend
+  'https://fcc-home-webapp.vercel.app' // Production Frontend (Vercel)
+];
+
 const corsOptions = {
-  origin: 'http://localhost:3000', // frontend running on localhost:3000 during development
+  origin: function (origin, callback) {
+    // अगर origin undefined है (जैसे Postman से request), तो अनुमति दें
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
   optionsSuccessStatus: 200
 };
 
-// ... (rest of your server.js code below) ...
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
+
 
 // Middleware
 // app.use(cors()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
@@ -681,6 +693,7 @@ app.get("/get-student-profile/:fcc_id", async (req, res) => {
   } catch (error) {
     console.error("Error fetching student:", error);
     res.status(500).json({ error: "Failed to fetch student data" });
+    res.json({ message: "Student profile for FCC ID " + req.params.fccId });
   }
 });
 
@@ -1083,6 +1096,7 @@ app.get("/get-tuition-fee-details/:fcc_id", async (req, res) => {
 
 
 // ✅ **HTTP Server Listening on IPv4 & IPv6 for localhost**
+
 app.listen(port, "0.0.0.0", () => {
   console.log(`🚀 HTTP Server running on port ${port}`);
 });
