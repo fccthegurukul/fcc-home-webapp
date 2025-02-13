@@ -25,6 +25,8 @@ const CardHub = () => {
   const [recentProfiles, setRecentProfiles] = useState(recentProfilesData);
   const [student, setStudent] = useState(initialStudent); // State for current student
 
+  // API URL from environment variable
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // Static options (you can replace these if your options are dynamic)
   const skillLevels = ['Beginner', 'Intermediate', 'Expert', 'Done'];
@@ -44,7 +46,14 @@ const CardHub = () => {
     const fetchSkills = async () => {
       if (!fccId) return; // Don't fetch if fccId is not available
       try {
-        const response = await fetch(`http://localhost:5000/get-student-skills/${fccId}`);
+        const response = await fetch(
+          `${apiUrl}/get-student-skills/${fccId}`, // Using apiUrl here
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true",
+            },
+          }
+        );
         const data = await response.json();
         if (response.ok) {
           setSkills(data);
@@ -62,7 +71,14 @@ const CardHub = () => {
     // Fetch student profile again if not passed in state or if fccId changes and student in state is outdated
     const fetchStudentProfile = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/get-student-profile/${fccId}`);
+        const response = await fetch(
+          `${apiUrl}/get-student-profile/${fccId}`, // Using apiUrl here
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true",
+            },
+          }
+        );
         if (response.ok) {
           const studentData = await response.json();
           setStudent(studentData);
@@ -85,7 +101,7 @@ const CardHub = () => {
 
     fetchSkills();
     localStorage.setItem("lastViewedFccId", fccId); // Update last viewed FCC ID in localStorage
-  }, [fccId, initialStudent]); // Refetch skills and student when fccId changes, include initialStudent to check for updates
+  }, [fccId, initialStudent, apiUrl]); // Refetch skills and student when fccId changes, include initialStudent to check for updates and apiUrl
 
 
   const filteredSkills = skills.filter(skill => {
