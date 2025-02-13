@@ -1,3 +1,4 @@
+const cors = require("cors");
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const logoPath = path.join(__dirname, "..", "assets", "logo.png");
@@ -5,7 +6,6 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const Anthropic = require('@anthropic-ai/sdk');
 const express = require("express");
 const { Pool } = require("pg");
-const cors = require("cors");
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const multer = require("multer");
@@ -56,12 +56,24 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: function (origin, callback) {
-    // अगर origin undefined है (जैसे Postman से request), तो अनुमति दें
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      return callback(null, true);
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'https://fcc-home-webapp.vercel.app'
+    ];
+    console.log("Incoming Origin:", origin); // Log the origin of the request
+    let corsAllowed = false;
+    if (!origin) {
+      corsAllowed = true; // Allow requests without origin (e.g., server-side)
+    } else if (allowedOrigins.indexOf(origin) !== -1) {
+      corsAllowed = true; // Origin is in allowed list
+    }
+
+    if (corsAllowed) {
+      console.log(`CORS Allowed for: ${origin}, Setting Access-Control-Allow-Origin: ${origin || '*'}`); // Log allowed and header value
+      callback(null, true); // Allow request
     } else {
-      return callback(new Error('Not allowed by CORS'));
+      console.log(`CORS Blocked for: ${origin}, Origin not in allowed list`); // Log blocked
+      callback(new Error('Not allowed by CORS')); // Block request
     }
   },
   optionsSuccessStatus: 200
@@ -71,11 +83,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
 
-
-// Middleware
-// app.use(cors()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
-// app.use(express.json()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
-// app.use(bodyParser.json()); // हटाएँ, पहले ही ऊपर कॉन्फ़िगर किया गया है
 
 // Route to insert a new student record
 app.post("/add-student", async (req, res) => {
