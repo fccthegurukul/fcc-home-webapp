@@ -23,7 +23,9 @@ const StudentProfile = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const profileCardRef = useRef(null);
-  const apiUrl = process.env.REACT_APP_API_URL;
+  
+  // API URL (उदाहरण के लिए Ngrok URL)
+  const apiUrl = process.env.REACT_APP_API_URL; // सुनिश्चित करें कि .env में सही URL सेट है
 
   // Helper: UPI Payment Amount (यदि ऑफ़र वैध है तो offer_price, अन्यथा fee_remaining)
   const getPaymentAmount = () => {
@@ -60,8 +62,14 @@ const StudentProfile = () => {
 
     try {
       const response = await fetch(
-  `${apiUrl}/get-student-profile/${fccToSearch}`
-);
+        `${apiUrl}/get-student-profile/${fccToSearch}`,
+        {
+          method: "GET",
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Warning को बायपास करने के लिए हेडर
+          },
+        }
+      );
       const data = await response.json();
 
       if (response.ok) {
@@ -106,7 +114,7 @@ const StudentProfile = () => {
         inputRef.current.value = "";
       }
     }
-  }, []);
+  }, [apiUrl]);
 
   // Component mount पर recent profiles और last viewed FCC ID लोड करें
   useEffect(() => {
@@ -134,11 +142,19 @@ const StudentProfile = () => {
     }
   }, [student]);
 
-  // जब छात्र का डेटा बदलता है और फीस "बाकी ⏳" है, तो फीस विवरण API से लाएँ
+  // छात्र का डेटा बदलने पर और फीस विवरण लाने के लिए
   useEffect(() => {
     if (student && student.tutionfee_paid) {
       setFeeLoading(true);
-      fetch(`${process.env.REACT_APP_API_URL}/get-tuition-fee-details/${student.fcc_id}`)
+      fetch(
+        `${process.env.REACT_APP_API_URL}/get-tuition-fee-details/${student.fcc_id}`,
+        {
+          method: "GET",
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Warning बायपास करने के लिए हेडर
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           setFeeDetails(data);
@@ -151,7 +167,7 @@ const StudentProfile = () => {
     } else {
       setFeeDetails(null);
     }
-  }, [student]);  
+  }, [student]);
 
   // रीयल-टाइम इनपुट वैलिडेशन: केवल अंकों की अनुमति दें
   const handleInputChange = (e) => {
@@ -371,7 +387,7 @@ const StudentProfile = () => {
       {/* विद्यार्थी प्रोफ़ाइल कार्ड */}
       {student && !loading && !scanning && (
         <div className="profile-card fade-in" ref={profileCardRef}>
-          <h2>विद्यार्थी प्रोफाइल</h2>
+          <h2>विद्यार्थी प्रोफ़ाइल</h2>
           {student.photo_url ? (
             <img
               src={student.photo_url}
