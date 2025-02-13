@@ -27,6 +27,8 @@ const ViewCtcCtg = () => {
   const [recentProfiles, setRecentProfiles] = useState(recentProfilesData);
   const [student, setStudent] = useState(initialStudent); // State for current student
 
+  // API URL from environment variable
+  const apiUrl = process.env.REACT_APP_API_URL;
 
     // Filter logs based on selected filter  **MOVE FUNCTION DE`FINITION HERE - BEFORE useEffect**
     const filterLogs = (logs, filterType) => {
@@ -101,7 +103,14 @@ const ViewCtcCtg = () => {
       setError(""); // Clear previous errors
 
       try {
-        const ctcCtgResponse = await fetch(`http://localhost:5000/get-ctc-ctg/${fccId}`);
+        const ctcCtgResponse = await fetch(
+          `${apiUrl}/get-ctc-ctg/${fccId}`, // Using apiUrl here
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true",
+            },
+          }
+        );
         const ctcCtgResult = await ctcCtgResponse.json();
 
         if (ctcCtgResponse.ok) {
@@ -125,7 +134,14 @@ const ViewCtcCtg = () => {
     // Fetch student profile again if not passed in state or if fccId changes and student in state is outdated
     const fetchStudentProfile = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/get-student-profile/${fccId}`);
+        const response = await fetch(
+          `${apiUrl}/get-student-profile/${fccId}`, // Using apiUrl here
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true",
+            },
+          }
+        );
         if (response.ok) {
           const studentData = await response.json();
           setStudent(studentData);
@@ -148,7 +164,7 @@ const ViewCtcCtg = () => {
 
     fetchData();
     localStorage.setItem("lastViewedFccId", fccId); // Update last viewed FCC ID in localStorage
-  }, [fccId, filter, initialStudent]); // Refetch data when fccId or filter changes, include initialStudent to check for updates
+  }, [fccId, filter, initialStudent, apiUrl]); // apiUrl added to dependency array
 
 
   const downloadPDF = () => {
