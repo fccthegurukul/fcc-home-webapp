@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./StudentProfile.css";
 import { ClipLoader } from "react-spinners";
 import NotFoundImage from "../assets/404-image.jpg";
-import QrScanner from "react-qr-scanner"; // Import the QrScanner component
+import QrScanner, { MediaTrackConstraints } from "react-qr-scanner"; // Import MediaTrackConstraints
 import { QrCode, ScanLine, XCircle } from "lucide-react";
 import upiQR from "../assets/upiqr.png";
 
