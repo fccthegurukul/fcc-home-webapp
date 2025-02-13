@@ -23,6 +23,10 @@ const Leaderboard = () => {
     const [isManualFilterChange, setIsManualFilterChange] = useState(false);
     const [fccId, setFccId] = useState(locationFccId); // local state fccId सेट करें, जो पहले location से प्राप्त होती है
 
+    // API URL from environment variable
+    const apiUrl = process.env.REACT_APP_API_URL;
+
+
     useEffect(() => {
         // जांचें कि क्या fccId पहले से state में है (StudentProfile से नेविगेशन के मामले में)
         const currentFccId = locationFccId || localStorage.getItem('lastViewedFccId'); // localStorage से भी fccId प्राप्त करने की कोशिश करें
@@ -38,7 +42,14 @@ const Leaderboard = () => {
             try {
                 setLoading(true);
                 setError("");
-                const response = await fetch(`http://localhost:5000/leaderboard/${currentFccId}?leaderboardClassFilter=${leaderboardClassFilter}`);
+                const response = await fetch(
+                    `${apiUrl}/leaderboard/${currentFccId}?leaderboardClassFilter=${leaderboardClassFilter}`,
+                    {
+                        headers: {
+                            "ngrok-skip-browser-warning": "true",
+                        },
+                    }
+                );
                 const data = await response.json();
                 if (response.ok) {
                     setLeaderboard(data.leaderboard);
@@ -60,7 +71,7 @@ const Leaderboard = () => {
         };
 
         fetchLeaderboardData();
-    }, [fccId, leaderboardClassFilter, isManualFilterChange, locationStudent, locationFccId]); // सभी बाहरी state पर निर्भर करें
+    }, [fccId, leaderboardClassFilter, isManualFilterChange, locationStudent, locationFccId, apiUrl]); // सभी बाहरी state पर निर्भर करें + apiUrl
 
 
     useEffect(() => {
@@ -98,7 +109,14 @@ const Leaderboard = () => {
     useEffect(() => {
         const fetchClasses = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/get-classes`);
+                const response = await fetch(
+                    `${apiUrl}/get-classes`,
+                    {
+                        headers: {
+                            "ngrok-skip-browser-warning": "true",
+                        },
+                    }
+                );
                 if (response.ok) {
                     const data = await response.json();
                     setClasses(['ALL', ...data.classes]);
@@ -111,7 +129,7 @@ const Leaderboard = () => {
         };
 
         fetchClasses();
-    }, []);
+    }, [apiUrl]); // apiUrl added to dependency array
 
 
     useEffect(() => {
