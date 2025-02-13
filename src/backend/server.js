@@ -13,6 +13,58 @@ const PDFDocument = require('pdfkit');
 const QRCode = require("qrcode");
 const fetch = require('node-fetch');
 
+// लॉगिंग सेटअप
+const logsDir = path.join(__dirname, 'logs');
+if (!fs.existsSync(logsDir)) {
+  fs.mkdirSync(logsDir);
+}
+
+const originalConsoleLog = console.log;
+const originalConsoleError = console.error; // Also capture console.error
+
+console.log = (...args) => {
+  const logMessage = args.map(arg => {
+    if (typeof arg === 'object') {
+      return JSON.stringify(arg, null, 2); // Pretty print objects
+    }
+    return arg;
+  }).join(' ');
+
+  const timestamp = new Date().toISOString();
+  const formattedLog = `[${timestamp}] LOG: ${logMessage}\n`;
+
+  const logFileName = path.join(logsDir, `${new Date().toISOString().split('T')[0]}.log`);
+
+  fs.appendFile(logFileName, formattedLog, (err) => {
+    if (err) {
+      originalConsoleError("Error writing to log file:", err); // Log error to console if file writing fails
+    }
+  });
+  originalConsoleLog(...args); // Still log to console
+};
+
+console.error = (...args) => {
+  const logMessage = args.map(arg => {
+    if (typeof arg === 'object') {
+      return JSON.stringify(arg, null, 2); // Pretty print objects
+    }
+    return arg;
+  }).join(' ');
+
+  const timestamp = new Date().toISOString();
+  const formattedLog = `[${timestamp}] ERROR: ${logMessage}\n`;
+
+  const logFileName = path.join(logsDir, `${new Date().toISOString().split('T')[0]}.log`);
+
+  fs.appendFile(logFileName, formattedLog, (err) => {
+    if (err) {
+      originalConsoleError("Error writing to error log file:", err);
+    }
+  });
+  originalConsoleError(...args); // Still log errors to console
+};
+
+
 // मॉडल्स इनिशियलाइज़ करें
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" });
