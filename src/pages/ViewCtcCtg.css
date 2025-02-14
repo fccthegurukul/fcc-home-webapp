@@ -1,293 +1,115 @@
-/* ViewCtcCtg.css */
+/* ViewCtcCtg.css - Improved UI/UX Design */
+
 .view-ctc-ctg-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+  max-width: 900px;
+  margin: auto;
   padding: 20px;
-  background-color: #f9f9f9; /* Light background */
-  min-height: 100vh; /* Ensure full viewport height */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center content horizontally on larger screens */
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
 }
 
 .back-button-group {
   display: flex;
-  justify-content: flex-start; /* Align buttons to the start */
   align-items: center;
-  width: 100%;
-  max-width: 960px; /* Max width for larger screens, adjust as needed */
+  justify-content: space-between;
   margin-bottom: 20px;
-}
-
-.back-button {
-  display: flex;
-  align-items: center;
-  background-color: #ffffff; /* White button background */
-  color: #333; /* Dark text color */
-  border: 1px solid #ddd;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 15px; /* Space between back button and switcher */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-.back-button:hover {
-  background-color: #f0f0f0;
-}
-
-.back-button .icon {
-  margin-right: 8px;
 }
 
 .current-profile-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-left: 10px; /* Space between switcher and profile image */
-    object-fit: cover;
-    border: 1px solid #ddd;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0052cc;
 }
-
 
 .profile-switcher {
-  padding: 8px 10px;
-  border-radius: 5px;
+  padding: 8px;
+  border-radius: 6px;
   border: 1px solid #ddd;
-  background-color: #fff;
-  color: #333;
+  background: white;
   cursor: pointer;
-  appearance: none; /* Remove default styling in some browsers */
-  -webkit-appearance: none; /* For Safari */
-  -moz-appearance: none; /* For Firefox */
-  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow icon */
-  background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-position-y: 5px;
-  margin-left: 10px; /* Space after image if profile image exists */
+  transition: 0.3s ease-in-out;
 }
 
-.profile-switcher::-ms-expand {
-    display: none; /* Remove default arrow in IE */
-}
-
-.profile-switcher:focus {
-  outline: none;
-  border-color: #007bff; /* Highlight on focus */
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Focus ring */
-}
-
-
-.profile-option {
-    display: flex; /* To align image and text */
-    align-items: center; /* Center vertically */
-    padding: 8px 10px;
-}
-
-.profile-switcher-image {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-    object-fit: cover;
-}
-
-.profile-switcher-name {
-    white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden;        /* Hide overflowing text */
-    text-overflow: ellipsis; /* Ellipsis for overflow */
-    max-width: 150px;       /* Limit the width as needed */
-}
-
-
-.view-ctc-ctg-container h2.section-title {
-  color: #007bff; /* Primary color for titles */
-  margin-top: 20px;
-  margin-bottom: 15px;
-  text-align: center; /* Center titles */
-  font-size: 1.5em;
+.profile-switcher:hover {
+  border-color: #0052cc;
 }
 
 .ctc-ctg-details {
-  background-color: #fff;
+  background: white;
+  padding: 15px;
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  width: 100%;
-  max-width: 960px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
-.detail-item {
-  margin-bottom: 10px;
-  line-height: 1.6;
-  color: #555;
-  border-bottom: 1px solid #eee; /* Light separator lines */
-  padding-bottom: 8px;
-}
-
-.detail-item:last-child {
-  border-bottom: none; /* No separator for the last item */
-}
-
-
-.detail-item strong {
+.section-title {
+  font-size: 20px;
   font-weight: bold;
-  color: #333; /* Strong text color */
-  margin-right: 5px;
+  color: #0052cc;
+  margin-bottom: 10px;
+}
+
+.detail-item p {
+  margin: 6px 0;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
 }
 
 .filters {
-  display: flex;
-  justify-content: center; /* Center filter dropdown */
-  margin-bottom: 20px;
-  width: 100%;
-  max-width: 960px;
+  margin: 15px 0;
 }
 
 .filters select {
-  padding: 8px 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  color: #333;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
   cursor: pointer;
-  appearance: none; /* Remove default styling */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom dropdown arrow */
-  background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-position-y: 5px;
-  margin-left: 10px;
 }
 
-.filters select::-ms-expand {
-    display: none; /* Remove default arrow in IE */
-}
-
-
-.filters select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
-}
-
-
-.log-details {
-  width: 100%;
-  max-width: 960px;
-  margin-bottom: 20px;
-}
-
-.log-details h2 {
-  color: #007bff;
-  margin-bottom: 10px;
-  text-align: center;
+.table-container {
+  overflow-x: auto;
 }
 
 .log-details table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden; /* For rounded corners on table */
+  margin-top: 15px;
 }
 
 .log-details th, .log-details td {
-  padding: 10px 12px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
 }
 
 .log-details th {
-  background-color: #f0f0f0;
+  background: #0052cc;
+  color: white;
   font-weight: bold;
-  color: #333;
 }
-
-.log-details tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
 
 .button-group {
   display: flex;
   justify-content: center;
-  width: 100%;
-  max-width: 960px;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .download-pdf-button {
-  background-color: #007bff;
+  background: #28a745;
   color: white;
+  padding: 10px 15px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
 }
 
 .download-pdf-button:hover {
-  background-color: #0056b3;
-}
-
-
-.error {
-  color: #dc3545; /* Red error color */
-  margin-top: 10px;
-  text-align: center;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  .view-ctc-ctg-container {
-    padding: 10px;
-  }
-
-  .back-button-group {
-    flex-direction: column; /* Stack back button and switcher on mobile */
-    align-items: flex-start; /* Align items to the start in column layout */
-  }
-
-  .back-button, .profile-switcher, .current-profile-image {
-    margin-bottom: 10px; /* Space between elements when stacked */
-    margin-right: 0;      /* Remove right margin when stacked */
-    margin-left: 0;
-  }
-
-
-  .profile-switcher {
-    width: 100%; /* Full width on mobile */
-  }
-
-  .filters {
-    justify-content: flex-start; /* Align filters to start on mobile */
-  }
-
-  .filters select {
-    margin-left: 0; /* Remove left margin on mobile */
-    margin-bottom: 10px; /* Space below filter dropdowns on mobile */
-    width: calc(50% - 5px); /* Adjust width for two filter items in row if you add more */
-  }
-
-
-  .log-details table {
-    display: block; /* Enable horizontal scroll for table on small screens */
-    overflow-x: auto;
-    white-space: nowrap; /* Prevent wrapping of table content */
-  }
-
-  .log-details th, .log-details td {
-    padding: 8px; /* Reduce padding in table cells on smaller screens */
-    font-size: 0.9rem; /* Reduce font size in table cells on smaller screens */
-  }
-
-  .download-pdf-button {
-    font-size: 0.9rem; /* Slightly smaller font on mobile button */
-  }
+  background: #218838;
 }

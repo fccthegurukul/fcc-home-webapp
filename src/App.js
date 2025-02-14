@@ -86,27 +86,27 @@ const App = () => {
 
 
       <nav className="bottom-navbar">
-        <Link to="/" className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`}>
-          <i className="fas fa-home"></i>
-          <span>Home</span>
-        </Link>
-        <Link to="/view-ctc-ctg" className={`bottom-nav-link ${location.pathname ===  '/view-ctc-ctg'}`}>
-          <i className="fas fa-calendar-day"></i>
-          <span>Today</span>
-        </Link>
-        <Link to="/card-hub" className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`}>
-          <i className="fas fa-graduation-cap"></i>
-          <span>Skill</span>
-        </Link>
-        <Link to="/leaderboard" className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`}>
-          <i className="fas fa-trophy"></i>
-          <span>LeaderBoard</span>
-        </Link>
-        <Link to="/fcchome-ai" className={`bottom-nav-link ${location.pathname === '/fcchome-ai' ? 'active' : ''}`}>
-  <i className="fas fa-robot"></i> {/* या fa-brain, fa-microchip */}
-  <span>AI</span>
-</Link>
-      </nav>
+    <Link to="/" className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`}>
+        <i className="fas fa-home"></i>
+        <span>होम</span>
+    </Link>
+    <Link to="/view-ctc-ctg" className={`bottom-nav-link ${location.pathname === '/view-ctc-ctg' ? 'active' : ''}`}>
+        <i className="fas fa-calendar-day"></i>
+        <span>उपस्थिति</span>
+    </Link>
+    <Link to="/card-hub" className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`}>
+        <i className="fas fa-graduation-cap"></i>
+        <span>स्किल</span>
+    </Link>
+    <Link to="/leaderboard" className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`}>
+        <i className="fas fa-trophy"></i>
+        <span>लीडरबोर्ड</span>
+    </Link>
+    <Link to="/fcchome-ai" className={`bottom-nav-link ${location.pathname === '/fcchome-ai' ? 'active' : ''}`}>
+        <i className="fas fa-chalkboard-teacher"></i>
+        <span>क्लासरूम</span>
+    </Link>
+</nav>
 
 
       <Analytics />

@@ -1,46 +1,96 @@
 /* Bottom Navigation Styles */
 .bottom-navbar {
-    position: fixed; /* Fixed to the bottom of the viewport */
+    position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f8f9fa; /* Light background, adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;  /* थोड़ा छोटा किया ताकि किनारों पर जगह बचे */
+    background: rgba(255, 255, 255, 0.2); /* Glassmorphism effect */
+    backdrop-filter: blur(10px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
-    justify-content: space-around; /* Distribute links evenly */
-    padding: 10px 0;
-    border-top: 1px solid #dee2e6; /* Light border for separation */
-    z-index: 1000; /* Ensure it's on top of other content */
+    justify-content: space-around;
+    padding: 12px 0;
+    border-radius: 15px; /* Rounded navbar */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
 }
 
+/* Navigation Links */
 .bottom-nav-link {
     display: flex;
-    flex-direction: column; /* Icon and text vertical */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #495057; /* Default link color */
     text-decoration: none;
-    font-size: 0.9rem; /* Adjust font size for bottom nav */
-    padding: 5px 10px; /* Padding for touch area */
+    color: #495057;
+    font-size: 0.9rem;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
 }
 
+/* Icons */
 .bottom-nav-link i {
-    margin-bottom: 5px; /* Space between icon and text */
-    font-size: 1.2rem; /* Icon size, adjust as needed */
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease-in-out;
 }
 
+/* Hover Effect */
+.bottom-nav-link:hover {
+    color: #007bff;
+    transform: translateY(-3px); /* हल्का ऊपर उठने का इफेक्ट */
+}
 
+/* Active State */
 .bottom-nav-link.active {
-    color: #007bff; /* Active link color (primary blue), adjust as needed */
+    color: #007bff;
+    font-weight: bold;
 }
 
-/* Hide Bottom Nav on larger screens (optional - if you only want it on mobile) */
-@media (min-width: 769px) { /* Example breakpoint, adjust to your needs */
+/* Active Link Animation */
+.bottom-nav-link.active i {
+    transform: scale(1.2);
+}
+
+/* Floating Indicator for Active Tab */
+.bottom-navbar::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    height: 5px;
+    width: 60px;
+    background: #007bff;
+    border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Adjust Navbar for Smaller Screens */
+@media (max-width: 480px) {
+    .bottom-navbar {
+        width: 95%;
+        padding: 8px 0;
+    }
+    .bottom-nav-link {
+        font-size: 0.8rem;
+    }
+    .bottom-nav-link i {
+        font-size: 1.3rem;
+    }
+}
+
+/* Hide Bottom Nav on Larger Screens */
+@media (min-width: 769px) {
     .bottom-navbar {
         display: none;
     }
 }
 
-/* Adjust content area to prevent bottom nav overlap */
+/* Prevent Content Overlap */
 .content-area {
-    padding-bottom: 60px; /* Height of bottom navbar + some extra space */
+    padding-bottom: 80px;
 }
