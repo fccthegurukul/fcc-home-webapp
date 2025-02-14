@@ -319,9 +319,6 @@ const handleProfileSwitch = (selectedFccId) => {
                 className={`skill-image ${modalOpen ? 'enlarged' : ''}`}
                 onError={(e) => { e.target.src = NotFoundImage; }} // Fallback image
               />
-              <div className="zoom-icon" onClick={handleZoomClick}>
-                <i className="fas fa-search-plus"></i>
-              </div>
             </div>
 
             {/* Display ReactPlayer if video URL is available in skill log */}
@@ -343,7 +340,7 @@ const handleProfileSwitch = (selectedFccId) => {
                     }
                   }}
                 />
-                <button onClick={handlePlayPause}>{playing ? 'Pause' : 'Play'}</button>
+                <button onClick={handlePlayPause}>{playing ? 'रोके' : 'चालू करे'}</button>
               </div>
             )}
 
@@ -386,9 +383,15 @@ const handleProfileSwitch = (selectedFccId) => {
                 </ul>
               </div>
             )}
-     <button className="practice-button" onClick={handlePracticeClick}>Practice</button>
-            <button className="close-button" onClick={() => setSelectedSkill(null)}>Close</button>
-          </div>
+<div className="button-group">
+  <button className="close-button" onClick={() => setSelectedSkill(null)}>
+    <ArrowLeft size={16} /> पीछे जाये
+  </button>
+  <button className="practice-button" onClick={handlePracticeClick}>
+    <Play size={16} /> प्रैक्टिस चालू करे
+  </button>
+</div>
+              </div>
         </div>
       )}
     </div>

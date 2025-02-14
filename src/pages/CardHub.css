@@ -1,4 +1,4 @@
- /* Existing CSS (keep from the previous response) */
+/* Existing CSS (keep from the previous response) */
  /* General Styles */
  .container {
   padding: 20px;
@@ -125,13 +125,14 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  height: calc(100% - 60px); /* Adjust height to leave 60px margin at the bottom */
+  background: rgba(0, 0, 0, 0.8); /* Darker background for better focus */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.3s ease;
+  padding-bottom: 60px; /* Add padding at the bottom */
 }
 
 @keyframes fadeIn {
@@ -152,8 +153,14 @@
   width: 90%;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   animation: slideUp 0.3s ease;
-  max-height: 90vh;
+  max-height: calc(90vh - 60px); /* Adjust max-height to leave 60px margin at the bottom */
+  height: auto; /* Adjust height based on content */
   overflow-y: auto;
+  position: relative; /* Ensure close button is positioned correctly */
+}
+
+.modal p:last-child {
+  margin-bottom: 0;
 }
 
 .modal h2 {
@@ -165,13 +172,14 @@
 .modal p {
   margin-bottom: 10px;
   color: #555;
+  text-align: left;
 }
 
 .modal .close-button {
   padding: 10px 20px;
   font-size: 14px;
   color: white;
-  background-color: #3498db;
+  background-color: #db7134;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -222,20 +230,29 @@
 /* Zoom Icon */
 .zoom-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 60px;
   background-color: #252273;
   border-radius: 50%;
   padding: 8px;
   font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  z-index: 1;
+  z-index: 1001;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .zoom-icon:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  transform: scale(1.2);
+  background-color: #1e1a5a;
+  transform: scale(1.1);
+}
+
+.zoom-icon:focus {
+  outline: none;
+  box-shadow: 0 0 8px 3px rgba(0, 0, 255, 0.6);
 }
 
 /* Search and Filter Controls */
@@ -288,7 +305,7 @@
 
 .modal-image {
   max-width: 90%;
-  max-height: 90%;
+  max-height: 80%;
   object-fit: contain;
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
@@ -306,21 +323,23 @@
 /* Modal Close Button Styling */
 .modal-close {
   position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  font-size: 35px;
-  background: rgba(0, 0, 0, 0.7);
+  top: 15px;
+  right: 15px;
+  background: #ff5e57;
+  border: none;
   border-radius: 50%;
-  padding: 10px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .modal-close:hover {
-  background: rgba(255, 0, 0, 0.8);
+  background: #e04e47;
   transform: scale(1.1);
 }
 
@@ -427,6 +446,40 @@
   border-radius: 4px;
 }
 
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 10px; /* Add a 10px gap between buttons */
+}
+
+.close-button,
+.practice-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.close-button {
+  background-color: #db7134;
+}
+
+.close-button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.practice-button {
+  background-color: #3498db;
+}
+
+.practice-button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
 
 /* Media Queries for Responsiveness */
 @media screen and (max-width: 768px) {
