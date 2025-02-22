@@ -1,0 +1,890 @@
+[2025-02-22T08:02:54.203Z] ERROR: (node:14836) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:02:54.211Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:02:54.962Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:02:54.910Z"
+  }
+]
+[2025-02-22T08:02:54.966Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:02:54.911Z"
+  }
+]
+[2025-02-22T08:02:59.041Z] LOG: Incoming request: OPTIONS /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:02:59.057Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:02:59.058Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:02:59.062Z] LOG: Generating new session ID
+[2025-02-22T08:02:59.043Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:02:59.043Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:02:59.056Z] LOG: Incoming request: GET /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.943Z] LOG: Incoming request: OPTIONS /api/payments, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.945Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.947Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.953Z] LOG: Incoming request: OPTIONS /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.954Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.955Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.960Z] LOG: Incoming request: GET /api/payments, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.964Z] LOG: Generating new session ID
+[2025-02-22T08:03:12.962Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.962Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.984Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.988Z] LOG: Generating new session ID
+[2025-02-22T08:03:12.986Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:12.981Z] LOG: Incoming request: GET /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.132Z] LOG: Incoming request: OPTIONS /files, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.135Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.141Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.153Z] LOG: Incoming request: GET /files, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.155Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.155Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.156Z] LOG: Generating new session ID
+[2025-02-22T08:03:14.892Z] LOG: Incoming request: OPTIONS /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.896Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.896Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.902Z] LOG: Incoming request: OPTIONS /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.903Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.904Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.907Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.908Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.909Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.910Z] LOG: Generating new session ID
+[2025-02-22T08:03:14.932Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.937Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.940Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:14.952Z] LOG: Generating new session ID
+[2025-02-22T08:03:15.749Z] LOG: Incoming request: GET /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:15.751Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:03:15.751Z] LOG: Generating new session ID
+[2025-02-22T08:03:15.750Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:12:44.236Z] ERROR: (node:16980) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:12:44.259Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:12:44.664Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:12:44.640Z"
+  }
+]
+[2025-02-22T08:12:44.666Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:12:44.639Z"
+  }
+]
+[2025-02-22T08:12:57.091Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:12:57.090Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:12:57.091Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:12:57.094Z] LOG: Generating new session ID
+[2025-02-22T08:12:57.334Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:12:57.337Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:12:57.336Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:12:57.337Z] LOG: Generating new session ID
+[2025-02-22T08:12:57.341Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:12:57.341Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:12:57.342Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:12:57.342Z] LOG: Generating new session ID
+[2025-02-22T08:12:57.507Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:12:57.510Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:12:57.509Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:12:57.510Z] LOG: Generating new session ID
+[2025-02-22T08:12:57.544Z] LOG: Incoming request: GET /api/task-completion-report, Origin: http://localhost:3000
+[2025-02-22T08:12:57.558Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:12:57.558Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:12:57.565Z] LOG: Generating new session ID
+[2025-02-22T08:12:57.575Z] LOG: Incoming request: GET /api/task-completion-report, Origin: http://localhost:3000
+[2025-02-22T08:12:57.577Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:12:57.578Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:12:57.579Z] LOG: Generating new session ID
+[2025-02-22T08:13:34.252Z] ERROR: (node:1292) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:13:34.256Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:13:34.409Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:13:34.397Z"
+  }
+]
+[2025-02-22T08:13:34.411Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:13:34.396Z"
+  }
+]
+[2025-02-22T08:13:41.039Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:13:41.044Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:13:41.045Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:13:41.049Z] LOG: Generating new session ID
+[2025-02-22T08:13:41.076Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:13:41.077Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:13:41.077Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:13:41.078Z] LOG: Generating new session ID
+[2025-02-22T08:13:41.682Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:13:41.683Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:13:41.684Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:13:41.685Z] LOG: Generating new session ID
+[2025-02-22T08:13:41.934Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:13:41.937Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:13:41.938Z] LOG: Generating new session ID
+[2025-02-22T08:13:41.937Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:13:41.943Z] LOG: Incoming request: GET /api/task-completion-report, Origin: http://localhost:3000
+[2025-02-22T08:13:41.944Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:13:41.944Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:13:41.945Z] LOG: Generating new session ID
+[2025-02-22T08:13:41.955Z] LOG: Incoming request: GET /api/task-completion-report, Origin: http://localhost:3000
+[2025-02-22T08:13:41.961Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:13:41.962Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:13:41.963Z] LOG: Generating new session ID
+[2025-02-22T08:14:13.214Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:14:13.214Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:14:13.215Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:14:13.215Z] LOG: Generating new session ID
+[2025-02-22T08:14:13.367Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:14:13.371Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:14:13.370Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:14:13.371Z] LOG: Generating new session ID
+[2025-02-22T08:14:13.404Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:14:13.405Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:14:13.406Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:14:13.406Z] LOG: Generating new session ID
+[2025-02-22T08:14:13.419Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:14:13.420Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:14:13.420Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:14:13.421Z] LOG: Generating new session ID
+[2025-02-22T08:14:13.484Z] LOG: Incoming request: GET /api/task-completion-report, Origin: http://localhost:3000
+[2025-02-22T08:14:13.485Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:14:13.485Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:14:13.486Z] LOG: Generating new session ID
+[2025-02-22T08:14:13.494Z] LOG: Incoming request: GET /api/task-completion-report, Origin: http://localhost:3000
+[2025-02-22T08:14:13.505Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:14:13.498Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:14:13.520Z] LOG: Generating new session ID
+[2025-02-22T08:17:24.050Z] ERROR: (node:15184) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:17:24.064Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:17:24.642Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:17:24.582Z"
+  }
+]
+[2025-02-22T08:17:24.663Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:17:24.580Z"
+  }
+]
+[2025-02-22T08:17:31.975Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:17:31.977Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:17:31.977Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:17:31.987Z] LOG: Generating new session ID
+[2025-02-22T08:17:32.061Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:17:32.064Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:17:32.068Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:17:32.070Z] LOG: Generating new session ID
+[2025-02-22T08:17:32.791Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:17:32.794Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:17:32.795Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:17:32.796Z] LOG: Generating new session ID
+[2025-02-22T08:17:32.876Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:17:32.879Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:17:32.892Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:17:32.894Z] LOG: Generating new session ID
+[2025-02-22T08:17:32.899Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:17:32.904Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:17:32.906Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:17:32.907Z] LOG: Generating new session ID
+[2025-02-22T08:17:32.928Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:17:32.929Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:17:32.929Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:17:32.930Z] LOG: Generating new session ID
+[2025-02-22T08:22:44.149Z] ERROR: (node:17644) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:22:44.153Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:22:44.389Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:22:44.366Z"
+  }
+]
+[2025-02-22T08:22:44.392Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:22:44.366Z"
+  }
+]
+[2025-02-22T08:22:51.408Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:22:51.424Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:22:51.424Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:22:51.433Z] LOG: Generating new session ID
+[2025-02-22T08:22:51.560Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:22:51.561Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:22:51.563Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:22:51.564Z] LOG: Generating new session ID
+[2025-02-22T08:22:52.157Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:22:52.160Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:22:52.161Z] LOG: Generating new session ID
+[2025-02-22T08:22:52.160Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:22:52.230Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:22:52.232Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:22:52.231Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:22:52.233Z] LOG: Generating new session ID
+[2025-02-22T08:22:52.240Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:22:52.240Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:22:52.241Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:22:52.242Z] LOG: Generating new session ID
+[2025-02-22T08:22:52.320Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:22:52.340Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:22:52.341Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:22:52.342Z] LOG: Generating new session ID
+[2025-02-22T08:23:36.754Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:23:36.752Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:23:36.754Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:23:36.755Z] LOG: Generating new session ID
+[2025-02-22T08:23:36.921Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:23:36.922Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:23:36.922Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:23:36.923Z] LOG: Generating new session ID
+[2025-02-22T08:23:36.935Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:23:36.936Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:23:36.936Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:23:36.937Z] LOG: Generating new session ID
+[2025-02-22T08:24:19.168Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:24:19.170Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:24:19.172Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:24:19.186Z] LOG: Incoming request: POST /api/update-student, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:24:19.189Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:24:19.188Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T08:24:19.384Z] LOG: Generating new session ID
+[2025-02-22T08:24:25.419Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:24:25.422Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:24:25.425Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:24:25.432Z] LOG: Generating new session ID
+[2025-02-22T08:24:25.450Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:24:25.454Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:24:25.453Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:24:25.455Z] LOG: Generating new session ID
+[2025-02-22T08:24:25.801Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:24:25.802Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:24:25.804Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:24:25.806Z] LOG: Generating new session ID
+[2025-02-22T08:24:25.834Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:24:25.843Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:24:25.844Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:24:25.845Z] LOG: Generating new session ID
+[2025-02-22T08:24:25.857Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:24:25.858Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:24:25.860Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:24:25.861Z] LOG: Generating new session ID
+[2025-02-22T08:24:25.874Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:24:25.875Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:24:25.876Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:24:25.877Z] LOG: Generating new session ID
+[2025-02-22T08:25:21.655Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:25:21.725Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:25:21.789Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:25:21.843Z] LOG: Generating new session ID
+[2025-02-22T08:25:22.261Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:25:22.264Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:25:22.266Z] LOG: Generating new session ID
+[2025-02-22T08:25:22.265Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:25:22.340Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:25:22.341Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:25:22.340Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:25:22.342Z] LOG: Generating new session ID
+[2025-02-22T08:25:22.375Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:25:22.384Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:25:22.387Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:25:22.389Z] LOG: Generating new session ID
+[2025-02-22T08:25:22.394Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:25:22.394Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:25:22.397Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:25:22.401Z] LOG: Generating new session ID
+[2025-02-22T08:25:22.626Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:25:22.628Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:25:22.629Z] LOG: Generating new session ID
+[2025-02-22T08:25:22.627Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:27:38.697Z] ERROR: (node:16656) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:27:38.706Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:27:38.842Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:27:38.837Z"
+  }
+]
+[2025-02-22T08:27:38.928Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:27:38.924Z"
+  }
+]
+[2025-02-22T08:27:46.113Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:27:46.114Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:27:46.115Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:27:46.119Z] LOG: Generating new session ID
+[2025-02-22T08:27:46.197Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:27:46.205Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:27:46.206Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:27:46.208Z] LOG: Generating new session ID
+[2025-02-22T08:27:46.489Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:27:46.491Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:27:46.489Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:27:46.494Z] LOG: Generating new session ID
+[2025-02-22T08:27:46.515Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:27:46.517Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:27:46.516Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:27:46.518Z] LOG: Generating new session ID
+[2025-02-22T08:27:46.523Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:27:46.523Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:27:46.524Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:27:46.529Z] LOG: Generating new session ID
+[2025-02-22T08:27:46.570Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:27:46.582Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:27:46.583Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:27:46.584Z] LOG: Generating new session ID
+[2025-02-22T08:40:19.396Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:40:19.416Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:19.414Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:19.453Z] LOG: Generating new session ID
+[2025-02-22T08:40:20.008Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:40:20.009Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:20.010Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:20.012Z] LOG: Generating new session ID
+[2025-02-22T08:40:20.101Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:40:20.109Z] LOG: Generating new session ID
+[2025-02-22T08:40:20.102Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:20.107Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:20.149Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:40:20.207Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:20.209Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:20.215Z] LOG: Generating new session ID
+[2025-02-22T08:40:47.718Z] ERROR: (node:9364) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:40:47.751Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:40:48.117Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:40:48.115Z"
+  }
+]
+[2025-02-22T08:40:48.113Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:40:48.113Z"
+  }
+]
+[2025-02-22T08:40:56.086Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:40:56.104Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:56.107Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:56.116Z] LOG: Generating new session ID
+[2025-02-22T08:40:56.194Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:40:56.202Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:56.203Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:56.206Z] LOG: Generating new session ID
+[2025-02-22T08:40:56.901Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:40:56.908Z] LOG: Generating new session ID
+[2025-02-22T08:40:56.905Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:56.907Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:56.924Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:40:56.927Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:56.928Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:56.930Z] LOG: Generating new session ID
+[2025-02-22T08:40:56.935Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:40:56.936Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:56.937Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:56.938Z] LOG: Generating new session ID
+[2025-02-22T08:40:56.976Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:40:56.977Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:56.988Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:56.990Z] LOG: Generating new session ID
+[2025-02-22T08:40:56.994Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:40:57.004Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:57.006Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:57.010Z] LOG: Generating new session ID
+[2025-02-22T08:40:57.078Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:40:57.085Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:40:57.086Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:40:57.087Z] LOG: Generating new session ID
+[2025-02-22T08:44:11.657Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:44:11.684Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:11.682Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:11.687Z] LOG: Generating new session ID
+[2025-02-22T08:44:12.264Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:44:12.266Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:12.267Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:12.269Z] LOG: Generating new session ID
+[2025-02-22T08:44:12.413Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:44:12.416Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:12.418Z] LOG: Generating new session ID
+[2025-02-22T08:44:12.414Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:12.442Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:44:12.443Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:12.445Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:12.447Z] LOG: Generating new session ID
+[2025-02-22T08:44:12.486Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:44:12.505Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:12.506Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:12.513Z] LOG: Generating new session ID
+[2025-02-22T08:44:12.554Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:44:12.555Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:12.556Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:12.561Z] LOG: Generating new session ID
+[2025-02-22T08:44:12.620Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:44:12.622Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:12.625Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:12.627Z] LOG: Generating new session ID
+[2025-02-22T08:44:12.652Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:44:12.653Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:12.654Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:12.663Z] LOG: Generating new session ID
+[2025-02-22T08:44:29.409Z] ERROR: (node:19868) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:44:29.419Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:44:29.721Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:44:29.713Z"
+  }
+]
+[2025-02-22T08:44:29.717Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:44:29.711Z"
+  }
+]
+[2025-02-22T08:44:35.558Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:44:35.562Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:35.564Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:35.572Z] LOG: Generating new session ID
+[2025-02-22T08:44:35.696Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:44:35.697Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:35.698Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:35.700Z] LOG: Generating new session ID
+[2025-02-22T08:44:36.040Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:44:36.048Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:36.054Z] LOG: Generating new session ID
+[2025-02-22T08:44:36.046Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:36.065Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:44:36.083Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:36.125Z] LOG: Generating new session ID
+[2025-02-22T08:44:36.081Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:36.140Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:44:36.143Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:36.146Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:36.148Z] LOG: Generating new session ID
+[2025-02-22T08:44:36.232Z] ERROR: Error fetching attendance overview: {
+  "length": 117,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42703",
+  "position": "1192",
+  "file": "parse_relation.c",
+  "line": "3721",
+  "routine": "errorMissingColumn"
+}
+[2025-02-22T08:44:36.279Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:44:36.280Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:36.294Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:36.306Z] LOG: Generating new session ID
+[2025-02-22T08:44:36.311Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:44:36.315Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:36.316Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:36.318Z] LOG: Generating new session ID
+[2025-02-22T08:44:36.322Z] ERROR: Error fetching attendance overview: {
+  "length": 117,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42703",
+  "position": "1192",
+  "file": "parse_relation.c",
+  "line": "3721",
+  "routine": "errorMissingColumn"
+}
+[2025-02-22T08:44:36.573Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:44:36.574Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:44:36.575Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:44:36.576Z] LOG: Generating new session ID
+[2025-02-22T08:48:41.746Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:48:41.778Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:41.779Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:41.781Z] LOG: Generating new session ID
+[2025-02-22T08:48:42.386Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:48:42.387Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:42.390Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:42.393Z] LOG: Generating new session ID
+[2025-02-22T08:48:42.472Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:48:42.474Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:42.476Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:42.478Z] LOG: Generating new session ID
+[2025-02-22T08:48:42.493Z] ERROR: Error fetching attendance overview: {
+  "length": 117,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42703",
+  "position": "1192",
+  "file": "parse_relation.c",
+  "line": "3721",
+  "routine": "errorMissingColumn"
+}
+[2025-02-22T08:48:42.735Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:48:42.735Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:42.736Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:42.737Z] LOG: Generating new session ID
+[2025-02-22T08:48:48.801Z] ERROR: (node:18668) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:48:48.807Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:48:48.970Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:48:48.972Z"
+  }
+]
+[2025-02-22T08:48:48.974Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:48:48.974Z"
+  }
+]
+[2025-02-22T08:48:55.998Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:48:56.016Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:56.017Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:56.027Z] LOG: Generating new session ID
+[2025-02-22T08:48:56.077Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:48:56.078Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:56.079Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:56.080Z] LOG: Generating new session ID
+[2025-02-22T08:48:56.447Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:48:56.448Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:56.447Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:56.450Z] LOG: Generating new session ID
+[2025-02-22T08:48:56.464Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:48:56.464Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:56.465Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:56.466Z] LOG: Generating new session ID
+[2025-02-22T08:48:56.481Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:48:56.481Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:56.484Z] LOG: Generating new session ID
+[2025-02-22T08:48:56.482Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:56.530Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:48:56.532Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:56.540Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:56.542Z] LOG: Generating new session ID
+[2025-02-22T08:48:56.549Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:48:56.551Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:56.552Z] LOG: Generating new session ID
+[2025-02-22T08:48:56.550Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:56.583Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:48:56.593Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:48:56.586Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:48:56.618Z] LOG: Generating new session ID
+[2025-02-22T08:52:56.937Z] ERROR: (node:21068) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T08:52:56.945Z] LOG: HTTP Server running on port 5000
+[2025-02-22T08:52:57.276Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:52:57.218Z"
+  }
+]
+[2025-02-22T08:52:57.279Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T08:52:57.216Z"
+  }
+]
+[2025-02-22T08:53:04.428Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:53:04.430Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:53:04.431Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:53:04.438Z] LOG: Generating new session ID
+[2025-02-22T08:53:04.509Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:53:04.511Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:53:04.512Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:53:04.513Z] LOG: Generating new session ID
+[2025-02-22T08:53:04.764Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:53:04.768Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:53:04.769Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:53:04.773Z] LOG: Generating new session ID
+[2025-02-22T08:53:04.789Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:53:04.796Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:53:04.798Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:53:04.803Z] LOG: Generating new session ID
+[2025-02-22T08:53:04.808Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:53:04.809Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:53:04.810Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:53:04.811Z] LOG: Generating new session ID
+[2025-02-22T08:53:04.847Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:53:04.855Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:53:04.848Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:53:04.864Z] LOG: Generating new session ID
+[2025-02-22T08:53:04.893Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:53:04.894Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:53:04.896Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:53:04.898Z] LOG: Generating new session ID
+[2025-02-22T08:53:04.921Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:53:04.926Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:53:04.924Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:53:04.929Z] LOG: Generating new session ID
+[2025-02-22T08:53:06.721Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T08:53:06.740Z] LOG: Incoming Origin: 
+[2025-02-22T08:53:06.745Z] LOG: Generating new session ID
+[2025-02-22T08:53:06.741Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T08:53:08.031Z] LOG: Incoming request: GET /favicon.ico, Origin: undefined
+[2025-02-22T08:53:08.033Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T08:53:08.035Z] LOG: Generating new session ID
+[2025-02-22T08:53:08.032Z] LOG: Incoming Origin: 
+[2025-02-22T08:53:14.128Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T08:53:14.130Z] LOG: Generating new session ID
+[2025-02-22T08:53:14.126Z] LOG: Incoming Origin: 
+[2025-02-22T08:53:14.121Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T08:53:22.612Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T08:53:22.632Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T08:53:22.638Z] LOG: Generating new session ID
+[2025-02-22T08:53:22.629Z] LOG: Incoming Origin: 
+[2025-02-22T08:57:08.766Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T08:57:08.766Z] LOG: Incoming Origin: 
+[2025-02-22T08:57:08.768Z] LOG: Generating new session ID
+[2025-02-22T08:57:08.767Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T08:58:28.211Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:58:28.211Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:28.211Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:28.212Z] LOG: Generating new session ID
+[2025-02-22T08:58:28.773Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:58:28.774Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:28.775Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:28.777Z] LOG: Generating new session ID
+[2025-02-22T08:58:28.956Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:58:28.959Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:28.960Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:28.962Z] LOG: Generating new session ID
+[2025-02-22T08:58:29.143Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:58:29.146Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:29.145Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:29.148Z] LOG: Generating new session ID
+[2025-02-22T08:58:38.686Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:58:38.688Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:38.689Z] LOG: Generating new session ID
+[2025-02-22T08:58:38.687Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:38.723Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:58:38.724Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:38.725Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:38.732Z] LOG: Generating new session ID
+[2025-02-22T08:58:38.751Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:58:38.753Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:38.752Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:38.758Z] LOG: Generating new session ID
+[2025-02-22T08:58:38.770Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:58:38.772Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:38.772Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:38.773Z] LOG: Generating new session ID
+[2025-02-22T08:58:39.100Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:58:39.105Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:39.107Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:39.108Z] LOG: Generating new session ID
+[2025-02-22T08:58:39.129Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:58:39.139Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:39.139Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:39.141Z] LOG: Generating new session ID
+[2025-02-22T08:58:39.147Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:58:39.149Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:39.150Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:39.152Z] LOG: Generating new session ID
+[2025-02-22T08:58:39.375Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:58:39.378Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:58:39.387Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:58:39.388Z] LOG: Generating new session ID
+[2025-02-22T08:58:55.789Z] LOG: Incoming request: GET /fcchome-attendance, Origin: undefined
+[2025-02-22T08:58:55.954Z] LOG: Incoming Origin: 
+[2025-02-22T08:58:55.957Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T08:58:55.958Z] LOG: Generating new session ID
+[2025-02-22T08:59:51.459Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:59:51.459Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:51.460Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:51.461Z] LOG: Generating new session ID
+[2025-02-22T08:59:51.569Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:59:51.569Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:51.570Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:51.570Z] LOG: Generating new session ID
+[2025-02-22T08:59:51.578Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:59:51.578Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:51.579Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:51.579Z] LOG: Generating new session ID
+[2025-02-22T08:59:51.594Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:59:51.595Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:51.595Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:51.596Z] LOG: Generating new session ID
+[2025-02-22T08:59:54.908Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:59:54.912Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:54.915Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:54.917Z] LOG: Generating new session ID
+[2025-02-22T08:59:54.939Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T08:59:54.941Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:54.940Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:54.943Z] LOG: Generating new session ID
+[2025-02-22T08:59:55.336Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:59:55.345Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:55.344Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:55.347Z] LOG: Generating new session ID
+[2025-02-22T08:59:55.359Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T08:59:55.361Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:55.362Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:55.364Z] LOG: Generating new session ID
+[2025-02-22T08:59:55.372Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:59:55.375Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:55.374Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:55.377Z] LOG: Generating new session ID
+[2025-02-22T08:59:55.391Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T08:59:55.392Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:55.392Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:55.394Z] LOG: Generating new session ID
+[2025-02-22T08:59:55.434Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:59:55.440Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:55.442Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:55.445Z] LOG: Generating new session ID
+[2025-02-22T08:59:55.471Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T08:59:55.489Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T08:59:55.482Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T08:59:55.491Z] LOG: Generating new session ID
+[2025-02-22T08:59:57.549Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T08:59:57.566Z] LOG: Generating new session ID
+[2025-02-22T08:59:57.560Z] LOG: Incoming Origin: 
+[2025-02-22T08:59:57.564Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T09:01:27.799Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T09:01:27.798Z] LOG: Incoming request: GET /api/total-admissions, Origin: http://localhost:3000
+[2025-02-22T09:01:27.799Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T09:01:27.800Z] LOG: Generating new session ID
+[2025-02-22T09:01:28.621Z] LOG: Incoming request: GET /api/admitted-students, Origin: http://localhost:3000
+[2025-02-22T09:01:28.622Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T09:01:28.622Z] LOG: Generating new session ID
+[2025-02-22T09:01:28.621Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T09:01:28.634Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T09:01:28.634Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T09:01:28.635Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T09:01:28.636Z] LOG: Generating new session ID
+[2025-02-22T09:01:28.653Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T09:01:28.655Z] LOG: Generating new session ID
+[2025-02-22T09:01:28.654Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T09:01:28.654Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T09:03:02.550Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T09:03:02.625Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T09:03:02.564Z] LOG: Incoming Origin: 
+[2025-02-22T09:03:02.628Z] LOG: Generating new session ID
+[2025-02-22T09:16:45.960Z] LOG: HTTP Server running on port 5000
+[2025-02-22T09:16:45.935Z] ERROR: (node:21180) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T09:16:46.390Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T09:16:46.326Z"
+  }
+]
+[2025-02-22T09:16:46.395Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T09:16:46.324Z"
+  }
+]
+[2025-02-22T09:27:51.794Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T09:27:52.270Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T09:27:52.368Z] LOG: Generating new session ID
+[2025-02-22T09:27:52.243Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T09:27:54.743Z] LOG: Incoming request: GET /api/attendance-overview, Origin: http://localhost:3000
+[2025-02-22T09:27:54.746Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T09:27:54.748Z] LOG: Generating new session ID
+[2025-02-22T09:27:54.745Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T09:28:01.901Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T09:28:01.901Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T09:28:01.902Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T09:28:01.903Z] LOG: Generating new session ID
+[2025-02-22T09:28:02.047Z] LOG: Incoming request: GET /api/daily-task-completion, Origin: http://localhost:3000
+[2025-02-22T09:28:02.051Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-22T09:28:02.055Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-22T09:28:02.060Z] LOG: Generating new session ID
+[2025-02-22T10:20:08.107Z] ERROR: (node:27052) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T10:20:08.124Z] LOG: HTTP Server running on port 5000
+[2025-02-22T10:20:09.001Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T10:20:08.951Z"
+  }
+]
+[2025-02-22T10:20:09.008Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T10:20:08.914Z"
+  }
+]
+[2025-02-22T10:20:41.003Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T10:20:41.019Z] LOG: Incoming Origin: 
+[2025-02-22T10:20:41.026Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T10:20:41.048Z] LOG: Generating new session ID
+[2025-02-22T10:20:57.500Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T10:20:57.502Z] LOG: Incoming Origin: 
+[2025-02-22T10:20:57.504Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T10:20:57.506Z] LOG: Generating new session ID
+[2025-02-22T10:23:03.589Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T10:23:03.590Z] LOG: Incoming Origin: 
+[2025-02-22T10:23:03.592Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T10:23:03.594Z] LOG: Generating new session ID
+[2025-02-22T10:23:28.028Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T10:23:28.031Z] LOG: Incoming Origin: 
+[2025-02-22T10:23:28.036Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T10:23:28.038Z] LOG: Generating new session ID
+[2025-02-22T10:23:36.122Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T10:23:36.127Z] LOG: Incoming Origin: 
+[2025-02-22T10:23:36.131Z] LOG: Generating new session ID
+[2025-02-22T10:23:36.129Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T10:55:47.854Z] LOG: Incoming request: GET /, Origin: undefined
+[2025-02-22T10:55:48.281Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T10:55:48.500Z] LOG: Generating new session ID
+[2025-02-22T10:55:48.248Z] LOG: Incoming Origin: 
+[2025-02-22T10:59:50.096Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T10:59:50.097Z] LOG: Incoming Origin: 
+[2025-02-22T10:59:50.099Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T10:59:50.161Z] LOG: Generating new session ID
+[2025-02-22T11:01:42.756Z] ERROR: (node:10316) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T11:01:42.769Z] LOG: HTTP Server running on port 5000
+[2025-02-22T11:01:43.093Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T11:01:43.043Z"
+  }
+]
+[2025-02-22T11:01:43.097Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T11:01:43.042Z"
+  }
+]
+[2025-02-22T11:01:46.053Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T11:01:46.058Z] LOG: Incoming Origin: 
+[2025-02-22T11:01:46.059Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T11:01:46.072Z] LOG: Generating new session ID
+[2025-02-22T11:01:51.020Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T11:01:51.024Z] LOG: Incoming Origin: 
+[2025-02-22T11:01:51.027Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T11:01:51.029Z] LOG: Generating new session ID
+[2025-02-22T11:01:58.392Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T11:01:58.401Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T11:01:58.395Z] LOG: Incoming Origin: 
+[2025-02-22T11:01:58.404Z] LOG: Generating new session ID
+[2025-02-22T11:02:11.993Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T11:02:12.004Z] LOG: Incoming Origin: 
+[2025-02-22T11:02:12.006Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T11:02:12.008Z] LOG: Generating new session ID
+[2025-02-22T11:02:47.884Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T11:02:47.884Z] LOG: Incoming Origin: 
+[2025-02-22T11:02:47.892Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T11:02:47.894Z] LOG: Generating new session ID
+[2025-02-22T11:02:56.216Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T11:02:56.216Z] LOG: Incoming Origin: 
+[2025-02-22T11:02:56.217Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T11:02:56.218Z] LOG: Generating new session ID
+[2025-02-22T11:06:13.855Z] ERROR: (node:33404) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T11:06:13.863Z] LOG: HTTP Server running on port 5000
+[2025-02-22T11:06:14.307Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T11:06:14.199Z"
+  }
+]
+[2025-02-22T11:06:14.309Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T11:06:14.200Z"
+  }
+]
+[2025-02-22T11:06:21.411Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T11:06:21.415Z] LOG: Incoming Origin: 
+[2025-02-22T11:06:21.424Z] LOG: Generating new session ID
+[2025-02-22T11:06:21.417Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T11:21:52.644Z] ERROR: (node:30856) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-22T11:21:52.662Z] LOG: HTTP Server running on port 5000
+[2025-02-22T11:21:53.328Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T11:21:53.223Z"
+  }
+]
+[2025-02-22T11:21:53.333Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-22T11:21:53.246Z"
+  }
+]

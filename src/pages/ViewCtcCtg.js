@@ -17,9 +17,10 @@ const ViewCtcCtg = () => {
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState("previous7");
   const [filteredLogs, setFilteredLogs] = useState([]);
-  const name = location.state?.name || "Student Name Not Available"; // Fallback if no name is found
-  const father = location.state?.father || "Father's Name Not Available"; // Fallback if no father's name is found
-  const mobile_number = location.state?.mobile_number || "Mother's Name Not Available"; // Fallback if no mother's name is found
+  // Removed these lines - Now relying on student state
+  // const name = location.state?.name || "Student Name Not Available";
+  // const father = location.state?.father || "Father's Name Not Available";
+  // const mobile_number = location.state?.mobile_number || "Mother's Name Not Available";
   const initialFccId = location.state?.fccId;
   const recentProfilesData = location.state?.recentProfiles || []; // Get recentProfiles from state
   const initialStudent = location.state?.student || null; // Get student object from state
@@ -30,7 +31,7 @@ const ViewCtcCtg = () => {
   // API URL from environment variable
   const apiUrl = process.env.REACT_APP_API_URL;
 
-    // Filter logs based on selected filter  **MOVE FUNCTION DE`FINITION HERE - BEFORE useEffect**
+    // Filter logs based on selected filter
     const filterLogs = (logs, filterType) => {
       const today = new Date();
       let filtered = [...logs];
@@ -115,7 +116,7 @@ const ViewCtcCtg = () => {
 
         if (ctcCtgResponse.ok) {
           setData(ctcCtgResult.student); // Student data for CTC/CTG
-          setFilteredLogs(filterLogs(ctcCtgResult.logs, filter)); // Apply initial filter (Previous 7 Days) **CALLING FILTERLOGS HERE - NOW IT'S DEFINED ABOVE**
+          setFilteredLogs(filterLogs(ctcCtgResult.logs, filter)); // Apply initial filter (Previous 7 Days)
         } else {
           setData(null);
           setFilteredLogs([]);
@@ -188,7 +189,7 @@ const ViewCtcCtg = () => {
     doc.text("CTC/CTG Details - Latest Data", 20, 35);
 
      // Section: Student Details Card
-     if (data) {
+     if (data && student) { // Ensure student data is also available before rendering card
       doc.setFont("helvetica", "normal");
       doc.setFontSize(12);
       doc.setFillColor(240, 240, 255); // Light card background
@@ -196,9 +197,9 @@ const ViewCtcCtg = () => {
 
       doc.setTextColor(33, 33, 33); // Content color
       const studentDetails = [
-        `Student Name: ${name || "N/A"}`,
-        `Father's Name: ${father || "N/A"}`,
-        `Mobile Number: ${mobile_number || "N/A"}`,
+        `Student Name: ${student?.name || "N/A"}`, // Use student?.name
+        `Father's Name: ${student?.father || "N/A"}`, // Use student?.father
+        `Mobile Number: ${student?.mobile_number || "N/A"}`, // Use student?.mobile_number
         `FCC ID: ${data.fcc_id || "N/A"}`,
         // `CTC Time: ${data.ctc_time ? new Date(data.ctc_time).toLocaleTimeString() : "N/A"}`,
         // `CTG Time: ${data.ctg_time ? new Date(data.ctg_time).toLocaleTimeString() : "N/A"}`,
@@ -273,7 +274,7 @@ const ViewCtcCtg = () => {
        {student?.photo_url && (
           <img
             src={student.photo_url}
-            alt={`${student.name} Profile`}
+            alt={`${student?.name} Profile`} // Use student?.name here as well for consistency
             className="current-profile-image"
             onError={(e) => { e.target.src = NotFoundImage; }}
           />
@@ -312,11 +313,11 @@ const ViewCtcCtg = () => {
       {error && <p className="error">{error}</p>}
 
       {/* Display Student Data */}
-      {data && (
+      {data && student && (  // Conditionally render based on both data and student
   <div className="ctc-ctg-details">
     <h2 className="section-title">📚 छात्र जानकारी</h2>
     <div className="detail-item">
-      <p><strong>👤 नाम:</strong> {name || "N/A"}</p>
+      <p><strong>👤 नाम:</strong> {student?.name || "Student Name Not Available"}</p> {/* Use student?.name */}
     </div>
     <div className="detail-item">
       <p><strong>🆔 FCC ID:</strong> {data.fcc_id || "N/A"}</p>

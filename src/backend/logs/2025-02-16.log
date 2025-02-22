@@ -1,0 +1,2534 @@
+[2025-02-16T04:01:37.900Z] LOG: Incoming request: GET /api/leaderboard?classroomName=Class+3, Origin: http://localhost:3000
+[2025-02-16T04:01:37.942Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:01:37.946Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:01:40.134Z] LOG: Incoming request: GET /api/leaderboard?classroomName=Class+2, Origin: http://localhost:3000
+[2025-02-16T04:01:40.135Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:01:40.135Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:01:41.329Z] LOG: Incoming request: GET /api/leaderboard?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-16T04:01:41.331Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:01:41.341Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:01:42.687Z] LOG: Incoming request: GET /api/leaderboard, Origin: http://localhost:3000
+[2025-02-16T04:01:42.696Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:01:42.697Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:05.308Z] ERROR: (node:74144) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T04:13:05.329Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T04:13:05.653Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T04:13:05.643Z"
+  }
+]
+[2025-02-16T04:13:11.288Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:13:11.325Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:11.339Z] LOG: Incoming request: OPTIONS /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:13:11.322Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:11.490Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:11.801Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:12.037Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:13:12.086Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:12.106Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:12.108Z] LOG: Incoming request: OPTIONS /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:13:12.658Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:12.831Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:12.855Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:13:12.857Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:12.858Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:12.865Z] LOG: Incoming request: GET /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:13:12.867Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:12.870Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:12.880Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:13:12.882Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:12.884Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:14.629Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:13:14.649Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:14.650Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:15.537Z] LOG: Incoming request: GET /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:13:15.668Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:15.667Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:15.891Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:13:16.079Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:15.999Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:16.712Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T04:13:17.862Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:17.800Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:17.914Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T04:13:18.022Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:18.047Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:18.163Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T04:13:18.246Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:18.410Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:48.949Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:13:48.951Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:48.952Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:49.128Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:13:49.129Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:49.132Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:51.508Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T04:13:51.516Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:51.516Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:51.520Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T04:13:51.524Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:51.525Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:13:51.528Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T04:13:51.529Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:13:51.529Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:14:48.497Z] ERROR: (node:74684) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T04:14:48.506Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T04:14:48.697Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T04:14:48.695Z"
+  }
+]
+[2025-02-16T04:15:12.736Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:15:12.752Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:12.738Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:12.760Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:15:12.767Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:12.768Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:12.772Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:15:12.784Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:12.782Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:13.239Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:15:13.262Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:13.261Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:16.005Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:15:16.010Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:16.010Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:16.093Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:15:16.106Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:16.106Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:16.226Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:15:16.265Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:16.266Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:16.289Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T04:15:16.292Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:16.290Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:55.003Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:15:55.101Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:55.102Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:55.243Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:15:55.254Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:55.255Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:58.033Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T04:15:58.039Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:58.040Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:58.045Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T04:15:58.048Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:15:58.049Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:58.072Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T04:15:58.244Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:15:58.084Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:45:18.470Z] ERROR: (node:83876) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T04:45:18.790Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T04:45:18.990Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T04:45:18.985Z"
+  }
+]
+[2025-02-16T04:45:23.743Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:45:23.758Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:45:23.756Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:45:23.863Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T04:45:23.926Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:45:23.927Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:49:01.094Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T04:49:01.128Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:49:01.114Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:49:01.195Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T04:49:01.211Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:49:01.212Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T04:49:01.238Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T04:49:01.244Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T04:49:01.245Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T05:58:45.348Z] ERROR: (node:81956) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T05:58:45.381Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T05:58:45.526Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T05:58:45.516Z"
+  }
+]
+[2025-02-16T05:59:40.780Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T05:59:40.782Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T05:59:40.783Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T05:59:40.789Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T05:59:40.790Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T05:59:40.791Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T05:59:40.800Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T05:59:40.803Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T05:59:40.803Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T05:59:40.807Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T05:59:40.812Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T05:59:40.812Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T05:59:41.191Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T05:59:41.191Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T05:59:41.192Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T05:59:41.198Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T05:59:41.198Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T05:59:41.200Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T05:59:41.203Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T05:59:41.204Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T05:59:41.205Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T05:59:41.210Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T05:59:41.211Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T05:59:41.211Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:00:06.879Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:00:06.879Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:00:06.880Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:00:07.027Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:00:07.028Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:00:07.034Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:00:08.820Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T06:00:08.821Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:00:08.822Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:00:08.854Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T06:00:08.859Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:00:08.856Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:01:38.654Z] LOG: Incoming request: OPTIONS /api/tasks, Origin: http://localhost:3000
+[2025-02-16T06:01:38.658Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:01:38.655Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:01:38.680Z] LOG: Incoming request: POST /api/tasks, Origin: http://localhost:3000
+[2025-02-16T06:01:38.681Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:01:38.682Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:19:55.978Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:19:55.941Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T06:19:55.992Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:19:56.178Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T06:19:56.181Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:19:56.181Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:19:58.922Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%202, Origin: http://localhost:3000
+[2025-02-16T06:19:58.924Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:19:58.926Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:19:58.974Z] LOG: Incoming request: GET /api/tasks?class=2, Origin: http://localhost:3000
+[2025-02-16T06:19:58.975Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:19:58.976Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:20:00.908Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:20:00.903Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%203, Origin: http://localhost:3000
+[2025-02-16T06:20:00.908Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:20:00.925Z] LOG: Incoming request: GET /api/tasks?class=3, Origin: http://localhost:3000
+[2025-02-16T06:20:00.927Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:20:00.928Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:20:59.118Z] LOG: Incoming request: GET /api/videos?classroomName=Class+3, Origin: http://localhost:3000
+[2025-02-16T06:20:59.124Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:20:59.127Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:20:59.137Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%203, Origin: http://localhost:3000
+[2025-02-16T06:20:59.144Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:20:59.144Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:20:59.218Z] LOG: Incoming request: GET /api/tasks?class=3, Origin: http://localhost:3000
+[2025-02-16T06:20:59.235Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:20:59.237Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:21:33.432Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T06:21:33.434Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:21:33.435Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:21:33.617Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T06:21:33.620Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:21:33.624Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:22:39.559Z] LOG: Incoming request: GET /api/tasks?class=3, Origin: http://localhost:3000
+[2025-02-16T06:22:39.561Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:22:39.561Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:22:39.566Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:22:39.566Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:22:39.564Z] LOG: Incoming request: GET /api/videos?classroomName=Class+3, Origin: http://localhost:3000
+[2025-02-16T06:22:39.567Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%203, Origin: http://localhost:3000
+[2025-02-16T06:22:39.568Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:22:39.569Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:22:55.534Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%203, Origin: http://localhost:3000
+[2025-02-16T06:22:55.535Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:22:55.535Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:22:55.700Z] LOG: Incoming request: GET /api/tasks?class=3, Origin: http://localhost:3000
+[2025-02-16T06:22:55.702Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:22:55.701Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:23:17.730Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:23:17.739Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:23:17.741Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:23:17.753Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:23:17.758Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:23:17.757Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:16.989Z] LOG: Incoming request: OPTIONS /api/tasks, Origin: http://localhost:3000
+[2025-02-16T06:25:16.996Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:25:16.995Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:17.011Z] LOG: Incoming request: POST /api/tasks, Origin: http://localhost:3000
+[2025-02-16T06:25:17.013Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:17.014Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:25:22.851Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T06:25:22.855Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:22.859Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:25:22.923Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T06:25:22.955Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:25:22.953Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:23.118Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T06:25:23.171Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:23.173Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:25:36.378Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:25:36.382Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:25:36.381Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:36.555Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:25:36.557Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:36.558Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:25:40.621Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T06:25:40.622Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:40.622Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:25:40.689Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:25:40.690Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:25:40.672Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T06:26:11.550Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:26:11.551Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:26:11.552Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:26:11.556Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:26:11.559Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:26:11.557Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:28:26.206Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:28:26.211Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:28:26.209Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:28:26.223Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:28:26.230Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:28:26.229Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:03.443Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%202, Origin: http://localhost:3000
+[2025-02-16T06:29:03.444Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:03.444Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:03.547Z] LOG: Incoming request: GET /api/tasks?class=2, Origin: http://localhost:3000
+[2025-02-16T06:29:03.548Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:03.547Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:09.185Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%203, Origin: http://localhost:3000
+[2025-02-16T06:29:09.187Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:09.188Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:09.227Z] LOG: Incoming request: GET /api/tasks?class=3, Origin: http://localhost:3000
+[2025-02-16T06:29:09.229Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:09.236Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:19.698Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%204, Origin: http://localhost:3000
+[2025-02-16T06:29:19.699Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:19.700Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:19.864Z] LOG: Incoming request: GET /api/tasks?class=4, Origin: http://localhost:3000
+[2025-02-16T06:29:19.867Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:19.868Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:22.118Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%205, Origin: http://localhost:3000
+[2025-02-16T06:29:22.131Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:22.132Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:22.157Z] LOG: Incoming request: GET /api/tasks?class=5, Origin: http://localhost:3000
+[2025-02-16T06:29:22.162Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:22.163Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:26.723Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%207, Origin: http://localhost:3000
+[2025-02-16T06:29:26.725Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:26.727Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:26.766Z] LOG: Incoming request: GET /api/tasks?class=7, Origin: http://localhost:3000
+[2025-02-16T06:29:26.769Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:26.771Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:30.810Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%208, Origin: http://localhost:3000
+[2025-02-16T06:29:30.827Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:30.831Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:30.870Z] LOG: Incoming request: GET /api/tasks?class=8, Origin: http://localhost:3000
+[2025-02-16T06:29:30.872Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:30.874Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:35.187Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:35.188Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:35.186Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%209, Origin: http://localhost:3000
+[2025-02-16T06:29:35.218Z] LOG: Incoming request: GET /api/tasks?class=9, Origin: http://localhost:3000
+[2025-02-16T06:29:35.220Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:35.219Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:37.244Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T06:29:37.246Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:29:37.249Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:37.312Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T06:29:37.316Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:29:37.315Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:34:17.358Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-16T06:34:17.360Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:34:17.361Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:34:17.566Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-16T06:34:17.568Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:34:17.568Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:10.737Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:36:10.738Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:10.740Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:10.996Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:36:11.004Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:11.005Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:13.935Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%206, Origin: http://localhost:3000
+[2025-02-16T06:36:13.936Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:13.937Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:13.973Z] LOG: Incoming request: GET /api/tasks?class=6, Origin: http://localhost:3000
+[2025-02-16T06:36:13.975Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:13.978Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:15.965Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%207, Origin: http://localhost:3000
+[2025-02-16T06:36:15.976Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:15.978Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:16.021Z] LOG: Incoming request: GET /api/tasks?class=7, Origin: http://localhost:3000
+[2025-02-16T06:36:16.041Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:16.043Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:18.863Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T06:36:18.864Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:18.866Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:18.890Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-16T06:36:18.892Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:18.895Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:20.592Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%207, Origin: http://localhost:3000
+[2025-02-16T06:36:20.595Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:20.594Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:20.625Z] LOG: Incoming request: GET /api/tasks?class=7, Origin: http://localhost:3000
+[2025-02-16T06:36:20.630Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:20.630Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:51.353Z] LOG: Incoming request: OPTIONS /api/tasks, Origin: http://localhost:3000
+[2025-02-16T06:36:51.360Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:51.364Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:51.393Z] LOG: Incoming request: POST /api/tasks, Origin: http://localhost:3000
+[2025-02-16T06:36:51.401Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:51.403Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:56.570Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:36:56.571Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:56.571Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:56.619Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:36:56.621Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:56.621Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:58.965Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%206, Origin: http://localhost:3000
+[2025-02-16T06:36:58.967Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:36:58.966Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:58.999Z] LOG: Incoming request: GET /api/tasks?class=6, Origin: http://localhost:3000
+[2025-02-16T06:36:59.000Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:36:59.002Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:05.873Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T06:39:05.876Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:05.890Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:05.893Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-16T06:39:05.894Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:39:05.895Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:05.875Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:39:05.882Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-16T06:39:05.888Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:39:33.620Z] LOG: Incoming request: OPTIONS /api/tasks, Origin: http://localhost:3000
+[2025-02-16T06:39:33.622Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:39:33.623Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:33.635Z] LOG: Incoming request: POST /api/tasks, Origin: http://localhost:3000
+[2025-02-16T06:39:33.636Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:39:33.637Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:36.892Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T06:39:36.893Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:39:36.896Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:36.940Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-16T06:39:36.943Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:39:36.951Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:47.483Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:39:47.488Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:39:47.489Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:47.505Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:39:47.539Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:39:47.538Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:42:11.655Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-16T06:42:11.657Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:42:11.656Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:42:11.671Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-16T06:42:11.672Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:42:11.673Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:42:41.307Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-16T06:42:41.308Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:42:41.311Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:42:41.328Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-16T06:42:41.332Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:42:41.330Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:43:13.534Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:43:13.537Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:43:13.538Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:43:13.726Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T06:43:13.729Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:43:13.729Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:43:15.690Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-16T06:43:15.693Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:43:15.694Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:43:15.695Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T06:43:15.696Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:43:15.697Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:43:15.699Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-16T06:43:15.699Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:43:15.699Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:45:31.467Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:45:31.473Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T06:45:31.475Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:45:31.489Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T06:45:31.498Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T06:45:31.496Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:05:23.154Z] ERROR: (node:8200) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T07:05:23.173Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T07:05:23.713Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T07:05:23.663Z"
+  }
+]
+[2025-02-16T07:05:32.123Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T07:05:32.129Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:05:32.148Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T07:05:32.130Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:05:32.161Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:05:32.162Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:05:32.188Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T07:05:32.260Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:05:32.263Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:05:32.397Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T07:05:32.399Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:05:32.400Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:05:32.800Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T07:05:32.808Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:05:32.806Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:05:32.828Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T07:05:32.829Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:05:32.830Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:05:33.117Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T07:05:33.120Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:05:33.118Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:06:17.494Z] ERROR: (node:8852) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T07:06:17.601Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T07:06:18.142Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T07:06:18.141Z"
+  }
+]
+[2025-02-16T07:07:20.250Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T07:07:20.251Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:20.251Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:20.367Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T07:07:20.368Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:20.368Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:20.379Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T07:07:20.381Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:20.380Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:20.385Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T07:07:20.386Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:20.386Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:21.500Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T07:07:21.501Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:21.503Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:21.521Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T07:07:21.522Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:21.523Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:24.018Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-16T07:07:24.019Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:24.019Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:24.040Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-16T07:07:24.040Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:24.040Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:46.414Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T07:07:46.416Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:46.417Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:46.722Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-16T07:07:46.724Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:46.725Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:56.937Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T07:07:56.939Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:56.943Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:07:56.956Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T07:07:56.960Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:07:56.961Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:09:57.964Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T07:09:57.965Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:09:57.966Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:09:57.976Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T07:09:57.980Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:09:57.978Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:11:40.016Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T07:11:40.017Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:11:40.019Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:11:40.405Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T07:11:40.411Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:11:40.410Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:12:01.277Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T07:12:01.285Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:12:01.283Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:12:01.305Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:12:01.307Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:12:01.297Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T07:12:41.331Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T07:12:41.332Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:12:41.334Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:12:41.347Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T07:12:41.348Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T07:12:41.349Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:12:42.426Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T07:12:42.430Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T07:12:42.429Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:06:27.611Z] ERROR: (node:14200) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T08:06:27.619Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T08:06:27.762Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T08:06:27.754Z"
+  }
+]
+[2025-02-16T08:10:01.942Z] ERROR: (node:13252) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T08:10:01.966Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T08:10:02.316Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T08:10:02.315Z"
+  }
+]
+[2025-02-16T08:11:46.829Z] ERROR: (node:13888) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T08:11:46.849Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T08:11:47.300Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T08:11:47.295Z"
+  }
+]
+[2025-02-16T08:16:16.845Z] ERROR: (node:13808) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T08:16:16.853Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T08:16:16.941Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T08:16:16.953Z"
+  }
+]
+[2025-02-16T08:18:57.034Z] ERROR: (node:10528) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T08:18:57.059Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T08:18:57.363Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T08:18:57.366Z"
+  }
+]
+[2025-02-16T08:24:03.536Z] ERROR: (node:5516) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T08:24:03.545Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T08:24:03.690Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T08:24:03.678Z"
+  }
+]
+[2025-02-16T08:27:16.664Z] ERROR: (node:9748) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T08:27:16.689Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T08:27:16.982Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T08:27:16.985Z"
+  }
+]
+[2025-02-16T08:30:45.644Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T08:30:45.647Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:30:45.649Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:30:45.677Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T08:30:45.679Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:30:45.680Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:30:45.770Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T08:30:45.783Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:30:45.780Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:30:46.139Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T08:30:46.141Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:30:46.142Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:30:55.616Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T08:30:55.616Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:30:55.617Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:30:55.620Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T08:30:55.620Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:30:55.621Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:30:55.627Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T08:30:55.631Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:30:55.636Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:30:55.637Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:30:55.635Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T08:30:55.630Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:31:20.224Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Assignment%20Submitted, Origin: http://localhost:3000
+[2025-02-16T08:31:20.226Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:31:20.228Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:31:21.589Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Discussion%20Participation, Origin: http://localhost:3000
+[2025-02-16T08:31:21.592Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:31:21.593Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:31:22.706Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=for%20class%2010th, Origin: http://localhost:3000
+[2025-02-16T08:31:22.711Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:31:22.709Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:31:24.011Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Maths%20Assignment%201, Origin: http://localhost:3000
+[2025-02-16T08:31:24.014Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:31:24.015Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:31:25.380Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=From%20Task%20submission%20Panel%20TEST, Origin: http://localhost:3000
+[2025-02-16T08:31:25.382Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:31:25.383Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:31:26.632Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Quiz%20Completed, Origin: http://localhost:3000
+[2025-02-16T08:31:26.636Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:31:26.634Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:31:27.919Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Workshop%20Attendance, Origin: http://localhost:3000
+[2025-02-16T08:31:27.921Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:31:27.922Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T08:31:29.609Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T08:31:29.613Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T08:31:29.618Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:12:24.626Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T10:12:24.664Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:12:24.674Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:12:24.743Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T10:12:24.748Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:12:24.757Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:12:24.780Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T10:12:24.781Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:12:24.782Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:12:29.263Z] LOG: Incoming request: GET /api/videos?classroomName=Class+3, Origin: http://localhost:3000
+[2025-02-16T10:12:29.267Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:12:29.269Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:12:29.283Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%203, Origin: http://localhost:3000
+[2025-02-16T10:12:29.284Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:12:29.285Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:12:29.296Z] LOG: Incoming request: GET /api/tasks?class=3, Origin: http://localhost:3000
+[2025-02-16T10:12:29.299Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:12:29.301Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:12:31.700Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-16T10:12:31.715Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:12:31.716Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:12:31.719Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T10:12:31.720Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:12:31.721Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:12:31.724Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-16T10:12:31.725Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:12:31.726Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:25:43.104Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:25:43.103Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T10:25:43.105Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:25:43.112Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T10:25:43.113Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:25:43.113Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:25:44.829Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T10:25:44.831Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:25:44.830Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:25:44.839Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T10:25:44.842Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:25:44.841Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:25.646Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:38:25.651Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:25.652Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:25.659Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:38:25.663Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:25.666Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:25.686Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:38:25.689Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:25.690Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:25.699Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:38:25.701Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:25.700Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:25.711Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:38:25.714Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:25.713Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:25.907Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:38:25.910Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:25.912Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:25.921Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:38:25.923Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:25.924Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:25.935Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:38:25.937Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:25.936Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:26.189Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:38:26.191Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:26.197Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:26.200Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:38:26.201Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:26.202Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:26.217Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:38:26.220Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:26.221Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:38:26.224Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:38:26.225Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:38:26.227Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:14.583Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:42:14.587Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:14.584Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:14.594Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:42:14.598Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:14.599Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:14.614Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T10:42:14.619Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:14.618Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:14.643Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T10:42:14.646Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:14.635Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T10:42:14.638Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:14.651Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-16T10:42:14.653Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:14.654Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:14.647Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:14.637Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:14.660Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T10:42:14.661Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:14.662Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:14.681Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-16T10:42:14.688Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:14.720Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:14.763Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T10:42:14.783Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:14.800Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:15.333Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T10:42:15.342Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:15.344Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:15.399Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T10:42:15.409Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:42:15.417Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:15.753Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T10:42:15.755Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:42:15.754Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:32.492Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Assignment%20Submitted, Origin: http://localhost:3000
+[2025-02-16T10:46:32.499Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:32.500Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:33.639Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:46:33.644Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:33.641Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:36.893Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:46:36.899Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:36.901Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:36.907Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:46:36.908Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:36.910Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:36.950Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:46:36.960Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:36.962Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:37.208Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:46:37.211Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:37.210Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:40.009Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Assignment%20Submitted, Origin: http://localhost:3000
+[2025-02-16T10:46:40.010Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:40.015Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:42.185Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=for%20class%2010th, Origin: http://localhost:3000
+[2025-02-16T10:46:42.186Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:42.187Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:43.194Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=From%20Task%20submission%20Panel%20TEST, Origin: http://localhost:3000
+[2025-02-16T10:46:43.202Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:43.203Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:44.343Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Maths%20Assignment%201, Origin: http://localhost:3000
+[2025-02-16T10:46:44.347Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:44.348Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:45.574Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Discussion%20Participation, Origin: http://localhost:3000
+[2025-02-16T10:46:45.579Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:45.583Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:46.862Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Workshop%20Attendance, Origin: http://localhost:3000
+[2025-02-16T10:46:46.867Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:46.872Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:46:48.143Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Maths%20Assignment%201, Origin: http://localhost:3000
+[2025-02-16T10:46:48.145Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:46:48.148Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:47:01.339Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T10:47:01.340Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:47:01.342Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:47:01.553Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T10:47:01.555Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:47:01.556Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:47:03.423Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T10:47:03.425Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:47:03.428Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:47:03.473Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T10:47:03.476Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:47:03.478Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:54:33.930Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:54:33.932Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:54:33.934Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:58:48.900Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:58:48.902Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:58:48.904Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:58:48.909Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:58:48.921Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:58:48.922Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:58:48.999Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T10:58:49.033Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:58:49.035Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T10:58:49.254Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T10:58:49.317Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T10:58:49.319Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:00:46.317Z] ERROR: (node:11784) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T11:00:46.331Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T11:00:46.513Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T11:00:46.506Z"
+  }
+]
+[2025-02-16T11:01:22.742Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T11:01:22.745Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:01:22.794Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T11:01:22.747Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:01:22.797Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:01:22.798Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:01:22.836Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T11:01:22.843Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:01:22.845Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:01:23.290Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-16T11:01:23.294Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:01:23.296Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:01:23.841Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T11:01:23.864Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:01:23.866Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:01:23.910Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-16T11:01:23.912Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:01:23.913Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:13:40.459Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T11:13:40.460Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:13:40.462Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:13:40.535Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T11:13:40.552Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:13:40.554Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:13:40.564Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T11:13:40.566Z] LOG: Query Parameters: {}
+[2025-02-16T11:13:40.568Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T11:13:40.569Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T11:13:41.092Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T11:13:41.097Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:13:41.098Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:13:41.172Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "173"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "23"
+  }
+]
+[2025-02-16T11:13:41.196Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T11:13:41.202Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:13:41.203Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:13:41.208Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T11:13:41.212Z] LOG: Query Parameters: {}
+[2025-02-16T11:13:41.214Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T11:13:41.217Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T11:13:41.237Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "173"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "23"
+  }
+]
+[2025-02-16T11:31:28.128Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T11:31:28.129Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:31:28.131Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:31:28.443Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-16T11:31:28.445Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:31:28.448Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:31:32.964Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T11:31:32.968Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:31:32.966Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:31:32.980Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T11:31:32.981Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:31:32.986Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:31:43.516Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T11:31:43.579Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:31:43.581Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:31:43.867Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T11:31:43.871Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:31:43.878Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:31:43.880Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T11:31:43.881Z] LOG: Query Parameters: {}
+[2025-02-16T11:31:43.882Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T11:31:43.887Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T11:31:44.305Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T11:31:44.327Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:31:44.330Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:31:44.599Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "173"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "28"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  }
+]
+[2025-02-16T11:31:44.671Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T11:31:44.688Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T11:31:44.689Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T11:31:44.692Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T11:31:44.700Z] LOG: Query Parameters: {}
+[2025-02-16T11:31:44.704Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T11:31:44.710Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T11:31:44.716Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "173"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "28"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  }
+]
+[2025-02-16T12:34:54.402Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Assignment%20Submitted, Origin: http://localhost:3000
+[2025-02-16T12:34:54.402Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:34:54.404Z] LOG: Query Parameters: {
+  "taskName": "Assignment Submitted"
+}
+[2025-02-16T12:34:54.404Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+       AND l.task_name = $3
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T12:34:54.405Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z",
+  "Assignment Submitted"
+]
+[2025-02-16T12:34:54.404Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T12:34:54.403Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:34:54.497Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "10"
+  }
+]
+[2025-02-16T12:34:54.592Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Discussion%20Participation, Origin: http://localhost:3000
+[2025-02-16T12:34:54.593Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:34:54.594Z] LOG: Query Parameters: {
+  "taskName": "Discussion Participation"
+}
+[2025-02-16T12:34:54.600Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+       AND l.task_name = $3
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T12:34:54.593Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:34:54.594Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T12:34:54.603Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z",
+  "Discussion Participation"
+]
+[2025-02-16T12:34:54.605Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "10"
+  }
+]
+[2025-02-16T12:34:56.691Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=for%20class%2010th, Origin: http://localhost:3000
+[2025-02-16T12:34:56.695Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T12:34:56.692Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:34:56.696Z] LOG: Query Parameters: {
+  "taskName": "for class 10th"
+}
+[2025-02-16T12:34:56.696Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+       AND l.task_name = $3
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T12:34:56.702Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z",
+  "for class 10th"
+]
+[2025-02-16T12:34:56.694Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:34:56.705Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "115"
+  }
+]
+[2025-02-16T12:34:58.620Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=From%20Task%20submission%20Panel%20TEST, Origin: http://localhost:3000
+[2025-02-16T12:34:58.621Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:34:58.621Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:34:58.622Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+       AND l.task_name = $3
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T12:34:58.623Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z",
+  "From Task submission Panel TEST"
+]
+[2025-02-16T12:34:58.621Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T12:34:58.622Z] LOG: Query Parameters: {
+  "taskName": "From Task submission Panel TEST"
+}
+[2025-02-16T12:34:58.625Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "28"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  }
+]
+[2025-02-16T12:34:59.929Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:34:59.930Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:34:59.929Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Maths%20Assignment%201, Origin: http://localhost:3000
+[2025-02-16T12:34:59.933Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z",
+  "Maths Assignment 1"
+]
+[2025-02-16T12:34:59.932Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+       AND l.task_name = $3
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T12:34:59.931Z] LOG: Query Parameters: {
+  "taskName": "Maths Assignment 1"
+}
+[2025-02-16T12:34:59.930Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T12:34:59.938Z] LOG: 📊 Leaderboard Data Fetched: []
+[2025-02-16T12:35:01.477Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:35:01.475Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Quiz%20Completed, Origin: http://localhost:3000
+[2025-02-16T12:35:01.478Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:35:01.479Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T12:35:01.480Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+       AND l.task_name = $3
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T12:35:01.483Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z",
+  "Quiz Completed"
+]
+[2025-02-16T12:35:01.479Z] LOG: Query Parameters: {
+  "taskName": "Quiz Completed"
+}
+[2025-02-16T12:35:01.488Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "23"
+  }
+]
+[2025-02-16T12:35:03.131Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Workshop%20Attendance, Origin: http://localhost:3000
+[2025-02-16T12:35:03.133Z] LOG: Query Parameters: {
+  "taskName": "Workshop Attendance"
+}
+[2025-02-16T12:35:03.132Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:35:03.132Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:35:03.133Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T12:35:03.141Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z",
+  "Workshop Attendance"
+]
+[2025-02-16T12:35:03.136Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+       AND l.task_name = $3
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T12:35:03.143Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "15"
+  }
+]
+[2025-02-16T12:35:05.704Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T12:35:05.704Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:35:05.705Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:35:05.706Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T12:35:05.706Z] LOG: Query Parameters: {}
+[2025-02-16T12:35:05.710Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T12:35:05.712Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T12:35:05.714Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "173"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "28"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  }
+]
+[2025-02-16T12:38:27.093Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T12:38:27.094Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:38:27.098Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:38:27.481Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T12:38:27.484Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:38:27.488Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:59:55.363Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T12:59:55.366Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:59:55.367Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T12:59:55.656Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T12:59:55.658Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T12:59:55.660Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:00:01.370Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:00:01.374Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:00:01.376Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:00:34.275Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:00:34.279Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:00:34.277Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:00:34.286Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:00:34.288Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:00:34.287Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:01:35.969Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%202, Origin: http://localhost:3000
+[2025-02-16T13:01:35.972Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:01:35.970Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:01:37.825Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T13:01:37.826Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:01:37.834Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:02:52.119Z] ERROR: (node:4436) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T13:02:52.150Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T13:02:52.510Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T13:02:52.502Z"
+  }
+]
+[2025-02-16T13:03:04.987Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:03:04.990Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:03:04.991Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:03:05.019Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:03:05.020Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:03:05.022Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:03:05.164Z] LOG: 📦 Incoming request to /api/submit-scores
+[2025-02-16T13:03:05.167Z] LOG: Request body: {
+  "submissions": [
+    {
+      "fcc_id": "12",
+      "fcc_class": "1",
+      "task_name": "Daily Hindi & English Writing",
+      "score_obtained": 10
+    },
+    {
+      "fcc_id": "12",
+      "fcc_class": "1",
+      "task_name": "Daily Class Task",
+      "score_obtained": 25
+    }
+  ]
+}
+[2025-02-16T13:03:05.175Z] LOG: 🚀 Inserting submission for fcc_id: 12, task: Daily Hindi & English Writing, score: 10
+[2025-02-16T13:03:05.462Z] LOG: ✅ Successfully inserted scores for fcc_id: 12, task: Daily Hindi & English Writing
+[2025-02-16T13:03:05.465Z] LOG: 🚀 Inserting submission for fcc_id: 12, task: Daily Class Task, score: 25
+[2025-02-16T13:03:05.473Z] LOG: ✅ Successfully inserted scores for fcc_id: 12, task: Daily Class Task
+[2025-02-16T13:07:21.652Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%205, Origin: http://localhost:3000
+[2025-02-16T13:07:21.658Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:07:21.659Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:07:23.322Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%208, Origin: http://localhost:3000
+[2025-02-16T13:07:23.324Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:07:23.330Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:07:24.996Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%209, Origin: http://localhost:3000
+[2025-02-16T13:07:24.998Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:07:24.999Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:07:26.598Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T13:07:26.603Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:07:26.600Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:07:33.543Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:07:33.545Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:07:33.555Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:07:47.171Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:07:47.172Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:07:47.176Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:07:47.192Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:07:47.199Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:07:47.209Z] LOG: Request body: {
+  "submissions": [
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Daily Hindi & English Writing",
+      "score_obtained": 8
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Daily Class Task",
+      "score_obtained": 15
+    }
+  ]
+}
+[2025-02-16T13:07:47.220Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Daily Hindi & English Writing, score: 8
+[2025-02-16T13:07:47.194Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:07:47.208Z] LOG: 📦 Incoming request to /api/submit-scores
+[2025-02-16T13:07:47.566Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Daily Hindi & English Writing
+[2025-02-16T13:07:47.567Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Daily Class Task, score: 15
+[2025-02-16T13:07:47.574Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Daily Class Task
+[2025-02-16T13:08:02.904Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T13:08:02.919Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:08:02.922Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:08:03.275Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T13:08:03.351Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:08:03.354Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T13:08:03.358Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T13:08:03.362Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T13:08:03.350Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:08:03.356Z] LOG: Query Parameters: {}
+[2025-02-16T13:08:03.487Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T13:08:03.502Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:08:03.503Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:08:03.691Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "173"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "28"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  }
+]
+[2025-02-16T13:08:03.734Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T13:08:03.740Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:08:03.754Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:08:03.757Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T13:08:03.761Z] LOG: Query Parameters: {}
+[2025-02-16T13:08:03.770Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T13:08:03.776Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T13:08:03.784Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "173"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "28"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  }
+]
+[2025-02-16T13:08:10.058Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=Daily%20Class%20Task, Origin: http://localhost:3000
+[2025-02-16T13:08:10.073Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:08:10.079Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:08:10.081Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T13:08:10.100Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z",
+  "Daily Class Task"
+]
+[2025-02-16T13:08:10.097Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+       AND l.task_name = $3
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T13:08:10.083Z] LOG: Query Parameters: {
+  "taskName": "Daily Class Task"
+}
+[2025-02-16T13:08:10.136Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "25"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "total_score": "15"
+  }
+]
+[2025-02-16T13:08:12.222Z] LOG: Incoming request: GET /api/leaderboard-data?taskName=for%20class%2010th, Origin: http://localhost:3000
+[2025-02-16T13:08:12.237Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T13:08:12.251Z] LOG: Query Parameters: {
+  "taskName": "for class 10th"
+}
+[2025-02-16T13:08:12.254Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+       AND l.task_name = $3
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T13:08:12.266Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z",
+  "for class 10th"
+]
+[2025-02-16T13:08:12.230Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:08:12.232Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:08:12.279Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "115"
+  }
+]
+[2025-02-16T13:08:13.936Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T13:08:13.949Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:08:13.941Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:08:13.953Z] LOG: Query Parameters: {}
+[2025-02-16T13:08:13.954Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T13:08:13.957Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T13:08:13.952Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T13:08:13.969Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "173"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "28"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  }
+]
+[2025-02-16T13:10:45.603Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:10:45.604Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:10:45.605Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:10:45.606Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:10:45.607Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:10:45.607Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:11:00.485Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:11:00.486Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:11:00.488Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:11:00.728Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:11:00.729Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:11:00.731Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:14:19.176Z] ERROR: (node:9412) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T13:14:19.192Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T13:14:19.373Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T13:14:19.367Z"
+  }
+]
+[2025-02-16T13:15:38.618Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:15:38.621Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:15:38.622Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:15:38.939Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:15:38.940Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:15:38.941Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:18:07.582Z] ERROR: (node:14016) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T13:18:07.593Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T13:18:07.776Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T13:18:07.771Z"
+  }
+]
+[2025-02-16T13:18:29.886Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:18:29.888Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:18:29.888Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:18:42.533Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:18:42.534Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:18:42.535Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:18:42.545Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:18:42.547Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:18:42.548Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:18:42.773Z] LOG: 📦 Incoming request to /api/submit-scores
+[2025-02-16T13:18:42.815Z] LOG: Request body: {
+  "submissions": [
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Daily Hindi & English Writing",
+      "score_obtained": 10
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Daily Class Task",
+      "score_obtained": 25
+    }
+  ]
+}
+[2025-02-16T13:18:42.831Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Daily Hindi & English Writing, score: 10
+[2025-02-16T13:18:43.303Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Daily Hindi & English Writing
+[2025-02-16T13:18:43.306Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Daily Class Task, score: 25
+[2025-02-16T13:18:43.314Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Daily Class Task
+[2025-02-16T13:18:57.376Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T13:18:57.413Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:18:57.416Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:18:57.714Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T13:18:57.730Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:18:57.739Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:18:57.750Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T13:18:57.764Z] LOG: Query Parameters: {}
+[2025-02-16T13:18:57.957Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T13:18:57.990Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T13:18:58.214Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-16T13:18:58.219Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:18:58.222Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:18:58.472Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "208"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "28"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  }
+]
+[2025-02-16T13:18:58.484Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-16T13:18:58.487Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:18:58.492Z] LOG: Query Parameters: {}
+[2025-02-16T13:18:58.494Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id
+          ORDER BY total_score DESC;
+      
+[2025-02-16T13:18:58.495Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-16T13:18:58.486Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:18:58.490Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-16T13:18:58.504Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "total_score": "208"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "total_score": "28"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "total_score": "23"
+  }
+]
+[2025-02-16T13:19:21.945Z] ERROR: (node:1384) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T13:19:21.965Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T13:19:22.244Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T13:19:22.240Z"
+  }
+]
+[2025-02-16T13:26:02.007Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:26:02.008Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:26:02.009Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:26:02.427Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:26:02.428Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:26:02.430Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:26:05.815Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:26:05.817Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:26:05.818Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:26:22.033Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:26:22.034Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:26:22.035Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:26:22.054Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:26:22.061Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:26:22.066Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:26:22.261Z] LOG: 📦 Incoming request to /api/submit-scores
+[2025-02-16T13:26:22.263Z] LOG: Request body: {
+  "submissions": [
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Daily Hindi & English Writing",
+      "score_obtained": 10
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Daily Class Task",
+      "score_obtained": 20
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Excellent Work Bonus",
+      "score_obtained": 5
+    }
+  ]
+}
+[2025-02-16T13:26:22.271Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Daily Hindi & English Writing, score: 10
+[2025-02-16T13:26:22.533Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Daily Hindi & English Writing
+[2025-02-16T13:26:22.533Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Daily Class Task, score: 20
+[2025-02-16T13:26:22.540Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Daily Class Task
+[2025-02-16T13:26:22.542Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Excellent Work Bonus, score: 5
+[2025-02-16T13:26:22.554Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Excellent Work Bonus
+[2025-02-16T13:26:29.745Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:26:29.758Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:26:29.761Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:26:29.774Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:26:29.777Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:26:29.775Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:26:29.790Z] LOG: Request body: {
+  "submissions": [
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Excellent Work Bonus",
+      "score_obtained": 6
+    }
+  ]
+}
+[2025-02-16T13:26:29.785Z] LOG: 📦 Incoming request to /api/submit-scores
+[2025-02-16T13:26:29.796Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Excellent Work Bonus, score: 6
+[2025-02-16T13:26:29.811Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Excellent Work Bonus
+[2025-02-16T13:30:47.481Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%202, Origin: http://localhost:3000
+[2025-02-16T13:30:47.482Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:30:47.483Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:30:49.555Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:30:49.557Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:30:49.560Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:36:21.999Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:36:22.004Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:36:22.003Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:36:22.317Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:36:22.321Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:36:22.325Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:36:24.282Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:36:24.283Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:36:24.284Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:36:24.492Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:36:24.497Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:36:24.497Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:37:44.769Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T13:37:44.771Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:37:44.773Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:37:44.783Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:37:44.787Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:37:44.789Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:37:44.797Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T13:37:44.804Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:37:44.805Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:38:48.221Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-16T13:38:48.223Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:38:48.224Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:38:48.661Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-16T13:38:48.664Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:38:48.671Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:39:38.276Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:39:38.276Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:39:38.277Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:39:38.499Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:39:38.502Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:39:38.502Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:39:41.815Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T13:39:41.818Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:39:41.821Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:39:41.826Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:39:41.829Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:39:41.833Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:39:41.886Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T13:39:41.890Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:39:41.888Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:27.103Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:40:27.105Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:27.106Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:40:27.423Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:40:27.437Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:27.439Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:40:30.091Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-16T13:40:30.092Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:30.094Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:40:30.099Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:40:30.104Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:30.105Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:40:30.109Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T13:40:30.110Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:30.111Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:40:46.136Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:40:46.136Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:46.138Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:40:46.289Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:40:46.290Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:46.291Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:40:47.960Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:40:47.964Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:40:47.961Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:47.980Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:40:47.981Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:40:47.981Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:03.249Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:43:03.251Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:43:03.256Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:03.268Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:43:03.269Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:43:03.271Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:03.781Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:43:03.789Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:03.784Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:43:07.356Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:43:07.371Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:07.369Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:43:07.428Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:43:07.436Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:43:07.439Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:09.836Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:43:09.837Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:43:09.838Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:09.865Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:43:09.867Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:09.866Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:43:32.780Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:43:32.781Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:43:32.782Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:32.794Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T13:43:32.796Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:43:32.797Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:43:32.802Z] LOG: 📦 Incoming request to /api/submit-scores
+[2025-02-16T13:43:32.807Z] LOG: Request body: {
+  "submissions": [
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Daily Hindi & English Writing",
+      "score_obtained": 1
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Daily Class Task",
+      "score_obtained": 1
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Excellent Work Bonus",
+      "score_obtained": 1
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Daily Hindi & English Writing",
+      "score_obtained": 1
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Daily Class Task",
+      "score_obtained": 1
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Excellent Work Bonus",
+      "score_obtained": 1
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Daily Hindi & English Writing",
+      "score_obtained": 1
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Daily Class Task",
+      "score_obtained": 1
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Excellent Work Bonus",
+      "score_obtained": 1
+    }
+  ]
+}
+[2025-02-16T13:43:32.823Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Daily Hindi & English Writing, score: 1
+[2025-02-16T13:43:33.263Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Daily Hindi & English Writing
+[2025-02-16T13:43:33.264Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Daily Class Task, score: 1
+[2025-02-16T13:43:33.271Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Daily Class Task
+[2025-02-16T13:43:33.274Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Excellent Work Bonus, score: 1
+[2025-02-16T13:43:33.282Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Excellent Work Bonus
+[2025-02-16T13:43:33.283Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Daily Hindi & English Writing, score: 1
+[2025-02-16T13:43:33.294Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Daily Hindi & English Writing
+[2025-02-16T13:43:33.296Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Daily Class Task, score: 1
+[2025-02-16T13:43:33.308Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Daily Class Task
+[2025-02-16T13:43:33.310Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Excellent Work Bonus, score: 1
+[2025-02-16T13:43:33.316Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Excellent Work Bonus
+[2025-02-16T13:43:33.317Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Daily Hindi & English Writing, score: 1
+[2025-02-16T13:43:33.327Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Daily Hindi & English Writing
+[2025-02-16T13:43:33.329Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Daily Class Task, score: 1
+[2025-02-16T13:43:33.334Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Daily Class Task
+[2025-02-16T13:43:33.336Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Excellent Work Bonus, score: 1
+[2025-02-16T13:43:33.346Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Excellent Work Bonus
+[2025-02-16T13:44:56.592Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:44:56.634Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:44:56.634Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:44:56.636Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:44:56.637Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:44:56.638Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:44:57.146Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:44:57.152Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:44:57.151Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:47:10.953Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:47:10.954Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:47:10.954Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:47:10.957Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:47:10.957Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:47:10.958Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:47:11.037Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:47:11.037Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:47:11.039Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:47:14.085Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:47:14.090Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:47:14.092Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:47:14.111Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:47:14.116Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:47:14.117Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:47:16.317Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:47:16.328Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:47:16.329Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:47:16.643Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:47:16.644Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:47:16.646Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:47:30.203Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T13:47:30.211Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:47:30.210Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:47:30.455Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T13:47:30.463Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:47:30.460Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:48:08.555Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:48:08.556Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:48:08.559Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:48:08.556Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:48:08.558Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T13:48:08.559Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:48:08.679Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T13:48:08.687Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:48:08.686Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:57:40.619Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:57:40.624Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:57:40.626Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:57:40.889Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T13:57:40.890Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:57:40.891Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:58:21.090Z] ERROR: (node:14012) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T13:58:21.114Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T13:58:21.460Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T13:58:21.450Z"
+  }
+]
+[2025-02-16T13:58:27.606Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T13:58:27.608Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:58:27.609Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:58:27.640Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:58:27.641Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:58:27.642Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:58:28.222Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:58:28.224Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:58:28.226Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:58:28.240Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:58:28.247Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T13:58:28.246Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:58:28.333Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T13:58:28.340Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T13:58:28.342Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:02:04.584Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T14:02:04.585Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:02:04.586Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:02:04.679Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T14:02:04.679Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:02:04.680Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:02:04.693Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T14:02:04.695Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:02:04.694Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:02:04.699Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T14:02:04.702Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:02:04.707Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:02:07.077Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T14:02:07.080Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:02:07.083Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:02:07.094Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:02:07.097Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:02:07.114Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:02:07.472Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:02:07.481Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:02:07.479Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:02:07.488Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:02:07.489Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:02:07.494Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:02:07.599Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:02:07.663Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:02:07.665Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:22.067Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T14:04:22.068Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:04:22.068Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:22.140Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T14:04:22.141Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:04:22.143Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:23.877Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T14:04:23.888Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:23.895Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:04:23.897Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:04:23.898Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:23.879Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:04:24.107Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:04:24.109Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:04:24.111Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:24.124Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:04:24.126Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:04:24.126Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:24.177Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:04:24.178Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:04:24.183Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:52.638Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T14:04:52.639Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:04:52.641Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:52.648Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T14:04:52.651Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:04:52.652Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:04:52.737Z] LOG: 📦 Incoming request to /api/submit-scores
+[2025-02-16T14:04:52.738Z] LOG: Request body: {
+  "submissions": [
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "for class 10th",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Assignment Submitted",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Discussion Participation",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Workshop Attendance",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Quiz Completed",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "for class 10th",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Assignment Submitted",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Discussion Participation",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Workshop Attendance",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Quiz Completed",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "for class 10th",
+      "score_obtained": 50
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Assignment Submitted",
+      "score_obtained": 5
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Discussion Participation",
+      "score_obtained": 5
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Workshop Attendance",
+      "score_obtained": 10
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Quiz Completed",
+      "score_obtained": 10
+    }
+  ],
+  "teacher_fcc_id": "7808200025",
+  "classroom_name": "Class 10",
+  "num_students_submitted": 15
+}
+[2025-02-16T14:04:52.763Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: for class 10th, score: 0
+[2025-02-16T14:04:53.098Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: for class 10th
+[2025-02-16T14:04:53.109Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Assignment Submitted, score: 0
+[2025-02-16T14:04:53.117Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Assignment Submitted
+[2025-02-16T14:04:53.122Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Discussion Participation, score: 0
+[2025-02-16T14:04:53.129Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Discussion Participation
+[2025-02-16T14:04:53.131Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Workshop Attendance, score: 0
+[2025-02-16T14:04:53.145Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Workshop Attendance
+[2025-02-16T14:04:53.147Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Quiz Completed, score: 0
+[2025-02-16T14:04:53.157Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Quiz Completed
+[2025-02-16T14:04:53.158Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: for class 10th, score: 0
+[2025-02-16T14:04:53.166Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: for class 10th
+[2025-02-16T14:04:53.173Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Assignment Submitted, score: 0
+[2025-02-16T14:04:53.180Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Assignment Submitted
+[2025-02-16T14:04:53.181Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Discussion Participation, score: 0
+[2025-02-16T14:04:53.191Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Discussion Participation
+[2025-02-16T14:04:53.194Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Workshop Attendance, score: 0
+[2025-02-16T14:04:53.204Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Workshop Attendance
+[2025-02-16T14:04:53.206Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Quiz Completed, score: 0
+[2025-02-16T14:04:53.212Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Quiz Completed
+[2025-02-16T14:04:53.213Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: for class 10th, score: 50
+[2025-02-16T14:04:53.223Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: for class 10th
+[2025-02-16T14:04:53.226Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Assignment Submitted, score: 5
+[2025-02-16T14:04:53.231Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Assignment Submitted
+[2025-02-16T14:04:53.237Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Discussion Participation, score: 5
+[2025-02-16T14:04:53.244Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Discussion Participation
+[2025-02-16T14:04:53.246Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Workshop Attendance, score: 10
+[2025-02-16T14:04:53.253Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Workshop Attendance
+[2025-02-16T14:04:53.254Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Quiz Completed, score: 10
+[2025-02-16T14:04:53.260Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Quiz Completed
+[2025-02-16T14:04:53.266Z] LOG: 📝 Teacher update log recorded: {
+  "log_id": 1,
+  "teacher_fcc_id": "7808200025",
+  "submission_timestamp": "2025-02-16T14:04:53.262Z",
+  "classroom_name": "Class 10",
+  "number_of_students_submitted": 15
+}
+[2025-02-16T14:08:54.329Z] ERROR: (node:3940) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-16T14:08:54.338Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-16T14:08:54.466Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-16T14:08:54.462Z"
+  }
+]
+[2025-02-16T14:11:43.643Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T14:11:43.646Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:11:43.647Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:11:43.858Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-16T14:11:43.859Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:11:43.860Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:12:06.410Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-16T14:12:06.412Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:12:06.413Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:12:06.420Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:12:06.421Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:12:06.423Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:12:07.165Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:12:07.168Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:12:07.169Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:12:07.177Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:12:07.184Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:12:07.186Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:12:07.233Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-16T14:12:07.265Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:12:07.280Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:12:26.009Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T14:12:26.013Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:12:26.014Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:12:26.026Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T14:12:26.028Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:12:26.031Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:12:26.216Z] LOG: 📦 Incoming request to /api/submit-scores
+[2025-02-16T14:12:26.220Z] LOG: Request body: {
+  "submissions": [
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "for class 10th",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Assignment Submitted",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Discussion Participation",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Workshop Attendance",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9526200025",
+      "fcc_class": "10",
+      "task_name": "Quiz Completed",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "for class 10th",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Assignment Submitted",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Discussion Participation",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Workshop Attendance",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "123489748",
+      "fcc_class": "10",
+      "task_name": "Quiz Completed",
+      "score_obtained": 0
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "for class 10th",
+      "score_obtained": 50
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Assignment Submitted",
+      "score_obtained": 5
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Discussion Participation",
+      "score_obtained": 5
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Workshop Attendance",
+      "score_obtained": 10
+    },
+    {
+      "fcc_id": "9708200025",
+      "fcc_class": "10",
+      "task_name": "Quiz Completed",
+      "score_obtained": 10
+    }
+  ],
+  "teacher_fcc_id": "7808200025",
+  "classroom_name": "Class 10",
+  "num_students_submitted": 15,
+  "action_type": "Task Check"
+}
+[2025-02-16T14:12:26.264Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: for class 10th, score: 0
+[2025-02-16T14:12:26.665Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: for class 10th
+[2025-02-16T14:12:26.667Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Assignment Submitted, score: 0
+[2025-02-16T14:12:26.674Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Assignment Submitted
+[2025-02-16T14:12:26.675Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Discussion Participation, score: 0
+[2025-02-16T14:12:26.681Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Discussion Participation
+[2025-02-16T14:12:26.682Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Workshop Attendance, score: 0
+[2025-02-16T14:12:26.688Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Workshop Attendance
+[2025-02-16T14:12:26.690Z] LOG: 🚀 Inserting submission for fcc_id: 9526200025, task: Quiz Completed, score: 0
+[2025-02-16T14:12:26.696Z] LOG: ✅ Successfully inserted scores for fcc_id: 9526200025, task: Quiz Completed
+[2025-02-16T14:12:26.698Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: for class 10th, score: 0
+[2025-02-16T14:12:26.704Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: for class 10th
+[2025-02-16T14:12:26.706Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Assignment Submitted, score: 0
+[2025-02-16T14:12:26.714Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Assignment Submitted
+[2025-02-16T14:12:26.715Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Discussion Participation, score: 0
+[2025-02-16T14:12:26.721Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Discussion Participation
+[2025-02-16T14:12:26.722Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Workshop Attendance, score: 0
+[2025-02-16T14:12:26.728Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Workshop Attendance
+[2025-02-16T14:12:26.730Z] LOG: 🚀 Inserting submission for fcc_id: 123489748, task: Quiz Completed, score: 0
+[2025-02-16T14:12:26.736Z] LOG: ✅ Successfully inserted scores for fcc_id: 123489748, task: Quiz Completed
+[2025-02-16T14:12:26.738Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: for class 10th, score: 50
+[2025-02-16T14:12:26.744Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: for class 10th
+[2025-02-16T14:12:26.747Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Assignment Submitted, score: 5
+[2025-02-16T14:12:26.753Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Assignment Submitted
+[2025-02-16T14:12:26.755Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Discussion Participation, score: 5
+[2025-02-16T14:12:26.763Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Discussion Participation
+[2025-02-16T14:12:26.764Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Workshop Attendance, score: 10
+[2025-02-16T14:12:26.770Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Workshop Attendance
+[2025-02-16T14:12:26.773Z] LOG: 🚀 Inserting submission for fcc_id: 9708200025, task: Quiz Completed, score: 10
+[2025-02-16T14:12:26.780Z] LOG: ✅ Successfully inserted scores for fcc_id: 9708200025, task: Quiz Completed
+[2025-02-16T14:12:26.787Z] LOG: 📝 Teacher update log recorded: {
+  "log_id": 2,
+  "teacher_fcc_id": "7808200025",
+  "submission_timestamp": "2025-02-16T14:12:26.784Z",
+  "classroom_name": "Class 10",
+  "number_of_students_submitted": 15,
+  "action_type": "Task Check"
+}
+[2025-02-16T14:13:04.270Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-16T14:13:04.274Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:13:04.277Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:13:04.286Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T14:13:04.288Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:13:04.289Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:13:04.627Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T14:13:04.630Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:13:04.631Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:13:04.715Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T14:13:04.718Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:13:04.724Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:13:04.749Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-16T14:13:04.752Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:13:04.756Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:13:34.296Z] LOG: Incoming request: OPTIONS /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T14:13:34.297Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:13:34.298Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:13:34.308Z] LOG: Incoming request: POST /api/submit-scores, Origin: http://localhost:3000
+[2025-02-16T14:13:34.309Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-16T14:13:34.312Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-16T14:13:34.320Z] LOG: 📦 Incoming request to /api/submit-scores
+[2025-02-16T14:13:34.321Z] LOG: Request body: {
+  "submissions": [
+    {
+      "fcc_id": "1111200024",
+      "fcc_class": "1",
+      "task_name": "From Task submission Panel TEST",
+      "score_obtained": 30
+    }
+  ],
+  "teacher_fcc_id": "1234200025",
+  "classroom_name": "Class 1",
+  "num_students_submitted": 1,
+  "action_type": "Task Check Ho gya"
+}
+[2025-02-16T14:13:34.327Z] LOG: 🚀 Inserting submission for fcc_id: 1111200024, task: From Task submission Panel TEST, score: 30
+[2025-02-16T14:13:34.651Z] LOG: ✅ Successfully inserted scores for fcc_id: 1111200024, task: From Task submission Panel TEST
+[2025-02-16T14:13:34.658Z] LOG: 📝 Teacher update log recorded: {
+  "log_id": 3,
+  "teacher_fcc_id": "1234200025",
+  "submission_timestamp": "2025-02-16T14:13:34.654Z",
+  "classroom_name": "Class 1",
+  "number_of_students_submitted": 1,
+  "action_type": "Task Check"
+}

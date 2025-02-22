@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import QrScanner from "react-qr-scanner"; // Import the QR scanner component
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../pages/StudentsAttendance.css";
@@ -13,10 +14,14 @@ const StudentsAttendance = () => {
   const [message, setMessage] = useState("");
   const [successList, setSuccessList] = useState([]); // List of successful submissions
   const [failedList, setFailedList] = useState([]); // List of failed submissions
+
+  // State for QR scanning
+  const [scanning, setScanning] = useState(false);
+  const [qrError, setQrError] = useState("");
+
   const inputRef = useRef(null);
 
-
-  // Handle input changes for FCC ID
+  // Handle input changes for FCC ID (manual entry)
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
 
@@ -25,8 +30,8 @@ const StudentsAttendance = () => {
       const numericValue = inputValue.replace(/\D/g, ""); // Remove non-numeric characters
       setFccId(numericValue);
     } else if (/^\d{4}$/.test(inputValue)) {
-      // If the input is exactly 4 digits, append "200024"
-      setFccId(`${inputValue}200024`);
+      // If the input is exactly 4 digits, append "200025"
+      setFccId(`${inputValue}200025`);
     } else {
       setFccId(inputValue.replace(/\D/g, "")); // Filter non-numeric characters
     }
@@ -34,20 +39,27 @@ const StudentsAttendance = () => {
 
   // Ensure the input field is focused on page load
   useEffect(() => {
-    inputRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
 
-  // Handle form submission
-  const handleSubmit = async () => {
-    if (!fccId || fccId.length < 4) {
+  /**
+   * Modified handleSubmit now accepts two optional parameters:
+   * - autoScan (boolean): if true, the function was triggered by a QR scan.
+   * - manualFCCId (string): if provided, use this value instead of state.
+   */
+  const handleSubmit = async (autoScan = false, manualFCCId = null) => {
+    const id = manualFCCId !== null ? manualFCCId : fccId;
+    if (!id || id.length < 4) {
       toast.error("Please enter a valid FCC ID.");
       playSound("failed");
-      setFailedList((prev) => [...prev, fccId]); // Add to failed list
+      setFailedList((prev) => [...prev, id]);
       return;
     }
 
     try {
-      const payload = { fcc_id: fccId, ctc, ctg, task_completed: taskCompleted, forceUpdate };
+      const payload = { fcc_id: id, ctc, ctg, task_completed: taskCompleted, forceUpdate };
 
       const response = await axios.post("http://localhost:5000/api/update-student", payload);
       const { message, ctcUpdated } = response.data;
@@ -57,29 +69,39 @@ const StudentsAttendance = () => {
       if (ctcUpdated) {
         toast.success(message);
         playSound("success");
-        setSuccessList((prev) => [...prev, fccId]); // Add to success list
+        setSuccessList((prev) => [...prev, id]);
+
+        // If triggered via QR scan and attendance was successful, clear the FCC ID and re-open scanner after a short delay.
+        if (autoScan) {
+          setTimeout(() => {
+            setFccId("");
+            setScanning(true);
+          }, 500);
+        } else {
+          setFccId("");
+        }
       } else {
         toast.error(message);
         playSound("failed");
-        setFailedList((prev) => [...prev, fccId]); // Add to failed list
+        setFailedList((prev) => [...prev, id]);
+        setFccId("");
       }
-
-      setFccId(""); // Clear the input field
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Something went wrong.";
       toast.error(errorMessage);
       playSound("failed");
-      setFailedList((prev) => [...prev, fccId]); // Add to failed list
+      setFailedList((prev) => [...prev, id]);
+      setFccId("");
     }
   };
 
-  // Keyboard controls
+  // Keyboard controls remain unchanged.
   useEffect(() => {
     const handleKeyPress = (e) => {
       switch (e.key) {
         case "Enter":
-          e.preventDefault(); // Prevent default form submission
-          handleSubmit(); // Call handleSubmit
+          e.preventDefault();
+          handleSubmit(); // Manual submission
           break;
         case "d":
           if (e.ctrlKey) {
@@ -112,11 +134,10 @@ const StudentsAttendance = () => {
 
     window.addEventListener("keydown", handleKeyPress);
 
-    // Cleanup listener on unmount
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [fccId, ctc, ctg, taskCompleted, forceUpdate]); // Include dependencies
+  }, [fccId, ctc, ctg, taskCompleted, forceUpdate]);
 
   // Play success or failure sound
   const playSound = (type) => {
@@ -128,63 +149,119 @@ const StudentsAttendance = () => {
     audio.play();
   };
 
+  // Function to get current date and time in India (IST) in YYYY-MM-DD_HH-MM-SS AM/PM format
+  const getCurrentDateTimeIndia = () => {
+    const date = new Date();
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZone: 'Asia/Kolkata'
+    };
 
-// Function to get current date and time in India (IST) in YYYY-MM-DD_HH-MM-SS AM/PM format
-const getCurrentDateTimeIndia = () => {
-  const date = new Date();
-  const options = {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true, // 12-hour format with AM/PM
-    timeZone: 'Asia/Kolkata' // Indian Standard Time (IST)
+    const formatter = new Intl.DateTimeFormat('en-IN', options);
+    const formattedDateTime = formatter.format(date).replace(/,/g, '').replace(/\//g, '-');
+
+    return formattedDateTime.replace(" ", "_").replace(":", "-");
   };
-  
-  const formatter = new Intl.DateTimeFormat('en-IN', options);
-  const formattedDateTime = formatter.format(date).replace(/,/g, '').replace(/\//g, '-'); // Formatting the output
 
-  return formattedDateTime.replace(" ", "_").replace(":", "-"); // Replace space and colon for valid filename
-};
+  // Function to download Success List
+  const downloadSuccessList = () => {
+    const currentDateTimeIndia = getCurrentDateTimeIndia();
+    const blob = new Blob([successList.join("\n")], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${currentDateTimeIndia}_success_list.txt`;
+    link.click();
+  };
 
-// Function to download Success List
-const downloadSuccessList = () => {
-  const currentDateTimeIndia = getCurrentDateTimeIndia();
-  const blob = new Blob([successList.join("\n")], { type: "text/plain;charset=utf-8" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = `${currentDateTimeIndia}_success_list.txt`; // Filename with current date and time in IST
-  link.click();
-};
+  // Function to download Failed List
+  const downloadFailedList = () => {
+    const currentDateTimeIndia = getCurrentDateTimeIndia();
+    const blob = new Blob([failedList.join("\n")], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${currentDateTimeIndia}_failed_list.txt`;
+    link.click();
+  };
 
-// Function to download Failed List
-const downloadFailedList = () => {
-  const currentDateTimeIndia = getCurrentDateTimeIndia();
-  const blob = new Blob([failedList.join("\n")], { type: "text/plain;charset=utf-8" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = `${currentDateTimeIndia}_failed_list.txt`; // Filename with current date and time in IST
-  link.click();
-};
+  // ===== QR Scanner Functions =====
 
+  // When a QR code is scanned, update the FCC ID and auto-submit attendance.
+  const handleScan = (data) => {
+    if (data) {
+      // Extract text from scanned data (works if data is a string or an object with a 'text' property)
+      const scannedText = typeof data === "string" ? data : data.text ? data.text : "";
+      const numericData = scannedText.replace(/[^0-9]/g, "");
+      // Stop scanning to avoid duplicate reads
+      setScanning(false);
+      // Automatically call handleSubmit with autoScan true and pass the scanned FCC ID.
+      handleSubmit(true, numericData);
+    }
+  };
+
+  // Handle any errors from the QR scanner
+  const handleError = (err) => {
+    console.error("QR Scanner Error:", err);
+    setQrError("QR Scanner Error: " + err.message);
+    setScanning(false);
+  };
+
+  // Start the QR scanning process
+  const handleScanClick = () => {
+    setScanning(true);
+    setQrError("");
+    setFccId("");
+  };
+
+  // Cancel QR scanning
+  const handleScanCancel = () => {
+    setScanning(false);
+    setQrError("");
+  };
 
   return (
     <div className="container">
       <h1 className="header">Students Attendance Management</h1>
-      <div className="inputGroup">
-        <label className="label">FCC ID:</label>
+
+      <div className="inputGroup2">
+        <label className="label2">FCC ID:</label>
         <input
           type="text"
           value={fccId}
           onChange={handleInputChange}
           className="input"
           ref={inputRef}
+          placeholder="Scan QR or type FCC ID"
         />
+        {/* Button to start QR scanning */}
+        <button onClick={handleScanClick} className="button" style={{ marginLeft: "10px" }}>
+          Scan QR Code
+        </button>
       </div>
-      <div className="inputGroup">
-        <label className="label">
+
+      {/* Conditionally render the QR scanner */}
+      {scanning && (
+        <div className="qrScannerContainer">
+          <QrScanner
+            delay={300}
+            style={{ width: "300px" }}
+            onError={handleError}
+            onScan={handleScan}
+          />
+          <button onClick={handleScanCancel} className="button" style={{ marginTop: "10px" }}>
+            Cancel Scan
+          </button>
+          {qrError && <p className="error">{qrError}</p>}
+        </div>
+      )}
+
+      <div className="inputGroup2">
+        <label className="label2">
           <input
             type="checkbox"
             checked={ctc}
@@ -192,7 +269,7 @@ const downloadFailedList = () => {
           />
           Coaching to Come (CTC) ctrl + c
         </label>
-        <label className="label">
+        <label className="label2">
           <input
             type="checkbox"
             checked={ctg}
@@ -200,7 +277,7 @@ const downloadFailedList = () => {
           />
           Coaching to Go (CTG) ctrl + g 
         </label>
-        <label className="label">
+        <label className="label2">
           <input
             type="checkbox"
             checked={taskCompleted}
@@ -209,8 +286,8 @@ const downloadFailedList = () => {
           Task Completed ctrl + d 
         </label>
       </div>
-      <div className="inputGroup">
-        <label className="label">
+      <div className="inputGroup2">
+        <label className="label2">
           <input
             type="checkbox"
             checked={forceUpdate}
@@ -219,7 +296,7 @@ const downloadFailedList = () => {
           Force Update CTC 
         </label>
       </div>
-      <button onClick={handleSubmit} className="button">
+      <button onClick={() => handleSubmit()} className="button">
         Submit
       </button>
       {message && <p className="message">{message}</p>}
@@ -240,14 +317,14 @@ const downloadFailedList = () => {
         </ul>
       </div>
 
-       <div className="downloadButtons">
-      <button onClick={downloadSuccessList} className="button">
-        Download Success List
-      </button>
-      <button onClick={downloadFailedList} className="button">
-        Download Failed List
-      </button>
-    </div>
+      <div className="downloadButtons">
+        <button onClick={downloadSuccessList} className="button">
+          Download Success List
+        </button>
+        <button onClick={downloadFailedList} className="button">
+          Download Failed List
+        </button>
+      </div>
 
       <ToastContainer
         position="top-right"

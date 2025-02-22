@@ -1,0 +1,2593 @@
+[2025-02-19T06:52:58.911Z] ERROR: (node:14304) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-19T06:52:58.916Z] LOG: HTTP Server running on port 5000
+[2025-02-19T06:52:59.137Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-19T06:52:59.097Z"
+  }
+]
+[2025-02-19T06:52:59.139Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-19T06:52:59.098Z"
+  }
+]
+[2025-02-19T06:53:54.217Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:53:54.226Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:53:54.240Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:53:54.244Z] LOG: Generating new session ID
+[2025-02-19T06:53:54.213Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:53:54.237Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:53:54.239Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:53:54.255Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:53:54.260Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:53:54.261Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:53:54.691Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:53:54.692Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:53:54.691Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:53:54.693Z] LOG: Generating new session ID
+[2025-02-19T06:53:54.935Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:53:54.937Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:53:54.936Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:53:54.941Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:53:54.942Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:53:54.941Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:53:54.942Z] LOG: Generating new session ID
+[2025-02-19T06:55:50.448Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:55:50.455Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:55:50.455Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:55:50.462Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:55:50.464Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:55:50.464Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:55:50.480Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:55:50.481Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:55:50.481Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:55:50.482Z] LOG: Generating new session ID
+[2025-02-19T06:55:50.713Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:55:50.714Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:55:50.715Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:55:50.717Z] LOG: Generating new session ID
+[2025-02-19T06:55:51.409Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:55:51.414Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:55:51.416Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:55:51.420Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T06:55:51.421Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:55:51.422Z] LOG: Generating new session ID
+[2025-02-19T06:55:51.421Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:56:13.830Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T06:56:13.832Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:56:13.836Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:56:13.847Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T06:56:13.849Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T06:56:13.854Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T06:56:14.029Z] LOG: Generating new session ID
+[2025-02-19T06:56:14.062Z] LOG: --- /login route CALLED ---
+[2025-02-19T06:56:14.080Z] LOG: Client IP: ::1
+[2025-02-19T06:56:14.666Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-02-19T06:56:14.668Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T07:26:14.055Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T06:56:14.666Z"
+}
+[2025-02-19T06:56:14.716Z] LOG: Login event logged to login_log for user ID: 1
+[2025-02-19T07:07:52.104Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T07:07:52.119Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:07:52.110Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:07:52.132Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T07:07:52.135Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:07:52.136Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:07:52.498Z] LOG: --- /login route CALLED ---
+[2025-02-19T07:07:52.500Z] LOG: Client IP: ::1
+[2025-02-19T07:07:52.509Z] LOG: Login failed: User not found - username: abcd
+[2025-02-19T07:08:01.548Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T07:08:01.553Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:08:01.559Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:08:01.569Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T07:08:01.583Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:08:01.585Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:08:01.601Z] LOG: --- /login route CALLED ---
+[2025-02-19T07:08:01.607Z] LOG: Client IP: ::1
+[2025-02-19T07:08:02.071Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-02-19T07:08:02.077Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T07:26:14.718Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T07:08:02.071Z"
+}
+[2025-02-19T07:08:02.099Z] LOG: Login event logged to login_log for user ID: 1
+[2025-02-19T07:08:26.489Z] LOG: Incoming request: POST /logout, Origin: http://localhost:3000
+[2025-02-19T07:08:26.490Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:08:26.493Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:08:26.775Z] LOG: --- /logout route CALLED ---
+[2025-02-19T07:08:26.776Z] LOG: req.session: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T07:38:02.101Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T07:08:02.071Z"
+}
+[2025-02-19T07:08:26.806Z] LOG: Logout info updated in login_log for user ID: 1
+[2025-02-19T07:08:26.814Z] LOG: Session destroyed and cookie cleared for user ID: 1
+[2025-02-19T07:08:53.892Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T07:08:53.909Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:08:53.911Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:08:53.925Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T07:08:53.928Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:08:53.929Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:08:53.935Z] LOG: Generating new session ID
+[2025-02-19T07:08:53.938Z] LOG: --- /login route CALLED ---
+[2025-02-19T07:08:53.939Z] LOG: Client IP: ::1
+[2025-02-19T07:08:54.655Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-02-19T07:08:54.656Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T07:38:53.937Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T07:08:54.655Z"
+}
+[2025-02-19T07:08:54.676Z] LOG: Login event logged to login_log for user ID: 1
+[2025-02-19T07:24:58.601Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T07:24:58.604Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:24:58.603Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:24:58.621Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T07:24:58.634Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:24:58.632Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:24:59.072Z] LOG: --- /login route CALLED ---
+[2025-02-19T07:24:59.073Z] LOG: Client IP: ::1
+[2025-02-19T07:24:59.470Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-02-19T07:24:59.471Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T07:38:54.678Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T07:24:59.470Z"
+}
+[2025-02-19T07:24:59.521Z] LOG: Login event logged to login_log for user ID: 1
+[2025-02-19T07:38:24.010Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T07:38:24.067Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:38:24.066Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:38:24.091Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T07:38:24.094Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:38:24.093Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:38:24.559Z] LOG: --- /login route CALLED ---
+[2025-02-19T07:38:24.565Z] LOG: Client IP: ::1
+[2025-02-19T07:38:24.895Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-02-19T07:38:24.896Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T07:54:59.547Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T07:38:24.895Z"
+}
+[2025-02-19T07:38:24.924Z] LOG: Login event logged to login_log for user ID: 1
+[2025-02-19T07:49:55.742Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T07:49:55.761Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:49:55.746Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:49:55.792Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T07:49:55.809Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:49:55.814Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:49:56.207Z] LOG: --- /login route CALLED ---
+[2025-02-19T07:49:56.209Z] LOG: Client IP: ::1
+[2025-02-19T07:49:56.215Z] LOG: Login failed: User not found - username: abcd
+[2025-02-19T07:50:01.879Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T07:50:01.885Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:50:01.887Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:50:01.898Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T07:50:01.901Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:50:01.900Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:50:01.907Z] LOG: --- /login route CALLED ---
+[2025-02-19T07:50:01.910Z] LOG: Client IP: ::1
+[2025-02-19T07:50:02.268Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-02-19T07:50:02.269Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T08:08:24.931Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T07:50:02.268Z"
+}
+[2025-02-19T07:50:02.294Z] LOG: Login event logged to login_log for user ID: 1
+[2025-02-19T07:53:39.568Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T07:53:39.571Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:53:39.570Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:53:39.581Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T07:53:39.582Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:53:39.583Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:53:39.829Z] LOG: --- /login route CALLED ---
+[2025-02-19T07:53:39.830Z] LOG: Client IP: ::1
+[2025-02-19T07:53:40.122Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-02-19T07:53:40.123Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T08:20:02.297Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T07:53:40.122Z"
+}
+[2025-02-19T07:53:40.143Z] LOG: Login event logged to login_log for user ID: 1
+[2025-02-19T07:56:38.713Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T07:56:38.725Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:56:38.735Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:56:38.748Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T07:56:38.760Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T07:56:38.761Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T07:56:38.777Z] LOG: Generating new session ID
+[2025-02-19T08:05:43.639Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:05:43.649Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:05:43.646Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:05:43.660Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:05:43.663Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:05:43.665Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:05:43.677Z] LOG: Generating new session ID
+[2025-02-19T08:05:48.883Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:05:48.892Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:05:48.893Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:05:48.906Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:05:48.907Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:05:48.908Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:05:48.909Z] LOG: Generating new session ID
+[2025-02-19T08:09:31.357Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:09:31.363Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:09:31.365Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:09:31.387Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:09:31.388Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:09:31.389Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:09:31.398Z] LOG: Generating new session ID
+[2025-02-19T08:09:34.698Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:09:34.699Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:09:34.700Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:09:34.702Z] LOG: Generating new session ID
+[2025-02-19T08:09:41.760Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:09:41.763Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:09:41.783Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:09:41.791Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:09:41.792Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:09:41.794Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:09:41.797Z] LOG: Generating new session ID
+[2025-02-19T08:11:43.442Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:11:43.442Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:11:43.425Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:11:43.446Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:11:43.448Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:11:43.451Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:11:43.453Z] LOG: Generating new session ID
+[2025-02-19T08:12:32.228Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:12:32.234Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:12:32.232Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:12:32.243Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:12:32.245Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:12:32.246Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:12:32.248Z] LOG: Generating new session ID
+[2025-02-19T08:12:33.148Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:12:33.155Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:12:33.160Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:12:33.189Z] LOG: Generating new session ID
+[2025-02-19T08:12:42.172Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:12:42.189Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:12:42.190Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:12:42.195Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:12:42.198Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:12:42.200Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:12:42.202Z] LOG: Generating new session ID
+[2025-02-19T08:12:48.366Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:12:48.414Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:12:48.415Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:12:48.421Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:12:48.428Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:12:48.435Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:12:48.437Z] LOG: Generating new session ID
+[2025-02-19T08:12:59.803Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:12:59.830Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:12:59.832Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:12:59.847Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:12:59.862Z] LOG: Generating new session ID
+[2025-02-19T08:12:59.840Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:12:59.846Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:14:01.194Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:14:01.243Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:14:01.245Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:14:01.249Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:14:01.257Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:14:01.258Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:14:01.259Z] LOG: Generating new session ID
+[2025-02-19T08:14:40.334Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:14:40.336Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:14:40.338Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:14:40.344Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:14:40.345Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:14:40.346Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:14:40.357Z] LOG: Generating new session ID
+[2025-02-19T08:14:47.035Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:14:47.041Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:14:47.038Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:14:47.046Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:14:47.051Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:14:47.053Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:14:47.054Z] LOG: Generating new session ID
+[2025-02-19T08:14:50.133Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:14:50.137Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:14:50.138Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:14:50.139Z] LOG: Generating new session ID
+[2025-02-19T08:16:05.117Z] LOG: Incoming request: OPTIONS /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:16:05.124Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:16:05.125Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:16:05.137Z] LOG: Incoming request: POST /api/update-student, Origin: http://localhost:3000
+[2025-02-19T08:16:05.143Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:16:05.154Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:16:05.157Z] LOG: Generating new session ID
+[2025-02-19T08:17:26.731Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-19T08:17:26.782Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:17:26.775Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:17:26.782Z] LOG: Generating new session ID
+[2025-02-19T08:17:27.296Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-19T08:17:27.300Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:17:27.300Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:17:27.301Z] LOG: Generating new session ID
+[2025-02-19T08:17:38.285Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: http://localhost:3000
+[2025-02-19T08:17:38.297Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:17:38.308Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:17:38.309Z] LOG: Generating new session ID
+[2025-02-19T08:17:38.761Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: http://localhost:3000
+[2025-02-19T08:17:38.770Z] LOG: Generating new session ID
+[2025-02-19T08:17:38.767Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:17:38.769Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:17:39.041Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: http://localhost:3000
+[2025-02-19T08:17:39.053Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:17:39.144Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:17:39.149Z] LOG: Generating new session ID
+[2025-02-19T08:17:39.183Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: http://localhost:3000
+[2025-02-19T08:17:39.189Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:17:39.189Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:17:39.190Z] LOG: Generating new session ID
+[2025-02-19T08:22:56.312Z] ERROR: (node:14296) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-19T08:22:56.324Z] LOG: HTTP Server running on port 5000
+[2025-02-19T08:22:56.461Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-19T08:22:56.458Z"
+  }
+]
+[2025-02-19T08:22:56.484Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-19T08:22:56.484Z"
+  }
+]
+[2025-02-19T08:22:59.737Z] LOG: Incoming request: OPTIONS /api/payments, Origin: http://localhost:3000
+[2025-02-19T08:22:59.741Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:22:59.743Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:22:59.754Z] LOG: Incoming request: POST /api/payments, Origin: http://localhost:3000
+[2025-02-19T08:22:59.823Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:22:59.824Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:23:00.017Z] LOG: Generating new session ID
+[2025-02-19T08:23:00.613Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: http://localhost:3000
+[2025-02-19T08:23:00.711Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:23:00.725Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:23:00.746Z] LOG: Generating new session ID
+[2025-02-19T08:23:02.895Z] LOG: Incoming request: GET /favicon.ico, Origin: undefined
+[2025-02-19T08:23:02.897Z] LOG: Incoming Origin: 
+[2025-02-19T08:23:02.898Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-19T08:28:56.956Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:28:57.014Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:28:57.197Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:28:57.301Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:28:57.308Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:28:57.365Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:28:57.400Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:28:57.447Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:28:57.460Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:28:57.484Z] LOG: Generating new session ID
+[2025-02-19T08:28:57.687Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:28:57.708Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:28:57.716Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:28:57.722Z] LOG: Generating new session ID
+[2025-02-19T08:28:58.056Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:28:58.156Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:28:58.093Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:28:58.294Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:28:58.306Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:28:58.307Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:28:58.308Z] LOG: Generating new session ID
+[2025-02-19T08:29:19.788Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:29:19.854Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:29:19.855Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:29:19.865Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:29:19.889Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:29:19.890Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:29:19.902Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:29:19.965Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:29:20.056Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:29:20.135Z] LOG: Generating new session ID
+[2025-02-19T08:29:20.539Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:29:20.774Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:29:21.003Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:29:21.070Z] LOG: Generating new session ID
+[2025-02-19T08:29:21.090Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:29:21.102Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:29:21.106Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:29:21.131Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:29:21.134Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:29:21.137Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:29:21.138Z] LOG: Generating new session ID
+[2025-02-19T08:29:21.432Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T08:29:21.508Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:29:21.517Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:29:21.519Z] LOG: Generating new session ID
+[2025-02-19T08:32:39.659Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:32:39.660Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:32:39.661Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:32:39.664Z] LOG: Generating new session ID
+[2025-02-19T08:32:39.893Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:32:39.898Z] LOG: Generating new session ID
+[2025-02-19T08:32:39.894Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:32:39.896Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:32:50.633Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=Completed&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:32:50.645Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:32:50.652Z] LOG: Generating new session ID
+[2025-02-19T08:32:50.650Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:32:52.947Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=Completed&payment_method=C&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:32:52.950Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:32:52.951Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:32:52.955Z] LOG: Generating new session ID
+[2025-02-19T08:32:53.155Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=Completed&payment_method=CA&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:32:53.166Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:32:53.171Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:32:53.174Z] LOG: Generating new session ID
+[2025-02-19T08:32:53.306Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=Completed&payment_method=CAS&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:32:53.308Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:32:53.313Z] LOG: Generating new session ID
+[2025-02-19T08:32:53.311Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:32:53.457Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=Completed&payment_method=CASH&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:32:53.462Z] LOG: Generating new session ID
+[2025-02-19T08:32:53.458Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:32:53.460Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:32:56.783Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=Completed&payment_method=CASH&startDate=2025-02-18&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:32:56.784Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:32:56.787Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:32:56.788Z] LOG: Generating new session ID
+[2025-02-19T08:33:29.299Z] LOG: Incoming request: GET /api/payments, Origin: http://localhost:3000
+[2025-02-19T08:33:29.320Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:33:29.322Z] LOG: Generating new session ID
+[2025-02-19T08:33:29.318Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:33:29.357Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-19T08:33:29.624Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:33:29.824Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:33:30.057Z] LOG: Generating new session ID
+[2025-02-19T08:33:30.309Z] LOG: Incoming request: GET /api/payments, Origin: http://localhost:3000
+[2025-02-19T08:33:30.352Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:33:30.353Z] LOG: Generating new session ID
+[2025-02-19T08:33:30.351Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:33:30.522Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-19T08:33:30.556Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:33:30.553Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:33:30.557Z] LOG: Generating new session ID
+[2025-02-19T08:35:18.791Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:35:18.877Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:35:18.880Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:35:18.881Z] LOG: Generating new session ID
+[2025-02-19T08:35:19.751Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:35:19.951Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:35:19.849Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:35:19.989Z] LOG: Generating new session ID
+[2025-02-19T08:35:21.829Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=Completed&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:35:21.830Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:35:21.830Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:35:21.832Z] LOG: Generating new session ID
+[2025-02-19T08:35:24.038Z] LOG: Incoming request: GET /api/payments?fcc_id=9&payment_status=Completed&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:35:24.049Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:35:24.064Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:35:24.066Z] LOG: Generating new session ID
+[2025-02-19T08:35:24.529Z] LOG: Incoming request: GET /api/payments?fcc_id=97&payment_status=Completed&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:35:24.532Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:35:24.534Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:35:24.535Z] LOG: Generating new session ID
+[2025-02-19T08:35:24.917Z] LOG: Incoming request: GET /api/payments?fcc_id=970&payment_status=Completed&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:35:24.932Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:35:24.935Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:35:24.936Z] LOG: Generating new session ID
+[2025-02-19T08:35:25.463Z] LOG: Incoming request: GET /api/payments?fcc_id=9708&payment_status=Completed&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:35:25.465Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:35:25.467Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:35:25.469Z] LOG: Generating new session ID
+[2025-02-19T08:35:28.009Z] LOG: Incoming request: GET /api/payments?fcc_id=9708200025&payment_status=Completed&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T08:35:28.024Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:35:28.026Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:35:28.029Z] LOG: Generating new session ID
+[2025-02-19T08:38:25.997Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-19T08:38:26.001Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:38:26.003Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:38:26.004Z] LOG: Generating new session ID
+[2025-02-19T08:38:26.011Z] LOG: Incoming request: GET /api/payments, Origin: http://localhost:3000
+[2025-02-19T08:38:26.012Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:38:26.015Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:38:26.017Z] LOG: Generating new session ID
+[2025-02-19T08:38:26.761Z] LOG: Incoming request: GET /api/payments, Origin: http://localhost:3000
+[2025-02-19T08:38:26.809Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:38:26.810Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:38:26.811Z] LOG: Generating new session ID
+[2025-02-19T08:38:26.815Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-19T08:38:26.818Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:38:26.818Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:38:26.820Z] LOG: Generating new session ID
+[2025-02-19T08:53:30.587Z] LOG: Incoming request: GET /files, Origin: http://localhost:3000
+[2025-02-19T08:53:30.589Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:53:30.590Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:53:30.591Z] LOG: Generating new session ID
+[2025-02-19T08:53:30.731Z] LOG: Incoming request: GET /files, Origin: http://localhost:3000
+[2025-02-19T08:53:30.734Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:53:30.749Z] LOG: Generating new session ID
+[2025-02-19T08:53:30.732Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:53:37.478Z] LOG: Incoming request: GET /files/download/10, Origin: http://localhost:3000
+[2025-02-19T08:53:37.478Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T08:53:37.479Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T08:53:37.480Z] LOG: Generating new session ID
+[2025-02-19T09:00:33.881Z] LOG: Incoming request: GET /files, Origin: http://localhost:3000
+[2025-02-19T09:00:33.923Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:00:33.924Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:00:33.925Z] LOG: Generating new session ID
+[2025-02-19T09:00:34.381Z] LOG: Incoming request: GET /files, Origin: http://localhost:3000
+[2025-02-19T09:00:34.390Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:00:34.391Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:00:34.392Z] LOG: Generating new session ID
+[2025-02-19T09:03:32.029Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:03:32.043Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:03:32.054Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:03:32.055Z] LOG: Generating new session ID
+[2025-02-19T09:03:32.277Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:03:32.281Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:03:32.280Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:03:32.281Z] LOG: Generating new session ID
+[2025-02-19T09:03:34.695Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-19T09:03:34.701Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:03:34.704Z] LOG: Generating new session ID
+[2025-02-19T09:03:34.698Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:03:34.752Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-19T09:03:34.759Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:03:34.762Z] LOG: Generating new session ID
+[2025-02-19T09:03:34.756Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:03:34.805Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-19T09:03:34.806Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:03:34.809Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:03:34.811Z] LOG: Generating new session ID
+[2025-02-19T09:03:34.816Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-19T09:03:34.819Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:03:34.821Z] LOG: Generating new session ID
+[2025-02-19T09:03:34.818Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:03:35.060Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-19T09:03:35.064Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:03:35.066Z] LOG: Generating new session ID
+[2025-02-19T09:03:35.061Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:06:21.858Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:06:21.866Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:06:21.868Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:06:21.871Z] LOG: Generating new session ID
+[2025-02-19T09:06:22.388Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:06:22.393Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:06:22.394Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:06:22.404Z] LOG: Generating new session ID
+[2025-02-19T09:06:24.044Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-19T09:06:24.098Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:06:24.108Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:06:24.155Z] LOG: Generating new session ID
+[2025-02-19T09:06:24.182Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-19T09:06:24.196Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:06:24.211Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:06:24.230Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-19T09:06:24.242Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:06:24.245Z] LOG: Generating new session ID
+[2025-02-19T09:06:24.227Z] LOG: Generating new session ID
+[2025-02-19T09:06:24.235Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:08:36.706Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-19T09:08:36.707Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:08:36.716Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:08:36.717Z] LOG: Generating new session ID
+[2025-02-19T09:08:36.720Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-19T09:08:36.721Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:08:36.722Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:08:36.723Z] LOG: Generating new session ID
+[2025-02-19T09:08:36.739Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-19T09:08:36.759Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:08:36.778Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:08:36.784Z] LOG: Generating new session ID
+[2025-02-19T09:08:36.786Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-19T09:08:36.810Z] LOG: Query Parameters: {}
+[2025-02-19T09:08:36.815Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-19T09:08:36.819Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-19T09:08:36.917Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-19T09:08:36.922Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:08:36.921Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:08:36.923Z] LOG: Generating new session ID
+[2025-02-19T09:08:36.979Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-19T09:08:37.014Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-19T09:08:37.127Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-19T09:08:37.136Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:08:37.138Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:08:37.154Z] LOG: Generating new session ID
+[2025-02-19T09:08:37.188Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-19T09:08:37.199Z] LOG: Query Parameters: {}
+[2025-02-19T09:08:37.200Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-19T09:08:37.204Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-19T09:08:37.291Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-19T09:08:37.315Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-19T09:08:37.403Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-19T09:08:37.420Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:08:37.422Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:08:37.423Z] LOG: Generating new session ID
+[2025-02-19T09:11:13.218Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:13.241Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:13.378Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:13.384Z] LOG: Incoming request: OPTIONS /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:13.387Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:13.390Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:13.398Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:13.400Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:13.408Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:13.417Z] LOG: Incoming request: OPTIONS /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:13.423Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:13.426Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:13.512Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:13.577Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:13.550Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:13.582Z] LOG: Generating new session ID
+[2025-02-19T09:11:13.603Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:13.653Z] LOG: Generating new session ID
+[2025-02-19T09:11:13.590Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:13.586Z] LOG: Incoming request: GET /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:13.882Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:13.890Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:13.891Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:13.892Z] LOG: Generating new session ID
+[2025-02-19T09:11:13.967Z] LOG: Incoming request: GET /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:13.974Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:13.973Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:13.975Z] LOG: Generating new session ID
+[2025-02-19T09:11:14.443Z] LOG: Incoming request: OPTIONS /get-ctc-ctg/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:14.456Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:14.458Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:14.461Z] LOG: Incoming request: OPTIONS /get-ctc-ctg/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:14.464Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:14.464Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:14.467Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:14.477Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:14.478Z] LOG: Generating new session ID
+[2025-02-19T09:11:14.469Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:14.481Z] LOG: Incoming request: GET /get-ctc-ctg/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:14.481Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:14.482Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:14.483Z] LOG: Generating new session ID
+[2025-02-19T09:11:14.684Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:14.736Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:14.750Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:14.752Z] LOG: Generating new session ID
+[2025-02-19T09:11:14.754Z] LOG: Incoming request: GET /get-ctc-ctg/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:14.756Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:14.760Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:14.762Z] LOG: Generating new session ID
+[2025-02-19T09:11:17.272Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:11:17.284Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:17.286Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:17.287Z] LOG: Generating new session ID
+[2025-02-19T09:11:17.386Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:11:17.414Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:17.424Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:17.429Z] LOG: Generating new session ID
+[2025-02-19T09:11:18.657Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-19T09:11:18.661Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:18.663Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:18.664Z] LOG: Generating new session ID
+[2025-02-19T09:11:18.666Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-19T09:11:18.668Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:18.668Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:18.669Z] LOG: Generating new session ID
+[2025-02-19T09:11:18.671Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-19T09:11:18.672Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:18.673Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:18.674Z] LOG: Generating new session ID
+[2025-02-19T09:11:18.677Z] LOG: Query Parameters: {}
+[2025-02-19T09:11:18.678Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-19T09:11:18.675Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-19T09:11:18.681Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-19T09:11:18.800Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-19T09:11:18.824Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:18.826Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:18.827Z] LOG: Generating new session ID
+[2025-02-19T09:11:18.833Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-19T09:11:18.873Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:18.879Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:18.882Z] LOG: Generating new session ID
+[2025-02-19T09:11:19.021Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-19T09:11:19.077Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-19T09:11:19.276Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-19T09:11:19.307Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:19.375Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:19.377Z] LOG: Generating new session ID
+[2025-02-19T09:11:19.395Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-19T09:11:19.398Z] LOG: Query Parameters: {}
+[2025-02-19T09:11:19.400Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-19T09:11:19.402Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-19T09:11:19.412Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-19T09:11:19.421Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-19T09:11:19.682Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:19.695Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:19.697Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:19.698Z] LOG: Incoming request: OPTIONS /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:19.704Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:19.714Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:19.736Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:19.739Z] LOG: Incoming request: OPTIONS /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:19.739Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:19.741Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:19.716Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:19.736Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:19.854Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:19.856Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:19.856Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:19.857Z] LOG: Generating new session ID
+[2025-02-19T09:11:19.859Z] LOG: Incoming request: GET /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:19.859Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:19.860Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:19.864Z] LOG: Generating new session ID
+[2025-02-19T09:11:19.874Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:19.876Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:19.878Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:19.880Z] LOG: Generating new session ID
+[2025-02-19T09:11:19.892Z] LOG: Incoming request: GET /get-student-skills/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:19.897Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:19.898Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:19.899Z] LOG: Generating new session ID
+[2025-02-19T09:11:20.272Z] LOG: Incoming request: OPTIONS /get-ctc-ctg/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:20.285Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:20.288Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:20.290Z] LOG: Incoming request: OPTIONS /get-ctc-ctg/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:20.304Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:20.304Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:20.307Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:20.367Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:20.368Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:20.407Z] LOG: Generating new session ID
+[2025-02-19T09:11:20.419Z] LOG: Incoming request: GET /get-ctc-ctg/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:20.421Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:20.422Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:20.426Z] LOG: Generating new session ID
+[2025-02-19T09:11:20.476Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:20.481Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:20.479Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:20.482Z] LOG: Generating new session ID
+[2025-02-19T09:11:20.491Z] LOG: Incoming request: GET /get-ctc-ctg/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:20.493Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:20.493Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:20.495Z] LOG: Generating new session ID
+[2025-02-19T09:11:20.938Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:20.940Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:20.941Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:20.942Z] LOG: Generating new session ID
+[2025-02-19T09:11:20.958Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:20.959Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:20.960Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:20.961Z] LOG: Generating new session ID
+[2025-02-19T09:11:21.072Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:21.170Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:21.169Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:21.186Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:11:21.186Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:11:21.187Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:11:21.187Z] LOG: Generating new session ID
+[2025-02-19T09:13:51.332Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:13:51.332Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:13:51.333Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:13:51.334Z] LOG: Generating new session ID
+[2025-02-19T09:13:51.504Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:13:51.508Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:13:51.509Z] LOG: Generating new session ID
+[2025-02-19T09:13:51.506Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:14:14.118Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:14:14.118Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:14:14.121Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:14:14.122Z] LOG: Generating new session ID
+[2025-02-19T09:14:14.250Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:14:14.252Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:14:14.251Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:14:14.253Z] LOG: Generating new session ID
+[2025-02-19T09:14:16.467Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:14:16.469Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:14:16.469Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:14:16.471Z] LOG: Generating new session ID
+[2025-02-19T09:14:16.505Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:14:16.564Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:14:16.566Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:14:16.568Z] LOG: Generating new session ID
+[2025-02-19T09:16:03.826Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T09:16:03.839Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:16:03.840Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:16:03.841Z] LOG: Generating new session ID
+[2025-02-19T09:16:04.060Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T09:16:04.068Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:16:04.069Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:16:04.070Z] LOG: Generating new session ID
+[2025-02-19T09:17:09.414Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:17:09.423Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:17:09.418Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:17:09.427Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:17:09.436Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:17:09.437Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:17:09.440Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:17:09.445Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:17:09.454Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:17:09.458Z] LOG: Generating new session ID
+[2025-02-19T09:17:09.463Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:17:09.471Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:17:09.471Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:17:09.472Z] LOG: Generating new session ID
+[2025-02-19T09:17:10.031Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:17:10.034Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:17:10.033Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:17:10.036Z] LOG: Generating new session ID
+[2025-02-19T09:17:10.386Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T09:17:10.386Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:17:10.387Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:17:10.388Z] LOG: Generating new session ID
+[2025-02-19T09:18:16.305Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T09:18:16.309Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:18:16.308Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:18:16.309Z] LOG: Generating new session ID
+[2025-02-19T09:18:16.498Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T09:18:16.500Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:18:16.513Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:18:16.513Z] LOG: Generating new session ID
+[2025-02-19T09:18:16.546Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T09:18:16.547Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:18:16.548Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:18:16.549Z] LOG: Generating new session ID
+[2025-02-19T09:18:16.642Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: http://localhost:3000
+[2025-02-19T09:18:16.642Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:18:16.652Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:18:16.654Z] LOG: Generating new session ID
+[2025-02-19T09:56:29.462Z] LOG: Incoming request: GET /files, Origin: http://localhost:3000
+[2025-02-19T09:56:29.463Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:29.484Z] LOG: Generating new session ID
+[2025-02-19T09:56:29.483Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:29.650Z] LOG: Incoming request: GET /files, Origin: http://localhost:3000
+[2025-02-19T09:56:29.654Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:29.654Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:29.655Z] LOG: Generating new session ID
+[2025-02-19T09:56:30.647Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-19T09:56:30.656Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:30.652Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:30.658Z] LOG: Generating new session ID
+[2025-02-19T09:56:30.666Z] LOG: Incoming request: GET /api/payments, Origin: http://localhost:3000
+[2025-02-19T09:56:30.666Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:30.667Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:30.667Z] LOG: Generating new session ID
+[2025-02-19T09:56:30.692Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:30.692Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:30.693Z] LOG: Generating new session ID
+[2025-02-19T09:56:30.691Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-19T09:56:30.877Z] LOG: Incoming request: GET /api/payments, Origin: http://localhost:3000
+[2025-02-19T09:56:30.877Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:30.879Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:30.879Z] LOG: Generating new session ID
+[2025-02-19T09:56:41.325Z] LOG: Incoming request: GET /files, Origin: http://localhost:3000
+[2025-02-19T09:56:41.327Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:41.328Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:41.329Z] LOG: Generating new session ID
+[2025-02-19T09:56:41.410Z] LOG: Incoming request: GET /files, Origin: http://localhost:3000
+[2025-02-19T09:56:41.410Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:41.411Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:41.412Z] LOG: Generating new session ID
+[2025-02-19T09:56:42.985Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:56:42.986Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:42.986Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:42.987Z] LOG: Generating new session ID
+[2025-02-19T09:56:42.993Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T09:56:42.993Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:56:42.994Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:56:42.994Z] LOG: Generating new session ID
+[2025-02-19T09:57:45.022Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:57:45.067Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:57:45.069Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:57:45.073Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:57:45.075Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:57:45.076Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:57:45.131Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:57:45.134Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:57:45.135Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:57:45.148Z] LOG: Generating new session ID
+[2025-02-19T09:57:45.649Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:57:45.685Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:57:45.663Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:57:45.699Z] LOG: Generating new session ID
+[2025-02-19T09:57:45.830Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:57:45.866Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:57:45.867Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:57:45.897Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:57:45.900Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:57:45.903Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:57:45.905Z] LOG: Generating new session ID
+[2025-02-19T09:57:46.436Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T09:57:46.450Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T09:57:46.451Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T09:57:46.452Z] LOG: Generating new session ID
+[2025-02-19T10:03:04.753Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:03:04.768Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:03:04.767Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:03:04.787Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:03:04.810Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:03:04.811Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:03:04.816Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:03:04.830Z] LOG: Generating new session ID
+[2025-02-19T10:03:04.822Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:03:04.827Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:03:05.612Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:03:05.623Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:03:05.627Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:03:05.628Z] LOG: Generating new session ID
+[2025-02-19T10:03:05.796Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:03:05.807Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:03:05.809Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:03:05.822Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:03:05.822Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:03:05.824Z] LOG: Generating new session ID
+[2025-02-19T10:03:05.823Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:03:06.566Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:03:06.576Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:03:06.589Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:03:06.590Z] LOG: Generating new session ID
+[2025-02-19T10:47:25.870Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:25.884Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:25.883Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:25.926Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:25.931Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:25.932Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:25.934Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:25.935Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:25.936Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:25.938Z] LOG: Generating new session ID
+[2025-02-19T10:47:26.532Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:26.533Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:26.534Z] LOG: Generating new session ID
+[2025-02-19T10:47:26.529Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:26.739Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:26.739Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:26.739Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:26.743Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:26.744Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:26.744Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:26.744Z] LOG: Generating new session ID
+[2025-02-19T10:47:26.773Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:26.842Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:26.846Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:26.847Z] LOG: Generating new session ID
+[2025-02-19T10:47:57.310Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:57.392Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:57.629Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:57.747Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:57.882Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:57.977Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:58.326Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:58.479Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:58.492Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:58.562Z] LOG: Generating new session ID
+[2025-02-19T10:47:58.950Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:59.010Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:59.012Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:59.017Z] LOG: Generating new session ID
+[2025-02-19T10:47:59.324Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:59.326Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:59.324Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:59.338Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:47:59.341Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:47:59.343Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:47:59.346Z] LOG: Generating new session ID
+[2025-02-19T10:48:00.107Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:00.110Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:00.113Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:00.114Z] LOG: Generating new session ID
+[2025-02-19T10:48:47.296Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:47.345Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:47.342Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:47.350Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:47.355Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:47.359Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:47.432Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:47.501Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:47.503Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:47.508Z] LOG: Generating new session ID
+[2025-02-19T10:48:48.089Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:48.092Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:48.090Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:48.094Z] LOG: Generating new session ID
+[2025-02-19T10:48:48.190Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:48.200Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:48.198Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:48.212Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:48.213Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:48.214Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:48.215Z] LOG: Generating new session ID
+[2025-02-19T10:48:48.306Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:48.322Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:48.323Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:48.338Z] LOG: Generating new session ID
+[2025-02-19T10:48:48.830Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:48.833Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:48.831Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:48.854Z] LOG: Generating new session ID
+[2025-02-19T10:48:48.910Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:48.913Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:48.914Z] LOG: Generating new session ID
+[2025-02-19T10:48:48.911Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:49.110Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:48:49.110Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:48:49.113Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:48:49.114Z] LOG: Generating new session ID
+[2025-02-19T10:49:21.539Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:49:21.540Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:49:21.541Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:49:21.545Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:49:21.546Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:49:21.547Z] LOG: Generating new session ID
+[2025-02-19T10:49:21.546Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:49:21.891Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:49:21.924Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:49:21.925Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:49:21.941Z] LOG: Generating new session ID
+[2025-02-19T10:49:21.946Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:49:21.946Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:49:21.947Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:49:21.961Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:49:21.964Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:49:21.959Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:49:21.969Z] LOG: Generating new session ID
+[2025-02-19T10:49:22.230Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:49:22.232Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:49:22.232Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:49:22.233Z] LOG: Generating new session ID
+[2025-02-19T10:49:22.440Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:49:22.445Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:49:22.446Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:49:22.446Z] LOG: Generating new session ID
+[2025-02-19T10:49:22.451Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:49:22.453Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:49:22.452Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:49:22.453Z] LOG: Generating new session ID
+[2025-02-19T10:49:22.530Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:49:22.531Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:49:22.530Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:49:22.532Z] LOG: Generating new session ID
+[2025-02-19T10:50:48.240Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:50:48.242Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:50:48.244Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:50:48.247Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:50:48.249Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:50:48.250Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:50:48.259Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:50:48.260Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:50:48.261Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:50:48.262Z] LOG: Generating new session ID
+[2025-02-19T10:50:48.546Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:50:48.553Z] LOG: Generating new session ID
+[2025-02-19T10:50:48.547Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:50:48.552Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:50:48.643Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:50:48.661Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:50:48.663Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:50:48.694Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:50:48.697Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:50:48.699Z] LOG: Generating new session ID
+[2025-02-19T10:50:48.695Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:50:49.397Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:50:49.419Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:50:49.417Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:50:49.419Z] LOG: Generating new session ID
+[2025-02-19T10:53:19.796Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:53:19.817Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:53:19.816Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:53:19.829Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:53:19.858Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:53:19.857Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:53:19.859Z] LOG: Generating new session ID
+[2025-02-19T10:53:20.231Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:53:20.241Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:53:20.240Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:53:20.243Z] LOG: Generating new session ID
+[2025-02-19T10:53:21.731Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:53:21.872Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:53:21.766Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:53:21.911Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:53:21.914Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:53:21.915Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:53:21.915Z] LOG: Generating new session ID
+[2025-02-19T10:55:31.531Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:55:31.545Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:55:31.544Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:55:31.578Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:55:31.611Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:55:31.612Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:55:31.613Z] LOG: Generating new session ID
+[2025-02-19T10:55:31.767Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:55:31.777Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:55:31.776Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:55:31.779Z] LOG: Generating new session ID
+[2025-02-19T10:55:32.495Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:55:32.513Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:55:32.496Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:55:32.524Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:55:32.525Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:55:32.525Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:55:32.526Z] LOG: Generating new session ID
+[2025-02-19T10:58:14.230Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:58:14.285Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:58:14.251Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:58:14.288Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:58:14.293Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:58:14.294Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:58:14.301Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:58:14.302Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:58:14.302Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:58:14.303Z] LOG: Generating new session ID
+[2025-02-19T10:58:14.460Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:58:14.467Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:58:14.468Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:58:14.468Z] LOG: Generating new session ID
+[2025-02-19T10:58:15.615Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:58:15.615Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:58:15.615Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:58:15.691Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T10:58:15.696Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T10:58:15.696Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T10:58:15.697Z] LOG: Generating new session ID
+[2025-02-19T11:00:12.978Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:00:13.013Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:00:13.027Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:00:13.013Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:00:13.023Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:00:13.026Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:00:13.030Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:00:13.030Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:00:13.031Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:00:13.077Z] LOG: Generating new session ID
+[2025-02-19T11:00:13.306Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:00:13.309Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:00:13.313Z] LOG: Generating new session ID
+[2025-02-19T11:00:13.298Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:00:13.382Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:00:13.383Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:00:13.384Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:00:13.401Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:00:13.406Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:00:13.406Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:00:13.407Z] LOG: Generating new session ID
+[2025-02-19T11:00:13.535Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:00:13.583Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:00:13.583Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:00:13.584Z] LOG: Generating new session ID
+[2025-02-19T11:01:51.661Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:01:51.689Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:01:51.702Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:01:51.794Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:01:51.795Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:01:51.796Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:01:51.798Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:01:51.802Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:01:51.803Z] LOG: Generating new session ID
+[2025-02-19T11:01:51.795Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:01:51.964Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:01:51.976Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:01:51.978Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:01:51.993Z] LOG: Generating new session ID
+[2025-02-19T11:01:53.361Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:01:53.366Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:01:53.370Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:01:53.377Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:01:53.405Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:01:53.407Z] LOG: Generating new session ID
+[2025-02-19T11:01:53.404Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:02:14.832Z] LOG: Incoming request: POST /logout, Origin: http://localhost:3000
+[2025-02-19T11:02:14.833Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:02:14.834Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:02:14.931Z] LOG: Generating new session ID
+[2025-02-19T11:02:15.104Z] LOG: --- /logout route CALLED ---
+[2025-02-19T11:02:15.105Z] LOG: req.session: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T11:32:14.937Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+[2025-02-19T11:02:15.291Z] LOG: No active session to logout.
+[2025-02-19T11:02:19.094Z] LOG: Incoming request: POST /logout, Origin: http://localhost:3000
+[2025-02-19T11:02:19.096Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:02:19.098Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:02:19.099Z] LOG: Generating new session ID
+[2025-02-19T11:02:19.100Z] LOG: --- /logout route CALLED ---
+[2025-02-19T11:02:19.101Z] LOG: req.session: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T11:32:19.100Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+[2025-02-19T11:02:19.115Z] LOG: No active session to logout.
+[2025-02-19T11:02:49.879Z] LOG: Incoming request: OPTIONS /login, Origin: http://localhost:3000
+[2025-02-19T11:02:49.885Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:02:49.880Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:02:49.889Z] LOG: Incoming request: POST /login, Origin: http://localhost:3000
+[2025-02-19T11:02:49.890Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:02:50.284Z] LOG: Generating new session ID
+[2025-02-19T11:02:49.890Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:02:50.429Z] LOG: --- /login route CALLED ---
+[2025-02-19T11:02:50.509Z] LOG: Client IP: ::1
+[2025-02-19T11:02:50.876Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-02-19T11:02:50.877Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T11:32:50.295Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T11:02:50.876Z"
+}
+[2025-02-19T11:02:51.008Z] LOG: Login event logged to login_log for user ID: 1
+[2025-02-19T11:02:58.884Z] LOG: Incoming request: POST /logout, Origin: http://localhost:3000
+[2025-02-19T11:02:58.898Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:02:58.899Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:02:58.982Z] LOG: req.session: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T11:32:51.023Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-02-19T11:02:50.876Z"
+}
+[2025-02-19T11:02:58.976Z] LOG: --- /logout route CALLED ---
+[2025-02-19T11:02:59.143Z] LOG: Logout info updated in login_log for user ID: 1
+[2025-02-19T11:02:59.193Z] LOG: Session destroyed and cookie cleared for user ID: 1
+[2025-02-19T11:05:29.488Z] ERROR: (node:13680) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-19T11:05:29.520Z] LOG: HTTP Server running on port 5000
+[2025-02-19T11:05:29.933Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-19T11:05:29.916Z"
+  }
+]
+[2025-02-19T11:05:29.973Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-19T11:05:29.972Z"
+  }
+]
+[2025-02-19T11:05:30.041Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:05:30.047Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:30.089Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:30.109Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:05:30.114Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:30.123Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:30.141Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:05:30.142Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:30.150Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:30.204Z] LOG: Generating new session ID
+[2025-02-19T11:05:30.338Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:05:30.342Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:30.344Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:30.354Z] LOG: Generating new session ID
+[2025-02-19T11:05:30.689Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:05:30.700Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:30.695Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:30.741Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-19T11:05:30.749Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:30.750Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:30.751Z] LOG: Generating new session ID
+[2025-02-19T11:05:34.512Z] LOG: Incoming request: POST /logout, Origin: http://localhost:3000
+[2025-02-19T11:05:34.513Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:34.514Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:34.516Z] LOG: Generating new session ID
+[2025-02-19T11:05:34.518Z] LOG: --- /logout route CALLED ---
+[2025-02-19T11:05:34.519Z] LOG: req.session: {
+  "cookie": {
+    "originalMaxAge": 1799999,
+    "expires": "2025-02-19T11:35:34.517Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+[2025-02-19T11:05:34.523Z] LOG: No active session to logout.
+[2025-02-19T11:05:36.523Z] LOG: Incoming request: POST /logout, Origin: http://localhost:3000
+[2025-02-19T11:05:36.525Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:36.524Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:36.530Z] LOG: --- /logout route CALLED ---
+[2025-02-19T11:05:36.540Z] LOG: No active session to logout.
+[2025-02-19T11:05:36.527Z] LOG: Generating new session ID
+[2025-02-19T11:05:36.531Z] LOG: req.session: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T11:35:36.530Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+[2025-02-19T11:05:37.209Z] LOG: Incoming request: POST /logout, Origin: http://localhost:3000
+[2025-02-19T11:05:37.211Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:37.215Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:37.220Z] LOG: Generating new session ID
+[2025-02-19T11:05:37.222Z] LOG: --- /logout route CALLED ---
+[2025-02-19T11:05:37.223Z] LOG: req.session: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T11:35:37.221Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+[2025-02-19T11:05:37.226Z] LOG: No active session to logout.
+[2025-02-19T11:05:37.683Z] LOG: Incoming request: POST /logout, Origin: http://localhost:3000
+[2025-02-19T11:05:37.684Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:05:37.685Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:05:37.688Z] LOG: Generating new session ID
+[2025-02-19T11:05:37.690Z] LOG: --- /logout route CALLED ---
+[2025-02-19T11:05:37.692Z] LOG: req.session: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-02-19T11:35:37.689Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  }
+}
+[2025-02-19T11:05:37.694Z] LOG: No active session to logout.
+[2025-02-19T11:28:20.937Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-19T11:28:21.136Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:21.446Z] LOG: Generating new session ID
+[2025-02-19T11:28:21.384Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:21.571Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-19T11:28:21.586Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:21.608Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:21.627Z] LOG: Generating new session ID
+[2025-02-19T11:28:21.653Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-19T11:28:21.736Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:21.738Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:21.744Z] LOG: Generating new session ID
+[2025-02-19T11:28:21.752Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-19T11:28:21.762Z] LOG: Query Parameters: {}
+[2025-02-19T11:28:21.763Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-19T11:28:21.764Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-19T11:28:22.023Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-19T11:28:22.084Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-19T11:28:22.106Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-19T11:28:22.106Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:22.107Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:22.108Z] LOG: Generating new session ID
+[2025-02-19T11:28:22.189Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-19T11:28:22.208Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:22.234Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:22.241Z] LOG: Generating new session ID
+[2025-02-19T11:28:22.243Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-19T11:28:22.276Z] LOG: Query Parameters: {}
+[2025-02-19T11:28:22.290Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-19T11:28:22.300Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-19T11:28:22.386Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-19T11:28:22.452Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-19T11:28:22.500Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T11:28:22.501Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:22.521Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:22.551Z] LOG: Generating new session ID
+[2025-02-19T11:28:22.672Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-19T11:28:22.673Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:22.675Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:22.677Z] LOG: Generating new session ID
+[2025-02-19T11:28:22.683Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-19T11:28:22.687Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:22.713Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:22.714Z] LOG: Generating new session ID
+[2025-02-19T11:28:23.556Z] LOG: Incoming request: OPTIONS /get-student-profile/, Origin: http://localhost:3000
+[2025-02-19T11:28:23.587Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:23.587Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:23.592Z] LOG: Incoming request: OPTIONS /get-student-profile/, Origin: http://localhost:3000
+[2025-02-19T11:28:23.602Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:23.604Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:23.611Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-02-19T11:28:23.619Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:23.636Z] LOG: Generating new session ID
+[2025-02-19T11:28:23.620Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:23.703Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-02-19T11:28:23.723Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:23.721Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:23.726Z] LOG: Generating new session ID
+[2025-02-19T11:28:24.874Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-02-19T11:28:24.875Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:24.875Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:24.876Z] LOG: Generating new session ID
+[2025-02-19T11:28:24.889Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-02-19T11:28:24.890Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:24.891Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:24.892Z] LOG: Generating new session ID
+[2025-02-19T11:28:28.280Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-02-19T11:28:28.329Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:28.574Z] LOG: Generating new session ID
+[2025-02-19T11:28:28.337Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:28.851Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-02-19T11:28:28.865Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-19T11:28:28.859Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-19T11:28:28.867Z] LOG: Generating new session ID

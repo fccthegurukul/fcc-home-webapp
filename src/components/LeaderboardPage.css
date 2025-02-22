@@ -1,0 +1,281 @@
+/* frontend/src/LeaderboardPage.css */
+.leaderboard-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.leaderboard-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3b00b3;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-item label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filter-item select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.showfccid-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.showfccid-btn:hover {
+    background-color: #0056b3;
+}
+
+
+.table-responsive {
+    overflow-x: auto; /* Enable horizontal scroll for mobile */
+}
+
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; /* For rounded corners on table */
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.leaderboard-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #555;
+}
+
+.leaderboard-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+.profile-cell {
+    text-align: center;
+    position: relative; /* For badge positioning */
+}
+
+.profile-image-container {
+    display: inline-block; /* To contain image and badge */
+    position: relative;
+}
+
+.profile-image, .profile-placeholder {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent; /* Space for badge */
+}
+
+.profile-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
+.rank-badge, .score-badge { /* Renamed from .score-badge to be more generic */
+    position: absolute;
+    /* Animation for badges (optional, can be added if desired) */
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.rank-badge-1, .rank-badge-2, .rank-badge-3 {
+    bottom: -15%; /* Position at the bottom */
+    left: 50%;      /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    font-size: 1.8em; /* Adjust size as needed */
+    text-shadow: 0 0 5px black;
+}
+.rank-badge-1 {
+    color: gold; /* Gold for 1st rank */
+}
+
+.rank-badge-2 {
+    color: silver; /* Silver for 2nd rank */
+}
+
+.rank-badge-3 {
+    color: #cd7f32; /* Bronze for 3rd rank */
+}
+
+
+.score-badge { /* Styles for Ribbon Badge, now BOTTOM RIGHT */
+    bottom: -10%; /*  Adjust vertical position to bottom */
+    right: -1%; /* Keep right positioning */
+    /* top: -15%;  Removed top as we want bottom now */
+    font-size: 1.3em;
+    color: #00c03a;
+    transform: rotate(15deg);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+
+.no-data {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    margin-top: 20px;
+}
+
+/* frontend/src/LeaderboardPage.css */
+
+
+@keyframes skeleton-shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Special effects for Top 3 profiles */
+.top-rank-profile-1 .profile-image, .top-rank-profile-1 .profile-placeholder {
+    border: 2px solid rgb(255, 166, 0); /* Gold color */
+    box-shadow: 0 0 10px rgb(255, 166, 0); /* Gold color */
+    transform: scale(1.1); /* Slightly larger size */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Smooth transition */
+}
+.top-rank-profile-2 .profile-image, .top-rank-profile-2 .profile-placeholder {
+    border: 3px solid silver;
+    box-shadow: 0 0 10px rgb(141, 141, 141);
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+.top-rank-profile-3 .profile-image, .top-rank-profile-3 .profile-placeholder {
+    border: 3px solid #cd7f32; /* Bronze color */
+    box-shadow: 0 0 10px #cd7f32;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+
+/* Mobile Friendly Styles */
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .filter-item {
+        width: 100%;
+        text-align: center;
+    }
+
+    .filter-item select {
+        width: calc(100% - 20px); /* Adjust select width for smaller screens */
+    }
+
+    .leaderboard-title {
+        font-size: 2em;
+    }
+
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    .profile-image, .profile-placeholder {
+        width: 40px;
+        height: 40px;
+    }
+
+    .rank-badge, .score-badge {
+        font-size: 1.2em;
+    }
+    .rank-badge-1, .rank-badge-2, .rank-badge-3 {
+        font-size: 1.6em;
+        bottom: -12%;
+    }
+
+
+    .score-badge { /* Mobile Score Badge adjustments for bottom right */
+        font-size: 1.1em;
+        bottom: -8%; /* Adjusted bottom for mobile*/
+        right: -8%; /* Adjusted right for mobile */
+        /* top: -12%; Removed top for mobile as we are using bottom */
+    }
+
+    .showfccid-btn {
+        margin: 15px auto;
+        padding: 8px 12px;
+        font-size: 0.9em;
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .leaderboard-title {
+        font-size: 1.7em;
+    }
+
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 6px 8px;
+        font-size: 0.8em;
+    }
+    .profile-image, .profile-placeholder {
+        width: 30px;
+        height: 30px;
+    }
+    .rank-badge, .score-badge {
+        font-size: 1em;
+    }
+    .rank-badge-1, .rank-badge-2, .rank-badge-3 {
+        font-size: 1.4em;
+        bottom: -10%;
+    }
+
+
+    .score-badge { /* Very small screen adjustments for bottom right */
+        font-size: 0.9em;
+        bottom: -6%; /* Adjusted bottom for very small screen */
+        right: -6%; /* Adjusted right for very small screen */
+        /* top: -10%; Removed top for very small screen, using bottom now */
+    }
+}

@@ -1,18 +1,24 @@
 const cors = require("cors");
+const session = require('express-session');
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const logoPath = path.join(__dirname, "..", "assets", "logo.png");
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const Anthropic = require('@anthropic-ai/sdk');
 const express = require("express");
-const { Pool } = require("pg");
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const multer = require("multer");
 const PDFDocument = require('pdfkit');
 const QRCode = require("qrcode");
 const fetch = require('node-fetch');
+const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
+const ConnectPgSimple = require('connect-pg-simple')(session); // <---- Is this line EXACTLY present, including `(session)`?
 
+const { Pool } = require('pg'); // <---- Is this line EXACTLY present at the top?
+
+// ... rest of your server.js code ...
 // लॉगिंग सेटअप
 const logsDir = path.join(__dirname, 'logs');
 if (!fs.existsSync(logsDir)) {
@@ -128,13 +134,193 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS')); // Block request
     }
   },
+  credentials: true,  // Allow credentials (cookies) to be sent
   optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
+
+app.use(session({
+  store: new ConnectPgSimple({
+    pool: pool,
+    tableName: 'session'
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    path: '/',
+    httpOnly: true,
+    maxAge: 1800000,
+    secure: false,
+    sameSite: 'lax'
+  },
+  genid: function(req) {
+    console.log("Generating new session ID");
+    return uuidv4(); // Use UUIDs for session IDs
+  }
+}));
+
+
+const getClientIP = (req) => {
+  let ip = req.ip; // Express का req.ip पहले से IPv6 फ्रेंडली है
+  if (ip.includes("::ffff:")) {
+    ip = ip.replace("::ffff:", ""); // IPv4-mapped IPv6 एड्रेस को ठीक करें
+  }
+  return ip;
+};
+
+
+// --- User Authentication Routes ---
+
+// 1. User Registration (Optional - if you need users to register themselves)
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+      return res.status(400).json({ message: 'Username and password are required.' });
+  }
+
+  try {
+      const passwordHash = await bcrypt.hash(password, 10); // Hash the password
+      const result = await pool.query(
+          'INSERT INTO users (username, password_hash) VALUES ($1, $2) RETURNING id, username, created_at',
+          [username, passwordHash]
+      );
+      console.log(`New user registered: ${username}`);
+      res.status(201).json({ message: 'User registered successfully', user: result.rows[0] });
+  } catch (error) {
+      console.error("Registration error:", error);
+      if (error.code === '23505') { // Unique violation error code (username already exists)
+          return res.status(409).json({ message: 'Username already exists.' });
+      }
+      res.status(500).json({ message: 'Error registering user.', error: error.message });
+  }
+});
+
+
+// 2. Login Route
+app.post('/login', async (req, res) => {
+  console.log("--- /login route CALLED ---");
+  const { username, password } = req.body;
+  const clientIp = getClientIP(req); // Ensure IPv6 is captured
+  console.log("Client IP:", clientIp);
+  if (!username || !password) {
+      console.log("Login failed: Missing username or password");
+      return res.status(400).json({ message: 'Username and password are required.' });
+  }
+
+  try {
+      const userResult = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+      const user = userResult.rows[0];
+
+      if (!user) {
+          console.log(`Login failed: User not found - username: ${username}`);
+          return res.status(401).json({ message: 'Invalid username or password.' });
+      }
+
+      const passwordMatch = await bcrypt.compare(password, user.password_hash);
+
+      if (passwordMatch) {
+          // Set session values including access_type
+          req.session.userId = user.id;
+          req.session.accessType = user.access_type; // Ensure your users table returns this column
+          req.session.loginTimestamp = new Date();
+          console.log(`Login successful for user ID: ${user.id}, username: ${username}`);
+          console.log("Session after login:", req.session);
+
+          // Log login event to login_log table
+          try {
+              await pool.query(
+                  'INSERT INTO login_log (user_id, ip_address) VALUES ($1, $2)',
+                  [user.id, clientIp]
+              );
+              console.log(`Login event logged to login_log for user ID: ${user.id}`);
+          } catch (dbLogError) {
+              console.error("Database error logging login event:", dbLogError);
+          }
+
+          // Return access_type along with success message
+          return res.status(200).json({ 
+            message: 'Login successful',
+            accessType: user.access_type 
+          });
+      } else {
+          console.log(`Login failed: Password mismatch for username: ${username}`);
+          return res.status(401).json({ message: 'Invalid username or password.' });
+      }
+
+  } catch (dbError) {
+      console.error("Database error during login:", dbError);
+      return res.status(500).json({ message: 'Login failed due to a server error.' });
+  }
+});
+
+
+// 3. Logout Route
+// --- User Authentication Routes ---
+app.post('/logout', (req, res) => {
+  console.log("--- /logout route CALLED ---");
+  console.log("req.session:", req.session);
+
+  if (req.session && req.session.userId) {
+      const userId = req.session.userId;
+      const logoutTimestamp = new Date();
+      const loginTimestamp = req.session.loginTimestamp ? new Date(req.session.loginTimestamp) : logoutTimestamp; // Get login time from session
+
+      const sessionDurationMs = logoutTimestamp - loginTimestamp;
+      const sessionDurationSeconds = Math.max(0, sessionDurationMs / 1000);
+
+      pool.query(
+          'UPDATE login_log SET logout_timestamp = $1, session_duration = $2 WHERE id = (SELECT MAX(id) FROM login_log WHERE user_id = $3 AND logout_timestamp IS NULL)',
+          [logoutTimestamp, `${sessionDurationSeconds} seconds`, userId],
+          (dbErr, dbResult) => {
+              if (dbErr) {
+                  console.error("Database error updating logout info:", dbErr); // More descriptive error log
+                  // Even if DB update fails, still logout user session to prevent login problems
+              } else {
+                  console.log(`Logout info updated in login_log for user ID: ${userId}`);
+              }
+
+              req.session.destroy((err) => { // Destroy session *after* trying to log logout info
+                  if (err) {
+                      console.error("Error destroying session during logout:", err);
+                      return res.status(500).json({ message: 'Logout session destroy error.' });
+                  }
+                  res.clearCookie('connect.sid'); // Clear session cookie
+                  console.log(`Session destroyed and cookie cleared for user ID: ${userId}`);
+                  return res.status(200).json({ message: 'Logout successful' });
+              });
+          }
+      );
+  } else {
+      console.log("No active session to logout.");
+      return res.status(400).json({ message: 'No active session to logout.' });
+  }
+});
+
+// 4. Authentication Middleware (to protect routes)
+const requireLogin = (req, res, next) => {
+  if (req.session && req.session.userId) {
+      // User is logged in
+      next(); // Proceed to the next middleware/route handler
+  } else {
+      // User is not logged in
+      res.status(401).json({ message: 'Authentication required. Please log in.' }); // Or redirect to login page if it's a browser app
+  }
+};
+
+
+// --- Protected Routes Example ---
+
+app.get('/protected-page', requireLogin, (req, res) => {
+  // This route is protected, only logged-in users can access it
+  res.status(200).json({ message: 'This is a protected page.', user: { username: req.session.username, userId: req.session.userId } });
+});
 
 // Route to insert a new student record
 app.post("/add-student", async (req, res) => {
@@ -561,7 +747,7 @@ doc
   .fillColor("black")
   .text(`Base Amount: ${numericAmount.toFixed(2)}`, { align: "left" });
   doc.moveDown(0.5);
-doc.text(`GST (18%): ${taxAmount.toFixed(2)}`, { align: "left" });
+doc.text(`PG Tax + Online Services (5%+13%): ${taxAmount.toFixed(2)}`, { align: "left" });
 doc.moveDown(0.5);
 // Add Separator Line
 doc.lineWidth(1).moveTo(40, doc.y).lineTo(doc.page.width - 40, doc.y).stroke("#E0E0E0");
@@ -617,12 +803,6 @@ doc
   .font("Helvetica")
   .fillColor("gray")
   .text("This receipt is system-generated and does not require a signature.", { align: "center" });
-
-doc
-  .fontSize(10)
-  .font("Helvetica")
-  .fillColor("gray")
-  .text("GST is included in fees but is not paid to the government due to low turnover.", { align: "center" });
 
 doc
   .fontSize(10)
@@ -730,7 +910,8 @@ app.get("/api/payments", async (req, res) => {
 const studentPhotos = {
   "4949200024": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FIMG_20241112_150831_462.jpg?alt=media&token=e75bd57c-f944-4061-94e7-381b15a519f1",
   "9631200024": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519",
-  "1234567890": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  "1234567890": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7",
+  "9708200025": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
 };
 
 // Route to fetch student profile by FCC ID
@@ -777,7 +958,6 @@ app.get('/get-student-skills/:fcc_id', async (req, res) => {
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'No skills found for this student' });
     }
-
     // Add defaults if missing
     const skills = result.rows.map(skill => ({
       ...skill,
@@ -793,12 +973,9 @@ app.get('/get-student-skills/:fcc_id', async (req, res) => {
   }
 });
 
-
-
 // Route to fetch CTC/CTG data and logs by FCC ID
 app.get("/get-ctc-ctg/:fcc_id", async (req, res) => {
   const { fcc_id } = req.params;
-
   try {
     // Query to fetch student data
     const studentQuery = `
@@ -1153,9 +1330,840 @@ app.get("/get-tuition-fee-details/:fcc_id", async (req, res) => {
   }
 });
 
+// ... आपके मौजूदा बैकएंड कोड ...
+
+// एपीआई एंडपॉइंट क्लासेज की लिस्ट लाने के लिए
+app.get('/api/classrooms', cors(), async (req, res) => {
+  try {
+      const query = `
+          SELECT DISTINCT classroom_name
+          FROM live_videos
+          ORDER BY classroom_name;
+      `;
+      const { rows } = await pool.query(query);
+      const classroomNames = rows.map(row => row.classroom_name);
+      res.json(classroomNames);
+  } catch (error) {
+      console.error("Error fetching classroom names:", error);
+      res.status(500).json({ error: 'Failed to fetch classroom names' });
+  }
+});
+
+
+// एपीआई एंडपॉइंट लाइव वीडियो लाने के लिए, क्लासरूम फ़िल्टर के साथ
+app.get('/api/videos', cors(), async (req, res) => {
+  const classroomName = req.query.classroomName;
+  try {
+      // Local date string (YYYY-MM-DD) निकालने के लिए
+      const today = new Date();
+      const pad = (n) => (n < 10 ? '0' + n : n);
+      const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+      let query = `
+        SELECT video_title, youtube_url, live_date
+        FROM live_videos
+        WHERE live_date <= $1
+      `;
+      const params = [todayDate];
+
+      if (classroomName) {
+          query += ` AND classroom_name = $2`;
+          params.push(classroomName);
+      }
+
+      query += ` ORDER BY live_date DESC;`;
+
+      const { rows } = await pool.query(query, params);
+
+      // live_date को local date string में convert करने का helper function
+      const formatDate = (date) => {
+          const d = new Date(date);
+          return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+      };
+
+      // अब compare करें local date strings से
+      const todaysVideos = rows.filter(video => formatDate(video.live_date) === todayDate);
+      const pastVideos = rows.filter(video => formatDate(video.live_date) < todayDate);
+
+      res.json({
+          todaysVideos,
+          pastVideos,
+      });
+  } catch (error) {
+      console.error("Error fetching videos:", error);
+      res.status(500).json({ error: 'Failed to fetch videos' });
+  }
+});
+
+// ... आपका app.listen(...) और बाकी बैकएंड कोड ...
+// नया एपीआई एंडपॉइंट: GET /api/attendance?classroomName=Class%201
+app.get('/api/attendance', cors(), async (req, res) => {
+  const classroomName = req.query.classroomName; // उदाहरण: "Class 1"
+  if (!classroomName) {
+    return res.status(400).json({ error: 'classroomName parameter is required' });
+  }
+  
+  // "Class 1" से '1' निकालने के लिए:
+  const classNumber = classroomName.split(" ")[1];
+
+  try {
+    // students तालिका से ctc_time और ctg_time दोनों निकालें
+    const query = `
+      SELECT nsa.name, s.ctc_time, s.ctg_time
+      FROM "New_Student_Admission" nsa
+      LEFT JOIN students s ON nsa.fcc_id = s.fcc_id
+      WHERE nsa.fcc_class = $1;
+    `;
+    const { rows } = await pool.query(query, [classNumber]);
+
+    // आज की तारीख (YYYY-MM-DD) निकालें
+    const today = new Date();
+    const pad = (n) => (n < 10 ? '0' + n : n);
+    const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+    // दिनांक को string में convert करने का helper function
+    const getDateString = (date) => {
+      const d = new Date(date);
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    };
+
+    // हर छात्र के लिए attendance status और duration निर्धारित करें
+    const attendanceData = rows.map(row => {
+      let status = "Absent";
+      let duration = null; // duration की default value null
+      
+      if (row.ctc_time) {
+        const ctcTime = new Date(row.ctc_time);
+        const ctcDate = getDateString(ctcTime);
+        if (ctcDate === todayDate) {
+          // अगर ctc_time मौजूद है तो छात्र ने क्लास में प्रवेश कर लिया है
+          status = "Entered class";
+          
+          if (row.ctg_time) {
+            const ctgTime = new Date(row.ctg_time);
+            const ctgDate = getDateString(ctgTime);
+            if (ctgDate === todayDate) {
+              // अगर ctg_time भी उसी दिन का है, तो क्लास अटेंड हो चुकी है
+              status = "Class attended";
+              const diffMs = ctgTime - ctcTime;
+              const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+              const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+              duration = `${diffHours} hrs ${diffMinutes} mins`;
+            }
+          }
+        }
+      }
+      
+      return {
+        name: row.name,
+        ctc_time: row.ctc_time,
+        ctg_time: row.ctg_time,
+        status,
+        duration
+      };
+    });
+
+    res.json(attendanceData);
+  } catch (error) {
+    console.error("Error fetching attendance:", error);
+    res.status(500).json({ error: "Failed to fetch attendance data" });
+  }
+});
+
+// GET /api/tasks
+app.get('/api/tasks', cors(), async (req, res) => {
+  try {
+    const { class: classNumber } = req.query;
+    if (!classNumber) return res.status(400).json({ error: 'Class parameter required' });
+
+    const query = `
+      SELECT * FROM leaderboard_scoring_task
+      WHERE class = $1
+      ORDER BY start_time DESC
+    `;
+    const { rows } = await pool.query(query, [classNumber]);
+    
+    // Convert dates to local time
+    const processedTasks = rows.map(task => ({
+      ...task,
+      start_time: new Date(task.start_time).toLocaleString(),
+      end_time: new Date(task.end_time).toLocaleString()
+    }));
+
+    res.json(processedTasks);
+  } catch (error) {
+    console.error('Error fetching tasks:', error);
+    res.status(500).json({ error: 'Failed to fetch tasks' });
+  }
+});
+
+app.get('/api/students-by-class', cors(), async (req, res) => {
+  const classroomName = req.query.classroomName;
+  if (!classroomName) {
+      return res.status(400).json({ error: 'classroomName parameter is required' });
+  }
+  const classNumber = classroomName.split(" ")[1]; // "Class 1" से '1' निकालना
+
+  try {
+      const query = `
+          SELECT nsa.name, nsa.fcc_id
+          FROM "New_Student_Admission" nsa
+          WHERE nsa.fcc_class = $1;
+      `;
+      const { rows } = await pool.query(query, [classNumber]);
+      res.json(rows);
+  } catch (error) {
+      console.error("Error fetching students by class:", error);
+      res.status(500).json({ error: 'Failed to fetch students by class' });
+  }
+});
+app.post('/api/tasks', cors(), express.json(), async (req, res) => {
+  try {
+      const { task_name, description, max_score, start_time, end_time, class: classNumber, teacher_fcc_id, action_type } = req.body;
+
+      if (!task_name || !description || !max_score || !start_time || !end_time || !classNumber || !teacher_fcc_id || !action_type) {
+          return res.status(400).json({ error: 'All fields are required...' });
+      }
+
+      // 1. Insert the task into leaderboard_scoring_task table (as before)
+      const taskInsertQuery = `
+          INSERT INTO leaderboard_scoring_task (task_name, description, max_score, start_time, end_time, class, teacher_fcc_id, action_type)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+          RETURNING *;
+      `;
+      const taskInsertValues = [task_name, description, max_score, start_time, end_time, classNumber, teacher_fcc_id, action_type];
+      const { rows: taskRows } = await pool.query(taskInsertQuery, taskInsertValues);
+      const newTask = taskRows[0];
+
+      // 2. Log the task creation action in teacher_update_logs
+      const logQuery = `
+          INSERT INTO teacher_update_logs (teacher_fcc_id, action_type, submission_timestamp, classroom_name, number_of_students_submitted)
+          VALUES ($1, $2, NOW(), $3, $4)
+          RETURNING *;
+      `;
+      const logValues = [
+          teacher_fcc_id,
+          'Task Create', // Action Type is "Task Create"
+          `Class ${classNumber}`, // Or use your actual classroom name if available
+          0 // Number of students submitted is 0 for task creation (not applicable)
+      ];
+      const logResult = await pool.query(logQuery, logValues);
+      console.log("📝 Task creation logged:", logResult.rows[0]);
+
+
+      res.status(201).json({ message: 'Task created and logged successfully', task: newTask });
+
+  } catch (error) {
+      console.error('Error creating task:', error);
+      res.status(500).json({ error: 'Failed to create task', details: error.message });
+  }
+});
+
+// ... other backend code ...
+app.post('/api/submit-scores', cors(), express.json(), async (req, res) => {
+  console.log("📦 Incoming request to /api/submit-scores");
+  console.log("Request body:", req.body);
+
+  try {
+      const { submissions, teacher_fcc_id, classroom_name, num_students_submitted } = req.body;
+
+      if (!submissions || submissions.length === 0) {
+          console.warn("⚠️ No submissions data provided in the request body.");
+          return res.status(400).json({ error: 'No submissions data provided.' });
+      }
+
+      if (!teacher_fcc_id) {
+          console.warn("⚠️ Teacher FCC ID is missing in the request.");
+          return res.status(400).json({ error: 'Teacher FCC ID is required for submission.' });
+      }
+
+
+      for (const submission of submissions) {
+          const { fcc_id, fcc_class, task_name, score_obtained } = submission;
+
+          if (!fcc_id || !fcc_class || !task_name || score_obtained === undefined) {
+              console.warn("⚠️ Incomplete submission data, skipping:", submission);
+              continue;
+          }
+
+          const score = parseInt(score_obtained, 10);
+
+          if (isNaN(score)) {
+              console.warn(`⚠️ Invalid score provided for fcc_id: ${fcc_id}, task: ${task_name}. Skipping submission.`);
+              continue;
+          }
+
+          // task_submissions Table insert
+          const submissionQuery = `
+              INSERT INTO task_submissions (fcc_id, fcc_class, task_name, score_obtained)
+              VALUES ($1, $2, $3, $4)
+              RETURNING *;
+          `;
+          const submissionValues = [fcc_id, fcc_class, task_name, score];
+
+          // leaderboard Table insert
+          const leaderboardQuery = `
+              INSERT INTO leaderboard (fcc_id, fcc_class, task_name, score)
+              VALUES ($1, $2, $3, $4)
+              RETURNING *;
+          `;
+          const leaderboardValues = [fcc_id, fcc_class, task_name, score];
+
+          try {
+              console.log(`🚀 Inserting submission for fcc_id: ${fcc_id}, task: ${task_name}, score: ${score}`);
+              await pool.query(submissionQuery, submissionValues);
+              await pool.query(leaderboardQuery, leaderboardValues);
+              console.log(`✅ Successfully inserted scores for fcc_id: ${fcc_id}, task: ${task_name}`);
+
+          } catch (dbError) {
+              console.error("🚨 Database insertion error for submission:", submission, dbError);
+              return res.status(500).json({ error: 'Failed to submit scores due to database error.', details: dbError.message });
+          }
+      }
+
+      // Log teacher action after successful score submissions
+      try {
+          const logQuery = `
+              INSERT INTO teacher_update_logs (teacher_fcc_id, classroom_name, number_of_students_submitted, action_type)
+              VALUES ($1, $2, $3, $4)
+              RETURNING *;
+          `;
+          const logValues = [teacher_fcc_id, classroom_name, num_students_submitted, 'Task Check']; // Added action_type: 'Task Check'
+          const logResult = await pool.query(logQuery, logValues);
+          console.log("📝 Teacher update log recorded:", logResult.rows[0]);
+      } catch (logError) {
+          console.error("🚨 Error logging teacher action:", logError);
+          // Log error, but don't fail the score submission entirely. Logging error is secondary.
+      }
+
+
+      res.status(201).json({ message: 'Scores submitted successfully and leaderboard updated.' });
+
+  } catch (error) {
+      console.error('🔥 Error submitting scores:', error);
+      res.status(500).json({ error: 'Failed to submit scores', details: error.message });
+  }
+});
+
+app.get('/api/leaderboard-data', cors(), async (req, res) => {
+  console.log("📦 Incoming request to /api/leaderboard-data");
+  console.log("Query Parameters:", req.query);
+
+  try {
+      const taskNameFilter = req.query.taskName;
+      const classFilter = req.query.class; // नया क्लास फ़िल्टर
+      const currentDate = new Date();
+      const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+      const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+      let query = `
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      `;
+      const params = [startOfMonth, endOfMonth];
+      let paramIndex = 3;
+
+      if (taskNameFilter) {
+          query += ` AND l.task_name = $${paramIndex}`;
+          params.push(taskNameFilter);
+          paramIndex++;
+      }
+      if (classFilter) { // क्लास फ़िल्टर जोड़ने की शर्त
+          query += ` AND nsa.fcc_class = $${paramIndex}`;
+          params.push(classFilter);
+          paramIndex++;
+      }
+
+      query += `
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      `;
+
+      console.log("🚀 Executing SQL Query:", query);
+      console.log("Query Parameters:", params);
+
+      const { rows } = await pool.query(query, params);
+
+      console.log("📊 Leaderboard Data Fetched:", rows);
+
+      // Add profile images to leaderboard data
+      const leaderboardDataWithImages = rows.map(student => {
+          return {
+              ...student,
+              profile_image: studentPhotos[student.fcc_id] || null // Use studentPhotos to get image URL, default to null if not found
+          };
+      });
+
+      console.log("📊 Leaderboard Data Fetched with Images:", leaderboardDataWithImages);
+
+      res.json(leaderboardDataWithImages);
+
+  } catch (error) {
+      console.error("🚨 Error fetching leaderboard data:", error);
+      res.status(500).json({ error: 'Failed to fetch leaderboard data', details: error.message, stack: error.stack });
+  }
+});
+
+app.get('/api/leaderboard-task-names', cors(), async (req, res) => {
+    try {
+        const query = `
+            SELECT DISTINCT task_name
+            FROM leaderboard
+            ORDER BY task_name;
+        `;
+        const { rows } = await pool.query(query);
+        const taskNames = rows.map(row => row.task_name);
+        res.json(taskNames);
+    } catch (error) {
+        console.error("Error fetching task names:", error);
+        res.status(500).json({ error: 'Failed to fetch task names' });
+    }
+});
+
+// API endpoint to get unique class names from "New_Student_Admission" table for filter
+app.get('/api/leaderboard-class-names', cors(), async (req, res) => {
+  try {
+      const query = `
+          SELECT DISTINCT fcc_class
+          FROM "New_Student_Admission"
+          ORDER BY fcc_class;
+      `;
+      const { rows } = await pool.query(query);
+      const classNames = rows.map(row => row.fcc_class);
+      res.json(classNames);
+  } catch (error) {
+      console.error("Error fetching class names:", error);
+      res.status(500).json({ error: 'Failed to fetch class names' });
+  }
+});
+
+
+// API endpoint to get unique task names from leaderboard table for filter
+app.get('/api/leaderboard-task-names', cors(), async (req, res) => {
+  try {
+      const query = `
+          SELECT DISTINCT task_name
+          FROM leaderboard
+          ORDER BY task_name;
+      `;
+      const { rows } = await pool.query(query);
+      const taskNames = rows.map(row => row.task_name);
+      res.json(taskNames);
+  } catch (error) {
+      console.error("Error fetching task names:", error);
+      res.status(500).json({ error: 'Failed to fetch task names' });
+  }
+});
+
+/// server.js (updated APIs for student admission table filtering)
+
+// Updated API endpoint to get total admissions (filtered by students table)
+app.get('/api/total-admissions', cors(), async (req, res) => {
+  try {
+      const query = `
+          SELECT COUNT(DISTINCT nsa.fcc_id)
+          FROM "New_Student_Admission" nsa
+          WHERE EXISTS (SELECT 1 FROM students s WHERE s.fcc_id = nsa.fcc_id);
+      `;
+      const result = await pool.query(query);
+      const totalAdmissions = parseInt(result.rows[0].count, 10);
+      res.json({ totalAdmissions });
+  } catch (error) {
+      console.error("Error fetching total admissions:", error);
+      res.status(500).json({ error: 'Failed to fetch total admissions' });
+  }
+});
+
+app.get('/api/attendance-overview', cors(), async (req, res) => {
+  try {
+      const today = new Date();
+      const pad = (n) => (n < 10 ? '0' + n : n);
+      const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+      const query = `
+          WITH ValidStudentFCCIDs AS (
+              SELECT nsa.fcc_id
+              FROM "New_Student_Admission" nsa
+              WHERE EXISTS (SELECT 1 FROM students s WHERE s.fcc_id = nsa.fcc_id)
+          ),
+          LatestStudentData AS (
+              SELECT
+                  s.fcc_id,
+                  s.ctc_time,
+                  s.ctg_time,
+                  s.task_completed,
+                  ROW_NUMBER() OVER(PARTITION BY s.fcc_id ORDER BY s.ctc_time DESC NULLS LAST) as rn
+              FROM students s
+              WHERE EXISTS (SELECT 1 FROM ValidStudentFCCIDs vsf WHERE vsf.fcc_id = s.fcc_id)
+          ),
+          AttendanceSummary AS (
+              SELECT
+                  SUM(CASE WHEN DATE(lsd.ctc_time) = $1::date THEN 1 ELSE 0 END) as present_count,
+                  SUM(CASE WHEN DATE(lsd.ctc_time) != $1::date OR lsd.ctc_time IS NULL THEN 1 ELSE 0 END) as absent_count
+              FROM LatestStudentData lsd
+              WHERE lsd.rn = 1
+          ),
+          PresentStudentsDetails AS (
+              SELECT JSON_AGG(row_to_json(ps))
+              FROM (
+                  SELECT nsa.fcc_id, nsa.name, nsa.father, nsa.mother, nsa.mobile_number, nsa.address, 
+                         lsd.ctc_time, lsd.ctg_time, lsd.task_completed, nsa.admission_date
+                  FROM LatestStudentData lsd
+                  JOIN "New_Student_Admission" nsa ON lsd.fcc_id = nsa.fcc_id
+                  WHERE DATE(lsd.ctc_time) = $1::date AND lsd.rn = 1
+              ) as ps
+          ),
+          AbsentStudentsDetails AS (
+              SELECT JSON_AGG(row_to_json(absent_s))
+              FROM (
+                  SELECT nsa.fcc_id, nsa.name, nsa.father, nsa.mother, nsa.mobile_number, nsa.address, 
+                         lsd.ctc_time, lsd.ctg_time, lsd.task_completed, nsa.admission_date
+                  FROM LatestStudentData lsd
+                  JOIN "New_Student_Admission" nsa ON lsd.fcc_id = nsa.fcc_id
+                  WHERE (DATE(lsd.ctc_time) != $1::date OR lsd.ctc_time IS NULL) AND lsd.rn = 1
+              ) as absent_s
+          )
+          SELECT
+              (SELECT present_count FROM AttendanceSummary) as presentStudents,
+              (SELECT absent_count FROM AttendanceSummary) as absentStudents,
+              COALESCE((SELECT json_agg FROM PresentStudentsDetails), '[]'::json) as presentStudentsDetails,
+              COALESCE((SELECT json_agg FROM AbsentStudentsDetails), '[]'::json) as absentStudentsDetails
+          ;
+      `;
+      const result = await pool.query(query, [todayDate]);
+
+      res.json({
+          presentStudents: parseInt(result.rows[0].presentstudents, 10) || 0,
+          absentStudents: parseInt(result.rows[0].absentstudents, 10) || 0,
+          presentStudentsDetails: result.rows[0].presentstudentsdetails || [],
+          absentStudentsDetails: result.rows[0].absentstudentsdetails || [],
+      });
+  } catch (error) {
+      console.error("Error fetching attendance overview:", error);
+      res.status(500).json({ error: 'Failed to fetch attendance overview' });
+  }
+});
+
+// Updated API endpoint for daily task completion report (filtered by admission table)
+app.get('/api/daily-task-completion', cors(), async (req, res) => {
+  try {
+      // Today's date in YYYY-MM-DD format
+      const today = new Date();
+      const pad = (n) => (n < 10 ? '0' + n : n);
+      const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+      const query = `
+          WITH ValidStudentFCCIDs AS (
+              SELECT nsa.fcc_id
+              FROM "New_Student_Admission" nsa
+              WHERE EXISTS (SELECT 1 FROM students s WHERE s.fcc_id = nsa.fcc_id)
+          ),
+          LatestStudentData AS (
+              SELECT
+                  s.fcc_id,
+                  s.ctc_time,
+                  s.task_completed,
+                  ROW_NUMBER() OVER(PARTITION BY s.fcc_id ORDER BY s.ctc_time DESC NULLS LAST) as rn
+              FROM students s
+              WHERE EXISTS (SELECT 1 FROM ValidStudentFCCIDs vsf WHERE vsf.fcc_id = s.fcc_id) -- Filter for valid FCC IDs
+          ),
+          DailyTaskSummary AS (
+              SELECT
+                  SUM(CASE WHEN lsd.task_completed = true AND DATE(lsd.ctc_time) = $1::date THEN 1 ELSE 0 END) as completed_tasks_today,
+                  SUM(CASE WHEN lsd.task_completed = false AND DATE(lsd.ctc_time) = $1::date THEN 1 ELSE 0 END) as not_completed_tasks_today,
+                  SUM(CASE WHEN lsd.task_completed = true AND DATE(lsd.ctc_time) < $1::date THEN 1 ELSE 0 END) as completed_tasks_before_today,
+                  SUM(CASE WHEN lsd.task_completed = false AND DATE(lsd.ctc_time) < $1::date THEN 1 ELSE 0 END) as not_completed_tasks_before_today,
+                  COUNT(DISTINCT lsd.fcc_id) as total_students_recorded
+              FROM LatestStudentData lsd
+              WHERE lsd.rn = 1
+          )
+          SELECT
+              (SELECT completed_tasks_today FROM DailyTaskSummary) as completedTasksToday,
+              (SELECT not_completed_tasks_today FROM DailyTaskSummary) as notCompletedTasksToday,
+              (SELECT completed_tasks_before_today FROM DailyTaskSummary) as completedTasksBeforeToday,
+              (SELECT not_completed_tasks_before_today FROM DailyTaskSummary) as notCompletedTasksBeforeToday,
+              (SELECT total_students_recorded FROM DailyTaskSummary) as totalStudentsRecorded
+          ;
+      `;
+      const result = await pool.query(query, [todayDate]);
+
+      res.json({
+          completedTasksToday: parseInt(result.rows[0].completedtaskstoday, 10) || 0,
+          notCompletedTasksToday: parseInt(result.rows[0].notcompletedtaskstoday, 10) || 0,
+          completedTasksBeforeToday: parseInt(result.rows[0].completedtasksbeforetoday, 10) || 0,
+          notCompletedTasksBeforeToday: parseInt(result.rows[0].notcompletedtasksbeforetoday, 10) || 0,
+          totalStudentsRecorded: parseInt(result.rows[0].totalstudentsrecorded, 10) || 0,
+      });
+  } catch (error) {
+      console.error("Error fetching daily task completion report:", error);
+      res.status(500).json({ error: 'Failed to fetch daily task completion report' });
+  }
+});
+
+app.get('/api/admitted-students', cors(), async (req, res) => {
+  try {
+      const query = `
+          SELECT nsa.fcc_id, nsa.name, nsa.father, nsa.mother, nsa.schooling_class, nsa.mobile_number, 
+                 nsa.address, nsa.paid, nsa.tutionfee_paid, nsa.fcc_class, nsa.skills, nsa.admission_date
+          FROM "New_Student_Admission" nsa
+          WHERE EXISTS (SELECT 1 FROM students s WHERE s.fcc_id = nsa.fcc_id);
+      `;
+      const result = await pool.query(query);
+      res.json(result.rows);
+  } catch (error) {
+      console.error("Error fetching admitted students:", error);
+      res.status(500).json({ error: 'Failed to fetch admitted students' });
+  }
+});
+
+// Serve Present Students Details at /fcchome-present-students
+app.get('/fcchome-present-students', cors(), async (req, res) => {
+  try {
+      const today = new Date();
+      const pad = (n) => (n < 10 ? '0' + n : n);
+      const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+      const query = `
+          WITH ValidStudentFCCIDs AS (
+              SELECT nsa.fcc_id
+              FROM "New_Student_Admission" nsa
+              WHERE EXISTS (SELECT 1 FROM students s WHERE s.fcc_id = nsa.fcc_id)
+          ),
+          LatestStudentData AS (
+              SELECT
+                  s.fcc_id,
+                  s.ctc_time,
+                  s.ctg_time,
+                  s.task_completed,
+                  ROW_NUMBER() OVER(PARTITION BY s.fcc_id ORDER BY s.ctc_time DESC NULLS LAST) as rn
+              FROM students s
+              WHERE EXISTS (SELECT 1 FROM ValidStudentFCCIDs vsf WHERE vsf.fcc_id = s.fcc_id)
+          )
+          SELECT nsa.fcc_id, nsa.name, nsa.father, nsa.mother, nsa.mobile_number, nsa.address, 
+                 lsd.ctc_time, lsd.ctg_time, lsd.task_completed, nsa.admission_date
+          FROM LatestStudentData lsd
+          JOIN "New_Student_Admission" nsa ON lsd.fcc_id = nsa.fcc_id
+          WHERE DATE(lsd.ctc_time) = $1::date AND lsd.rn = 1;
+      `;
+      const result = await pool.query(query, [todayDate]);
+      const students = result.rows;
+
+      const htmlContent = `
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Present Students Details</title>
+              <style>
+                  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #eef2f7; }
+                  h4 { color: #2c3e50; font-size: 1.8rem; text-align: center; }
+                  table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+                  thead { background-color: #3498db; color: #fff; }
+                  th, td { padding: 14px; text-align: left; border-bottom: 1px solid #e0e6ed; }
+                  th { font-weight: 600; text-transform: uppercase; }
+                  td { color: #34495e; }
+                  tbody tr:nth-child(even) { background-color: #f1f5f9; }
+                  tbody tr:hover { background-color: #dfe9f3; }
+              </style>
+          </head>
+          <body>
+              <h4>Present Students Details</h4>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>FCC ID</th>
+                          <th>Name</th>
+                          <th>Father</th>
+                          <th>Mother</th>
+                          <th>Mobile Number</th>
+                          <th>Address</th>
+                          <th>CTC Time</th>
+                          <th>CTG Time</th>
+                          <th>Task Completed</th>
+                          <th>Admission Date</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      ${students.map(student => `
+                          <tr>
+                              <td>${student.fcc_id}</td>
+                              <td>${student.name}</td>
+                              <td>${student.father || 'N/A'}</td>
+                              <td>${student.mother || 'N/A'}</td>
+                              <td>${student.mobile_number || 'N/A'}</td>
+                              <td>${student.address || 'N/A'}</td>
+                              <td>${student.ctc_time ? new Date(student.ctc_time).toLocaleTimeString() : 'N/A'}</td>
+                              <td>${student.ctg_time ? new Date(student.ctg_time).toLocaleTimeString() : 'N/A'}</td>
+                              <td>${student.task_completed ? 'Yes' : 'No'}</td>
+                              <td>${student.admission_date ? new Date(student.admission_date).toLocaleDateString() : 'N/A'}</td>
+                          </tr>
+                      `).join('')}
+                  </tbody>
+              </table>
+          </body>
+          </html>
+      `;
+      res.send(htmlContent);
+  } catch (error) {
+      console.error("Error fetching present students:", error);
+      res.status(500).send("Error fetching present students");
+  }
+});
+
+// Serve Absent Students Details at /fcchome-absent-students
+// app.get('/fcchome-absent-students', cors(), async (req, res) => {
+//   try {
+//       const today = new Date();
+//       const pad = (n) => (n < 10 ? '0' + n : n);
+//       const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+//       const query = `
+//           WITH ValidStudentFCCIDs AS (
+//               SELECT nsa.fcc_id
+//               FROM "New_Student_Admission" nsa
+//               WHERE EXISTS (SELECT 1 FROM students s WHERE s.fcc_id = nsa.fcc_id)
+//           ),
+//           LatestStudentData AS (
+//               SELECT
+//                   s.fcc_id,
+//                   s.ctc_time,
+//                   s.ctg_time,
+//                   s.task_completed,
+//                   ROW_NUMBER() OVER(PARTITION BY s.fcc_id ORDER BY s.ctc_time DESC NULLS LAST) as rn
+//               FROM students s
+//               WHERE EXISTS (SELECT 1 FROM ValidStudentFCCIDs vsf WHERE vsf.fcc_id = s.fcc_id)
+//           )
+//           SELECT nsa.fcc_id, nsa.name, nsa.father, nsa.mother, nsa.mobile_number, nsa.address, 
+//                  lsd.ctc_time, lsd.ctg_time, lsd.task_completed, nsa.admission_date
+//           FROM LatestStudentData lsd
+//           JOIN "New_Student_Admission" nsa ON lsd.fcc_id = nsa.fcc_id
+//           WHERE (DATE(lsd.ctc_time) != $1::date OR lsd.ctc_time IS NULL) AND lsd.rn = 1;
+//       `;
+//       const result = await pool.query(query, [todayDate]);
+//       const students = result.rows;
+
+//       const htmlContent = `
+//           <!DOCTYPE html>
+//           <html>
+//           <head>
+//               <title>Absent Students Details</title>
+//               <style>
+//                   body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #eef2f7; }
+//                   h4 { color: #2c3e50; font-size: 1.8rem; text-align: center; }
+//                   table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+//                   thead { background-color: #3498db; color: #fff; }
+//                   th, td { padding: 14px; text-align: left; border-bottom: 1px solid #e0e6ed; }
+//                   th { font-weight: 600; text-transform: uppercase; }
+//                   td { color: #34495e; }
+//                   tbody tr:nth-child(even) { background-color: #f1f5f9; }
+//                   tbody tr:hover { background-color: #dfe9f3; }
+//               </style>
+//           </head>
+//           <body>
+//               <h4>Absent Students Details</h4>
+//               <table>
+//                   <thead>
+//                       <tr>
+//                           <th>FCC ID</th>
+//                           <th>Name</th>
+//                           <th>Father</th>
+//                           <th>Mother</th>
+//                           <th>Mobile Number</th>
+//                           <th>Address</th>
+//                           <th>CTC Time</th>
+//                           <th>CTG Time</th>
+//                           <th>Task Completed</th>
+//                           <th>Admission Date</th>
+//                       </tr>
+//                   </thead>
+//                   <tbody>
+//                       ${students.map(student => `
+//                           <tr>
+//                               <td>${student.fcc_id}</td>
+//                               <td>${student.name}</td>
+//                               <td>${student.father || 'N/A'}</td>
+//                               <td>${student.mother || 'N/A'}</td>
+//                               <td>${student.mobile_number || 'N/A'}</td>
+//                               <td>${student.address || 'N/A'}</td>
+//                               <td>${student.ctc_time ? new Date(student.ctc_time).toLocaleTimeString() : 'N/A'}</td>
+//                               <td>${student.ctg_time ? new Date(student.ctg_time).toLocaleTimeString() : 'N/A'}</td>
+//                               <td>${student.task_completed ? 'Yes' : 'No'}</td>
+//                               <td>${student.admission_date ? new Date(student.admission_date).toLocaleDateString() : 'N/A'}</td>
+//                           </tr>
+//                       `).join('')}
+//                   </tbody>
+//               </table>
+//           </body>
+//           </html>
+//       `;
+//       res.send(htmlContent);
+//   } catch (error) {
+//       console.error("Error fetching absent students:", error);
+//       res.status(500).send("Error fetching absent students");
+//   }
+// });
+
+app.get('/fcchome-present-students', cors(), async (req, res) => {
+  try {
+    const today = new Date();
+    const pad = (n) => (n < 10 ? '0' + n : n);
+    const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+    const query = `
+      WITH ValidStudentFCCIDs AS (
+          SELECT nsa.fcc_id
+          FROM "New_Student_Admission" nsa
+          WHERE EXISTS (SELECT 1 FROM students s WHERE s.fcc_id = nsa.fcc_id)
+      ),
+      LatestStudentData AS (
+          SELECT
+              s.fcc_id,
+              s.ctc_time,
+              s.ctg_time,
+              s.task_completed,
+              ROW_NUMBER() OVER(PARTITION BY s.fcc_id ORDER BY s.ctc_time DESC NULLS LAST) as rn
+          FROM students s
+          WHERE EXISTS (SELECT 1 FROM ValidStudentFCCIDs vsf WHERE vsf.fcc_id = s.fcc_id)
+      )
+      SELECT nsa.fcc_id, nsa.name, nsa.father, nsa.mother, nsa.mobile_number, nsa.address, 
+             lsd.ctc_time, lsd.ctg_time, lsd.task_completed, nsa.admission_date
+      FROM LatestStudentData lsd
+      JOIN "New_Student_Admission" nsa ON lsd.fcc_id = nsa.fcc_id
+      WHERE DATE(lsd.ctc_time) = $1::date AND lsd.rn = 1;
+    `;
+    const result = await pool.query(query, [todayDate]);
+    const students = result.rows.map(student => ({
+      fcc_id: student.fcc_id,
+      name: student.name,
+      father: student.father || 'N/A',
+      mother: student.mother || 'N/A',
+      mobile_number: student.mobile_number || 'N/A',
+      address: student.address || 'N/A',
+      ctc_time: student.ctc_time ? new Date(student.ctc_time).toISOString() : 'N/A',
+      ctg_time: student.ctg_time ? new Date(student.ctg_time).toISOString() : 'N/A',
+      task_completed: student.task_completed ? 'Yes' : 'No',
+      admission_date: student.admission_date ? new Date(student.admission_date).toISOString() : 'N/A'
+    }));
+
+    res.json({ students }); // Return JSON instead of HTML
+  } catch (error) {
+    console.error("Error fetching present students:", error);
+    res.status(500).json({ error: "Error fetching present students" });
+  }
+});
+
+
 
 // ✅ **HTTP Server Listening on IPv4 & IPv6 for localhost**
 
-app.listen(port, "0.0.0.0", () => {
-  console.log(`🚀 HTTP Server running on port ${port}`);
+app.listen(port, () => {
+  console.log(`HTTP Server running on port ${port}`);
+  pool.query('SELECT NOW()')
+      .then(res => console.log('Database connected, response:', res.rows))
+      .catch(err => console.error('Database connection error:', err));
 });

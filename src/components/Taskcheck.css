@@ -1,0 +1,235 @@
+/* Taskcheck.css */
+.taskcheck-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+}
+
+.taskcheck-sidebar {
+    width: 250px; /* Adjust sidebar width as needed */
+    background-color: #e9ecef;
+    padding: 20px;
+    border-right: 1px solid #d3d3d3;
+}
+
+.taskcheck-main-content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #343a40;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #343a40;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #495057;
+    margin-bottom: 15px;
+}
+
+.success-message {
+    color: #28a745;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.error-message {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.classroom-select-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.classroom-select-container label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.classroom-select-container select {
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.task-table-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #495057;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+input[type="number"] {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+input[type="number"]:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+
+.actions-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: #495057;
+    min-width: 120px; /* Adjust as needed for label width */
+    text-align: right;
+}
+
+.input-group input[type="password"],
+.input-group input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    flex-grow: 1; /* Allows input to take available space */
+}
+
+
+.buttons-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+button .icon {
+    font-size: 1em; /* Adjust icon size if needed */
+}
+
+.buttons-group {
+    display: flex;
+    gap: 10px;
+}
+
+.buttons-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.buttons-group button i {
+    margin-right: 5px;
+}
+
+.btn-submit {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-zero {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-max {
+    background-color: #ffc107;
+    color: black;
+}
+
+.btn-clear {
+    background-color: #6c757d;
+    color: white;
+}
+
+.absent-students-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.absent-students-section li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #d3d3d3;
+}
+.absent-students-section li:last-child {
+    border-bottom: none;
+}
+
+.absent-student-row {
+    background-color: #ffe0b2; /* Light orange/amber to highlight absent students rows */
+}
+.absent-student-row td {
+    color: #555; /* Optional: darker text for absent student rows */
+}

@@ -17,16 +17,6 @@
     --initial-message-color: var(--text-color-secondary); /* Color for initial message */
 }
 
-body {
-    font-family: 'Nunito', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color-primary);
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
 .chat-container {
     display: flex;
     flex-direction: column;

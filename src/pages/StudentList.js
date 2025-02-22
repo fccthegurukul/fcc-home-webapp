@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./StudentList.css";
+import { Link } from 'react-router-dom';
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
@@ -65,7 +66,7 @@ const StudentList = () => {
   return (
     <div className="student-list">
       <h1 className="title">Student List</h1>
-
+      <Link to="/register">Register</Link>
       {/* Filters */}
       <div className="filters">
         <div className="filter-group">

@@ -1,0 +1,196 @@
+/* Navbar.css */
+
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --text-light: #ecf0f1;
+  --hover-transition: all 0.3s ease;
+}
+
+/* बेस नवबार स्टाइलिंग */
+.navbar {
+  background-color: var(--primary-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ब्रांडिंग एरिया स्टाइल */
+.branding-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.branding-link {
+  color: var(--text-light);
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: var(--hover-transition);
+}
+
+.branding-link:hover {
+  color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.location-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+  background: rgba(255,255,255,0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.location-icon {
+  font-size: 1.2rem;
+}
+
+/* मोबाइल मेनू आइकन स्टाइल */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+
+.menu-icon .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-light);
+  margin: 5px 0;
+  transition: var(--hover-transition);
+}
+
+/* मोबाइल मेनू ओपन स्टेट */
+.menu-icon.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-icon.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* नेविगेशन लिंक्स स्टाइलिंग */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  transition: var(--hover-transition);
+}
+
+.nav-link {
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  position: relative;
+  transition: var(--hover-transition);
+}
+
+.nav-link:hover {
+  color: var(--secondary-color);
+  background: rgba(255,255,255,0.1);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--secondary-color);
+  transition: var(--hover-transition);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.logout-button {
+  background: var(--accent-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: var(--hover-transition);
+}
+
+.logout-button:hover {
+  background: #c0392b;
+  transform: scale(1.05);
+}
+
+/* मोबाइल रेस्पॉन्सिव स्टाइल्स */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background: var(--primary-color);
+    flex-direction: column;
+    padding: 6rem 2rem;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-link {
+    padding: 1rem;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-link:hover {
+    border-left-color: var(--secondary-color);
+    background: rgba(255,255,255,0.05);
+  }
+}
+
+/* डेस्कटॉप स्पेसिंग ऑप्टिमाइजेशन */
+@media (min-width: 769px) {
+  .navbar-container {
+    padding: 0 3rem;
+  }
+  
+  .nav-links {
+    gap: 3rem;
+  }
+}
+
+/* एक्सेसिबिलिटी फोकस स्टेट्स */
+.nav-link:focus-visible,
+.logout-button:focus-visible {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}

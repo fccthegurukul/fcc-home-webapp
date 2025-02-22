@@ -1,0 +1,1048 @@
+[2025-02-15T01:49:19.931Z] ERROR: (node:19200) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T01:49:19.957Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T01:49:20.152Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T01:49:20.142Z"
+  }
+]
+[2025-02-15T01:49:29.674Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:49:29.675Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:49:29.676Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:49:29.702Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:49:29.702Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:49:29.703Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:49:32.099Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T01:49:32.102Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:49:32.102Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:49:40.506Z] LOG: Incoming request: GET /api/videos?classroomName=Class+2, Origin: http://localhost:3000
+[2025-02-15T01:49:40.515Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:49:40.509Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:50:29.678Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T01:50:29.684Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:50:29.685Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:52:39.505Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:52:39.531Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:52:39.532Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:52:40.518Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:52:40.561Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:52:40.561Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:52:41.915Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T01:52:41.916Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:52:41.915Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:56:34.594Z] ERROR: (node:16860) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T01:56:34.603Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T01:56:34.732Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T01:56:34.729Z"
+  }
+]
+[2025-02-15T01:56:35.820Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:56:35.823Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:56:35.825Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:56:36.099Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:56:36.113Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:56:36.120Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:56:40.742Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:56:40.773Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:56:40.774Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:56:40.784Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:56:40.804Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:56:40.805Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:56:44.271Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-15T01:56:44.275Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:56:44.277Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:56:44.299Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-15T01:56:44.324Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:56:44.326Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:57:02.888Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T01:57:02.900Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:57:02.901Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:57:02.905Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T01:57:02.906Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:57:02.914Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:58:25.496Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:58:25.587Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:58:25.582Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:58:26.381Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:58:26.383Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:58:26.387Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:58:28.046Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T01:58:28.050Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:58:28.048Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:58:28.063Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T01:58:28.064Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:58:28.064Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:59:01.717Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:59:01.784Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:59:01.785Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:59:02.290Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T01:59:02.291Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:59:02.296Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:59:05.949Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T01:59:05.955Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:59:05.966Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:59:05.969Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T01:59:05.953Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T01:59:05.959Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T02:01:14.116Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T02:01:14.118Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:01:14.122Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:01:14.902Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T02:01:14.922Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:01:14.924Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:01:15.954Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T02:01:15.958Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:01:16.018Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:01:16.019Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:01:15.957Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:01:16.012Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T02:02:05.669Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T02:02:05.747Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:02:05.748Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:02:06.005Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T02:02:06.015Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:02:06.018Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:02:08.053Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T02:02:08.054Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:02:08.055Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:02:08.056Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T02:02:08.058Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:02:08.058Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:06:22.535Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T02:06:22.536Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:06:22.537Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:06:22.540Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T02:06:22.542Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:06:22.543Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:06:22.549Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T02:06:22.559Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:06:22.557Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:06:37.239Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T02:06:37.241Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:06:37.243Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:06:37.561Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T02:06:37.568Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:06:37.566Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T02:06:37.584Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T02:06:37.586Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T02:06:37.585Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:20:46.515Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T04:20:46.516Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:20:46.517Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:20:46.640Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T04:20:46.642Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:20:46.643Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:20:51.186Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T04:20:51.191Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:20:51.192Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:20:51.194Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T04:20:51.197Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:20:51.198Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:21:24.946Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T04:21:24.946Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:21:24.947Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:21:25.045Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T04:21:25.048Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:21:25.049Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:22:06.685Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T04:22:06.790Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:22:06.997Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:22:07.340Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T04:22:07.464Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:22:07.584Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:23:46.068Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T04:23:46.068Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:23:46.069Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:23:46.145Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T04:23:46.146Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:23:46.146Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:25:06.941Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T04:25:06.943Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:25:06.944Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:25:06.946Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T04:25:06.947Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:25:06.948Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:32:23.107Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T04:32:23.109Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:32:23.108Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:32:23.291Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T04:32:23.357Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:32:23.357Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:32:25.497Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T04:32:25.498Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:32:25.499Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:32:25.500Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T04:32:25.501Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:32:25.502Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:32:47.285Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-15T04:32:47.287Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:32:47.289Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:32:47.292Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-15T04:32:47.293Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:32:47.301Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:01.425Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%203, Origin: http://localhost:3000
+[2025-02-15T04:33:01.427Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:01.440Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:01.449Z] LOG: Incoming request: GET /api/videos?classroomName=Class+3, Origin: http://localhost:3000
+[2025-02-15T04:33:01.454Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:01.456Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:13.952Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%204, Origin: http://localhost:3000
+[2025-02-15T04:33:13.953Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:13.954Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:13.958Z] LOG: Incoming request: GET /api/videos?classroomName=Class+4, Origin: http://localhost:3000
+[2025-02-15T04:33:13.962Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:13.964Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:20.379Z] LOG: Incoming request: GET /api/videos?classroomName=Class+9, Origin: http://localhost:3000
+[2025-02-15T04:33:20.408Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:20.424Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:20.430Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%209, Origin: http://localhost:3000
+[2025-02-15T04:33:20.549Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:20.627Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:25.457Z] LOG: Incoming request: GET /api/videos?classroomName=Class+8, Origin: http://localhost:3000
+[2025-02-15T04:33:25.459Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:25.460Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:25.465Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%208, Origin: http://localhost:3000
+[2025-02-15T04:33:25.472Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:25.474Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:29.694Z] LOG: Incoming request: GET /api/videos?classroomName=Class+7, Origin: http://localhost:3000
+[2025-02-15T04:33:29.697Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:29.711Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:29.717Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%207, Origin: http://localhost:3000
+[2025-02-15T04:33:29.727Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:29.724Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:52.813Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-15T04:33:52.820Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:52.822Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:33:52.827Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-15T04:33:52.828Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:33:52.832Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:34:05.277Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T04:34:05.299Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:34:05.301Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T04:34:05.605Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T04:34:05.606Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T04:34:05.606Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:41:07.577Z] ERROR: (node:18604) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T06:41:07.660Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T06:41:07.877Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T06:41:07.873Z"
+  }
+]
+[2025-02-15T06:41:10.992Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:41:10.999Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:41:10.998Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:41:11.015Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:41:11.015Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:41:11.016Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:41:11.020Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:41:11.022Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:41:11.022Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:05.307Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:43:05.309Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:05.308Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:05.442Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:43:05.443Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:05.444Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:07.430Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:43:07.435Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:07.437Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:07.443Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:43:07.444Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:07.444Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:17.915Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-15T06:43:17.972Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:17.980Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:17.992Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-15T06:43:18.055Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:18.057Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:22.537Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%202, Origin: http://localhost:3000
+[2025-02-15T06:43:22.551Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:22.546Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:22.555Z] LOG: Incoming request: GET /api/videos?classroomName=Class+2, Origin: http://localhost:3000
+[2025-02-15T06:43:22.557Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:22.558Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:26.120Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:43:26.122Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:26.125Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:26.129Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:43:26.131Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:26.132Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:51.524Z] ERROR: (node:15620) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T06:43:51.534Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T06:43:51.569Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:43:51.571Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:51.574Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:51.585Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:43:51.628Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:51.630Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:51.635Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:43:51.639Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:43:51.637Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:43:51.690Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T06:43:51.685Z"
+  }
+]
+[2025-02-15T06:48:20.021Z] ERROR: (node:19292) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T06:48:20.057Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T06:48:20.323Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:48:20.329Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:48:20.330Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:48:20.371Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:48:20.382Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:48:20.400Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:48:20.444Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T06:48:20.437Z"
+  }
+]
+[2025-02-15T06:48:29.448Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:48:29.450Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:48:29.451Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:48:29.467Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:48:29.469Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:48:29.473Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:48:31.869Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:48:31.877Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:48:31.878Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:48:31.886Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:48:31.888Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:48:31.894Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:48:58.768Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:48:58.769Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:48:58.773Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:48:59.135Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:48:59.203Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:48:59.206Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:49:00.835Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:49:00.836Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:49:00.836Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:49:00.842Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:49:00.843Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:49:00.841Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:49:21.475Z] ERROR: (node:17680) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T06:49:21.513Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T06:49:21.737Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T06:49:21.740Z"
+  }
+]
+[2025-02-15T06:49:26.671Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:49:26.675Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:49:26.690Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:49:27.489Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:49:27.545Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:49:27.550Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:49:28.774Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:49:28.779Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:49:28.777Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:49:28.797Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:49:28.803Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:49:28.804Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:50:12.908Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:50:12.910Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:50:12.910Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:50:13.408Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:50:13.466Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:50:13.467Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:50:15.103Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:50:15.124Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:50:15.126Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:50:15.135Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:50:15.137Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:50:15.138Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:52:19.011Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:52:19.039Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:52:19.040Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:52:19.359Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:52:19.363Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:52:19.389Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:52:21.090Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:52:21.093Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:52:21.092Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:52:21.095Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:52:21.097Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:52:21.097Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:52:56.112Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:52:56.189Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:52:56.188Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:52:56.610Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T06:52:56.630Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:52:56.630Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:52:58.910Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T06:52:58.913Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:52:58.914Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T06:52:58.932Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T06:52:58.934Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T06:52:58.935Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T07:33:32.927Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T07:33:33.062Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T07:33:33.217Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T07:33:34.226Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T07:33:34.284Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T07:33:34.285Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T07:33:35.284Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T07:33:35.285Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T07:33:35.288Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T07:33:35.302Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T07:33:35.303Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T07:33:35.284Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:06:09.850Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:06:09.887Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:06:09.892Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:06:11.091Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:06:11.109Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:06:11.110Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:06:51.069Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:06:51.070Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:06:51.070Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:06:51.072Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:06:51.073Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:06:51.073Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:07:49.617Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:07:49.619Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:07:49.621Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:07:49.627Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:07:49.629Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:07:49.633Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:07:49.642Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:07:49.644Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:07:49.643Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:08:18.398Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:08:18.399Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:08:18.400Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:08:18.975Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:08:19.003Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:08:19.002Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:08:20.126Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:08:20.131Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:08:20.131Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:08:20.133Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:08:20.134Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:08:20.135Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:08:36.698Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:08:36.702Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:08:36.703Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:08:36.805Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:08:36.807Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:08:36.807Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:08:39.369Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:08:39.372Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:08:39.374Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:08:39.391Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:08:39.380Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:08:39.386Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:15:34.557Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:15:34.558Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:15:34.558Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:15:34.663Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:15:34.664Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:15:34.663Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:15:42.365Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:15:42.366Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:15:42.367Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:15:42.368Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:15:42.369Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:15:42.368Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:15:42.374Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:15:42.376Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:15:42.375Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:15:42.385Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:15:42.386Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:15:42.386Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:15:44.494Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:15:44.506Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:15:44.507Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:15:44.511Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:15:44.520Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:15:44.525Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:16:12.256Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:16:12.257Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:16:12.259Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:16:12.466Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:16:12.468Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:16:12.467Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:17:53.388Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:17:53.440Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:17:53.395Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:17:53.442Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:17:53.443Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:17:53.444Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:17:55.451Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:17:55.453Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:17:55.452Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:17:55.455Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:17:55.456Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:17:55.459Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:17:55.459Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:17:55.458Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:17:55.457Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:26:00.526Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:26:00.532Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:26:00.533Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:26:00.691Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:26:00.692Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:26:00.692Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:26:29.547Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:26:29.551Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:26:29.550Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:26:29.803Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:26:29.805Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:26:29.804Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:28:07.313Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T10:28:07.288Z] ERROR: (node:10568) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T10:28:07.531Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T10:28:07.526Z"
+  }
+]
+[2025-02-15T10:28:07.608Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:28:07.610Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:28:07.609Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:28:07.634Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:28:07.635Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:28:07.635Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:28:18.271Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:28:18.277Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:28:18.278Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:28:18.496Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:28:18.507Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:28:18.508Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:28:21.205Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:28:21.211Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:28:21.212Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:28:21.218Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:28:21.216Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:28:21.216Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-15T10:28:21.221Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:28:21.221Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:28:21.224Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:30:12.631Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:30:12.664Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:30:12.663Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:30:13.492Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:30:13.494Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:30:13.493Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:30:14.229Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:30:14.231Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:30:14.232Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:30:14.235Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-15T10:30:14.236Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:30:14.237Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:30:14.252Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:30:14.248Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:30:14.253Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:31:37.814Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:31:37.906Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:31:37.907Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:31:39.106Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:31:39.145Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:31:39.152Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:31:40.081Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:31:40.084Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:31:40.085Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:31:40.087Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:31:40.088Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:31:40.089Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:31:40.100Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:31:40.094Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-15T10:31:40.097Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:32:20.050Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:32:20.051Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:32:20.052Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:32:20.736Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:32:20.737Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:32:20.742Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:32:21.792Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:32:21.793Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:32:21.794Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:32:21.798Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:32:21.801Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:32:21.801Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:32:21.811Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-15T10:32:21.834Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:32:21.820Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:33:05.574Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:33:05.575Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:33:05.575Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:33:06.125Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:33:06.154Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:33:06.142Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:33:07.189Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-15T10:33:07.192Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:33:07.193Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:33:07.202Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-15T10:33:07.207Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:33:07.208Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:33:07.222Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-15T10:33:07.223Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:33:07.223Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:35.545Z] LOG: Incoming request: OPTIONS /leaderboard/1234567890?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:35:35.551Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:35.556Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:35:35.558Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:35.561Z] LOG: Incoming request: OPTIONS /leaderboard/1234567890?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:35:35.569Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:35.573Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:35:35.575Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:35.576Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:35.578Z] LOG: Incoming request: OPTIONS /leaderboard/1234567890?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:35:35.580Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:35.580Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:35.562Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:35.557Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:35.546Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:35.622Z] LOG: Incoming request: GET /leaderboard/1234567890?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:35:35.622Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:35.623Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:35.644Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:35:35.645Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:35.644Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:35.654Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: undefined
+[2025-02-15T10:35:35.655Z] LOG: Incoming Origin: 
+[2025-02-15T10:35:35.657Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:35:36.177Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:35:36.187Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:36.188Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:36.261Z] LOG: Incoming request: GET /leaderboard/1234567890?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:35:36.271Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:36.278Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:36.288Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: undefined
+[2025-02-15T10:35:36.303Z] LOG: Incoming Origin: 
+[2025-02-15T10:35:36.305Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:35:36.439Z] LOG: Incoming request: GET /leaderboard/1234567890?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:35:36.488Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:36.489Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:36.494Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: undefined
+[2025-02-15T10:35:36.509Z] LOG: Incoming Origin: 
+[2025-02-15T10:35:36.511Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:35:42.912Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-15T10:35:42.937Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:42.937Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:42.948Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-15T10:35:42.949Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:42.950Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:43.017Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-15T10:35:43.032Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:35:43.033Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:43.062Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-15T10:35:43.159Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:35:43.154Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:05.770Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:36:05.771Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:05.772Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:05.778Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:36:05.779Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:05.778Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:05.990Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:36:06.006Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:06.006Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:06.013Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:36:06.014Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:06.014Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.288Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:36:12.294Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:12.298Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.320Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:36:12.321Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:12.322Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.341Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:36:12.344Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:12.345Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.352Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:36:12.354Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.364Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.353Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:12.359Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:36:12.362Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:12.378Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:36:12.385Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:12.394Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.405Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:36:12.411Z] LOG: Incoming Origin: 
+[2025-02-15T10:36:12.415Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:36:12.416Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:12.417Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.411Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:36:12.467Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:36:12.482Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:12.483Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.488Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:36:12.501Z] LOG: Incoming Origin: 
+[2025-02-15T10:36:12.503Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:36:12.538Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:36:12.546Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:12.547Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.566Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:36:12.566Z] LOG: Incoming Origin: 
+[2025-02-15T10:36:12.567Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:36:12.811Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:36:12.818Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:12.817Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:39.182Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=10, Origin: http://localhost:3000
+[2025-02-15T10:36:39.184Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:39.186Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:39.334Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=10, Origin: http://localhost:3000
+[2025-02-15T10:36:39.350Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:39.352Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:39.367Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:36:39.368Z] LOG: Incoming Origin: 
+[2025-02-15T10:36:39.375Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:36:40.309Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:36:40.313Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:40.314Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:40.346Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:36:40.351Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:36:40.352Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:36:40.361Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:36:40.363Z] LOG: Incoming Origin: 
+[2025-02-15T10:36:40.364Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:37:53.129Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:37:53.190Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.192Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.194Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:37:53.194Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.207Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.446Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:37:53.457Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.460Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.479Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:37:53.480Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.481Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.523Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:37:53.549Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.550Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.553Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:37:53.557Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.558Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.569Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:37:53.576Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.577Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.589Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:37:53.592Z] LOG: Incoming Origin: 
+[2025-02-15T10:37:53.598Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:37:53.717Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:37:53.722Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.722Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.795Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:37:53.800Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.803Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.805Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:37:53.807Z] LOG: Incoming Origin: 
+[2025-02-15T10:37:53.807Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:37:53.818Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:37:53.819Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:37:53.820Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:37:53.821Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:37:53.822Z] LOG: Incoming Origin: 
+[2025-02-15T10:37:53.822Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:38:19.857Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:38:19.858Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:38:19.860Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:38:19.878Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:38:19.889Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:38:19.892Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:38:19.898Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:38:19.907Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:38:19.907Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:38:19.911Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:38:19.919Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:38:19.932Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:38:19.937Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:38:19.942Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:38:20.046Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:38:20.048Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:38:20.172Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:38:20.375Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:38:20.591Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:38:20.806Z] LOG: Incoming Origin: 
+[2025-02-15T10:38:20.825Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:38:21.282Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:38:21.295Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:38:21.307Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:38:21.310Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:38:21.315Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:38:21.326Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:38:21.358Z] LOG: Incoming Origin: 
+[2025-02-15T10:38:21.329Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:38:21.360Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:38:21.420Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:38:21.471Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:38:21.478Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:38:21.480Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:38:21.480Z] LOG: Incoming Origin: 
+[2025-02-15T10:38:21.481Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:41:13.165Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:41:13.173Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:41:13.177Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:41:13.184Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:41:13.190Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:41:13.189Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:41:13.210Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:41:13.211Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:41:13.212Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:41:13.664Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:41:13.673Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:41:13.671Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:41:13.746Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:41:13.760Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:41:13.777Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:41:13.845Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:41:13.846Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:41:13.846Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:41:13.860Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:41:13.911Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:41:13.910Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:05.029Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:42:05.036Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:05.037Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:05.275Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-15T10:42:05.282Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:05.282Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.063Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:42:06.111Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.156Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.188Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:42:06.237Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.251Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.271Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:42:06.295Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.296Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.302Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.305Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.299Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:42:06.308Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:42:06.318Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.319Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.330Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.330Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.323Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:42:06.339Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:42:06.352Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:42:06.352Z] LOG: Incoming Origin: 
+[2025-02-15T10:42:06.379Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:42:06.380Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.382Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.421Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:42:06.448Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.449Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.450Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:42:06.451Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.451Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.453Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:42:06.452Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:42:06.452Z] LOG: Incoming Origin: 
+[2025-02-15T10:42:06.485Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=10, Origin: http://localhost:3000
+[2025-02-15T10:42:06.535Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.521Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.552Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=10, Origin: http://localhost:3000
+[2025-02-15T10:42:06.554Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.554Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.558Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:42:06.562Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:42:06.561Z] LOG: Incoming Origin: 
+[2025-02-15T10:42:06.820Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:42:06.854Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:42:06.866Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:42:06.869Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:42:06.872Z] LOG: Incoming Origin: 
+[2025-02-15T10:42:06.873Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:44:02.713Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:44:02.715Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:02.716Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:02.719Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:44:02.720Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:02.721Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:02.746Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:44:02.752Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:02.753Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:02.757Z] LOG: Incoming request: OPTIONS /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:44:02.769Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:02.770Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:02.772Z] LOG: Incoming request: OPTIONS /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:44:02.800Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:02.801Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:02.803Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:44:02.880Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:02.881Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:02.883Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:44:02.888Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:02.894Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:02.901Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:44:02.914Z] LOG: Incoming Origin: 
+[2025-02-15T10:44:02.918Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:44:03.409Z] ERROR: Error fetching leaderboard data: {
+  "length": 116,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42P01",
+  "position": "288",
+  "file": "parse_relation.c",
+  "line": "1452",
+  "routine": "parserOpenTable"
+}
+[2025-02-15T10:44:03.535Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:44:03.552Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:03.553Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:03.555Z] LOG: Incoming request: GET /get-classes, Origin: http://localhost:3000
+[2025-02-15T10:44:03.572Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:03.575Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:03.584Z] LOG: Incoming Origin: 
+[2025-02-15T10:44:03.581Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:44:03.585Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:44:03.935Z] ERROR: Error fetching leaderboard data: {
+  "length": 116,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42P01",
+  "position": "288",
+  "file": "parse_relation.c",
+  "line": "1452",
+  "routine": "parserOpenTable"
+}
+[2025-02-15T10:44:03.945Z] LOG: Incoming request: GET /leaderboard/9708200025?leaderboardClassFilter=ALL, Origin: http://localhost:3000
+[2025-02-15T10:44:03.947Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:44:03.949Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:44:03.952Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: undefined
+[2025-02-15T10:44:03.968Z] LOG: Incoming Origin: 
+[2025-02-15T10:44:03.969Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-15T10:44:03.996Z] ERROR: Error fetching leaderboard data: {
+  "length": 116,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42P01",
+  "position": "288",
+  "file": "parse_relation.c",
+  "line": "1452",
+  "routine": "parserOpenTable"
+}
+[2025-02-15T10:54:54.968Z] ERROR: (node:19364) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T10:54:54.976Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T10:54:55.218Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T10:54:55.213Z"
+  }
+]
+[2025-02-15T10:55:43.629Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:55:43.778Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:55:43.850Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:55:43.897Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:55:43.912Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:55:43.913Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:55:44.331Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:55:44.373Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:55:44.432Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T10:55:44.907Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T10:55:44.915Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T10:55:44.917Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:23:59.486Z] ERROR: (node:10472) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T11:23:59.509Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T11:24:00.120Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T11:24:00.114Z"
+  }
+]
+[2025-02-15T11:24:27.539Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:24:27.541Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:24:27.542Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:24:27.553Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:24:27.557Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:24:27.562Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:24:27.571Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:24:27.574Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:24:27.575Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:24:28.052Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:24:28.091Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:24:28.093Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:24:28.232Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:24:28.281Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:24:28.283Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:24:28.292Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:24:28.300Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:24:28.302Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:24:28.328Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:24:28.331Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:24:28.352Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:24:28.396Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:24:28.409Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:24:28.435Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:27:30.709Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:27:30.713Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:27:30.724Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:27:30.710Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:27:30.721Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:27:30.723Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:27:30.742Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:27:30.742Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:27:30.743Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:27:30.747Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:27:30.749Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:27:30.750Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:27:31.088Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:27:31.090Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:27:31.090Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:27:59.005Z] LOG: Incoming request: OPTIONS /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:27:59.006Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:27:59.008Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:27:59.019Z] LOG: Incoming request: OPTIONS /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:27:59.021Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:27:59.020Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:27:59.046Z] LOG: Incoming request: GET /get-student-profile/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:27:59.047Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:27:59.048Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:27:59.065Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:27:59.066Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:27:59.067Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:28:00.257Z] LOG: Incoming request: GET /get-tuition-fee-details/9708200025, Origin: http://localhost:3000
+[2025-02-15T11:28:00.265Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:28:00.268Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:28:27.590Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-15T11:28:27.601Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T11:28:27.595Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:28:28.331Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-15T11:28:28.333Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T11:28:28.337Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T16:22:25.028Z] ERROR: (node:14428) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T16:22:25.057Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T16:22:25.281Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T16:22:25.272Z"
+  }
+]
+[2025-02-15T16:22:54.210Z] LOG: Incoming request: GET /api/leaderboard, Origin: http://localhost:3000
+[2025-02-15T16:22:54.215Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T16:22:54.216Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T16:22:54.659Z] LOG: Incoming request: GET /api/leaderboard, Origin: http://localhost:3000
+[2025-02-15T16:22:54.660Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T16:22:54.661Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T16:24:38.601Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-15T16:24:38.604Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T16:24:38.605Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T16:24:39.828Z] LOG: Incoming request: GET /get-students, Origin: http://localhost:3000
+[2025-02-15T16:24:39.830Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T16:24:39.832Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T16:24:41.443Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-15T16:24:41.448Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T16:24:41.451Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T16:24:41.499Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-15T16:24:41.517Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-15T16:24:41.520Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-15T16:25:05.649Z] ERROR: (node:5984) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-15T16:25:05.663Z] LOG: 🚀 HTTP Server running on port 5000
+[2025-02-15T16:25:05.811Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-15T16:25:05.806Z"
+  }
+]
