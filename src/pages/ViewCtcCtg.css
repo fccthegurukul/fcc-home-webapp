@@ -1,115 +1,345 @@
-/* ViewCtcCtg.css - Improved UI/UX Design */
+/* ViewCtcCtg.css - 100% Mobile Friendly, No Left/Right Padding */
 
 .view-ctc-ctg-container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
+  max-width: 100%; /* स्क्रीन की पूरी चौड़ाई */
+  margin: 0; /* मार्जिन हटाया */
+  padding: 15px 0; /* टॉप और बॉटम पैडिंग, लेफ्ट-राइट 0 */
   background: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0; /* किनारों पर राउंडेड हटाया */
+  box-shadow: none; /* मोबाइल में शैडो हटाया */
   font-family: "Arial", sans-serif;
+  min-height: calc(100vh - 140px); /* Navbar (60px) और BottomNav (80px) के लिए */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* बैक बटन ग्रुप */
 .back-button-group {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 15px 0; /* लेफ्ट-राइट मार्जिन 0 */
+  padding: 0 10px; /* अंदर थोड़ा पैडिंग ताकि कंटेंट किनारे से चिपके न */
 }
 
+/* प्रोफाइल इमेज */
 .current-profile-image {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #0052cc;
+  flex-shrink: 0;
 }
 
+/* प्रोफाइल स्विचर */
 .profile-switcher {
-  padding: 8px;
-  border-radius: 6px;
+  padding: 6px;
+  border-radius: 5px;
   border: 1px solid #ddd;
   background: white;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* होवर इफेक्ट */
 .profile-switcher:hover {
   border-color: #0052cc;
 }
 
+/* CTC/CTG डिटेल्स */
 .ctc-ctg-details {
   background: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px 10px; /* लेफ्ट-राइट पैडिंग कम */
+  border-radius: 0; /* राउंडेड हटाया */
+  box-shadow: none; /* शैडो हटाया */
   text-align: left;
+  margin: 15px 0; /* टॉप-बॉटम मार्जिन, लेफ्ट-राइट 0 */
 }
 
+/* सेक्शन टाइटल */
 .section-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: #0052cc;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  padding: 0 5px; /* थोड़ा पैडिंग ताकि किनारे से चिपके न */
 }
 
+/* डिटेल आइटम */
 .detail-item p {
-  margin: 6px 0;
-  font-size: 16px;
+  margin: 5px 0;
+  font-size: 14px;
   color: #333;
   text-align: left;
+  line-height: 1.4;
+  padding: 0 5px; /* थोड़ा पैडिंग ताकि किनारे से चिपके न */
 }
 
+/* फिल्टर्स */
 .filters {
-  margin: 15px 0;
+  margin: 12px 0;
+  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
 }
 
 .filters select {
-  padding: 8px;
-  border-radius: 6px;
+  padding: 6px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   background: white;
   cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* टेबल कंटेनर */
 .table-container {
   overflow-x: auto;
+  margin: 12px 0;
+  flex: 1; /* बाकी जगह ले */
+  width: 100%;
+}
+
+/* लॉग डिटेल्स टेबल */
+.log-details {
+  margin: 15px 0;
+  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
+}
+
+.log-details h2 {
+  font-size: 18px;
+  color: #0052cc;
+  margin-bottom: 10px;
 }
 
 .log-details table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  font-size: 14px;
 }
 
-.log-details th, .log-details td {
+.log-details th,
+.log-details td {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 8px;
   text-align: center;
+  word-wrap: break-word;
 }
 
 .log-details th {
   background: #0052cc;
   color: white;
   font-weight: bold;
+  font-size: 13px;
 }
 
+.log-details td {
+  font-size: 13px;
+}
+
+/* बटन ग्रुप */
 .button-group {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin: 15px 0;
+  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
 }
 
+/* डाउनलोड PDF बटन */
 .download-pdf-button {
   background: #28a745;
   color: white;
-  padding: 10px 15px;
+  padding: 8px 12px;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 14px;
+  width: 100%;
+  max-width: 200px; /* अधिकतम चौड़ाई सेट */
 }
 
+/* होवर इफेक्ट */
 .download-pdf-button:hover {
   background: #218838;
+  transform: scale(1.05);
+}
+
+/* एरर मैसेज */
+.error {
+  color: #e74c3c;
+  font-size: 14px;
+  text-align: center;
+  margin: 10px 0;
+  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
+}
+
+/* लोडिंग इंडिकेटर */
+.view-ctc-ctg-container p {
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
+}
+
+/* मोबाइल रिस्पॉन्सिव स्टाइल्स (100% मोबाइल फ्रेंडली) */
+@media (max-width: 768px) {
+  .view-ctc-ctg-container {
+    padding: 10px 0; /* टॉप-बॉटम पैडिंग, लेफ्ट-राइट 0 */
+    min-height: calc(100vh - 130px); /* थोड़ा कम */
+  }
+
+  .back-button-group {
+    flex-direction: column;
+    align-items: stretch; /* पूरी चौड़ाई ले */
+    gap: 8px;
+    padding: 0 8px; /* कम पैडिंग */
+  }
+
+  .current-profile-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .profile-switcher {
+    padding: 5px;
+    font-size: 13px;
+  }
+
+  .ctc-ctg-details {
+    padding: 10px 8px; /* कम पैडिंग */
+    margin: 10px 0; /* कम मार्जिन */
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+
+  .detail-item p {
+    font-size: 13px;
+    padding: 0 4px; /* और कम पैडिंग */
+  }
+
+  .filters {
+    padding: 0 8px; /* कम पैडिंग */
+  }
+
+  .filters select {
+    padding: 5px;
+    font-size: 13px;
+  }
+
+  .log-details {
+    padding: 0 8px; /* कम पैडिंग */
+  }
+
+  .log-details h2 {
+    font-size: 16px;
+  }
+
+  .log-details th,
+  .log-details td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .button-group {
+    padding: 0 8px; /* कम पैडिंग */
+  }
+
+  .download-pdf-button {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+/* छोटे मोबाइल स्क्रीन के लिए */
+@media (max-width: 480px) {
+  .view-ctc-ctg-container {
+    padding: 8px 0; /* और कम */
+    min-height: calc(100vh - 120px); /* और कम */
+    width: 350px;
+    padding-top: 40px;
+  }
+
+  .back-button-group {
+    gap: 6px;
+    padding: 0 6px; /* और कम */
+  }
+
+  .current-profile-image {
+    width: 35px;
+    height: 35px;
+  }
+
+  .profile-switcher {
+    padding: 4px;
+    font-size: 12px;
+  }
+
+  .ctc-ctg-details {
+    padding: 8px 6px; /* और कम */
+    margin: 8px 0; /* और कम */
+  }
+
+  .ctc-ctg-details p {
+    text-align: left;
+  }
+
+  .section-title {
+    font-size: 14px;
+  }
+
+  .detail-item p {
+    font-size: 12px;
+    padding: 0 3px; /* और कम */
+  }
+
+  .filters {
+    padding: 0 6px; /* और कम */
+  }
+
+  .filters select {
+    padding: 4px;
+    font-size: 12px;
+  }
+
+  .log-details {
+    padding: 0 6px; /* और कम */
+  }
+
+  .log-details h2 {
+    font-size: 14px;
+    margin-top: -10px;
+  }
+
+  .log-details th,
+  .log-details td {
+    padding: 5px;
+    font-size: 11px;
+  }
+
+  .button-group {
+    padding: 0 6px; /* और कम */
+  }
+
+  .download-pdf-button {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .error,
+  .view-ctc-ctg-container p {
+    padding: 0 6px; /* और कम */
+    font-size: 12px;
+  }
 }

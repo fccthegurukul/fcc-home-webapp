@@ -1,5 +1,30 @@
+/* App.css */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* हॉरिजॉन्टल स्क्रॉल हटाएं */
+  font-family: "Arial", sans-serif;
+}
+
+.content-area {
+  margin-top: 5px;
+  flex: 1; /* बाकी जगह ले */
+  padding-top: 5px; /* टॉप (Navbar) और बॉटम (BottomNav) के लिए पैडिंग, लेफ्ट-राइट 0 */
+  width: 100%;
+  box-sizing: border-box; /* पैडिंग को चौड़ाई में शामिल करें */
+}
+
 h1 {
   text-align: center;
   margin-top: 20px;
   color: #444;
+}
+
+/* Bottom Navbar */
+.bottom-navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0; /* लेफ्ट-राइट पैडिंग हटाएं */
 }

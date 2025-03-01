@@ -1,596 +1,421 @@
-/* Classroom.css */
-:root {
-    --primary-blue: #a0c4e9;
-    --primary-green: #b8e0d2;
-    --background-light: #f8f9fa;
-    --text-primary: #2d3436;
-    --text-secondary: #636e72;
-    --white: #ffffff;
-    --shadow: rgba(149, 157, 165, 0.2);
-    --transition-timing: 0.3s;
+/* General container styles */
+.classroom-container {
+  padding: 1.5rem;
+  margin: 0 auto;
+  background-color: #f5f6fa;
+  margin-top: 30px;
+}
+
+/* Classroom selector */
+.classroom-select {
+  margin-bottom: 1.5rem;
+}
+
+.classroom-select label {
+  font-weight: 600;
+  color: #333;
+  margin-right: 0.5rem;
+}
+
+.classroom-select select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.classroom-select select:hover {
+  border-color: #4caf50;
+}
+
+/* Search input */
+.search-container input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-container input:hover {
+  border-color: #4caf50;
+}
+
+/* Video section */
+.video-section {
+  margin-bottom: 2.5rem;
+}
+
+.video-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid #4caf50;
+  padding-bottom: 0.25rem;
+  display: inline-block;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.video-card {
+  background-color: #fff;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.video-iframe iframe {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* Attendance section */
+.attendance-section {
+  margin-bottom: 2.5rem;
+  background: linear-gradient(135deg, #ffffff, #f9fafc);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.attendance-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.student-attendance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ebedf0;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.student-attendance:hover {
+  transform: translateX(5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.student-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #4caf50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.1);
+}
+
+.profile-initial {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: 2px solid #388e3c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.profile-initial:hover {
+  transform: scale(1.1);
+}
+
+.student-name {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.attendance-details {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.badge {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.badge.present {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.badge.absent {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.badge:hover {
+  opacity: 0.9;
+}
+
+.duration {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Date filter */
+.date-filter-container {
+  margin-bottom: 1.5rem;
+}
+
+.date-filter-container label {
+  font-weight: 600;
+  color: #333;
+  margin-right: 0.5rem;
+}
+
+.date-filter-container input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+/* Task section */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.task-card {
+  background: linear-gradient(135deg, #fff, #f9f9f9);
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.task-description {
+  color: #555;
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+}
+
+.task-status {
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.task-status.active {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.task-status.upcoming {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.task-status.expired {
+  background-color: #f44336;
+  color: #fff;
+}
+
+/* View More Button */
+.view-more-btn {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.75rem 2rem;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.view-more-btn:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+/* Skeleton loader */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skeleton-card {
+  background-color: #eee;
+  border-radius: 12px;
+  padding: 1.25rem;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .video-iframe iframe {
+    height: 180px;
   }
-  
-  [data-theme="dark"] {
-    --primary-blue: #2c3e50;
-    --primary-green: #34495e;
-    --background-light: #2d3436;
-    --text-primary: #dfe6e9;
-    --text-secondary: #b2bec3;
-    --white: #2d3436;
-    --shadow: rgba(0, 0, 0, 0.2);
+
+  .student-attendance {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
-  
-  /* Base Styles */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-    background-color: var(--background-light);
-    color: var(--text-primary);
-    transition: background-color var(--transition-timing) ease;
-  }
-  
-  .classroom-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-  
-  
-  /* Classroom Selector */
-  .classroom-select {
-    display: flex;
+
+  .task-meta {
     flex-direction: column;
     gap: 0.5rem;
-    margin-bottom: 2rem;
   }
-  
-  .classroom-select label {
-    font-weight: 600;
-    color: var(--text-secondary);
-  }
-  
-  .classroom-select select {
-    padding: 0.8rem;
-    border: 2px solid var(--primary-green);
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: var(--white);
-    transition: all var(--transition-timing) ease;
-    appearance: none; /* Remove default arrow */
-    -webkit-appearance: none; /* Safari */
-    -moz-appearance: none; /* Firefox */
-    background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-    background-repeat: no-repeat;
-    background-position-x: 98%;
-    background-position-y: center;
-  }
-  
-  .classroom-select select:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(160, 196, 233, 0.3);
-  }
-  
-  /* Video Grid Layout */
-  .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-  }
-  
-  /* Horizontal Scroll Video Grid for Ended Classes */
-  .video-grid.horizontal-scroll {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding-bottom: 1rem; /* To prevent content from being cut off by scrollbar */
-    margin: 1rem 0; /* Reduced vertical margin for horizontal section */
-  }
-  
-  .ended-classes-section {
-    margin-top: 60px; /* Margin from top for bottom navigation */
-    margin-bottom: 3rem; /* Standard bottom margin */
-  }
-  
-  
-  .video-section {
-    margin: 3rem 0;
-  }
-  
+
   .video-title {
-    font-size: 1.75rem;
-    color: #252273ed;
-    margin-bottom: 1.5rem;
-    position: relative;
-    padding-left: 1rem;
+    font-size: 1.5rem;
+  }
 
+  .profile-pic, .profile-initial {
+    width: 40px;
+    height: 40px;
   }
-  
-  .video-title::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 80%;
-    width: 4px;
-    background-color: var(--primary-blue);
-    border-radius: 2px;
+}
+
+@media (max-width: 480px) {
+  .video-title, .attendance-section h2, .task-section h2 {
+    font-size: 1.25rem;
   }
-  
-  /* Video Cards */
-  .video-card {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px var(--shadow);
-    transition: transform var(--transition-timing) ease, box-shadow var(--transition-timing) ease;
-    overflow: hidden;
-    min-width: 300px; /* For horizontal scroll to work properly */
-  }
-  
-  .video-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px var(--shadow);
-  }
-  
-  .video-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-  }
-  
-  .video-iframe {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
+
   .video-iframe iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
+    height: 160px;
   }
-  
-  /* Central Card */
-  .central-card {
-    background: var(--white);
-    border-radius: 12px;
-    box-shadow: 0 6px 10px var(--shadow);
-    padding: 2rem;
-    margin: 2rem auto; /* Center card horizontally */
-    max-width: 1080px; /* Ensure it does not exceed 1080px */
-    width: 100%; /* Make it responsive to container width */
-    aspect-ratio: 1 / 1; /* Ensure square aspect ratio */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-  }
-  
-  
-  /* Search Input */
-  .search-container {
-    margin: 1.5rem 0;
-    max-width: 400px; /* Limit width of search box */
-    margin-left: auto;
-    margin-right: auto; /* Center the search box if container is wider */
-  }
-  
-  .search-container input {
-    width: 100%;
-    padding: 0.6rem 1rem; /* Reduced padding for compact appearance */
-    border: 1.5px solid var(--primary-green); /* Thinner border */
-    border-radius: 25px;
-    font-size: 0.9rem; /* Slightly smaller font */
-    transition: all var(--transition-timing) ease;
-  }
-  
-  .search-container input:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(160, 196, 233, 0.3); /* Smaller shadow */
-  }
-  
-  
-  /* Skeleton Loading */
-  .skeleton-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-  }
-  
-  .skeleton-card {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 1.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .skeleton-title,
-  .skeleton-iframe,
-  .skeleton-date {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: skeleton-pulse 1.5s ease-in-out infinite;
-  }
-  
-  .skeleton-title {
-    height: 20px;
-    width: 80%;
-    margin-bottom: 1rem;
-    border-radius: 4px;
-  }
-  
-  .skeleton-iframe {
-    height: 0;
-    padding-bottom: 56.25%;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-  }
-  
-  .skeleton-date {
-    height: 16px;
-    width: 60%;
-    border-radius: 4px;
-  }
-  
-  @keyframes skeleton-pulse {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-  
-  /* Special Card */
-  .special-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    margin: 2rem 0;
-    box-shadow: 0 4px 6px var(--shadow);
-  }
-  
-  /* Error Message */
-  .error-message {
-    color: #e74c3c;
+
+  .classroom-container {
     padding: 1rem;
-    background: #f8d7da;
-    border-radius: 8px;
-    margin: 2rem 0;
-    text-align: center;
   }
 
-  /* ... previous CSS ... */
+  .task-card, .video-card, .attendance-section {
+    padding: 1rem;
+  }
 
-/* Central Card */
-.central-card {
-    background: var(--white);
-    border-radius: 12px;
-    box-shadow: 0 6px 10px var(--shadow);
-    padding: 1.5rem; /* Reduced padding slightly for better space utilization */
-    margin: 2rem auto; /* Center card horizontally */
-    max-width: 1080px; /* Ensure it does not exceed 1080px on larger screens */
-    width: 95%; /* Responsive width, using 95% to leave some side margin */
-    display: flex;
-    flex-direction: column; /* Vertical layout for content */
-    align-items: stretch; /* Stretch items to fill card width */
-    /* No more aspect ratio for flexible height */
-    text-align: left; /* Align text to the left for list-like reading */
-  }
-  
-  .central-card h2 {
-    font-size: 1.5rem; /* Slightly smaller title within central card */
-    color: var(--primary-blue);
-    margin-bottom: 1rem; /* Space between title and attendance list */
-    text-align: center; /* Center the title of the card */
-  }
-  
-  .central-card ul {
-    list-style: none; /* Remove default list bullets */
-    padding: 0;
-    margin: 0;
-  }
-  
-  .central-card li.student-attendance {
-    display: flex;
-    justify-content: space-between; /* Align name to left, badge to right */
-    align-items: center; /* Vertically center name and badge */
-    padding: 0.75rem 0; /* Vertical padding for each student row */
-    border-bottom: 1px solid #eee; /* Subtle separator between students */
-  }
-  
-  .central-card li.student-attendance:last-child {
-    border-bottom: none; /* No border on the last student item */
-  }
-  
-  
   .student-name {
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--text-primary)
+    font-size: 1rem;
   }
+}
 
-  
-  .badge {
-    padding: 0.4rem 0.6rem;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    color: var(--white);
-    text-transform: uppercase;
-  }
-  
-  .badge.present {
-    background-color: #27ae60; /* Green for present */
-  }
-  
-  .badge.absent {
-    background-color: #e74c3c; /* Red for absent */
-  }
+/* Error message styling */
+.error-message {
+  color: #f44336;
+  background-color: #ffe6e6;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+}
 
+/* Special card styling */
+.special-card {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #fff9c4;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-  .duration {
-    font-size: 12px;
-    font-weight: bold;
-    font-style: italic;
-  }
-  
+/* Central card */
+.central-card {
+  text-align: center;
+}
 
-  /* Date Filter */
-.date-filter-container {
-    margin: 20px 0;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .date-filter-container label {
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .date-filter-container input[type="date"] {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  /* Task Section */
-  .task-section {
-    margin-top: 30px;
-  }
-  
-  .task-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-    text-align: left;
-  }
-  
-  .task-card {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    position: relative;
-    overflow: hidden;
-    text-align: left;
-  }
-  
-  .task-card h3 {
-    margin: 0 0 10px 0;
-    color: #2c3e50;
-  }
-  
-  .task-description {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 15px;
-    text-align: left;
-  }
-  
-  .task-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 14px;
-    text-align: left;
-  }
-  
-  .task-score {
-    color: #27ae60;
-    font-weight: 500;
-  }
-  
-  .task-duration {
-    color: #2980b9;
-  }
-  
-  .task-timings {
-    font-size: 13px;
-    color: #7f8c8d;
-    text-align: left;
-  }
-  
-  .task-timings p {
-    margin: 5px 0;
-    text-align: left;
-  }
-  
-  .task-status {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px 10px;
-    font-size: 12px;
-    border-radius: 0 0 0 5px;
-    color: white;
-  }
-  
-  .task-status.upcoming {
-    background: #f1c40f;
-  }
-  
-  .task-status.active {
-    background: #2ecc71;
-  }
-  
-  .task-status.expired {
-    background: #e74c3c;
-  }
-  
-  
-  /* Responsive Adjustments for Central Card */
-  @media (max-width: 768px) {
-    .central-card {
-      padding: 1rem; /* Reduce padding on smaller screens */
-      margin: 1.5rem auto; /* Reduce vertical margin */
-      max-width: 98%; /* Let it take up more width on smaller screens */
-    }
-  
-    .central-card h2 {
-      font-size: 1.3rem; /* Slightly smaller title on mobile */
-      margin-bottom: 0.75rem;
-    }
-  
-    .central-card li.student-attendance {
-      padding: 0.6rem 0; /* Adjust padding in list items */
-      font-size: 0.95rem; /* Adjust font size in list items if needed */
-    }
-  
-    .badge {
-      font-size: 0.7rem; /* Smaller badge font on mobile */
-      padding: 0.3rem 0.5rem;
-    }
+/* Input focus effect */
+input:focus, select:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
+}
 
-    .attendance-section {
-      width: 98%; /* Mobile screen ki width zyada se zyada use karein, padding ke liye space chhod dein */
-      margin-left: auto; /* Center karne ke liye */
-      margin-right: auto; /* Center karne ke liye */
-      padding: 10px; /* Padding ko adjust karein, mobile par kam space important hota hai */
-      margin-bottom: 20px; /* Bottom margin mobile view mein bhi theek rahe */
-    }
-  
-    .attendance-section h2 {
-      font-size: 1.3em; /* Heading size chhote screen ke liye adjust karein */
-      margin-bottom: 10px; /* Heading aur list ke beech spacing kam karein */
-      padding-bottom: 5px; /* Heading border ke niche padding kam karein */
-    }
-  
-    .attendance-section ul {
-      padding-left: 10px; /* List ke liye left padding adjust karein */
-      padding-right: 10px; /* List ke liye right padding adjust karein */
-    }
-  
-    .attendance-section li {
-      padding: 8px 0; /* List items ke vertical padding ko thoda kam karein */
-      display: block; /* List items ko block level elements banayein, status ke liye alag line mumkin ho sake */
-      text-align: left; /* Text alignment left karein, center ki jagah mobile par zyada readable hoga */
-    }
-  
-    .student-attendance {
-      display: flex; /* Student attendance line ke liye flex rakhein */
-      justify-content: space-between; /* Name aur status ke beech space maintain rahe */
-      align-items: center; /* Name aur status vertical center rahe */
-      margin-bottom: 5px; /* Student entries ke beech margin rakhein */
-      padding-bottom: 5px;
-      border-bottom: 1px solid #eee; /* Har student entry ke baad separator rakhein */
-    }
-    .attendance-section li:last-child .student-attendance { /* Last student ke bottom border ko hatayein */
-        border-bottom: none;
-        padding-bottom: 0; /* Last item se extra padding bhi hatayein */
-        margin-bottom: 0;
-    }
-  
-    .student-name {
-      font-size: 1em; /* Name ka font size adjust karein */
-      margin-right: 10px; /* Name aur badge ke beech margin */
-      flex-grow: 1; /* Student name ko available space consume karne dein */
-    }
-  }
-  
-  
-  /* ... rest of your CSS ... */
-  
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-  
-    .video-grid, .skeleton-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .classroom-select {
-      flex-direction: column;
-    }
-  
-    .search-container {
-      max-width: 100%; /* Full width search on smaller screens */
-    }
-  
-    .central-card {
-      max-width: 95%; /* Adjust central card max width on smaller screens */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .classroom-container {
-      padding: 1rem;
-    }
-  
-    .video-title {
-      font-size: 1.5rem;
-    }
+/* Scroll handling for smaller devices */
+.horizontal-scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+}
 
-    .duration {
-      font-size: 0.75em; /* Duration ka font size bhi adjust karein */
-      margin-left: 5px; /* Duration ke left margin ko adjust karein */
-      white-space: nowrap; /* Duration text wrap nahi hona chahiye */
-    }
-  
-    .central-card {
-      margin-left: auto;
-      margin-right: auto; /* Mobile view mein bhi center rahe */
-    }
-  }
-  
-  /* Dark Mode Overrides */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --primary-blue: #2c3e50;
-      --primary-green: #34495e;
-      --background-light: #2d3436;
-      --text-primary: #dfe6e9;
-      --text-secondary: #b2bec3;
-      --white: #2d3436;
-      --shadow: rgba(0, 0, 0, 0.2);
-    }
-  
-    .skeleton-title,
-    .skeleton-iframe,
-    .skeleton-date {
-      background: linear-gradient(90deg, #404040 25%, #505050 50%, #404040 75%);
-    }
-  }
+.video-card, .task-card, .attendance-section {
+  overflow-x: auto;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Box-sizing reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}

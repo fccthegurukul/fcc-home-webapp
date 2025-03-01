@@ -1,0 +1,1056 @@
+[2025-02-23T11:59:59.021Z] ERROR: (node:13104) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-02-23T11:59:59.029Z] LOG: HTTP Server running on port 5000
+[2025-02-23T11:59:59.293Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-23T11:59:59.229Z"
+  }
+]
+[2025-02-23T11:59:59.296Z] LOG: Database connected, response: [
+  {
+    "now": "2025-02-23T11:59:59.237Z"
+  }
+]
+[2025-02-23T12:01:33.110Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:33.114Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:33.117Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:33.170Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:33.183Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:33.185Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:33.193Z] LOG: Generating new session ID
+[2025-02-23T12:01:46.703Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:46.848Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:46.858Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:47.183Z] LOG: Incoming request: OPTIONS /get-ctc-ctg/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:47.270Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:47.362Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:47.459Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:47.511Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:47.579Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:47.597Z] LOG: Incoming request: OPTIONS /get-ctc-ctg/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:47.601Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:47.608Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:47.616Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:47.620Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:47.623Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:47.624Z] LOG: Generating new session ID
+[2025-02-23T12:01:47.672Z] LOG: Incoming request: GET /get-ctc-ctg/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:47.694Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:47.695Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:47.698Z] LOG: Generating new session ID
+[2025-02-23T12:01:47.833Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:47.846Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:47.847Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:47.855Z] LOG: Generating new session ID
+[2025-02-23T12:01:47.950Z] LOG: Incoming request: GET /get-ctc-ctg/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:47.962Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:47.965Z] LOG: Generating new session ID
+[2025-02-23T12:01:47.962Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:55.647Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:55.760Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:55.762Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:55.776Z] LOG: Incoming request: OPTIONS /get-student-skills/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:55.824Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:55.826Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:55.859Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:55.864Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:55.905Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:55.960Z] LOG: Incoming request: OPTIONS /get-student-skills/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:55.968Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:55.971Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:56.125Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:56.159Z] LOG: Generating new session ID
+[2025-02-23T12:01:56.148Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:56.196Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:56.210Z] LOG: Generating new session ID
+[2025-02-23T12:01:56.190Z] LOG: Incoming request: GET /get-student-skills/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:56.194Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:56.132Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:56.329Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:56.330Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:56.344Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:56.345Z] LOG: Generating new session ID
+[2025-02-23T12:01:56.465Z] LOG: Incoming request: GET /get-student-skills/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:01:56.475Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:56.482Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:56.605Z] LOG: Generating new session ID
+[2025-02-23T12:01:59.230Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-23T12:01:59.234Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:59.248Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:59.250Z] LOG: Generating new session ID
+[2025-02-23T12:01:59.272Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:59.274Z] LOG: Generating new session ID
+[2025-02-23T12:01:59.289Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:59.282Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-23T12:01:59.290Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:59.294Z] LOG: Generating new session ID
+[2025-02-23T12:01:59.310Z] LOG: Query Parameters: {}
+[2025-02-23T12:01:59.311Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-23T12:01:59.313Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-23T12:01:59.298Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-23T12:01:59.266Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:59.264Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-23T12:01:59.401Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-23T12:01:59.402Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:59.402Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:59.407Z] LOG: Generating new session ID
+[2025-02-23T12:01:59.419Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-23T12:01:59.424Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:59.425Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:59.426Z] LOG: Generating new session ID
+[2025-02-23T12:01:59.818Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-23T12:01:59.832Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-23T12:01:59.854Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-23T12:01:59.857Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:01:59.859Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:01:59.861Z] LOG: Generating new session ID
+[2025-02-23T12:01:59.862Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-23T12:01:59.869Z] LOG: Query Parameters: {}
+[2025-02-23T12:01:59.870Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-23T12:01:59.873Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-23T12:01:59.886Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-23T12:01:59.878Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-23T12:02:04.589Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:02:04.591Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:02:04.595Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:02:04.599Z] LOG: Generating new session ID
+[2025-02-23T12:02:04.642Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:02:04.645Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:02:04.646Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:02:04.650Z] LOG: Generating new session ID
+[2025-02-23T12:02:32.853Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-23T12:02:32.863Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:02:32.876Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:02:32.879Z] LOG: Generating new session ID
+[2025-02-23T12:02:32.896Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-23T12:02:32.899Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:02:32.901Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:02:32.903Z] LOG: Generating new session ID
+[2025-02-23T12:02:32.909Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-23T12:02:32.912Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:02:32.914Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:02:32.916Z] LOG: Generating new session ID
+[2025-02-23T12:02:45.210Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:02:45.241Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:02:45.243Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:02:45.255Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:02:45.315Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:02:45.344Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:02:45.353Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:02:45.412Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:02:45.572Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:02:45.614Z] LOG: Generating new session ID
+[2025-02-23T12:02:46.336Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:02:46.408Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:02:46.406Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:02:46.410Z] LOG: Generating new session ID
+[2025-02-23T12:20:19.515Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:19.513Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-23T12:20:19.516Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:19.519Z] LOG: Generating new session ID
+[2025-02-23T12:20:19.522Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-23T12:20:19.525Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:19.527Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:19.528Z] LOG: Generating new session ID
+[2025-02-23T12:20:19.533Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-23T12:20:19.534Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:19.535Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:19.537Z] LOG: Generating new session ID
+[2025-02-23T12:20:19.540Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-23T12:20:19.542Z] LOG: Query Parameters: {}
+[2025-02-23T12:20:19.546Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-23T12:20:19.548Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-23T12:20:19.712Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-23T12:20:19.719Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-23T12:20:19.747Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:19.746Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-02-23T12:20:19.748Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:19.751Z] LOG: Generating new session ID
+[2025-02-23T12:20:19.756Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-02-23T12:20:19.759Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:19.760Z] LOG: Generating new session ID
+[2025-02-23T12:20:19.759Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:19.761Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-02-23T12:20:19.760Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-02-23T12:20:19.761Z] LOG: Query Parameters: {}
+[2025-02-23T12:20:19.762Z] LOG: Query Parameters: [
+  "2025-01-31T18:30:00.000Z",
+  "2025-02-27T18:30:00.000Z"
+]
+[2025-02-23T12:20:19.764Z] LOG: 📊 Leaderboard Data Fetched: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58"
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3"
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0"
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0"
+  }
+]
+[2025-02-23T12:20:19.768Z] LOG: 📊 Leaderboard Data Fetched with Images: [
+  {
+    "student_name": "Jyotish Kumar",
+    "fcc_id": "9708200025",
+    "fcc_class": "10",
+    "total_score": "495",
+    "profile_image": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+  },
+  {
+    "student_name": "17JanPaidCheck",
+    "fcc_id": "123489748",
+    "fcc_class": "10",
+    "total_score": "61",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "12",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Test 2 with Full Details",
+    "fcc_id": "1111200024",
+    "fcc_class": "1",
+    "total_score": "58",
+    "profile_image": null
+  },
+  {
+    "student_name": "Deepak Kumar",
+    "fcc_id": "1234567890",
+    "fcc_class": "1",
+    "total_score": "23",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7"
+  },
+  {
+    "student_name": "Nitish Kumar",
+    "fcc_id": "9526200025",
+    "fcc_class": "10",
+    "total_score": "3",
+    "profile_image": null
+  },
+  {
+    "student_name": "Admission Name",
+    "fcc_id": "9631200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519"
+  },
+  {
+    "student_name": "Test 9 | Closed App TEST",
+    "fcc_id": "2222200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "SSE Pway Madhupur Eastern Railway",
+    "fcc_id": "123456789044",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "sdrgfedr",
+    "fcc_id": "21312025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "17Jan Test",
+    "fcc_id": "78952000245",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "MINI ST TEST",
+    "fcc_id": "2958200024",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  },
+  {
+    "student_name": "Nandini Kumari",
+    "fcc_id": "9525200025",
+    "fcc_class": "3",
+    "total_score": "0",
+    "profile_image": null
+  }
+]
+[2025-02-23T12:20:19.875Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:19.876Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:19.868Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-02-23T12:20:19.877Z] LOG: Generating new session ID
+[2025-02-23T12:20:27.447Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:20:27.453Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:27.456Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:27.459Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:20:27.461Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:27.462Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:27.473Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:20:27.475Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:27.475Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:27.476Z] LOG: Generating new session ID
+[2025-02-23T12:20:27.486Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: http://localhost:3000
+[2025-02-23T12:20:27.487Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:27.487Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:27.488Z] LOG: Generating new session ID
+[2025-02-23T12:20:30.137Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:20:30.184Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:30.198Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:30.199Z] LOG: Generating new session ID
+[2025-02-23T12:20:30.225Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:20:30.227Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:30.231Z] LOG: Generating new session ID
+[2025-02-23T12:20:30.228Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:57.066Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-23T12:20:57.067Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:57.069Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:57.070Z] LOG: Generating new session ID
+[2025-02-23T12:20:57.074Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-23T12:20:57.074Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:57.075Z] LOG: Generating new session ID
+[2025-02-23T12:20:57.075Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:57.076Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-23T12:20:57.077Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:20:57.077Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:20:57.077Z] LOG: Generating new session ID
+[2025-02-23T12:23:28.011Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:23:28.017Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:23:28.013Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:23:28.021Z] LOG: Generating new session ID
+[2025-02-23T12:23:28.318Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:23:28.328Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:23:28.329Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:23:28.330Z] LOG: Generating new session ID
+[2025-02-23T12:23:32.482Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-23T12:23:32.485Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:23:32.489Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:23:32.498Z] LOG: Generating new session ID
+[2025-02-23T12:23:32.501Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-23T12:23:32.504Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:23:32.510Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:23:32.515Z] LOG: Generating new session ID
+[2025-02-23T12:23:32.519Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-23T12:23:32.522Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:23:32.583Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:23:32.593Z] LOG: Generating new session ID
+[2025-02-23T12:27:08.858Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:27:08.909Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:08.908Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:08.920Z] LOG: Generating new session ID
+[2025-02-23T12:27:09.190Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:27:09.192Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:09.192Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:09.193Z] LOG: Generating new session ID
+[2025-02-23T12:27:14.514Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-23T12:27:14.522Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:14.523Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:14.528Z] LOG: Generating new session ID
+[2025-02-23T12:27:14.535Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-23T12:27:14.538Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:14.552Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:14.555Z] LOG: Generating new session ID
+[2025-02-23T12:27:14.566Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-23T12:27:14.567Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:14.569Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:14.571Z] LOG: Generating new session ID
+[2025-02-23T12:27:39.034Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-23T12:27:39.065Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:39.066Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:39.070Z] LOG: Generating new session ID
+[2025-02-23T12:27:39.078Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-23T12:27:39.080Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:39.081Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:39.083Z] LOG: Generating new session ID
+[2025-02-23T12:27:39.089Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-23T12:27:39.092Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:39.094Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:39.096Z] LOG: Generating new session ID
+[2025-02-23T12:27:46.277Z] LOG: Incoming request: GET /api/videos?classroomName=Class+2, Origin: http://localhost:3000
+[2025-02-23T12:27:46.280Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:46.281Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:46.283Z] LOG: Generating new session ID
+[2025-02-23T12:27:46.285Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%202, Origin: http://localhost:3000
+[2025-02-23T12:27:46.286Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:46.292Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:46.292Z] LOG: Generating new session ID
+[2025-02-23T12:27:46.295Z] LOG: Incoming request: GET /api/tasks?class=2, Origin: http://localhost:3000
+[2025-02-23T12:27:46.296Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:46.296Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:46.297Z] LOG: Generating new session ID
+[2025-02-23T12:27:48.857Z] LOG: Incoming request: GET /api/videos?classroomName=Class+10, Origin: http://localhost:3000
+[2025-02-23T12:27:48.861Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:48.878Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:48.890Z] LOG: Generating new session ID
+[2025-02-23T12:27:48.892Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%2010, Origin: http://localhost:3000
+[2025-02-23T12:27:48.901Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:48.903Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:48.904Z] LOG: Generating new session ID
+[2025-02-23T12:27:48.906Z] LOG: Incoming request: GET /api/tasks?class=10, Origin: http://localhost:3000
+[2025-02-23T12:27:48.907Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:27:48.908Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:27:48.909Z] LOG: Generating new session ID
+[2025-02-23T12:31:01.470Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:31:01.471Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:31:01.472Z] LOG: Generating new session ID
+[2025-02-23T12:31:01.472Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:31:01.640Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-02-23T12:31:01.642Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:31:01.641Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:31:01.642Z] LOG: Generating new session ID
+[2025-02-23T12:31:26.323Z] LOG: Incoming request: GET /api/videos?classroomName=Class+1, Origin: http://localhost:3000
+[2025-02-23T12:31:26.332Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:31:26.333Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:31:26.395Z] LOG: Generating new session ID
+[2025-02-23T12:31:26.402Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: http://localhost:3000
+[2025-02-23T12:31:26.484Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:31:26.514Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:31:26.541Z] LOG: Generating new session ID
+[2025-02-23T12:31:26.720Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: http://localhost:3000
+[2025-02-23T12:31:26.732Z] LOG: Incoming Origin: http://localhost:3000
+[2025-02-23T12:31:26.733Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-02-23T12:31:26.735Z] LOG: Generating new session ID

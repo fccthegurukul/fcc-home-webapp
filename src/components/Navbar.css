@@ -1,24 +1,30 @@
 /* Navbar.css */
-
 :root {
-  --primary-color: #2c3e50;
-  --secondary-color: #3498db;
-  --accent-color: #e74c3c;
-  --text-light: #ecf0f1;
+  --primary-color: #2c3e50; /* डार्क ब्लू */
+  --secondary-color: #3498db; /* ब्राइट ब्लू */
+  --accent-color: #e74c3c; /* रेड */
+  --text-light: #ecf0f1; /* सफेद */
   --hover-transition: all 0.3s ease;
+  --gradient-bg: linear-gradient(135deg, #2c3e50, #4a69bd); /* ग्रेडिएंट बैकग्राउंड */
 }
 
 /* बेस नवबार स्टाइलिंग */
 .navbar {
-  background-color: var(--primary-color);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  position: relative;
+  background: var(--gradient-bg); /* ग्रेडिएंट बैकग्राउंड */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* गहरा शैडो */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0.8rem 0; /* पैडिंग को थोड़ा कम किया */
 }
 
+/* नवबार कंटेनर */
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem; /* 1.5rem से कम */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,50 +34,54 @@
 .branding-area {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem; /* 1rem से कम */
 }
 
 .branding-link {
   color: var(--text-light);
-  font-size: 1.5rem;
+  font-size: 1.4rem; /* 1.5rem से थोड़ा छोटा */
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
   transition: var(--hover-transition);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* टेक्स्ट शैडो */
 }
 
 .branding-link:hover {
   color: var(--secondary-color);
-  transform: translateY(-2px);
+  transform: scale(1.05); /* हल्का स्केल इफेक्ट */
 }
 
+/* लोकेशन लेबल */
 .location-label {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem; /* 0.5rem से कम */
   color: var(--text-light);
-  background: rgba(255,255,255,0.1);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.15); /* थोड़ा गहरा */
+  padding: 0.25rem 0.7rem; /* 0.3rem 0.8rem से छोटा */
+  border-radius: 15px; /* थोड़ा कम राउंडेड */
+  font-size: 0.85rem; /* 0.9rem से छोटा */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* हल्का शैडो */
 }
 
 .location-icon {
-  font-size: 1.2rem;
+  font-size: 1.1rem; /* 1.2rem से छोटा */
 }
 
 /* मोबाइल मेनू आइकन स्टाइल */
 .menu-icon {
   display: none;
   cursor: pointer;
-  padding: 0.5rem;
-  z-index: 1000;
+  padding: 0.4rem; /* 0.5rem से कम */
+  z-index: 1001;
 }
 
 .menu-icon .bar {
-  width: 25px;
-  height: 3px;
+  width: 22px; /* 25px से छोटा */
+  height: 2px; /* 3px से पतला */
   background-color: var(--text-light);
-  margin: 5px 0;
+  margin: 4px 0; /* 5px से कम */
+  border-radius: 2px; /* राउंडेड एज */
   transition: var(--hover-transition);
 }
 
@@ -85,13 +95,13 @@
 }
 
 .menu-icon.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
+  transform: rotate(-45deg) translate(6px, -5px);
 }
 
 /* नेविगेशन लिंक्स स्टाइलिंग */
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem; /* 2rem से कम */
   list-style: none;
   transition: var(--hover-transition);
 }
@@ -99,15 +109,18 @@
 .nav-link {
   color: var(--text-light);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.4rem 0.9rem; /* 0.5rem 1rem से छोटा */
+  border-radius: 6px; /* थोड़ा बड़ा राउंडेड */
   position: relative;
+  font-size: 0.95rem; /* नया: मोबाइल के लिए छोटा */
   transition: var(--hover-transition);
+  font-weight: 500;
 }
 
 .nav-link:hover {
   color: var(--secondary-color);
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.15); /* हल्का गहरा */
+  transform: translateY(-2px); /* ऊपर उठने का इफेक्ट */
 }
 
 .nav-link::after {
@@ -126,40 +139,74 @@
   left: 0;
 }
 
+/* लॉगआउट बटन */
 .logout-button {
   background: var(--accent-color);
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.4rem 0.9rem; /* 0.5rem 1rem से छोटा */
+  border-radius: 6px;
   cursor: pointer;
   color: var(--text-light);
+  font-size: 0.95rem; /* नया: छोटा फॉन्ट */
   transition: var(--hover-transition);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* हल्का शैडो */
 }
 
 .logout-button:hover {
   background: #c0392b;
-  transform: scale(1.05);
+  transform: scale(1.08); /* 1.05 से थोड़ा बड़ा इफेक्ट */
 }
 
-/* मोबाइल रेस्पॉन्सिव स्टाइल्स */
+/* Beta बैज स्टाइलिंग */
+.beta-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  background: var(--accent-color); /* रेड बैकग्राउंड */
+  color: var(--text-light); /* सफेद टेक्स्ट */
+  font-size: 0.75rem; /* छोटा फॉन्ट */
+  font-weight: 600;
+  border-radius: 10px; /* राउंडेड कोने */
+  text-transform: uppercase; /* बीटा को अपरकेस में */
+  vertical-align: middle;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* हल्का शैडो */
+  transition: var(--hover-transition);
+}
+
+/* होवर इफेक्ट */
+.branding-link:hover .beta-badge {
+  background: #c0392b; /* गहरा रेड */
+  transform: scale(1.1); /* हल्का स्केल अप */
+}
+
+/* मोबाइल रेस्पॉन्सिव स्टाइल्स (10% बेहतर) */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.6rem 0; /* 0.8rem से छोटा */
+  }
+
+  .navbar-container {
+    padding: 0 0.8rem; /* 1rem से कम */
+  }
+
   .menu-icon {
     display: block;
   }
 
   .nav-links {
     position: fixed;
-    top: 0;
+    top: 50px; /* 60px से कम (Navbar की नई ऊँचाई के हिसाब से) */
     right: -100%;
-    height: 100vh;
-    width: 70%;
-    max-width: 300px;
-    background: var(--primary-color);
+    height: calc(100vh - 50px);
+    width: 80%; /* 70% से बढ़ाकर */
+    max-width: 280px; /* 300px से कम */
+    background: var(--gradient-bg); /* ग्रेडिएंट बैकग्राउंड */
     flex-direction: column;
-    padding: 6rem 2rem;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    transition: right 0.3s ease-in-out;
+    padding: 1.5rem; /* 2rem से कम */
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3); /* गहरा शैडो */
+    transition: right 0.4s ease-in-out; /* 0.3s से थोड़ा स्मूद */
     z-index: 999;
+    border-left: 2px solid var(--secondary-color); /* नया: साइड बॉर्डर */
   }
 
   .nav-links.active {
@@ -167,24 +214,100 @@
   }
 
   .nav-link {
-    padding: 1rem;
+    padding: 0.8rem 1rem; /* 1rem से थोड़ा छोटा */
+    font-size: 1rem; /* बड़ा और पढ़ने योग्य */
     border-left: 3px solid transparent;
+    border-radius: 0; /* मोबाइल में राउंडेड हटाया */
   }
 
   .nav-link:hover {
     border-left-color: var(--secondary-color);
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.1);
+    transform: none; /* मोबाइल में ट्रांसफॉर्म हटाया */
+  }
+
+  .nav-link::after {
+    display: none; /* मोबाइल में अंडरलाइन हटाई */
+  }
+
+  .logout-button {
+    padding: 0.8rem 1rem;
+    width: 100%; /* पूरी चौड़ाई */
+    text-align: center;
+  }
+
+  .branding-link {
+    font-size: 1.2rem; /* 1.4rem से छोटा */
+  }
+
+  .location-label {
+    font-size: 0.8rem; /* 0.85rem से छोटा */
+    padding: 0.2rem 0.6rem; /* छोटा */
+  }
+
+  .location-icon {
+    font-size: 1rem; /* 1.1rem से छोटा */
+  }
+  .beta-badge {
+    font-size: 0.65rem; /* मोबाइल में और छोटा */
+    padding: 0.15rem 0.4rem; /* छोटा पैडिंग */
+    margin-left: 0.4rem;
+  }
+}
+
+/* छोटे मोबाइल स्क्रीन के लिए (10% बेहतर) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem 0; /* और छोटा */
+  }
+
+  .navbar-container {
+    padding: 0 0.6rem; /* और छोटा */
+  }
+
+  .nav-links {
+    width: 90%; /* 80% से बढ़ाकर */
+    max-width: 250px; /* 280px से कम */
+    padding: 1rem; /* 1.5rem से कम */
+    top: 45px; /* 50px से कम */
+    height: calc(100vh - 45px);
+  }
+
+  .nav-link {
+    font-size: 0.95rem; /* 1rem से थोड़ा छोटा */
+    padding: 0.7rem 0.9rem; /* और छोटा */
+  }
+
+  .branding-link {
+    font-size: 1.1rem; /* 1.2rem से छोटा */
+  }
+
+  .location-label {
+    padding: 0.15rem 0.5rem; /* और छोटा */
+    font-size: 0.75rem; /* 0.8rem से छोटा */
+  }
+
+  .menu-icon .bar {
+    width: 20px; /* 22px से छोटा */
+    height: 2px;
+    margin: 3px 0; /* 4px से कम */
+  }
+
+  .beta-badge {
+    font-size: 0.6rem; /* बहुत छोटे स्क्रीन के लिए */
+    padding: 0.1rem 0.3rem;
+    margin-left: 0.3rem;
   }
 }
 
 /* डेस्कटॉप स्पेसिंग ऑप्टिमाइजेशन */
 @media (min-width: 769px) {
   .navbar-container {
-    padding: 0 3rem;
+    padding: 0 2rem; /* 3rem से कम */
   }
   
   .nav-links {
-    gap: 3rem;
+    gap: 2rem; /* 3rem से कम */
   }
 }
 
@@ -193,4 +316,18 @@
 .logout-button:focus-visible {
   outline: 2px solid var(--secondary-color);
   outline-offset: 2px;
+}
+
+/* एनिमेशन फॉर स्मूद ओपनिंग */
+@keyframes slideIn {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+.nav-links.active {
+  animation: slideIn 0.4s ease-in-out forwards;
 }

@@ -23,3 +23,8 @@ src/.env
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/public/skill_images/*
+/public/skill_videos/*
+!/public/skill_images/.gitkeep
+C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\src\backend\receipts

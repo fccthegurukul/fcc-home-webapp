@@ -1,0 +1,161 @@
+.contact-form-container {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #ffffff, #f0f4f8);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 16px;
+    color: #34495e;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .form-group label span {
+    color: #e74c3c;
+    font-size: 18px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 14px;
+    font-size: 16px;
+    border: 2px solid #dcdcdc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  .form-group small {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-top: 5px;
+  }
+  
+  .checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .checkbox-group input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  
+  .checkbox-group label {
+    font-size: 14px;
+    color: #34495e;
+    cursor: pointer;
+  }
+  
+  button {
+    padding: 14px 25px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover:not(.submitting) {
+    background: #2980b9;
+    transform: translateY(-2px);
+  }
+  
+  button.submitting,
+  button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .response-message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .response-message.success {
+    background: #d4edda;
+    color: #155724;
+  }
+  
+  .response-message.error {
+    background: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .contact-form-container {
+      margin: 30px 15px;
+      padding: 20px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    .subtitle {
+      font-size: 14px;
+    }
+  
+    .form-group input,
+    .form-group textarea {
+      font-size: 14px;
+      padding: 12px;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 12px 20px;
+    }
+  }

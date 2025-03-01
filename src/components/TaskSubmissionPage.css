@@ -170,3 +170,50 @@
         width: calc(100% - 185px); /* Adjust input width for wider labels on larger screens */
     }
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .task-form {
+    width: 90%;
+  }
+
+  .form-card {
+    padding: 15px;
+  }
+
+  .form-row label {
+    width: 100px;
+  }
+
+  .form-row input[type="text"],
+  .form-row input[type="number"],
+  .form-row input[type="datetime-local"],
+  .form-row input[type="password"],
+  .form-row select,
+  .form-row textarea {
+    width: calc(100% - 120px);
+  }
+}
+
+@media (max-width: 480px) {
+  .task-form {
+    width: 100%;
+  }
+
+  .form-card {
+    padding: 10px;
+  }
+
+  .form-row label {
+    width: 80px;
+  }
+
+  .form-row input[type="text"],
+  .form-row input[type="number"],
+  .form-row input[type="datetime-local"],
+  .form-row input[type="password"],
+  .form-row select,
+  .form-row textarea {
+    width: calc(100% - 100px);
+  }
+}

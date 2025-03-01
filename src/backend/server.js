@@ -534,7 +534,6 @@ app.post("/api/update-student", async (req, res) => {
 
 // Upload data
 
-
 // Multer Configuration
 const storage = multer.memoryStorage(); // Store file in memory as a buffer
 const upload = multer({ storage });
@@ -914,64 +913,6 @@ const studentPhotos = {
   "9708200025": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
 };
 
-// Route to fetch student profile by FCC ID
-app.get("/get-student-profile/:fcc_id", async (req, res) => {
-  const { fcc_id } = req.params;
-
-  try {
-    const query = 'SELECT * FROM "New_Student_Admission" WHERE fcc_id = $1';
-    const result = await pool.query(query, [fcc_id]);
-
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: "Student not found" });
-    }
-
-    const student = result.rows[0];
-    student.photo_url = studentPhotos[fcc_id] || null; // Assign photo if available
-
-    res.json(student);
-  } catch (error) {
-    console.error("Error fetching student:", error);
-    res.status(500).json({ error: "Failed to fetch student data" });
-    res.json({ message: "Student profile for FCC ID " + req.params.fccId });
-  }
-});
-
-
-app.get('/get-student-skills/:fcc_id', async (req, res) => {
-  const { fcc_id } = req.params;
-
-  try {
-    const query = `
-      SELECT
-        skill_topic,
-        skill_level,
-        skill_description,
-        skill_image_url,
-        status,
-        skill_log
-      FROM student_skills
-      WHERE fcc_id = $1
-    `;
-    const result = await pool.query(query, [fcc_id]);
-
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'No skills found for this student' });
-    }
-    // Add defaults if missing
-    const skills = result.rows.map(skill => ({
-      ...skill,
-      skill_level: skill.skill_level || 'Unknown',  // default if missing
-      status: skill.status || 'Not Specified',     // default if missing
-      skill_description: skill.skill_description || 'No description available', // default if missing
-    }));
-
-    res.json(skills); // Send all fetched data
-  } catch (error) {
-    console.error('Error fetching skills:', error);
-    res.status(500).json({ error: 'Failed to fetch student skills' });
-  }
-});
 
 // Route to fetch CTC/CTG data and logs by FCC ID
 app.get("/get-ctc-ctg/:fcc_id", async (req, res) => {
@@ -1229,24 +1170,6 @@ app.post('/complete-task', async (req, res) => {
   }
 });
 
-// app.post('/api/chat', async (req, res) => {
-//   const userMessage = req.body.message;
-
-//   if (!userMessage) {
-//       return res.status(400).json({ error: 'Message is required' });
-//   }
-
-//   try {
-//       const result = await model.generateContent(userMessage);
-//       const responseText = result.response.text();
-//       res.json({ response: responseText });
-//   } catch (error) {
-//       console.error("Gemini API error:", error);
-//       res.status(500).json({ error: 'Failed to get response from Gemini API' });
-//   }
-// });
-
-
 app.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
   const selectedModel = req.body.model;
@@ -1395,55 +1318,45 @@ app.get('/api/videos', cors(), async (req, res) => {
   }
 });
 
-// ... आपका app.listen(...) और बाकी बैकएंड कोड ...
-// नया एपीआई एंडपॉइंट: GET /api/attendance?classroomName=Class%201
 app.get('/api/attendance', cors(), async (req, res) => {
-  const classroomName = req.query.classroomName; // उदाहरण: "Class 1"
+  const classroomName = req.query.classroomName;
   if (!classroomName) {
     return res.status(400).json({ error: 'classroomName parameter is required' });
   }
   
-  // "Class 1" से '1' निकालने के लिए:
   const classNumber = classroomName.split(" ")[1];
 
   try {
-    // students तालिका से ctc_time और ctg_time दोनों निकालें
     const query = `
-      SELECT nsa.name, s.ctc_time, s.ctg_time
+      SELECT nsa.name, s.ctc_time, s.ctg_time, nsa.fcc_id  -- Added nsa.fcc_id
       FROM "New_Student_Admission" nsa
       LEFT JOIN students s ON nsa.fcc_id = s.fcc_id
       WHERE nsa.fcc_class = $1;
     `;
     const { rows } = await pool.query(query, [classNumber]);
 
-    // आज की तारीख (YYYY-MM-DD) निकालें
     const today = new Date();
     const pad = (n) => (n < 10 ? '0' + n : n);
     const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
 
-    // दिनांक को string में convert करने का helper function
     const getDateString = (date) => {
       const d = new Date(date);
       return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
     };
 
-    // हर छात्र के लिए attendance status और duration निर्धारित करें
     const attendanceData = rows.map(row => {
       let status = "Absent";
-      let duration = null; // duration की default value null
+      let duration = null;
       
       if (row.ctc_time) {
         const ctcTime = new Date(row.ctc_time);
         const ctcDate = getDateString(ctcTime);
         if (ctcDate === todayDate) {
-          // अगर ctc_time मौजूद है तो छात्र ने क्लास में प्रवेश कर लिया है
           status = "Entered class";
-          
           if (row.ctg_time) {
             const ctgTime = new Date(row.ctg_time);
             const ctgDate = getDateString(ctgTime);
             if (ctgDate === todayDate) {
-              // अगर ctg_time भी उसी दिन का है, तो क्लास अटेंड हो चुकी है
               status = "Class attended";
               const diffMs = ctgTime - ctcTime;
               const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
@@ -1456,8 +1369,7 @@ app.get('/api/attendance', cors(), async (req, res) => {
       
       return {
         name: row.name,
-        ctc_time: row.ctc_time,
-        ctg_time: row.ctg_time,
+        fcc_id: row.fcc_id,  // Added fcc_id
         status,
         duration
       };
@@ -2016,97 +1928,98 @@ app.get('/fcchome-present-students', cors(), async (req, res) => {
 });
 
 // Serve Absent Students Details at /fcchome-absent-students
-// app.get('/fcchome-absent-students', cors(), async (req, res) => {
-//   try {
-//       const today = new Date();
-//       const pad = (n) => (n < 10 ? '0' + n : n);
-//       const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
 
-//       const query = `
-//           WITH ValidStudentFCCIDs AS (
-//               SELECT nsa.fcc_id
-//               FROM "New_Student_Admission" nsa
-//               WHERE EXISTS (SELECT 1 FROM students s WHERE s.fcc_id = nsa.fcc_id)
-//           ),
-//           LatestStudentData AS (
-//               SELECT
-//                   s.fcc_id,
-//                   s.ctc_time,
-//                   s.ctg_time,
-//                   s.task_completed,
-//                   ROW_NUMBER() OVER(PARTITION BY s.fcc_id ORDER BY s.ctc_time DESC NULLS LAST) as rn
-//               FROM students s
-//               WHERE EXISTS (SELECT 1 FROM ValidStudentFCCIDs vsf WHERE vsf.fcc_id = s.fcc_id)
-//           )
-//           SELECT nsa.fcc_id, nsa.name, nsa.father, nsa.mother, nsa.mobile_number, nsa.address, 
-//                  lsd.ctc_time, lsd.ctg_time, lsd.task_completed, nsa.admission_date
-//           FROM LatestStudentData lsd
-//           JOIN "New_Student_Admission" nsa ON lsd.fcc_id = nsa.fcc_id
-//           WHERE (DATE(lsd.ctc_time) != $1::date OR lsd.ctc_time IS NULL) AND lsd.rn = 1;
-//       `;
-//       const result = await pool.query(query, [todayDate]);
-//       const students = result.rows;
+app.get('/fcchome-absent-students', cors(), async (req, res) => {
+  try {
+      const today = new Date();
+      const pad = (n) => (n < 10 ? '0' + n : n);
+      const todayDate = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
 
-//       const htmlContent = `
-//           <!DOCTYPE html>
-//           <html>
-//           <head>
-//               <title>Absent Students Details</title>
-//               <style>
-//                   body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #eef2f7; }
-//                   h4 { color: #2c3e50; font-size: 1.8rem; text-align: center; }
-//                   table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
-//                   thead { background-color: #3498db; color: #fff; }
-//                   th, td { padding: 14px; text-align: left; border-bottom: 1px solid #e0e6ed; }
-//                   th { font-weight: 600; text-transform: uppercase; }
-//                   td { color: #34495e; }
-//                   tbody tr:nth-child(even) { background-color: #f1f5f9; }
-//                   tbody tr:hover { background-color: #dfe9f3; }
-//               </style>
-//           </head>
-//           <body>
-//               <h4>Absent Students Details</h4>
-//               <table>
-//                   <thead>
-//                       <tr>
-//                           <th>FCC ID</th>
-//                           <th>Name</th>
-//                           <th>Father</th>
-//                           <th>Mother</th>
-//                           <th>Mobile Number</th>
-//                           <th>Address</th>
-//                           <th>CTC Time</th>
-//                           <th>CTG Time</th>
-//                           <th>Task Completed</th>
-//                           <th>Admission Date</th>
-//                       </tr>
-//                   </thead>
-//                   <tbody>
-//                       ${students.map(student => `
-//                           <tr>
-//                               <td>${student.fcc_id}</td>
-//                               <td>${student.name}</td>
-//                               <td>${student.father || 'N/A'}</td>
-//                               <td>${student.mother || 'N/A'}</td>
-//                               <td>${student.mobile_number || 'N/A'}</td>
-//                               <td>${student.address || 'N/A'}</td>
-//                               <td>${student.ctc_time ? new Date(student.ctc_time).toLocaleTimeString() : 'N/A'}</td>
-//                               <td>${student.ctg_time ? new Date(student.ctg_time).toLocaleTimeString() : 'N/A'}</td>
-//                               <td>${student.task_completed ? 'Yes' : 'No'}</td>
-//                               <td>${student.admission_date ? new Date(student.admission_date).toLocaleDateString() : 'N/A'}</td>
-//                           </tr>
-//                       `).join('')}
-//                   </tbody>
-//               </table>
-//           </body>
-//           </html>
-//       `;
-//       res.send(htmlContent);
-//   } catch (error) {
-//       console.error("Error fetching absent students:", error);
-//       res.status(500).send("Error fetching absent students");
-//   }
-// });
+      const query = `
+          WITH ValidStudentFCCIDs AS (
+              SELECT nsa.fcc_id
+              FROM "New_Student_Admission" nsa
+              WHERE EXISTS (SELECT 1 FROM students s WHERE s.fcc_id = nsa.fcc_id)
+          ),
+          LatestStudentData AS (
+              SELECT
+                  s.fcc_id,
+                  s.ctc_time,
+                  s.ctg_time,
+                  s.task_completed,
+                  ROW_NUMBER() OVER(PARTITION BY s.fcc_id ORDER BY s.ctc_time DESC NULLS LAST) as rn
+              FROM students s
+              WHERE EXISTS (SELECT 1 FROM ValidStudentFCCIDs vsf WHERE vsf.fcc_id = s.fcc_id)
+          )
+          SELECT nsa.fcc_id, nsa.name, nsa.father, nsa.mother, nsa.mobile_number, nsa.address, 
+                 lsd.ctc_time, lsd.ctg_time, lsd.task_completed, nsa.admission_date
+          FROM LatestStudentData lsd
+          JOIN "New_Student_Admission" nsa ON lsd.fcc_id = nsa.fcc_id
+          WHERE (DATE(lsd.ctc_time) != $1::date OR lsd.ctc_time IS NULL) AND lsd.rn = 1;
+      `;
+      const result = await pool.query(query, [todayDate]);
+      const students = result.rows;
+
+      const htmlContent = `
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Absent Students Details</title>
+              <style>
+                  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #eef2f7; }
+                  h4 { color: #2c3e50; font-size: 1.8rem; text-align: center; }
+                  table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+                  thead { background-color: #3498db; color: #fff; }
+                  th, td { padding: 14px; text-align: left; border-bottom: 1px solid #e0e6ed; }
+                  th { font-weight: 600; text-transform: uppercase; }
+                  td { color: #34495e; }
+                  tbody tr:nth-child(even) { background-color: #f1f5f9; }
+                  tbody tr:hover { background-color: #dfe9f3; }
+              </style>
+          </head>
+          <body>
+              <h4>Absent Students Details</h4>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>FCC ID</th>
+                          <th>Name</th>
+                          <th>Father</th>
+                          <th>Mother</th>
+                          <th>Mobile Number</th>
+                          <th>Address</th>
+                          <th>CTC Time</th>
+                          <th>CTG Time</th>
+                          <th>Task Completed</th>
+                          <th>Admission Date</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      ${students.map(student => `
+                          <tr>
+                              <td>${student.fcc_id}</td>
+                              <td>${student.name}</td>
+                              <td>${student.father || 'N/A'}</td>
+                              <td>${student.mother || 'N/A'}</td>
+                              <td>${student.mobile_number || 'N/A'}</td>
+                              <td>${student.address || 'N/A'}</td>
+                              <td>${student.ctc_time ? new Date(student.ctc_time).toLocaleTimeString() : 'N/A'}</td>
+                              <td>${student.ctg_time ? new Date(student.ctg_time).toLocaleTimeString() : 'N/A'}</td>
+                              <td>${student.task_completed ? 'Yes' : 'No'}</td>
+                              <td>${student.admission_date ? new Date(student.admission_date).toLocaleDateString() : 'N/A'}</td>
+                          </tr>
+                      `).join('')}
+                  </tbody>
+              </table>
+          </body>
+          </html>
+      `;
+      res.send(htmlContent);
+  } catch (error) {
+      console.error("Error fetching absent students:", error);
+      res.status(500).send("Error fetching absent students");
+  }
+});
 
 app.get('/fcchome-present-students', cors(), async (req, res) => {
   try {
@@ -2157,13 +2070,560 @@ app.get('/fcchome-present-students', cors(), async (req, res) => {
   }
 });
 
+// Route to fetch student profile by FCC ID
 
+const generateSkillImageName = (req, file) => {
+  try {
+    console.log('req.body for image filename:', req.body); // Enhanced Debug log
+    const fccId = req.body.fcc_id || 'unknown';
+    const skillTopic = (req.body.skill_topic || 'skill')
+      .replace(/[^a-zA-Z0-9]/g, '_')
+      .substring(0, 15);
+    const date = new Date().toISOString().split('T')[0];
+    const actionType = req.body.action_type || 'create';
+    const ext = path.extname(file.originalname);
 
-// ✅ **HTTP Server Listening on IPv4 & IPv6 for localhost**
+    const filename = `${fccId}_${skillTopic}_${date}_${actionType}${ext}`;
+    console.log('Generated image filename:', filename); // Enhanced Debug log
+    return filename;
+  } catch (err) {
+    console.error('Error generating image filename:', err);
+    return file.originalname;
+  }
+};
+
+// 2. Multer storage configuration
+const skillImageStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/skill_images/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, generateSkillImageName(req, file));
+  }
+});
+
+// 3. File filter for images only
+const imageFileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image/')) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only image files are allowed!'), false);
+  }
+};
+
+// 4. Configured upload middleware - Keeping it but will use 'uploadFiles' instead in routes
+
+// 2. वीडियो के लिए नया स्टोरेज और फिल्टर
+const generateSkillVideoName = (req, file) => {
+  try {
+    console.log('req.body for video filename:', req.body); // Enhanced Debug log
+    const fccId = req.body.fcc_id || 'unknown';
+    const skillTopic = (req.body.skill_topic || 'skill')
+      .replace(/[^a-zA-Z0-9]/g, '_')
+      .substring(0, 15);
+    const date = new Date().toISOString().split('T')[0];
+    const actionType = req.body.action_type || 'create';
+    const ext = path.extname(file.originalname);
+
+    const filename = `${fccId}_${skillTopic}_${date}_${actionType}_video${ext}`;
+    console.log('Generated video filename:', filename); // Enhanced Debug log
+    return filename;
+  } catch (err) {
+    console.error('Error generating video filename:', err);
+    return file.originalname;
+  }
+};
+
+const skillVideoStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/skill_videos/'); // नया डायरेक्टरी वीडियो के लिए
+  },
+  filename: (req, file, cb) => {
+    cb(null, generateSkillVideoName(req, file));
+  }
+});
+
+const videoFileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('video/')) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only video files are allowed for videos!'), false);
+  }
+};
+
+const uploadFiles = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      if (file.fieldname === 'skill_image') {
+        cb(null, 'public/skill_images/');
+      } else if (file.fieldname === 'skill_video') {
+        cb(null, 'public/skill_videos/');
+      }
+    },
+    filename: (req, file, cb) => {
+      if (file.fieldname === 'skill_image') {
+        cb(null, generateSkillImageName(req, file));
+      } else if (file.fieldname === 'skill_video') {
+        cb(null, generateSkillVideoName(req, file));
+      }
+    }
+  }),
+  fileFilter: (req, file, cb) => {
+    if (file.fieldname === 'skill_image') {
+      imageFileFilter(req, file, cb);
+    } else if (file.fieldname === 'skill_video') {
+      videoFileFilter(req, file, cb);
+    }
+  },
+  limits: { fileSize: 50 * 1024 * 1024 } // Maximum file size limit for both types
+}).fields([
+  { name: 'skill_image', maxCount: 1 },
+  { name: 'skill_video', maxCount: 1 }
+]);
+
+// 5. Serve static files
+app.use('/skill_images', express.static(path.join(__dirname, 'public/skill_images')));
+app.use('/skill_videos', express.static(path.join(__dirname, 'public/skill_videos'))); // वीडियो के लिए नया रूट
+
+// Route to fetch student profile by FCC ID
+app.get("/get-student-profile/:fcc_id", async (req, res) => {
+  const { fcc_id } = req.params;
+
+  try {
+    const query = 'SELECT * FROM "New_Student_Admission" WHERE fcc_id = $1';
+    const result = await pool.query(query, [fcc_id]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Student not found" });
+    }
+
+    const student = result.rows[0];
+    student.photo_url = studentPhotos[fcc_id] || null; // Assign photo if available
+
+    res.json(student);
+  } catch (error) {
+    console.error("Error fetching student:", error);
+    res.status(500).json({ error: "Failed to fetch student data" });
+  }
+});
+
+// Route to fetch student skills by FCC ID
+// 6. GET रूट्स में वीडियो URL जोड़ें
+app.get('/get-student-skills/:fcc_id', async (req, res) => {
+  const { fcc_id } = req.params;
+
+  try {
+    const query = `
+      SELECT
+        skill_topic,
+        skill_level,
+        skill_description,
+        skill_image_url,
+        skill_video_url, -- वीडियो URL जोड़ें
+        status,
+        skill_log
+      FROM student_skills
+      WHERE fcc_id = $1
+    `;
+    const result = await pool.query(query, [fcc_id]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'No skills found for this student' });
+    }
+
+    const skills = result.rows.map(skill => ({
+      ...skill,
+      skill_level: skill.skill_level || 'Unknown',
+      status: skill.status || 'Not Specified',
+      skill_description: skill.skill_description || 'No description available',
+    }));
+
+    res.json(skills);
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    res.status(500).json({ error: 'Failed to fetch student skills' });
+  }
+});
+
+// Route to search student skills by FCC ID - Consider if this is needed alongside /get-student-skills/:fcc_id
+app.get('/api/student-skills/search/:fccId', async (req, res) => {
+  const { fccId } = req.params;
+  try {
+    const query = 'SELECT * FROM student_skills WHERE fcc_id = $1';
+    const result = await pool.query(query, [fccId]);
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error fetching student skills:', error);
+    res.status(500).json({ error: 'Failed to fetch student skills' });
+  }
+});
+
+// GET /api/skills (with pagination from previous solution)
+app.get('/api/skills', async (req, res) => {
+  try {
+    const { fcc_id, name, skill_topic, skill_level, status, page = 1, limit = 10 } = req.query; // `status` ko add kiya
+    const offset = (page - 1) * limit;
+
+    let query = `
+      SELECT
+        ss.*,
+        nsa.name AS student_name
+      FROM student_skills ss
+      JOIN "New_Student_Admission" nsa ON ss.fcc_id = nsa.fcc_id
+      WHERE 1=1
+    `;
+    let countQuery = `
+      SELECT COUNT(*)
+      FROM student_skills ss
+      JOIN "New_Student_Admission" nsa ON ss.fcc_id = nsa.fcc_id
+      WHERE 1=1
+    `;
+    const params = [];
+
+    if (fcc_id) {
+      query += ` AND ss.fcc_id = $${params.length + 1}`;
+      countQuery += ` AND ss.fcc_id = $${params.length + 1}`;
+      params.push(fcc_id);
+    }
+    if (name) {
+      query += ` AND nsa.name ILIKE $${params.length + 1}`;
+      countQuery += ` AND nsa.name ILIKE $${params.length + 1}`;
+      params.push(`%${name}%`);
+    }
+    if (skill_topic) {
+      query += ` AND ss.skill_topic ILIKE $${params.length + 1}`;
+      countQuery += ` AND ss.skill_topic ILIKE $${params.length + 1}`;
+      params.push(`%${skill_topic}%`);
+    }
+    if (skill_level) {
+      query += ` AND ss.skill_level = $${params.length + 1}`;
+      countQuery += ` AND ss.skill_level = $${params.length + 1}`;
+      params.push(skill_level);
+    }
+    if (status) { // Naya condition for status filter
+      query += ` AND ss.status = $${params.length + 1}`;
+      countQuery += ` AND ss.status = $${params.length + 1}`;
+      params.push(status);
+    }
+
+    query += ` ORDER BY ss.created_at DESC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`;
+    params.push(limit, offset);
+
+    const [skillsResult, countResult] = await Promise.all([
+      pool.query(query, params),
+      pool.query(countQuery, params.slice(0, -2))
+    ]);
+
+    res.json({
+      skills: skillsResult.rows,
+      total: parseInt(countResult.rows[0].count),
+      page: parseInt(page),
+      limit: parseInt(limit)
+    });
+  } catch (err) {
+    console.error('Error fetching skills:', err);
+    res.status(500).json({ error: 'Server error: ' + err.message });
+  }
+});
+
+// POST /api/skills
+app.post('/api/skills', uploadFiles, async (req, res, next) => { // Using uploadFiles middleware
+  try {
+    console.log('Request body for skill creation:', req.body);
+    console.log('Files received:', req.files); // Debug log for files
+
+    if (!req.body.fcc_id) {
+      return res.status(400).json({ error: 'FCC ID is required' });
+    }
+    if (!req.body.skill_topic) {
+      return res.status(400).json({ error: 'Skill Topic is required' });
+    }
+    if (!req.body.skill_level) {
+      return res.status(400).json({ error: 'Skill Level is required' });
+    }
+
+    const skillData = {
+      fcc_id: req.body.fcc_id,
+      skill_topic: req.body.skill_topic,
+      skill_level: req.body.skill_level,
+      status: req.body.status,
+      skill_description: req.body.skill_description,
+      skill_image_url: req.files['skill_image'] ? `/skill_images/${req.files['skill_image'][0].filename}` : null,
+      skill_video_url: req.files['skill_video'] ? `/skill_videos/${req.files['skill_video'][0].filename}` : null,
+    };
+
+    const insertSkillQuery = `
+      INSERT INTO student_skills
+      (fcc_id, skill_topic, skill_level, status, skill_description, skill_image_url, skill_video_url, skill_log)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      RETURNING *
+    `;
+    const initialLog = [{
+      time: new Date().toISOString(),
+      action: 'create',
+      details: {
+        status: skillData.status,
+        skill_topic: skillData.skill_topic,
+        skill_level: skillData.skill_level,
+        description: skillData.skill_description,
+        image_url: skillData.skill_image_url,
+        video_url: skillData.skill_video_url,
+      }
+    }];
+
+    const skillResult = await pool.query(insertSkillQuery, [
+      skillData.fcc_id,
+      skillData.skill_topic,
+      skillData.skill_level,
+      skillData.status,
+      skillData.skill_description,
+      skillData.skill_image_url,
+      skillData.skill_video_url,
+      JSON.stringify(initialLog)
+    ]);
+
+    const logActivityQuery = `
+      INSERT INTO skill_log_activity
+      (student_skill_id, action, details, timestamp)
+      VALUES ($1, $2, $3, NOW())
+    `;
+    await pool.query(logActivityQuery, [
+      skillResult.rows[0].id,
+      'create',
+      JSON.stringify(skillData)
+    ]);
+
+    res.status(201).json(skillResult.rows[0]);
+  } catch (err) {
+    console.error('Error saving skill:', err);
+    res.status(500).json({ error: 'Skill creation failed: ' + err.message });
+  }
+});
+
+// PUT /api/skills/:id - Updated to use uploadFiles middleware
+app.put('/api/skills/:id', uploadFiles, async (req, res, next) => { // Using uploadFiles middleware
+  const skillId = req.params.id;
+  console.log('Updating skill with ID:', skillId);
+  console.log('Request body for skill update:', req.body);
+  console.log('Files received for update:', req.files); // Debug log for files
+
+  if (!skillId || isNaN(Number(skillId))) {
+    return res.status(400).json({ error: 'Invalid skill ID provided' });
+  }
+
+  const { skill_topic, skill_level, status, skill_description } = req.body;
+  let skill_image_url = req.body.skill_image_url; // default to body value if no new image
+  let skill_video_url = req.body.skill_video_url; // default to body value if no new video
+
+  // Check if new image was uploaded
+  if (req.files['skill_image'] && req.files['skill_image'][0]) {
+    skill_image_url = `/skill_images/${req.files['skill_image'][0].filename}`;
+    console.log('Updated skill_image_url:', skill_image_url);
+  }
+
+  // Check if new video was uploaded
+  if (req.files['skill_video'] && req.files['skill_video'][0]) {
+    skill_video_url = `/skill_videos/${req.files['skill_video'][0].filename}`;
+    console.log('Updated skill_video_url:', skill_video_url);
+  }
+
+  try {
+    const currentSkillQuery = 'SELECT * FROM student_skills WHERE id = $1';
+    const currentSkillResult = await pool.query(currentSkillQuery, [skillId]);
+
+    if (currentSkillResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Skill not found' });
+    }
+
+    const currentSkill = currentSkillResult.rows[0];
+    let currentLog = currentSkill.skill_log;
+
+    if (!currentLog || typeof currentLog !== 'string') {
+      currentLog = '[]';
+    }
+
+    try {
+      currentLog = JSON.parse(currentLog);
+    } catch (parseError) {
+      console.error('Error parsing existing skill log:', parseError);
+      currentLog = [];
+    }
+
+    const updateData = {
+      skill_topic: skill_topic || currentSkill.skill_topic,
+      skill_level: skill_level || currentSkill.skill_level,
+      status: status || currentSkill.status,
+      skill_description: skill_description || currentSkill.skill_description,
+      skill_image_url: skill_image_url, // Use potentially new image URL or existing
+      skill_video_url: skill_video_url, // Use potentially new video URL or existing
+    };
+
+    console.log('Update Data:', updateData);
+
+    const newLogEntry = {
+      time: new Date().toISOString(),
+      action: 'update',
+      details: updateData,
+    };
+    currentLog.push(newLogEntry);
+
+    const updateQuery = `
+      UPDATE student_skills
+      SET skill_topic = $1,
+          skill_level = $2,
+          status = $3,
+          skill_description = $4,
+          skill_image_url = $5,
+          skill_video_url = $6,
+          skill_log = $7,
+          updated_at = NOW()
+      WHERE id = $8
+      RETURNING *
+    `;
+    const updateResult = await pool.query(updateQuery, [
+      updateData.skill_topic,
+      updateData.skill_level,
+      updateData.status,
+      updateData.skill_description,
+      updateData.skill_image_url,
+      updateData.skill_video_url,
+      JSON.stringify(currentLog),
+      skillId,
+    ]);
+
+    const logActivityQuery = `
+      INSERT INTO skill_log_activity
+      (student_skill_id, action, details, timestamp)
+      VALUES ($1, $2, $3, NOW())
+    `;
+    await pool.query(logActivityQuery, [
+      skillId,
+      'update',
+      JSON.stringify(updateData),
+    ]);
+
+    res.json(updateResult.rows[0]);
+  } catch (err) {
+    console.error('Error updating skill:', err);
+    res.status(500).json({ error: `Skill update failed: ${err.message}` });
+  }
+});
+
+// GET /api/students
+app.get('/api/students', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT fcc_id, name FROM "New_Student_Admission"');
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Error fetching students:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.post('/api/contact', async (req, res) => {
+  const { mobileNumber, message, termsAccepted } = req.body;
+  const clientIp = getClientIP(req); // पहले से मौजूद फंक्शन का उपयोग
+  const secretToken = uuidv4(); // यूनिक टोकन जनरेट करें
+
+  if (!mobileNumber || !message || !termsAccepted) {
+    return res.status(400).json({ message: 'All fields are required.' });
+  }
+
+  try {
+    const result = await pool.query(
+      `INSERT INTO contact_messages (
+        mobile_number, 
+        message, 
+        terms_accepted, 
+        created_at, 
+        contact_time, 
+        client_ip, 
+        secret_token
+      ) VALUES ($1, $2, $3, NOW(), CURRENT_TIME, $4, $5) RETURNING *`,
+      [mobileNumber, message, termsAccepted, clientIp, secretToken]
+    );
+    console.log('Contact message saved:', result.rows[0]);
+    res.status(201).json({ 
+      message: 'Message saved successfully', 
+      data: { 
+        id: result.rows[0].id, 
+        mobile_number: result.rows[0].mobile_number, 
+        message: result.rows[0].message, 
+        created_at: result.rows[0].created_at 
+      } // गुप्त डेटा को रिस्पॉन्स में नहीं भेजते
+    });
+  } catch (error) {
+    console.error('Error saving contact message:', error);
+    res.status(500).json({ message: 'Failed to save message.' });
+  }
+});
+
+// Gemini API के साथ स्पीच विश्लेषण
+app.post('/api/analyze-speech', async (req, res) => {
+  const { text, level } = req.body;
+
+  if (!text || !level) {
+    return res.status(400).json({ message: 'Text and level are required.' });
+  }
+
+  try {
+    const prompt = `
+      Analyze the following English sentence spoken by a learner at level ${level}:
+      "${text}"
+      - Is it grammatically correct?
+      - How can it be improved?
+      - Assign a score (0-10) based on correctness and complexity.
+      Provide a detailed feedback in a friendly tone.
+    `;
+    
+    const geminiResponse = await geminiModel.generateContent(prompt);
+    const feedbackText = geminiResponse.text();
+
+    // स्कोर निकालें (उदाहरण के लिए, Gemini के टेक्स्ट से पार्स करें)
+    const scoreMatch = feedbackText.match(/Score: (\d+)/);
+    const score = scoreMatch ? parseInt(scoreMatch[1]) : 5;
+
+    console.log('Speech analyzed:', { text, feedback: feedbackText, score });
+    res.status(200).json({ feedback: feedbackText, score });
+  } catch (error) {
+    console.error('Error analyzing speech:', error);
+    res.status(500).json({ message: 'Failed to analyze speech.' });
+  }
+});
+
+// प्रोग्रेस सेव करने का रूट
+app.post('/api/english-progress', async (req, res) => {
+  const { userName, secretCode, level, score } = req.body;
+  const clientIp = getClientIP(req);
+
+  if (!userName || !secretCode || !level || !score) {
+    return res.status(400).json({ message: 'All fields are required.' });
+  }
+
+  try {
+    const result = await pool.query(
+      `INSERT INTO english_progress (
+        user_name, 
+        secret_code, 
+        level, 
+        score, 
+        client_ip, 
+        created_at
+      ) VALUES ($1, $2, $3, $4, $5, NOW()) RETURNING *`,
+      [userName, secretCode, level, score, clientIp]
+    );
+
+    console.log('Progress saved:', result.rows[0]);
+    res.status(201).json({ message: 'Progress saved successfully!', data: result.rows[0] });
+  } catch (error) {
+    console.error('Error saving progress:', error);
+    res.status(500).json({ message: 'Failed to save progress.' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`HTTP Server running on port ${port}`);
   pool.query('SELECT NOW()')
-      .then(res => console.log('Database connected, response:', res.rows))
-      .catch(err => console.error('Database connection error:', err));
+    .then(res => console.log('Database connected, response:', res.rows))
+    .catch(err => console.error('Database connection error:', err));
 });

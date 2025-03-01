@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Classroom.css";
 
-// Skeleton Loader Component for Video Card
 const SkeletonCard = () => (
   <div className="video-card skeleton-card">
     <div className="skeleton-title"></div>
@@ -10,70 +10,84 @@ const SkeletonCard = () => (
   </div>
 );
 
+const studentPhotos = {
+  "4949200024": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FIMG_20241112_150831_462.jpg?alt=media&token=e75bd57c-f944-4061-94e7-381b15a519f1",
+  "9631200024": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2FZRIUJKZxEGfNRtkwTy2DfkWAL4s2?alt=media&token=9cd5e3fe-130e-4623-9299-7b5c88f9d519",
+  "1234567890": "https://firebasestorage.googleapis.com/v0/b/sarkari-result-23f65.appspot.com/o/profile_images%2Fprofile-pic.png?alt=media&token=fe4c6d0c-73a5-44ed-8d4f-f8ac9b18dab7",
+  "9708200025": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
+};
+
 const Classroom = () => {
-  // स्टेट्स
+  const navigate = useNavigate();
+
   const [todaysVideos, setTodaysVideos] = useState([]);
   const [pastVideos, setPastVideos] = useState([]);
-  const [loadingVideos, setLoadingVideos] = useState(false); // वीडियोस के लिए लोडिंग स्टेट का नाम स्पष्ट करें
-  const [videoError, setVideoError] = useState(null); // वीडियोस के लिए एरर स्टेट का नाम स्पष्ट करें
+  const [visiblePastVideos, setVisiblePastVideos] = useState(5);
+  const [loadingVideos, setLoadingVideos] = useState(false);
+  const [videoError, setVideoError] = useState(null);
   const [classroomNames, setClassroomNames] = useState([]);
   const [selectedClassroom, setSelectedClassroom] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [attendance, setAttendance] = useState([]);
-  const [attendanceError, setAttendanceError] = useState(null); // अटेंडेंस के लिए एरर स्टेट
-  const [loadingAttendance, setLoadingAttendance] = useState(false); // अटेंडेंस लोडिंग स्टेट
+  const [attendanceError, setAttendanceError] = useState(null);
+  const [loadingAttendance, setLoadingAttendance] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [taskLoading, setTaskLoading] = useState(false);
   const [taskError, setTaskError] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
-  // हेल्पर फंक्शन: एरर हैंडलिंग के लिए
   const handleApiError = async (response) => {
     if (!response.ok) {
       const message = `HTTP error! status: ${response.status}`;
       try {
-        const errorData = await response.json(); // Try to get more detailed error from backend
-        if (errorData && errorData.message) {
-          throw new Error(`${message} - Details: ${errorData.message}`);
-        } else {
-          throw new Error(message);
-        }
-      } catch (jsonError) { // If JSON parsing fails, just throw the basic error
+        const errorData = await response.json();
+        if (errorData && errorData.message) throw new Error(`${message} - Details: ${errorData.message}`);
+        else throw new Error(message);
+      } catch (jsonError) {
         throw new Error(message);
       }
     }
     return response;
   };
 
-
-  // क्लासरूम्स लोड करें (कम्पोनेंट माउंट होने पर एक बार)
   useEffect(() => {
     const fetchClassrooms = async () => {
       try {
         const response = await fetch("http://localhost:5000/api/classrooms");
-        await handleApiError(response); // एरर हैंडलिंग के लिए हेल्पर फंक्शन का उपयोग करें
+        await handleApiError(response);
         const data = await response.json();
         setClassroomNames(data);
+
+        // Check for bypassed student data in localStorage
+        const bypassedStudent = JSON.parse(localStorage.getItem("bypassedStudent"));
+        if (bypassedStudent?.fcc_class) {
+          const className = `Class ${bypassedStudent.fcc_class}`;
+          if (data.includes(className)) {
+            setSelectedClassroom(className);
+            console.log(`Selected classroom from bypassed data: ${className}`);
+          } else {
+            console.log(`Classroom ${className} not found in available classrooms:`, data);
+          }
+        }
       } catch (e) {
         console.error("Could not fetch classroom names:", e);
-        setVideoError(e); // classroomNames को लोड करने में एरर को `videoError` में सेट करें, या एक अलग एरर स्टेट बनाएँ यदि उचित हो
+        setVideoError(e);
       }
     };
     fetchClassrooms();
-  }, []); // खाली डिपेंडेंसी एरे का मतलब है कि यह इफ़ेक्ट केवल एक बार चलेगा, माउंट होने पर
+  }, []); // Runs only once on mount
 
-  // वीडियोस लोड करें (selectedClassroom बदलने पर)
   useEffect(() => {
     const fetchVideos = async () => {
       if (!selectedClassroom) {
         setTodaysVideos([]);
         setPastVideos([]);
-        setLoadingVideos(false); // लोडिंग स्टेट को स्पष्ट करें
+        setLoadingVideos(false);
         return;
       }
 
       setLoadingVideos(true);
-      setVideoError(null); // पिछली एरर को रीसेट करें
+      setVideoError(null);
       try {
         const params = new URLSearchParams({ classroomName: selectedClassroom });
         const response = await fetch(`http://localhost:5000/api/videos?${params}`);
@@ -88,11 +102,9 @@ const Classroom = () => {
         setLoadingVideos(false);
       }
     };
-
     fetchVideos();
-  }, [selectedClassroom]); // selectedClassroom बदलने पर ही वीडियोस को रि-फ़ेच करें
+  }, [selectedClassroom]);
 
-  // अटेंडेंस डेटा फ़ेच करें (selectedClassroom बदलने पर)
   useEffect(() => {
     const fetchAttendance = async () => {
       if (!selectedClassroom) {
@@ -100,12 +112,10 @@ const Classroom = () => {
         return;
       }
 
-      setLoadingAttendance(true); // अटेंडेंस लोडिंग शुरू
-      setAttendanceError(null); // पिछली एरर को रीसेट करें
+      setLoadingAttendance(true);
+      setAttendanceError(null);
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}`
-        );
+        const response = await fetch(`http://localhost:5000/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}`);
         await handleApiError(response);
         const data = await response.json();
         setAttendance(data);
@@ -113,14 +123,12 @@ const Classroom = () => {
         console.error("Error fetching attendance:", error);
         setAttendanceError(error);
       } finally {
-        setLoadingAttendance(false); // अटेंडेंस लोडिंग समाप्त
+        setLoadingAttendance(false);
       }
     };
-
     fetchAttendance();
-  }, [selectedClassroom]); // selectedClassroom बदलने पर अटेंडेंस रि-फ़ेच करें
+  }, [selectedClassroom]);
 
-  // Tasks लोड करें (selectedClassroom बदलने पर)
   useEffect(() => {
     const fetchTasks = async () => {
       if (!selectedClassroom) {
@@ -131,10 +139,8 @@ const Classroom = () => {
       setTaskLoading(true);
       setTaskError(null);
       try {
-        const classNumber = selectedClassroom.split(" ")[1]; // क्लासरूम नाम से क्लास नंबर निकालें
-        const response = await fetch(
-          `http://localhost:5000/api/tasks?class=${classNumber}`
-        );
+        const classNumber = selectedClassroom.split(" ")[1];
+        const response = await fetch(`http://localhost:5000/api/tasks?class=${classNumber}`);
         await handleApiError(response);
         const data = await response.json();
         setTasks(data);
@@ -148,45 +154,28 @@ const Classroom = () => {
     fetchTasks();
   }, [selectedClassroom]);
 
-  const handleClassroomChange = (event) => {
-    setSelectedClassroom(event.target.value);
-  };
+  const handleClassroomChange = (event) => setSelectedClassroom(event.target.value);
+  const handleSearchChange = (event) => setSearchQuery(event.target.value);
+  const handleDateChange = (event) => setSelectedDate(event.target.value);
+  const handleViewMore = () => setVisiblePastVideos((prev) => prev + 5);
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const handleDateChange = (event) => {
-    setSelectedDate(event.target.value);
-  };
-
-  // वीडियोस को सर्च क्वेरी के हिसाब से फ़िल्टर करें (मेमोइज़ेशन का उपयोग परफॉर्मेंस के लिए)
-  const filterVideos = (videos) => {
-    return videos.filter((video) =>
-      video.video_title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  };
-
+  const filterVideos = (videos) => videos.filter((video) => video.video_title.toLowerCase().includes(searchQuery.toLowerCase()));
   const filteredTodaysVideos = React.useMemo(() => filterVideos(todaysVideos), [todaysVideos, searchQuery]);
   const filteredPastVideos = React.useMemo(() => filterVideos(pastVideos), [pastVideos, searchQuery]);
 
-  // Tasks को तारीख के अनुसार फ़िल्टर करें (मेमोइज़ेशन का उपयोग परफॉर्मेंस के लिए)
   const filterTasksByDate = React.useCallback((tasks) => {
     return tasks.filter(task => {
       const selected = new Date(selectedDate);
       const start = new Date(task.start_time);
       const end = new Date(task.end_time);
-
-      return selected >= start.setHours(0,0,0,0) &&
-             selected <= end.setHours(23,59,59,999);
+      return selected >= start.setHours(0, 0, 0, 0) && selected <= end.setHours(23, 59, 59, 999);
     });
-  }, [selectedDate]); // selectedDate बदलने पर ही फ़िल्टर फंक्शन को रीक्रिएट करें
+  }, [selectedDate]);
 
   const filteredTasks = React.useMemo(() => filterTasksByDate(tasks), [tasks, filterTasksByDate]);
 
-  // अवधि कैलकुलेट करने का फंक्शन
   const calculateDuration = (start, end) => {
-    if (!start || !end) return "N/A"; // नल या अपरिभाषित मानों के लिए सुरक्षा जांच
+    if (!start || !end) return "N/A";
     const diff = new Date(end) - new Date(start);
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -195,51 +184,38 @@ const Classroom = () => {
 
   return (
     <div className="classroom-container">
-      {/* क्लासरूम सिलेक्टर */}
       <div className="classroom-select">
-        <label htmlFor="classroomSelect">Select Classroom:</label>
+        <label htmlFor="classroomSelect">क्लासरूम चुनें:</label>
         <select id="classroomSelect" value={selectedClassroom} onChange={handleClassroomChange}>
-          <option value="">-- Please select a classroom --</option>
+          <option value="">-- कृपया एक क्लासरूम चुनें --</option>
           {classroomNames.map((name, index) => (
-            <option key={index} value={name}>
-              {name}
-            </option>
+            <option key={index} value={name}>{name}</option>
           ))}
         </select>
       </div>
 
-      {/* अगर कोई क्लासरूम सेलेक्ट नहीं हुआ तो */}
       {!selectedClassroom && (
         <div className="special-card">
-          <p>Please select a classroom to view videos, attendance and tasks.</p>
+          <p>वीडियो, उपस्थिति और कार्य देखने के लिए कृपया एक क्लासरूम चुनें।</p>
         </div>
       )}
 
       {selectedClassroom && (
         <>
-          {/* सर्च इनपुट */}
           <div className="search-container">
-            <input
-              type="text"
-              placeholder="Search video titles..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
+            <input type="text" placeholder="वीडियो शीर्षक खोजें..." value={searchQuery} onChange={handleSearchChange} />
           </div>
 
-          {loadingVideos ? ( // लोडिंग स्टेट को `loadingVideos` में बदलें
+          {loadingVideos ? (
             <div className="skeleton-grid">
-              {[...Array(6)].map((_, i) => (
-                <SkeletonCard key={i} />
-              ))}
+              {[...Array(6)].map((_, i) => <SkeletonCard key={i} />)}
             </div>
-          ) : videoError ? ( // एरर स्टेट को `videoError` में बदलें
-            <div className="error-message">Error loading videos: {videoError.message}</div>
+          ) : videoError ? (
+            <div className="error-message">वीडियो लोड करने में त्रुटि: {videoError.message}</div>
           ) : (
             <>
-              {/* आज की कक्षाएँ */}
               <section className="video-section">
-                <h2 className="video-title">Today's Classes</h2>
+                <h2 className="video-title">आज की कक्षाएं</h2>
                 {filteredTodaysVideos.length > 0 ? (
                   <div className="video-grid">
                     {filteredTodaysVideos.map((video, index) => (
@@ -247,9 +223,7 @@ const Classroom = () => {
                         <h3>{video.video_title}</h3>
                         <div className="video-iframe">
                           <iframe
-                            src={`https://www.youtube.com/embed/${new URL(
-                              video.youtube_url
-                            ).searchParams.get("v")}`}
+                            src={`https://www.youtube.com/embed/${new URL(video.youtube_url).searchParams.get("v")}`}
                             title={video.video_title}
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -262,60 +236,64 @@ const Classroom = () => {
                     ))}
                   </div>
                 ) : (
-                  <p>No classes scheduled for today in this classroom.</p>
+                  <p>इस क्लासरूम में आज के लिए कोई कक्षा निर्धारित नहीं है।</p>
                 )}
               </section>
 
-              {/* अटेंडेंस कार्ड */}
               <section className="attendance-section central-card">
-                <h2>Attendance</h2>
-                {loadingAttendance ? ( // अटेंडेंस लोडिंग स्टेट
-                  <p>Loading attendance data...</p>
-                ) : attendanceError ? ( // अटेंडेंस एरर स्टेट
-                  <div className="error-message">Error loading attendance: {attendanceError.message}</div>
+                <h2>उपस्थिति</h2>
+                {loadingAttendance ? (
+                  <p>उपस्थिति डेटा लोड हो रहा है...</p>
+                ) : attendanceError ? (
+                  <div className="error-message">उपस्थिति लोड करने में त्रुटि: {attendanceError.message}</div>
                 ) : attendance.length > 0 ? (
-                  <ul>
+                  <ul className="attendance-list">
                     {attendance.map((student, idx) => (
                       <li key={idx} className="student-attendance">
-                        <span className="student-name">{student.name}</span>
-                        <span
-                          className={`badge ${
-                            student.status === "Class attended" ? "present" : "absent"
-                          }`}
-                        >
-                          {student.status}
-                        </span>
-                        {student.duration && (
-                          <span className="duration"> ({student.duration})</span>
-                        )}
+                        <div className="student-profile">
+                          {studentPhotos[student.fcc_id] ? (
+                            <img
+                              src={studentPhotos[student.fcc_id]}
+                              alt={`${student.name}'s profile`}
+                              className="profile-pic"
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.style.display = 'none';
+                                e.target.nextSibling.style.display = 'flex';
+                              }}
+                            />
+                          ) : (
+                            <div className="profile-initial">{student.name.charAt(0).toUpperCase()}</div>
+                          )}
+                          <span className="student-name">{student.name}</span>
+                        </div>
+                        <div className="attendance-details">
+                          <span className={`badge ${student.status === "Class attended" ? "present" : "absent"}`}>
+                            {student.status}
+                          </span>
+                          {student.duration && <span className="duration"> ({student.duration})</span>}
+                        </div>
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <p>No student data available for this class.</p>
+                  <p>इस कक्षा के लिए कोई छात्र डेटा उपलब्ध नहीं है।</p>
                 )}
               </section>
 
-              {/* तारीख फ़िल्टर */}
               <div className="date-filter-container">
-                <label htmlFor="dateFilter">Filter Tasks by Date:</label>
-                <input
-                  type="date"
-                  id="dateFilter"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                />
+                <label htmlFor="dateFilter">तिथि के अनुसार कार्य फ़िल्टर करें:</label>
+                <input type="date" id="dateFilter" value={selectedDate} onChange={handleDateChange} />
               </div>
 
-              {/* टास्क सेक्शन */}
               <section className="task-section">
-                <h2 className="video-title">Current Tasks</h2>
+                <h2 className="video-title">वर्तमान कार्य</h2>
                 {taskLoading ? (
                   <div className="skeleton-grid">
                     {[...Array(3)].map((_, i) => <SkeletonCard key={i} />)}
                   </div>
                 ) : taskError ? (
-                  <div className="error-message">Error loading tasks: {taskError}</div>
+                  <div className="error-message">कार्य लोड करने में त्रुटि: {taskError}</div>
                 ) : (
                   <div className="task-grid">
                     {filteredTasks.length > 0 ? (
@@ -324,59 +302,53 @@ const Classroom = () => {
                           <h3>{task.task_name}</h3>
                           <p className="task-description">{task.description}</p>
                           <div className="task-meta">
-                            <span className="task-score">
-                              Max Score: {task.max_score}
-                            </span>
-                            <span className="task-duration">
-                              Duration: {calculateDuration(task.start_time, task.end_time)}
-                            </span>
+                            <span className="task-score">Max Score: {task.max_score}</span>
+                            <span className="task-duration">Duration: {calculateDuration(task.start_time, task.end_time)}</span>
                           </div>
                           <div className="task-timings">
                             <p>Start: {new Date(task.start_time).toLocaleString()}</p>
                             <p>End: {new Date(task.end_time).toLocaleString()}</p>
                           </div>
-                          <div className={`task-status ${
-                            new Date() > new Date(task.end_time) ? 'expired' :
-                            new Date() < new Date(task.start_time) ? 'upcoming' : 'active'
-                          }`}>
-                            {new Date() > new Date(task.end_time) ? 'Expired' :
-                             new Date() < new Date(task.start_time) ? 'Upcoming' : 'Active'}
+                          <div className={`task-status ${new Date() > new Date(task.end_time) ? 'expired' : new Date() < new Date(task.start_time) ? 'upcoming' : 'active'}`}>
+                            {new Date() > new Date(task.end_time) ? 'समाप्त' : new Date() < new Date(task.start_time) ? 'आगामी' : 'सक्रिय'}
                           </div>
                         </div>
                       ))
                     ) : (
-                      <p>No tasks available for selected date</p>
+                      <p>चयनित तिथि के लिए कोई कार्य उपलब्ध नहीं है</p>
                     )}
                   </div>
                 )}
               </section>
 
-              {/* पुरानी कक्षाएँ */}
               <section className="video-section ended-classes-section">
-                <h2 className="video-title">Class Ended</h2>
+                <h2 className="video-title">समाप्त कक्षाएं</h2>
                 {filteredPastVideos.length > 0 ? (
-                  <div className="video-grid horizontal-scroll">
-                    {filteredPastVideos.map((video, index) => (
-                      <div key={index} className="video-card">
-                        <h3>{video.video_title}</h3>
-                        <div className="video-iframe">
-                          <iframe
-                            src={`https://www.youtube.com/embed/${new URL(
-                              video.youtube_url
-                            ).searchParams.get("v")}`}
-                            title={video.video_title}
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                            loading="lazy"
-                          ></iframe>
+                  <>
+                    <div className="video-grid horizontal-scroll">
+                      {filteredPastVideos.slice(0, visiblePastVideos).map((video, index) => (
+                        <div key={index} className="video-card">
+                          <h3>{video.video_title}</h3>
+                          <div className="video-iframe">
+                            <iframe
+                              src={`https://www.youtube.com/embed/${new URL(video.youtube_url).searchParams.get("v")}`}
+                              title={video.video_title}
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                              loading="lazy"
+                            ></iframe>
+                          </div>
+                          <p>Date: {new Date(video.live_date).toLocaleDateString()}</p>
                         </div>
-                        <p>Date: {new Date(video.live_date).toLocaleDateString()}</p>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                    {filteredPastVideos.length > visiblePastVideos && (
+                      <button className="view-more-btn" onClick={handleViewMore}>और देखें</button>
+                    )}
+                  </>
                 ) : (
-                  <p>No ended classes available for this classroom.</p>
+                  <p>इस क्लासरूम के लिए कोई समाप्त कक्षाएं उपलब्ध नहीं हैं।</p>
                 )}
               </section>
             </>

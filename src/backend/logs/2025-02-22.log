@@ -888,3 +888,42 @@
     "now": "2025-02-22T11:21:53.246Z"
   }
 ]
+[2025-02-22T12:16:27.391Z] LOG: Incoming request: OPTIONS /get-student-profile/1234200024, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T12:16:28.050Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T12:16:28.052Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T12:16:28.359Z] LOG: Incoming request: GET /get-student-profile/1234200024, Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T12:16:28.361Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T12:16:28.362Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-02-22T12:16:28.446Z] LOG: Generating new session ID
+[2025-02-22T12:17:00.724Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T12:17:00.733Z] LOG: Incoming Origin: 
+[2025-02-22T12:17:00.764Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T12:17:00.799Z] LOG: Generating new session ID
+[2025-02-22T12:17:25.306Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T12:17:25.307Z] LOG: Incoming Origin: 
+[2025-02-22T12:17:25.309Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T12:17:25.311Z] LOG: Generating new session ID
+[2025-02-22T12:17:27.995Z] LOG: Incoming request: GET /favicon.ico, Origin: undefined
+[2025-02-22T12:17:28.019Z] LOG: Incoming Origin: 
+[2025-02-22T12:17:28.024Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T12:17:28.025Z] LOG: Generating new session ID
+[2025-02-22T12:17:37.362Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T12:17:37.364Z] LOG: Incoming Origin: 
+[2025-02-22T12:17:37.369Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T12:17:37.372Z] LOG: Generating new session ID
+[2025-02-22T12:17:57.013Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T12:17:57.015Z] LOG: Incoming Origin: 
+[2025-02-22T12:17:57.016Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T12:17:57.018Z] LOG: Generating new session ID
+[2025-02-22T12:18:16.391Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T12:18:16.393Z] LOG: Incoming Origin: 
+[2025-02-22T12:18:16.393Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T12:18:16.395Z] LOG: Generating new session ID
+[2025-02-22T12:18:32.903Z] LOG: Incoming request: GET /fcchome-absent-students, Origin: undefined
+[2025-02-22T12:18:32.907Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T12:18:32.905Z] LOG: Incoming Origin: 
+[2025-02-22T12:18:32.909Z] LOG: Generating new session ID
+[2025-02-22T12:18:43.310Z] LOG: Incoming request: GET /fcchome-present-students, Origin: undefined
+[2025-02-22T12:18:43.312Z] LOG: Incoming Origin: 
+[2025-02-22T12:18:43.313Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-02-22T12:18:43.315Z] LOG: Generating new session ID

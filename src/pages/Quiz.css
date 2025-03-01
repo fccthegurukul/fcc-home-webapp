@@ -227,3 +227,66 @@ p {
     font-size: 1.1em;
     color: #777;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 20px;
+  }
+
+  .result-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .question-card {
+    padding: 20px;
+  }
+
+  .question-card h3.question-number {
+    font-size: 1.2rem;
+  }
+
+  .question-card p.question-text {
+    font-size: 1rem;
+  }
+
+  .question-navigation button {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+
+  .quiz-report h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-container {
+    padding: 15px;
+  }
+
+  .result-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .question-card {
+    padding: 15px;
+  }
+
+  .question-card h3.question-number {
+    font-size: 1rem;
+  }
+
+  .question-card p.question-text {
+    font-size: 0.9rem;
+  }
+
+  .question-navigation button {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .quiz-report h3 {
+    font-size: 1.2rem;
+  }
+}
