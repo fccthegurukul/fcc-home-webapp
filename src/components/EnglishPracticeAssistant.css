@@ -1,57 +1,593 @@
+/* General Styles */
 .english-practice-container {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 30px;
-  background: linear-gradient(135deg, #ffffff, #f0f4f8);
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 15px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f0f4f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
   text-align: center;
+  padding: 20px 0;
+  background-color: #ffffff;
+  border-bottom: 2px solid #e0e4e8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding-top: 20px;
+}
+
+h1 {
+  color: #1a3c6c;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin: 5px 0 0;
+  font-size: 16px;
+}
+
+.progress-bar {
+  margin-top: 10px;
+  background-color: #e0e4e8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  padding: 5px;
+  font-size: 14px;
+  color: #1a3c6c;
+}
+
+.progress-fill {
+  height: 10px;
+  background-color: #2ecc71;
+  transition: width 0.3s ease;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 10px;
+}
+
+/* Input Section */
+.input-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.speech-input,
+.type-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.speak-btn {
+  background-color: #1e90ff;
+  color: white;
+}
+
+.speak-btn:hover:not(:disabled) {
+  background-color: #1873cc;
+  transform: translateY(-2px);
+}
+
+.send-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.send-btn:hover:not(:disabled) {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+}
+
+.action-button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.spoken-text {
+  color: #6b7280;
+  font-style: italic;
+  font-size: 14px;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.type-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.type-input input:focus {
+  border-color: #1e90ff;
+}
+
+.type-input input[placeholder="हिंदी में बताएं आप क्या बोलना चाहते हैं..."] {
+  border-color: #f39c12;
+  background-color: #fff3e6;
+}
+
+/* Next Question Preview */
+.next-question-preview {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff3e6;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.next-question-preview strong {
+  color: #f39c12;
+}
+
+.mini-info {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #e67e22;
+  font-style: italic;
+}
+
+/* Feedback Section */
+.feedback-section {
+  padding: 0 10px;
+}
+
+.feedback-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card {
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.corrected-card {
+  background-color: #e6ffe6;
+}
+
+.corrected-card h4 {
+  color: #2d6a4f;
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.analysis-card {
+  background-color: #e6f0fa;
+}
+
+.analysis-card h4 {
+  color: #1e6091;
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.next-question-card {
+  background-color: #fff3e6;
+}
+
+.next-question-card h4 {
+  color: #f39c12;
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.card strong {
+  font-weight: 600;
+}
+
+.card em {
+  font-style: italic;
+}
+
+.card q {
+  quotes: '“' '”';
+}
+
+.card q:before {
+  content: open-quote;
+}
+
+.card q:after {
+  content: close-quote;
+}
+
+/* Score Comparison */
+.score-comparison {
+  margin-top: 10px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.score-comparison span:first-child {
+  color: #e74c3c;
+}
+
+.score-comparison span:last-child {
+  color: #2ecc71;
+}
+
+/* Personalized Message and Secret Info */
+.personalized-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #27ae60;
+  font-weight: 500;
+}
+
+.secret-info {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #2980b9;
+}
+
+.secret-info span {
+  background-color: #e6f0fa;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+/* Hindi Translation */
+.hindi-translation {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #8e44ad;
+  font-style: italic;
+}
+
+/* Badge Styles */
+.badge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+}
+
+.badge-excellent {
+  background-color: #27ae60;
+}
+
+.badge-good {
+  background-color: #2ecc71;
+}
+
+.badge-average {
+  background-color: #f39c12;
+}
+
+.badge-poor {
+  background-color: #e74c3c;
+}
+
+.badge-needs-improvement {
+  background-color: #7f8c8d;
+}
+
+/* Conversation Section */
+.conversation-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.conversation-section h3 {
+  color: #1a3c6c;
+  margin: 0 0 15px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .conversation-area {
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: auto;
+  padding-right: 5px;
+}
+
+.conversation-entry {
   margin-bottom: 20px;
-  padding: 10px;
-  background: #f9f9f9;
-  border-radius: 10px;
 }
 
-.speech-area button {
-  padding: 14px 30px;
-  background: #3498db;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+.user-text {
+  color: #1e90ff;
+  margin: 0 0 10px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-.type-area input {
-  width: 60%;
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+.empty-history {
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+  font-size: 14px;
 }
 
-.type-area button {
-  padding: 12px 20px;
-  background: #2ecc71;
-  color: white;
-  border: none;
-  border-radius: 8px;
-}
-
-.feedback {
-  margin: 20px 0;
-  padding: 15px;
-  background: #d4edda;
-  border-radius: 10px;
-}
-
+/* Buttons */
 .speak-button {
-  margin-left: 10px;
   background: none;
   border: none;
+  font-size: 20px;
   cursor: pointer;
-  font-size: 18px;
+  color: #6b7280;
+  transition: color 0.3s;
+  margin-left: 5px;
+}
+
+.speak-button:hover:not(:disabled) {
+  color: #1e90ff;
+}
+
+.speak-button:disabled {
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* Loading */
+.loading-text {
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Login Modal */
+.login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  width: 350px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  color: #1a3c6c;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #1e90ff;
+}
+
+.modal-content .action-button {
+  background-color: #2ecc71;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.modal-content .action-button:hover {
+  background-color: #27ae60;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .english-practice-container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .progress-bar span {
+    font-size: 12px;
+  }
+
+  .input-section,
+  .conversation-section {
+    padding: 15px;
+  }
+
+  .speech-input,
+  .type-input {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .action-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .spoken-text {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .type-input input {
+    font-size: 14px;
+  }
+
+  .next-question-preview {
+    padding: 8px;
+  }
+
+  .next-question-preview p,
+  .mini-info,
+  .hindi-translation {
+    font-size: 12px;
+  }
+
+  .feedback-cards {
+    gap: 10px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card h4 {
+    font-size: 16px;
+  }
+
+  .card p {
+    font-size: 12px;
+  }
+
+  .score-comparison {
+    font-size: 10px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .personalized-message,
+  .secret-info {
+    font-size: 12px;
+  }
+
+  .conversation-section h3 {
+    font-size: 18px;
+  }
+
+  .conversation-area {
+    max-height: 250px;
+  }
+
+  .user-text {
+    font-size: 12px;
+  }
+
+  .modal-content {
+    padding: 15px;
+    width: 90%;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+  }
+
+  .modal-content .action-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+    padding-top: 20px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .input-section,
+  .conversation-section {
+    padding: 10px;
+  }
+
+  .action-button {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .card h4 {
+    font-size: 14px;
+  }
+
+  .card p {
+    font-size: 11px;
+  }
+
+  .next-question-preview p,
+  .mini-info,
+  .hindi-translation {
+    font-size: 11px;
+  }
+
+  .conversation-section h3 {
+    font-size: 16px;
+  }
 }

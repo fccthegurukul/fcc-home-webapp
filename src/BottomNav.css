@@ -9,7 +9,8 @@
     backdrop-filter: blur(10px); /* Blur effect */
     -webkit-backdrop-filter: blur(10px);
     display: flex;
-    justify-content: space-around;
+    justify-content: center;  /* Center align icons */
+    gap: 20px;  /* Icons ke beech ka gap */
     padding: 12px 0;
     border-radius: 15px; /* Rounded navbar */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
@@ -26,47 +27,16 @@
     text-decoration: none;
     color: #495057;
     font-size: 0.9rem;
-    padding: 10px;
+    padding: 8px; /* Padding thoda kam kiya */
     transition: all 0.3s ease-in-out;
     position: relative;
 }
 
 /* Icons */
 .bottom-nav-link i {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+    font-size: 1.4rem; /* Slightly smaller icon */
+    margin-bottom: 3px; /* Margin thoda kam kiya */
     transition: transform 0.3s ease-in-out;
-}
-
-/* Hover Effect */
-.bottom-nav-link:hover {
-    color: #007bff;
-    transform: translateY(-3px); /* हल्का ऊपर उठने का इफेक्ट */
-}
-
-/* Active State */
-.bottom-nav-link.active {
-    color: #007bff;
-    font-weight: bold;
-}
-
-/* Active Link Animation */
-.bottom-nav-link.active i {
-    transform: scale(1.2);
-}
-
-/* Floating Indicator for Active Tab */
-.bottom-navbar::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    height: 5px;
-    width: 60px;
-    background: #007bff;
-    border-radius: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: all 0.3s ease-in-out;
 }
 
 /* Adjust Navbar for Smaller Screens */
@@ -74,23 +44,13 @@
     .bottom-navbar {
         width: 95%;
         padding: 8px 0;
+        gap: 15px; /* Chhoti screen par aur kam gap */
     }
     .bottom-nav-link {
         font-size: 0.8rem;
+        padding: 6px;
     }
     .bottom-nav-link i {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
-}
-
-/* Hide Bottom Nav on Larger Screens */
-@media (min-width: 769px) {
-    .bottom-navbar {
-        display: none;
-    }
-}
-
-/* Prevent Content Overlap */
-.content-area {
-    padding-bottom: 80px;
 }

@@ -132,9 +132,9 @@ const App = () => {
                 <Link to="/classroom" className={`bottom-nav-link ${location.pathname === '/classroom' ? 'active' : ''}`}>
                     <i className="fas fa-chalkboard-teacher"></i><span>क्लासरूम</span>
                 </Link>
-                {/* <Link to="/contact" className={`bottom-nav-link ${location.pathname === '/contact' ? 'active' : ''}`}>
-                    <i className="fas fa-envelope"></i><span>संपर्क</span>
-                </Link> */}
+                <Link to="/english-practice" className={`bottom-nav-link ${location.pathname === '/english-practice' ? 'active' : ''}`}>
+                    <i className="fas fa-brain"></i><span>AI</span>
+                </Link>
             </nav>
             <Analytics />
             <SpeedInsights />

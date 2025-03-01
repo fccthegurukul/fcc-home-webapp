@@ -1,3 +1,879 @@
+import React, { useState, useEffect } from 'react';
+import './EnglishPracticeAssistant.css';
+
+const EnglishPracticeAssistant = () => {
+  const [isListening, setIsListening] = useState(false);
+  const [spokenText, setSpokenText] = useState('');
+  const [typedText, setTypedText] = useState('');
+  const [correctedVersion, setCorrectedVersion] = useState('');
+  const [hindiAnalysis, setHindiAnalysis] = useState('');
+  const [score, setScore] = useState(null);
+  const [badge, setBadge] = useState('');
+  const [correctedScore, setCorrectedScore] = useState(null);
+  const [correctedBadge, setCorrectedBadge] = useState('');
+  const [secretInfo, setSecretInfo] = useState('');
+  const [nextQuestion, setNextQuestion] = useState('');
+  const [nextQuestionHindi, setNextQuestionHindi] = useState('');
+  const [miniInfo, setMiniInfo] = useState('');
+  const [personalizedMessage, setPersonalizedMessage] = useState('');
+  const [conversationHistory, setConversationHistory] = useState([]);
+  const [userName, setUserName] = useState('');
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(true);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hindiPrompt, setHindiPrompt] = useState(false);
+
+  // Speech Recognition Setup
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.continuous = false;
+  recognition.lang = 'en-US';
+  recognition.interimResults = false;
+
+  recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript;
+    setSpokenText(text);
+    analyzeSpeech(text);
+  };
+
+  recognition.onend = () => setIsListening(false);
+
+  recognition.onerror = (event) => {
+    setHindiAnalysis('Aapki awaaz pehchanne mein error: ' + event.error);
+    setIsListening(false);
+  };
+
+  // Fetch Conversation History
+  const fetchConversationHistory = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/conversation-history?userName=${userName}`);
+      const data = await response.json();
+      if (response.ok) setConversationHistory(data);
+    } catch (error) {
+      console.error('Error fetching conversation history:', error);
+    }
+  };
+
+  // Start Listening
+  const startListening = () => {
+    if (!isListening) {
+      setSpokenText('');
+      setTypedText('');
+      setCorrectedVersion('');
+      setHindiAnalysis('');
+      setScore(null);
+      setBadge('');
+      setCorrectedScore(null);
+      setCorrectedBadge('');
+      setSecretInfo('');
+      setNextQuestion('');
+      setNextQuestionHindi('');
+      setMiniInfo('');
+      setPersonalizedMessage('');
+      setHindiPrompt(false);
+      setIsListening(true);
+      recognition.start();
+    }
+  };
+
+  // Submit Typed Text
+  const submitTypedText = () => {
+    if (typedText.trim()) {
+      if (hindiPrompt) analyzeHindiResponse(typedText);
+      else analyzeSpeech(typedText);
+      setTypedText('');
+    }
+  };
+
+  // Analyze Speech with AI
+  const analyzeSpeech = async (text) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analyze-speech`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, history: conversationHistory, userName }),
+      });
+      const result = await response.json();
+
+      if (response.ok) {
+        setSpokenText(text); // Store user input
+        setCorrectedVersion(result.correctedVersion);
+        setHindiAnalysis(result.hindiAnalysis);
+        setScore(result.score);
+        setBadge(result.badge);
+        setCorrectedScore(result.correctedScore);
+        setCorrectedBadge(result.correctedBadge);
+        setSecretInfo(result.secretInfo);
+        setNextQuestion(result.nextQuestion || 'What happens next?');
+        setNextQuestionHindi(result.nextQuestionHindi || 'Aage kya hota hai?');
+        setMiniInfo(result.miniInfo || 'Isse aapko English bolne ki practice milegi!');
+        setPersonalizedMessage(result.personalizedMessage || 'Keep practicing!');
+        setHindiPrompt(result.score <= 10);
+        setConversationHistory((prev) => [
+          ...prev,
+          {
+            user_input: text,
+            corrected_version: result.correctedVersion,
+            hindi_analysis: result.hindiAnalysis,
+            score: result.score,
+            badge: result.badge,
+            corrected_score: result.correctedScore,
+            corrected_badge: result.correctedBadge,
+            secret_info: result.secretInfo,
+            next_question: result.nextQuestion,
+            next_question_hindi: result.nextQuestionHindi,
+            mini_info: result.miniInfo,
+            personalized_message: result.personalizedMessage,
+          },
+        ]);
+
+        // Automatically speak corrected version and next question
+        if (result.correctedVersion) speakFeedback(result.correctedVersion);
+        setTimeout(() => {
+          if (result.nextQuestion) speakFeedback(`Now say: ${result.nextQuestion}`);
+        }, 2000); // Delay to avoid overlap
+      } else {
+        setHindiAnalysis('Kuch galat ho gaya. Dobara koshish karo!');
+        setScore(0);
+        setBadge('Needs Improvement');
+        setCorrectedScore(100);
+        setCorrectedBadge('Excellent');
+      }
+    } catch (error) {
+      setHindiAnalysis('Server error. Dobara koshish karo!');
+      setScore(0);
+      setBadge('Needs Improvement');
+      setCorrectedScore(100);
+      setCorrectedBadge('Excellent');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Analyze Hindi Response
+  const analyzeHindiResponse = async (hindiText) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analyze-speech`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: hindiText, history: conversationHistory, userName }),
+      });
+      const result = await response.json();
+
+      if (response.ok) {
+        setSpokenText(hindiText); // Store Hindi input
+        setCorrectedVersion(result.correctedVersion);
+        setHindiAnalysis(result.hindiAnalysis);
+        setScore(result.score);
+        setBadge(result.badge);
+        setCorrectedScore(result.correctedScore);
+        setCorrectedBadge(result.correctedBadge);
+        setSecretInfo(result.secretInfo);
+        setNextQuestion(result.nextQuestion || 'What happens next?');
+        setNextQuestionHindi(result.nextQuestionHindi || 'Aage kya hota hai?');
+        setMiniInfo(result.miniInfo || 'Isse aapko English bolne ki practice milegi!');
+        setPersonalizedMessage(result.personalizedMessage || 'Keep practicing!');
+        setHindiPrompt(false);
+        setConversationHistory((prev) => [
+          ...prev,
+          {
+            user_input: hindiText,
+            corrected_version: result.correctedVersion,
+            hindi_analysis: result.hindiAnalysis,
+            score: result.score,
+            badge: result.badge,
+            corrected_score: result.correctedScore,
+            corrected_badge: result.correctedBadge,
+            secret_info: result.secretInfo,
+            next_question: result.nextQuestion,
+            next_question_hindi: result.nextQuestionHindi,
+            mini_info: result.miniInfo,
+            personalized_message: result.personalizedMessage,
+          },
+        ]);
+
+        if (result.correctedVersion) speakFeedback(result.correctedVersion);
+        setTimeout(() => {
+          if (result.nextQuestion) speakFeedback(`Now say: ${result.nextQuestion}`);
+        }, 2000);
+      } else {
+        setHindiAnalysis('Kuch galat ho gaya. Dobara koshish karo!');
+        setScore(0);
+        setBadge('Needs Improvement');
+        setCorrectedScore(100);
+        setCorrectedBadge('Excellent');
+      }
+    } catch (error) {
+      setHindiAnalysis('Server error. Dobara koshish karo!');
+      setScore(0);
+      setBadge('Needs Improvement');
+      setCorrectedScore(100);
+      setCorrectedBadge('Excellent');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Speak AI Feedback
+  const speakFeedback = (text) => {
+    if (!isSpeaking) {
+      setIsSpeaking(true);
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.onend = () => setIsSpeaking(false);
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  // Handle Login
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (userName.trim()) {
+      setIsLoginModalOpen(false);
+      fetchConversationHistory();
+    }
+  };
+
+  // Format text with symbols
+  const formatText = (text) => {
+    return text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/"(.*?)"/g, '<q>$1</q>')
+      .replace(/--/g, '—')
+      .replace(/~/g, '<span class="highlight">~</span>');
+  };
+
+  // Calculate Progress (average score)
+  const averageScore = conversationHistory.length > 0
+    ? Math.round(conversationHistory.reduce((sum, entry) => sum + entry.score, 0) / conversationHistory.length)
+    : 0;
+
+  return (
+    <div className="english-practice-container">
+      <header className="header">
+        <h1>English Speaking Assistant</h1>
+        <p className="subtitle">Improve your English with practice, {userName || 'Learner'}!</p>
+        {conversationHistory.length > 0 && (
+          <div className="progress-bar">
+            <span>Your Progress: {averageScore}%</span>
+            <div className="progress-fill" style={{ width: `${averageScore}%` }}></div>
+          </div>
+        )}
+      </header>
+
+      <main className="main-content">
+        <section className="input-section">
+          <div className="input-wrapper">
+            <div className="speech-input">
+              <button onClick={startListening} disabled={isListening || isLoading} className="action-button speak-btn">
+                {isListening ? 'Listening...' : '🎤 Speak Now'}
+              </button>
+              <p className="spoken-text">{spokenText || 'Your spoken words will show here...'}</p>
+            </div>
+            <div className="type-input">
+              <input
+                type="text"
+                value={typedText}
+                onChange={(e) => setTypedText(e.target.value)}
+                placeholder={hindiPrompt ? 'हिंदी में बताएं आप क्या बोलना चाहते हैं...' : 'या अपना वाक्य यहां टाइप करें...'}
+                disabled={isLoading}
+              />
+              <button onClick={submitTypedText} disabled={isLoading} className="action-button send-btn">
+                {isLoading ? 'Analyzing...' : '➤ Send'}
+              </button>
+            </div>
+            {nextQuestion && (
+              <div className="next-question-preview">
+                <p><strong>Next Question:</strong> {nextQuestion}</p>
+                <p className="hindi-translation">{nextQuestionHindi}</p>
+                <p className="mini-info">{miniInfo}</p>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {(correctedVersion || hindiAnalysis) && (
+          <section className="feedback-section">
+            {isLoading ? (
+              <p className="loading-text">Analyzing your input...</p>
+            ) : (
+              <div className="feedback-cards">
+                <div className="card corrected-card">
+                  <h4>इसके बजाय यह कहें:</h4>
+                  <p><strong>आपने कहा:</strong> {spokenText}</p>
+                  <p><strong>सही संस्करण:</strong> {correctedVersion}</p>
+                  <div className="score-comparison">
+                    <span>आपके अंक: {score}% - {badge}</span>
+                    <span>संभावित स्कोर: {correctedScore}% - {correctedBadge}</span>
+                  </div>
+                  <button
+                    onClick={() => speakFeedback(correctedVersion)}
+                    className="speak-button"
+                    disabled={isSpeaking}
+                  >
+                    🔊
+                  </button>
+                </div>
+                <div className="card analysis-card">
+                  <h4>Why It’s Better (Hindi):</h4>
+                  <p dangerouslySetInnerHTML={{ __html: formatText(hindiAnalysis) }} />
+                  {personalizedMessage && (
+                    <p className="personalized-message">{personalizedMessage}</p>
+                  )}
+                  {secretInfo && (
+                    <p className="secret-info">Secret UID: <span>{secretInfo}</span></p>
+                  )}
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+
+        <section className="conversation-section">
+          <h3>Your Practice History</h3>
+          <div className="conversation-area">
+            {conversationHistory.length === 0 ? (
+              <p className="empty-history">अपना इतिहास यहां देखने के लिए अभ्यास शुरू करें!</p>
+            ) : (
+              conversationHistory.map((entry, index) => (
+                <div key={index} className="conversation-entry">
+                  <p className="user-text"><strong>You:</strong> {entry.user_input}</p>
+                  <div className="card corrected-card">
+                    <h4>Say This Instead:</h4>
+                    <p><strong>सही संस्करण:</strong> {entry.corrected_version}</p>
+                    <p><strong>आपने कहा:</strong> {entry.user_input}</p>
+                    <div className="score-comparison">
+                      <span>तुम्हारे अंक: {entry.score}% - {entry.badge}</span>
+                      <span>संभावित स्कोर: {entry.corrected_score}% - {entry.corrected_badge}</span>
+                    </div>
+                    <button
+                      onClick={() => speakFeedback(entry.corrected_version)}
+                      className="speak-button"
+                      disabled={isSpeaking}
+                    >
+                      🔊
+                    </button>
+                  </div>
+                  <div className="card analysis-card">
+                    <h4>Why It’s Better (Hindi):</h4>
+                    <p dangerouslySetInnerHTML={{ __html: formatText(entry.hindi_analysis) }} />
+                    {entry.personalized_message && (
+                      <p className="personalized-message">{entry.personalized_message}</p>
+                    )}
+                    <p className="secret-info">Secret Info: <span>{entry.secret_info}</span></p>
+                  </div>
+                  {entry.next_question && (
+                    <div className="card next-question-card">
+                      <h4>Next Question:</h4>
+                      <p>{entry.next_question}</p>
+                      <p className="hindi-translation">{entry.next_question_hindi}</p>
+                      <p className="mini-info">{entry.mini_info}</p>
+                      <button
+                        onClick={() => speakFeedback(entry.next_question)}
+                        className="speak-button"
+                        disabled={isSpeaking}
+                      >
+                        🔊
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+        </section>
+      </main>
+
+      {isLoginModalOpen && (
+        <div className="login-modal">
+          <div className="modal-content">
+            <h2>Welcome to English Practice</h2>
+            <form onSubmit={handleLogin}>
+              <div className="form-group">
+                <label>आपका नाम</label>
+                <input
+                  type="text"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  placeholder="अपना नाम दर्ज करें"
+                  required
+                />
+              </div>
+              <button type="submit" className="action-button">अभ्यास शुरू करें</button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default EnglishPracticeAssistant;
+
+...........................Aage
+.english-practice-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f0f4f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 25px 0;
+  background-color: #ffffff;
+  border-bottom: 2px solid #e0e4e8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h1 {
+  color: #1a3c6c;
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin: 5px 0 0;
+  font-size: 18px;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 10px;
+}
+
+/* Input Section */
+.input-section {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.speech-input,
+.type-input {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.action-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.speak-btn {
+  background-color: #1e90ff;
+  color: white;
+}
+
+.speak-btn:hover:not(:disabled) {
+  background-color: #1873cc;
+  transform: translateY(-2px);
+}
+
+.send-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.send-btn:hover:not(:disabled) {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+}
+
+.action-button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.spoken-text {
+  color: #6b7280;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.type-input input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.type-input input:focus {
+  border-color: #1e90ff;
+}
+
+/* Feedback Section */
+.feedback-section {
+  padding: 0 10px;
+}
+
+.feedback-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.corrected-card {
+  background-color: #e6ffe6;
+}
+
+.corrected-card h4 {
+  color: #2d6a4f;
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.analysis-card {
+  background-color: #e6f0fa;
+}
+
+.analysis-card h4 {
+  color: #1e6091;
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.card strong {
+  font-weight: 600;
+}
+
+.card em {
+  font-style: italic;
+}
+
+.card q {
+  quotes: '“' '”';
+}
+
+.card q:before {
+  content: open-quote;
+}
+
+.card q:after {
+  content: close-quote;
+}
+
+/* Score Badge */
+.score-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fd0000;
+}
+
+.badge-good {
+  background-color: #2ecc71;
+}
+
+.badge-average {
+  background-color: #f39c12;
+}
+
+.badge-poor {
+  background-color: #e74c3c;
+}
+
+.badge-needs-improvement {
+  background-color: #7f8c8d;
+}
+
+/* Conversation Section */
+.conversation-section {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.conversation-section h3 {
+  color: #1a3c6c;
+  margin: 0 0 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.conversation-area {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.conversation-entry {
+  margin-bottom: 25px;
+}
+
+.user-text {
+  color: #1e90ff;
+  margin: 0 0 15px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.empty-history {
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Buttons */
+.speak-button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.3s;
+  margin-left: 10px;
+}
+
+.speak-button:hover:not(:disabled) {
+  color: #1e90ff;
+}
+
+.speak-button:disabled {
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* Loading */
+.loading-text {
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+  font-size: 16px;
+}
+
+/* Login Modal */
+.login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #1a3c6c;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 12px;
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #1e90ff;
+}
+
+.modal-content .action-button {
+  background-color: #2ecc71;
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+}
+
+.modal-content .action-button:hover {
+  background-color: #27ae60;
+}
+
+/* Add this to your existing CSS */
+.type-input input[placeholder="Hindi mein bataiye aap kya bolna chahte hain..."] {
+  border-color: #f39c12;
+  background-color: #fff3e6;
+}
+
+.secret-info {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.secret-info span {
+  font-family: monospace;
+  background-color: #f0f0f0;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.next-question {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #2d6a4f;
+  font-weight: 500;
+}
+
+/* Add these to your existing CSS */
+.next-question-preview {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #fff3e6;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.next-question-preview strong {
+  color: #f39c12;
+}
+
+.mini-info {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #e67e22;
+  font-style: italic;
+}
+
+/* Add this to your existing CSS */
+.next-question-card {
+  background-color: #fff3e6;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+}
+
+.next-question-card h4 {
+  color: #f39c12;
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.hindi-hint {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #e67e22;
+  font-style: italic;
+}
+
+/* Add these to your existing CSS */
+.score-comparison {
+  margin-top: 10px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.score-comparison span:first-child {
+  color: #e74c3c;
+}
+
+.score-comparison span:last-child {
+  color: #2ecc71;
+}
+
+.personalized-message {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #27ae60;
+  font-weight: 500;
+}
+
+.hindi-translation {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #8e44ad;
+  font-style: italic;
+}
+
+/* Update badge colors */
+.badge-excellent {
+  background-color: #27ae60;
+  color: white;
+}
+
+.badge-good {
+  background-color: #2ecc71;
+}
+
+.badge-average {
+  background-color: #f39c12;
+}
+
+.badge-poor {
+  background-color: #e74c3c;
+}
+
+.badge-needs-improvement {
+  background-color: #7f8c8d;
+}
+.....................
+
 const cors = require("cors");
 const session = require('express-session');
 const path = require('path');

@@ -1101,3 +1101,1502 @@
   "feedback": "Hi Hariom Kumar! Your sentence \"My name is Hariom Kumar\" is **grammatically correct**.  Excellent job!  \n\n**Is it grammatically correct?** Yes!  You've used the correct word order, verb tense, and capitalization.  This is a perfect way to introduce yourself.\n\n**How can it be improved?**  For a Level 1 learner, there's not much to improve grammatically.  As you progress, you might learn different ways to introduce yourself depending on the context, like \"I'm Hariom Kumar\" (more informal) or \"Hello, my name is Hariom Kumar\" (more formal).  But for now, your sentence is perfectly fine.\n\n**Score:** 9/10\n\n**Detailed Feedback:**\n\nYou've mastered a fundamental sentence structure, which is fantastic!  The sentence is clear, concise, and accurately conveys your name. The only reason it's not a 10/10 is because there's always room to grow and learn more nuanced expressions as you advance.  Keep practicing and expanding your vocabulary and you'll be speaking English fluently in no time!  Well done!\n",
   "score": 5
 }
+[2025-03-01T16:18:28.179Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:18:28.144Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:18:28.174Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:18:28.446Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:18:28.450Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:18:28.504Z] LOG: Missing required fields: {
+  "text": "my name is Hariom Kumar and my father's name is"
+}
+[2025-03-01T16:18:28.477Z] LOG: Generating new session ID
+[2025-03-01T16:18:28.447Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:19:01.193Z] ERROR: (node:27708) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T16:19:01.209Z] LOG: HTTP Server running on port 5000
+[2025-03-01T16:19:01.364Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:19:01.364Z"
+  }
+]
+[2025-03-01T16:19:01.368Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:19:01.363Z"
+  }
+]
+[2025-03-01T16:19:19.529Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:19:19.533Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:19:19.531Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:19:19.702Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:19:19.703Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:19:19.705Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:19:19.797Z] LOG: Generating new session ID
+[2025-03-01T16:20:42.914Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:20:42.915Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:20:42.917Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:20:43.080Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:20:43.082Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:20:43.084Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:20:43.090Z] LOG: Generating new session ID
+[2025-03-01T16:26:08.550Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:26:08.551Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:26:08.552Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:26:08.695Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:26:08.696Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:26:08.697Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T16:26:08.698Z] LOG: Generating new session ID
+[2025-03-01T16:36:19.201Z] ERROR: (node:12200) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T16:36:19.209Z] LOG: HTTP Server running on port 5000
+[2025-03-01T16:36:19.491Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:36:19.483Z"
+  }
+]
+[2025-03-01T16:36:19.494Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:36:19.485Z"
+  }
+]
+[2025-03-01T16:47:07.543Z] ERROR: (node:6224) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T16:47:07.549Z] LOG: HTTP Server running on port 5000
+[2025-03-01T16:47:07.710Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:47:07.711Z"
+  }
+]
+[2025-03-01T16:47:07.717Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:47:07.723Z"
+  }
+]
+[2025-03-01T16:47:32.780Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T16:47:33.223Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T16:47:33.355Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T16:47:33.516Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T16:47:33.633Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T16:47:33.706Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T16:47:33.855Z] LOG: Generating new session ID
+[2025-03-01T16:47:33.988Z] ERROR: Error analyzing speech: {}
+[2025-03-01T16:53:46.088Z] ERROR: (node:27936) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T16:53:46.115Z] LOG: HTTP Server running on port 5000
+[2025-03-01T16:53:46.657Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:53:46.647Z"
+  }
+]
+[2025-03-01T16:53:46.666Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:53:46.665Z"
+  }
+]
+[2025-03-01T16:54:17.508Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T16:54:17.510Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T16:54:17.511Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T16:54:17.555Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T16:54:17.558Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T16:54:17.560Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T16:54:17.699Z] LOG: Generating new session ID
+[2025-03-01T16:54:17.772Z] ERROR: Error analyzing speech: {}
+[2025-03-01T16:58:32.877Z] ERROR: (node:29632) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T16:58:32.977Z] LOG: HTTP Server running on port 5000
+[2025-03-01T16:58:33.294Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:58:33.284Z"
+  }
+]
+[2025-03-01T16:58:33.345Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:58:33.346Z"
+  }
+]
+[2025-03-01T16:58:46.577Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T16:58:46.908Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T16:58:47.178Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T16:58:47.180Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T16:58:47.366Z] LOG: Generating new session ID
+[2025-03-01T16:58:46.948Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T16:58:47.100Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T16:59:24.085Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T16:59:24.132Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T16:59:24.134Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T16:59:24.151Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T16:59:24.157Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T16:59:24.156Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T16:59:24.167Z] LOG: Generating new session ID
+[2025-03-01T16:59:24.184Z] ERROR: Error analyzing speech: {}
+[2025-03-01T16:59:50.745Z] ERROR: (node:25216) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T16:59:50.750Z] LOG: HTTP Server running on port 5000
+[2025-03-01T16:59:50.871Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:59:50.876Z"
+  }
+]
+[2025-03-01T16:59:50.879Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T16:59:50.888Z"
+  }
+]
+[2025-03-01T17:00:06.662Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:00:06.701Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:00:06.806Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:00:06.884Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:00:06.890Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:00:07.049Z] LOG: Generating new session ID
+[2025-03-01T17:00:06.893Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:00:11.076Z] LOG: Speech analyzed: {
+  "text": "yfhbf",
+  "feedback": "\"yfhbf\" doesn't seem to be an English word.  It looks like you might have accidentally typed some random letters.  Don't worry, it happens!  Could you try saying what you were thinking again?  I'm here to help and I'm excited to hear what you have to say.  \n"
+}
+[2025-03-01T17:06:25.877Z] ERROR: (node:27852) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T17:06:25.897Z] LOG: HTTP Server running on port 5000
+[2025-03-01T17:06:26.293Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:06:26.290Z"
+  }
+]
+[2025-03-01T17:06:26.297Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:06:26.288Z"
+  }
+]
+[2025-03-01T17:06:48.333Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:06:48.339Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:06:48.343Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:06:48.384Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:06:48.393Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:06:48.395Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:06:48.672Z] LOG: Generating new session ID
+[2025-03-01T17:06:56.995Z] LOG: Speech analyzed: {
+  "text": "hi there how are you",
+  "feedback": "Hi there!  I'm happy to help you practice your English. Let's take a look at your latest sentence: \"hi there how are you\"\n\n**Your Mistakes**\n\nThe main issue is the lack of punctuation. While the words themselves are correct, it reads as a run-on sentence.  You need a comma after \"hi there\" and a question mark at the end since it's a question.  Also, while \"hi there\" is perfectly acceptable in informal settings, capitalizing \"Hi\" would make it a bit more polished.\n\n**Improved Version**\n\n\"Hi there, how are you?\"\n\n**Tips to Improve**\n\n* **Punctuation:** Pay close attention to punctuation. Commas help separate parts of a sentence, and question marks are essential for questions.\n* **Capitalization:** Remember to capitalize the first word of a sentence.  In greetings like \"Hi,\" \"Hello,\" and \"Hey,\" capitalize the first letter as well.\n* **Review:** Before hitting send or submitting your text, take a quick moment to review what you've written.  A quick scan can catch small errors like these.\n\nYou're doing a great job practicing! Keep up the good work. These small details can make a big difference in how clear and understandable your writing is. Let me know what you'd like to practice next! \n"
+}
+[2025-03-01T17:10:08.601Z] ERROR: (node:29816) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T17:10:08.619Z] LOG: HTTP Server running on port 5000
+[2025-03-01T17:10:08.960Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:10:08.949Z"
+  }
+]
+[2025-03-01T17:10:08.965Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:10:08.947Z"
+  }
+]
+[2025-03-01T17:10:49.813Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:10:50.118Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:10:50.131Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:10:50.177Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:10:50.218Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:10:50.250Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:10:50.398Z] LOG: Generating new session ID
+[2025-03-01T17:10:58.953Z] LOG: Speech analyzed: {
+  "text": "Hi, my name is hariom i am a webdeveloper and i recenty worjking fccthegurukul comnay.",
+  "correctedVersion": "Corrected Version:\nHi, my name is Hariom. I am a web developer and I recently started working for the Gurukul company.",
+  "analysis": "Analysis:\nThat's a great start, Hariom! Here's a breakdown of how we can make it even better:\n\n* **Capitalization:** Names (like Hariom and Gurukul) should be capitalized.  The beginning of a sentence should also be capitalized. We added capitalization to \"I\" as well, as it is a word that always needs to be capitalized.\n* **Spacing:** It's important to have spaces between words for clarity.  You had some extra letters and missing spaces in \"fccthegurukul comnay\".  It looks like you meant \"the Gurukul company\" which needs spaces between each word.\n* **Spelling:**  \"recently\" is spelled with an \"l\" after the \"ent\".  \"working\" has two \"k\"s.\n* **Grammar/Word Choice:**  \"I am working\" or \"I recently started working\" both sound more natural than \"I recently working.\"  We used \"I recently started working\" because it implies you began working there recently and continue to work there now.\n\nKeep practicing, and you'll get the hang of it in no time!  Small errors like these are completely normal as you learn.  It's great that you're putting your English to use!"
+}
+[2025-03-01T17:17:06.925Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:17:07.062Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:17:07.065Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:17:07.128Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:17:07.223Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:17:07.295Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:17:07.311Z] LOG: Generating new session ID
+[2025-03-01T17:17:14.448Z] LOG: Speech analyzed: {
+  "text": "hi my name is hariom and i am a webdeveloper in fcc the gurukul compnay",
+  "correctedVersion": "Corrected Version:\nHi, my name is Hariom, and I'm a web developer at FCC The Gurukul company.",
+  "analysis": "Analysis:\nThat's a great start, Hariom!  Here are a few small changes that make it even better:\n\n* **Capitalization:** We capitalize proper nouns like names (Hariom) and company names (FCC The Gurukul).  We also capitalize the first word of a sentence (Hi).\n* **\"I'm\" contraction:**  Using \"I'm\" instead of \"I am\" is more natural in casual conversation and greetings like this.\n* **\"at\" instead of \"in\":**  We generally use \"at\" when referring to a place of employment (at a company). \"In\" can be used with larger areas like cities or countries.\n* **Comma after \"Hi\" and \"Hariom\":** These commas help create a brief pause and make the sentence flow smoothly.\n* **Spacing:** Adding a space after the commas further improves readability.\n\nWith these tweaks, your introduction sounds more polished and professional.  Keep practicing and you'll get the hang of it quickly!"
+}
+[2025-03-01T17:23:59.010Z] ERROR: (node:19104) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T17:23:59.020Z] LOG: HTTP Server running on port 5000
+[2025-03-01T17:23:59.380Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:23:59.380Z"
+  }
+]
+[2025-03-01T17:23:59.384Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:23:59.379Z"
+  }
+]
+[2025-03-01T17:24:49.336Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:24:49.592Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:24:49.622Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:24:49.664Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:24:49.669Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:24:49.675Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:24:50.078Z] LOG: Generating new session ID
+[2025-03-01T17:24:58.436Z] ERROR: Error analyzing speech: {}
+[2025-03-01T17:26:04.059Z] ERROR: (node:27176) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T17:26:04.068Z] LOG: HTTP Server running on port 5000
+[2025-03-01T17:26:04.249Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:26:04.245Z"
+  }
+]
+[2025-03-01T17:26:04.252Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:26:04.246Z"
+  }
+]
+[2025-03-01T17:26:45.799Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:26:45.865Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:26:45.867Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:26:46.026Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:26:46.030Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:26:46.042Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:26:46.300Z] LOG: Generating new session ID
+[2025-03-01T17:26:54.711Z] ERROR: Error analyzing speech: {}
+[2025-03-01T17:28:44.160Z] ERROR: (node:29508) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T17:28:44.164Z] LOG: HTTP Server running on port 5000
+[2025-03-01T17:28:44.267Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:28:44.271Z"
+  }
+]
+[2025-03-01T17:28:44.271Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:28:44.276Z"
+  }
+]
+[2025-03-01T17:29:08.672Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:29:08.906Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:29:08.907Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:29:09.089Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:29:09.099Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:29:09.154Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:29:09.437Z] LOG: Generating new session ID
+[2025-03-01T17:29:19.042Z] LOG: Speech analyzed: {
+  "text": "by the way my name is hariom and im am from bihar, a currently woking on FCC The Gurukul Startup.",
+  "correctedVersion": "1. **Corrected Version:** By the way, my name is Hariom, and I'm from Bihar. I'm currently working on the FCC The Gurukul Startup.",
+  "analysis": "2. **Analysis:**  Hey Hariom, that's a good start! Here's a breakdown of how we can make it even better:\n\n* **\"im am\" should be \"I'm\"**:  \"I'm\" is the contraction of \"I am.\" Using both is redundant.\n* **\"a currently woking\" should be \"I'm currently working\"**: You're missing the subject \"I\" and \"working\" is misspelled as \"woking.\"\n* **Capitalization and Punctuation:**  \"Bihar\" should be capitalized as it's a proper noun (a place). You also need a comma after \"Hariom\" and \"Bihar\" to separate the different parts of the sentence.  Also, starting a sentence with \"By the way\" usually warrants a comma after the phrase. It reads a bit smoother that way. We added \"the\" before the name of the Startup, as it makes grammatical sense. If the name of the start up does not include \"The\",  you can leave it out.\n* **Overall flow:** The corrected version just flows a little more naturally with the correct grammar and punctuation.",
+  "score": 3,
+  "badge": "Average**"
+}
+[2025-03-01T17:31:07.919Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:31:07.925Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:31:07.928Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:31:07.943Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:31:07.946Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:31:07.947Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:31:07.954Z] LOG: Generating new session ID
+[2025-03-01T17:31:12.496Z] LOG: Speech analyzed: {
+  "text": "and i am no out of my comnay",
+  "correctedVersion": "1. **Corrected Version:** And I'm not out of my company.",
+  "analysis": "2. **Analysis:** Let's break down the corrections:\n\n* **\"no\" should be \"not\":** \"No\" is typically used before a noun (e.g., \"no money\").  \"Not\" is the correct word to use with a verb (e.g., \"not going\").\n* **\"comnay\" should be \"company\":** This is a simple spelling mistake.\n* **\"i am\" can be contracted to \"I'm\":**  Using contractions like \"I'm\" makes your English sound more natural in everyday conversation.  While \"I am\" is perfectly grammatically correct, contractions are common in spoken and informal written English.",
+  "score": 3,
+  "badge": "Average"
+}
+[2025-03-01T17:32:06.591Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:32:06.592Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:32:06.594Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:32:06.602Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:32:06.604Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:32:06.605Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:32:06.609Z] LOG: Generating new session ID
+[2025-03-01T17:32:11.726Z] LOG: Speech analyzed: {
+  "text": "hi mom good morning",
+  "correctedVersion": "1. **Corrected Version:** \"Hi Mom, good morning!\"\n\n2. **Analysis:** Your greeting is very sweet!  The corrected version just adds a comma after \"Hi Mom.\" In English, we usually use a comma after a direct address (like when you're talking to someone specifically).  Also, even though \"mom\" can sometimes be spelled \"mum\" (especially in British English), your spelling of \"mom\" is perfectly fine, especially since you mentioned you're from Bihar, India, where \"mom\" is more common.\n\n3. **Score: 90%\nBadge: Good**",
+  "analysis": "No analysis provided.",
+  "score": 0,
+  "badge": "Needs Improvement"
+}
+[2025-03-01T17:38:03.806Z] ERROR: (node:18172) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T17:38:03.818Z] LOG: HTTP Server running on port 5000
+[2025-03-01T17:38:04.076Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:38:04.069Z"
+  }
+]
+[2025-03-01T17:38:04.080Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T17:38:04.070Z"
+  }
+]
+[2025-03-01T17:38:29.374Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:38:29.378Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:38:29.379Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:38:29.410Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:38:29.412Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:38:29.414Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:38:29.744Z] LOG: Generating new session ID
+[2025-03-01T17:38:36.051Z] LOG: Speech analyzed: {
+  "text": "by the way my name is hariom and im am from bihar, a currently woking on FCC The Gurukul Startup.",
+  "correctedVersion": "By the way, my name is Hariom, and I'm from Bihar. I'm currently working on the FCC The Gurukul Startup.",
+  "analysis": "You almost had it!  You made a few small mistakes:\n\n* **\"im am\"**: This should be \"I'm,\" a contraction of \"I am.\"  Using both is redundant.\n* **\"a currently woking\"**:  You missed the \"r\" in \"working\" and the article should be \"I am\" not just \"a\". It should be \"I'm currently working\" or \"I am currently working.\"\n\nOverall, your sentence structure was good! Just a couple of typing errors and a missing word.  Keep practicing!",
+  "score": 70,
+  "badge": "Average"
+}
+[2025-03-01T17:39:13.440Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:39:13.445Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:39:13.446Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:39:13.471Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T17:39:13.485Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T17:39:13.486Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T17:39:13.493Z] LOG: Generating new session ID
+[2025-03-01T17:39:17.692Z] LOG: Speech analyzed: {
+  "text": "GOOD MORNING MOM",
+  "correctedVersion": "Good morning, Mom.",
+  "analysis": "The original sentence \"GOOD MORNING MOM\" was written in all caps. While this might be okay in a quick text message, it's generally better to use proper capitalization, especially when practicing writing. In this case, only the first letter of the first word and the first letter of the proper noun \"Mom\" need to be capitalized.",
+  "score": 90,
+  "badge": "Good"
+}
+[2025-03-01T18:04:04.693Z] ERROR: (node:14480) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:04:04.706Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:04:05.201Z] LOG: Database connected
+[2025-03-01T18:04:05.223Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:04:05.209Z"
+  }
+]
+[2025-03-01T18:04:05.230Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:04:05.236Z"
+  }
+]
+[2025-03-01T18:04:05.234Z] LOG: Conversations table ready
+[2025-03-01T18:07:38.476Z] ERROR: (node:28328) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:07:38.488Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:07:38.866Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:07:38.855Z"
+  }
+]
+[2025-03-01T18:07:38.871Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:07:38.852Z"
+  }
+]
+[2025-03-01T18:07:43.288Z] LOG: Incoming request: GET /api/conversation-history?userName=rfb, Origin: http://localhost:3000
+[2025-03-01T18:07:43.289Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:07:43.290Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:07:43.294Z] LOG: Generating new session ID
+[2025-03-01T18:07:50.348Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:07:50.356Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:07:50.358Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:07:50.370Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:07:50.376Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:07:50.389Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:07:50.697Z] LOG: Generating new session ID
+[2025-03-01T18:07:55.520Z] ERROR: Error analyzing speech: {}
+[2025-03-01T18:09:04.637Z] ERROR: (node:28936) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:09:04.643Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:09:04.779Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:09:04.774Z"
+  }
+]
+[2025-03-01T18:09:04.782Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:09:04.775Z"
+  }
+]
+[2025-03-01T18:09:04.787Z] LOG: Conversations table ready
+[2025-03-01T18:09:04.789Z] LOG: English progress table ready
+[2025-03-01T18:09:23.276Z] LOG: Incoming request: GET /api/conversation-history?userName=v, Origin: http://localhost:3000
+[2025-03-01T18:09:23.305Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:09:23.307Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:09:23.314Z] LOG: Generating new session ID
+[2025-03-01T18:09:29.560Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:09:29.578Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:09:29.579Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:09:29.592Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:09:29.596Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:09:29.598Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:09:29.929Z] LOG: Generating new session ID
+[2025-03-01T18:09:34.644Z] ERROR: Error analyzing speech: {}
+[2025-03-01T18:10:55.326Z] ERROR: (node:28324) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:10:55.338Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:10:55.667Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:10:55.661Z"
+  }
+]
+[2025-03-01T18:10:55.672Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:10:55.670Z"
+  }
+]
+[2025-03-01T18:10:55.677Z] LOG: Conversations table ready
+[2025-03-01T18:10:55.679Z] LOG: English progress table ready
+[2025-03-01T18:11:10.963Z] LOG: Incoming request: GET /api/conversation-history?userName=myname, Origin: http://localhost:3000
+[2025-03-01T18:11:10.973Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:11:11.007Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:11:11.023Z] LOG: Generating new session ID
+[2025-03-01T18:11:18.199Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:11:18.209Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:11:18.210Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:11:18.223Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:11:18.224Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:11:18.226Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:11:18.370Z] LOG: Generating new session ID
+[2025-03-01T18:11:23.156Z] ERROR: Error analyzing speech: {}
+[2025-03-01T18:15:06.061Z] ERROR: (node:24764) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:15:06.072Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:15:06.474Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:15:06.468Z"
+  }
+]
+[2025-03-01T18:15:06.478Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:15:06.466Z"
+  }
+]
+[2025-03-01T18:15:06.483Z] LOG: Conversations table ready
+[2025-03-01T18:15:06.487Z] LOG: English progress table ready
+[2025-03-01T18:15:14.269Z] LOG: Incoming request: GET /api/conversation-history?userName=hgngf, Origin: http://localhost:3000
+[2025-03-01T18:15:14.271Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:15:14.272Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:15:14.276Z] LOG: Generating new session ID
+[2025-03-01T18:15:20.129Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:15:20.156Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:15:20.157Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:15:20.177Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:15:20.182Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:15:20.184Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:15:20.524Z] LOG: Generating new session ID
+[2025-03-01T18:15:25.783Z] LOG: Speech analyzed and stored: {
+  "text": "hi how are you?",
+  "correctedVersion": "1. Hi, how are you?",
+  "analysis": "2. Your sentence was almost perfect!  The only minor issue is that \"hi\" is usually considered informal. While it's perfectly acceptable in casual conversation, using \"Hi\" with a capital H makes it look a little more polished.",
+  "score": 3,
+  "badge": "Good",
+  "secretInfo": "dc1d2130-8326-4508-b439-bd75e7a90489"
+}
+[2025-03-01T18:16:01.788Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:16:01.819Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:16:01.822Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:16:01.844Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:16:02.176Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:16:01.973Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:16:02.242Z] LOG: Generating new session ID
+[2025-03-01T18:16:08.026Z] LOG: Speech analyzed and stored: {
+  "text": "main thik hu lekin kya btau?",
+  "correctedVersion": "1. I'm okay, but what can I say? / I'm fine, but what should I say?",
+  "analysis": "2. This sentence is a transliteration of Hindi into English using Roman script. While I understand what you mean, it's important to use correct English words and grammar.  \"main thik hu\" translates to \"I am okay/fine,\" but directly translating word for word doesn't always work.  \"lekin\" means \"but.\"  \"kya btau?\" literally translates to \"what should I tell/say?\", which can be expressed more naturally as \"what can I say?\" or \"what should I say?\" depending on the intended meaning.",
+  "score": 40,
+  "badge": "Poor",
+  "secretInfo": "6012049c-6439-416b-88c9-0cc5caa2554f"
+}
+[2025-03-01T18:16:47.221Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:16:47.239Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:16:47.242Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:16:47.256Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:16:47.272Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:16:47.273Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:16:47.277Z] LOG: Generating new session ID
+[2025-03-01T18:16:56.385Z] LOG: Speech analyzed and stored: {
+  "text": "by the way my name is hariomand i am from buihar and i working curenbtly FCC The gurkul startup as a webdeveloper",
+  "correctedVersion": "1. By the way, my name is Hariom, and I'm from Bihar. I'm currently working as a web developer at the FCC The Gurukul startup.",
+  "analysis": "2. Your sentence had a few small errors that we can easily fix!  Let's break them down:\n\n* **\"by the way\"**: Correct, but starting a sentence with a lowercase letter is grammatically incorrect. Capitalize the \"B.\"\n* **\"hariomand\"**:  This looks like a typo. I assume your name is Hariom, so we'll remove the extra \"d.\" Names are always capitalized.\n* **\"and i am from buihar\"**:  \"i\" should be \"I\" (capitalized). \"buihar\" should be spelled \"Bihar,\" and it's a proper noun so it needs to be capitalized. You can also make this sound more natural by shortening it to \"and I'm from Bihar.\"\n* **\"i working curenbtly FCC The gurkul startup as a webdeveloper\"**: This has a few issues.  First, \"i\" should be \"I.\" \"working\" needs an auxiliary verb like \"am\" to make it \"I am working\" or you can contract it to \"I'm working.\" \"curenbtly\" is misspelled and should be \"currently.\" \"FCC The gurkul startup\" probably should be \"the FCC The Gurukul startup\" (adding \"the\").  Finally, \"webdeveloper\" is one word: \"web developer.\"",
+  "score": 65,
+  "badge": "Average",
+  "secretInfo": "1645a470-19b7-423b-8204-e9952db8de3c"
+}
+[2025-03-01T18:18:07.583Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:18:07.623Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:18:07.625Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:18:07.792Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:18:07.646Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:18:07.985Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:18:08.152Z] LOG: Generating new session ID
+[2025-03-01T18:18:12.068Z] LOG: Speech analyzed and stored: {
+  "text": "i am fine and you?",
+  "correctedVersion": "1. I am fine, and you?\n\n2. Almost perfect! You've got the main part of the sentence correct, \"I am fine.\"  However, remember that \"i\" should be capitalized (\"I\"). Also, while \"and you?\" is understandable, it's a bit informal.  Adding \"how are\" before \"you\" makes it grammatically correct and more polite. So, \"I am fine, and how are you?\" is the most polished way to say this. You're making good progress!",
+  "analysis": "Score: 75%\nBadge: Average",
+  "score": 0,
+  "badge": "Needs Improvement",
+  "secretInfo": "7654927c-8e6d-4bbb-8643-ed5326aa5a75"
+}
+[2025-03-01T18:25:41.519Z] ERROR: (node:30140) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:25:41.564Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:25:42.069Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:25:42.043Z"
+  }
+]
+[2025-03-01T18:25:42.075Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:25:42.039Z"
+  }
+]
+[2025-03-01T18:25:42.080Z] LOG: Conversations table ready
+[2025-03-01T18:25:42.083Z] LOG: English progress table ready
+[2025-03-01T18:25:52.677Z] LOG: Incoming request: GET /api/conversation-history?userName=tjng, Origin: http://localhost:3000
+[2025-03-01T18:25:52.847Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:25:52.849Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:25:53.180Z] LOG: Generating new session ID
+[2025-03-01T18:25:58.053Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:25:58.060Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:25:58.065Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:25:58.082Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:25:58.088Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:25:58.087Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:25:58.254Z] LOG: Generating new session ID
+[2025-03-01T18:26:03.172Z] ERROR: Error analyzing speech: {
+  "length": 140,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42703",
+  "position": "114",
+  "file": "parse_target.c",
+  "line": "1070",
+  "routine": "checkInsertTargets"
+}
+[2025-03-01T18:29:27.947Z] ERROR: (node:29400) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:29:27.958Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:29:28.291Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:29:28.282Z"
+  }
+]
+[2025-03-01T18:29:28.315Z] LOG: Conversations table ready with next_question column
+[2025-03-01T18:29:28.355Z] LOG: English progress table ready
+[2025-03-01T18:29:28.368Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:29:28.366Z"
+  }
+]
+[2025-03-01T18:29:40.460Z] LOG: Incoming request: GET /api/conversation-history?userName=fhhy, Origin: http://localhost:3000
+[2025-03-01T18:29:40.462Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:29:40.463Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:29:40.465Z] LOG: Generating new session ID
+[2025-03-01T18:29:48.642Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:29:48.668Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:29:48.666Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:29:48.687Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:29:48.692Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:29:48.690Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:29:48.931Z] LOG: Generating new session ID
+[2025-03-01T18:29:53.989Z] LOG: Speech analyzed and stored: {
+  "id": 5,
+  "user_name": "fhhy",
+  "user_input": "hi how are you?",
+  "corrected_version": "1. **Corrected Version:** Hi, how are you?",
+  "analysis": "2. **Analysis:** You almost got it perfectly! Just remember to add a comma after \"Hi.\"  It helps separate the two parts of your greeting and makes it look more polished.",
+  "score": 3,
+  "badge": "Good**",
+  "secret_info": "b3f79bce-c4b0-4c38-a8f9-b8a370d88300",
+  "timestamp": "2025-03-01T18:29:53.929Z",
+  "next_question": "4. **Next Question:** I'm doing well, thank you for asking. How are you doing today?"
+}
+[2025-03-01T18:35:34.063Z] ERROR: (node:25960) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:35:34.069Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:35:34.233Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:35:34.217Z"
+  }
+]
+[2025-03-01T18:35:34.235Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:35:34.213Z"
+  }
+]
+[2025-03-01T18:35:34.239Z] LOG: Conversations table ready with next_question column
+[2025-03-01T18:35:34.241Z] LOG: English progress table ready
+[2025-03-01T18:38:07.829Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:38:07.833Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:38:07.846Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:38:08.013Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:38:08.413Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:38:08.510Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:38:08.651Z] LOG: Generating new session ID
+[2025-03-01T18:38:14.165Z] LOG: Speech analyzed and stored: {
+  "id": 6,
+  "user_name": "fhhy",
+  "user_input": " I'm doing well, thank you for asking. How are you doing today?",
+  "corrected_version": "I'm doing well, thank you for asking. How are you today?",
+  "analysis": "Your sentence was almost perfect! The only slight improvement is removing the extra space before \"I'm\" and shortening \"How are you doing today?\" to \"How are you today?\"  It sounds a little more natural that way.",
+  "score": 95,
+  "badge": "Good",
+  "secret_info": "db0c9e4e-9353-492d-b7f6-106b8f7fad9e",
+  "timestamp": "2025-03-01T18:38:14.093Z",
+  "next_question": "That's great to hear! What are you planning to do today?"
+}
+[2025-03-01T18:40:43.758Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:40:43.765Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:40:43.790Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:40:43.830Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:40:43.872Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:40:43.874Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:40:43.966Z] LOG: Generating new session ID
+[2025-03-01T18:40:49.774Z] LOG: Speech analyzed and stored: {
+  "id": 7,
+  "user_name": "fhhy",
+  "user_input": "my name is hariom but i am poor reasion is my kharcha is over",
+  "corrected_version": "My name is Hariom, but I am poor because my expenses are too high.",
+  "analysis": "You were trying to explain why you are poor.  The sentence structure needed a bit of work. \"reasion\" should be spelled \"reason\" and it's better to say \"because\" instead of \"reason is.\" Also, \"kharcha is over\" doesn't translate directly; it's more natural in English to say your expenses are too high, or you have spent all your money. Finally, using a comma after \"Hariom\" and \"poor\" makes the sentence flow better.",
+  "score": 65,
+  "badge": "Average",
+  "secret_info": "196302b1-d06d-401a-b64b-4c5de21deaa0",
+  "timestamp": "2025-03-01T18:40:49.769Z",
+  "next_question": "I'm sorry to hear you're having financial difficulties. What kind of expenses are you facing?"
+}
+[2025-03-01T18:48:22.576Z] ERROR: (node:27596) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:48:22.591Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:48:23.186Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:48:23.029Z"
+  }
+]
+[2025-03-01T18:48:23.191Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:48:23.032Z"
+  }
+]
+[2025-03-01T18:48:23.197Z] LOG: Conversations table ready with updated columns
+[2025-03-01T18:48:23.201Z] LOG: English progress table ready
+[2025-03-01T18:49:04.660Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-01T18:49:04.671Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:49:04.668Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:49:04.683Z] LOG: Generating new session ID
+[2025-03-01T18:49:42.876Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:49:42.917Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:49:42.919Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:49:42.964Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:49:42.996Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:49:42.998Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:49:43.302Z] LOG: Generating new session ID
+[2025-03-01T18:49:50.031Z] ERROR: Database insertion error: {
+  "length": 142,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42703",
+  "position": "101",
+  "file": "parse_target.c",
+  "line": "1070",
+  "routine": "checkInsertTargets"
+}
+[2025-03-01T18:49:50.039Z] ERROR: Error analyzing speech: {
+  "length": 142,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42703",
+  "position": "101",
+  "file": "parse_target.c",
+  "line": "1070",
+  "routine": "checkInsertTargets"
+}
+[2025-03-01T18:50:46.346Z] ERROR: (node:4268) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:50:46.356Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:50:46.559Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:50:46.553Z"
+  }
+]
+[2025-03-01T18:50:46.563Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:50:46.545Z"
+  }
+]
+[2025-03-01T18:50:46.579Z] LOG: Conversations table ready with updated columns
+[2025-03-01T18:50:46.581Z] LOG: English progress table ready
+[2025-03-01T18:51:05.656Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-01T18:51:05.657Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:51:05.661Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:51:05.665Z] LOG: Generating new session ID
+[2025-03-01T18:51:16.878Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:51:16.899Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:51:16.896Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:51:16.914Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:51:16.917Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:51:16.916Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:51:17.295Z] LOG: Generating new session ID
+[2025-03-01T18:51:24.549Z] ERROR: Database insertion error: {
+  "length": 142,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42703",
+  "position": "101",
+  "file": "parse_target.c",
+  "line": "1070",
+  "routine": "checkInsertTargets"
+}
+[2025-03-01T18:51:24.555Z] ERROR: Error analyzing speech: {
+  "length": 142,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42703",
+  "position": "101",
+  "file": "parse_target.c",
+  "line": "1070",
+  "routine": "checkInsertTargets"
+}
+[2025-03-01T18:52:52.077Z] ERROR: (node:29032) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T18:52:52.084Z] LOG: HTTP Server running on port 5000
+[2025-03-01T18:52:52.363Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:52:52.337Z"
+  }
+]
+[2025-03-01T18:52:52.367Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T18:52:52.334Z"
+  }
+]
+[2025-03-01T18:52:52.373Z] LOG: Conversations table ready with updated columns
+[2025-03-01T18:52:52.375Z] LOG: English progress table ready
+[2025-03-01T18:53:04.791Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-01T18:53:04.793Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:53:04.794Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:53:04.800Z] LOG: Generating new session ID
+[2025-03-01T18:53:11.370Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:53:11.384Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:53:11.386Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:53:11.402Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:53:11.411Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:53:11.406Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:53:11.617Z] LOG: Generating new session ID
+[2025-03-01T18:53:18.592Z] LOG: Speech analyzed and stored: {
+  "id": 8,
+  "user_name": "Hariom",
+  "user_input": "Hi i am hariom and i am from motisabad i am curreblt working in FCC The Gurukulk Startup as a Web Designer",
+  "corrected_version": "1. Hi, I'm Hariom, and I'm from Motisabad. I'm currently working at FCC The Gurukul Startup as a web designer.",
+  "analysis": "2. Your sentence was mostly understandable, but it had some small errors.  You wrote \"i\" instead of \"I\" at the beginning of sentences, which needs to be capitalized.  \"motisabad\" likely should be \"Motisabad\" with a capital letter as it is a place name.  \"curreblt\" is misspelled and should be \"currently.\" Finally, \"Web Designer\" is a job title and typically capitalized as such.",
+  "score": 3,
+  "badge": "Average",
+  "secret_info": "215fbf6f-0cef-4a36-bf81-f422ef1c7e78",
+  "timestamp": "2025-03-01T18:53:18.542Z",
+  "next_question": "5. What kind of projects are you working on at FCC The Gurukul Startup?",
+  "corrected_score": 4,
+  "corrected_badge": "Excellent",
+  "next_question_hindi": "6. FCC द गुरुकुल स्टार्टअप में आप किस तरह के प्रोजेक्ट्स पर काम कर रहे हैं?"
+}
+[2025-03-01T18:54:26.272Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:54:26.301Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:54:26.303Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:54:26.336Z] LOG: Generating new session ID
+[2025-03-01T18:54:26.330Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:54:26.324Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:54:26.329Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:54:31.860Z] LOG: Speech analyzed and stored: {
+  "id": 9,
+  "user_name": "Hariom",
+  "user_input": "i am currently working on a mini project for offline coachingmanagemnt system for FCC The Gurukul",
+  "corrected_version": "1. I am currently working on a mini-project for an offline coaching management system for FCC The Gurukul.",
+  "analysis": "2. Your sentence was pretty good!  The main issues were capitalization and spacing.  Remember to capitalize \"I\" and add a hyphen to \"mini-project.\"  Also,  \"coachingmanagemnt\" should be \"coaching management\" - two separate words.  Adding \"an\" before \"offline coaching management system\" makes it sound more natural.",
+  "score": 75,
+  "badge": "Average",
+  "secret_info": "f86d79cb-013b-4dad-95ff-02e85c6edb89",
+  "timestamp": "2025-03-01T18:54:31.851Z",
+  "next_question": "What kind of features does the coaching management system have?",
+  "corrected_score": 95,
+  "corrected_badge": "Excellent",
+  "next_question_hindi": "कोचिंग मैनेजमेंट सिस्टम में किस तरह के फीचर्स हैं?"
+}
+[2025-03-01T18:57:11.175Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:57:11.189Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:57:11.205Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:57:11.238Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T18:57:11.243Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T18:57:11.250Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T18:57:11.256Z] LOG: Generating new session ID
+[2025-03-01T18:57:17.690Z] LOG: Speech analyzed and stored: {
+  "id": 10,
+  "user_name": "Hariom",
+  "user_input": "aaa... purely focus on features in management app fot attendance, task chekup, and parent portal",
+  "corrected_version": "1. I'm purely focused on features in the management app for attendance, task checkup, and a parent portal.",
+  "analysis": "2. You almost had it!  The sentence started a bit strangely with \"aaa...\" which we can remove. \"Purely focus\" sounds a little unnatural, so changing it to \"I'm purely focused\" or \"I'm focusing solely\" is better.  \"fot\" should be \"for.\" \"chekup\" needs to be spelled \"checkup.\"  Finally, adding \"a\" before \"parent portal\" makes the sentence flow better.",
+  "score": 65,
+  "badge": "Average",
+  "secret_info": "2cb47eb9-d903-482b-abe6-63e10e76a067",
+  "timestamp": "2025-03-01T18:57:17.668Z",
+  "next_question": "What specific features are you considering for the attendance section of the app?",
+  "corrected_score": 95,
+  "corrected_badge": "Excellent",
+  "next_question_hindi": "आप ऐप के अटेंडेंस सेक्शन के लिए कौन से ख़ास फीचर्स पर विचार कर रहे हैं?"
+}
+[2025-03-01T19:03:39.926Z] ERROR: (node:2356) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T19:03:39.933Z] LOG: HTTP Server running on port 5000
+[2025-03-01T19:03:40.445Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T19:03:40.433Z"
+  }
+]
+[2025-03-01T19:03:40.461Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T19:03:40.468Z"
+  }
+]
+[2025-03-01T19:03:40.481Z] LOG: Conversations table ready with updated columns
+[2025-03-01T19:03:40.492Z] LOG: English progress table ready
+[2025-03-01T19:03:53.675Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom%20Kumar, Origin: http://localhost:3000
+[2025-03-01T19:03:53.721Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:03:53.829Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:03:53.916Z] LOG: Generating new session ID
+[2025-03-01T19:04:10.231Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:04:10.250Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:04:10.252Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:04:10.274Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:04:10.285Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:04:10.287Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:04:10.576Z] LOG: Generating new session ID
+[2025-03-01T19:04:16.893Z] LOG: Speech analyzed and stored: {
+  "id": 11,
+  "user_name": "Hariom Kumar",
+  "user_input": "Hi my name is hariom and am from motisabad.",
+  "corrected_version": "1. Hi, my name is Hariom, and I'm from Motisabad.",
+  "analysis": "2. You almost had it! Just a couple of small things.  You need a comma after \"Hi\" and \"Hariom.\" Also, \"I am\" should be contracted to \"I'm\" in this kind of sentence.  Capitalizing \"Motisabad\" is good since it's a proper noun (a place name).",
+  "score": 3,
+  "badge": "Good",
+  "secret_info": "73a5d341-463d-4d9d-8135-089efb5619fc",
+  "timestamp": "2025-03-01T19:04:16.876Z",
+  "next_question": "5. What's Motisabad like?",
+  "corrected_score": 4,
+  "corrected_badge": "Excellent",
+  "next_question_hindi": "6. मोतीसाबाद कैसा है?"
+}
+[2025-03-01T19:04:56.583Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:04:56.636Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:04:56.638Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:04:56.670Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:04:56.753Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:04:56.760Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:04:56.766Z] LOG: Generating new session ID
+[2025-03-01T19:05:01.902Z] LOG: Speech analyzed and stored: {
+  "id": 12,
+  "user_name": "Hariom Kumar",
+  "user_input": "motisabad is very beautifull village.",
+  "corrected_version": "1. Motisabad is a very beautiful village.",
+  "analysis": "2. Almost perfect!  You misspelled \"beautiful\" – it only has one \"l.\" Also, adding \"a\" before \"very beautiful village\" makes the sentence sound more natural.  Good job on capitalizing \"Motisabad\"!",
+  "score": 85,
+  "badge": "Good",
+  "secret_info": "58d64b4b-90e7-4494-8f71-d1baeaafbab6",
+  "timestamp": "2025-03-01T19:05:01.882Z",
+  "next_question": "5. What is your favorite thing about living in Motisabad?",
+  "corrected_score": 95,
+  "corrected_badge": "Excellent",
+  "next_question_hindi": "6. मोतीसाबाद में रहने के बारे में आपकी पसंदीदा चीज़ क्या है?"
+}
+[2025-03-01T19:05:32.262Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:05:32.275Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:05:32.288Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:05:32.302Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:05:32.305Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:05:32.309Z] LOG: Generating new session ID
+[2025-03-01T19:05:32.303Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:05:36.946Z] LOG: Speech analyzed and stored: {
+  "id": 13,
+  "user_name": "Hariom Kumar",
+  "user_input": "my favorait is my home",
+  "corrected_version": "1. My favorite is my home.",
+  "analysis": "2. You were very close!  \"Favorite\" is spelled with an \"i\" before the \"t.\"  The rest of the sentence is perfectly structured!",
+  "score": 80,
+  "badge": "Good",
+  "secret_info": "9a1585c0-f5ba-4ddc-bc8c-fe9daddae745",
+  "timestamp": "2025-03-01T19:05:36.939Z",
+  "next_question": "5. What makes your home your favorite place?",
+  "corrected_score": 95,
+  "corrected_badge": "Excellent",
+  "next_question_hindi": "6. आपके घर को आपका पसंदीदा स्थान क्या बनाता है?"
+}
+[2025-03-01T19:11:46.344Z] ERROR: (node:29484) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T19:11:46.357Z] LOG: HTTP Server running on port 5000
+[2025-03-01T19:11:46.720Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T19:11:46.710Z"
+  }
+]
+[2025-03-01T19:11:46.725Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T19:11:46.713Z"
+  }
+]
+[2025-03-01T19:11:47.004Z] LOG: Conversations table recreated with updated columns
+[2025-03-01T19:11:47.010Z] LOG: English progress table ready
+[2025-03-01T19:11:59.206Z] LOG: Incoming request: GET /api/conversation-history?userName=HK, Origin: http://localhost:3000
+[2025-03-01T19:11:59.208Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:11:59.210Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:11:59.223Z] LOG: Generating new session ID
+[2025-03-01T19:12:48.039Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:12:48.073Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:12:48.070Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:12:48.183Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:12:48.190Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:12:48.205Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:12:48.486Z] LOG: Generating new session ID
+[2025-03-01T19:12:57.152Z] LOG: Speech analyzed and stored: {
+  "id": 1,
+  "user_name": "HK",
+  "user_input": "hi, my name is hariom and i am from motisabad and i currently working on FCC THE GURUKUL comnay ijn as a Devoler!",
+  "corrected_version": "1. Hi, my name is Hariom and I am from Motisabad. I currently work at FCC THE GURUKUL company as a Developer.",
+  "hindi_analysis": "2. \"हरीओम जी, आपका इंग्लिश  काफी अच्छा है, बस कुछ छोटी-मोटी गलतियाँ हैं।  'ijn' की जगह 'in' इस्तेमाल होता है। 'working on' की बजाय 'work at' सही रहेगा क्योंकि आप कंपनी में काम करते हैं, कंपनी 'पर' काम नहीं। 'Devoler' की spelling 'Developer' होगी। बाकी सब ठीक है! 😊\"",
+  "score": 3,
+  "badge": "Average",
+  "corrected_score": 4,
+  "corrected_badge": "Excellent",
+  "secret_info": "3058bb75-f758-45f2-a3e3-6a7834f3503f",
+  "next_question": "5. What kind of development work do you do at FCC THE GURUKUL?",
+  "next_question_hindi": "6. FCC THE GURUKUL में आप किस तरह का डेवलपमेंट वर्क करते हैं?",
+  "mini_info": "7. इससे आपको अपनी English vocabulary और  job से related बातें करने का अभ्यास होगा!",
+  "timestamp": "2025-03-01T19:12:57.117Z"
+}
+[2025-03-01T19:18:57.910Z] ERROR: (node:27752) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T19:18:57.917Z] LOG: HTTP Server running on port 5000
+[2025-03-01T19:18:58.726Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T19:18:58.464Z"
+  }
+]
+[2025-03-01T19:18:58.732Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T19:18:58.463Z"
+  }
+]
+[2025-03-01T19:18:58.774Z] LOG: Conversations table recreated with updated columns
+[2025-03-01T19:18:58.778Z] LOG: English progress table ready
+[2025-03-01T19:19:11.742Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom%20Kumar, Origin: http://localhost:3000
+[2025-03-01T19:19:11.747Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:19:11.750Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:19:11.762Z] LOG: Generating new session ID
+[2025-03-01T19:19:41.264Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:19:41.280Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:19:41.281Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:19:41.302Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:19:41.307Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:19:41.305Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:19:41.401Z] LOG: Generating new session ID
+[2025-03-01T19:19:49.694Z] LOG: Speech analyzed and stored: {
+  "id": 2,
+  "user_name": "Hariom Kumar",
+  "user_input": "My name is hariom and i am currently working as a devoleper in FCC The Gurukul Compnay.",
+  "corrected_version": "1. My name is Hariom, and I am currently working as a developer at FCC The Gurukul Company.",
+  "hindi_analysis": "2. \"हरिओम\" नाम को Capitalize किया गया है क्योंकि यह एक proper noun है।  \"and\" से पहले comma (,) लगाया गया है क्योंकि यह दो independent clauses को जोड़ रहा है। \"devoleper\" की सही spelling \"developer\" होती है। \"in\" की जगह \"at\" इस्तेमाल किया गया है क्योंकि हम किसी company \"में\" काम करते हैं, \"के अंदर\" नहीं।  \"Compnay\" की spelling \"Company\" होनी चाहिए।  छोटे शब्द जैसे \"i\" और \"am\" को \"I\" और \"Am\" लिखना ज़रूरी है।",
+  "score": 3,
+  "badge": "Average",
+  "corrected_score": 4,
+  "corrected_badge": "Excellent",
+  "secret_info": "045eabf2-24b0-4679-8862-d0a0542e99a9",
+  "next_question": "5. What kind of development work do you do at FCC The Gurukul Company?",
+  "next_question_hindi": "6. FCC The Gurukul Company में आप किस तरह का development work करते हैं?",
+  "mini_info": "7. इससे आपको specific vocabulary use करने का अभ्यास होगा और आपकी fluency improve होगी!",
+  "timestamp": "2025-03-01T19:19:49.681Z"
+}
+[2025-03-01T19:20:48.246Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:20:48.249Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:20:48.255Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:20:48.273Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:20:48.297Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:20:48.307Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:20:48.313Z] LOG: Generating new session ID
+[2025-03-01T19:20:54.478Z] LOG: Speech analyzed and stored: {
+  "id": 3,
+  "user_name": "Hariom Kumar",
+  "user_input": "as a designer and for website",
+  "corrected_version": "1. As a designer for websites.",
+  "hindi_analysis": "2. \"as a designer and for website\" थोड़ा अधूरा लग रहा था।  इसलिए हमने इसे \"As a designer for websites\"  किया है।  \"for website\" कहने से ज़्यादा natural \"for websites\" लगता है, क्योंकि आप generally एक से ज़्यादा websites के लिए design करते होंगे।  साथ ही,  इससे sentence ज़्यादा professional लगता है।",
+  "score": 60,
+  "badge": "Average",
+  "corrected_score": 95,
+  "corrected_badge": "Excellent",
+  "secret_info": "d2141f9a-5a59-4778-82ff-c42a2b40d168",
+  "next_question": "What kind of websites do you design?",
+  "next_question_hindi": "आप किस तरह की वेबसाइट्स डिज़ाइन करते हैं?",
+  "mini_info": "इससे आप specific vocabulary use करने का अभ्यास करेंगे जो  web designing से related है, और आपकी English speaking skills improve होंगी!",
+  "timestamp": "2025-03-01T19:20:54.437Z"
+}
+[2025-03-01T19:21:49.946Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:21:49.956Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:21:49.960Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:21:50.012Z] LOG: Generating new session ID
+[2025-03-01T19:21:49.978Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:21:49.998Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:21:50.006Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:21:56.711Z] LOG: Speech analyzed and stored: {
+  "id": 4,
+  "user_name": "Hariom Kumar",
+  "user_input": "some planding page related to Productdesign",
+  "corrected_version": "1. Some landing pages related to product design.",
+  "hindi_analysis": "2. \"planding\" की सही spelling \"landing\" होती है।  \"Productdesign\" को दो शब्दों में लिखना चाहिए: \"product design\"। \"page\" को plural बनाना ज़्यादा सही होगा क्योंकि \"some\" का मतलब एक से ज़्यादा होता है, इसलिए \"pages\" इस्तेमाल किया गया है।",
+  "score": 60,
+  "badge": "Average",
+  "corrected_score": 95,
+  "corrected_badge": "Excellent",
+  "secret_info": "083f4979-ca89-4234-b0c7-8c814bd686f1",
+  "next_question": "Are you designing these landing pages yourself, or are you looking at examples for inspiration?",
+  "next_question_hindi": "क्या आप ख़ुद ये लैंडिंग पेजेज़ डिज़ाइन कर रहे हैं, या आप inspiration के लिए examples देख रहे हैं?",
+  "mini_info": "इस सवाल का जवाब देने से आपको  \"explain\" करना सीखने में मदद मिलेगी और आपकी  communication skills improve होंगी।",
+  "timestamp": "2025-03-01T19:21:56.704Z"
+}
+[2025-03-01T19:22:52.067Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:22:52.082Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:22:52.084Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:22:52.108Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:22:52.151Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:22:52.153Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:22:52.162Z] LOG: Generating new session ID
+[2025-03-01T19:22:57.251Z] LOG: Speech analyzed and stored: {
+  "id": 5,
+  "user_name": "Hariom Kumar",
+  "user_input": "good morning mom",
+  "corrected_version": "1. Good morning, Mom.",
+  "hindi_analysis": "2. \"mom\" से पहले comma (,) लगाना ज़रूरी है।  साथ ही, \"Mom\" को Capitalize किया गया है क्योंकि यह एक proper noun है,  जैसे किसी का नाम।",
+  "score": 85,
+  "badge": "Good",
+  "corrected_score": 100,
+  "corrected_badge": "Excellent",
+  "secret_info": "480b6519-782a-4dc0-8853-c07b0d4e69cc",
+  "next_question": "Did you have a good sleep, Mom?",
+  "next_question_hindi": "क्या आपकी नींद अच्छी रही, माँ?",
+  "mini_info": "इससे आपको family members से related conversation करने की practice होगी और आप confidently English बोल पाएंगे।",
+  "timestamp": "2025-03-01T19:22:57.225Z"
+}
+[2025-03-01T19:23:48.310Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:23:48.312Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:23:48.314Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:23:48.343Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:23:48.357Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:23:48.358Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:23:48.375Z] LOG: Generating new session ID
+[2025-03-01T19:23:53.893Z] LOG: Speech analyzed and stored: {
+  "id": 6,
+  "user_name": "Hariom Kumar",
+  "user_input": "did you have a good sleep,mom?",
+  "corrected_version": "1. Did you have a good sleep, Mom?",
+  "hindi_analysis": "2. लगभग सही था! बस \"mom\" से पहले comma (,) लगाना ज़रूरी है और \"Mom\" को Capitalize करना चाहिए क्योंकि यह एक proper noun है, किसी के नाम की तरह।",
+  "score": 85,
+  "badge": "Good",
+  "corrected_score": 100,
+  "corrected_badge": "Excellent",
+  "secret_info": "d626f1bf-171c-4c20-840b-26024741169c",
+  "next_question": "How did you sleep last night, Mom?",
+  "next_question_hindi": "आपकी कल रात की नींद कैसी रही, माँ?",
+  "mini_info": "इससे आपको different ways में एक ही बात पूछने की practice होगी और आपकी vocabulary बढ़ेगी।",
+  "timestamp": "2025-03-01T19:23:53.899Z"
+}
+[2025-03-01T19:31:17.755Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:31:17.779Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:31:17.789Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:31:17.825Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:31:17.829Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:31:17.834Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:31:17.859Z] LOG: Generating new session ID
+[2025-03-01T19:31:23.875Z] LOG: Speech analyzed and stored: {
+  "id": 7,
+  "user_name": "Hariom Kumar",
+  "user_input": "mai ek vidyarthi hu",
+  "corrected_version": "1. I am a student.",
+  "hindi_analysis": "2. \"mai ek vidyarthi hu\" हिंदी में सही है, लेकिन English में हमें \"I am a student\" कहना चाहिए।  \"mai\" को \"I\" और \"vidyarthi\" को \"student\" translate करते हैं। \"hu\" की जगह \"am\" का use होता है \"I\" के साथ।",
+  "score": 3,
+  "badge": "Poor",
+  "corrected_score": 4,
+  "corrected_badge": "Excellent",
+  "secret_info": "1c0aacc6-3712-4cbf-8758-9885bd298a5c",
+  "next_question": "5. What are you studying?",
+  "next_question_hindi": "6. आप क्या पढ़ रहे हैं?",
+  "mini_info": "7. इस सवाल का जवाब देने से आपको अपनी पढ़ाई के बारे में English में बात करने का अभ्यास मिलेगा!",
+  "timestamp": "2025-03-01T19:31:23.825Z"
+}
+[2025-03-01T19:35:29.414Z] LOG: Incoming request: GET /api/conversation-history?userName=fgjhgf, Origin: http://localhost:3000
+[2025-03-01T19:35:29.432Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:35:29.414Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:35:29.433Z] LOG: Generating new session ID
+[2025-03-01T19:35:35.819Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:35:35.823Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:35:35.826Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:35:35.877Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:35:35.881Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:35:35.882Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:35:35.897Z] LOG: Generating new session ID
+[2025-03-01T19:35:42.612Z] LOG: Speech analyzed and stored: {
+  "id": 8,
+  "user_name": "fgjhgf",
+  "user_input": "dvbfbd",
+  "corrected_version": "1. I couldn’t understand you. Please tell me in Hindi what you meant, and I’ll help you say it in English!",
+  "hindi_analysis": "2. Aap kya bolna chahte hain? Mujhe Hindi mein bataiye, main usko English mein translate kar dunga!  \"dvbfbd\" angrezi ka koi shabd nahi hai.  Agar aap mujhe Hindi mein batayenge to main aapko sahi angrezi shabd sikha sakta hun. Try again!",
+  "score": 3,
+  "badge": "Needs Improvement",
+  "corrected_score": 4,
+  "corrected_badge": "Excellent",
+  "secret_info": "e15ed5e8-81f9-404d-88a7-41b4377136f0",
+  "next_question": "5.  (No follow-up question possible as the input was unintelligible. Instead, encourage another attempt.) Could you try saying that again?",
+  "next_question_hindi": "6. Kya aap use dobara keh sakte hain?",
+  "mini_info": "7. Dobara koshish karne se aapko English bolne mein confidence aayega!",
+  "timestamp": "2025-03-01T19:35:42.587Z"
+}
+[2025-03-01T19:42:11.661Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-03-01T19:42:11.679Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:11.756Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:11.824Z] LOG: Generating new session ID
+[2025-03-01T19:42:12.513Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-03-01T19:42:12.513Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:12.651Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-03-01T19:42:12.653Z] LOG: Query Parameters: {}
+[2025-03-01T19:42:12.668Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-03-01T19:42:12.514Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:12.696Z] LOG: Query Parameters: [
+  "2025-02-28T18:30:00.000Z",
+  "2025-03-30T18:30:00.000Z"
+]
+[2025-03-01T19:42:12.551Z] LOG: Generating new session ID
+[2025-03-01T19:42:12.731Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-03-01T19:42:12.735Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:12.732Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:12.736Z] LOG: Generating new session ID
+[2025-03-01T19:42:14.401Z] LOG: 📊 Leaderboard Data Fetched: []
+[2025-03-01T19:42:14.402Z] LOG: 📊 Leaderboard Data Fetched with Images: []
+[2025-03-01T19:42:14.440Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-03-01T19:42:14.458Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:14.461Z] LOG: Generating new session ID
+[2025-03-01T19:42:14.687Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:14.688Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:14.691Z] LOG: Generating new session ID
+[2025-03-01T19:42:14.442Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:14.655Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-03-01T19:42:14.693Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-03-01T19:42:14.710Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-03-01T19:42:14.711Z] LOG: Query Parameters: {}
+[2025-03-01T19:42:14.694Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:14.701Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:14.723Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-03-01T19:42:14.750Z] LOG: Query Parameters: [
+  "2025-02-28T18:30:00.000Z",
+  "2025-03-30T18:30:00.000Z"
+]
+[2025-03-01T19:42:14.708Z] LOG: Generating new session ID
+[2025-03-01T19:42:14.807Z] LOG: 📊 Leaderboard Data Fetched: []
+[2025-03-01T19:42:14.819Z] LOG: 📊 Leaderboard Data Fetched with Images: []
+[2025-03-01T19:42:15.227Z] LOG: Incoming request: OPTIONS /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:42:15.275Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:15.276Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:15.288Z] LOG: Incoming request: OPTIONS /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:42:15.290Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:15.291Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:15.305Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:42:15.311Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:15.318Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:15.321Z] LOG: Generating new session ID
+[2025-03-01T19:42:15.836Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:42:15.837Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:15.839Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:15.841Z] LOG: Generating new session ID
+[2025-03-01T19:42:18.595Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:42:18.611Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:18.613Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:18.614Z] LOG: Generating new session ID
+[2025-03-01T19:42:18.649Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:42:18.659Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:18.658Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:18.662Z] LOG: Generating new session ID
+[2025-03-01T19:42:21.099Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-03-01T19:42:21.127Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:21.129Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:21.130Z] LOG: Generating new session ID
+[2025-03-01T19:42:21.133Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-03-01T19:42:21.146Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:21.151Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:21.156Z] LOG: Generating new session ID
+[2025-03-01T19:42:21.158Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-03-01T19:42:21.159Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:21.160Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:21.162Z] LOG: Generating new session ID
+[2025-03-01T19:42:21.163Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-03-01T19:42:21.163Z] LOG: Query Parameters: {}
+[2025-03-01T19:42:21.164Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-03-01T19:42:21.165Z] LOG: Query Parameters: [
+  "2025-02-28T18:30:00.000Z",
+  "2025-03-30T18:30:00.000Z"
+]
+[2025-03-01T19:42:21.226Z] LOG: 📊 Leaderboard Data Fetched: []
+[2025-03-01T19:42:21.229Z] LOG: 📊 Leaderboard Data Fetched with Images: []
+[2025-03-01T19:42:21.275Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-03-01T19:42:21.299Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:21.309Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:21.311Z] LOG: Generating new session ID
+[2025-03-01T19:42:21.331Z] LOG: Generating new session ID
+[2025-03-01T19:42:21.333Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-03-01T19:42:21.333Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:21.334Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:21.335Z] LOG: Generating new session ID
+[2025-03-01T19:42:21.335Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-03-01T19:42:21.339Z] LOG: Query Parameters: {}
+[2025-03-01T19:42:21.340Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-03-01T19:42:21.341Z] LOG: Query Parameters: [
+  "2025-02-28T18:30:00.000Z",
+  "2025-03-30T18:30:00.000Z"
+]
+[2025-03-01T19:42:21.329Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-03-01T19:42:21.331Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:21.330Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:21.347Z] LOG: 📊 Leaderboard Data Fetched: []
+[2025-03-01T19:42:21.348Z] LOG: 📊 Leaderboard Data Fetched with Images: []
+[2025-03-01T19:42:21.994Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-03-01T19:42:21.995Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:21.997Z] LOG: Generating new session ID
+[2025-03-01T19:42:21.995Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:22.067Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-03-01T19:42:22.077Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:22.078Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:22.079Z] LOG: Generating new session ID
+[2025-03-01T19:42:25.654Z] LOG: Incoming request: GET /api/conversation-history?userName=fhbf, Origin: http://localhost:3000
+[2025-03-01T19:42:25.661Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:42:25.656Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:42:25.668Z] LOG: Generating new session ID
+[2025-03-01T19:49:03.524Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-01T19:49:03.594Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:49:03.610Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:49:03.617Z] LOG: Generating new session ID
+[2025-03-01T19:49:17.087Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:49:17.121Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:49:17.122Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:49:17.136Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:49:17.205Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:49:17.295Z] LOG: Generating new session ID
+[2025-03-01T19:49:17.196Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:49:22.450Z] LOG: Speech analyzed and stored: {
+  "id": 9,
+  "user_name": "Hariom",
+  "user_input": "Hi, mera name hariom Kumar hai",
+  "corrected_version": "1. Hi, my name is Hariom Kumar.",
+  "hindi_analysis": "2. आपने लिखा \"mera name hariom Kumar hai\".  इंग्लिश में \"My name is...\" कहते हैं, \"mera name...\" नहीं।  और \"hariom\" की spelling \"Hariom\" होगी, capital H से।  बाकी सब ठीक है! 😊",
+  "score": 3,
+  "badge": "Average",
+  "corrected_score": 4,
+  "corrected_badge": "Excellent",
+  "secret_info": "901a94b4-ad5b-4895-8722-f95b57d0f966",
+  "next_question": "5. It's nice to meet you, Hariom. Where are you from?",
+  "next_question_hindi": "6. आपसे मिलकर अच्छा लगा, हरिओम। आप कहाँ से हैं?",
+  "mini_info": "7.  इस सवाल का जवाब देने से आपको location के बारे में  बोलने का अभ्यास होगा!",
+  "timestamp": "2025-03-01T19:49:22.390Z"
+}
+[2025-03-01T19:49:55.984Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:49:55.986Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:49:55.987Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:49:56.033Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:49:56.045Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:49:56.042Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:49:56.066Z] LOG: Generating new session ID
+[2025-03-01T19:50:00.131Z] LOG: Speech analyzed and stored: {
+  "id": 10,
+  "user_name": "Hariom",
+  "user_input": "main motisabad se hu",
+  "corrected_version": "1. I am from Motisabad.",
+  "hindi_analysis": "2. आपने लिखा \"main motisabad se hu\".  इंग्लिश में, हम कहते हैं \"I am from...\"  \"main... se hu\" नहीं। \"Motisabad\" एक जगह का नाम है, इसलिए इसे capitalize करना चाहिए: \"Motisabad\". 😊",
+  "score": 3,
+  "badge": "Poor",
+  "corrected_score": 4,
+  "corrected_badge": "Excellent",
+  "secret_info": "49570845-653f-4712-a096-d9d2741ba6a5",
+  "next_question": "5. What is Motisabad like?",
+  "next_question_hindi": "6. मोतीसाबाद कैसा है?",
+  "mini_info": "7.  इस सवाल का जवाब देने से आपको किसी जगह को describe करने का अभ्यास होगा!",
+  "timestamp": "2025-03-01T19:50:00.125Z"
+}
+[2025-03-01T19:50:22.746Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:50:22.753Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:22.756Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:22.767Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-01T19:50:22.781Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:22.786Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:22.824Z] LOG: Generating new session ID
+[2025-03-01T19:50:28.286Z] LOG: Speech analyzed and stored: {
+  "id": 11,
+  "user_name": "Hariom",
+  "user_input": "my village is beqatuful",
+  "corrected_version": "1. My village is beautiful.",
+  "hindi_analysis": "2. आपने लिखा \"my village is beqatuful\".  \"Beqatuful\" की spelling गलत है। सही spelling \"beautiful\" होती है। बाकी सब ठीक है! 😊",
+  "score": 70,
+  "badge": "Average",
+  "corrected_score": 100,
+  "corrected_badge": "Excellent",
+  "secret_info": "4ca6676c-83ba-41f4-a5cc-e960c62cae43",
+  "next_question": "What is the name of your village?",
+  "next_question_hindi": "आपके गाँव का नाम क्या है?",
+  "mini_info": "इस सवाल का जवाब देने से आपको जगहों के नाम बताने का अभ्यास होगा!",
+  "timestamp": "2025-03-01T19:50:27.266Z"
+}
+[2025-03-01T19:50:42.132Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-03-01T19:50:42.161Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:42.163Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:42.164Z] LOG: Generating new session ID
+[2025-03-01T19:50:43.237Z] LOG: Incoming request: GET /api/classrooms, Origin: http://localhost:3000
+[2025-03-01T19:50:43.275Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:43.276Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:43.277Z] LOG: Generating new session ID
+[2025-03-01T19:50:43.288Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-03-01T19:50:43.290Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:43.292Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:43.293Z] LOG: Generating new session ID
+[2025-03-01T19:50:43.299Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-03-01T19:50:43.300Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:43.319Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:43.321Z] LOG: Generating new session ID
+[2025-03-01T19:50:43.322Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-03-01T19:50:43.323Z] LOG: Query Parameters: {}
+[2025-03-01T19:50:43.324Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-03-01T19:50:43.326Z] LOG: Query Parameters: [
+  "2025-02-28T18:30:00.000Z",
+  "2025-03-30T18:30:00.000Z"
+]
+[2025-03-01T19:50:43.371Z] LOG: Incoming request: GET /api/leaderboard-class-names, Origin: http://localhost:3000
+[2025-03-01T19:50:43.386Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:43.387Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:43.389Z] LOG: Generating new session ID
+[2025-03-01T19:50:43.391Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-03-01T19:50:43.392Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:43.393Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:43.394Z] LOG: Generating new session ID
+[2025-03-01T19:50:43.538Z] LOG: 📊 Leaderboard Data Fetched: []
+[2025-03-01T19:50:43.653Z] LOG: 📊 Leaderboard Data Fetched with Images: []
+[2025-03-01T19:50:43.720Z] LOG: Incoming request: GET /api/leaderboard-data, Origin: http://localhost:3000
+[2025-03-01T19:50:43.739Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:43.741Z] LOG: Generating new session ID
+[2025-03-01T19:50:43.740Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:43.756Z] LOG: Query Parameters: {}
+[2025-03-01T19:50:43.756Z] LOG: 🚀 Executing SQL Query: 
+          SELECT
+              nsa.name AS student_name,
+              l.fcc_id,
+              nsa.fcc_class,
+              SUM(l.score) AS total_score
+          FROM leaderboard l
+          JOIN "New_Student_Admission" nsa ON l.fcc_id = nsa.fcc_id
+          WHERE l.submission_date >= $1 AND l.submission_date <= $2
+      
+          GROUP BY nsa.name, l.fcc_id, nsa.fcc_class
+          ORDER BY total_score DESC;
+      
+[2025-03-01T19:50:43.758Z] LOG: Query Parameters: [
+  "2025-02-28T18:30:00.000Z",
+  "2025-03-30T18:30:00.000Z"
+]
+[2025-03-01T19:50:43.750Z] LOG: 📦 Incoming request to /api/leaderboard-data
+[2025-03-01T19:50:43.760Z] LOG: Incoming request: GET /api/leaderboard-task-names, Origin: http://localhost:3000
+[2025-03-01T19:50:43.761Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:43.761Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:43.762Z] LOG: Generating new session ID
+[2025-03-01T19:50:43.765Z] LOG: 📊 Leaderboard Data Fetched: []
+[2025-03-01T19:50:43.766Z] LOG: 📊 Leaderboard Data Fetched with Images: []
+[2025-03-01T19:50:45.015Z] LOG: Incoming request: OPTIONS /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:50:45.030Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:45.031Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:45.033Z] LOG: Incoming request: OPTIONS /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:50:45.038Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:45.039Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:45.057Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:50:45.057Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:45.058Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:45.059Z] LOG: Generating new session ID
+[2025-03-01T19:50:45.204Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:50:45.211Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:45.211Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:45.212Z] LOG: Generating new session ID
+[2025-03-01T19:50:46.691Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-01T19:50:46.693Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:46.692Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:46.693Z] LOG: Generating new session ID
+[2025-03-01T19:50:46.704Z] LOG: Missing userName in query
+[2025-03-01T19:50:46.715Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:50:46.715Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:50:46.716Z] LOG: Generating new session ID
+[2025-03-01T19:50:46.717Z] LOG: Missing userName in query
+[2025-03-01T19:50:46.712Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-01T19:52:36.634Z] LOG: Incoming request: OPTIONS /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:52:36.636Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:52:36.645Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:52:36.647Z] LOG: Incoming request: OPTIONS /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:52:36.660Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:52:36.662Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:52:36.671Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:52:36.673Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:52:36.672Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:52:36.675Z] LOG: Generating new session ID
+[2025-03-01T19:52:36.684Z] LOG: Incoming request: GET /get-student-profile/, Origin: http://localhost:3000
+[2025-03-01T19:52:36.685Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:52:36.690Z] LOG: Generating new session ID
+[2025-03-01T19:52:36.687Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:52:41.790Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-01T19:52:41.799Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:52:41.805Z] LOG: Missing userName in query
+[2025-03-01T19:52:41.796Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:52:41.803Z] LOG: Generating new session ID
+[2025-03-01T19:52:41.861Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-01T19:52:41.864Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-01T19:52:41.869Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-01T19:52:41.874Z] LOG: Generating new session ID
+[2025-03-01T19:52:41.877Z] LOG: Missing userName in query
