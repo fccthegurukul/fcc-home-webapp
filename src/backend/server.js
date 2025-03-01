@@ -72,8 +72,9 @@ console.error = (...args) => {
 
 
 // मॉडल्स इनिशियलाइज़ करें
+// मॉडल्स इनिशियलाइज़ करें
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const geminiModel = genAI.getGenerativeModel({ model: "gemini-pro" });
+const geminiModel = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -2560,38 +2561,41 @@ app.post('/api/contact', async (req, res) => {
 
 // Gemini API के साथ स्पीच विश्लेषण
 app.post('/api/analyze-speech', async (req, res) => {
-  const { text, level } = req.body;
+  const { text, history } = req.body;
 
-  if (!text || !level) {
-    return res.status(400).json({ message: 'Text and level are required.' });
+  if (!text) {
+    return res.status(400).json({ message: 'Text is required.' });
   }
 
   try {
-    const prompt = `
-      Analyze the following English sentence spoken by a learner at level ${level}:
-      "${text}"
-      - Is it grammatically correct?
-      - How can it be improved?
-      - Assign a score (0-10) based on correctness and complexity.
-      Provide a detailed feedback in a friendly tone.
+    let prompt = `
+      आप एक अंग्रेजी बोलने वाला असिस्टेंट हैं। यूज़र आपके साथ प्रैक्टिस कर रहा है।
+      उनकी बात का विश्लेषण करें: "${text}"
+      - व्याकरण सही है? गलतियाँ <strong>बोल्ड</strong> करें।
+      - सुधार कैसे हो सकता है? सुधार को <strong>बोल्ड</strong> करें।
+      - दोस्ताना जवाब दें जो प्रोत्साहित करे।
+      - पिछले संवाद से कनेक्शन बनाएँ (अगर हो)।
+      पिछला संवाद:
     `;
-    
+
+    if (history && history.length > 0) {
+      history.forEach((entry) => {
+        prompt += `- यूज़र: "${entry.user}"\n- AI: "${entry.ai.replace(/<[^>]+>/g, '')}"\n`;
+      });
+    }
+
+    prompt += `अब जवाब दें: "${text}"`;
+
     const geminiResponse = await geminiModel.generateContent(prompt);
-    const feedbackText = geminiResponse.text();
+    let feedbackText = geminiResponse.response.text();
 
-    // स्कोर निकालें (उदाहरण के लिए, Gemini के टेक्स्ट से पार्स करें)
-    const scoreMatch = feedbackText.match(/Score: (\d+)/);
-    const score = scoreMatch ? parseInt(scoreMatch[1]) : 5;
-
-    console.log('Speech analyzed:', { text, feedback: feedbackText, score });
-    res.status(200).json({ feedback: feedbackText, score });
+    res.status(200).json({ feedback: feedbackText });
   } catch (error) {
-    console.error('Error analyzing speech:', error);
-    res.status(500).json({ message: 'Failed to analyze speech.' });
+    res.status(500).json({ message: 'सर्वर त्रुटि।' });
   }
 });
 
-// प्रोग्रेस सेव करने का रूट
+// प्रोग्रेस सेव करने का रूट (कोई बदलाव नहीं)
 app.post('/api/english-progress', async (req, res) => {
   const { userName, secretCode, level, score } = req.body;
   const clientIp = getClientIP(req);

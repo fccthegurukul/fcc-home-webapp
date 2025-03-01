@@ -991,3 +991,113 @@
 [2025-03-01T15:23:33.282Z] LOG: Incoming Origin: 
 [2025-03-01T15:23:33.283Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
 [2025-03-01T15:23:33.287Z] LOG: Generating new session ID
+[2025-03-01T15:33:17.694Z] LOG: Incoming request: GET /, Origin: undefined
+[2025-03-01T15:33:17.695Z] LOG: Incoming Origin: 
+[2025-03-01T15:33:17.697Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-03-01T15:33:17.698Z] LOG: Generating new session ID
+[2025-03-01T15:33:32.705Z] LOG: Incoming request: GET /get-students, Origin: undefined
+[2025-03-01T15:33:32.706Z] LOG: Incoming Origin: 
+[2025-03-01T15:33:32.708Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-03-01T15:33:32.711Z] LOG: Generating new session ID
+[2025-03-01T15:33:34.469Z] LOG: Incoming request: GET /favicon.ico, Origin: undefined
+[2025-03-01T15:33:34.473Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-03-01T15:33:34.471Z] LOG: Incoming Origin: 
+[2025-03-01T15:33:34.475Z] LOG: Generating new session ID
+[2025-03-01T15:34:57.314Z] ERROR: (node:2360) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T15:34:57.342Z] LOG: HTTP Server running on port 5000
+[2025-03-01T15:34:57.611Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T15:34:57.605Z"
+  }
+]
+[2025-03-01T15:34:57.688Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T15:34:57.696Z"
+  }
+]
+[2025-03-01T15:39:52.465Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: https://fcc-home-webapp-git-main-fcc-the-gurukuls-projects.vercel.app
+[2025-03-01T15:39:52.468Z] LOG: Incoming Origin: https://fcc-home-webapp-git-main-fcc-the-gurukuls-projects.vercel.app
+[2025-03-01T15:39:52.469Z] LOG: CORS Blocked for: https://fcc-home-webapp-git-main-fcc-the-gurukuls-projects.vercel.app, Origin not in allowed list
+[2025-03-01T15:39:52.509Z] ERROR: Error: Not allowed by CORS
+    at origin (C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\src\backend\server.js:134:16)
+    at C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\node_modules\cors\lib\index.js:219:13
+    at optionsCallback (C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\node_modules\cors\lib\index.js:199:9)
+    at corsMiddleware (C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\node_modules\cors\lib\index.js:204:7)
+    at Layer.handle [as handle_request] (C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\node_modules\express\lib\router\index.js:280:10)
+    at C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\src\backend\server.js:106:3
+[2025-03-01T15:40:03.936Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:03.937Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:03.937Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:04.081Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:04.082Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:04.089Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:04.096Z] LOG: Generating new session ID
+[2025-03-01T15:40:29.458Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:29.459Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:29.460Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:29.652Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:29.655Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:29.657Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:40:29.658Z] LOG: Generating new session ID
+[2025-03-01T15:41:46.143Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:41:46.143Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:41:46.145Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:41:46.309Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:41:46.410Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:41:46.516Z] LOG: Generating new session ID
+[2025-03-01T15:41:46.347Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:41:49.078Z] ERROR: Error analyzing speech: {
+  "status": 404,
+  "statusText": "Not Found"
+}
+[2025-03-01T15:45:55.744Z] ERROR: (node:28936) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T15:45:55.750Z] LOG: HTTP Server running on port 5000
+[2025-03-01T15:45:55.967Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T15:45:55.955Z"
+  }
+]
+[2025-03-01T15:45:55.973Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T15:45:55.971Z"
+  }
+]
+[2025-03-01T15:46:13.765Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:46:13.767Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:46:13.768Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:46:13.935Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:46:13.937Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:46:13.936Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:46:14.027Z] LOG: Generating new session ID
+[2025-03-01T15:46:22.374Z] ERROR: Error analyzing speech: {}
+[2025-03-01T15:49:41.893Z] ERROR: (node:26468) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-01T15:49:41.898Z] LOG: HTTP Server running on port 5000
+[2025-03-01T15:49:42.029Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T15:49:42.033Z"
+  }
+]
+[2025-03-01T15:49:42.096Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-01T15:49:42.031Z"
+  }
+]
+[2025-03-01T15:50:08.804Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:50:08.808Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:50:08.811Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:50:08.966Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:50:08.967Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:50:08.968Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-01T15:50:09.095Z] LOG: Generating new session ID
+[2025-03-01T15:50:16.640Z] LOG: Speech analyzed: {
+  "text": "my name is Hariom Kumar",
+  "feedback": "Hi Hariom Kumar! Your sentence \"My name is Hariom Kumar\" is **grammatically correct**.  Excellent job!  \n\n**Is it grammatically correct?** Yes!  You've used the correct word order, verb tense, and capitalization.  This is a perfect way to introduce yourself.\n\n**How can it be improved?**  For a Level 1 learner, there's not much to improve grammatically.  As you progress, you might learn different ways to introduce yourself depending on the context, like \"I'm Hariom Kumar\" (more informal) or \"Hello, my name is Hariom Kumar\" (more formal).  But for now, your sentence is perfectly fine.\n\n**Score:** 9/10\n\n**Detailed Feedback:**\n\nYou've mastered a fundamental sentence structure, which is fantastic!  The sentence is clear, concise, and accurately conveys your name. The only reason it's not a 10/10 is because there's always room to grow and learn more nuanced expressions as you advance.  Keep practicing and expanding your vocabulary and you'll be speaking English fluently in no time!  Well done!\n",
+  "score": 5
+}

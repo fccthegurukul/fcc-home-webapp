@@ -28,7 +28,7 @@ import SkillUpdate from './pages/SkillUpdate';
 import ContactForm from './pages/ContactForm';
 import PuzzleGame from './components/PuzzleGame';
 import ColorMatchGame from './pages/ColorMatchGame';
-import EnglishPracticeGame from './components/EnglishPracticeGame';
+import EnglishPracticeAssistant from './components/EnglishPracticeAssistant';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -112,7 +112,7 @@ const App = () => {
                     <Route path="/contact" element={<ContactForm />} />
                     <Route path="/puzzle-game" element={<PuzzleGame />} />
                     <Route path="/color-match-game" element={<ColorMatchGame />} />
-                    <Route path="/english-practice" element={<EnglishPracticeGame />} />
+                    <Route path="/english-practice" element={<EnglishPracticeAssistant />} />
                     <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </div>

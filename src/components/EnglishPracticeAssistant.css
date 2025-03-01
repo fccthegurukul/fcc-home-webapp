@@ -1,0 +1,57 @@
+.english-practice-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #ffffff, #f0f4f8);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.conversation-area {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+
+.speech-area button {
+  padding: 14px 30px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.type-area input {
+  width: 60%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+.type-area button {
+  padding: 12px 20px;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.feedback {
+  margin: 20px 0;
+  padding: 15px;
+  background: #d4edda;
+  border-radius: 10px;
+}
+
+.speak-button {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
