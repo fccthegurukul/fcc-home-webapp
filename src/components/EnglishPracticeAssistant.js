@@ -27,7 +27,8 @@ const EnglishPracticeAssistant = () => {
 
   const recognitionRef = useRef(null);
   const silenceTimerRef = useRef(null);
-  const submitTimerRef = useRef(null); // New ref for 3-second timer
+  const submitTimerRef = useRef(null);
+  const sendButtonRef = useRef(null); // Ref for send button
 
   // Speech Recognition Setup
   useEffect(() => {
@@ -43,31 +44,39 @@ const EnglishPracticeAssistant = () => {
     recognitionRef.current.interimResults = true;
 
     recognitionRef.current.onresult = (event) => {
-      const transcript = Array.from(event.results)
-        .map(result => result[0].transcript)
-        .join('');
-      setSpokenText(transcript);
-      setTypedText(transcript); // Update text input in real-time
+      let finalTranscript = '';
+      let interimTranscript = '';
 
-      // Reset silence timer
+      for (let i = 0; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript;
+        } else {
+          interimTranscript += transcript;
+        }
+      }
+
+      const combinedTranscript = finalTranscript + interimTranscript;
+      setSpokenText(combinedTranscript);
+      setTypedText(combinedTranscript); // Update input in real-time
+
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       silenceTimerRef.current = setTimeout(() => {
-        if (isListening) {
-          recognitionRef.current.stop(); // Stop after 2 seconds of silence
+        if (isListening && finalTranscript) {
+          recognitionRef.current.stop(); // Stop on final result after 2 seconds of silence
         }
-      }, 2000); // Reduced to 2 seconds for quicker response
+      }, 2000);
     };
 
     recognitionRef.current.onend = () => {
       setIsListening(false);
-      if (spokenText.trim()) {
-        // Start 3-second timer before auto-submit
+      if (typedText.trim()) {
         if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
         submitTimerRef.current = setTimeout(() => {
-          if (typedText.trim()) {
-            submitTypedText(); // Auto-submit after 3 seconds
+          if (sendButtonRef.current && typedText.trim()) {
+            sendButtonRef.current.click(); // Programmatically click send button
           }
-        }, 3000);
+        }, 3000); // 3-second delay
       }
     };
 
@@ -85,7 +94,7 @@ const EnglishPracticeAssistant = () => {
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
     };
-  }, [isListening]); // Only depend on isListening to avoid unnecessary re-renders
+  }, [isListening]);
 
   // Fetch Conversation History
   const fetchConversationHistory = async () => {
@@ -116,7 +125,7 @@ const EnglishPracticeAssistant = () => {
     if (!isListening && !isSpeaking && recognitionRef.current && !isLoading) {
       resetState();
       setIsListening(true);
-      setTypedText(''); // Clear input before starting
+      setTypedText('');
       recognitionRef.current.start();
     }
   };
@@ -141,11 +150,11 @@ const EnglishPracticeAssistant = () => {
   // Submit Typed Text
   const submitTypedText = () => {
     if (typedText.trim() && !isSpeaking && !isLoading) {
-      const textToAnalyze = typedText; // Capture current typedText
+      const textToAnalyze = typedText;
       if (hindiPrompt) analyzeHindiResponse(textToAnalyze);
       else analyzeSpeech(textToAnalyze);
-      setTypedText(''); // Clear input after submission
-      setSpokenText(textToAnalyze); // Ensure spokenText stays in sync
+      setTypedText('');
+      setSpokenText(textToAnalyze);
     }
   };
 
@@ -312,7 +321,7 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Enhanced Speak Feedback with Natural Voice (unchanged)
+  // Enhanced Speak Feedback with Natural Voice
   const speakFeedback = (text, callback) => {
     if (!isSpeaking) {
       setIsSpeaking(true);
@@ -357,7 +366,7 @@ const EnglishPracticeAssistant = () => {
     loadVoices();
   }, []);
 
-  // Handle Login (unchanged)
+  // Handle Login
   const handleLogin = (e) => {
     e.preventDefault();
     if (userName.trim()) {
@@ -366,7 +375,7 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Format Text with Symbols (unchanged)
+  // Format Text with Symbols
   const formatText = (text) => {
     return text
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -376,7 +385,7 @@ const EnglishPracticeAssistant = () => {
       .replace(/~/g, '<span class="highlight">~</span>');
   };
 
-  // Calculate Progress (unchanged)
+  // Calculate Progress
   const averageScore = conversationHistory.length > 0
     ? Math.round(conversationHistory.reduce((sum, entry) => sum + entry.score, 0) / conversationHistory.length)
     : 0;
@@ -424,6 +433,7 @@ const EnglishPracticeAssistant = () => {
                 className="text-input"
               />
               <button
+                ref={sendButtonRef} // Add ref to send button
                 onClick={submitTypedText}
                 disabled={isLoading || isSpeaking || !typedText.trim()}
                 className="send-button"

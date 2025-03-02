@@ -1384,3 +1384,33 @@
 [2025-03-02T06:39:18.038Z] LOG: Incoming Origin: http://localhost:3000
 [2025-03-02T06:39:18.042Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
 [2025-03-02T06:39:18.049Z] LOG: Generating new session ID
+[2025-03-02T06:42:32.892Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:42:32.894Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:42:32.897Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:42:33.034Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:42:33.038Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:42:33.041Z] LOG: Generating new session ID
+[2025-03-02T06:42:33.043Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:42:33.036Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:42:41.056Z] LOG: Speech analyzed and stored: {
+  "id": 33,
+  "user_name": "Hariom Kumar ",
+  "user_input": "mymy namemy name ismy name ismy name ismy name ismy name is Hariommy name is Hariom Kumarmy name is Hariom Kumar",
+  "corrected_version": "1. My name is Hariom Kumar.",
+  "hindi_analysis": "2. आपने \"my name is\" बहुत बार repeat किया है।  सही तरीका है सिर्फ एक बार \"My name is\" बोलना।  \"Hariom Kumar\"  ठीक है।  इसलिए, सही वाक्य होगा \"My name is Hariom Kumar\"।",
+  "pronunciation_tip": "3. \"Hariom\" को \"हरिओम\"  बोलते हैं।  \"Kumar\"  को \"कुमार\" बोलते  हैं।  ध्यान रखें, \"H\"  का उच्चारण हल्का सा होता है।",
+  "vocabulary_word": "4. Word: Name - नाम",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "631345c1-838a-4249-bfd9-44cd42a2f85e",
+  "next_question": "7. It's nice to meet you, Hariom Kumar. Where are you from?",
+  "next_question_hindi": "8. आपसे मिलकर अच्छा लगा, हरिओम कुमार। आप कहाँ से हैं?",
+  "mini_info": "9.  यह सवाल आपको  अपने बारे में  बताने का अभ्यास  कराएगा, जो  रोज़मर्रा की  बातचीत के लिए  ज़रूरी है!",
+  "timestamp": "2025-03-02T06:42:41.008Z"
+}
+[2025-03-02T06:47:43.478Z] LOG: Incoming request: GET /api/conversation-history?userName=sgrvs, Origin: http://localhost:3000
+[2025-03-02T06:47:43.478Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T06:47:43.479Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T06:47:43.480Z] LOG: Generating new session ID
