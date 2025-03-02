@@ -1,0 +1,543 @@
+[2025-03-02T02:32:50.002Z] ERROR: (node:21104) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-02T02:32:50.011Z] LOG: HTTP Server running on port 5000
+[2025-03-02T02:32:50.460Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:32:50.399Z"
+  }
+]
+[2025-03-02T02:32:50.464Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:32:50.398Z"
+  }
+]
+[2025-03-02T02:32:50.514Z] LOG: Conversations table recreated with updated columns
+[2025-03-02T02:32:50.532Z] LOG: English progress table ready
+[2025-03-02T02:47:33.933Z] ERROR: (node:29088) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-02T02:47:33.942Z] LOG: HTTP Server running on port 5000
+[2025-03-02T02:47:34.239Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:47:34.186Z"
+  }
+]
+[2025-03-02T02:47:34.241Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:47:34.149Z"
+  }
+]
+[2025-03-02T02:47:34.259Z] LOG: Conversations table recreated with updated columns
+[2025-03-02T02:47:34.261Z] LOG: English progress table ready
+[2025-03-02T02:47:38.856Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T02:47:38.858Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:47:38.860Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:47:38.866Z] LOG: Generating new session ID
+[2025-03-02T02:47:38.880Z] LOG: Missing userName in query
+[2025-03-02T02:47:39.815Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T02:47:39.818Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:47:39.821Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:47:39.824Z] LOG: Generating new session ID
+[2025-03-02T02:47:39.829Z] LOG: Missing userName in query
+[2025-03-02T02:48:01.979Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T02:48:01.999Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:48:01.991Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:48:02.000Z] LOG: Generating new session ID
+[2025-03-02T02:48:02.022Z] LOG: Missing userName in query
+[2025-03-02T02:48:02.032Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T02:48:02.033Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:48:02.033Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:48:02.037Z] LOG: Generating new session ID
+[2025-03-02T02:48:02.039Z] LOG: Missing userName in query
+[2025-03-02T02:48:12.511Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T02:48:12.569Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:48:12.575Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:48:12.711Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T02:48:12.756Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:48:12.761Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:48:12.918Z] LOG: Generating new session ID
+[2025-03-02T02:48:21.181Z] ERROR: Error analyzing speech: {}
+[2025-03-02T02:55:10.572Z] ERROR: (node:25616) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-02T02:55:10.582Z] LOG: HTTP Server running on port 5000
+[2025-03-02T02:55:10.899Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:55:10.835Z"
+  }
+]
+[2025-03-02T02:55:10.904Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:55:10.837Z"
+  }
+]
+[2025-03-02T02:55:11.228Z] LOG: Conversations table recreated with updated columns
+[2025-03-02T02:55:11.231Z] LOG: English progress table ready
+[2025-03-02T02:55:24.215Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T02:55:24.238Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:55:24.241Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:55:24.247Z] LOG: Generating new session ID
+[2025-03-02T02:55:24.258Z] LOG: Missing userName in query
+[2025-03-02T02:55:24.342Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T02:55:24.344Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:55:24.345Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:55:24.346Z] LOG: Generating new session ID
+[2025-03-02T02:55:24.353Z] LOG: Missing userName in query
+[2025-03-02T02:55:32.238Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T02:55:32.284Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:55:32.286Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:55:32.306Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T02:55:32.384Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:55:32.386Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:55:32.800Z] LOG: Generating new session ID
+[2025-03-02T02:55:35.427Z] ERROR: Error analyzing speech: {
+  "status": 429,
+  "statusText": "Too Many Requests"
+}
+[2025-03-02T02:56:30.997Z] ERROR: (node:18700) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-02T02:56:31.002Z] LOG: HTTP Server running on port 5000
+[2025-03-02T02:56:31.237Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:56:31.233Z"
+  }
+]
+[2025-03-02T02:56:31.249Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:56:31.247Z"
+  }
+]
+[2025-03-02T02:56:31.254Z] LOG: Conversations table recreated with updated columns
+[2025-03-02T02:56:31.255Z] LOG: English progress table ready
+[2025-03-02T02:58:37.818Z] ERROR: (node:1632) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-02T02:58:37.827Z] LOG: HTTP Server running on port 5000
+[2025-03-02T02:58:38.173Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:58:38.103Z"
+  }
+]
+[2025-03-02T02:58:38.177Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T02:58:38.102Z"
+  }
+]
+[2025-03-02T02:58:38.196Z] LOG: Conversations table recreated with updated columns
+[2025-03-02T02:58:38.198Z] LOG: English progress table ready
+[2025-03-02T02:58:46.747Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T02:58:46.757Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:58:46.764Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:58:46.771Z] LOG: Generating new session ID
+[2025-03-02T02:58:46.791Z] LOG: Missing userName in query
+[2025-03-02T02:58:47.029Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T02:58:47.037Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:58:47.038Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:58:47.042Z] LOG: Generating new session ID
+[2025-03-02T02:58:47.050Z] LOG: Missing userName in query
+[2025-03-02T02:59:01.720Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T02:59:01.747Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:59:01.750Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:59:01.767Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T02:59:01.856Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T02:59:02.122Z] LOG: Generating new session ID
+[2025-03-02T02:59:01.861Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T02:59:05.087Z] ERROR: Error analyzing speech: {
+  "status": 429,
+  "statusText": "Too Many Requests"
+}
+[2025-03-02T03:06:33.719Z] ERROR: (node:28036) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-02T03:06:33.730Z] LOG: HTTP Server running on port 5000
+[2025-03-02T03:06:34.008Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T03:06:34.018Z"
+  }
+]
+[2025-03-02T03:06:34.013Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T03:06:34.019Z"
+  }
+]
+[2025-03-02T03:06:34.022Z] LOG: Conversations table recreated with updated columns
+[2025-03-02T03:06:34.026Z] LOG: English progress table ready
+[2025-03-02T03:06:41.857Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T03:06:41.890Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:06:41.893Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:06:41.899Z] LOG: Generating new session ID
+[2025-03-02T03:06:41.911Z] LOG: Missing userName in query
+[2025-03-02T03:06:41.984Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T03:06:42.082Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:06:42.175Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:06:42.180Z] LOG: Generating new session ID
+[2025-03-02T03:06:42.185Z] LOG: Missing userName in query
+[2025-03-02T03:06:56.278Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:06:56.284Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:06:56.294Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:06:56.312Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:06:56.327Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:06:56.551Z] LOG: Generating new session ID
+[2025-03-02T03:06:56.581Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:06:56.322Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:06:59.223Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:07:02.524Z] LOG: Speech analyzed and stored: {
+  "id": 1,
+  "user_name": "Hariom",
+  "user_input": "Hi how are you?",
+  "corrected_version": "1. Corrected Version: \"Hello, how are you?\"",
+  "hindi_analysis": "2. Hindi Analysis:  \"आपने 'Hi how are you?' बोला।  ये सही तो है, लेकिन  'Hello'  का इस्तेमाल करना ज़्यादा formal और common है।  'Hi' भी सही है, लेकिन 'Hello'  ज़्यादा बेहतर लगता है।  दोनों के बीच में कॉमा लगाना भी ज़रूरी है, ताकि वाक्य सही ढंग से पढ़ा जा सके।\"",
+  "pronunciation_tip": "3. Pronunciation Tip: \"‘Hello’ को ‘हैलो’ बोलते हैं,  ‘h’ पर थोड़ा ज़ोर दीजिये और ‘l’ को थोड़ा लंबा कीजिये।\"",
+  "vocabulary_word": "4. Vocabulary Word: Word: Hello - नमस्ते",
+  "score": 5,
+  "badge": "Good",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "d7c36076-47ea-4663-888b-ea540b43303c",
+  "next_question": "7. Next Question:  And how's your day going so far?",
+  "next_question_hindi": "8. Next Question Hindi:  और आपका दिन अब तक कैसा चल रहा है?",
+  "mini_info": "9. Mini Info:  इस सवाल का जवाब देने से आपको अपने दिन के बारे में बताने और अपनी बात को ज़्यादा विस्तार से कहने का अभ्यास होगा, जोकि एक अच्छी बातचीत के लिए ज़रूरी है!",
+  "timestamp": "2025-03-02T03:07:02.417Z"
+}
+[2025-03-02T03:09:31.268Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:09:31.275Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:09:31.333Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:09:31.400Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:09:31.405Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:09:31.408Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:09:31.427Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:09:31.415Z] LOG: Generating new session ID
+[2025-03-02T03:09:33.651Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:09:36.756Z] LOG: Speech analyzed and stored: {
+  "id": 2,
+  "user_name": "Hariom",
+  "user_input": "my day is fine working",
+  "corrected_version": "1. Corrected Version: My workday is going well.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने कहा \"my day is fine working\"।  इसमें कुछ गलतियाँ हैं।  \"Fine working\"  एक सही phrase नहीं है।  हम  \"My day is going well\" या \"My workday is going well\" कह सकते हैं।  \"Workday\"  का इस्तेमाल करने से स्पष्ट हो जाता है कि आप काम के दिन के बारे में बात कर रहे हैं।  अगर आपका दिन आराम से बीत रहा है तो आप \"My day is going well\" कह सकते हैं।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Well\" को \"वेल\" बोलते हैं,  'l'  पर थोड़ा सा ज़ोर दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Workday - कार्यदिवस",
+  "score": 5,
+  "badge": "Poor",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "4abfe5f8-1979-4c55-b71f-a145631807d0",
+  "next_question": "7. Next Question: What's the most interesting thing that happened at work today?",
+  "next_question_hindi": "8. Next Question Hindi: आज काम पर सबसे दिलचस्प क्या हुआ?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने विचारों को  English में  व्यक्त करने और  detailed  जानकारी देने का अभ्यास मिलेगा, जिससे आपकी conversational English बेहतर होगी!",
+  "timestamp": "2025-03-02T03:09:36.728Z"
+}
+[2025-03-02T03:10:23.036Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:10:23.094Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:10:23.096Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:10:23.111Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:10:23.128Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:10:23.134Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:10:23.142Z] LOG: Generating new session ID
+[2025-03-02T03:10:23.148Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:10:25.353Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:10:28.081Z] LOG: Speech analyzed and stored: {
+  "id": 3,
+  "user_name": "Hariom",
+  "user_input": "good morning",
+  "corrected_version": "1. Corrected Version: Good morning!",
+  "hindi_analysis": "2. Hindi Analysis: आपने \"good morning\" लिखा है।  यह सही है, लेकिन  अंत में एक एक्सक्लेमेशन मार्क (!) लगाना ज़्यादा स्वाभाविक और सभ्य लगता है।  \"Good morning!\"  कहना एक औपचारिक और विनम्र अभिवादन है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Good morning\" को \"गुड मॉर्निंग\" बोलते हैं,  \"गुड\" पर थोड़ा ज़ोर दीजिये और \"मॉर्निंग\" को स्पष्ट रूप से बोलें।",
+  "vocabulary_word": "4. Vocabulary Word: Morning - सुबह",
+  "score": 5,
+  "badge": "Good",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "fc11bf94-e06d-4728-b9dd-55d71282c55a",
+  "next_question": "7. Next Question: What are you planning to do today?",
+  "next_question_hindi": "8. Next Question Hindi: आज आप क्या करने वाले हैं?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने दिनचर्या के बारे में बताने और भविष्य के लिए अपनी योजनाओं को  English  में  व्यक्त करने का अभ्यास मिलेगा।",
+  "timestamp": "2025-03-02T03:10:28.072Z"
+}
+[2025-03-02T03:11:04.843Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:11:04.975Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:11:04.976Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:11:05.045Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:11:05.079Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:11:05.475Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:11:05.555Z] LOG: Generating new session ID
+[2025-03-02T03:11:05.595Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:11:07.646Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:11:10.873Z] LOG: Speech analyzed and stored: {
+  "id": 4,
+  "user_name": "Hariom",
+  "user_input": "i am goint to now market.",
+  "corrected_version": "1. Corrected Version: I'm going to the market now.",
+  "hindi_analysis": "2. Hindi Analysis: आपने लिखा \"i am goint to now market.\" इसमें कई गलतियाँ हैं।  \"goint\" की स्पेलिंग गलत है, सही स्पेलिंग \"going\" है।  \"now\"  के पहले \"to\" के बाद \"the\" लगाना ज़रूरी है क्योंकि \"market\" एक विशिष्ट जगह है।  और,  \"I'm\"  का इस्तेमाल \"I am\" की जगह करना ज़्यादा natural और conversational है।  इसलिए, सही वाक्य है \"I'm going to the market now.\"",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Market\" को \"मार्किट\" बोलते हैं,  't' पर थोड़ा सा ज़ोर दीजियेगा।",
+  "vocabulary_word": "4. Vocabulary Word:  Market - बाज़ार",
+  "score": 5,
+  "badge": "Poor",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "32fb87b4-5ae2-4416-bdb0-958c3047e217",
+  "next_question": "7. Next Question: What are you planning to buy at the market?",
+  "next_question_hindi": "8. Next Question Hindi: आप बाजार से क्या खरीदने वाले हैं?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपनी ज़रूरतों के बारे में बताने और  shopping  से जुड़ी  चीज़ों के नाम  English  में  कहने का अभ्यास मिलेगा।",
+  "timestamp": "2025-03-02T03:11:10.867Z"
+}
+[2025-03-02T03:19:14.530Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T03:19:14.534Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:19:14.535Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:19:14.537Z] LOG: Generating new session ID
+[2025-03-02T03:19:14.556Z] LOG: Missing userName in query
+[2025-03-02T03:19:15.002Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T03:19:15.015Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:19:15.047Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:19:15.051Z] LOG: Missing userName in query
+[2025-03-02T03:19:15.049Z] LOG: Generating new session ID
+[2025-03-02T03:20:18.527Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T03:20:18.704Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:20:18.705Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:20:18.709Z] LOG: Generating new session ID
+[2025-03-02T03:20:18.713Z] LOG: Missing userName in query
+[2025-03-02T03:20:19.182Z] LOG: Incoming request: GET /api/conversation-history?userName=, Origin: http://localhost:3000
+[2025-03-02T03:20:19.184Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:20:19.185Z] LOG: Generating new session ID
+[2025-03-02T03:20:19.186Z] LOG: Missing userName in query
+[2025-03-02T03:20:19.183Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:24:26.524Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:24:26.527Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:24:26.528Z] LOG: Generating new session ID
+[2025-03-02T03:24:26.527Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:24:55.570Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:24:55.658Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:24:55.654Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:24:55.671Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:24:55.716Z] LOG: Generating new session ID
+[2025-03-02T03:24:55.721Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:24:55.687Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:24:55.691Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:24:56.902Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:25:00.607Z] LOG: Speech analyzed and stored: {
+  "id": 5,
+  "user_name": "Hariom",
+  "user_input": "mai thik hu",
+  "corrected_version": "1. Corrected Version: I'm fine, thank you.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने \"mai thik hu\" लिखा है, जो हिंदी में \"मैं ठीक हूँ\" होता है। यह सही तो है, लेकिन अंग्रेजी में बातचीत करते समय, केवल \"I'm fine\" कहने से बात अधूरी लगती है।  ज़्यादा बेहतर और शिष्ट तरीका है \"I'm fine, thank you\" कहना। इससे बातचीत करने वाले को पता चलता है कि आपने उनके सवाल का जवाब दिया है और उनके सवाल की कद्र की है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Fine\" को \"फ़ाइन\" बोलते हैं,  'फ़'  पर थोड़ा सा ज़ोर दीजिये और 'ai' को एक साथ बोलें।",
+  "vocabulary_word": "4. Vocabulary Word: Thank you - धन्यवाद",
+  "score": 5,
+  "badge": "Poor",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "0d05dba2-c26a-4cf2-8999-57e4ba26d331",
+  "next_question": "7. Next Question:  What are you doing today?",
+  "next_question_hindi": "8. Next Question Hindi:  आज आप क्या कर रहे हैं?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने दिन की गतिविधियों के बारे में  English में बताने का अभ्यास होगा, जोकि conversational English को बेहतर बनाने में मदद करता है!",
+  "timestamp": "2025-03-02T03:25:00.538Z"
+}
+[2025-03-02T03:29:53.591Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:29:53.605Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:29:53.605Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:29:53.606Z] LOG: Generating new session ID
+[2025-03-02T03:31:11.825Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:31:11.827Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:31:11.828Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:31:11.833Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:31:11.836Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:31:11.838Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:31:11.841Z] LOG: Generating new session ID
+[2025-03-02T03:31:11.843Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:31:13.877Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:31:17.537Z] LOG: Speech analyzed and stored: {
+  "id": 6,
+  "user_name": "Hariom",
+  "user_input": "thik hai! mai ja rha hu",
+  "corrected_version": "1. Corrected Version: Okay, I'm leaving now.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने \"thik hai! mai ja rha hu\" लिखा है।  \"thik hai\" हिंदी में \"ठीक है\" होता है, जिसका अंग्रेज़ी में सही अनुवाद \"Okay\" है।  \"mai ja rha hu\" हिंदी में \"मैं जा रहा हूँ\" है, जिसका सही अंग्रेज़ी अनुवाद \"I'm leaving now\" या \"I'm going now\" है।  \"ja rha hu\" में  \"जा रहा हूँ\" का संक्षिप्त रूप है, जो लिखने में सही नहीं है।  \"leaving\"  का उपयोग \"जाने\" के भाव को और स्पष्ट करता है और बातचीत के लिए यह ज़्यादा स्वाभाविक है।  इसलिए, \"Okay, I'm leaving now\"  कहना ज़्यादा बेहतर है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Leaving\" को \"लीविंग\" बोलते हैं,  'ea' को 'ई' की तरह और 'v' को स्पष्ट रूप से बोलने का ध्यान रखें।",
+  "vocabulary_word": "4. Vocabulary Word: Leaving - जा रहा हूँ/जा रही हूँ",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "0e013d1d-315d-421c-897a-4f46b56e0e19",
+  "next_question": "7. Next Question: Where are you going?",
+  "next_question_hindi": "8. Next Question Hindi: आप कहाँ जा रहे हैं?",
+  "mini_info": "9. Mini Info: इस सवाल का जवाब देने से आपको अपने destination के बारे में बताने और directions  देने या समझने  का अभ्यास मिलेगा, जोकि  daily conversations में बहुत काम आता है!",
+  "timestamp": "2025-03-02T03:31:17.518Z"
+}
+[2025-03-02T03:36:34.513Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:36:34.513Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:36:34.514Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:36:34.515Z] LOG: Generating new session ID
+[2025-03-02T03:36:51.227Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:36:51.228Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:36:51.229Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:36:51.231Z] LOG: Generating new session ID
+[2025-03-02T03:37:47.088Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:37:47.218Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:37:47.219Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:37:47.253Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:37:47.264Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:37:47.265Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:37:47.268Z] LOG: Generating new session ID
+[2025-03-02T03:37:47.269Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:37:49.239Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:37:51.946Z] LOG: Speech analyzed and stored: {
+  "id": 7,
+  "user_name": "OK",
+  "user_input": "hi how are you",
+  "corrected_version": "1. Corrected Version: Hello, how are you?",
+  "hindi_analysis": "2. Hindi Analysis:  \"hi how are you\"  ठीक है, लेकिन थोड़ा और formal और natural लगने के लिए हम \"Hello, how are you?\"  कह सकते हैं। \"Hi\" informal है, और \"Hello\" ज़्यादा common और polite है।  इससे आपका English और refine लगेगा।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Hello\" को \"हेलो\" बोलते हैं,  'h' पर थोड़ा ज़ोर दीजिये और 'o' को लंबा खींच कर बोलिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word:  Hello - नमस्ते/नमस्कार",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "99e1acba-8afc-4b1e-a1b4-57871dd04a75",
+  "next_question": "7. Next Question: And how's your day going so far?",
+  "next_question_hindi": "8. Next Question Hindi: और आपका दिन अब तक कैसा चल रहा है?",
+  "mini_info": "9. Mini Info: इस सवाल का जवाब देकर आप अपनी daily conversation skills को improve कर सकते हैं और ज़्यादा natural English bolna seekh sakte hain!",
+  "timestamp": "2025-03-02T03:37:51.935Z"
+}
+[2025-03-02T03:38:54.744Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:38:54.745Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:38:54.745Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:38:54.746Z] LOG: Generating new session ID
+[2025-03-02T03:45:02.531Z] LOG: Incoming request: GET /api/conversation-history?userName=OK, Origin: http://localhost:3000
+[2025-03-02T03:45:02.533Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:45:02.534Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:45:02.535Z] LOG: Generating new session ID
+[2025-03-02T03:45:02.813Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:45:02.816Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:45:02.817Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:45:02.818Z] LOG: Generating new session ID
+[2025-03-02T03:45:55.366Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:45:55.369Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:45:55.369Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:45:55.370Z] LOG: Generating new session ID
+[2025-03-02T03:47:07.778Z] LOG: Incoming request: GET /api/conversation-history?userName=OK, Origin: http://localhost:3000
+[2025-03-02T03:47:07.782Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:47:07.788Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:47:07.791Z] LOG: Generating new session ID
+[2025-03-02T03:50:04.990Z] LOG: Incoming request: GET /api/conversation-history?userName=OK, Origin: http://localhost:3000
+[2025-03-02T03:50:04.990Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:50:04.991Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:50:04.992Z] LOG: Generating new session ID
+[2025-03-02T03:50:07.049Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:50:07.049Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:50:07.054Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:50:07.055Z] LOG: Generating new session ID
+[2025-03-02T03:52:22.644Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:52:22.658Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:52:22.657Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:52:22.659Z] LOG: Generating new session ID
+[2025-03-02T03:52:31.002Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:52:31.005Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:52:31.006Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:52:31.017Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:52:31.023Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:52:31.103Z] LOG: Generating new session ID
+[2025-03-02T03:52:31.021Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:52:31.139Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:52:33.301Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:52:36.313Z] LOG: Speech analyzed and stored: {
+  "id": 8,
+  "user_name": "mhj",
+  "user_input": "gnmg",
+  "corrected_version": "1. Corrected Version: Good morning.",
+  "hindi_analysis": "2. Hindi Analysis:  \"gnmg\"  ये  एक  शॉर्टफॉर्म  है  जो  समझना  मुश्किल  है।  \"Good morning\"  एक  बहुत  ही  सामान्य  और  सही  तरीका  है  सुबह  को  किसी  से  मिलने  पर  नमस्ते  कहने  का।  इसमें  शुद्ध  इंग्लिश  का  इस्तेमाल  हुआ  है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Good morning\" को बोलते समय, \"Good\" पर थोड़ा ज़ोर दीजिये और \"morning\" को धीरे से बोलिये।  \"गुड मॉर्निंग\"  ऐसे बोलने की कोशिश करिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Morning - सुबह",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "58253bc2-23f5-498c-beea-e6c71f25d633",
+  "next_question": "7. Next Question:  What are you doing today?",
+  "next_question_hindi": "8. Next Question Hindi:  आज आप क्या कर रहे हैं?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने विचारों को अंग्रेजी में व्यक्त करने का अभ्यास मिलेगा और आपकी बातचीत की क्षमता बढ़ेगी!",
+  "timestamp": "2025-03-02T03:52:36.283Z"
+}
+[2025-03-02T03:53:04.109Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:53:04.226Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:53:04.340Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:53:04.368Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:53:04.375Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:53:04.379Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:53:04.397Z] LOG: Generating new session ID
+[2025-03-02T03:53:04.441Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:53:06.533Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:53:09.585Z] LOG: Speech analyzed and stored: {
+  "id": 9,
+  "user_name": "mhj",
+  "user_input": "hi how are you",
+  "corrected_version": "1. Corrected Version: Hello, how are you?",
+  "hindi_analysis": "2. Hindi Analysis:  \"hi how are you\" ठीक है, लेकिन थोड़ा और फॉर्मल और सही तरीके से  \"Hello, how are you?\"  कहना बेहतर है। \"hi\"  का प्रयोग  informal  है और  \"Hello\"  ज़्यादा  सामान्य  तौर  पर  इस्तेमाल  होता  है।  इससे आपकी English  ज़्यादा  पॉलिश  और  प्रोफेशनल  लगती  है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Hello\" को  \"हेलो\" बोलते हैं,  'H' पर ज़ोर दीजिये और  'o' को  थोड़ा  खींचकर  बोलिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Hello - नमस्ते",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "4e167997-92e0-44ae-8634-4252a2c32a36",
+  "next_question": "7. Next Question: What's your favorite thing to do on a weekend?",
+  "next_question_hindi": "8. Next Question Hindi: वीकेंड में आपका सबसे पसंदीदा काम क्या है?",
+  "mini_info": "9. Mini Info: इस सवाल का जवाब देने से आपको अपने पसंदीदा कामों के बारे में अंग्रेजी में बताने का मौका मिलेगा और  आपकी vocabulary  भी  बढ़ेगी!",
+  "timestamp": "2025-03-02T03:53:09.578Z"
+}
+[2025-03-02T03:53:31.757Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:53:31.671Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:53:31.759Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:53:31.796Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:53:32.062Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:53:32.071Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:53:32.080Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:53:32.077Z] LOG: Generating new session ID
+[2025-03-02T03:53:34.284Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:53:37.669Z] LOG: Speech analyzed and stored: {
+  "id": 10,
+  "user_name": "mhj",
+  "user_input": "gf bfd",
+  "corrected_version": "1. Corrected Version: Girlfriend boyfriend",
+  "hindi_analysis": "2. Hindi Analysis:  \"gf bfd\" ये शॉर्टफॉर्म बहुत ही अनौपचारिक हैं और समझने में मुश्किल भी।  \"Girlfriend boyfriend\" लिखने से बात साफ़ और स्पष्ट हो जाती है।  ये सही अंग्रेज़ी है और हर कोई इसे आसानी से समझ सकता है।  शॉर्टफॉर्म का इस्तेमाल  केवल  बहुत  ज़्यादा  अनौपचारिक  बातचीत  में  करना  चाहिए।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Girlfriend\" को बोलते समय, \"Girl\" पर थोड़ा ज़ोर दीजिये और \"friend\" को  धीरे से बोलिये। \"गर्लफ़्रेंड\"  ऐसे बोलने की कोशिश करिये।",
+  "vocabulary_word": "4. Vocabulary Word: Boyfriend - प्रेमी",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "bdda844e-4e8b-4ed9-ac48-3c26efc1f878",
+  "next_question": "7. Next Question:  Do you have a girlfriend or boyfriend?",
+  "next_question_hindi": "8. Next Question Hindi: क्या आपके पास गर्लफ्रेंड या बॉयफ्रेंड है?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने रिश्तों के बारे में अंग्रेज़ी में बात करने का अभ्यास मिलेगा और आपकी कॉन्वर्सेशन स्किल्स बढ़ेंगी!",
+  "timestamp": "2025-03-02T03:53:37.647Z"
+}
+[2025-03-02T03:56:57.072Z] LOG: Incoming request: GET /api/conversation-history?userName=mhj, Origin: http://localhost:3000
+[2025-03-02T03:56:57.266Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:56:57.268Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:56:57.271Z] LOG: Generating new session ID
+[2025-03-02T03:56:59.856Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T03:56:59.967Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:56:59.972Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:57:00.194Z] LOG: Generating new session ID
+[2025-03-02T03:57:33.231Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:57:33.233Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:57:33.234Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:57:33.260Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T03:57:33.319Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T03:57:33.365Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T03:57:33.374Z] LOG: Generating new session ID
+[2025-03-02T03:57:33.376Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T03:57:34.099Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T03:57:37.672Z] LOG: Speech analyzed and stored: {
+  "id": 11,
+  "user_name": "hg",
+  "user_input": "hi",
+  "corrected_version": "1. Corrected Version: Hello.",
+  "hindi_analysis": "2. Hindi Analysis:  \"Hi\" ठीक है, लेकिन \"Hello\" ज़्यादा formal और common है।  अंग्रेज़ी में,  \"Hello\"  ज़्यादा इस्तेमाल होता है \"hi\" की तुलना में, खासकर जब आप किसी से पहली बार बात कर रहे हैं या किसी से औपचारिक बातचीत कर रहे हैं।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Hello\" को \"हैलो\" बोलते हैं,  'H' पर ज़ोर दीजिये और 'o' को लंबा खींचिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Hello - नमस्ते",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "d0372252-4141-4ef9-9adf-4f302368e039",
+  "next_question": "7. Next Question: How are you today?",
+  "next_question_hindi": "8. Next Question Hindi: आज आप कैसे हैं?",
+  "mini_info": "9. Mini Info: इस सवाल का जवाब देने से आपको अंग्रेज़ी में साधारण बातचीत करने का अभ्यास होगा और आप अपनी बातचीत को आगे बढ़ा सकते हैं!",
+  "timestamp": "2025-03-02T03:57:37.663Z"
+}

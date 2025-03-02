@@ -72,11 +72,14 @@ console.error = (...args) => {
 
 
 // मॉडल्स इनिशियलाइज़ करें
-// मॉडल्स इनिशियलाइज़ करें
+// Initialize Gemini models
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const geminiModel = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+const geminiProModel = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+const geminiFlashModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+// DeepSeek API Key (via OpenRouter or direct DeepSeek API)
+const DEEPSEEK_API_KEY = "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"; // Replace with your actual key
+const DEEPSEEK_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
 const app = express();
 const port = 5000;
@@ -2562,6 +2565,7 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+
 app.post('/api/analyze-speech', async (req, res) => {
   const { text, history, userName } = req.body;
 
@@ -2570,47 +2574,52 @@ app.post('/api/analyze-speech', async (req, res) => {
     return res.status(400).json({ message: 'Text and userName are required.' });
   }
 
-  try {
-    let prompt = `
-      You are an English-speaking assistant helping a learner practice English. Your goal is to understand the user's intent and respond conversationally.
-      Analyze their latest input: "${text}"
-      Provide the response in seven parts, separated by "---":
-      1. Corrected Version: Give a direct, corrected version of what they should have said (simple and natural, no bold or numbering). If the input is 90%+ incorrect (score ≤ 10%), say: "I couldn’t understand you. Please tell me in Hindi what you meant, and I’ll help you say it in English!"
-      2. Hindi Analysis: Explain in Hindi why the corrected version is better, pointing out specific mistakes (grammar, spelling, etc.) in a friendly tone. If the score is ≤ 10%, say: "Aap kya bolna chahte hain? Mujhe Hindi mein bataiye, main usko English mein translate kar dunga!" and encourage them to try again.
-      3. User Score and Badge: Assign a percentage score (0-100%) based on the accuracy of the user's input (grammar, spelling, clarity) and a badge:
-         - 90-100%: "Excellent"
-         - 80-89%: "Good"
-         - 60-79%: "Average"
-         - 40-59%: "Poor"
-         - 0-39%: "Needs Improvement"
-         Use this format: "Score: XX%\nBadge: [Badge Name]"
-      4. Corrected Score and Badge: Assign a percentage score (typically 90-100%) and badge to the "Corrected Version", showing what the user could achieve. Use this format: "Score: XX%\nBadge: [Badge Name]"
-      5. Next Question: Ask a follow-up question based on their input to keep the conversation going (no bold or numbering).
-      6. Next Question Hindi: Provide the Hindi translation of the "Next Question".
-      7. Mini Info: Provide a short tip in Hindi about why answering the "Next Question" will help them improve their English (e.g., "Isse aapko sentence banane ki practice milegi!").
-      Use the previous conversation (history below) to understand context and make responses more natural.
-      Previous conversation:
-    `;
+  // Common prompt for all models
+  let prompt = `
+    You are an English-speaking assistant helping a learner practice English conversationally. Your goal is to improve their speaking skills by providing detailed feedback and encouraging practice.
+    Analyze their latest input: "${text}"
+    Provide the response in nine parts, separated by "---":
+    1. Corrected Version: Give a direct, corrected version of what they should have said (simple and natural). If the input is 90%+ incorrect (score ≤ 10%), say: "I couldn’t understand you. Please tell me in Hindi what you meant, and I’ll help you say it in English!"
+    2. Hindi Analysis: Explain in Hindi why the corrected version is better, pointing out specific mistakes (grammar, spelling, etc.) in a friendly tone. If the score is ≤ 10%, say: "Aap kya bolna chahte hain? Mujhe Hindi mein bataiye, main usko English mein translate kar dunga!" and encourage them.
+    3. Pronunciation Tip: Provide a short tip in Hindi about how to pronounce a key word or phrase from the corrected version (e.g., "‘Hello’ ko ‘हैलो’ bolte hain, 'h' par zor do!").
+    4. Vocabulary Word: Pick one new or important word from the corrected version and give its Hindi meaning (e.g., "Word: Beautiful - सुंदर").
+    5. User Score and Badge: Assign a percentage score (0-100%) based on accuracy (grammar, spelling, clarity) and a badge:
+       - 90-100%: "Excellent"
+       - 80-89%: "Good"
+       - 60-79%: "Average"
+       - 40-59%: "Poor"
+       - 0-39%: "Needs Improvement"
+       Use this format: "Score: XX%\nBadge: [Badge Name]"
+    6. Corrected Score and Badge: Assign a score (typically 90-100%) and badge to the "Corrected Version". Use this format: "Score: XX%\nBadge: [Badge Name]"
+    7. Next Question: Ask a follow-up question based on their input to keep the conversation going.
+    8. Next Question Hindi: Provide the Hindi translation of the "Next Question".
+    9. Mini Info: Provide a short tip in Hindi about why answering the "Next Question" helps (e.g., "Isse aapko daily conversation ki practice milegi!").
+    Use the previous conversation (history below) to understand context and make responses natural.
+    Previous conversation:
+  `;
 
-    if (history && history.length > 0) {
-      history.forEach((entry) => {
-        prompt += `- User: "${entry.user_input}"\n- AI: "${entry.corrected_version} --- ${entry.hindi_analysis} --- Score: ${entry.score}%\\nBadge: ${entry.badge} --- Corrected Score: ${entry.corrected_score}%\\nBadge: ${entry.corrected_badge} --- ${entry.next_question} --- ${entry.next_question_hindi} --- ${entry.mini_info}"\n`;
-      });
-    }
+  if (history && history.length > 0) {
+    history.forEach((entry) => {
+      prompt += `- User: "${entry.user_input}"\n- AI: "${entry.corrected_version} --- ${entry.hindi_analysis} --- ${entry.pronunciation_tip} --- ${entry.vocabulary_word} --- Score: ${entry.score}%\\nBadge: ${entry.badge} --- Corrected Score: ${entry.corrected_score}%\\nBadge: ${entry.corrected_badge} --- ${entry.next_question} --- ${entry.next_question_hindi} --- ${entry.mini_info}"\n`;
+    });
+  }
 
-    prompt += `Now respond to the latest input: "${text}"`;
+  prompt += `Now respond to the latest input: "${text}"`;
 
-    const geminiResponse = await geminiModel.generateContent(prompt);
-    const feedbackText = geminiResponse.response.text();
+  let feedbackText;
 
-    const parts = feedbackText.split('---').map(part => part.trim());
+  // Function to process response parts
+  const processResponse = (text) => {
+    const parts = text.split('---').map(part => part.trim());
     const correctedVersion = parts[0] || 'No correction provided.';
-    const hindiAnalysis = parts[1] || 'Koi analysis nahi diya gaya.';
-    const userScoreAndBadge = parts[2] || 'Score: 0%\nBadge: Needs Improvement';
-    const correctedScoreAndBadge = parts[3] || 'Score: 100%\nBadge: Excellent';
-    const nextQuestion = parts[4] || 'What happens next?';
-    const nextQuestionHindi = parts[5] || 'Aage kya hota hai?';
-    const miniInfo = parts[6] || 'Isse aapko English bolne ki practice milegi!';
+    const hindiAnalysis = parts[1] || 'कोई विश्लेषण नहीं दिया गया।';
+    const pronunciationTip = parts[2] || 'उच्चारण टिप उपलब्ध नहीं है।';
+    const vocabularyWord = parts[3] || 'कोई नया शब्द नहीं मिला।';
+    const userScoreAndBadge = parts[4] || 'Score: 0%\nBadge: Needs Improvement';
+    const correctedScoreAndBadge = parts[5] || 'Score: 100%\nBadge: Excellent';
+    const nextQuestion = parts[6] || 'What happens next?';
+    const nextQuestionHindi = parts[7] || 'आगे क्या होता है?';
+    const miniInfo = parts[8] || 'इससे आपको अंग्रेजी बोलने की प्रैक्टिस मिलेगी!';
 
     const [userScoreLine = 'Score: 0%', userBadgeLine = 'Badge: Needs Improvement'] = userScoreAndBadge.split('\n').map(line => line.trim());
     const userScore = parseInt(userScoreLine.match(/\d+/)?.[0] || 0, 10);
@@ -2620,61 +2629,112 @@ app.post('/api/analyze-speech', async (req, res) => {
     const correctedScore = parseInt(correctedScoreLine.match(/\d+/)?.[0] || 100, 10);
     const correctedBadge = correctedBadgeLine.match(/Badge: (.+)/)?.[1] || 'Excellent';
 
-    const secretInfo = generateSecretInfo(); // Assuming this function exists
-    const personalizedMessage = userScore >= 90 ? "Good Job, aap sikh rahe hain!" : "Keep practicing, you’re getting better!";
-
-    const query = `
-      INSERT INTO conversations (user_name, user_input, corrected_version, hindi_analysis, score, badge, corrected_score, corrected_badge, secret_info, next_question, next_question_hindi, mini_info)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-      RETURNING *;
-    `;
-    const values = [userName, text, correctedVersion, hindiAnalysis, userScore, userBadge, correctedScore, correctedBadge, secretInfo, nextQuestion, nextQuestionHindi, miniInfo];
-
-    try {
-      const result = await pool.query(query, values);
-      console.log('Speech analyzed and stored:', result.rows[0]);
-      res.status(200).json({
-        correctedVersion,
-        hindiAnalysis, // Changed from analysis to hindiAnalysis
-        score: userScore,
-        badge: userBadge,
-        correctedScore,
-        correctedBadge,
-        secretInfo,
-        nextQuestion,
-        nextQuestionHindi,
-        miniInfo,
-        personalizedMessage
-      });
-    } catch (dbError) {
-      console.error('Database insertion error:', dbError);
-      throw dbError;
-    }
-  } catch (error) {
-    console.error('Error analyzing speech:', error);
-    res.status(500).json({ message: 'Failed to analyze speech due to server error.', error: error.message });
-  }
-});
-// Get Conversation History API
-app.get('/api/conversation-history', async (req, res) => {
-  const { userName } = req.query;
-
-  if (!userName) {
-    console.log('Missing userName in query');
-    return res.status(400).json({ message: 'userName is required.' });
-  }
+    return {
+      correctedVersion,
+      hindiAnalysis,
+      pronunciationTip,
+      vocabularyWord,
+      score: userScore,
+      badge: userBadge,
+      correctedScore,
+      correctedBadge,
+      nextQuestion,
+      nextQuestionHindi,
+      miniInfo
+    };
+  };
 
   try {
-    const query = `
-      SELECT * FROM conversations
-      WHERE user_name = $1
-      ORDER BY timestamp DESC;
-    `;
-    const result = await pool.query(query, [userName]);
-    res.status(200).json(result.rows);
+    // Try Gemini 1.5 Pro first
+    console.log('Attempting Gemini 1.5 Pro...');
+    const geminiProResponse = await geminiProModel.generateContent(prompt);
+    feedbackText = geminiProResponse.response.text();
   } catch (error) {
-    console.error('Error fetching conversation history:', error);
-    res.status(500).json({ message: 'Failed to fetch history.' });
+    if (error.status === 429) {
+      console.log('Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...');
+      try {
+        // Switch to Gemini 1.5 Flash
+        const geminiFlashResponse = await geminiFlashModel.generateContent(prompt);
+        feedbackText = geminiFlashResponse.response.text();
+      } catch (flashError) {
+        if (flashError.status === 429) {
+          console.log('Gemini 1.5 Flash quota exhausted, switching to DeepSeek API...');
+          try {
+            // Switch to DeepSeek API via OpenRouter
+            const deepseekResponse = await fetch(DEEPSEEK_API_URL, {
+              method: 'POST',
+              headers: {
+                "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                "model": "deepseek/deepseek-r1:free",
+                "messages": [
+                  { "role": "user", "content": prompt }
+                ]
+              })
+            });
+
+            if (!deepseekResponse.ok) {
+              const errorDetails = await deepseekResponse.json();
+              throw new Error(`DeepSeek API request failed: ${errorDetails.error?.message || deepseekResponse.statusText}`);
+            }
+
+            const deepseekData = await deepseekResponse.json();
+            feedbackText = deepseekData.choices[0].message.content;
+          } catch (deepseekError) {
+            console.error('DeepSeek API error:', deepseekError);
+            return res.status(429).json({
+              message: 'सभी AI मॉडल्स का कोटा समाप्त हो गया है। कृपया बाद में कोशिश करें।',
+              error: 'All AI model quotas exhausted.'
+            });
+          }
+        } else {
+          throw flashError;
+        }
+      }
+    } else {
+      throw error;
+    }
+  }
+
+  // Process the response
+  const responseData = processResponse(feedbackText);
+  const secretInfo = generateSecretInfo(responseData.score);
+  const personalizedMessage = responseData.score >= 90 ? "शाबाश! आप बहुत अच्छा कर रहे हैं!" : "प्रैक्टिस जारी रखें, आप बेहतर हो रहे हैं!";
+
+  const query = `
+    INSERT INTO conversations (user_name, user_input, corrected_version, hindi_analysis, pronunciation_tip, vocabulary_word, score, badge, corrected_score, corrected_badge, secret_info, next_question, next_question_hindi, mini_info)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+    RETURNING *;
+  `;
+  const values = [
+    userName, text, responseData.correctedVersion, responseData.hindiAnalysis, responseData.pronunciationTip, responseData.vocabularyWord,
+    responseData.score, responseData.badge, responseData.correctedScore, responseData.correctedBadge, secretInfo,
+    responseData.nextQuestion, responseData.nextQuestionHindi, responseData.miniInfo
+  ];
+
+  try {
+    const result = await pool.query(query, values);
+    console.log('Speech analyzed and stored:', result.rows[0]);
+    res.status(200).json({
+      correctedVersion: responseData.correctedVersion,
+      hindiAnalysis: responseData.hindiAnalysis,
+      pronunciationTip: responseData.pronunciationTip,
+      vocabularyWord: responseData.vocabularyWord,
+      score: responseData.score,
+      badge: responseData.badge,
+      correctedScore: responseData.correctedScore,
+      correctedBadge: responseData.correctedBadge,
+      secretInfo,
+      nextQuestion: responseData.nextQuestion,
+      nextQuestionHindi: responseData.nextQuestionHindi,
+      miniInfo: responseData.miniInfo,
+      personalizedMessage
+    });
+  } catch (dbError) {
+    console.error('Database insertion error:', dbError);
+    res.status(500).json({ message: 'Database error occurred.', error: dbError.message });
   }
 });
 
