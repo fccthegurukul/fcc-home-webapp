@@ -26,7 +26,7 @@ const EnglishPracticeAssistant = () => {
   const [hindiPrompt, setHindiPrompt] = useState(false);
 
   const recognitionRef = useRef(null);
-  const silenceTimerRef = useRef(null); // Timer for silence detection
+  const silenceTimerRef = useRef(null);
 
   // Speech Recognition Setup
   useEffect(() => {
@@ -37,29 +37,29 @@ const EnglishPracticeAssistant = () => {
     }
 
     recognitionRef.current = new SpeechRecognition();
-    recognitionRef.current.continuous = true; // Continuous mode to keep listening
+    recognitionRef.current.continuous = true;
     recognitionRef.current.lang = 'en-US';
-    recognitionRef.current.interimResults = true; // Interim results to detect ongoing speech
+    recognitionRef.current.interimResults = true;
 
     recognitionRef.current.onresult = (event) => {
       const transcript = Array.from(event.results)
         .map(result => result[0].transcript)
         .join('');
       setSpokenText(transcript);
+      setTypedText(transcript); // Fill text input with spoken text in real-time
 
-      // Reset silence timer whenever speech is detected
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       silenceTimerRef.current = setTimeout(() => {
         if (isListening) {
           recognitionRef.current.stop(); // Stop mic after 4 seconds of silence
         }
-      }, 4000); // 4 seconds of silence
+      }, 4000);
     };
 
     recognitionRef.current.onend = () => {
       setIsListening(false);
       if (spokenText.trim()) {
-        analyzeSpeech(spokenText); // Process the spoken text
+        submitTypedText(); // Auto-submit when speech ends
       }
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
     };
@@ -76,7 +76,7 @@ const EnglishPracticeAssistant = () => {
       }
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
     };
-  }, []);
+  }, [isListening, spokenText]); // Added dependencies to re-run when needed
 
   // Fetch Conversation History
   const fetchConversationHistory = async () => {
@@ -97,18 +97,17 @@ const EnglishPracticeAssistant = () => {
       setUserName(savedUserName);
       setIsLoginModalOpen(false);
       fetchConversationHistory();
-      // Yeh line pehle thi jo auto-start karti thi: setTimeout(startListening, 1000);
-      // Ab yeh hata diya gaya hai, mic auto-start nahi hoga.
     } else {
       setIsLoginModalOpen(true);
     }
   }, [userName]);
 
-  // Start Listening (Manual button click par hi chalega)
+  // Start Listening
   const startListening = () => {
     if (!isListening && !isSpeaking && recognitionRef.current && !isLoading) {
       resetState();
       setIsListening(true);
+      setTypedText(''); // Clear input before starting
       recognitionRef.current.start();
     }
   };
@@ -116,6 +115,7 @@ const EnglishPracticeAssistant = () => {
   // Reset State
   const resetState = () => {
     setSpokenText('');
+    setTypedText(''); // Clear text input
     setCorrectedVersion('');
     setHindiAnalysis('');
     setPronunciationTip('');
@@ -134,7 +134,7 @@ const EnglishPracticeAssistant = () => {
     if (typedText.trim() && !isSpeaking) {
       if (hindiPrompt) analyzeHindiResponse(typedText);
       else analyzeSpeech(typedText);
-      setTypedText('');
+      setTypedText(''); // Clear input after submission
     }
   };
 
@@ -306,31 +306,55 @@ const EnglishPracticeAssistant = () => {
     if (!isSpeaking) {
       setIsSpeaking(true);
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
+
+      // Dynamically set language based on text content
+      utterance.lang = text.match(/[अ-ह]/) ? 'hi-IN' : 'en-US'; // Hindi or English
+
+      // Get available voices
       const voices = window.speechSynthesis.getVoices();
-      const naturalVoice = voices.find(voice =>
-        voice.name.includes('Google UK English Female') ||
-        voice.name.includes('Google US English') ||
-        voice.name.includes('Samantha') ||
-        voice.name.includes('Natural')
-      ) || voices[0];
-      utterance.voice = naturalVoice;
-      utterance.pitch = 1.2;
-      utterance.rate = 0.95;
+      
+      // Select the most natural voice available
+      const preferredVoice = voices.find(voice => 
+        voice.name.includes('Google') || 
+        voice.name.includes('Natural') || 
+        voice.name.includes('Samantha') || 
+        voice.name.includes('Microsoft') || 
+        voice.name.includes('Zira')
+      ) || voices[0]; // Fallback to first available voice
+
+      utterance.voice = preferredVoice;
+      utterance.pitch = 1.1; // Slightly higher pitch for clarity
+      utterance.rate = 0.9; // Slightly slower for natural feel
       utterance.volume = 1.0;
+
+      // Add slight pauses for natural phrasing
+      utterance.text = text.replace(/([.!?])\s+/g, '$1|'); // Add pipe symbol for pause
+      utterance.onboundary = (event) => {
+        if (event.name === 'word' && event.charIndex > 0 && utterance.text[event.charIndex - 1] === '|') {
+          window.speechSynthesis.pause();
+          setTimeout(() => window.speechSynthesis.resume(), 200); // 200ms pause
+        }
+      };
+
       utterance.onend = () => {
         setIsSpeaking(false);
         if (callback) callback();
       };
+
       window.speechSynthesis.speak(utterance);
     }
   };
 
-  // Load voices on mount
+  // Load voices on mount and ensure they're available
   useEffect(() => {
-    window.speechSynthesis.onvoiceschanged = () => {
-      // Ensure voices are loaded
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      if (voices.length > 0) {
+        // Voices are loaded
+      }
     };
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+    loadVoices(); // Initial check
   }, []);
 
   // Handle Login
@@ -381,35 +405,33 @@ const EnglishPracticeAssistant = () => {
 
       <main className="main-content">
         <section className="interaction-section">
-    <div className="input-area">
-  {/* Mic Button (Moved to bottom-left on mobile via CSS) */}
-  <button
-    onClick={startListening}
-    disabled={isListening || isSpeaking || isLoading}
-    className={`mic-button ${isListening ? 'listening' : ''}`}
-  >
-    <span>{isListening ? '🎤 सुन रहा हूँ...' : '🎤 बोलें'}</span>
-  </button>
+          <div className="input-area">
+            <button
+              onClick={startListening}
+              disabled={isListening || isSpeaking || isLoading}
+              className={`mic-button ${isListening ? 'listening' : ''}`}
+            >
+              <span>{isListening ? '🎤 सुन रहा हूँ...' : '🎤 बोलें'}</span>
+            </button>
 
-  {/* Text Input and Send Button Together */}
-  <div className="text-input-wrapper">
-    <input
-      type="text"
-      value={typedText}
-      onChange={(e) => setTypedText(e.target.value)}
-      placeholder={hindiPrompt ? 'हिंदी में बताएं...' : 'या यहाँ टाइप करें...'}
-      onKeyPress={(e) => e.key === 'Enter' && submitTypedText()}
-      className="text-input"
-    />
-    <button
-      onClick={submitTypedText}
-      disabled={isLoading || isSpeaking || !typedText.trim()}
-      className="send-button"
-    >
-      ➤
-    </button>
-  </div>
-</div>
+            <div className="text-input-wrapper">
+              <input
+                type="text"
+                value={typedText}
+                onChange={(e) => setTypedText(e.target.value)}
+                placeholder={hindiPrompt ? 'हिंदी में बताएं...' : 'या यहाँ टाइप करें...'}
+                onKeyPress={(e) => e.key === 'Enter' && submitTypedText()}
+                className="text-input"
+              />
+              <button
+                onClick={submitTypedText}
+                disabled={isLoading || isSpeaking || !typedText.trim()}
+                className="send-button"
+              >
+                ➤
+              </button>
+            </div>
+          </div>
 
           {(correctedVersion || hindiAnalysis) && (
             <div className="feedback-area">

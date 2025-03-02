@@ -1161,3 +1161,61 @@
 [2025-03-02T06:21:18.837Z] LOG: Incoming Origin: http://localhost:3000
 [2025-03-02T06:21:18.837Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
 [2025-03-02T06:21:18.838Z] LOG: Generating new session ID
+[2025-03-02T06:25:52.331Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:25:52.350Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:25:52.357Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:25:52.587Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:25:52.590Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:25:52.588Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:25:52.594Z] LOG: Generating new session ID
+[2025-03-02T06:25:52.605Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:25:54.951Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T06:25:57.782Z] LOG: Speech analyzed and stored: {
+  "id": 25,
+  "user_name": "Hariom Kumar ",
+  "user_input": "Mai ek aadmi hu",
+  "corrected_version": "1. Corrected Version: I am a man.",
+  "hindi_analysis": "2. Hindi Analysis:  \"Mai ek aadmi hu\"  में  \"ek\"  ज़्यादा है।  सिर्फ़ \"I am a man\" कहना सही होगा।  \"Mai\" का मतलब \"I\" होता है,  \"hu\"  \"am\" के लिए है, और  \"aadmi\"  \"man\" है।  आपने सेंटेंस की बनावट को सही ढंग से नहीं बनाया है। थोड़ी सी प्रैक्टिस से आप ये आसानी से बोल पाएंगे!",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Man\" को \"मैन\" बोलते हैं,  'n' पर थोड़ा सा ज़ोर दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Man - आदमी",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "9b642eec-6f3e-431a-b3a2-487e7aee95de",
+  "next_question": "7. Next Question:  What is your name?",
+  "next_question_hindi": "8. Next Question Hindi: आपका नाम क्या है?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको खुद को  इंग्लिश में  पेश करने का अभ्यास मिलेगा, जोकि बहुत ज़रूरी है!",
+  "timestamp": "2025-03-02T06:25:57.685Z"
+}
+[2025-03-02T06:26:32.409Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:26:32.410Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:26:32.412Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:26:32.593Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:26:32.596Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:26:32.601Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:26:32.594Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:26:32.599Z] LOG: Generating new session ID
+[2025-03-02T06:26:34.567Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T06:26:37.409Z] LOG: Speech analyzed and stored: {
+  "id": 26,
+  "user_name": "Hariom Kumar ",
+  "user_input": "My name is hariom Kumar ",
+  "corrected_version": "1. Corrected Version: My name is Hariom Kumar.",
+  "hindi_analysis": "2. Hindi Analysis:  बहुत अच्छा प्रयास!  आपने नाम सही बताया, लेकिन  \"hariom\"  को  \"Hariom\"  लिखना चाहिए क्योंकि नाम के पहले अक्षर को हमेशा बड़ा अक्षर से लिखते हैं।  इससे आपका सेंटेंस और भी बेहतर और सही दिखेगा।  थोड़ा सा ध्यान रखने से आप बहुत अच्छा बोलेंगे!",
+  "pronunciation_tip": "3. Pronunciation Tip:  \"Hariom\" को \"हरिओम\" बोलते हैं,  'H' पर ज़ोर दीजिये और  'o' को  'ओ' की तरह साफ़ बोलने का प्रयास करें।",
+  "vocabulary_word": "4. Vocabulary Word: Name - नाम",
+  "score": 5,
+  "badge": "Good",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "b313db09-5ba6-4b4b-99e8-f993d8386874",
+  "next_question": "7. Next Question:  Where are you from?",
+  "next_question_hindi": "8. Next Question Hindi: आप कहाँ से हैं?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने बारे में  इंग्लिश में बताने का  अभ्यास मिलेगा,  जिससे आपकी  conversational English और बेहतर होगी!",
+  "timestamp": "2025-03-02T06:26:37.384Z"
+}
+[2025-03-02T06:31:21.394Z] LOG: Incoming request: GET /api/conversation-history?userName=sgrvs, Origin: http://localhost:3000
+[2025-03-02T06:31:21.395Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T06:31:21.395Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T06:31:21.396Z] LOG: Generating new session ID
