@@ -1480,3 +1480,142 @@
 [2025-03-02T06:57:17.895Z] LOG: Incoming Origin: http://localhost:3000
 [2025-03-02T06:57:17.896Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
 [2025-03-02T06:57:17.898Z] LOG: Generating new session ID
+[2025-03-02T06:59:44.980Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:59:44.981Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:59:44.984Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:59:45.137Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:59:45.140Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:59:45.143Z] LOG: Generating new session ID
+[2025-03-02T06:59:45.144Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:59:45.138Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:59:47.209Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T06:59:50.101Z] LOG: Speech analyzed and stored: {
+  "id": 36,
+  "user_name": "Jsbd",
+  "user_input": "mera naam Hariom Kumar hai",
+  "corrected_version": "1. Corrected Version: My name is Hariom Kumar.",
+  "hindi_analysis": "2. Hindi Analysis:  \"mera naam Hariom Kumar hai\"  ये हिंदी में सही है, लेकिन अंग्रेजी में हम \"My name is...\"  का इस्तेमाल करते हैं।  \"mera naam\" का सीधा अनुवाद \"my name\" होता है,  लेकिन अंग्रेजी में हम इसे इस तरह नहीं बोलते।  आपने  \"Hariom Kumar\" सही बोला है! बस थोड़ा सा sentence structure बदलना था।  बहुत अच्छा प्रयास!",
+  "pronunciation_tip": "3. Pronunciation Tip: \"My\" को \"माय\" बोलते हैं,  'm' पर थोड़ा ज़ोर दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Name - नाम",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "6fc29c92-61ae-43d9-ab91-0a12e67324bc",
+  "next_question": "7. Next Question:  Where are you from?",
+  "next_question_hindi": "8. Next Question Hindi: आप कहाँ से हैं?",
+  "mini_info": "9. Mini Info: इस सवाल का जवाब देने से आपको अपने शहर या गाँव के बारे में अंग्रेजी में बात करने का अभ्यास मिलेगा और आपके vocabulary में भी वृद्धि होगी!",
+  "timestamp": "2025-03-02T06:59:50.081Z"
+}
+[2025-03-02T07:00:31.552Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:00:31.553Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:00:31.555Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:00:31.713Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:00:31.733Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:00:31.730Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:00:31.737Z] LOG: Generating new session ID
+[2025-03-02T07:00:31.739Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:00:33.675Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:00:36.773Z] LOG: Speech analyzed and stored: {
+  "id": 37,
+  "user_name": "Jsbd",
+  "user_input": "where are you from",
+  "corrected_version": "1. Corrected Version: Where are you from?",
+  "hindi_analysis": "2. Hindi Analysis:  आपने सवाल लगभग सही पूछा है! बस थोड़ा सा punctuation  (विराम चिह्न)  गलत था।  \"Where are you from?\"  में  \"Where\" के बाद capital letter  (बड़ा अक्षर)  लगना चाहिए और \"from\" के बाद question mark (?) लगना चाहिए।  ये  grammatical accuracy (व्याकरणिक शुद्धता)  के लिए ज़रूरी है।  अगर आप capital letter और question mark  का ध्यान रखेंगे तो आपका सेंटेंस और भी बेहतर होगा।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Where\" को \"वेअर\" बोलते हैं, 'w' पर हल्का सा ज़ोर दीजिये और 'e' को 'ए' की तरह बोलने का ध्यान रखें।",
+  "vocabulary_word": "4. Vocabulary Word: From - से",
+  "score": 5,
+  "badge": "Excellent",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "98ecba72-9cba-4504-861f-84c4b44211a1",
+  "next_question": "7. Next Question:  And what do you like most about living there?",
+  "next_question_hindi": "8. Next Question Hindi: और आपको वहाँ रहने में सबसे ज़्यादा क्या पसंद है?",
+  "mini_info": "9. Mini Info: इस सवाल का जवाब देने से आपको अपने विचारों को अंग्रेजी में व्यक्त करने और अपने पसंदीदा चीजों के बारे में बात करने का अभ्यास मिलेगा!",
+  "timestamp": "2025-03-02T07:00:36.764Z"
+}
+[2025-03-02T07:01:20.503Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:01:20.505Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:01:20.507Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:01:20.685Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:01:20.690Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:01:20.699Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:01:20.686Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:01:20.697Z] LOG: Generating new session ID
+[2025-03-02T07:01:22.672Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:01:25.985Z] LOG: Speech analyzed and stored: {
+  "id": 38,
+  "user_name": "Jsbd",
+  "user_input": "I like animals villages and my house",
+  "corrected_version": "1. Corrected Version: I like animals, villages, and my house.",
+  "hindi_analysis": "2. Hindi Analysis:  अच्छा प्रयास, हरिओम!  आपने \"I like animals villages and my house\" लिखा है।  इसमें थोड़ा सा सुधार करने की ज़रूरत है।  \"animals\", \"villages\", और \"my house\" तीन अलग-अलग चीजें हैं जिनको आप पसंद करते हैं, इसलिए इनके बीच में comma (,) लगाना ज़रूरी है।  इससे सेंटेंस और स्पष्ट और सुंदर लगेगा।  आपने सब सही लिखा है बस comma लगाने की ज़रूरत थी।",
+  "pronunciation_tip": "3. Pronunciation Tip:  \"villages\" को \"विलिज़ेज़\" बोलते हैं,  'g' पर थोड़ा सा ज़ोर दीजिये और 'es' को एक साथ बोलने का ध्यान रखें।",
+  "vocabulary_word": "4. Vocabulary Word:  Comma - कॉमा",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "b08c8b21-9690-4890-a590-23736c4fb221",
+  "next_question": "7. Next Question:  What kind of animals do you like the most?",
+  "next_question_hindi": "8. Next Question Hindi: आपको किस तरह के जानवर सबसे ज़्यादा पसंद हैं?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अलग-अलग जानवरों के नाम और उनके बारे में बात करने का अभ्यास मिलेगा, जिससे आपका vocabulary बढ़ेगा और आपकी English और बेहतर होगी!",
+  "timestamp": "2025-03-02T07:01:25.978Z"
+}
+[2025-03-02T07:06:12.581Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:06:12.582Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:06:12.584Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:06:12.724Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:06:12.735Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:06:12.725Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:06:12.804Z] LOG: Generating new session ID
+[2025-03-02T07:06:12.806Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:06:14.837Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:06:18.003Z] LOG: Speech analyzed and stored: {
+  "id": 39,
+  "user_name": "Jsbd",
+  "user_input": "I like cows and Dogs some cats",
+  "corrected_version": "1. Corrected Version: I like cows, dogs, and some cats.",
+  "hindi_analysis": "2. Hindi Analysis:  हरिओम, आपने कहा \"I like cows and Dogs some cats\"।  ये लगभग सही है, लेकिन हम अंग्रेजी में \"and\" का इस्तेमाल थोड़ा अलग तरीके से करते हैं।  \"cows\", \"dogs\", और \"cats\" तीन अलग-अलग जानवर हैं, इसलिए इनके बीच में कॉमा (,) लगाना चाहिए।  हम \"and\" का इस्तेमाल आखिरी दो चीजों के बीच करते हैं।  इसलिए, सही तरीका है: \"I like cows, dogs, and some cats.\"  आपका प्रयास बहुत अच्छा है, बस थोड़ा सा grammar improve करने की जरूरत है!",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Dogs\" को \"डॉगज़\" बोलते हैं, 's' की आवाज़ को हल्का सा बोलें।",
+  "vocabulary_word": "4. Vocabulary Word: And - और",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "5daed08d-162d-4229-8e4c-1ae6d82866d8",
+  "next_question": "7. Next Question: What other animals do you like?",
+  "next_question_hindi": "8. Next Question Hindi: आप और कौन से जानवर पसंद करते हैं?",
+  "mini_info": "9. Mini Info: इस सवाल का जवाब देने से आपको और भी जानवरों के नाम याद आएंगे और आप उनको अंग्रेजी में बोलने का अभ्यास कर पाएंगे, जिससे आपका vocabulary बढ़ेगा!",
+  "timestamp": "2025-03-02T07:06:17.990Z"
+}
+[2025-03-02T07:09:49.892Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T07:09:49.953Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T07:09:49.963Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T07:09:50.268Z] LOG: Incoming request: POST /api/analyze-speech, Origin: http://localhost:3000
+[2025-03-02T07:09:50.414Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T07:09:50.374Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T07:09:50.470Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:09:50.466Z] LOG: Generating new session ID
+[2025-03-02T07:09:52.685Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:09:57.313Z] LOG: Speech analyzed and stored: {
+  "id": 40,
+  "user_name": "sgrvs",
+  "user_input": "dgtvt",
+  "corrected_version": "1. Corrected Version: I couldn’t understand you. Please tell me in Hindi what you meant, and I’ll help you say it in English!",
+  "hindi_analysis": "2. Hindi Analysis:  \"dgtvt\" यह सिर्फ अक्षरों का एक समूह है, इसका कोई मतलब नहीं बनता है।  मुझे समझ नहीं आया कि आप क्या कहना चाह रहे थे।  कृपया मुझे हिंदी में बताइए ताकि मैं आपको इसे अंग्रेज़ी में सही तरीके से कहने में मदद कर सकूँ।  हिम्मत मत हारो और कोशिश करते रहें!",
+  "pronunciation_tip": "3. Pronunciation Tip: इस बार कोई विशिष्ट शब्द नहीं है जिसका उच्चारण सिखाया जा सके क्योंकि इनपुट समझ से बाहर था।  अंग्रेजी सीखने के लिए  ऑनलाइन संसाधन जैसे YouTube videos या apps का इस्तेमाल करें।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Understand - समझना",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "233dbf6c-5e3c-4370-acc1-efa858f12845",
+  "next_question": "7. Next Question: Can you try typing or saying a different word or phrase in English or Hindi? Let's try again!  Don't worry about making mistakes; it's all part of the learning process.",
+  "next_question_hindi": "8. Next Question Hindi: क्या आप अंग्रेजी या हिंदी में कोई दूसरा शब्द या वाक्यांश टाइप करने या बोलने की कोशिश कर सकते हैं? आइए फिर से कोशिश करते हैं! गलतियाँ करने से घबराएँ नहीं; यह सीखने का ही हिस्सा है!",
+  "mini_info": "9. Mini Info:  गलतियाँ करना सीखने का एक महत्वपूर्ण हिस्सा है!  हर गलती से आप  अंग्रेज़ी बोलने में बेहतर होते जाएँगे!",
+  "timestamp": "2025-03-02T07:09:56.384Z"
+}
+[2025-03-02T07:19:26.644Z] LOG: Incoming request: GET /api/conversation-history?userName=sgrvs, Origin: http://localhost:3000
+[2025-03-02T07:19:26.646Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T07:19:26.647Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T07:19:26.659Z] LOG: Generating new session ID

@@ -27,8 +27,7 @@ const EnglishPracticeAssistant = () => {
 
   const recognitionRef = useRef(null);
   const silenceTimerRef = useRef(null);
-  const submitTimerRef = useRef(null);
-  const sendButtonRef = useRef(null); // Ref for send button
+  const sendButtonRef = useRef(null);
 
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -36,17 +35,16 @@ const EnglishPracticeAssistant = () => {
       setHindiAnalysis('आपका ब्राउज़र स्पीच रिकग्निशन को सपोर्ट नहीं करता।');
       return;
     }
-  
+
     recognitionRef.current = new SpeechRecognition();
-    recognitionRef.current.continuous = false; // Continuous को false करें ताकि हर बार नया सेशन शुरू हो
+    recognitionRef.current.continuous = false;
     recognitionRef.current.lang = 'en-US';
     recognitionRef.current.interimResults = true;
-  
+
     recognitionRef.current.onresult = (event) => {
       let finalTranscript = '';
       let interimTranscript = '';
-  
-      // केवल नवीनतम रिजल्ट को प्रोसेस करें
+
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) {
@@ -55,49 +53,38 @@ const EnglishPracticeAssistant = () => {
           interimTranscript = transcript;
         }
       }
-  
-      // फाइनल ट्रांसक्रिप्ट को स्टोर करें, अंतरिम को अस्थायी रूप से दिखाएँ
-      setSpokenText(finalTranscript || interimTranscript);
-      setTypedText(finalTranscript || interimTranscript); // इनपुट में केवल नवीनतम टेक्स्ट दिखाएँ
-  
-      // साइलेंस डिटेक्शन
+
+      const currentText = finalTranscript || interimTranscript;
+      setSpokenText(currentText);
+      setTypedText(currentText);
+
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       silenceTimerRef.current = setTimeout(() => {
         if (isListening && finalTranscript) {
-          recognitionRef.current.stop(); // 3.5 सेकंड चुप्पी के बाद माइक बंद
+          recognitionRef.current.stop();
         }
-      }, 3500); // 3.5 सेकंड में बदलाव
+      }, 3500);
     };
-  
+
     recognitionRef.current.onend = () => {
       setIsListening(false);
-      if (typedText.trim()) {
-        if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
-        submitTimerRef.current = setTimeout(() => {
-          if (sendButtonRef.current && typedText.trim()) {
-            sendButtonRef.current.click(); // ऑटोमैटिक सेंड बटन क्लिक
-          }
-        }, 500); // सेंड करने के लिए 0.5 सेकंड का डिले (आप इसे बढ़ा सकते हैं)
+      if (typedText.trim() && sendButtonRef.current) {
+        sendButtonRef.current.click(); // ऑटोमैटिक सेंड
       }
     };
-  
+
     recognitionRef.current.onerror = (event) => {
       setHindiAnalysis('आवाज पहचानने में त्रुटि: ' + event.error);
       setIsListening(false);
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
-      if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
     };
-  
-    return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
-      }
-      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
-      if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
-    };
-  }, [isListening, typedText]); // typedText को डिपेंडेंसी में जोड़ा
 
-  // Fetch Conversation History
+    return () => {
+      if (recognitionRef.current) recognitionRef.current.stop();
+      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
+    };
+  }, [isListening]);
+
   const fetchConversationHistory = async () => {
     if (!userName) return;
     try {
@@ -109,7 +96,6 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Load username without auto-starting mic
   useEffect(() => {
     const savedUserName = localStorage.getItem('userName');
     if (savedUserName) {
@@ -121,7 +107,6 @@ const EnglishPracticeAssistant = () => {
     }
   }, [userName]);
 
-  // Start Listening
   const startListening = () => {
     if (!isListening && !isSpeaking && recognitionRef.current && !isLoading) {
       resetState();
@@ -131,7 +116,6 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Reset State
   const resetState = () => {
     setSpokenText('');
     setTypedText('');
@@ -148,7 +132,6 @@ const EnglishPracticeAssistant = () => {
     setHindiPrompt(false);
   };
 
-  // Submit Typed Text
   const submitTypedText = () => {
     if (typedText.trim() && !isSpeaking && !isLoading) {
       const textToAnalyze = typedText;
@@ -159,12 +142,10 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Clean Response Text
   const cleanText = (text) => {
     return text.replace(/^\d+\.\s*(Corrected\s*Version|Hindi\s*Analysis|Pronunciation\s*Tip|Vocabulary\s*Word|Next\s*Question|Hindi|Mini\s*Info):?\s*/i, '').trim();
   };
 
-  // Analyze Speech with AI
   const analyzeSpeech = async (text) => {
     setIsLoading(true);
     try {
@@ -213,10 +194,10 @@ const EnglishPracticeAssistant = () => {
 
         setTimeout(() => {
           if (result.correctedVersion) {
-            speakFeedback(`यह सही रहेगा: ${cleanText(result.correctedVersion)}`, () => {
+            speakFeedback(cleanText(result.correctedVersion), () => {
               setTimeout(() => {
                 if (result.nextQuestion) {
-                  speakFeedback(`अब यह बोलें: ${cleanText(result.nextQuestion)}`, () => {});
+                  speakFeedback(cleanText(result.nextQuestion), () => {});
                 }
               }, 2000);
             });
@@ -243,7 +224,6 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Analyze Hindi Response (unchanged for brevity)
   const analyzeHindiResponse = async (hindiText) => {
     setIsLoading(true);
     try {
@@ -292,10 +272,10 @@ const EnglishPracticeAssistant = () => {
 
         setTimeout(() => {
           if (result.correctedVersion) {
-            speakFeedback(`यह सही रहेगा: ${cleanText(result.correctedVersion)}`, () => {
+            speakFeedback(cleanText(result.correctedVersion), () => {
               setTimeout(() => {
                 if (result.nextQuestion) {
-                  speakFeedback(`अब यह बोलें: ${cleanText(result.nextQuestion)}`, () => {});
+                  speakFeedback(cleanText(result.nextQuestion), () => {});
                 }
               }, 2000);
             });
@@ -322,7 +302,6 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Enhanced Speak Feedback with Natural Voice
   const speakFeedback = (text, callback) => {
     if (!isSpeaking) {
       setIsSpeaking(true);
@@ -340,13 +319,6 @@ const EnglishPracticeAssistant = () => {
       utterance.pitch = 1.1;
       utterance.rate = 0.9;
       utterance.volume = 1.0;
-      utterance.text = text.replace(/([.!?])\s+/g, '$1|');
-      utterance.onboundary = (event) => {
-        if (event.name === 'word' && event.charIndex > 0 && utterance.text[event.charIndex - 1] === '|') {
-          window.speechSynthesis.pause();
-          setTimeout(() => window.speechSynthesis.resume(), 200);
-        }
-      };
       utterance.onend = () => {
         setIsSpeaking(false);
         if (callback) callback();
@@ -355,19 +327,12 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Load voices on mount
   useEffect(() => {
-    const loadVoices = () => {
-      const voices = window.speechSynthesis.getVoices();
-      if (voices.length > 0) {
-        // Voices loaded
-      }
-    };
+    const loadVoices = () => window.speechSynthesis.getVoices();
     window.speechSynthesis.onvoiceschanged = loadVoices;
     loadVoices();
   }, []);
 
-  // Handle Login
   const handleLogin = (e) => {
     e.preventDefault();
     if (userName.trim()) {
@@ -376,7 +341,6 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Format Text with Symbols
   const formatText = (text) => {
     return text
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -386,7 +350,6 @@ const EnglishPracticeAssistant = () => {
       .replace(/~/g, '<span class="highlight">~</span>');
   };
 
-  // Calculate Progress
   const averageScore = conversationHistory.length > 0
     ? Math.round(conversationHistory.reduce((sum, entry) => sum + entry.score, 0) / conversationHistory.length)
     : 0;
@@ -434,7 +397,7 @@ const EnglishPracticeAssistant = () => {
                 className="text-input"
               />
               <button
-                ref={sendButtonRef} // Add ref to send button
+                ref={sendButtonRef}
                 onClick={submitTypedText}
                 disabled={isLoading || isSpeaking || !typedText.trim()}
                 className="send-button"

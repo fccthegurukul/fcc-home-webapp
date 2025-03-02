@@ -143,7 +143,13 @@ const corsOptions = {
 };
 
 // Generate Secret Info (Moved before API endpoints)
-const generateSecretInfo = () => uuidv4(); // Secure UUID
+// const generateSecretInfo = () => uuidv4(); // Secure UUID
+// Secret Info Generator
+const generateSecretInfo = (score) => {
+  if (score >= 90) return "आप बहुत तेजी से सीख रहे हैं!";
+  if (score >= 60) return "अच्छा प्रयास! थोड़ा और अभ्यास करें!";
+  return "कोई बात नहीं, धीरे-धीरे सुधार होगा!";
+};
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -2527,45 +2533,7 @@ app.get('/api/students', async (req, res) => {
   }
 });
 
-app.post('/api/contact', async (req, res) => {
-  const { mobileNumber, message, termsAccepted } = req.body;
-  const clientIp = getClientIP(req); // पहले से मौजूद फंक्शन का उपयोग
-  const secretToken = uuidv4(); // यूनिक टोकन जनरेट करें
-
-  if (!mobileNumber || !message || !termsAccepted) {
-    return res.status(400).json({ message: 'All fields are required.' });
-  }
-
-  try {
-    const result = await pool.query(
-      `INSERT INTO contact_messages (
-        mobile_number, 
-        message, 
-        terms_accepted, 
-        created_at, 
-        contact_time, 
-        client_ip, 
-        secret_token
-      ) VALUES ($1, $2, $3, NOW(), CURRENT_TIME, $4, $5) RETURNING *`,
-      [mobileNumber, message, termsAccepted, clientIp, secretToken]
-    );
-    console.log('Contact message saved:', result.rows[0]);
-    res.status(201).json({ 
-      message: 'Message saved successfully', 
-      data: { 
-        id: result.rows[0].id, 
-        mobile_number: result.rows[0].mobile_number, 
-        message: result.rows[0].message, 
-        created_at: result.rows[0].created_at 
-      } // गुप्त डेटा को रिस्पॉन्स में नहीं भेजते
-    });
-  } catch (error) {
-    console.error('Error saving contact message:', error);
-    res.status(500).json({ message: 'Failed to save message.' });
-  }
-});
-
-
+// Analyze Speech API
 app.post('/api/analyze-speech', async (req, res) => {
   const { text, history, userName } = req.body;
 
@@ -2574,26 +2542,25 @@ app.post('/api/analyze-speech', async (req, res) => {
     return res.status(400).json({ message: 'Text and userName are required.' });
   }
 
-  // Common prompt for all models
   let prompt = `
     You are an English-speaking assistant helping a learner practice English conversationally. Your goal is to improve their speaking skills by providing detailed feedback and encouraging practice.
     Analyze their latest input: "${text}"
     Provide the response in nine parts, separated by "---":
     1. Corrected Version: Give a direct, corrected version of what they should have said (simple and natural). If the input is 90%+ incorrect (score ≤ 10%), say: "I couldn’t understand you. Please tell me in Hindi what you meant, and I’ll help you say it in English!"
-    2. Hindi Analysis: Explain in Hindi why the corrected version is better, pointing out specific mistakes (grammar, spelling, etc.) in a friendly tone. If the score is ≤ 10%, say: "Aap kya bolna chahte hain? Mujhe Hindi mein bataiye, main usko English mein translate kar dunga!" and encourage them.
-    3. Pronunciation Tip: Provide a short tip in Hindi about how to pronounce a key word or phrase from the corrected version (e.g., "‘Hello’ ko ‘हैलो’ bolte hain, 'h' par zor do!").
+    2. Hindi Analysis: Explain in Hindi why the corrected version is better, pointing out specific mistakes (grammar, spelling, clarity, relevance) in a friendly tone. If the score is ≤ 10%, say: "आप क्या बोलना चाहते हैं? मुझे हिंदी में बताइए, मैं उसे अंग्रेजी में अनुवाद कर दूंगा!" and encourage them.
+    3. Pronunciation Tip: Provide a short tip in Hindi about how to pronounce a key word or phrase from the corrected version (e.g., "‘Hello’ को ‘हैलो’ बोलते हैं, 'h' पर जोर दो!").
     4. Vocabulary Word: Pick one new or important word from the corrected version and give its Hindi meaning (e.g., "Word: Beautiful - सुंदर").
-    5. User Score and Badge: Assign a percentage score (0-100%) based on accuracy (grammar, spelling, clarity) and a badge:
-       - 90-100%: "Excellent"
-       - 80-89%: "Good"
-       - 60-79%: "Average"
-       - 40-59%: "Poor"
-       - 0-39%: "Needs Improvement"
-       Use this format: "Score: XX%\nBadge: [Badge Name]"
-    6. Corrected Score and Badge: Assign a score (typically 90-100%) and badge to the "Corrected Version". Use this format: "Score: XX%\nBadge: [Badge Name]"
-    7. Next Question: Ask a follow-up question based on their input to keep the conversation going.
+    5. User Score and Badge: Assign a percentage score (0-100%) based on accuracy (grammar, spelling, clarity, and relevance to context). Use these criteria:
+       - 90-100%: Perfect or near-perfect (Excellent)
+       - 80-89%: Minor errors (Good)
+       - 60-79%: Understandable with some mistakes (Average)
+       - 40-59%: Significant errors but somewhat clear (Poor)
+       - 0-39%: Mostly incorrect or unclear (Needs Improvement)
+       Format: "Score: XX%\nBadge: [Badge Name]"
+    6. Corrected Score and Badge: Assign a score (typically 90-100%) and badge to the "Corrected Version". Format: "Score: XX%\nBadge: [Badge Name]"
+    7. Next Question: Ask a follow-up question based on their input to keep the conversation going (keep it simple and relevant).
     8. Next Question Hindi: Provide the Hindi translation of the "Next Question".
-    9. Mini Info: Provide a short tip in Hindi about why answering the "Next Question" helps (e.g., "Isse aapko daily conversation ki practice milegi!").
+    9. Mini Info: Provide a short tip in Hindi about why answering the "Next Question" helps (e.g., "इससे आपको रोज़मर्रा की बातचीत की प्रैक्टिस मिलेगी!").
     Use the previous conversation (history below) to understand context and make responses natural.
     Previous conversation:
   `;
@@ -2608,7 +2575,6 @@ app.post('/api/analyze-speech', async (req, res) => {
 
   let feedbackText;
 
-  // Function to process response parts
   const processResponse = (text) => {
     const parts = text.split('---').map(part => part.trim());
     const correctedVersion = parts[0] || 'No correction provided.';
@@ -2645,7 +2611,6 @@ app.post('/api/analyze-speech', async (req, res) => {
   };
 
   try {
-    // Try Gemini 1.5 Pro first
     console.log('Attempting Gemini 1.5 Pro...');
     const geminiProResponse = await geminiProModel.generateContent(prompt);
     feedbackText = geminiProResponse.response.text();
@@ -2653,14 +2618,12 @@ app.post('/api/analyze-speech', async (req, res) => {
     if (error.status === 429) {
       console.log('Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...');
       try {
-        // Switch to Gemini 1.5 Flash
         const geminiFlashResponse = await geminiFlashModel.generateContent(prompt);
         feedbackText = geminiFlashResponse.response.text();
       } catch (flashError) {
         if (flashError.status === 429) {
           console.log('Gemini 1.5 Flash quota exhausted, switching to DeepSeek API...');
           try {
-            // Switch to DeepSeek API via OpenRouter
             const deepseekResponse = await fetch(DEEPSEEK_API_URL, {
               method: 'POST',
               headers: {
@@ -2698,20 +2661,22 @@ app.post('/api/analyze-speech', async (req, res) => {
     }
   }
 
-  // Process the response
   const responseData = processResponse(feedbackText);
   const secretInfo = generateSecretInfo(responseData.score);
-  const personalizedMessage = responseData.score >= 90 ? "शाबाश! आप बहुत अच्छा कर रहे हैं!" : "प्रैक्टिस जारी रखें, आप बेहतर हो रहे हैं!";
+  let personalizedMessage = '';
+  if (responseData.score >= 90) personalizedMessage = "शाबाश! बहुत शानदार काम!";
+  else if (responseData.score >= 60) personalizedMessage = "Good job! अच्छा प्रयास!";
+  else personalizedMessage = "कोई बात नहीं, प्रैक्टिस जारी रखें!";
 
   const query = `
-    INSERT INTO conversations (user_name, user_input, corrected_version, hindi_analysis, pronunciation_tip, vocabulary_word, score, badge, corrected_score, corrected_badge, secret_info, next_question, next_question_hindi, mini_info)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+    INSERT INTO conversations (user_name, user_input, corrected_version, hindi_analysis, pronunciation_tip, vocabulary_word, score, badge, corrected_score, corrected_badge, secret_info, next_question, next_question_hindi, mini_info, personalized_message)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
     RETURNING *;
   `;
   const values = [
     userName, text, responseData.correctedVersion, responseData.hindiAnalysis, responseData.pronunciationTip, responseData.vocabularyWord,
     responseData.score, responseData.badge, responseData.correctedScore, responseData.correctedBadge, secretInfo,
-    responseData.nextQuestion, responseData.nextQuestionHindi, responseData.miniInfo
+    responseData.nextQuestion, responseData.nextQuestionHindi, responseData.miniInfo, personalizedMessage
   ];
 
   try {
@@ -2787,35 +2752,35 @@ app.post('/api/english-progress', async (req, res) => {
   }
 });
 
-
-// Update the table schema in the startup code
+// Server Startup
 app.listen(port, async () => {
   console.log(`HTTP Server running on port ${port}`);
   try {
     const res = await pool.query('SELECT NOW()');
     console.log('Database connected, response:', res.rows);
 
-    // Drop and recreate table to ensure latest schema (for development)
-    // await pool.query('DROP TABLE IF EXISTS conversations;'); // Remove this in production
     await pool.query(`
       CREATE TABLE IF NOT EXISTS conversations (
         id SERIAL PRIMARY KEY,
         user_name VARCHAR(50) NOT NULL,
         user_input TEXT NOT NULL,
         corrected_version TEXT NOT NULL,
-        hindi_analysis TEXT NOT NULL, -- Changed from analysis to hindi_analysis
+        hindi_analysis TEXT NOT NULL,
+        pronunciation_tip TEXT,
+        vocabulary_word TEXT,
         score INTEGER NOT NULL CHECK (score >= 0 AND score <= 100),
         badge VARCHAR(20) NOT NULL,
         corrected_score INTEGER NOT NULL CHECK (corrected_score >= 0 AND corrected_score <= 100),
         corrected_badge VARCHAR(20) NOT NULL,
-        secret_info VARCHAR(100) NOT NULL,
+        secret_info VARCHAR(100),
         next_question TEXT,
         next_question_hindi TEXT,
         mini_info TEXT,
+        personalized_message TEXT,
         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
-    console.log('Conversations table recreated with updated columns');
+    console.log('Conversations table ready');
 
     await pool.query(`
       CREATE TABLE IF NOT EXISTS english_progress (
@@ -2833,3 +2798,4 @@ app.listen(port, async () => {
     console.error('Database connection or setup error:', err);
   }
 });
+API में बदलाव:
