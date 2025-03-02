@@ -1219,3 +1219,168 @@
 [2025-03-02T06:31:21.395Z] LOG: Incoming Origin: http://localhost:3000
 [2025-03-02T06:31:21.395Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
 [2025-03-02T06:31:21.396Z] LOG: Generating new session ID
+[2025-03-02T06:33:11.103Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:11.104Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:11.106Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:11.269Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:11.272Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:11.270Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:11.276Z] LOG: Generating new session ID
+[2025-03-02T06:33:11.278Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:33:13.255Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T06:33:15.956Z] LOG: Speech analyzed and stored: {
+  "id": 27,
+  "user_name": "Hariom Kumar ",
+  "user_input": "MeraMeraMera Naammera naammera naammera naammera naam Hariommera naam Hariom Kumarmera naam Hariom Kumar hai",
+  "corrected_version": "1. Corrected Version: My name is Hariom Kumar.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने बहुत कोशिश की!  लेकिन आपने \"मेरा नाम\" को बहुत बार दोहराया है।  सिर्फ एक बार कहना काफी है।  \"MeraMeraMera\"  ग़लत है,  इसे \"Mera\" एक बार ही लिखना चाहिए।  \"naam\" के बाद \"hai\" लगाना सही है,  लेकिन  \"My name is...\"  कहना ज़्यादा natural लगता है  English में।  अच्छी कोशिश!",
+  "pronunciation_tip": "3. Pronunciation Tip: \"My name is\" को \"माई नेम इज़\" बोलते हैं,  \"is\" पर ज़ोर दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Name - नाम",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "51ab4c7f-2f68-44ca-a0b4-e6b5a89dbf06",
+  "next_question": "7. Next Question: What do you do?",
+  "next_question_hindi": "8. Next Question Hindi: आप क्या करते हैं?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने काम के बारे में बताने और  English में  simple sentences बनाने का  practice मिलेगा!",
+  "timestamp": "2025-03-02T06:33:15.926Z"
+}
+[2025-03-02T06:33:35.130Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:35.131Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:35.134Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:35.273Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:35.274Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:35.276Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:33:35.280Z] LOG: Generating new session ID
+[2025-03-02T06:33:35.281Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:33:37.208Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T06:33:40.904Z] LOG: Speech analyzed and stored: {
+  "id": 28,
+  "user_name": "Hariom Kumar ",
+  "user_input": "MeraMeraMera Naammera naammera naammera naammera naam Hariommera naam Hariom Kumarmera naam Hariom Kumar hai",
+  "corrected_version": "1. Corrected Version: My name is Hariom Kumar.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने बहुत कोशिश की!  लेकिन \"मेरा नाम हरिओम कुमार है\"  को बार-बार दोहराने की ज़रूरत नहीं है।  \"मेरा नाम\" का मतलब होता है \"My name\" और उसे सिर्फ़ एक बार ही बोलना चाहिए।  \"MeraMeraMera\"  गलत है क्योंकि  \"mera\"  का मतलब ही \"my\" होता है, और इसे बार-बार नहीं दोहराया जाता।  \"naam\" को भी कई बार लिखने की ज़रूरत नहीं है।  सिर्फ़ एक बार \"naam\" लिखने से बात समझ आ जाएगी।  आपने \"है\"  को \"hai\" लिखा है जो सही है।  बस थोड़ा सा सुधार करने की ज़रूरत थी!",
+  "pronunciation_tip": "3. Pronunciation Tip: \"नाम\" को बोलते समय  \"ना\" पर ज़ोर दीजिये और \"म\" को थोड़ा सा कम ज़ोर से बोलिये।  \"Naam\" ko bolte samay \"naa\" par zor dijiye aur \"m\" ko thoda sa kam zor se boliye.",
+  "vocabulary_word": "4. Vocabulary Word: Word: Name - नाम",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "c031cfd9-e16d-46b9-a7e1-a54dcd6d7193",
+  "next_question": "7. Next Question:  What is your favorite subject in school?",
+  "next_question_hindi": "8. Next Question Hindi: स्कूल में आपका पसंदीदा विषय क्या है?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने पसंदीदा विषय के बारे में अंग्रेज़ी में बात करने का अभ्यास मिलेगा और इससे आपकी शब्दावली भी बढ़ेगी!",
+  "timestamp": "2025-03-02T06:33:40.861Z"
+}
+[2025-03-02T06:34:04.840Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:04.842Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:04.844Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:04.992Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:05.005Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:05.014Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:34:05.000Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:05.009Z] LOG: Generating new session ID
+[2025-03-02T06:34:12.727Z] LOG: Speech analyzed and stored: {
+  "id": 29,
+  "user_name": "Hariom Kumar ",
+  "user_input": "mymy favouritemy favouritemy favourite subjectmy favourite subjectmy favourite subject inmy favourite subject in schoolmy favourite subject in schoolmy favourite subject in school mathmy favourite subject in school math",
+  "corrected_version": "1. My favorite subject in school is math.",
+  "hindi_analysis": "2. आपने बहुत कोशिश की! लेकिन \"my favourite subject in school\" और \"math\" को बार-बार दोहराने की ज़रूरत नहीं है।  \"My favourite subject\" का मतलब होता है \"मेरा पसंदीदा विषय\" और \"in school\" का मतलब \"स्कूल में\"।  इसे सिर्फ़ एक बार ही बोलना चाहिए।  \"mymy favouritemy\" और \"subject subject subject\"  गलत है क्योंकि शब्दों को बार-बार दोहराने से वाक्य सही नहीं बनता।  आपने \"math\" लिखा है जो सही है।  बस थोड़ा सा सुधार करने की ज़रूरत थी!",
+  "pronunciation_tip": "3. \"Favourite\"  को \"फ़ेवरिट\" बोलते हैं, \"फ़े\"  पर ज़ोर दीजिये।",
+  "vocabulary_word": "4. Word: Subject - विषय",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "c51896e6-a551-408e-9c82-08400f5d0058",
+  "next_question": "7. What do you like about math?",
+  "next_question_hindi": "8. आपको गणित में क्या पसंद है?",
+  "mini_info": "9.  इस सवाल का जवाब देकर आप अपनी पसंद के बारे में बताना सीखेंगे और  English में  sentences बनाना practice कर पाएंगे!",
+  "timestamp": "2025-03-02T06:34:12.730Z"
+}
+[2025-03-02T06:34:30.295Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:30.299Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:30.296Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:30.468Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:30.473Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:30.476Z] LOG: Generating new session ID
+[2025-03-02T06:34:30.469Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:34:30.478Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:34:32.499Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T06:34:36.306Z] LOG: Speech analyzed and stored: {
+  "id": 30,
+  "user_name": "Hariom Kumar ",
+  "user_input": "mymy favouritemy favouritemy favourite subjectmy favourite subjectmy favourite subject inmy favourite subject in schoolmy favourite subject in schoolmy favourite subject in school mathmy favourite subject in school math",
+  "corrected_version": "1. Corrected Version: My favorite subject in school is math.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने \"My favorite subject in school is math\"  कई बार दोहराया है।  English में हमें एक बार ही  पूरा वाक्य कहना चाहिए।  \"mymy favourite\"  ग़लत है,  इसे  \"my favorite\"  एक बार ही लिखना चाहिए।  \"subject\"  भी सिर्फ़ एक बार  लिखने की ज़रूरत है।  \"is\"  शब्द जोड़ने से वाक्य पूरा और सही बनता है।  अगर आप  कई बार दोहराते हैं तो  सुनने वाले को समझने में  दिक्कत हो सकती है।  आप  बहुत कोशिश कर रहे हैं,  बस थोड़ा और अभ्यास  की जरूरत है!",
+  "pronunciation_tip": "3. Pronunciation Tip:  \"Favorite\" को  \"फ़ेवरिट\" बोलते हैं,  \"v\"  पर ज़ोर दीजिये।  \"Favourite\"  में  \"u\"  की आवाज़ नहीं आती।",
+  "vocabulary_word": "4. Vocabulary Word: Subject - विषय",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "cfd22199-ac09-43cd-872e-943afcdb4bb2",
+  "next_question": "7. Next Question:  What do you like most about math?",
+  "next_question_hindi": "8. Next Question Hindi: मैथ्स में आपको सबसे ज़्यादा क्या पसंद है?",
+  "mini_info": "9. Mini Info: इस सवाल का जवाब देने से आपको  अपनी पसंद के बारे में  विस्तार से बताने और  अपनी राय देने का अभ्यास मिलेगा, जिससे आपका  English  और  मज़बूत होगा!",
+  "timestamp": "2025-03-02T06:34:36.297Z"
+}
+[2025-03-02T06:37:11.303Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:11.310Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:11.314Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:11.465Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:11.468Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:11.469Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:11.472Z] LOG: Generating new session ID
+[2025-03-02T06:37:11.473Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:37:12.224Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T06:37:16.155Z] LOG: Speech analyzed and stored: {
+  "id": 31,
+  "user_name": "Hariom Kumar ",
+  "user_input": "vahvah Ekvah Ek gayvah Ek gay hai",
+  "corrected_version": "1. Corrected Version: I have one cow.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने \"vahvah Ekvah Ek gayvah Ek gay hai\" लिखा है जो बिल्कुल गलत है।  \"vahvah\" , \"Ekvah\", और \"gayvah\"  ये शब्द हिंदी या इंग्लिश में नहीं हैं।  आप शायद गाय के बारे में बताना चाहते थे।  सही तरीका है \"I have one cow\" कहना।  \"I have\" का मतलब है \"मेरे पास है\" और \"one cow\" का मतलब है \"एक गाय\"।  अच्छी कोशिश!  थोड़ा और अभ्यास करने से आप बेहतर बोल पाएंगे।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Cow\" को \"काऊ\" बोलते हैं,  \"ऊ\"  पर ज़ोर दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Cow - गाय",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "1d3267b9-7a7c-4cbe-a3bb-981b3fd8bb4c",
+  "next_question": "7. Next Question:  Do you have any other animals?",
+  "next_question_hindi": "8. Next Question Hindi: क्या आपके पास और कोई जानवर है?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको  animals के नाम  और  simple sentences बनाने  का  अभ्यास मिलेगा!",
+  "timestamp": "2025-03-02T06:37:16.146Z"
+}
+[2025-03-02T06:37:43.186Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:43.187Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:43.188Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:43.356Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:43.371Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:43.373Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T06:37:43.377Z] LOG: Generating new session ID
+[2025-03-02T06:37:43.379Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T06:37:45.328Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T06:37:48.570Z] LOG: Speech analyzed and stored: {
+  "id": 32,
+  "user_name": "Hariom Kumar ",
+  "user_input": "vahvah Ekvah Ek gayvah Ek gay hai",
+  "corrected_version": "1. Corrected Version: I have one cow.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने \"vahvah Ekvah Ek gayvah Ek gay hai\"  कहा है।  यह बिल्कुल गलत है।  \"एक गाय है\" का सही अंग्रेजी अनुवाद \"I have one cow\" या \"There is one cow\" है।  आपने गाय को  \"gayvah\"  कहा है, जो गलत है।  \"Ek\" का मतलब \"one\" होता है, लेकिन आपने इसे कई बार और गलत तरीके से इस्तेमाल किया है।  \"vahvah\" का कोई मतलब नहीं बनता।  ध्यान से शब्दों का उच्चारण और प्रयोग करें।  कोशिश करते रहें!",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Cow\" को \"काउ\" बोलते हैं,  \"का\" पर थोड़ा ज़्यादा जोर दीजिये और \"उ\"  को छोटा रखिये।",
+  "vocabulary_word": "4. Vocabulary Word: Cow - गाय",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "a93f99b3-dfee-4b4b-a8c5-946b4b15dc4a",
+  "next_question": "7. Next Question:  Do you have any other animals?",
+  "next_question_hindi": "8. Next Question Hindi: क्या आपके पास कोई और जानवर हैं?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको और  animals के नाम याद रखने और उनका उपयोग करके  simple sentences बनाने का अभ्यास मिलेगा!",
+  "timestamp": "2025-03-02T06:37:48.555Z"
+}
+[2025-03-02T06:39:17.994Z] LOG: Incoming request: GET /api/conversation-history?userName=sgrvs, Origin: http://localhost:3000
+[2025-03-02T06:39:18.038Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T06:39:18.042Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T06:39:18.049Z] LOG: Generating new session ID

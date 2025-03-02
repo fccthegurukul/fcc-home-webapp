@@ -27,6 +27,7 @@ const EnglishPracticeAssistant = () => {
 
   const recognitionRef = useRef(null);
   const silenceTimerRef = useRef(null);
+  const submitTimerRef = useRef(null); // New ref for 3-second timer
 
   // Speech Recognition Setup
   useEffect(() => {
@@ -46,28 +47,35 @@ const EnglishPracticeAssistant = () => {
         .map(result => result[0].transcript)
         .join('');
       setSpokenText(transcript);
-      setTypedText(transcript); // Fill text input with spoken text in real-time
+      setTypedText(transcript); // Update text input in real-time
 
+      // Reset silence timer
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       silenceTimerRef.current = setTimeout(() => {
         if (isListening) {
-          recognitionRef.current.stop(); // Stop mic after 4 seconds of silence
+          recognitionRef.current.stop(); // Stop after 2 seconds of silence
         }
-      }, 4000);
+      }, 2000); // Reduced to 2 seconds for quicker response
     };
 
     recognitionRef.current.onend = () => {
       setIsListening(false);
       if (spokenText.trim()) {
-        submitTypedText(); // Auto-submit when speech ends
+        // Start 3-second timer before auto-submit
+        if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
+        submitTimerRef.current = setTimeout(() => {
+          if (typedText.trim()) {
+            submitTypedText(); // Auto-submit after 3 seconds
+          }
+        }, 3000);
       }
-      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
     };
 
     recognitionRef.current.onerror = (event) => {
       setHindiAnalysis('आवाज पहचानने में त्रुटि: ' + event.error);
       setIsListening(false);
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
+      if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
     };
 
     return () => {
@@ -75,8 +83,9 @@ const EnglishPracticeAssistant = () => {
         recognitionRef.current.stop();
       }
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
+      if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
     };
-  }, [isListening, spokenText]); // Added dependencies to re-run when needed
+  }, [isListening]); // Only depend on isListening to avoid unnecessary re-renders
 
   // Fetch Conversation History
   const fetchConversationHistory = async () => {
@@ -115,7 +124,7 @@ const EnglishPracticeAssistant = () => {
   // Reset State
   const resetState = () => {
     setSpokenText('');
-    setTypedText(''); // Clear text input
+    setTypedText('');
     setCorrectedVersion('');
     setHindiAnalysis('');
     setPronunciationTip('');
@@ -131,10 +140,12 @@ const EnglishPracticeAssistant = () => {
 
   // Submit Typed Text
   const submitTypedText = () => {
-    if (typedText.trim() && !isSpeaking) {
-      if (hindiPrompt) analyzeHindiResponse(typedText);
-      else analyzeSpeech(typedText);
+    if (typedText.trim() && !isSpeaking && !isLoading) {
+      const textToAnalyze = typedText; // Capture current typedText
+      if (hindiPrompt) analyzeHindiResponse(textToAnalyze);
+      else analyzeSpeech(textToAnalyze);
       setTypedText(''); // Clear input after submission
+      setSpokenText(textToAnalyze); // Ensure spokenText stays in sync
     }
   };
 
@@ -222,7 +233,7 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Analyze Hindi Response
+  // Analyze Hindi Response (unchanged for brevity)
   const analyzeHindiResponse = async (hindiText) => {
     setIsLoading(true);
     try {
@@ -301,63 +312,52 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Enhanced Speak Feedback with Natural Voice
+  // Enhanced Speak Feedback with Natural Voice (unchanged)
   const speakFeedback = (text, callback) => {
     if (!isSpeaking) {
       setIsSpeaking(true);
       const utterance = new SpeechSynthesisUtterance(text);
-
-      // Dynamically set language based on text content
-      utterance.lang = text.match(/[अ-ह]/) ? 'hi-IN' : 'en-US'; // Hindi or English
-
-      // Get available voices
+      utterance.lang = text.match(/[अ-ह]/) ? 'hi-IN' : 'en-US';
       const voices = window.speechSynthesis.getVoices();
-      
-      // Select the most natural voice available
       const preferredVoice = voices.find(voice => 
         voice.name.includes('Google') || 
         voice.name.includes('Natural') || 
         voice.name.includes('Samantha') || 
         voice.name.includes('Microsoft') || 
         voice.name.includes('Zira')
-      ) || voices[0]; // Fallback to first available voice
-
+      ) || voices[0];
       utterance.voice = preferredVoice;
-      utterance.pitch = 1.1; // Slightly higher pitch for clarity
-      utterance.rate = 0.9; // Slightly slower for natural feel
+      utterance.pitch = 1.1;
+      utterance.rate = 0.9;
       utterance.volume = 1.0;
-
-      // Add slight pauses for natural phrasing
-      utterance.text = text.replace(/([.!?])\s+/g, '$1|'); // Add pipe symbol for pause
+      utterance.text = text.replace(/([.!?])\s+/g, '$1|');
       utterance.onboundary = (event) => {
         if (event.name === 'word' && event.charIndex > 0 && utterance.text[event.charIndex - 1] === '|') {
           window.speechSynthesis.pause();
-          setTimeout(() => window.speechSynthesis.resume(), 200); // 200ms pause
+          setTimeout(() => window.speechSynthesis.resume(), 200);
         }
       };
-
       utterance.onend = () => {
         setIsSpeaking(false);
         if (callback) callback();
       };
-
       window.speechSynthesis.speak(utterance);
     }
   };
 
-  // Load voices on mount and ensure they're available
+  // Load voices on mount
   useEffect(() => {
     const loadVoices = () => {
       const voices = window.speechSynthesis.getVoices();
       if (voices.length > 0) {
-        // Voices are loaded
+        // Voices loaded
       }
     };
     window.speechSynthesis.onvoiceschanged = loadVoices;
-    loadVoices(); // Initial check
+    loadVoices();
   }, []);
 
-  // Handle Login
+  // Handle Login (unchanged)
   const handleLogin = (e) => {
     e.preventDefault();
     if (userName.trim()) {
@@ -366,7 +366,7 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Format Text with Symbols
+  // Format Text with Symbols (unchanged)
   const formatText = (text) => {
     return text
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -376,7 +376,7 @@ const EnglishPracticeAssistant = () => {
       .replace(/~/g, '<span class="highlight">~</span>');
   };
 
-  // Calculate Progress
+  // Calculate Progress (unchanged)
   const averageScore = conversationHistory.length > 0
     ? Math.round(conversationHistory.reduce((sum, entry) => sum + entry.score, 0) / conversationHistory.length)
     : 0;
