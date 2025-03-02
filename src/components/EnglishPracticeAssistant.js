@@ -27,7 +27,6 @@ const EnglishPracticeAssistant = () => {
 
   const recognitionRef = useRef(null);
   const silenceTimerRef = useRef(null);
-  const sendButtonRef = useRef(null);
 
   // VoiceRSS API कॉन्फ़िगरेशन
   const VOICERSS_API_KEY = '351d9f38051c43cc8556afc1a82a208f'; // VoiceRSS से प्राप्त करें
@@ -71,12 +70,12 @@ const EnglishPracticeAssistant = () => {
 
     recognitionRef.current.onend = () => {
       setIsListening(false);
-      // माइक बंद होने पर सेंड बटन को ऑटोमैटिक क्लिक करें
-      if (typedText.trim() && sendButtonRef.current && !isSpeaking && !isLoading) {
-        console.log('Mic stopped, auto-clicking send button with text:', typedText);
-        sendButtonRef.current.click();
+      // नया तरीका: माइक बंद होने पर सीधे submitTypedText कॉल करें
+      if (typedText.trim() && !isSpeaking && !isLoading) {
+        console.log('Mic stopped, submitting text:', typedText);
+        submitTypedText();
       } else {
-        console.log('Send button not clicked due to:', { text: typedText, isSpeaking, isLoading });
+        console.log('Text not submitted due to:', { text: typedText, isSpeaking, isLoading });
       }
     };
 
@@ -207,7 +206,7 @@ const EnglishPracticeAssistant = () => {
                   speakFeedback(cleanText(result.nextQuestion), () => {
                     setTimeout(() => {
                       speakFeedback(cleanText(result.nextQuestionHindi), () => {});
-                    }, 2000); // 2 सेकंड बाद हिंदी बोलें
+                    }, 2000); // 2 सेकंड का अंतर
                   });
                 }
               }, 2000);
@@ -289,7 +288,7 @@ const EnglishPracticeAssistant = () => {
                   speakFeedback(cleanText(result.nextQuestion), () => {
                     setTimeout(() => {
                       speakFeedback(cleanText(result.nextQuestionHindi), () => {});
-                    }, 2000); // 2 सेकंड बाद हिंदी बोलें
+                    }, 2000); // 2 सेकंड का अंतर
                   });
                 }
               }, 2000);
@@ -317,13 +316,14 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // VoiceRSS API के साथ TTS (350 अनुरोध प्रतिदिन मुफ्त)
+  // VoiceRSS API के साथ TTS (अंग्रेजी धीमी)
   const speakFeedback = async (text, callback) => {
     if (!isSpeaking) {
       setIsSpeaking(true);
       try {
-        const lang = text.match(/[अ-ह]/) ? 'hi-in' : 'en-us'; // हिंदी या अंग्रेजी
-        const url = `http://api.voicerss.org/?key=${VOICERSS_API_KEY}&hl=${lang}&src=${encodeURIComponent(text)}&f=48khz_16bit_stereo`;
+        const lang = text.match(/[अ-ह]/) ? 'hi-in' : 'en-us';
+        const speed = lang === 'en-us' ? -2 : 0; // अंग्रेजी के लिए धीमी स्पीड (-2), हिंदी के लिए सामान्य (0)
+        const url = `http://api.voicerss.org/?key=${VOICERSS_API_KEY}&hl=${lang}&src=${encodeURIComponent(text)}&r=${speed}&f=48khz_16bit_stereo`;
         const audio = new Audio(url);
         audio.onended = () => {
           setIsSpeaking(false);
@@ -333,6 +333,7 @@ const EnglishPracticeAssistant = () => {
           console.error('VoiceRSS API error, falling back to Web Speech API');
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.lang = lang === 'hi-in' ? 'hi-IN' : 'en-US';
+          utterance.rate = lang === 'en-US' ? 0.7 : 1.0; // अंग्रेजी के लिए धीमा
           const voices = window.speechSynthesis.getVoices();
           utterance.voice = voices.find(voice => voice.name.includes('Google')) || voices[0];
           utterance.onend = () => {
@@ -366,15 +367,6 @@ const EnglishPracticeAssistant = () => {
       localStorage.setItem('userName', userName);
       setIsLoginModalOpen(false);
     }
-  };
-
-  const formatText = (text) => {
-    return text
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/"(.*?)"/g, '<q>$1</q>')
-      .replace(/--/g, '—')
-      .replace(/~/g, '<span class="highlight">~</span>');
   };
 
   const averageScore = conversationHistory.length > 0
@@ -424,7 +416,6 @@ const EnglishPracticeAssistant = () => {
                 className="text-input"
               />
               <button
-                ref={sendButtonRef}
                 onClick={submitTypedText}
                 disabled={isLoading || isSpeaking || !typedText.trim()}
                 className="send-button"
@@ -438,8 +429,8 @@ const EnglishPracticeAssistant = () => {
             <div className="feedback-area">
               {isLoading ? (
                 <div className="loading-overlay">
-                  <div className="spinner"></div>
-                  <p>विश्लेषण कर रहा हूँ...</p>
+                  <div className="spinner advanced-spinner"></div>
+                  <p className="loading-text">विश्लेषण हो रहा है...</p>
                 </div>
               ) : (
                 <div className="feedback-card">
@@ -463,7 +454,7 @@ const EnglishPracticeAssistant = () => {
                   </div>
                   <div className="feedback-item analysis-feedback">
                     <h3>यह बेहतर क्यों है:</h3>
-                    <p dangerouslySetInnerHTML={{ __html: formatText(hindiAnalysis) }} />
+                    <p>{hindiAnalysis}</p>
                     {pronunciationTip && (
                       <>
                         <h3>उच्चारण टिप:</h3>
