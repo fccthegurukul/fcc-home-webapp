@@ -1619,3 +1619,307 @@
 [2025-03-02T07:19:26.646Z] LOG: Incoming Origin: http://localhost:3000
 [2025-03-02T07:19:26.647Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
 [2025-03-02T07:19:26.659Z] LOG: Generating new session ID
+[2025-03-02T07:31:44.712Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:31:44.715Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:31:44.716Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:31:44.861Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:31:44.862Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:31:44.867Z] LOG: Generating new session ID
+[2025-03-02T07:31:44.872Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:31:44.861Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:31:47.033Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:31:49.948Z] LOG: Speech analyzed and stored: {
+  "id": 41,
+  "user_name": "Hariom Kumar ",
+  "user_input": "mymy namemy name ismy name ismy name is Hariommy name is Hariom Kumarmy name is Hariom Kumar",
+  "corrected_version": "1. Corrected Version: My name is Hariom Kumar.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने बहुत बार \"My name is\" कहा है।  एक बार कहना ही काफी है।  \"My name is Hariom Kumar\"  ये सही और सरल तरीका है अपना नाम बताने का।  आपके बोलने में थोड़ी जल्दी थी, इसलिए आपने शब्दों को दोहरा दिया। धीरे-धीरे और साफ-साफ बोलने की कोशिश करें।",
+  "pronunciation_tip": "3. Pronunciation Tip:  \"Kumar\" को \"कुमार\" बोलते हैं,  'कु' पर थोड़ा ज़्यादा जोर दें।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Name - नाम",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "f923e725-18e3-4e34-a789-3250e9910ec4",
+  "next_question": "7. Next Question:  What is your favorite hobby, Hariom Kumar?",
+  "next_question_hindi": "8. Next Question Hindi: हरिओम कुमार, तुम्हारा मनपसंद शौक क्या है?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने शौक के बारे में अंग्रेजी में बताने का अभ्यास मिलेगा और आपकी अंग्रेजी और भी बेहतर होगी!",
+  "timestamp": "2025-03-02T07:31:49.909Z"
+}
+[2025-03-02T07:32:54.227Z] ERROR: (node:33888) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-02T07:32:54.275Z] LOG: HTTP Server running on port 5000
+[2025-03-02T07:32:54.731Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T07:32:54.709Z"
+  }
+]
+[2025-03-02T07:32:54.736Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T07:32:54.739Z"
+  }
+]
+[2025-03-02T07:32:54.797Z] LOG: Conversations table ready
+[2025-03-02T07:32:54.804Z] LOG: English progress table ready
+[2025-03-02T07:33:12.007Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:33:12.012Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:33:12.010Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:33:12.210Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:33:12.215Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:33:12.218Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:33:12.376Z] LOG: Generating new session ID
+[2025-03-02T07:33:12.399Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:33:14.854Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:33:17.438Z] ERROR: Database insertion error: {
+  "length": 147,
+  "name": "error",
+  "severity": "ERROR",
+  "code": "42703",
+  "position": "235",
+  "file": "parse_target.c",
+  "line": "1070",
+  "routine": "checkInsertTargets"
+}
+[2025-03-02T07:37:30.027Z] ERROR: (node:40392) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-02T07:37:30.038Z] LOG: HTTP Server running on port 5000
+[2025-03-02T07:37:30.530Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T07:37:30.519Z"
+  }
+]
+[2025-03-02T07:37:30.538Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-02T07:37:30.538Z"
+  }
+]
+[2025-03-02T07:37:30.552Z] LOG: Conversations table ready
+[2025-03-02T07:37:30.555Z] LOG: English progress table ready
+[2025-03-02T07:37:45.919Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:37:45.923Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:37:45.923Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:37:46.106Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:37:46.113Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:37:46.112Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:37:46.202Z] LOG: Generating new session ID
+[2025-03-02T07:37:46.239Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:37:48.748Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:37:51.421Z] LOG: Speech analyzed and stored: {
+  "id": 42,
+  "user_name": "Hariom Kumar ",
+  "user_input": "my name is Kumar",
+  "corrected_version": "1. Corrected Version: My name is Kumar.",
+  "hindi_analysis": "2. Hindi Analysis:  अच्छा प्रयास!  आपने \"My name is Kumar\"  कहा है, जो बिलकुल सही है। बस छोटा सा सुधार है:  \"My\" को कैपिटल लिखना चाहिए क्योंकि यह वाक्य की शुरुआत है।  अंग्रेजी में वाक्यों की शुरुआत हमेशा बड़े अक्षर से होती है।",
+  "pronunciation_tip": "3. Pronunciation Tip:  \"Name\" को \"नेम\" बोलते हैं,  'n' और 'm' पर थोड़ा ज़ोर दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Name - नाम",
+  "score": 5,
+  "badge": "Excellent",
+  "corrected_score": 6,
+  "corrected_badge": "Perfect",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question: Where are you from?",
+  "next_question_hindi": "8. Next Question Hindi: आप कहाँ से हैं?",
+  "mini_info": "9. Mini Info: इससे आपको अपने बारे में और जानकारी देने और अंग्रेजी में साधारण सवालों के जवाब देने का अभ्यास होगा!",
+  "timestamp": "2025-03-02T07:37:51.410Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:38:13.773Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:13.776Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:13.777Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:13.947Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:13.950Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:13.962Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:38:13.949Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:13.954Z] LOG: Generating new session ID
+[2025-03-02T07:38:15.918Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:38:19.101Z] LOG: Speech analyzed and stored: {
+  "id": 43,
+  "user_name": "Hariom Kumar ",
+  "user_input": "I am from Murthy Shahbad",
+  "corrected_version": "1. Corrected Version: I'm from Murthy Shahbad.",
+  "hindi_analysis": "2. Hindi Analysis:  \"I am from Murthy Shahbad\"  ठीक है, लेकिन हम इसे और बेहतर बना सकते हैं!  \"I am\" की जगह \"I'm\" (आई एम) लिखना और बोलना ज़्यादा आम और सहज है।  यह एक छोटा सा संक्षिप्त रूप है, जो रोज़मर्रा की बातचीत में बहुत इस्तेमाल होता है।  इससे आपकी अंग्रेजी ज़्यादा प्राकृतिक लगेगी।",
+  "pronunciation_tip": "3. Pronunciation Tip:  \"Murthy Shahbad\" को बोलते समय, हर शब्द पर थोड़ा सा ज़ोर दीजिये, ताकि स्पष्टता रहे।  खासकर \"Murthy\" और \"Shahbad\"  पर ज़ोर दें।",
+  "vocabulary_word": "4. Vocabulary Word:  Word:  From - से",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question:  What do you like to do in Murthy Shahbad?",
+  "next_question_hindi": "8. Next Question Hindi:  आप Murthy Shahbad में क्या करना पसंद करते हैं?",
+  "mini_info": "9. Mini Info:  इस सवाल का जवाब देकर आप अपनी पसंद और नापसंद के बारे में बता पाएंगे और साथ ही अपने शहर के बारे में भी बात कर पाएंगे, जिससे आपकी अंग्रेजी और बेहतर होगी!",
+  "timestamp": "2025-03-02T07:38:19.095Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:38:39.636Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:39.640Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:39.637Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:39.781Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:39.783Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:39.782Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:38:39.794Z] LOG: Generating new session ID
+[2025-03-02T07:38:39.796Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:38:41.726Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:38:44.566Z] LOG: Speech analyzed and stored: {
+  "id": 44,
+  "user_name": "Hariom Kumar ",
+  "user_input": "I like eating in my village",
+  "corrected_version": "1. Corrected Version: I like to eat in my village.",
+  "hindi_analysis": "2. Hindi Analysis:  \"I like eating in my village\"  में छोटा सा सुधार किया गया है।  \"eating\"  के बजाय \"to eat\"  का प्रयोग करना बेहतर है।  हालांकि आपका मतलब समझ आ गया, लेकिन \"to eat\"  ज़्यादा प्राकृतिक और व्याकरण के हिसाब से सही है।  यह infinitive form है जो  \"like\"  के साथ अक्सर इस्तेमाल होती है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"to eat\" को \"टू ईट\" बोलते हैं,  'टू' पर ज़ोर कम और 'ईट' पर ज़ोर ज़्यादा दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word:  Village - गाँव",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question: What kind of food do you like to eat in your village?",
+  "next_question_hindi": "8. Next Question Hindi: आपके गाँव में आपको किस तरह का खाना खाना पसंद है?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने खाने की पसंद के बारे में बात करने और ज़्यादा विस्तार से अंग्रेजी में बोलने का मौका मिलेगा!",
+  "timestamp": "2025-03-02T07:38:44.556Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:39:13.502Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:13.503Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:13.505Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:13.643Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:13.649Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:13.657Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:39:13.646Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:13.654Z] LOG: Generating new session ID
+[2025-03-02T07:39:15.575Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:39:18.754Z] LOG: Speech analyzed and stored: {
+  "id": 45,
+  "user_name": "Hariom Kumar ",
+  "user_input": "litti Chokha",
+  "corrected_version": "1. Corrected Version: I like Litti Chokha.",
+  "hindi_analysis": "2. Hindi Analysis:  \"litti Chokha\"  केवल एक डिश का नाम है।  इससे अंग्रेजी में पूरा वाक्य नहीं बनता।  \"I like Litti Chokha\"  कहने से एक पूरा वाक्य बनता है जो आपके पसंदीदा खाने के बारे में बताता है।  यह अंग्रेजी में बात करने का सही तरीका है।  \"Litti Chokha\" को आपने सही लिखा है लेकिन उसको वाक्य में इस्तेमाल करने की जरूरत है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Litti Chokha\" को \"लिट्टी चोखा\" बोलते हैं।  \"ट्\" और \"च\" पर थोड़ा ज़ोर दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Like - पसंद",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question: What is your favorite thing about Litti Chokha?",
+  "next_question_hindi": "8. Next Question Hindi: लिट्टी चोखा में आपको सबसे ज़्यादा क्या पसंद है?",
+  "mini_info": "9. Mini Info:  इस सवाल का जवाब देने से आपको अपने पसंदीदा खाने के बारे में ज़्यादा विस्तार से बताने का मौका मिलेगा और इससे आपकी अंग्रेजी में descriptive words का इस्तेमाल करने की प्रैक्टिस होगी!",
+  "timestamp": "2025-03-02T07:39:18.745Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:39:37.667Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:37.668Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:37.673Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:37.814Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:37.818Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:37.822Z] LOG: Generating new session ID
+[2025-03-02T07:39:37.825Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:39:37.815Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:39:39.827Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:39:43.328Z] LOG: Speech analyzed and stored: {
+  "id": 46,
+  "user_name": "Hariom Kumar ",
+  "user_input": "litti Chokha Mein Mujhe sabse Jyada Chokha pasand hai",
+  "corrected_version": "1. Corrected Version: My favorite part of Litti Chokha is the Chokha.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने कहा \"litti Chokha Mein Mujhe sabse Jyada Chokha pasand hai\"।  यह हिंदी से सीधा अंग्रेजी में अनुवाद करने जैसा लग रहा है। अंग्रेजी में वाक्य रचना थोड़ी अलग होती है।  \"My favorite part of Litti Chokha is the Chokha\"  कहने से वाक्य बहुत साफ़ और आसान हो जाता है।  आपने  \"Mein\" (में)  का गलत इस्तेमाल किया है और  \"sabse Jyada\" (सबसे ज्यादा)  को भी  \"favorite\"  से बेहतर तरीके से  express किया जा सकता है।  इस सुधरे हुए वाक्य में सब कुछ  clear और natural है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Favorite\" को \"फेवरिट\" बोलते हैं, 'फे' और 'ट' पर थोड़ा ज़ोर दीजिये!",
+  "vocabulary_word": "4. Vocabulary Word: Favorite - पसंदीदा",
+  "score": 5,
+  "badge": "Poor",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question: What other dishes do you like besides Litti Chokha?",
+  "next_question_hindi": "8. Next Question Hindi: लिट्टी चोखा के अलावा आपको और कौनसे व्यंजन पसंद हैं?",
+  "mini_info": "9. Mini Info: इस सवाल का जवाब देकर आप अपने खाने के बारे में और ज़्यादा बात कर पाएंगे और इससे आपकी vocabulary  भी बढ़ेगी!",
+  "timestamp": "2025-03-02T07:39:43.322Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:40:09.306Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:40:09.307Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:40:09.309Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:40:09.442Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:40:09.445Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:40:09.443Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:40:09.472Z] LOG: Generating new session ID
+[2025-03-02T07:40:09.474Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:40:11.388Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:40:14.797Z] LOG: Speech analyzed and stored: {
+  "id": 47,
+  "user_name": "Hariom Kumar ",
+  "user_input": "daal Bhat",
+  "corrected_version": "1. Corrected Version: I like Dal Bhat.",
+  "hindi_analysis": "2. Hindi Analysis:  \"daal Bhat\"  केवल दो शब्द हैं, जो एक डिश के नाम हैं।  यह अंग्रेजी में एक पूरा वाक्य नहीं बनाता।  \"I like Dal Bhat\"  कहने से एक पूरा और सही वाक्य बनता है जिससे आपके पसंदीदा खाने के बारे में पता चलता है।  अंग्रेजी में हमेशा वाक्यों की शुरुआत \"I,\" \"He,\" \"She,\" आदि से होती है, जिसके बाद क्रिया और फिर बाकी शब्द आते हैं।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Dal\" को \"डाल\" बोलते हैं, 'ड' पर ज़ोर दीजिये और 'ल' को थोड़ा सा लंबा खींचिये।",
+  "vocabulary_word": "4. Vocabulary Word: Like - पसंद",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question: What is your favorite thing about Dal Bhat?",
+  "next_question_hindi": "8. Next Question Hindi: दाल भात में आपको सबसे ज़्यादा क्या पसंद है?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको दाल भात के बारे में ज़्यादा विस्तार से बताने का मौका मिलेगा और इससे आपकी अंग्रेजी में descriptive words का इस्तेमाल करने की प्रैक्टिस होगी!",
+  "timestamp": "2025-03-02T07:40:14.790Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:43:42.644Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:43:42.646Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:43:42.649Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:43:42.784Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:43:42.792Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:43:42.786Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:43:42.837Z] LOG: Generating new session ID
+[2025-03-02T07:43:42.844Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:43:44.873Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:43:48.276Z] LOG: Speech analyzed and stored: {
+  "id": 48,
+  "user_name": "Hariom Kumar ",
+  "user_input": "Daal Bhat mein mujhe sabse jyada baat pasand hai",
+  "corrected_version": "1. Corrected Version: My favorite part of Dal Bhat is the flavor.",
+  "hindi_analysis": "2. Hindi Analysis:  आपने कहा \"Daal Bhat mein mujhe sabse jyada baat pasand hai\"।  इसमें कुछ गलतियाँ हैं।  \"baat\"  का मतलब बातचीत होता है,  जो  Dal Bhat  के संदर्भ में सही नहीं है।  दाल-भात में आपको सबसे ज़्यादा क्या पसंद है, यह बताने के लिए आपको \"flavor\" (स्वाद), \"texture\" (बनावट), या  \"combination of ingredients\" (सामग्री का मिश्रण)  जैसे शब्दों का प्रयोग करना चाहिए।  \"mein\" (में)  का प्रयोग भी अंग्रेजी वाक्य रचना के अनुसार सही नहीं है।  सुधरा हुआ वाक्य ज़्यादा स्वाभाविक और स्पष्ट है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Flavor\" को \"फ्लेवर\" बोलते हैं, 'फ्' पर ज़ोर दीजिये और 'र' को थोड़ा सा लंबा खींचिये।",
+  "vocabulary_word": "4. Vocabulary Word: Flavor - स्वाद",
+  "score": 5,
+  "badge": "Poor",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question: What other dishes from your village do you like?",
+  "next_question_hindi": "8. Next Question Hindi: आपके गाँव के और कौन से व्यंजन आपको पसंद हैं?",
+  "mini_info": "9. Mini Info: इससे आपको अपने गाँव के खाने के बारे में और ज़्यादा बात करने और अपनी vocabulary बढ़ाने में मदद मिलेगी!",
+  "timestamp": "2025-03-02T07:43:48.256Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:44:08.547Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:44:08.548Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:44:08.550Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:44:08.691Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:44:08.693Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:44:08.692Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:44:08.760Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:44:08.757Z] LOG: Generating new session ID
+[2025-03-02T07:44:10.795Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:44:13.819Z] LOG: Speech analyzed and stored: {
+  "id": 49,
+  "user_name": "Hariom Kumar ",
+  "user_input": "I don't understand this line please",
+  "corrected_version": "1. Corrected Version: \"I don't understand this.\"",
+  "hindi_analysis": "2. Hindi Analysis:  आपने कहा \"I don't understand this line please\"।  यह सही तो है, लेकिन  \"please\"  ज़रूरत से ज़्यादा है।  अंग्रेजी में,  \"I don't understand this\"  कहना ज़्यादा स्वाभाविक और संक्षिप्त है।  \"this line\"  की जगह  \"this\"  कहने से वाक्य और भी  compact और clear हो जाता है क्योंकि संदर्भ में  \"line\"  पहले ही clear है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Understand\" को  \"अंडरस्टैंड\" बोलते हैं, 'अंडर' पर ज़ोर कम और 'स्टैंड' पर ज़ोर ज़्यादा दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Understand - समझना",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question: Can you tell me more about what you don't understand?",
+  "next_question_hindi": "8. Next Question Hindi: आप मुझे और बता सकते हैं कि आपको क्या समझ नहीं आ रहा है?",
+  "mini_info": "9. Mini Info: इससे आपको अपनी समस्या को स्पष्ट रूप से बताने और  ज़्यादा details देने का अभ्यास होगा, जिससे आपकी अंग्रेजी में सुधार होगा!",
+  "timestamp": "2025-03-02T07:44:13.814Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:45:20.521Z] LOG: Incoming request: GET /api/conversation-history?userName=sgrvs, Origin: http://localhost:3000
+[2025-03-02T07:45:20.524Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T07:45:20.526Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T07:45:20.528Z] LOG: Generating new session ID

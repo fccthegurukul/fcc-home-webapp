@@ -68,8 +68,10 @@ const EnglishPracticeAssistant = () => {
 
     recognitionRef.current.onend = () => {
       setIsListening(false);
-      if (typedText.trim() && sendButtonRef.current) {
-        sendButtonRef.current.click(); // ऑटोमैटिक सेंड
+      // Ensure send button clicks automatically when mic stops and text exists
+      if (typedText.trim() && sendButtonRef.current && !isSpeaking && !isLoading) {
+        console.log('Mic stopped, auto-clicking send button with text:', typedText);
+        sendButtonRef.current.click();
       }
     };
 
@@ -83,7 +85,7 @@ const EnglishPracticeAssistant = () => {
       if (recognitionRef.current) recognitionRef.current.stop();
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
     };
-  }, [isListening]);
+  }, [isListening, typedText, isSpeaking, isLoading]); // Added dependencies to ensure updates
 
   const fetchConversationHistory = async () => {
     if (!userName) return;
@@ -307,6 +309,8 @@ const EnglishPracticeAssistant = () => {
       setIsSpeaking(true);
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = text.match(/[अ-ह]/) ? 'hi-IN' : 'en-US';
+
+      // Enhance voice to sound more human-like
       const voices = window.speechSynthesis.getVoices();
       const preferredVoice = voices.find(voice => 
         voice.name.includes('Google') || 
@@ -316,19 +320,37 @@ const EnglishPracticeAssistant = () => {
         voice.name.includes('Zira')
       ) || voices[0];
       utterance.voice = preferredVoice;
-      utterance.pitch = 1.1;
-      utterance.rate = 0.9;
+
+      // Adjust pitch, rate, and volume for natural feel
+      utterance.pitch = 1.0 + Math.random() * 0.2; // Slight variation for natural tone
+      utterance.rate = 0.9 + Math.random() * 0.1;  // Slightly varied speed
       utterance.volume = 1.0;
+
+      // Add natural pauses using punctuation
+      utterance.text = text.replace(/([.!?])\s+/g, '$1|'); // Insert pipe for pause detection
+      utterance.onboundary = (event) => {
+        if (event.name === 'word' && event.charIndex > 0 && utterance.text[event.charIndex - 1] === '|') {
+          window.speechSynthesis.pause();
+          setTimeout(() => window.speechSynthesis.resume(), 300); // Natural pause
+        }
+      };
+
       utterance.onend = () => {
         setIsSpeaking(false);
         if (callback) callback();
       };
+
       window.speechSynthesis.speak(utterance);
     }
   };
 
   useEffect(() => {
-    const loadVoices = () => window.speechSynthesis.getVoices();
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      if (voices.length > 0) {
+        console.log('Available voices:', voices.map(v => v.name));
+      }
+    };
     window.speechSynthesis.onvoiceschanged = loadVoices;
     loadVoices();
   }, []);
