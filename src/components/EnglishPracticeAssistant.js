@@ -30,63 +30,64 @@ const EnglishPracticeAssistant = () => {
   const submitTimerRef = useRef(null);
   const sendButtonRef = useRef(null); // Ref for send button
 
-  // Speech Recognition Setup
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
       setHindiAnalysis('आपका ब्राउज़र स्पीच रिकग्निशन को सपोर्ट नहीं करता।');
       return;
     }
-
+  
     recognitionRef.current = new SpeechRecognition();
-    recognitionRef.current.continuous = true;
+    recognitionRef.current.continuous = false; // Continuous को false करें ताकि हर बार नया सेशन शुरू हो
     recognitionRef.current.lang = 'en-US';
     recognitionRef.current.interimResults = true;
-
+  
     recognitionRef.current.onresult = (event) => {
       let finalTranscript = '';
       let interimTranscript = '';
-
-      for (let i = 0; i < event.results.length; i++) {
+  
+      // केवल नवीनतम रिजल्ट को प्रोसेस करें
+      for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) {
           finalTranscript += transcript;
         } else {
-          interimTranscript += transcript;
+          interimTranscript = transcript;
         }
       }
-
-      const combinedTranscript = finalTranscript + interimTranscript;
-      setSpokenText(combinedTranscript);
-      setTypedText(combinedTranscript); // Update input in real-time
-
+  
+      // फाइनल ट्रांसक्रिप्ट को स्टोर करें, अंतरिम को अस्थायी रूप से दिखाएँ
+      setSpokenText(finalTranscript || interimTranscript);
+      setTypedText(finalTranscript || interimTranscript); // इनपुट में केवल नवीनतम टेक्स्ट दिखाएँ
+  
+      // साइलेंस डिटेक्शन
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       silenceTimerRef.current = setTimeout(() => {
         if (isListening && finalTranscript) {
-          recognitionRef.current.stop(); // Stop on final result after 2 seconds of silence
+          recognitionRef.current.stop(); // 3.5 सेकंड चुप्पी के बाद माइक बंद
         }
-      }, 2000);
+      }, 3500); // 3.5 सेकंड में बदलाव
     };
-
+  
     recognitionRef.current.onend = () => {
       setIsListening(false);
       if (typedText.trim()) {
         if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
         submitTimerRef.current = setTimeout(() => {
           if (sendButtonRef.current && typedText.trim()) {
-            sendButtonRef.current.click(); // Programmatically click send button
+            sendButtonRef.current.click(); // ऑटोमैटिक सेंड बटन क्लिक
           }
-        }, 3000); // 3-second delay
+        }, 500); // सेंड करने के लिए 0.5 सेकंड का डिले (आप इसे बढ़ा सकते हैं)
       }
     };
-
+  
     recognitionRef.current.onerror = (event) => {
       setHindiAnalysis('आवाज पहचानने में त्रुटि: ' + event.error);
       setIsListening(false);
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
     };
-
+  
     return () => {
       if (recognitionRef.current) {
         recognitionRef.current.stop();
@@ -94,7 +95,7 @@ const EnglishPracticeAssistant = () => {
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       if (submitTimerRef.current) clearTimeout(submitTimerRef.current);
     };
-  }, [isListening]);
+  }, [isListening, typedText]); // typedText को डिपेंडेंसी में जोड़ा
 
   // Fetch Conversation History
   const fetchConversationHistory = async () => {
