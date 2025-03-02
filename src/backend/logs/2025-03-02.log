@@ -1923,3 +1923,103 @@
 [2025-03-02T07:45:20.524Z] LOG: Incoming Origin: http://localhost:3000
 [2025-03-02T07:45:20.526Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
 [2025-03-02T07:45:20.528Z] LOG: Generating new session ID
+[2025-03-02T07:48:53.100Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:48:53.102Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:48:53.104Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:48:53.345Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:48:53.399Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:48:53.406Z] LOG: Generating new session ID
+[2025-03-02T07:48:53.408Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:48:53.397Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:48:55.504Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:48:58.357Z] LOG: Speech analyzed and stored: {
+  "id": 50,
+  "user_name": "Hariom Kumar ",
+  "user_input": "Jaan Hamari Kumar hai",
+  "corrected_version": "1. Corrected Version: \"He is our son.\"",
+  "hindi_analysis": "2. Hindi Analysis:  \"Jaan Hamari Kumar hai\" में कई गलतियाँ हैं।  \"Jaan\" अंग्रेजी में  \"jaan\"  का  प्रयोग नहीं किया जाता है।  \"Hamari\" का मतलब \"हमारी\" है, जो स्त्रीलिंग है।  \"Kumar\" का मतलब \"कुमार\"  (a title often used for a boy) है, लेकिन  यह वाक्य में सही संदर्भ में इस्तेमाल नहीं हुआ है।  \"He is our son\"  सही और सरल है। यह स्पष्ट और समझने में आसान है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Son\" को \"सन\" बोलते हैं, 's' पर थोड़ा ज़ोर दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Son - बेटा",
+  "score": 5,
+  "badge": "Needs Improvement",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question:  Does he have any brothers or sisters?",
+  "next_question_hindi": "8. Next Question Hindi: क्या उसके कोई भाई या बहन हैं?",
+  "mini_info": "9. Mini Info: इससे आपको परिवार के बारे में बात करने की प्रैक्टिस मिलेगी और आपके अंग्रेजी बोलने के कौशल में सुधार होगा!",
+  "timestamp": "2025-03-02T07:48:58.342Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:49:16.903Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:49:16.904Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:49:16.907Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:49:17.077Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:49:17.080Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:49:17.079Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:49:17.084Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:49:17.083Z] LOG: Generating new session ID
+[2025-03-02T07:49:18.960Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:49:22.564Z] LOG: Speech analyzed and stored: {
+  "id": 51,
+  "user_name": "Hariom Kumar ",
+  "user_input": "Mera name hariom Kumar hai",
+  "corrected_version": "1. Corrected Version: My name is Hariom Kumar.",
+  "hindi_analysis": "2. Hindi Analysis:  \"Mera name hariom Kumar hai\"  में छोटी-छोटी गलतियाँ हैं।  \"Mera name\" सही है, लेकिन  \"hariom\"  को  \"Hariom\"  (बड़ा अक्षर) लिखना चाहिए क्योंकि यह नाम है।  और,  \"hai\"  के बजाय  \"is\"  का प्रयोग करना  अंग्रेजी में ज़्यादा स्वाभाविक है।  \"My name is Hariom Kumar\"  कहना  ज़्यादा सरल और सही अंग्रेजी है।",
+  "pronunciation_tip": "3. Pronunciation Tip:  \"My name is\" को \"माय नेम इज़\" बोलते हैं,  \"is\"  पर थोड़ा ज़ोर दीजिये और  's'  को  'ज़'  की तरह ना बोलें।",
+  "vocabulary_word": "4. Vocabulary Word: Name - नाम",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question: What do you do?",
+  "next_question_hindi": "8. Next Question Hindi: आप क्या काम करते हैं?",
+  "mini_info": "9. Mini Info: इससे आपको अपने बारे में बताने और अपनी पेशे से जुड़ी बातचीत करने की प्रैक्टिस मिलेगी!",
+  "timestamp": "2025-03-02T07:49:21.933Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:54:36.595Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:54:36.596Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:54:36.599Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:54:36.762Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:54:36.766Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:54:36.764Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T07:54:36.769Z] LOG: Generating new session ID
+[2025-03-02T07:54:36.771Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T07:54:38.956Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T07:54:42.239Z] LOG: Speech analyzed and stored: {
+  "id": 52,
+  "user_name": "Hariom Kumar ",
+  "user_input": "Main Ek Insan hun",
+  "corrected_version": "1. Corrected Version: I am a human.",
+  "hindi_analysis": "2. Hindi Analysis:  \"Main Ek Insan hun\"  में कुछ सुधार की गुंजाइश है।  \"Main\" सही है,  \"Ek\"  का प्रयोग  यहाँ  ज़रूरी नहीं है क्योंकि  \"I am a human\" में  \"a\"  का मतलब  \"एक\"  ही होता है, और  \"Insan\"  को  \"human\"  में बदलना ज़रूरी है।  \"hun\"  को  \"am\"  से बदलने से वाक्य  अंग्रेजी के  grammar  के हिसाब से सही बन जाता है। \"I am a human\"  कहना  ज़्यादा  सरल और  प्राकृतिक लगता है।",
+  "pronunciation_tip": "3. Pronunciation Tip:  \"Human\" को \"ह्यूमन\" बोलते हैं,  'h'  पर ज़ोर दीजिये और  'u'  को  'ऊ'  की तरह  ना  बोलें।",
+  "vocabulary_word": "4. Vocabulary Word: Human - इंसान",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "कोई बात नहीं, धीरे-धीरे सुधार होगा!",
+  "next_question": "7. Next Question: What is your profession?",
+  "next_question_hindi": "8. Next Question Hindi: आपका पेशा क्या है?",
+  "mini_info": "9. Mini Info: इससे आपको अपने काम और  रोज़मर्रा की ज़िन्दगी के बारे में  अंग्रेजी में बात करने की प्रैक्टिस  मिलेगी!",
+  "timestamp": "2025-03-02T07:54:42.230Z",
+  "personalized_message": "कोई बात नहीं, प्रैक्टिस जारी रखें!"
+}
+[2025-03-02T07:59:36.571Z] LOG: Incoming request: GET /api/conversation-history?userName=sgrvs, Origin: http://localhost:3000
+[2025-03-02T07:59:36.573Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T07:59:36.582Z] LOG: Generating new session ID
+[2025-03-02T07:59:36.576Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T08:00:15.472Z] LOG: Incoming request: GET /api/conversation-history?userName=sgrvs, Origin: http://localhost:3000
+[2025-03-02T08:00:15.473Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T08:00:15.474Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T08:00:15.476Z] LOG: Generating new session ID
+[2025-03-02T08:02:27.528Z] LOG: Incoming request: GET /api/conversation-history?userName=sgrvs, Origin: http://localhost:3000
+[2025-03-02T08:02:27.530Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T08:02:27.533Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T08:02:27.536Z] LOG: Generating new session ID
+[2025-03-02T08:05:35.573Z] LOG: Incoming request: GET /api/conversation-history?userName=sgrvs, Origin: http://localhost:3000
+[2025-03-02T08:05:35.581Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T08:05:35.592Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T08:05:35.597Z] LOG: Generating new session ID

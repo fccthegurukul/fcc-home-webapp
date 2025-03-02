@@ -29,6 +29,9 @@ const EnglishPracticeAssistant = () => {
   const silenceTimerRef = useRef(null);
   const sendButtonRef = useRef(null);
 
+  // VoiceRSS API कॉन्फ़िगरेशन
+  const VOICERSS_API_KEY = '351d9f38051c43cc8556afc1a82a208f'; // VoiceRSS से प्राप्त करें
+
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
@@ -68,10 +71,12 @@ const EnglishPracticeAssistant = () => {
 
     recognitionRef.current.onend = () => {
       setIsListening(false);
-      // Ensure send button clicks automatically when mic stops and text exists
+      // माइक बंद होने पर सेंड बटन को ऑटोमैटिक क्लिक करें
       if (typedText.trim() && sendButtonRef.current && !isSpeaking && !isLoading) {
         console.log('Mic stopped, auto-clicking send button with text:', typedText);
         sendButtonRef.current.click();
+      } else {
+        console.log('Send button not clicked due to:', { text: typedText, isSpeaking, isLoading });
       }
     };
 
@@ -85,7 +90,7 @@ const EnglishPracticeAssistant = () => {
       if (recognitionRef.current) recognitionRef.current.stop();
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
     };
-  }, [isListening, typedText, isSpeaking, isLoading]); // Added dependencies to ensure updates
+  }, [isListening, typedText, isSpeaking, isLoading]);
 
   const fetchConversationHistory = async () => {
     if (!userName) return;
@@ -198,8 +203,12 @@ const EnglishPracticeAssistant = () => {
           if (result.correctedVersion) {
             speakFeedback(cleanText(result.correctedVersion), () => {
               setTimeout(() => {
-                if (result.nextQuestion) {
-                  speakFeedback(cleanText(result.nextQuestion), () => {});
+                if (result.nextQuestion && result.nextQuestionHindi) {
+                  speakFeedback(cleanText(result.nextQuestion), () => {
+                    setTimeout(() => {
+                      speakFeedback(cleanText(result.nextQuestionHindi), () => {});
+                    }, 2000); // 2 सेकंड बाद हिंदी बोलें
+                  });
                 }
               }, 2000);
             });
@@ -276,8 +285,12 @@ const EnglishPracticeAssistant = () => {
           if (result.correctedVersion) {
             speakFeedback(cleanText(result.correctedVersion), () => {
               setTimeout(() => {
-                if (result.nextQuestion) {
-                  speakFeedback(cleanText(result.nextQuestion), () => {});
+                if (result.nextQuestion && result.nextQuestionHindi) {
+                  speakFeedback(cleanText(result.nextQuestion), () => {
+                    setTimeout(() => {
+                      speakFeedback(cleanText(result.nextQuestionHindi), () => {});
+                    }, 2000); // 2 सेकंड बाद हिंदी बोलें
+                  });
                 }
               }, 2000);
             });
@@ -304,43 +317,35 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  const speakFeedback = (text, callback) => {
+  // VoiceRSS API के साथ TTS (350 अनुरोध प्रतिदिन मुफ्त)
+  const speakFeedback = async (text, callback) => {
     if (!isSpeaking) {
       setIsSpeaking(true);
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = text.match(/[अ-ह]/) ? 'hi-IN' : 'en-US';
-
-      // Enhance voice to sound more human-like
-      const voices = window.speechSynthesis.getVoices();
-      const preferredVoice = voices.find(voice => 
-        voice.name.includes('Google') || 
-        voice.name.includes('Natural') || 
-        voice.name.includes('Samantha') || 
-        voice.name.includes('Microsoft') || 
-        voice.name.includes('Zira')
-      ) || voices[0];
-      utterance.voice = preferredVoice;
-
-      // Adjust pitch, rate, and volume for natural feel
-      utterance.pitch = 1.0 + Math.random() * 0.2; // Slight variation for natural tone
-      utterance.rate = 0.9 + Math.random() * 0.1;  // Slightly varied speed
-      utterance.volume = 1.0;
-
-      // Add natural pauses using punctuation
-      utterance.text = text.replace(/([.!?])\s+/g, '$1|'); // Insert pipe for pause detection
-      utterance.onboundary = (event) => {
-        if (event.name === 'word' && event.charIndex > 0 && utterance.text[event.charIndex - 1] === '|') {
-          window.speechSynthesis.pause();
-          setTimeout(() => window.speechSynthesis.resume(), 300); // Natural pause
-        }
-      };
-
-      utterance.onend = () => {
+      try {
+        const lang = text.match(/[अ-ह]/) ? 'hi-in' : 'en-us'; // हिंदी या अंग्रेजी
+        const url = `http://api.voicerss.org/?key=${VOICERSS_API_KEY}&hl=${lang}&src=${encodeURIComponent(text)}&f=48khz_16bit_stereo`;
+        const audio = new Audio(url);
+        audio.onended = () => {
+          setIsSpeaking(false);
+          if (callback) callback();
+        };
+        audio.onerror = () => {
+          console.error('VoiceRSS API error, falling back to Web Speech API');
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = lang === 'hi-in' ? 'hi-IN' : 'en-US';
+          const voices = window.speechSynthesis.getVoices();
+          utterance.voice = voices.find(voice => voice.name.includes('Google')) || voices[0];
+          utterance.onend = () => {
+            setIsSpeaking(false);
+            if (callback) callback();
+          };
+          window.speechSynthesis.speak(utterance);
+        };
+        audio.play();
+      } catch (error) {
+        console.error('Error in VoiceRSS API:', error);
         setIsSpeaking(false);
-        if (callback) callback();
-      };
-
-      window.speechSynthesis.speak(utterance);
+      }
     }
   };
 
