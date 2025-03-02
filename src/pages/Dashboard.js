@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import FeeManagement from "../components/FeeManagement";
 import StudentsAttendance from "../pages/StudentsAttendance";
 import StudentList from "../pages/StudentList";
@@ -9,8 +9,9 @@ import TaskSubmissionPage from "../components/TaskSubmissionPage";
 import Taskcheck from "../components/Taskcheck";
 import StudentAdmission from "../pages/StudentAdmission";
 import Report from "../components/Report";
-import "./Dashboard.css";
 import SkillUpdate from "./SkillUpdate";
+import "./Dashboard.css";
+import { v4 as uuidv4 } from 'uuid';
 
 const Dashboard = () => {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -30,6 +31,33 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const [activeSection, setActiveSection] = useState("admissions");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const sessionId = React.useRef(uuidv4());
+
+  const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
+    try {
+      const activityData = {
+        activity_type: activityType,
+        activity_details: JSON.stringify({
+          ...activityDetails,
+          active_section: activeSection,
+          timestamp: new Date().toISOString(),
+        }),
+        page_url: window.location.pathname,
+        session_id: sessionId.current,
+      };
+
+      const response = await fetch("http://localhost:5000/api/user-activity-log", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(activityData),
+      });
+
+      if (!response.ok) throw new Error("Failed to log activity");
+      console.log(`Activity '${activityType}' logged successfully`);
+    } catch (error) {
+      console.error("Error logging user activity:", error);
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,7 +99,6 @@ const Dashboard = () => {
     fetchData();
   }, [API_URL]);
 
-  // CSV Download Logic
   const downloadCSV = (data, filename) => {
     const headers = ["FCC ID", "नाम", "पिता", "माता", "मोबाइल नंबर", "पता", "दाखिला तिथि"];
     const rows = data.map(student => [
@@ -98,33 +125,104 @@ const Dashboard = () => {
     document.body.removeChild(link);
   };
 
-  const handleDownloadPresent = () => downloadCSV(presentStudentList, `present_students_${new Date().toISOString().split("T")[0]}.csv`);
-  const handleDownloadAbsent = () => downloadCSV(absentStudentList, `absent_students_${new Date().toISOString().split("T")[0]}.csv`);
+  const handleDownloadPresent = () => {
+    downloadCSV(presentStudentList, `present_students_${new Date().toISOString().split("T")[0]}.csv`);
+    logUserActivity("Download CSV", { type: "Present Students" });
+  };
 
-  // Utility Functions for Opening Full Pages
-  //   const openFullPageReport = () => window.open(`${API_URL}/report`, "_blank");
+  const handleDownloadAbsent = () => {
+    downloadCSV(absentStudentList, `absent_students_${new Date().toISOString().split("T")[0]}.css`);
+    logUserActivity("Download CSV", { type: "Absent Students" });
+  };
 
-  const openFullPagePresent = () => window.open(`${API_URL}/fcchome-present-students`, "_blank");
-  const openFullPageAbsent = () => window.open(`${API_URL}/fcchome-absent-students`, "_blank");
-  const openFullPageAdmissions = () => window.open(`${API_URL}/fcchome-admitted-students`, "_blank");
-  const openFullPageTasks = () => window.open(`/fcchome-task-completion`, "_blank");
-  const openFullPageFeeManagement = () => window.open(`/fee-management`, "_blank");
-  const openFullPageStudentAttendance = () => window.open(`/student-attendance`, "_blank");
-  const openFullPageStudentList = () => window.open(`/student-list`, "_blank");
-  const openFullPageFileUpload = () => window.open(`/download-upload-data`, "_blank");
-  const openFullPageStudentManagement = () => window.open(`/student-management`, "_blank");
-  const openFullPageFcchomeAI = () => window.open(`/fcchome-ai`, "_blank");
-  const openFullPageTaskSubmission = () => window.open(`/task-submition`, "_blank");
-  const openFullPageTaskcheck = () => window.open(`/taskcheck`, "_blank");
-  const openFullPageStudentAdmission = () => window.open(`/student-admission`, "_blank");
-  const openFullPageReport = () => window.open(`/report`, "_blank");
-  const openFullPageSkillUpdate = () => window.open(`/skill-update`, "_blank"); 
+  const openFullPagePresent = () => {
+    window.open(`${API_URL}/fcchome-present-students`, "_blank");
+    logUserActivity("Open Full Page", { section: "Present Students" });
+  };
 
-  const toggleSidebar = () => setIsSidebarCollapsed(!isSidebarCollapsed);
+  const openFullPageAbsent = () => {
+    window.open(`${API_URL}/fcchome-absent-students`, "_blank");
+    logUserActivity("Open Full Page", { section: "Absent Students" });
+  };
+
+  const openFullPageAdmissions = () => {
+    window.open(`${API_URL}/fcchome-admitted-students`, "_blank");
+    logUserActivity("Open Full Page", { section: "Admissions" });
+  };
+
+  const openFullPageTasks = () => {
+    window.open(`/fcchome-task-completion`, "_blank");
+    logUserActivity("Open Full Page", { section: "Tasks" });
+  };
+
+  const openFullPageFeeManagement = () => {
+    window.open(`/fee-management`, "_blank");
+    logUserActivity("Open Full Page", { section: "Fee Management" });
+  };
+
+  const openFullPageStudentAttendance = () => {
+    window.open(`/student-attendance`, "_blank");
+    logUserActivity("Open Full Page", { section: "Student Attendance" });
+  };
+
+  const openFullPageStudentList = () => {
+    window.open(`/student-list`, "_blank");
+    logUserActivity("Open Full Page", { section: "Student List" });
+  };
+
+  const openFullPageFileUpload = () => {
+    window.open(`/download-upload-data`, "_blank");
+    logUserActivity("Open Full Page", { section: "File Upload" });
+  };
+
+  const openFullPageStudentManagement = () => {
+    window.open(`/student-management`, "_blank");
+    logUserActivity("Open Full Page", { section: "Student Management" });
+  };
+
+  const openFullPageFcchomeAI = () => {
+    window.open(`/fcchome-ai`, "_blank");
+    logUserActivity("Open Full Page", { section: "Fcchome AI" });
+  };
+
+  const openFullPageTaskSubmission = () => {
+    window.open(`/task-submition`, "_blank");
+    logUserActivity("Open Full Page", { section: "Task Submission" });
+  };
+
+  const openFullPageTaskcheck = () => {
+    window.open(`/taskcheck`, "_blank");
+    logUserActivity("Open Full Page", { section: "Task Check" });
+  };
+
+  const openFullPageStudentAdmission = () => {
+    window.open(`/student-admission`, "_blank");
+    logUserActivity("Open Full Page", { section: "Student Admission" });
+  };
+
+  const openFullPageReport = () => {
+    window.open(`/report`, "_blank");
+    logUserActivity("Open Full Page", { section: "Report" });
+  };
+
+  const openFullPageSkillUpdate = () => {
+    window.open(`/skill-update`, "_blank");
+    logUserActivity("Open Full Page", { section: "Skill Update" });
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+    logUserActivity("Toggle Sidebar", { collapsed: !isSidebarCollapsed });
+  };
+
+  const handleSectionChange = (section) => {
+    setActiveSection(section);
+    logUserActivity("Change Section", { new_section: section });
+  };
 
   const renderTable = (students, title) => (
-    <div className="table-container">
-      <div className="table-wrapper">
+    <div className="dash-table-container">
+      <div className="dash-table-wrapper">
         <table>
           <thead>
             <tr>
@@ -155,9 +253,8 @@ const Dashboard = () => {
     </div>
   );
 
-  // Info Box Component
   const InfoBox = ({ description }) => (
-    <div className="info-box">
+    <div className="dash-info-box">
       <p>{description}</p>
     </div>
   );
@@ -168,9 +265,9 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में कुल दाखिल छात्रों की संख्या और उनकी सूची देख सकते हैं।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>कुल दाखिले: {totalAdmissions ?? "--"}</h3>
-              <button className="new-window-btn" onClick={openFullPageAdmissions}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageAdmissions}>नई विंडो में खोलें</button>
             </div>
             {renderTable(admittedStudentsList, "दाखिल छात्रों की सूची")}
           </>
@@ -179,11 +276,11 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में दैनिक कार्य पूर्णता की स्थिति देख सकते हैं, जैसे आज और पहले के पूर्ण/अपूर्ण कार्य।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>दैनिक कार्य पूर्णता</h3>
-              <button className="new-window-btn" onClick={openFullPageTasks}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageTasks}>नई विंडो में खोलें</button>
             </div>
-            <div className="task-summary">
+            <div className="dash-task-summary">
               <p>आज पूर्ण: <span>{completedTasksToday ?? "--"}</span></p>
               <p>आज अपूर्ण: <span>{notCompletedTasksToday ?? "--"}</span></p>
               <p>पहले पूर्ण: <span>{completedTasksBeforeToday ?? "--"}</span></p>
@@ -196,24 +293,24 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में छात्रों की उपस्थिति और अनुपस्थिति की जानकारी देख सकते हैं और CSV डाउनलोड कर सकते हैं।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>छात्र उपस्थिति</h3>
-              <div className="attendance-buttons">
-                <button className="new-window-btn" onClick={openFullPagePresent}>उपस्थित - नई विंडो में खोलें</button>
-                <button className="new-window-btn" onClick={openFullPageAbsent}>अनुपस्थित - नई विंडो में खोलें</button>
+              <div className="dash-attendance-buttons">
+                <button className="dash-new-window-btn" onClick={openFullPagePresent}>उपस्थित - नई विंडो में खोलें</button>
+                <button className="dash-new-window-btn" onClick={openFullPageAbsent}>अनुपस्थित - नई विंडो में खोलें</button>
               </div>
             </div>
-            <div className="attendance-summary">
-              <div className="attendance-header">
-                <p className="present">उपस्थित: {presentStudents ?? "--"}</p>
-                <button className="download-btn" onClick={handleDownloadPresent}>CSV डाउनलोड करें</button>
+            <div className="dash-attendance-summary">
+              <div className="dash-attendance-header">
+                <p className="dash-present">उपस्थित: {presentStudents ?? "--"}</p>
+                <button className="dash-download-btn" onClick={handleDownloadPresent}>CSV डाउनलोड करें</button>
               </div>
               {renderTable(presentStudentList, "उपस्थित छात्रों का विवरण")}
             </div>
-            <div className="attendance-summary">
-              <div className="attendance-header">
-                <p className="absent">अनुपस्थित: {absentStudents ?? "--"}</p>
-                <button className="download-btn" onClick={handleDownloadAbsent}>CSV डाउनलोड करें</button>
+            <div className="dash-attendance-summary">
+              <div className="dash-attendance-header">
+                <p className="dash-absent">अनुपस्थित: {absentStudents ?? "--"}</p>
+                <button className="dash-download-btn" onClick={handleDownloadAbsent}>CSV डाउनलोड करें</button>
               </div>
               {renderTable(absentStudentList, "अनुपस्थित छात्रों का विवरण")}
             </div>
@@ -223,11 +320,11 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में छात्रों के भुगतान संबंधी प्रबंधन और जानकारी देख सकते हैं, और भुगतान जम्मा भी कर सकते है।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>भुगतान प्रबंधन</h3>
-              <button className="new-window-btn" onClick={openFullPageFeeManagement}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageFeeManagement}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <FeeManagement />
             </div>
           </>
@@ -236,11 +333,11 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में छात्रों की उपस्थिति अपडेट हैं।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>छात्र उपस्थिति अपडेट</h3>
-              <button className="new-window-btn" onClick={openFullPageStudentAttendance}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageStudentAttendance}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <StudentsAttendance />
             </div>
           </>
@@ -249,11 +346,11 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में सभी छात्रों की सूची देख सकते हैं।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>छात्र सूची</h3>
-              <button className="new-window-btn" onClick={openFullPageStudentList}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageStudentList}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <StudentList />
             </div>
           </>
@@ -262,11 +359,11 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में (Local Server) पर डेटा को डाउनलोड या अपलोड कर सकते हैं।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>डेटा डाउनलोड/अपलोड</h3>
-              <button className="new-window-btn" onClick={openFullPageFileUpload}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageFileUpload}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <FileUpload />
             </div>
           </>
@@ -275,11 +372,11 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में छात्रों के डेटा (स्किल, ट्यूशन फी, पेमेंट स्टेटस) को अपडेट कर सकते हैं।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>छात्र अपडेट</h3>
-              <button className="new-window-btn" onClick={openFullPageStudentManagement}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageStudentManagement}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <StudentManagement />
             </div>
           </>
@@ -288,11 +385,11 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में AI आधारित FCC होम फीचर्स देख सकते हैं। (हालाँकि ये किसी और मॉडल्स पर आधारित है)" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>एफसीसी होम AI</h3>
-              <button className="new-window-btn" onClick={openFullPageFcchomeAI}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageFcchomeAI}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <FcchomeAI />
             </div>
           </>
@@ -300,12 +397,12 @@ const Dashboard = () => {
       case "task-submission":
         return (
           <>
-            <InfoBox description="इस सेक्शन में छात्रों के कार्य (Homework) दे सकते है। ध्यान रहे बच्चो को 50 स्कोर से ज्यादा का कार्य न दें, और समय+क्लास का सिलेक्शन अच्छे से सोचकर भरे" /> 
-            <div className="card-header">
+            <InfoBox description="इस सेक्शन में छात्रों के कार्य (Homework) दे सकते है। ध्यान रहे बच्चो को 50 स्कोर से ज्यादा का कार्य न दें, और समय+क्लास का सिलेक्शन अच्छे से सोचकर भरे" />
+            <div className="dash-card-header">
               <h3>होमवर्क देना</h3>
-              <button className="new-window-btn" onClick={openFullPageTaskSubmission}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageTaskSubmission}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <TaskSubmissionPage />
             </div>
           </>
@@ -314,11 +411,11 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में जमा किए गए कार्यों की जाँच कर सकते हैं। कौन सा छात्र 50 में से कितना स्कोर लायक काम किया है उसके अनुसार छात्रों को अंक दे।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>होमवर्क जाँच</h3>
-              <button className="new-window-btn" onClick={openFullPageTaskcheck}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageTaskcheck}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <Taskcheck />
             </div>
           </>
@@ -327,11 +424,11 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में नए छात्रों का दाखिला प्रबंधित कर सकते हैं।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>छात्र दाखिला</h3>
-              <button className="new-window-btn" onClick={openFullPageStudentAdmission}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageStudentAdmission}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <StudentAdmission />
             </div>
           </>
@@ -340,94 +437,94 @@ const Dashboard = () => {
         return (
           <>
             <InfoBox description="इस सेक्शन में विभिन्न पेमेंट्स का रिपोर्ट्स देख सकते हैं।" />
-            <div className="card-header">
+            <div className="dash-card-header">
               <h3>पेमेंट्स रिपोर्ट</h3>
-              <button className="new-window-btn" onClick={openFullPageReport}>नई विंडो में खोलें</button>
+              <button className="dash-new-window-btn" onClick={openFullPageReport}>नई विंडो में खोलें</button>
             </div>
-            <div className="section-container">
+            <div className="dash-section-container">
               <Report />
             </div>
           </>
         );
-        case "Skill Update":
-          return (
-            <>
-              <InfoBox description="इस सेक्शन में छात्रों के स्किल अपडेट कर सकते हैं।" />
-              <div className="card-header">
-                <h3>स्किल अपडेट</h3>
-                <button className="new-window-btn" onClick={openFullPageSkillUpdate}>नई विंडो में खोलें</button>
-              </div>
-              <div className="section-container">
-                <SkillUpdate />
-              </div>
-            </>
-          );
+      case "Skill Update":
+        return (
+          <>
+            <InfoBox description="इस सेक्शन में छात्रों के स्किल अपडेट कर सकते हैं।" />
+            <div className="dash-card-header">
+              <h3>स्किल अपडेट</h3>
+              <button className="dash-new-window-btn" onClick={openFullPageSkillUpdate}>नई विंडो में खोलें</button>
+            </div>
+            <div className="dash-section-container">
+              <SkillUpdate />
+            </div>
+          </>
+        );
       default:
         return null;
     }
   };
 
-  if (loading) return <p className="loading">डैशबोर्ड डेटा लोड हो रहा है...</p>;
-  if (error) return <p className="error">डैशबोर्ड डेटा प्राप्त करने में त्रुटि: {error}</p>;
+  if (loading) return <p className="dash-loading">डैशबोर्ड डेटा लोड हो रहा है...</p>;
+  if (error) return <p className="dash-error">डैशबोर्ड डेटा प्राप्त करने में त्रुटि: {error}</p>;
 
   return (
-    <div className="dashboard">
-      <div className={`sidebar ${isSidebarCollapsed ? "collapsed" : ""}`}>
-        <div className="sidebar-header">
+    <div className="dash-dashboard">
+      <div className={`dash-sidebar ${isSidebarCollapsed ? "dash-collapsed" : ""}`}>
+        <div className="dash-sidebar-header">
           <h2>डैशबोर्ड</h2>
-          <button className="toggle-btn" onClick={toggleSidebar}>
+          <button className="dash-toggle-btn" onClick={toggleSidebar}>
             {isSidebarCollapsed ? "▶" : "◀"}
           </button>
         </div>
-        <div className="sidebar-scroll">
+        <div className="dash-sidebar-scroll">
           <ul>
-            <li className={activeSection === "admissions" ? "active" : ""} onClick={() => setActiveSection("admissions")}>
+            <li className={activeSection === "admissions" ? "dash-active" : ""} onClick={() => handleSectionChange("admissions")}>
               कुल दाखिले
             </li>
-            <li className={activeSection === "tasks" ? "active" : ""} onClick={() => setActiveSection("tasks")}>
+            <li className={activeSection === "tasks" ? "dash-active" : ""} onClick={() => handleSectionChange("tasks")}>
               दैनिक कार्य पूर्णता
             </li>
-            <li className={activeSection === "attendance" ? "active" : ""} onClick={() => setActiveSection("attendance")}>
+            <li className={activeSection === "attendance" ? "dash-active" : ""} onClick={() => handleSectionChange("attendance")}>
               छात्र उपस्थिति
             </li>
-            <li className={activeSection === "payment" ? "active" : ""} onClick={() => setActiveSection("payment")}>
+            <li className={activeSection === "payment" ? "dash-active" : ""} onClick={() => handleSectionChange("payment")}>
               भुगतान
             </li>
-            <li className={activeSection === "student-attendance" ? "active" : ""} onClick={() => setActiveSection("student-attendance")}>
+            <li className={activeSection === "student-attendance" ? "dash-active" : ""} onClick={() => handleSectionChange("student-attendance")}>
               छात्र उपस्थिति लगाना
             </li>
-            <li className={activeSection === "student-list" ? "active" : ""} onClick={() => setActiveSection("student-list")}>
+            <li className={activeSection === "student-list" ? "dash-active" : ""} onClick={() => handleSectionChange("student-list")}>
               छात्र सूची
             </li>
-            <li className={activeSection === "download-upload-data" ? "active" : ""} onClick={() => setActiveSection("download-upload-data")}>
+            <li className={activeSection === "download-upload-data" ? "dash-active" : ""} onClick={() => handleSectionChange("download-upload-data")}>
               डेटा डाउनलोड/अपलोड
             </li>
-            <li className={activeSection === "student-management" ? "active" : ""} onClick={() => setActiveSection("student-management")}>
+            <li className={activeSection === "student-management" ? "dash-active" : ""} onClick={() => handleSectionChange("student-management")}>
               छात्र प्रबंधन (mini 1.o)
             </li>
-            <li className={activeSection === "fcchome-ai" ? "active" : ""} onClick={() => setActiveSection("fcchome-ai")}>
+            <li className={activeSection === "fcchome-ai" ? "dash-active" : ""} onClick={() => handleSectionChange("fcchome-ai")}>
               एफसीसी होम AI
             </li>
-            <li className={activeSection === "task-submission" ? "active" : ""} onClick={() => setActiveSection("task-submission")}>
+            <li className={activeSection === "task-submission" ? "dash-active" : ""} onClick={() => handleSectionChange("task-submission")}>
               कार्य(होमवर्क) देना
             </li>
-            <li className={activeSection === "taskcheck" ? "active" : ""} onClick={() => setActiveSection("taskcheck")}>
+            <li className={activeSection === "taskcheck" ? "dash-active" : ""} onClick={() => handleSectionChange("taskcheck")}>
               कार्य(होमवर्क) जाँच
             </li>
-            <li className={activeSection === "student-admission" ? "active" : ""} onClick={() => setActiveSection("student-admission")}>
+            <li className={activeSection === "student-admission" ? "dash-active" : ""} onClick={() => handleSectionChange("student-admission")}>
               छात्र दाखिला
             </li>
-            <li className={activeSection === "report" ? "active" : ""} onClick={() => setActiveSection("report")}>
+            <li className={activeSection === "report" ? "dash-active" : ""} onClick={() => handleSectionChange("report")}>
               पेमेंट्स रिपोर्ट
             </li>
-            <li className={activeSection === "Skill Update" ? "active" : ""} onClick={() => setActiveSection("Skill Update")}>
-              स्किल अपडेट 
-              </li>
+            <li className={activeSection === "Skill Update" ? "dash-active" : ""} onClick={() => handleSectionChange("Skill Update")}>
+              स्किल अपडेट
+            </li>
           </ul>
         </div>
       </div>
-      <div className="main-content">
-        <div className="title-bar">
+      <div className="dash-main-content">
+        <div className="dash-title-bar">
           <span>
             डैशबोर्ड अवलोकन -{" "}
             {activeSection === "admissions"
@@ -454,9 +551,9 @@ const Dashboard = () => {
               ? "कार्य जाँच"
               : activeSection === "student-admission"
               ? "छात्र दाखिला"
-              : activeSection === "Skill Update"
-              ? "स्किल अपडेट"
-              : "रिपोर्ट"}
+              : activeSection === "report"
+              ? "रिपोर्ट"
+              : "स्किल अपडेट"}
           </span>
         </div>
         {renderContent()}

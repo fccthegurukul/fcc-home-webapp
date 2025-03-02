@@ -6,6 +6,7 @@ import NotFoundImage from "../assets/404-image.jpg";
 import QrScanner from "react-qr-scanner";
 import { QrCode, ScanLine, XCircle } from "lucide-react";
 import upiQR from "../assets/upiqr.png";
+import { v4 as uuidv4 } from 'uuid'; // Import UUID v4
 
 const StudentProfile = () => {
   const [fccId, setFccId] = useState("");
@@ -21,6 +22,7 @@ const StudentProfile = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const profileCardRef = useRef(null);
+  const sessionId = useRef(uuidv4()); // Generate session ID here
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -38,6 +40,30 @@ const StudentProfile = () => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 3000);
   };
+
+  // Reusable function for logging user activity
+  const logUserActivity = useCallback(async (activityType, activityDetails = null) => {
+    try {
+      const activityData = {
+        activity_type: activityType,
+        activity_details: activityDetails ? JSON.stringify(activityDetails) : null,
+        page_url: window.location.pathname,
+        session_id: sessionId.current,
+      };
+
+      await fetch(`${apiUrl}/api/user-activity-log`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "ngrok-skip-browser-warning": "true"
+        },
+        body: JSON.stringify(activityData)
+      });
+      console.log(`User activity '${activityType}' logged successfully.`);
+    } catch (error) {
+      console.error("Error logging user activity:", error);
+    }
+  }, [apiUrl]);
 
   const handleSearch = useCallback(async (searchFccId) => {
     const fccToSearch = searchFccId;
@@ -79,21 +105,24 @@ const StudentProfile = () => {
 
         setRecentProfiles(updatedRecentProfiles);
         localStorage.setItem("recentProfiles", JSON.stringify(updatedRecentProfiles));
+        logUserActivity('Search Student Profile', { fcc_id: fccToSearch, search_result: 'success' }); // Log success
       } else {
         setStudent(null);
         setError(data.error || "विद्यार्थी नहीं मिला");
         showToast(data.error || "विद्यार्थी नहीं मिला", "error");
+        logUserActivity('Search Student Profile', { fcc_id: fccToSearch, search_result: 'failure', error: data.error }); // Log failure
       }
     } catch (error) {
       setError("कुछ त्रुटि हो गयी, कृपया बाद में पुनः प्रयास करें।");
       showToast("कुछ त्रुटि हो गयी, कृपया बाद में पुनः प्रयास करें।", "error");
+      logUserActivity('Search Student Profile', { fcc_id: fccToSearch, search_result: 'exception', error: error.message }); // Log exception
     } finally {
       setLoading(false);
       setScanning(false);
       setFccId("");
       if (inputRef.current) inputRef.current.value = "";
     }
-  }, [apiUrl]);
+  }, [apiUrl, logUserActivity]); // Added logUserActivity to useCallback deps
 
   useEffect(() => {
     const savedRecentProfiles = JSON.parse(localStorage.getItem("recentProfiles")) || [];
@@ -149,8 +178,10 @@ const StudentProfile = () => {
   const handleSearchClick = () => {
     if (fccId.trim() === "") {
       showToast("कृपया FCC ID दर्ज करें", "warning");
+      logUserActivity('Empty Search Attempt');
       return;
     }
+    logUserActivity('Click Search Button', { fcc_id: fccId });
     handleSearch(fccId);
   };
 
@@ -158,6 +189,7 @@ const StudentProfile = () => {
     setFccId(profile.fcc_id);
     handleSearch(profile.fcc_id);
     localStorage.setItem("lastViewedFccId", profile.fcc_id);
+    logUserActivity('Click Recent Profile', { recent_fcc_id: profile.fcc_id, recent_profile_name: profile.name });
   };
 
   const handleRemoveRecentProfile = (e, fcc_id) => {
@@ -166,6 +198,7 @@ const StudentProfile = () => {
     setRecentProfiles(updatedRecent);
     localStorage.setItem("recentProfiles", JSON.stringify(updatedRecent));
     showToast("प्रोफ़ाइल हटा दी गई", "info");
+    logUserActivity('Remove Recent Profile', { removed_fcc_id: fcc_id });
   };
 
   const handleScan = (data) => {
@@ -174,6 +207,7 @@ const StudentProfile = () => {
       const numericData = scannedText.replace(/[^0-9]/g, "");
       setFccId(numericData);
       setScanning(false);
+      logUserActivity('Successful QR Scan', { scanned_fcc_id: numericData });
       setTimeout(() => {
         handleSearch(numericData);
         if (inputRef.current) inputRef.current.value = "";
@@ -185,6 +219,7 @@ const StudentProfile = () => {
     console.error("QR स्कैनर त्रुटि:", err);
     setError("QR स्कैनर में त्रुटि: " + err.message);
     setScanning(false);
+    logUserActivity('QR Scan Error', { error_message: err.message });
   };
 
   const handleScanClick = () => {
@@ -192,12 +227,42 @@ const StudentProfile = () => {
     setError("");
     setStudent(null);
     setFccId("");
+    logUserActivity('Initiate QR Scan');
   };
 
   const handleScanCancel = () => {
     setScanning(false);
     setError("");
+    logUserActivity('Cancel QR Scan');
   };
+
+  const handlePaymentButtonClick = () => {
+    setShowPaymentModal(true);
+    logUserActivity('Click Payment Button', { fcc_id: student.fcc_id, payment_due: feeDetails?.fee_remaining });
+  };
+
+  const handleViewCtcCtgButtonClick = () => { // New handler for "View Coaching Time" button
+    logUserActivity('Click View Coaching Time Button', { fcc_id: student.fcc_id, student_name: student.name });
+    navigate("/view-ctc-ctg", {
+        state: { fccId: student.fcc_id, name: student.name, father: student.father, mobile_number: student.mobile_number, recentProfiles, student },
+    });
+  };
+
+  const handleCardHubButtonClick = () => { // New handler for "View Card Hub" button
+      logUserActivity('Click View Card Hub Button', { fcc_id: student.fcc_id, student_name: student.name });
+      navigate("/card-hub", { state: { fccId: student.fcc_id, recentProfiles, student } });
+  };
+
+  const handleLeaderboardButtonClick = () => { // New handler for "View Leaderboard" button
+      logUserActivity('Click Leaderboard Button', { fcc_id: student.fcc_id, student_name: student.name });
+      navigate("/leaderboard", { state: { fccId: student.fcc_id, student } });
+  };
+
+  const handleClassroomButtonClick = () => { // New handler for "Go to Classroom" button
+      logUserActivity('Click Classroom Button');
+      navigate("/classroom");
+  };
+
 
   const SkeletonProfileCard = () => (
     <div className={styles.skeletonProfileCard}>
@@ -353,17 +418,13 @@ const StudentProfile = () => {
           )}
 
           {student && student.tutionfee_paid && feeDetails && feeDetails.fee_remaining > 0 && (
-            <button className={styles.paymentButton} onClick={() => setShowPaymentModal(true)}>जमा करें</button>
+            <button className={styles.paymentButton} onClick={handlePaymentButtonClick}>जमा करें</button>
           )}
 
           <div className={styles.buttonGroup}>
             <button
               className={styles.viewCtcCtgButton}
-              onClick={() =>
-                navigate("/view-ctc-ctg", {
-                  state: { fccId: student.fcc_id, name: student.name, father: student.father, mobile_number: student.mobile_number, recentProfiles, student },
-                })
-              }
+              onClick={handleViewCtcCtgButtonClick} // Updated handler
               aria-label={`${student.name} का कोचिंग टाइम देखें`}
             >
               <span className={styles.buttonTitle}>{student.name} का कोचिंग टाइम</span>
@@ -373,7 +434,7 @@ const StudentProfile = () => {
 
           <button
             className={styles.cardHubButton}
-            onClick={() => navigate("/card-hub", { state: { fccId: student.fcc_id, recentProfiles, student } })}
+            onClick={handleCardHubButtonClick} // Updated handler
             aria-label={`${student.name} का पढ़ाई विवरण देखें`}
           >
             <span className={styles.buttonTitle}>{student.name} का पढ़ाई विवरण</span>
@@ -381,7 +442,7 @@ const StudentProfile = () => {
           </button>
           <button
             className={styles.viewLeaderboardButton}
-            onClick={() => navigate("/leaderboard", { state: { fccId: student.fcc_id, student } })}
+            onClick={handleLeaderboardButtonClick} // Updated handler
             aria-label="लीडरबोर्ड देखें"
           >
             <span className={styles.buttonTitle}>लीडरबोर्ड</span>
@@ -389,7 +450,7 @@ const StudentProfile = () => {
           </button>
           <button
             className={styles.viewClassroomButton}
-            onClick={() => navigate("/classroom")}
+            onClick={handleClassroomButtonClick}  // Updated handler
           >
             <span className={styles.buttonTitle}>Go to Classroom</span>
             <span className={styles.buttonSubtext}>View Class ➤</span>

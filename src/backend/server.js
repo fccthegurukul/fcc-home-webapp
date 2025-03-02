@@ -78,7 +78,7 @@ const geminiProModel = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 const geminiFlashModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // DeepSeek API Key (via OpenRouter or direct DeepSeek API)
-const DEEPSEEK_API_KEY = "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"; // Replace with your actual key
+const DEEPSEEK_API_KEY = "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"; // Replace with your actual key
 const DEEPSEEK_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
 const app = express();
@@ -1183,9 +1183,163 @@ app.post('/complete-task', async (req, res) => {
   }
 });
 
+// भाषा पहचान के लिए एक साधारण फ़ंक्शन
+const detectLanguage = (text) => {
+  const hindiRegex = /[\u0900-\u097F]/; // देवनागरी स्क्रिप्ट रेंज
+  const hasHindi = hindiRegex.test(text);
+  const hasEnglish = /[a-zA-Z]/.test(text);
+
+  if (hasHindi && hasEnglish) {
+    // मिश्रित भाषा: हिंदी को प्राथमिकता दें
+    return 'hindi';
+  } else if (hasHindi) {
+    return 'hindi';
+  } else {
+    return 'english';
+  }
+};
+
+// प्रॉम्प्ट टेम्पलेट
+// const generatePrompt = (messages, detectedLanguage) => {
+//   const latestMessage = messages[messages.length - 1].content;
+//   const historyText = messages.slice(0, -1).map(msg => `${msg.role}: ${msg.content}`).join('\n');
+
+//   const prompt = `
+//     You are a friendly and helpful AI assistant designed to assist users in their preferred language.
+//     Follow these rules to respond accurately:
+//     1. Detect the user's primary language based on their input:
+//        - If the message contains Hindi characters (Devanagari script), assume Hindi is the primary language and respond fully in Hindi.
+//        - If the message mixes Hindi and English but includes Hindi words or phrases, assume the user prefers Hindi (they may not be fluent in English) and respond in Hindi.
+//        - If the message is entirely in English, respond in English.
+//     2. Keep your tone natural, concise, and conversational, matching the user's style.
+//     3. Use the conversation history to provide context-aware responses.
+//     4. If unsure about the language preference, default to Hindi if Hindi characters are present, otherwise English.
+
+//     Conversation history:
+//     ${historyText ? historyText + '\n' : 'No prior history.\n'}
+//     Current message from user: "${latestMessage}"
+//     Detected language hint: ${detectedLanguage} (use this as a starting point, but adjust based on the rules above)
+    
+//     Now, respond to the user's current message in their preferred language.
+//   `;
+//   return prompt;
+// };
+
+const generatePrompt = (messages, detectedLanguage) => {
+  const latestMessage = messages[messages.length - 1].content;
+  const historyText = messages.slice(0, -1).map(msg => `${msg.role}: ${msg.content}`).join('\n');
+
+  const prompt = `
+    You are a smart, proactive, and user-friendly AI assistant designed to assist in the user's preferred language. Your goal is to provide a helpful and complete response in every situation, minimizing follow-up questions unless absolutely necessary. Follow these rules:
+
+    1. **Language Detection**:
+       - If the message contains Hindi characters (Devanagari script), assume Hindi is the primary language and respond fully in Hindi.
+       - If the message mixes Hindi and English but includes Hindi words or phrases, assume the user prefers Hindi (they may not be fluent in English) and respond in Hindi.
+       - If the message is entirely in English, respond in English.
+       - If unsure, default to Hindi if Hindi characters are present, otherwise English.
+
+    2. **Smart and Proactive Response**:
+       - Always provide a complete and useful answer based on the user's input and conversation history, even if the request is vague or incomplete.
+       - If the request is broad (e.g., "top 10 math formulas"), assume a reasonable context (e.g., common formulas for a general level like 10th grade) and provide a list or answer immediately. Only ask for clarification if the context is truly unclear or contradictory.
+       - Avoid repeatedly asking for more details unless the request is impossible to interpret without them. Instead, make an educated guess and offer additional options if needed.
+       - Use history to infer intent and avoid redundant questions.
+
+    3. **Tone and Style**:
+       - Keep your tone natural, friendly, and concise.
+       - Match the user's communication style (e.g., casual or formal).
+       - Provide answers that are practical and directly usable.
+
+    Conversation history:
+    ${historyText ? historyText + '\n' : 'No prior history.\n'}
+    Current message from user: "${latestMessage}"
+    Detected language hint: ${detectedLanguage} (use this as a starting point, but adjust based on the rules above)
+
+    Now, respond to the user's current message in their preferred language. Provide a complete and helpful answer based on their input and history, assuming reasonable context if details are missing.
+  `;
+  return prompt;
+};
+
+
+// app.post('/api/chat', async (req, res) => {
+//   const { message: userMessage, model: selectedModel, history = [] } = req.body;
+
+//   if (!userMessage) {
+//     return res.status(400).json({ error: 'Message is required' });
+//   }
+
+//   try {
+//     let responseText = "";
+
+//     const messages = [
+//       ...history.map(msg => ({
+//         role: msg.sender === 'user' ? 'user' : 'assistant',
+//         content: msg.text
+//       })),
+//       { role: 'user', content: userMessage }
+//     ];
+
+//     const detectedLanguage = detectLanguage(userMessage);
+
+//     if (selectedModel === 'deepseek') {
+//       const openRouterApiKey = process.env.OPENROUTER_API_KEY;
+//       if (!openRouterApiKey) {
+//         return res.status(500).json({ error: 'DeepSeek API key is missing' });
+//       }
+
+//       const deepseekResponse = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+//         method: 'POST',
+//         headers: {
+//           'Authorization': `Bearer ${openRouterApiKey}`,
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//           model: 'deepseek/deepseek-r1:free',
+//           messages: [
+//             { role: 'system', content: generatePrompt(messages, detectedLanguage) },
+//             ...messages
+//           ]
+//         })
+//       });
+
+//       if (!deepseekResponse.ok) {
+//         const errorDetails = await deepseekResponse.json();
+//         throw new Error(`DeepSeek API request failed: ${errorDetails.error?.message}`);
+//       }
+
+//       const deepseekData = await deepseekResponse.json();
+//       responseText = deepseekData.choices[0].message.content;
+
+//     } else if (selectedModel === 'gemini-pro' || !selectedModel) {
+//       const prompt = generatePrompt(messages, detectedLanguage);
+//       const geminiResult = await geminiProModel.generateContent(prompt);
+//       responseText = geminiResult.response.text();
+
+//     } else if (selectedModel === 'gemini-flash') {
+//       const prompt = generatePrompt(messages, detectedLanguage);
+//       const geminiResult = await geminiFlashModel.generateContent(prompt);
+//       responseText = geminiResult.response.text();
+
+//     } else {
+//       return res.status(400).json({ error: 'Invalid model selected' });
+//     }
+
+//     res.json({
+//       response: responseText,
+//       language: detectedLanguage,
+//       timestamp: new Date().toISOString()
+//     });
+
+//   } catch (error) {
+//     console.error('API error:', error);
+//     res.status(500).json({ error: 'Failed to get response from AI model', details: error.message });
+//   }
+// });
+
 app.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
   const selectedModel = req.body.model;
+  const clientIp = req.ip; // User ka IP address get karein
+  const secretInfo = uuidv4(); // Generate unique UUID for each chat
 
   if (!userMessage) {
       return res.status(400).json({ error: 'Message is required' });
@@ -1195,7 +1349,10 @@ app.post('/api/chat', async (req, res) => {
       let responseText = "";
       if (selectedModel === 'deepseek') {
           // DeepSeek via OpenRouter
-          const openRouterApiKey = "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"; // **OpenRouter API key यहाँ डालें**
+          const openRouterApiKey = process.env.OPENROUTER_API_KEY;
+          if (!openRouterApiKey) {
+              return res.status(500).json({ error: 'DeepSeek API key is missing in environment variables' });
+          }
           const deepseekResponse = await fetch("https://openrouter.ai/api/v1/chat/completions", {
               method: "POST",
               headers: {
@@ -1220,23 +1377,125 @@ app.post('/api/chat', async (req, res) => {
           }
 
           const deepseekData = await deepseekResponse.json();
-          responseText = deepseekData.choices[0].message.content;
+          if (deepseekData && deepseekData.choices && deepseekData.choices.length > 0) { // Check response data
+              responseText = deepseekData.choices[0].message.content;
+          } else {
+              responseText = "DeepSeek API से response prapt nahi hui";
+          }
 
-      } else  if (selectedModel === 'gemini' || !selectedModel) {
-          // Google Gemini (डिफ़ॉल्ट)
-          const geminiResult = await geminiModel.generateContent(userMessage);
+
+      } else if (selectedModel === 'mistral') {
+          // Mistral via OpenRouter
+          const openRouterApiKey = process.env.OPENROUTER_API_KEY;
+          if (!openRouterApiKey) {
+              return res.status(500).json({ error: 'OpenRouter API key is missing in environment variables' });
+          }
+          const mistralResponse = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+              method: "POST",
+              headers: {
+                  "Authorization": `Bearer ${openRouterApiKey}`,
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                  "model": "mistralai/mistral-medium",
+                  "messages": [
+                      {
+                          "role": "user",
+                          "content": userMessage
+                      }
+                  ]
+              })
+          });
+
+          if (!mistralResponse.ok) {
+              const errorDetails = await mistralResponse.json();
+              console.error("OpenRouter/Mistral API error:", errorDetails);
+              throw new Error(`Mistral API request failed with status ${mistralResponse.status}: ${errorDetails.error ? errorDetails.error.message : mistralResponse.statusText}`);
+          }
+
+          const mistralData = await mistralResponse.json();
+          if (mistralData && mistralData.choices && mistralData.choices.length > 0) {
+              responseText = mistralData.choices[0].message.content;
+          } else {
+              responseText = "Mistral API से response prapt nahi hui";
+          }
+
+      } else if (selectedModel === 'nous-hermes') {
+          // Nous Hermes via OpenRouter
+          const openRouterApiKey = process.env.OPENROUTER_API_KEY;
+          if (!openRouterApiKey) {
+              return res.status(500).json({ error: 'OpenRouter API key is missing in environment variables' });
+          }
+          const nousHermesResponse = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+              method: "POST",
+              headers: {
+                  "Authorization": `Bearer ${openRouterApiKey}`,
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                  "model": "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",
+                  "messages": [
+                      {
+                          "role": "user",
+                          "content": userMessage
+                      }
+                  ]
+              })
+          });
+
+          if (!nousHermesResponse.ok) {
+              const errorDetails = await nousHermesResponse.json();
+              console.error("OpenRouter/Nous Hermes API error:", errorDetails);
+              throw new Error(`Nous Hermes API request failed with status ${nousHermesResponse.status}: ${errorDetails.error ? errorDetails.error.message : nousHermesResponse.statusText}`);
+          }
+
+          const nousHermesData = await nousHermesResponse.json();
+          if (nousHermesData && nousHermesData.choices && nousHermesData.choices.length > 0) {
+              responseText = nousHermesData.choices[0].message.content;
+          } else {
+              responseText = "Nous Hermes API से response prapt nahi hui";
+          }
+
+      } else if (!selectedModel || selectedModel === 'gemini-flash') {
+          // Google Gemini Flash (Default)
+          const geminiResult = await geminiFlashModel.generateContent(userMessage);
           responseText = geminiResult.response.text();
+
+      } else if (selectedModel === 'gemini-pro') {
+          // Google Gemini Pro
+          const geminiResult = await geminiProModel.generateContent(userMessage);
+          responseText = geminiResult.response.text();
+
       } else {
           return res.status(400).json({ error: 'Invalid model selected' });
       }
 
-      res.json({ response: responseText });
+      // Chat history database mein save karein
+      try {
+          const insertQuery = `
+              INSERT INTO chat_history (user_name, ip_address, selected_model, user_message, bot_response, secret_info)
+              VALUES ($1, $2, $3, $4, $5, $6)
+              RETURNING id, timestamp, secret_info;
+          `;
+          const insertValues = ['default_user', clientIp, selectedModel, userMessage, responseText, secretInfo];
+          const chatHistoryResult = await pool.query(insertQuery, insertValues);
+          console.log("Chat history saved:", chatHistoryResult.rows[0]);
+
+           res.json({ response: responseText, chat_log_id: chatHistoryResult.rows[0].id, secretInfo: chatHistoryResult.rows[0].secret_info });
+
+
+      } catch (dbError) {
+          console.error("Error saving chat history to database:", dbError);
+          res.json({ response: responseText, db_error: 'Failed to save chat history' });
+      }
+
 
   } catch (error) {
       console.error("API error:", error);
-      res.status(500).json({ error: 'Failed to get response from AI model' });
+      res.status(500).json({ error: 'Failed to get response from AI model', details: error.message });
   }
 });
+
 
 // FCC ID के आधार पर अपडेटेड टेबल से फीस विवरण प्राप्त करने वाला API endpoint
 app.get("/get-tuition-fee-details/:fcc_id", async (req, res) => {
@@ -2546,7 +2805,7 @@ app.post('/api/analyze-speech', async (req, res) => {
     You are an English-speaking assistant helping a learner practice English conversationally. Your goal is to improve their speaking skills by providing detailed feedback and encouraging practice.
     Analyze their latest input: "${text}"
     Provide the response in nine parts, separated by "---":
-    1. Corrected Version: Give a direct, corrected version of what they should have said (simple and natural). If the input is 90%+ incorrect (score ≤ 10%), say: "I couldn’t understand you. Please tell me in Hindi what you meant, and I’ll help you say it in English!"
+    Corrected Version: Give a direct, corrected version of what they should have said (simple and natural). If the input is 90%+ incorrect (score ≤ 10%), say: "I couldn’t understand you. Please tell me in Hindi what you meant, and I’ll help you say it in English!"
     2. Hindi Analysis: Explain in Hindi why the corrected version is better, pointing out specific mistakes (grammar, spelling, clarity, relevance) in a friendly tone. If the score is ≤ 10%, say: "आप क्या बोलना चाहते हैं? मुझे हिंदी में बताइए, मैं उसे अंग्रेजी में अनुवाद कर दूंगा!" and encourage them.
     3. Pronunciation Tip: Provide a short tip in Hindi about how to pronounce a key word or phrase from the corrected version (e.g., "‘Hello’ को ‘हैलो’ बोलते हैं, 'h' पर जोर दो!").
     4. Vocabulary Word: Pick one new or important word from the corrected version and give its Hindi meaning (e.g., "Word: Beautiful - सुंदर").
@@ -2558,8 +2817,8 @@ app.post('/api/analyze-speech', async (req, res) => {
        - 0-39%: Mostly incorrect or unclear (Needs Improvement)
        Format: "Score: XX%\nBadge: [Badge Name]"
     6. Corrected Score and Badge: Assign a score (typically 90-100%) and badge to the "Corrected Version". Format: "Score: XX%\nBadge: [Badge Name]"
-    7. Next Question: Ask a follow-up question based on their input to keep the conversation going (keep it simple and relevant).
-    8. Next Question Hindi: Provide the Hindi translation of the "Next Question".
+    Next Question: Ask a follow-up question based on their input to keep the conversation going (keep it simple and relevant).
+    Next Question Hindi: Provide the Hindi translation of the "Next Question".
     9. Mini Info: Provide a short tip in Hindi about why answering the "Next Question" helps (e.g., "इससे आपको रोज़मर्रा की बातचीत की प्रैक्टिस मिलेगी!").
     Use the previous conversation (history below) to understand context and make responses natural.
     Previous conversation:
@@ -2752,47 +3011,45 @@ app.post('/api/english-progress', async (req, res) => {
   }
 });
 
+// API endpoint to log user activity
+app.post('/api/user-activity-log', async (req, res) => {
+  const { activity_type, activity_details, page_url, session_id: frontendSessionId } = req.body;
+  const clientIp = req.ip; // Get user IP address
+  const sessionUuid = frontendSessionId || uuidv4(); // Use session ID from frontend or generate new
+
+  if (!activity_type) {
+      return res.status(400).json({ error: 'Activity type is required' });
+  }
+
+  try {
+      const insertQuery = `
+          INSERT INTO user_activity_log (user_name, ip_address, session_id, page_url, activity_type, activity_details)
+          VALUES ($1, $2, $3, $4, $5, $6)
+          RETURNING id, timestamp;
+      `;
+      const insertValues = ['anonymous_user', clientIp, sessionUuid, page_url, activity_type, activity_details]; // user_name abhi default
+
+      const activityLogResult = await pool.query(insertQuery, insertValues);
+      console.log("User activity logged:", activityLogResult.rows[0]);
+
+      res.status(201).json({ message: 'Activity logged successfully', log_id: activityLogResult.rows[0].id, session_id: sessionUuid });
+
+
+  } catch (dbError) {
+      console.error("Error logging user activity to database:", dbError);
+      res.status(500).json({ error: 'Failed to log user activity', details: dbError.message });
+  }
+});
+
 // Server Startup
 app.listen(port, async () => {
   console.log(`HTTP Server running on port ${port}`);
   try {
     const res = await pool.query('SELECT NOW()');
     console.log('Database connected, response:', res.rows);
-
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS conversations (
-        id SERIAL PRIMARY KEY,
-        user_name VARCHAR(50) NOT NULL,
-        user_input TEXT NOT NULL,
-        corrected_version TEXT NOT NULL,
-        hindi_analysis TEXT NOT NULL,
-        pronunciation_tip TEXT,
-        vocabulary_word TEXT,
-        score INTEGER NOT NULL CHECK (score >= 0 AND score <= 100),
-        badge VARCHAR(20) NOT NULL,
-        corrected_score INTEGER NOT NULL CHECK (corrected_score >= 0 AND corrected_score <= 100),
-        corrected_badge VARCHAR(20) NOT NULL,
-        secret_info VARCHAR(100),
-        next_question TEXT,
-        next_question_hindi TEXT,
-        mini_info TEXT,
-        personalized_message TEXT,
-        timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
+    console.log("Gemini API Key from env:", process.env.GEMINI_API_KEY);
+    console.log("OpenRouter API Key from env:", process.env.OPENROUTER_API_KEY); // Also check 
     console.log('Conversations table ready');
-
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS english_progress (
-        id SERIAL PRIMARY KEY,
-        user_name VARCHAR(50) NOT NULL,
-        secret_code VARCHAR(100) NOT NULL,
-        level VARCHAR(20) NOT NULL,
-        score INTEGER NOT NULL,
-        client_ip VARCHAR(45),
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
     console.log('English progress table ready');
   } catch (err) {
     console.error('Database connection or setup error:', err);

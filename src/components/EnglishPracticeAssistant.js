@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './EnglishPracticeAssistant.css';
+import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
 
 const EnglishPracticeAssistant = () => {
   const [isListening, setIsListening] = useState(false);
@@ -27,9 +28,36 @@ const EnglishPracticeAssistant = () => {
 
   const recognitionRef = useRef(null);
   const silenceTimerRef = useRef(null);
+  const sessionId = useRef(uuidv4()); // Unique session ID for tracking
 
-  // VoiceRSS API कॉन्फ़िगरेशन
-  const VOICERSS_API_KEY = '351d9f38051c43cc8556afc1a82a208f'; // VoiceRSS से प्राप्त करें
+  const VOICERSS_API_KEY = '351d9f38051c43cc8556afc1a82a208f';
+
+  // Reusable function for logging user activity
+  const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
+    try {
+      const activityData = {
+        activity_type: activityType,
+        activity_details: JSON.stringify({
+          ...activityDetails,
+          user_name: userName || 'Anonymous',
+          timestamp: new Date().toISOString(),
+        }),
+        page_url: window.location.pathname,
+        session_id: sessionId.current,
+      };
+
+      const response = await fetch('http://localhost:5000/api/user-activity-log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(activityData),
+      });
+
+      if (!response.ok) throw new Error('Failed to log activity');
+      console.log(`Activity '${activityType}' logged successfully`);
+    } catch (error) {
+      console.error('Error logging user activity:', error);
+    }
+  }, [userName]);
 
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -49,11 +77,8 @@ const EnglishPracticeAssistant = () => {
 
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
-        if (event.results[i].isFinal) {
-          finalTranscript += transcript;
-        } else {
-          interimTranscript = transcript;
-        }
+        if (event.results[i].isFinal) finalTranscript += transcript;
+        else interimTranscript = transcript;
       }
 
       const currentText = finalTranscript || interimTranscript;
@@ -62,27 +87,20 @@ const EnglishPracticeAssistant = () => {
 
       if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
       silenceTimerRef.current = setTimeout(() => {
-        if (isListening && finalTranscript) {
-          recognitionRef.current.stop();
-        }
+        if (isListening && finalTranscript) recognitionRef.current.stop();
       }, 3500);
     };
 
     recognitionRef.current.onend = () => {
       setIsListening(false);
-      // नया तरीका: माइक बंद होने पर सीधे submitTypedText कॉल करें
       if (typedText.trim() && !isSpeaking && !isLoading) {
-        console.log('Mic stopped, submitting text:', typedText);
         submitTypedText();
-      } else {
-        console.log('Text not submitted due to:', { text: typedText, isSpeaking, isLoading });
       }
     };
 
     recognitionRef.current.onerror = (event) => {
       setHindiAnalysis('आवाज पहचानने में त्रुटि: ' + event.error);
       setIsListening(false);
-      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
     };
 
     return () => {
@@ -119,6 +137,7 @@ const EnglishPracticeAssistant = () => {
       setIsListening(true);
       setTypedText('');
       recognitionRef.current.start();
+      logUserActivity('Start Listening');
     }
   };
 
@@ -141,8 +160,13 @@ const EnglishPracticeAssistant = () => {
   const submitTypedText = () => {
     if (typedText.trim() && !isSpeaking && !isLoading) {
       const textToAnalyze = typedText;
-      if (hindiPrompt) analyzeHindiResponse(textToAnalyze);
-      else analyzeSpeech(textToAnalyze);
+      if (hindiPrompt) {
+        analyzeHindiResponse(textToAnalyze);
+        logUserActivity('Submit Hindi Text', { text: textToAnalyze });
+      } else {
+        analyzeSpeech(textToAnalyze);
+        logUserActivity('Submit English Text', { text: textToAnalyze });
+      }
       setTypedText('');
       setSpokenText(textToAnalyze);
     }
@@ -154,6 +178,7 @@ const EnglishPracticeAssistant = () => {
 
   const analyzeSpeech = async (text) => {
     setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analyze-speech`, {
         method: 'POST',
@@ -206,16 +231,13 @@ const EnglishPracticeAssistant = () => {
                   speakFeedback(cleanText(result.nextQuestion), () => {
                     setTimeout(() => {
                       speakFeedback(cleanText(result.nextQuestionHindi), () => {});
-                    }, 2000); // 2 सेकंड का अंतर
+                    }, 2000);
                   });
                 }
               }, 2000);
             });
           }
         }, 1000);
-      } else if (response.status === 429) {
-        setHindiAnalysis('बहुत सारी रिक्वेस्ट्स भेज दी गई हैं। कृपया थोड़ी देर बाद कोशिश करें।');
-        setPersonalizedMessage('थोड़ा इंतजार करें, फिर शुरू करें!');
       } else {
         setHindiAnalysis('कुछ गलत हो गया। दोबारा कोशिश करें!');
         setScore(0);
@@ -236,6 +258,7 @@ const EnglishPracticeAssistant = () => {
 
   const analyzeHindiResponse = async (hindiText) => {
     setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analyze-speech`, {
         method: 'POST',
@@ -288,16 +311,13 @@ const EnglishPracticeAssistant = () => {
                   speakFeedback(cleanText(result.nextQuestion), () => {
                     setTimeout(() => {
                       speakFeedback(cleanText(result.nextQuestionHindi), () => {});
-                    }, 2000); // 2 सेकंड का अंतर
+                    }, 2000);
                   });
                 }
               }, 2000);
             });
           }
         }, 1000);
-      } else if (response.status === 429) {
-        setHindiAnalysis('बहुत सारी रिक्वेस्ट्स भेज दी गई हैं। कृपया थोड़ी देर बाद कोशिश करें।');
-        setPersonalizedMessage('थोड़ा इंतजार करें, फिर शुरू करें!');
       } else {
         setHindiAnalysis('कुछ गलत हो गया। दोबारा कोशिश करें!');
         setScore(0);
@@ -316,13 +336,13 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // VoiceRSS API के साथ TTS (अंग्रेजी धीमी)
   const speakFeedback = async (text, callback) => {
     if (!isSpeaking) {
       setIsSpeaking(true);
+      logUserActivity('Speak Feedback', { text });
       try {
         const lang = text.match(/[अ-ह]/) ? 'hi-in' : 'en-us';
-        const speed = lang === 'en-us' ? -2 : 0; // अंग्रेजी के लिए धीमी स्पीड (-2), हिंदी के लिए सामान्य (0)
+        const speed = lang === 'en-us' ? -2 : 0;
         const url = `http://api.voicerss.org/?key=${VOICERSS_API_KEY}&hl=${lang}&src=${encodeURIComponent(text)}&r=${speed}&f=48khz_16bit_stereo`;
         const audio = new Audio(url);
         audio.onended = () => {
@@ -333,7 +353,7 @@ const EnglishPracticeAssistant = () => {
           console.error('VoiceRSS API error, falling back to Web Speech API');
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.lang = lang === 'hi-in' ? 'hi-IN' : 'en-US';
-          utterance.rate = lang === 'en-US' ? 0.7 : 1.0; // अंग्रेजी के लिए धीमा
+          utterance.rate = lang === 'en-US' ? 0.7 : 1.0;
           const voices = window.speechSynthesis.getVoices();
           utterance.voice = voices.find(voice => voice.name.includes('Google')) || voices[0];
           utterance.onend = () => {
@@ -353,9 +373,7 @@ const EnglishPracticeAssistant = () => {
   useEffect(() => {
     const loadVoices = () => {
       const voices = window.speechSynthesis.getVoices();
-      if (voices.length > 0) {
-        console.log('Available voices:', voices.map(v => v.name));
-      }
+      if (voices.length > 0) console.log('Available voices:', voices.map(v => v.name));
     };
     window.speechSynthesis.onvoiceschanged = loadVoices;
     loadVoices();
@@ -366,12 +384,15 @@ const EnglishPracticeAssistant = () => {
     if (userName.trim()) {
       localStorage.setItem('userName', userName);
       setIsLoginModalOpen(false);
+      logUserActivity('Login', { user_name: userName });
     }
   };
 
   const averageScore = conversationHistory.length > 0
     ? Math.round(conversationHistory.reduce((sum, entry) => sum + entry.score, 0) / conversationHistory.length)
     : 0;
+
+  const scoreDifference = correctedScore && score ? correctedScore - score : null;
 
   return (
     <div className="english-practice-container">
@@ -388,7 +409,7 @@ const EnglishPracticeAssistant = () => {
             </div>
           )}
           <div className="next-prompt">
-            <h2>आगे क्या बोलें:</h2>
+            <h2 className='next-question-h2'>आगे क्या बोलें</h2>
             <p className="prompt-text">{nextQuestion}</p>
             <p className="prompt-hindi">{nextQuestionHindi}</p>
           </div>
@@ -398,20 +419,32 @@ const EnglishPracticeAssistant = () => {
       <main className="main-content">
         <section className="interaction-section">
           <div className="input-area">
-            <button
-              onClick={startListening}
-              disabled={isListening || isSpeaking || isLoading}
-              className={`mic-button ${isListening ? 'listening' : ''}`}
-            >
-              <span>{isListening ? '🎤 सुन रहा हूँ...' : '🎤 बोलें'}</span>
-            </button>
+            <div className={`ai-assistant ${isSpeaking ? 'speaking' : ''}`}>
+              <div className="ai-avatar">
+                <span className="avatar-icon">
+                  <i className="fas fa-robot"></i>
+                </span>
+              </div>
+              <div className="ai-speech-bubble">
+                <p>{isSpeaking ? 'मैं बोल रहा हूँ...' : 'अब आप बोलिए | आपकी बारी →'}</p>
+              </div>
+              <button
+                onClick={startListening}
+                disabled={isListening || isSpeaking || isLoading}
+                className={`mic-button ${isListening ? 'listening' : ''}`}
+              >
+                <span className={`mic-icon ${isListening ? 'animate' : ''}`}>
+                  <i className="fas fa-microphone"></i>
+                </span>
+              </button>
+            </div>
 
             <div className="text-input-wrapper">
               <input
                 type="text"
                 value={typedText}
                 onChange={(e) => setTypedText(e.target.value)}
-                placeholder={hindiPrompt ? 'हिंदी में बताएं...' : 'या यहाँ टाइप करें...'}
+                placeholder={hindiPrompt ? 'हिंदी में बताएं / लिखे...' : 'यहाँ लिखे या बोलें...'}
                 onKeyPress={(e) => e.key === 'Enter' && submitTypedText()}
                 className="text-input"
               />
@@ -420,50 +453,60 @@ const EnglishPracticeAssistant = () => {
                 disabled={isLoading || isSpeaking || !typedText.trim()}
                 className="send-button"
               >
-                ➤
+                <span className="send-icon">➤</span>
               </button>
             </div>
           </div>
 
-          {(correctedVersion || hindiAnalysis) && (
+          {(spokenText || correctedVersion) && (
             <div className="feedback-area">
               {isLoading ? (
-                <div className="loading-overlay">
-                  <div className="spinner advanced-spinner"></div>
-                  <p className="loading-text">विश्लेषण हो रहा है...</p>
+                <div className="in-page-loader">
+                  <div className="loader-bar">
+                    <div className="loader-progress"></div>
+                  </div>
+                  <p className="loader-text">विश्लेषण हो रहा है...</p>
                 </div>
               ) : (
                 <div className="feedback-card">
-                  <div className="feedback-item input-feedback">
-                    <h3>आपने कहा:</h3>
-                    <p>{spokenText}</p>
-                  </div>
-                  <div className="feedback-item corrected-feedback">
-                    <h3>सही तरीका:</h3>
-                    <p>{correctedVersion}</p>
-                    <button
-                      onClick={() => speakFeedback(correctedVersion)}
-                      className="speak-button"
-                      disabled={isSpeaking}
-                    >
-                      🔊
-                    </button>
-                  </div>
-                  <div className="feedback-item score-feedback">
-                    <p>सटीकता: <span className={`score ${badge.toLowerCase()}`}>{score}% - {badge}</span></p>
+                  <div className="comparison-section">
+                    <div className="comparison-item">
+                      <h3>आपने कहा</h3>
+                      <p>{spokenText}</p>
+                      <p className="score-display">स्कोर: {score}% ({badge})</p>
+                    </div>
+                    <div className="comparison-item">
+                      <h3>सही तरीका</h3>
+                      <p>{correctedVersion}</p>
+                      <p className="score-display">स्कोर: {correctedScore}% ({correctedBadge})</p>
+                      <button
+                        onClick={() => speakFeedback(correctedVersion)}
+                        className="speak-button"
+                        disabled={isSpeaking}
+                      >
+                        🔊
+                      </button>
+                    </div>
+                    {scoreDifference !== null && (
+                      <p className="score-difference">
+                        अंतर: <span className={scoreDifference > 0 ? 'positive' : 'negative'}>
+                          {scoreDifference > 0 ? `+${scoreDifference}` : scoreDifference}%
+                        </span>
+                      </p>
+                    )}
                   </div>
                   <div className="feedback-item analysis-feedback">
-                    <h3>यह बेहतर क्यों है:</h3>
+                    <h3 className='h3-feedback'>यह बेहतर क्यों है</h3>
                     <p>{hindiAnalysis}</p>
                     {pronunciationTip && (
                       <>
-                        <h3>उच्चारण टिप:</h3>
+                        <h3 className='h3-feedback'>उच्चारण टिप</h3>
                         <p>{pronunciationTip}</p>
                       </>
                     )}
                     {vocabularyWord && (
                       <>
-                        <h3>नया शब्द:</h3>
+                        <h3 className='h3-feedback'>नया शब्द</h3>
                         <p>{vocabularyWord}</p>
                       </>
                     )}
@@ -471,7 +514,7 @@ const EnglishPracticeAssistant = () => {
                       <p className="personalized-message">{personalizedMessage}</p>
                     )}
                     {secretInfo && (
-                      <p className="secret-info">टिप: <span>{secretInfo}</span></p>
+                      <p className="secret-info"><span>{secretInfo}</span></p>
                     )}
                   </div>
                 </div>
@@ -484,13 +527,13 @@ const EnglishPracticeAssistant = () => {
           <h2>आपका अभ्यास इतिहास</h2>
           <div className="history-list">
             {conversationHistory.length === 0 ? (
-              <p className="empty-history">यहाँ आपका इतिहास दिखेगा। बोलना शुरू करें!</p>
+              <p className="empty-history">अभी कोई इतिहास नहीं है। बोलना शुरू करें!</p>
             ) : (
               conversationHistory.map((entry, index) => (
                 <div key={index} className="history-item">
                   <p className="user-text"><strong>आप:</strong> {entry.user_input}</p>
                   <p className="corrected-text"><strong>सही:</strong> {entry.corrected_version}</p>
-                  <p className="score-text">अंक: <span className={entry.badge.toLowerCase()}>{entry.score}% - {entry.badge}</span></p>
+                  <p className="score-text">स्कोर: <span className={entry.badge.toLowerCase()}>{entry.score}% ({entry.badge})</span></p>
                 </div>
               ))
             )}

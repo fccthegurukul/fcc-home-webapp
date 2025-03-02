@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft, Play, Pause, SkipForward, SkipBack } from 'lucide-react';
 import './CardHub.css';
 import NotFoundImage from '../assets/404-image.jpg';
+import { v4 as uuidv4 } from 'uuid'; // Import UUID v4
 
 const CardHub = () => {
     const [skills, setSkills] = useState([]);
@@ -14,8 +15,9 @@ const CardHub = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [expandedLog, setExpandedLog] = useState(false);
     const [zoomedImage, setZoomedImage] = useState(null);
-    const navigate = useNavigate(); // Fix: useNavigate assignment was missing
+    const navigate = useNavigate();
     const location = useLocation();
+    const sessionId = useRef(uuidv4()); // Generate session ID here
 
     const initialFccId = location.state?.fccId;
     const recentProfilesData = location.state?.recentProfiles || [];
@@ -45,7 +47,31 @@ const CardHub = () => {
             const savedRecentProfiles = JSON.parse(localStorage.getItem('recentProfiles')) || [];
             setRecentProfiles(savedRecentProfiles);
         }
-    }, []); // Fix: Dependency array corrected to []
+    }, []);
+
+    // Reusable function for logging user activity
+    const logUserActivity = useCallback(async (activityType, activityDetails = null) => {
+        try {
+            const activityData = {
+                activity_type: activityType,
+                activity_details: activityDetails ? JSON.stringify(activityDetails) : null,
+                page_url: window.location.pathname,
+                session_id: sessionId.current,
+            };
+
+            await fetch(`${apiUrl}/api/user-activity-log`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "ngrok-skip-browser-warning": "true"
+                },
+                body: JSON.stringify(activityData)
+            });
+            console.log(`User activity '${activityType}' logged successfully.`);
+        } catch (error) {
+            console.error("Error logging user activity:", error);
+        }
+    }, [apiUrl]);
 
     const fetchSkills = useCallback(async () => {
         if (!fccId) {
@@ -97,7 +123,7 @@ const CardHub = () => {
             console.error('Error fetching student profile:', error);
             setStudent(null);
         }
-    }, [apiUrl, fccId]); // Fix: 'recentProfiles' removed from dependency array of fetchStudentProfile
+    }, [apiUrl, recentProfiles]); // removed fccId from dependency as fccId change triggers useEffect
 
     useEffect(() => {
         if (fccId) {
@@ -107,7 +133,7 @@ const CardHub = () => {
             fetchSkills();
             localStorage.setItem('lastViewedFccId', fccId);
         }
-    }, [fccId, initialStudent, fetchSkills, apiUrl]); // Fix: 'fetchStudentProfile' removed, and 'apiUrl' added as it's used through fetchStudentProfile
+    }, [fccId, initialStudent, fetchSkills, fetchStudentProfile]); // added fetchStudentProfile in dependency
 
     const filteredSkills = skills.filter((skill) => {
         const level = skill.skill_level ? skill.skill_level.toUpperCase() : '';
@@ -124,14 +150,17 @@ const CardHub = () => {
         setModalOpen(true);
         setExpandedLog(false);
         setIsPlaying(false);
+        logUserActivity('Click Skill Card', { skill_topic: skill.skill_topic }); // Log skill card click
     };
 
     const handleImageClick = (imageUrl) => {
         setZoomedImage(imageUrl);
+        logUserActivity('Click Skill Image', { skill_image_url: imageUrl }); // Log skill image click
     };
 
     const handleCloseZoom = () => {
         setZoomedImage(null);
+        logUserActivity('Close Zoomed Image'); // Log close zoomed image
     };
 
     const renderCards = () => {
@@ -188,22 +217,43 @@ const CardHub = () => {
         setExpandedLog(false);
         setIsPlaying(false);
         setShowPracticePopup(false);
+        logUserActivity('Close Skill Modal'); // Log skill modal close
     };
 
-    const handleFilterChange = (e) => setFilter({ ...filter, [e.target.name]: e.target.value });
-    const handleSearchChange = (e) => setSearchTerm(e.target.value);
-    const handleClearFilter = () => setFilter({ level: '', status: '' });
- const handlePracticeClick = () => {
-    // Display the popup instead of navigating
-    setShowPracticePopup(true);
-};
+    const handleFilterChange = (e) => {
+        setFilter({ ...filter, [e.target.name]: e.target.value });
+        logUserActivity('Change Filter', { filter_type: e.target.name, filter_value: e.target.value }); // Log filter change
+    }
 
-const closePracticePopup = () => {
-    setShowPracticePopup(false);
-}
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+        logUserActivity('Search Skill', { search_term: e.target.value }); // Log skill search
+    };
 
-    const handleProfileSwitch = (selectedFccId) => setFccId(selectedFccId);
-    const toggleLogExpand = () => setExpandedLog(!expandedLog);
+    const handleClearFilter = () => {
+        setFilter({ level: '', status: '' });
+        logUserActivity('Clear Filter'); // Log clear filter
+    };
+
+    const handlePracticeClick = () => {
+        setShowPracticePopup(true);
+        logUserActivity('Click Practice Button', { skill_topic: selectedSkill?.skill_topic }); // Log practice button click
+    };
+
+    const closePracticePopup = () => {
+        setShowPracticePopup(false);
+        logUserActivity('Close Practice Popup'); // Log practice popup close
+    }
+
+    const handleProfileSwitch = (selectedFccId) => {
+        setFccId(selectedFccId);
+        logUserActivity('Switch Student Profile in CardHub', { fcc_id: selectedFccId }); // Log profile switch
+    }
+
+    const toggleLogExpand = () => {
+        setExpandedLog(!expandedLog);
+        logUserActivity(expandedLog ? 'Collapse Skill Log' : 'Expand Skill Log', { skill_topic: selectedSkill?.skill_topic }); // Log skill log expand/collapse
+    };
 
     const getSkillImageUrl = (relativeUrl) => {
         if (relativeUrl && relativeUrl.startsWith('/skill_images/')) {
@@ -223,8 +273,10 @@ const closePracticePopup = () => {
         if (videoRef.current) {
             if (isPlaying) {
                 videoRef.current.pause();
+                logUserActivity('Pause Video', { skill_topic: selectedSkill?.skill_topic, current_time: videoRef.current.currentTime }); // Log video pause
             } else {
                 videoRef.current.play();
+                logUserActivity('Play Video', { skill_topic: selectedSkill?.skill_topic, current_time: videoRef.current.currentTime }); // Log video play
             }
             setIsPlaying(!isPlaying);
         }
@@ -233,21 +285,23 @@ const closePracticePopup = () => {
     const forwardVideo = (seconds = 5) => {
         if (videoRef.current) {
             videoRef.current.currentTime += seconds;
+            logUserActivity('Forward Video', { skill_topic: selectedSkill?.skill_topic, seconds_forward: seconds, current_time: videoRef.current.currentTime }); // Log video forward
         }
     };
 
     const rewindVideo = (seconds = 5) => {
         if (videoRef.current) {
             videoRef.current.currentTime -= seconds;
+            logUserActivity('Rewind Video', { skill_topic: selectedSkill?.skill_topic, seconds_rewind: seconds, current_time: videoRef.current.currentTime }); // Log video rewind
         }
     };
-
 
     const handleSpeedChange = (speed) => {
         setPlaybackSpeed(speed);
         if (videoRef.current) {
             videoRef.current.playbackRate = speed;
         }
+        logUserActivity('Change Video Speed', { skill_topic: selectedSkill?.skill_topic, playback_speed: speed, current_time: videoRef.current.currentTime }); // Log video speed change
     };
 
     const formatTime = (timeInSeconds) => {
@@ -280,6 +334,7 @@ const closePracticePopup = () => {
     const handleSeekbarMouseUp = () => {
         if (videoRef.current) {
             videoRef.current.currentTime = currentTime;
+            logUserActivity('Seek Video', { skill_topic: selectedSkill?.skill_topic, seek_time: currentTime }); // Log video seek
         }
         setIsSeeking(false);
     };
@@ -287,10 +342,16 @@ const closePracticePopup = () => {
         setIsSeeking(true);
     };
 
+    const handleBackButtonClick = () => {
+        navigate(-1);
+        logUserActivity('Click Back Button to Previous Page'); // Log back button click
+    };
+
+
     return (
         <div className="container">
             <div className="back-button-group-cardhub">
-                <button className="back-button" onClick={() => navigate(-1)}>
+                <button className="back-button" onClick={handleBackButtonClick}>
                     <ArrowLeft size={16} /> वापस
                 </button>
                 {student?.photo_url && (
@@ -479,16 +540,16 @@ const closePracticePopup = () => {
                             </button>
                         </div>
                         {showPracticePopup && (
-    <div className="practice-popup-overlay">
-        <div className="practice-popup">
-            <h3>यह सुविधा अभी विकास में है</h3>
-            <p>हम इस फीचर पर काम कर रहे हैं!</p>
-            <button className="close-button" onClick={closePracticePopup}>
-                ठीक है
-            </button>
-        </div>
-    </div>
-)}
+                            <div className="practice-popup-overlay">
+                                <div className="practice-popup">
+                                    <h3>यह सुविधा अभी विकास में है</h3>
+                                    <p>हम इस फीचर पर काम कर रहे हैं!</p>
+                                    <button className="close-button" onClick={closePracticePopup}>
+                                        ठीक है
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

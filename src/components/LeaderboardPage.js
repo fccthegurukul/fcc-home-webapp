@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styles from './LeaderboardPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCrown, faCertificate } from '@fortawesome/free-solid-svg-icons';
+import { v4 as uuidv4 } from 'uuid'; // Import UUID v4
 
 const LeaderboardPage = () => {
     const [leaderboardData, setLeaderboardData] = useState([]);
@@ -11,8 +12,35 @@ const LeaderboardPage = () => {
     const [classNames, setClassNames] = useState([]);
     const [showFccId, setShowFccId] = useState(false);
     const apiUrl = process.env.REACT_APP_API_URL;
+    const sessionId = useRef(uuidv4()); // Generate session ID here
+
+    // Reusable function for logging user activity
+    const logUserActivity = useCallback(async (activityType, activityDetails = null) => {
+        try {
+            const activityData = {
+                activity_type: activityType,
+                activity_details: activityDetails ? JSON.stringify(activityDetails) : null,
+                page_url: window.location.pathname,
+                session_id: sessionId.current,
+            };
+
+            await fetch(`${apiUrl}/api/user-activity-log`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "ngrok-skip-browser-warning": "true"
+                },
+                body: JSON.stringify(activityData)
+            });
+            console.log(`User activity '${activityType}' logged successfully.`);
+        } catch (error) {
+            console.error("Error logging user activity:", error);
+        }
+    }, [apiUrl]);
 
     useEffect(() => {
+        logUserActivity('View Leaderboard Page'); // Log page view
+
         const fetchTaskNames = async () => {
             try {
                 const response = await fetch(`${apiUrl}/api/leaderboard-task-names`);
@@ -37,8 +65,10 @@ const LeaderboardPage = () => {
                     if (data.includes(className)) {
                         setClassFilter(className);
                         console.log(`बाईपास किए गए डेटा से चयनित कक्षा: ${className}`); // Selected class from bypassed data:
+                        logUserActivity('Set Class Filter from Bypassed Data', { class_name: className }); // Log filter set from bypass
                     } else {
                         console.log(`कक्षा ${className} उपलब्ध कक्षाओं में नहीं मिली:`, data); // Class ${className} not found in available classes:
+                        logUserActivity('Bypassed Class Not Available', { class_name: className, available_classes: data }); // Log bypassed class not available
                     }
                 }
             } catch (error) {
@@ -48,7 +78,7 @@ const LeaderboardPage = () => {
 
         fetchTaskNames();
         fetchClassNames();
-    }, [apiUrl]);
+    }, [apiUrl, logUserActivity]); // Added logUserActivity to dependency array
 
     useEffect(() => {
         const fetchLeaderboard = async () => {
@@ -67,11 +97,23 @@ const LeaderboardPage = () => {
         };
 
         fetchLeaderboard();
-    }, [taskFilter, classFilter, apiUrl]);
+        logUserActivity('Fetch Leaderboard Data', { task_filter: taskFilter, class_filter: classFilter }); // Log leaderboard data fetch
+    }, [taskFilter, classFilter, apiUrl, logUserActivity]); // Added logUserActivity to dependency array
 
-    const handleTaskFilterChange = (event) => setTaskFilter(event.target.value);
-    const handleClassFilterChange = (event) => setClassFilter(event.target.value);
-    const handleShowFccIdClick = () => setShowFccId(!showFccId);
+    const handleTaskFilterChange = (event) => {
+        setTaskFilter(event.target.value);
+        logUserActivity('Change Task Filter', { task_filter: event.target.value }); // Log task filter change
+    }
+
+    const handleClassFilterChange = (event) => {
+        setClassFilter(event.target.value);
+        logUserActivity('Change Class Filter', { class_filter: event.target.value }); // Log class filter change
+    }
+
+    const handleShowFccIdClick = () => {
+        setShowFccId(!showFccId);
+        logUserActivity(showFccId ? 'Hide FCC ID' : 'Show FCC ID'); // Log show/hide FCC ID
+    }
 
     const getRandomColor = () => {
         const letters = '0123456789ABCDEF';

@@ -76,11 +76,13 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  pointer-events: none; /* Disable clicks on the card itself */
 }
 
 .video-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  pointer-events: none; /* Disable clicks on the card itself */
 }
 
 .video-iframe iframe {
@@ -88,6 +90,7 @@
   height: 200px;
   border-radius: 10px;
   border: none;
+  pointer-events: auto; /* Enable clicks only on the iframe */
 }
 
 /* Attendance section */
@@ -291,6 +294,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  pointer-events: auto;
 }
 
 .view-more-btn:hover {
@@ -322,6 +326,7 @@
 @media (max-width: 768px) {
   .video-iframe iframe {
     height: 180px;
+    pointer-events: auto; /* Enable clicks only on the iframe */
   }
 
   .student-attendance {
@@ -352,6 +357,7 @@
 
   .video-iframe iframe {
     height: 160px;
+    pointer-events: auto; /* Enable clicks only on the iframe */
   }
 
   .classroom-container {

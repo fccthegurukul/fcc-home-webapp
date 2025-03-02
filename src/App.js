@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Routes, Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
@@ -29,11 +29,14 @@ import ContactForm from './pages/ContactForm';
 import PuzzleGame from './components/PuzzleGame';
 import ColorMatchGame from './pages/ColorMatchGame';
 import EnglishPracticeAssistant from './components/EnglishPracticeAssistant';
+import Aihub from './pages/aihub';
+import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+    const sessionId = React.useRef(uuidv4()); // Unique session ID for tracking
 
     useEffect(() => {
         const handleResize = () => {
@@ -54,6 +57,34 @@ const App = () => {
         checkLoginStatus();
     }, []);
 
+    // Reusable function for logging user activity
+    const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
+        try {
+            const activityData = {
+                activity_type: activityType,
+                activity_details: JSON.stringify({
+                    ...activityDetails,
+                    is_logged_in: isLoggedIn,
+                    current_path: location.pathname,
+                    timestamp: new Date().toISOString(),
+                }),
+                page_url: window.location.pathname,
+                session_id: sessionId.current,
+            };
+
+            const response = await fetch('http://localhost:5000/api/user-activity-log', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(activityData),
+            });
+
+            if (!response.ok) throw new Error('Failed to log activity');
+            console.log(`Activity '${activityType}' logged successfully`);
+        } catch (error) {
+            console.error('Error logging user activity:', error);
+        }
+    }, [isLoggedIn, location.pathname]);
+
     const handleLogout = async () => {
         try {
             const response = await fetch('http://localhost:5000/logout', {
@@ -64,13 +95,19 @@ const App = () => {
                 setIsLoggedIn(false);
                 localStorage.removeItem('authToken');
                 navigate('/');
+                logUserActivity('Logout');
                 console.log("Logout successful");
             } else {
                 console.error("Logout failed on backend");
             }
         } catch (error) {
             console.error("Logout error:", error);
+            logUserActivity('Logout Failed', { error: error.message });
         }
+    };
+
+    const handleNavClick = (path) => {
+        logUserActivity('Navigate', { to: path });
     };
 
     const AdminProtectedRoute = ({ children }) => {
@@ -94,7 +131,6 @@ const App = () => {
                     <Route path="/download-upload-data" element={<AdminProtectedRoute><FileUpload /></AdminProtectedRoute>} />
                     <Route path="/fee-management" element={<AdminProtectedRoute><FeeManagement /></AdminProtectedRoute>} />
                     <Route path="/student-management" element={<AdminProtectedRoute><StudentManagement /></AdminProtectedRoute>} />
-                    <Route path="/fcchome-ai" element={<AdminProtectedRoute><FcchomeAI /></AdminProtectedRoute>} />
                     <Route path="/task-submition" element={<AdminProtectedRoute><TaskSubmissionPage /></AdminProtectedRoute>} />
                     <Route path="/taskcheck" element={<AdminProtectedRoute><Taskcheck /></AdminProtectedRoute>} />
                     <Route path="/student-admission" element={<AdminProtectedRoute><StudentAdmission /></AdminProtectedRoute>} />
@@ -113,26 +149,52 @@ const App = () => {
                     <Route path="/puzzle-game" element={<PuzzleGame />} />
                     <Route path="/color-match-game" element={<ColorMatchGame />} />
                     <Route path="/english-practice" element={<EnglishPracticeAssistant />} />
+                    <Route path="/fcchome-ai" element={<FcchomeAI />} />
+                    <Route path="/aihub" element={<Aihub />} />
                     <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </div>
             <nav className="bottom-navbar">
-                <Link to="/" className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`}>
+                <Link
+                    to="/"
+                    className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/')}
+                >
                     <i className="fas fa-home"></i><span>होम</span>
                 </Link>
-                <Link to="/view-ctc-ctg" className={`bottom-nav-link ${location.pathname === '/view-ctc-ctg' ? 'active' : ''}`}>
+                <Link
+                    to="/view-ctc-ctg"
+                    className={`bottom-nav-link ${location.pathname === '/view-ctc-ctg' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/view-ctc-ctg')}
+                >
                     <i className="fas fa-calendar-day"></i><span>उपस्थिति</span>
                 </Link>
-                <Link to="/card-hub" className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`}>
+                <Link
+                    to="/card-hub"
+                    className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/card-hub')}
+                >
                     <i className="fas fa-graduation-cap"></i><span>स्किल</span>
                 </Link>
-                <Link to="/leaderboard" className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`}>
+                <Link
+                    to="/leaderboard"
+                    className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/leaderboard')}
+                >
                     <i className="fas fa-trophy"></i><span>लीडरबोर्ड</span>
                 </Link>
-                <Link to="/classroom" className={`bottom-nav-link ${location.pathname === '/classroom' ? 'active' : ''}`}>
+                <Link
+                    to="/classroom"
+                    className={`bottom-nav-link ${location.pathname === '/classroom' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/classroom')}
+                >
                     <i className="fas fa-chalkboard-teacher"></i><span>क्लासरूम</span>
                 </Link>
-                <Link to="/english-practice" className={`bottom-nav-link ${location.pathname === '/english-practice' ? 'active' : ''}`}>
+                <Link
+                    to="/aihub"
+                    className={`bottom-nav-link ${location.pathname === '/aihub' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/aihub')}
+                >
                     <i className="fas fa-brain"></i><span>AI</span>
                 </Link>
             </nav>
