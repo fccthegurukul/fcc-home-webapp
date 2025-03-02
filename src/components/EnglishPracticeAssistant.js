@@ -26,48 +26,62 @@ const EnglishPracticeAssistant = () => {
   const [hindiPrompt, setHindiPrompt] = useState(false);
 
   const recognitionRef = useRef(null);
-  const silenceTimeoutRef = useRef(null); // Ref to track silence timeout
+  const silenceTimeoutRef = useRef(null);
 
   // Speech Recognition Setup
   useEffect(() => {
-    recognitionRef.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognitionRef.current.continuous = true; // Keep listening continuously
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      console.error('SpeechRecognition not supported in this browser.');
+      setHindiAnalysis('आपका ब्राउज़र आवाज पहचान को सपोर्ट नहीं करता। कृपया Chrome का उपयोग करें।');
+      return;
+    }
+
+    recognitionRef.current = new SpeechRecognition();
+    recognitionRef.current.continuous = true;
     recognitionRef.current.lang = 'en-US';
-    recognitionRef.current.interimResults = true; // Get interim results to detect ongoing speech
+    recognitionRef.current.interimResults = true;
 
     recognitionRef.current.onresult = (event) => {
-      const text = Array.from(event.results)
+      const currentText = Array.from(event.results)
         .map((result) => result[0].transcript)
         .join('');
-      setSpokenText(text);
+      setSpokenText(currentText);
 
-      // Clear any existing silence timeout
-      if (silenceTimeoutRef.current) {
-        clearTimeout(silenceTimeoutRef.current);
-      }
-
-      // Set a new timeout to detect 3 seconds of silence
-      silenceTimeoutRef.current = setTimeout(() => {
-        if (text.trim()) {
-          recognitionRef.current.stop(); // Stop recognition after 3 seconds of silence
-          analyzeSpeech(text.trim()); // Analyze the final input
+      if (currentText.trim()) {
+        // Clear previous timeout and set a new 4-second silence timeout
+        if (silenceTimeoutRef.current) {
+          clearTimeout(silenceTimeoutRef.current);
         }
-      }, 3000); // 3-second pause
+        silenceTimeoutRef.current = setTimeout(() => {
+          recognitionRef.current.stop();
+          setIsListening(false);
+          analyzeSpeech(currentText.trim());
+        }, 4000); // 4-second pause after speaking
+      }
     };
 
     recognitionRef.current.onend = () => {
+      if (!spokenText.trim() && !isSpeaking && !isLoading) {
+        // Restart mic if no input yet
+        setTimeout(() => {
+          if (!isListening) startListening();
+        }, 100);
+      }
       setIsListening(false);
       if (silenceTimeoutRef.current) {
-        clearTimeout(silenceTimeoutRef.current); // Clean up timeout
+        clearTimeout(silenceTimeoutRef.current);
       }
     };
 
     recognitionRef.current.onerror = (event) => {
-      setHindiAnalysis('आवाज पहचानने में त्रुटि: ' + event.error);
+      console.error('Speech recognition error:', event.error);
+      setHindiAnalysis(`आवाज पहचानने में त्रुटि: ${event.error}`);
       setIsListening(false);
       if (silenceTimeoutRef.current) {
-        clearTimeout(silenceTimeoutRef.current); // Clean up timeout
+        clearTimeout(silenceTimeoutRef.current);
       }
+      setTimeout(startListening, 2000); // Retry after error
     };
 
     return () => {
@@ -78,7 +92,7 @@ const EnglishPracticeAssistant = () => {
         clearTimeout(silenceTimeoutRef.current);
       }
     };
-  }, []);
+  }, [spokenText, isSpeaking, isLoading]);
 
   // Fetch Conversation History
   const fetchConversationHistory = async () => {
@@ -105,12 +119,20 @@ const EnglishPracticeAssistant = () => {
     }
   }, [userName]);
 
-  // Start Listening with Continuous Mode
+  // Start Listening
   const startListening = () => {
     if (!isListening && !isSpeaking && recognitionRef.current) {
       resetState();
       setIsListening(true);
-      recognitionRef.current.start(); // Start continuous listening
+      try {
+        recognitionRef.current.start();
+        console.log('Speech recognition started');
+      } catch (error) {
+        console.error('Error starting recognition:', error);
+        setHindiAnalysis('माइक शुरू करने में समस्या। कृपया माइक की अनुमति दें।');
+        setIsListening(false);
+        setTimeout(startListening, 2000);
+      }
     }
   };
 
@@ -139,8 +161,9 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Clean Response Text (Remove Numbered Prefixes)
+  // Clean Response Text
   const cleanText = (text) => {
+    if (!text) return '';
     return text.replace(/^\d+\.\s*(Corrected\s*Version|Hindi\s*Analysis|Pronunciation\s*Tip|Vocabulary\s*Word|Next\s*Question|Hindi|Mini\s*Info):?\s*/i, '').trim();
   };
 
@@ -161,14 +184,14 @@ const EnglishPracticeAssistant = () => {
         setHindiAnalysis(cleanText(result.hindiAnalysis));
         setPronunciationTip(cleanText(result.pronunciationTip));
         setVocabularyWord(cleanText(result.vocabularyWord));
-        setScore(result.score);
-        setBadge(result.badge);
-        setCorrectedScore(result.correctedScore);
-        setCorrectedBadge(result.correctedBadge);
+        setScore(result.score || 0);
+        setBadge(result.badge || 'N/A');
+        setCorrectedScore(result.correctedScore || 0);
+        setCorrectedBadge(result.correctedBadge || 'N/A');
         setSecretInfo(cleanText(result.secretInfo));
-        setNextQuestion(cleanText(result.nextQuestion));
-        setNextQuestionHindi(cleanText(result.nextQuestionHindi));
-        setMiniInfo(cleanText(result.miniInfo));
+        setNextQuestion(cleanText(result.nextQuestion) || 'Tell me about yourself.');
+        setNextQuestionHindi(cleanText(result.nextQuestionHindi) || 'मुझे अपने बारे में बताएं।');
+        setMiniInfo(cleanText(result.miniInfo) || 'इससे आपको प्रैक्टिस मिलेगी!');
         setPersonalizedMessage(cleanText(result.personalizedMessage));
         setHindiPrompt(result.score <= 10);
         setConversationHistory((prev) => [
@@ -179,10 +202,10 @@ const EnglishPracticeAssistant = () => {
             hindi_analysis: cleanText(result.hindiAnalysis),
             pronunciation_tip: cleanText(result.pronunciationTip),
             vocabulary_word: cleanText(result.vocabularyWord),
-            score: result.score,
-            badge: result.badge,
-            corrected_score: result.correctedScore,
-            corrected_badge: result.correctedBadge,
+            score: result.score || 0,
+            badge: result.badge || 'N/A',
+            corrected_score: result.correctedScore || 0,
+            corrected_badge: result.correctedBadge || 'N/A',
             secret_info: cleanText(result.secretInfo),
             next_question: cleanText(result.nextQuestion),
             next_question_hindi: cleanText(result.nextQuestionHindi),
@@ -191,21 +214,26 @@ const EnglishPracticeAssistant = () => {
           },
         ]);
 
-        setTimeout(() => {
-          if (result.correctedVersion) {
-            speakFeedback(`यह सही रहेगा: ${cleanText(result.correctedVersion)}`, () => {
-              setTimeout(() => {
-                if (result.nextQuestion) {
-                  speakFeedback(`अब यह बोलें: ${cleanText(result.nextQuestion)}`, () => startListening());
-                } else {
-                  startListening();
-                }
-              }, 2000);
-            });
-          } else {
-            startListening();
-          }
-        }, 1000);
+        // Speak corrected version, then prompt next question after 4 seconds
+        if (result.correctedVersion) {
+          speakFeedback(cleanText(result.correctedVersion), () => {
+            setTimeout(() => {
+              if (result.nextQuestion) {
+                speakFeedback(`अब यह बोलें: ${cleanText(result.nextQuestion)}`, startListening);
+              } else {
+                startListening();
+              }
+            }, 4000); // 4 seconds after corrected version
+          });
+        } else {
+          setTimeout(() => {
+            if (result.nextQuestion) {
+              speakFeedback(`अब यह बोलें: ${cleanText(result.nextQuestion)}`, startListening);
+            } else {
+              startListening();
+            }
+          }, 4000);
+        }
       } else if (response.status === 429) {
         setHindiAnalysis('बहुत सारी रिक्वेस्ट्स भेज दी गई हैं। कृपया थोड़ी देर बाद कोशिश करें।');
         setPersonalizedMessage('थोड़ा इंतजार करें, फिर शुरू करें!');
@@ -214,23 +242,20 @@ const EnglishPracticeAssistant = () => {
         setHindiAnalysis('कुछ गलत हो गया। दोबारा कोशिश करें!');
         setScore(0);
         setBadge('Needs Improvement');
-        setCorrectedScore(100);
-        setCorrectedBadge('Excellent');
-        setTimeout(startListening, 2000);
+        setTimeout(startListening, 4000);
       }
     } catch (error) {
+      console.error('Error analyzing speech:', error);
       setHindiAnalysis('सर्वर त्रुटि। दोबारा कोशिश करें!');
       setScore(0);
       setBadge('Needs Improvement');
-      setCorrectedScore(100);
-      setCorrectedBadge('Excellent');
-      setTimeout(startListening, 2000);
+      setTimeout(startListening, 4000);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Analyze Hindi Response (unchanged, included for completeness)
+  // Analyze Hindi Response
   const analyzeHindiResponse = async (hindiText) => {
     setIsLoading(true);
     try {
@@ -247,14 +272,14 @@ const EnglishPracticeAssistant = () => {
         setHindiAnalysis(cleanText(result.hindiAnalysis));
         setPronunciationTip(cleanText(result.pronunciationTip));
         setVocabularyWord(cleanText(result.vocabularyWord));
-        setScore(result.score);
-        setBadge(result.badge);
-        setCorrectedScore(result.correctedScore);
-        setCorrectedBadge(result.correctedBadge);
+        setScore(result.score || 0);
+        setBadge(result.badge || 'N/A');
+        setCorrectedScore(result.correctedScore || 0);
+        setCorrectedBadge(result.correctedBadge || 'N/A');
         setSecretInfo(cleanText(result.secretInfo));
-        setNextQuestion(cleanText(result.nextQuestion));
-        setNextQuestionHindi(cleanText(result.nextQuestionHindi));
-        setMiniInfo(cleanText(result.miniInfo));
+        setNextQuestion(cleanText(result.nextQuestion) || 'Tell me about yourself.');
+        setNextQuestionHindi(cleanText(result.nextQuestionHindi) || 'मुझे अपने बारे में बताएं।');
+        setMiniInfo(cleanText(result.miniInfo) || 'इससे आपको प्रैक्टिस मिलेगी!');
         setPersonalizedMessage(cleanText(result.personalizedMessage));
         setHindiPrompt(false);
         setConversationHistory((prev) => [
@@ -265,10 +290,10 @@ const EnglishPracticeAssistant = () => {
             hindi_analysis: cleanText(result.hindiAnalysis),
             pronunciation_tip: cleanText(result.pronunciationTip),
             vocabulary_word: cleanText(result.vocabularyWord),
-            score: result.score,
-            badge: result.badge,
-            corrected_score: result.correctedScore,
-            corrected_badge: result.correctedBadge,
+            score: result.score || 0,
+            badge: result.badge || 'N/A',
+            corrected_score: result.correctedScore || 0,
+            corrected_badge: result.correctedBadge || 'N/A',
             secret_info: cleanText(result.secretInfo),
             next_question: cleanText(result.nextQuestion),
             next_question_hindi: cleanText(result.nextQuestionHindi),
@@ -277,21 +302,25 @@ const EnglishPracticeAssistant = () => {
           },
         ]);
 
-        setTimeout(() => {
-          if (result.correctedVersion) {
-            speakFeedback(`यह सही रहेगा: ${cleanText(result.correctedVersion)}`, () => {
-              setTimeout(() => {
-                if (result.nextQuestion) {
-                  speakFeedback(`अब यह बोलें: ${cleanText(result.nextQuestion)}`, () => startListening());
-                } else {
-                  startListening();
-                }
-              }, 2000);
-            });
-          } else {
-            startListening();
-          }
-        }, 1000);
+        if (result.correctedVersion) {
+          speakFeedback(cleanText(result.correctedVersion), () => {
+            setTimeout(() => {
+              if (result.nextQuestion) {
+                speakFeedback(`अब यह बोलें: ${cleanText(result.nextQuestion)}`, startListening);
+              } else {
+                startListening();
+              }
+            }, 4000);
+          });
+        } else {
+          setTimeout(() => {
+            if (result.nextQuestion) {
+              speakFeedback(`अब यह बोलें: ${cleanText(result.nextQuestion)}`, startListening);
+            } else {
+              startListening();
+            }
+          }, 4000);
+        }
       } else if (response.status === 429) {
         setHindiAnalysis('बहुत सारी रिक्वेस्ट्स भेज दी गई हैं। कृपया थोड़ी देर बाद कोशिश करें।');
         setPersonalizedMessage('थोड़ा इंतजार करें, फिर शुरू करें!');
@@ -300,55 +329,62 @@ const EnglishPracticeAssistant = () => {
         setHindiAnalysis('कुछ गलत हो गया। दोबारा कोशिश करें!');
         setScore(0);
         setBadge('Needs Improvement');
-        setCorrectedScore(100);
-        setCorrectedBadge('Excellent');
-        setTimeout(startListening, 2000);
+        setTimeout(startListening, 4000);
       }
     } catch (error) {
+      console.error('Error analyzing Hindi response:', error);
       setHindiAnalysis('सर्वर त्रुटि। दोबारा कोशिश करें!');
       setScore(0);
       setBadge('Needs Improvement');
-      setCorrectedScore(100);
-      setCorrectedBadge('Excellent');
-      setTimeout(startListening, 2000);
+      setTimeout(startListening, 4000);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Enhanced Speak Feedback with Natural Voice (unchanged, included for completeness)
+  // Enhanced Speak Feedback
   const speakFeedback = (text, callback) => {
-    if (!isSpeaking) {
+    if (!isSpeaking && window.speechSynthesis && text) {
       setIsSpeaking(true);
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
+      utterance.lang = text.startsWith('अब यह बोलें') ? 'hi-IN' : 'en-US'; // Hindi for prompts, English for corrections
       const voices = window.speechSynthesis.getVoices();
-      const naturalVoice = voices.find(voice => 
-        voice.name.includes('Google UK English Female') || 
-        voice.name.includes('Google US English') || 
-        voice.name.includes('Samantha') || 
-        voice.name.includes('Natural')
-      ) || voices[0];
+      const naturalVoice =
+        voices.find((voice) => voice.lang === utterance.lang && (voice.name.includes('Google') || voice.name.includes('Natural'))) ||
+        voices.find((voice) => voice.lang === utterance.lang) ||
+        voices[0];
       utterance.voice = naturalVoice;
-      utterance.pitch = 1.2;
-      utterance.rate = 0.95;
+      utterance.pitch = 1.1;
+      utterance.rate = 0.9;
       utterance.volume = 1.0;
       utterance.onend = () => {
         setIsSpeaking(false);
         if (callback) callback();
       };
+      utterance.onerror = (event) => {
+        console.error('Speech synthesis error:', event);
+        setIsSpeaking(false);
+        if (callback) callback();
+      };
       window.speechSynthesis.speak(utterance);
+    } else if (callback) {
+      callback(); // Proceed even if no speech
     }
   };
 
-  // Load voices on mount (unchanged)
+  // Load voices on mount
   useEffect(() => {
-    window.speechSynthesis.onvoiceschanged = () => {
-      // Ensure voices are loaded
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      if (voices.length > 0) {
+        console.log('Voices loaded:', voices);
+      }
     };
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+    loadVoices();
   }, []);
 
-  // Handle Login (unchanged)
+  // Handle Login
   const handleLogin = (e) => {
     e.preventDefault();
     if (userName.trim()) {
@@ -357,8 +393,9 @@ const EnglishPracticeAssistant = () => {
     }
   };
 
-  // Format Text with Symbols (unchanged)
+  // Format Text with Symbols
   const formatText = (text) => {
+    if (!text) return '';
     return text
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
@@ -367,7 +404,7 @@ const EnglishPracticeAssistant = () => {
       .replace(/~/g, '<span class="highlight">~</span>');
   };
 
-  // Calculate Progress (unchanged)
+  // Calculate Progress
   const averageScore = conversationHistory.length > 0
     ? Math.round(conversationHistory.reduce((sum, entry) => sum + entry.score, 0) / conversationHistory.length)
     : 0;
@@ -423,7 +460,7 @@ const EnglishPracticeAssistant = () => {
             </div>
           </div>
 
-          {(correctedVersion || hindiAnalysis) && (
+          {(spokenText || correctedVersion || hindiAnalysis) && (
             <div className="feedback-area">
               {isLoading ? (
                 <div className="loading-overlay">
@@ -434,44 +471,56 @@ const EnglishPracticeAssistant = () => {
                 <div className="feedback-card">
                   <div className="feedback-item input-feedback">
                     <h3>आपने कहा:</h3>
-                    <p>{spokenText}</p>
+                    <p>{spokenText || 'कोई इनपुट नहीं'}</p>
                   </div>
-                  <div className="feedback-item corrected-feedback">
-                    <h3>सही तरीका:</h3>
-                    <p>{correctedVersion}</p>
-                    <button
-                      onClick={() => speakFeedback(correctedVersion)}
-                      className="speak-button"
-                      disabled={isSpeaking}
-                    >
-                      🔊
-                    </button>
-                  </div>
-                  <div className="feedback-item score-feedback">
-                    <p>सटीकता: <span className={`score ${badge.toLowerCase()}`}>{score}% - {badge}</span></p>
-                  </div>
-                  <div className="feedback-item analysis-feedback">
-                    <h3>यह बेहतर क्यों है:</h3>
-                    <p dangerouslySetInnerHTML={{ __html: formatText(hindiAnalysis) }} />
-                    {pronunciationTip && (
-                      <>
-                        <h3>उच्चारण टिप:</h3>
-                        <p>{pronunciationTip}</p>
-                      </>
-                    )}
-                    {vocabularyWord && (
-                      <>
-                        <h3>नया शब्द:</h3>
-                        <p>{vocabularyWord}</p>
-                      </>
-                    )}
-                    {personalizedMessage && (
-                      <p className="personalized-message">{personalizedMessage}</p>
-                    )}
-                    {secretInfo && (
-                      <p className="secret-info">टिप: <span>{secretInfo}</span></p>
-                    )}
-                  </div>
+                  {correctedVersion && (
+                    <div className="feedback-item corrected-feedback">
+                      <h3>सही तरीका:</h3>
+                      <p>{correctedVersion}</p>
+                      <button
+                        onClick={() => speakFeedback(correctedVersion)}
+                        className="speak-button"
+                        disabled={isSpeaking}
+                      >
+                        🔊
+                      </button>
+                    </div>
+                  )}
+                  {score !== null && (
+                    <div className="feedback-item score-feedback">
+                      <p>
+                        सटीकता: <span className={`score ${badge.toLowerCase()}`}>{score}% - {badge}</span>
+                      </p>
+                    </div>
+                  )}
+                  {(hindiAnalysis || pronunciationTip || vocabularyWord || personalizedMessage || secretInfo) && (
+                    <div className="feedback-item analysis-feedback">
+                      {hindiAnalysis && (
+                        <>
+                          <h3>यह बेहतर क्यों है:</h3>
+                          <p dangerouslySetInnerHTML={{ __html: formatText(hindiAnalysis) }} />
+                        </>
+                      )}
+                      {pronunciationTip && (
+                        <>
+                          <h3>उच्चारण टिप:</h3>
+                          <p>{pronunciationTip}</p>
+                        </>
+                      )}
+                      {vocabularyWord && (
+                        <>
+                          <h3>नया शब्द:</h3>
+                          <p>{vocabularyWord}</p>
+                        </>
+                      )}
+                      {personalizedMessage && (
+                        <p className="personalized-message">{personalizedMessage}</p>
+                      )}
+                      {secretInfo && (
+                        <p className="secret-info">टिप: <span>{secretInfo}</span></p>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -486,9 +535,15 @@ const EnglishPracticeAssistant = () => {
             ) : (
               conversationHistory.map((entry, index) => (
                 <div key={index} className="history-item">
-                  <p className="user-text"><strong>आप:</strong> {entry.user_input}</p>
-                  <p className="corrected-text"><strong>सही:</strong> {entry.corrected_version}</p>
-                  <p className="score-text">अंक: <span className={entry.badge.toLowerCase()}>{entry.score}% - {entry.badge}</span></p>
+                  <p className="user-text">
+                    <strong>आप:</strong> {entry.user_input}
+                  </p>
+                  <p className="corrected-text">
+                    <strong>सही:</strong> {entry.corrected_version || 'N/A'}
+                  </p>
+                  <p className="score-text">
+                    अंक: <span className={entry.badge.toLowerCase()}>{entry.score}% - {entry.badge}</span>
+                  </p>
                 </div>
               ))
             )}

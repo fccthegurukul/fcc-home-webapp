@@ -541,3 +541,150 @@
   "mini_info": "9. Mini Info: इस सवाल का जवाब देने से आपको अंग्रेज़ी में साधारण बातचीत करने का अभ्यास होगा और आप अपनी बातचीत को आगे बढ़ा सकते हैं!",
   "timestamp": "2025-03-02T03:57:37.663Z"
 }
+[2025-03-02T04:07:49.359Z] LOG: Incoming request: GET /, Origin: undefined
+[2025-03-02T04:07:49.363Z] LOG: Incoming Origin: 
+[2025-03-02T04:07:49.378Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-03-02T04:07:49.491Z] LOG: Generating new session ID
+[2025-03-02T04:08:05.308Z] LOG: Incoming request: GET /get-students, Origin: undefined
+[2025-03-02T04:08:05.309Z] LOG: Incoming Origin: 
+[2025-03-02T04:08:05.310Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-03-02T04:08:05.312Z] LOG: Generating new session ID
+[2025-03-02T04:08:07.022Z] LOG: Incoming request: GET /favicon.ico, Origin: undefined
+[2025-03-02T04:08:07.041Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-03-02T04:08:07.039Z] LOG: Incoming Origin: 
+[2025-03-02T04:08:07.043Z] LOG: Generating new session ID
+[2025-03-02T04:11:09.724Z] LOG: Incoming request: GET /api/conversation-history?userName=hg, Origin: http://localhost:3000
+[2025-03-02T04:11:09.729Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T04:11:09.730Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T04:11:09.732Z] LOG: Generating new session ID
+[2025-03-02T04:14:59.328Z] LOG: Incoming request: OPTIONS //get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:14:59.329Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:14:59.329Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:14:59.477Z] LOG: Incoming request: GET //get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:14:59.478Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:14:59.480Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:14:59.481Z] LOG: Generating new session ID
+[2025-03-02T04:15:10.368Z] LOG: Incoming request: OPTIONS //get-student-profile/1111200024, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:10.376Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:10.378Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:10.565Z] LOG: Incoming request: GET //get-student-profile/1111200024, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:10.567Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:10.566Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:10.569Z] LOG: Generating new session ID
+[2025-03-02T04:15:47.340Z] LOG: Incoming request: OPTIONS //get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:47.342Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:47.342Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:47.500Z] LOG: Incoming request: GET //get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:47.519Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:47.520Z] LOG: Generating new session ID
+[2025-03-02T04:15:47.517Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:58.847Z] LOG: Incoming request: OPTIONS //get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:58.852Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:58.859Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:59.139Z] LOG: Incoming request: GET //get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:59.234Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:59.236Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:15:59.237Z] LOG: Generating new session ID
+[2025-03-02T04:20:09.839Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:20:09.841Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:20:09.842Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:20:10.000Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:20:10.006Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:20:10.034Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T04:20:10.005Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:20:10.028Z] LOG: Generating new session ID
+[2025-03-02T04:20:12.047Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T04:20:15.107Z] LOG: Speech analyzed and stored: {
+  "id": 12,
+  "user_name": "Hariom Kumar ",
+  "user_input": "Main ek shikshak hun",
+  "corrected_version": "1. Corrected Version: I am a teacher.",
+  "hindi_analysis": "2. Hindi Analysis:  \"Main ek shikshak hun\"  में थोड़ा सा सुधार करने की जरूरत है।  \"Main\" सही है, मतलब \"I\"।  लेकिन \"ek shikshak hun\"  हिंदी का सीधा अनुवाद है। अंग्रेज़ी में हम \"I am a teacher\"  कहते हैं।  \"am\"  वर्तमान काल (present tense) दिखाता है,  और यह  \"hun\" से ज़्यादा स्वाभाविक लगता है।  अंग्रेज़ी में वाक्य बनाने का तरीका थोड़ा अलग होता है।",
+  "pronunciation_tip": "3. Pronunciation Tip:  \"Teacher\" को \"टीचर\" बोलते हैं, 'ch' पर थोड़ा सा ज़ोर दीजिये।",
+  "vocabulary_word": "4. Vocabulary Word: Word: Teacher - शिक्षक",
+  "score": 5,
+  "badge": "Average",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "a06af681-039c-4352-add4-36c40cbd1a9a",
+  "next_question": "7. Next Question: What subjects do you teach?",
+  "next_question_hindi": "8. Next Question Hindi: आप कौन से विषय पढ़ाते हैं?",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपने पेशे के बारे में बात करने का और मौका मिलेगा, जिससे आपकी अंग्रेज़ी और बेहतर होगी!",
+  "timestamp": "2025-03-02T04:20:15.074Z"
+}
+[2025-03-02T04:21:08.617Z] LOG: Incoming request: OPTIONS /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:08.618Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:08.619Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:08.770Z] LOG: Incoming request: POST /api/analyze-speech, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:08.773Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:08.774Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:08.797Z] LOG: Generating new session ID
+[2025-03-02T04:21:08.800Z] LOG: Attempting Gemini 1.5 Pro...
+[2025-03-02T04:21:10.776Z] LOG: Gemini 1.5 Pro quota exhausted, switching to Gemini 1.5 Flash...
+[2025-03-02T04:21:13.866Z] LOG: Speech analyzed and stored: {
+  "id": 13,
+  "user_name": "Hariom Kumar ",
+  "user_input": "I am teacher Hindi",
+  "corrected_version": "1. Corrected Version: I teach Hindi.",
+  "hindi_analysis": "2. Hindi Analysis:  \"I am teacher Hindi\"  गलत है क्योंकि  \"teacher\" एक noun (संज्ञा) है,  क्रिया (verb) नहीं।  हम कहते हैं \"मैं हिंदी पढ़ाता/पढ़ाती हूँ\" (Main Hindi padhata/padhati hun).  इसलिए,  \"I teach Hindi\"  सही है क्योंकि \"teach\"  क्रिया है जो दर्शाता है कि आप क्या करते हैं।  \"am\"  यहाँ ज़रूरी नहीं है क्योंकि वाक्य में already  क्रिया है।",
+  "pronunciation_tip": "3. Pronunciation Tip: \"Teach\" को \"टीच\" बोलते हैं,  'ea' को 'ई' की तरह बोलें और 'ch' पर थोड़ा ज़ोर दें।",
+  "vocabulary_word": "4. Vocabulary Word: Teach - पढ़ाना",
+  "score": 5,
+  "badge": "Poor",
+  "corrected_score": 6,
+  "corrected_badge": "Excellent",
+  "secret_info": "6e65cbb4-cffa-4d5a-91cf-d9a02ca0c823",
+  "next_question": "7. Next Question:  What level of Hindi do you teach? (Beginner, intermediate, advanced etc.)",
+  "next_question_hindi": "8. Next Question Hindi: आप किस स्तर की हिंदी पढ़ाते हैं? (Beginner, intermediate, advanced आदि)",
+  "mini_info": "9. Mini Info: इस सवाल के जवाब से आपको अपनी शिक्षण पद्धति के बारे में बात करने का मौका मिलेगा और इससे आपकी व्याकरण और शब्द भंडार में सुधार होगा!",
+  "timestamp": "2025-03-02T04:21:13.865Z"
+}
+[2025-03-02T04:21:49.652Z] LOG: Incoming request: OPTIONS /get-student-skills/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.658Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.661Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.667Z] LOG: Incoming request: OPTIONS /get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.669Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.668Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.823Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.829Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.830Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.832Z] LOG: Generating new session ID
+[2025-03-02T04:21:49.887Z] LOG: Incoming request: GET /get-student-skills/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.888Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.889Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:49.891Z] LOG: Generating new session ID
+[2025-03-02T04:21:50.091Z] LOG: Incoming request: OPTIONS /get-ctc-ctg/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.096Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.096Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.272Z] LOG: Incoming request: GET /get-ctc-ctg/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.274Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.276Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.278Z] LOG: Generating new session ID
+[2025-03-02T04:21:50.347Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.350Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.352Z] LOG: Generating new session ID
+[2025-03-02T04:21:50.349Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.760Z] LOG: Incoming request: GET /get-student-profile/1234567890, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.765Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.764Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-02T04:21:50.767Z] LOG: Generating new session ID
+[2025-03-02T04:45:29.209Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T04:45:29.268Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T04:45:29.270Z] LOG: Generating new session ID
+[2025-03-02T04:45:29.265Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T04:49:41.609Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T04:49:41.610Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T04:49:41.610Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T04:49:41.611Z] LOG: Generating new session ID
+[2025-03-02T04:49:41.817Z] LOG: Incoming request: GET /api/conversation-history?userName=Hariom, Origin: http://localhost:3000
+[2025-03-02T04:49:41.819Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T04:49:41.820Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T04:49:41.820Z] LOG: Generating new session ID
+[2025-03-02T04:54:48.437Z] LOG: Incoming request: GET /api/conversation-history?userName=gn, Origin: http://localhost:3000
+[2025-03-02T04:54:48.471Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T04:54:48.532Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T04:54:48.604Z] LOG: Generating new session ID
+[2025-03-02T04:54:56.097Z] LOG: Incoming request: GET /api/conversation-history?userName=gn, Origin: http://localhost:3000
+[2025-03-02T04:54:56.100Z] LOG: Incoming Origin: http://localhost:3000
+[2025-03-02T04:54:56.101Z] LOG: CORS Allowed for: http://localhost:3000, Setting Access-Control-Allow-Origin: http://localhost:3000
+[2025-03-02T04:54:56.102Z] LOG: Generating new session ID
