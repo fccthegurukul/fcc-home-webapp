@@ -30,15 +30,18 @@ import PuzzleGame from './components/PuzzleGame';
 import ColorMatchGame from './pages/ColorMatchGame';
 import EnglishPracticeAssistant from './components/EnglishPracticeAssistant';
 import Aihub from './pages/aihub';
+import StudentProfile from './pages/StudentProfile'; // Import the StudentProfile component
+import Troubleshooting from './components/Troubleshooting';
 import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
 import OneSignal from 'react-onesignal'; // OneSignal import
+
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const sessionId = React.useRef(uuidv4()); // Unique session ID for tracking
-
+    const [deferredPrompt, setDeferredPrompt] = useState(null);
    // OneSignal Initialization
    useEffect(() => {
     OneSignal.init({
@@ -74,6 +77,34 @@ const App = () => {
     useEffect(() => {
         checkLoginStatus();
     }, []);
+
+    // Capture the beforeinstallprompt event
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault(); // Prevent default browser prompt
+      setDeferredPrompt(e); // Store the event for later use
+    };
+
+    window.addEventListener('beforeinstallprompt', handler);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler);
+    };
+  }, []);
+
+  // Function to trigger the install prompt
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt(); // Show the install prompt
+      const { outcome } = await deferredPrompt.userChoice; // Wait for user response
+      if (outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+      setDeferredPrompt(null); // Reset the prompt
+    }
+  };
 
     // Reusable function for logging user activity
     const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
@@ -130,17 +161,66 @@ const App = () => {
 
     const AdminProtectedRoute = ({ children }) => {
         const accessType = localStorage.getItem('accessType');
+        const username = localStorage.getItem('username') || "User"; // Get username from localStorage
+        const whatsappMessage = `Hello! I want to complete the verification process at FCC The Gurukul quickly.`;
+    
         if (!isLoggedIn) {
             return <Navigate to="/login" replace state={{ from: location }} />;
         } else if (accessType !== 'Admin') {
-            return <div style={{ padding: "2rem", textAlign: "center", fontSize: "1.2rem" }}>Sorry For Service</div>;
+            return (
+                <div 
+                    style={{ 
+                        padding: "2rem", 
+                        textAlign: "center", 
+                        fontSize: "16px", 
+                        lineHeight: "1.6", 
+                        backgroundColor: "#f9f9f9", 
+                        borderRadius: "10px", 
+                        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", 
+                        maxWidth: "600px", 
+                        margin: "2rem auto" 
+                    }}
+                >
+                    <p>✅ Registration was successful! 🎉</p>
+                    <p>⚡ Username verification is in progress. We are verifying whether you are an instructor at FCC The Gurukul or interested in using premium app features.</p>
+                    <p>🔹 To speed up the verification process, use the button below:</p>
+                    <a 
+                        href={`https://wa.me/9125263531?text=${encodeURIComponent(whatsappMessage)}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{ 
+                            display: "inline-block", 
+                            marginTop: "15px", 
+                            padding: "12px 25px", 
+                            backgroundColor: "#25D366", 
+                            color: "#fff", 
+                            borderRadius: "8px", 
+                            textDecoration: "none", 
+                            fontSize: "16px", 
+                            fontWeight: "bold", 
+                            boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)", 
+                            transition: "all 0.3s ease-in-out"
+                        }}
+                        onMouseOver={(e) => e.target.style.backgroundColor = "#1EBE5D"}
+                        onMouseOut={(e) => e.target.style.backgroundColor = "#25D366"}
+                    >
+                        📲 Verify on WhatsApp
+                    </a>
+                </div>
+            );
         }
         return children;
-    };
-
+    };    
+    
     return (
         <div className="App">
             <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+            {deferredPrompt && (
+  <div className="install-prompt">
+    <p>🔥 हमारा वेब को होम स्क्रीन पर इनस्टॉल करें 🚀</p>
+    <button onClick={handleInstallClick}>अभी इंस्टॉल करें</button>
+  </div>
+)}
             <div className="content-area">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
@@ -153,8 +233,8 @@ const App = () => {
                     <Route path="/taskcheck" element={<AdminProtectedRoute><Taskcheck /></AdminProtectedRoute>} />
                     <Route path="/student-admission" element={<AdminProtectedRoute><StudentAdmission /></AdminProtectedRoute>} />
                     <Route path="/report" element={<AdminProtectedRoute><Report /></AdminProtectedRoute>} />
+                    <Route path="/dashboard" element={<AdminProtectedRoute><Dashboard /></AdminProtectedRoute>} />
                     {/* Public Routes */}
-                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/card-hub" element={<CardHub />} />
                     <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
                     <Route path="/quiz/:skill_topic" element={<Quiz />} />
@@ -169,6 +249,8 @@ const App = () => {
                     <Route path="/english-practice" element={<EnglishPracticeAssistant />} />
                     <Route path="/fcchome-ai" element={<FcchomeAI />} />
                     <Route path="/aihub" element={<Aihub />} />
+                    <Route path="/student/:fccId" element={<StudentProfile />} />
+                    <Route path="/troubleshooting" element={<Troubleshooting />} />
                     <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </div>

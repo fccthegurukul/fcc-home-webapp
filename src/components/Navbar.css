@@ -10,10 +10,21 @@
   z-index: 1000;
 }
 
+/* Highlight Troubleshooting and Contact */
+.fcc-highlight .fcc-nav-link {
+  font-weight: bold;
+  color: #25D366; /* Golden color for importance */
+  gap: 2px;
+}
+
+.fcc-highlight .fcc-nav-link:hover {
+  color: #FFA500; /* Orange on hover */
+}
+
 .fcc-navbar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;

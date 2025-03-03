@@ -11,12 +11,11 @@ const fs = require('fs');
 const multer = require("multer");
 const PDFDocument = require('pdfkit');
 const QRCode = require("qrcode");
-const fetch = require('node-fetch');
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const ConnectPgSimple = require('connect-pg-simple')(session); // <---- Is this line EXACTLY present, including `(session)`?
-
 const { Pool } = require('pg'); // <---- Is this line EXACTLY present at the top?
+const fetch = require('node-fetch'); // Import node-fetch for HTTP requests
 
 // ... rest of your server.js code ...
 // लॉगिंग सेटअप
@@ -155,7 +154,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 app.use(session({
   store: new ConnectPgSimple({
@@ -3033,13 +3031,11 @@ app.post('/api/user-activity-log', async (req, res) => {
       console.log("User activity logged:", activityLogResult.rows[0]);
 
       res.status(201).json({ message: 'Activity logged successfully', log_id: activityLogResult.rows[0].id, session_id: sessionUuid });
-
-
   } catch (dbError) {
       console.error("Error logging user activity to database:", dbError);
       res.status(500).json({ error: 'Failed to log user activity', details: dbError.message });
   }
-});
+})
 
 // Server Startup
 app.listen(port, async () => {

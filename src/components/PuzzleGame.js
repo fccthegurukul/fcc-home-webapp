@@ -8,12 +8,12 @@ const PuzzleGame = () => {
   const [time, setTime] = useState(0);
   const [isGameActive, setIsGameActive] = useState(false);
   const [isSolved, setIsSolved] = useState(false);
-  const [userName, setUserName] = useState('');
-  const [secretCode, setSecretCode] = useState('');
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(true);
+  const [userName, setUserName] = useState(localStorage.getItem('userName') || '');
+  const [secretCode, setSecretCode] = useState(localStorage.getItem('secretCode') || '');
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(!userName || !secretCode);
   const messagesEndRef = useRef(null);
 
-  // Shuffle tiles
+  // Tiles shuffle logic
   const shuffleTiles = () => {
     const shuffled = [...initialTiles];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -36,17 +36,17 @@ const PuzzleGame = () => {
     return () => clearInterval(timer);
   }, [isGameActive, isSolved]);
 
-  // Scroll to bottom
+  // Auto-scroll effect
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [tiles]);
 
-  // Check win condition
+  // Check if puzzle is solved
   const checkWin = (newTiles) => {
     return newTiles.every((tile, index) => tile === initialTiles[index]);
   };
 
-  // Move tile with smooth animation
+  // Move tiles logic
   const moveTile = (index) => {
     if (!isGameActive || isSolved) return;
 
@@ -67,7 +67,7 @@ const PuzzleGame = () => {
     }
   };
 
-  // Save score to backend (optional)
+  // Save score to backend
   const saveScore = async () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puzzle-score`, {
@@ -76,16 +76,18 @@ const PuzzleGame = () => {
         body: JSON.stringify({ userName, secretCode, moves, time_taken: time }),
       });
       const result = await response.json();
-      console.log('Score saved:', result);
+      console.log('स्कोर सहेजा गया:', result);
     } catch (error) {
-      console.error('Error saving score:', error);
+      console.error('स्कोर सहेजने में त्रुटि:', error);
     }
   };
 
-  // Handle login
+  // Handle user login and save to Local Storage
   const handleLogin = (e) => {
     e.preventDefault();
     if (userName.trim() && secretCode.trim()) {
+      localStorage.setItem('userName', userName);
+      localStorage.setItem('secretCode', secretCode);
       setIsLoginModalOpen(false);
       shuffleTiles();
     }
@@ -93,19 +95,19 @@ const PuzzleGame = () => {
 
   return (
     <div className="puzzle-game-container">
-      {/* Animated Timeline */}
+      {/* Timeline Animation */}
       <div className="timeline">
         <div className="timeline-bar">
-          <span>New Game Coming in 5 Days!</span>
+          <span>..........</span>
         </div>
       </div>
 
-      <h1>Number Slider Puzzle</h1>
-      <p className="subtitle">Arrange the tiles in order, {userName || 'Player'}!</p>
+      <h1>संख्या पहेली खेल</h1>
+      <p className="subtitle">टाइल्स को सही क्रम में लगाओ, {userName || 'खिलाड़ी'}!</p>
 
       <div className="game-stats">
-        <span>Moves: {moves}</span>
-        <span>Time: {time}s</span>
+        <span>चालें: {moves}</span>
+        <span>समय: {time} सेकंड</span>
       </div>
 
       <div className="puzzle-grid">
@@ -127,17 +129,17 @@ const PuzzleGame = () => {
 
       {isSolved && (
         <div className="win-message">
-          <h2>Congratulations, {userName}! You Solved It!</h2>
-          <p>Moves: {moves} | Time: {time}s</p>
+          <h2>बधाई हो, {userName}! आपने पहेली हल कर ली!</h2>
+          <p>चालें: {moves} | समय: {time} सेकंड</p>
         </div>
       )}
 
       <div className="game-controls">
         <button onClick={shuffleTiles} disabled={isGameActive && !isSolved}>
-          New Game
+          नया खेल शुरू करें
         </button>
         <button onClick={() => setIsLoginModalOpen(true)} disabled={isGameActive && !isSolved}>
-          Reset Player
+          खिलाड़ी रीसेट करें
         </button>
       </div>
 
@@ -145,29 +147,29 @@ const PuzzleGame = () => {
       {isLoginModalOpen && (
         <div className="login-modal">
           <div className="modal-content">
-            <h2>Welcome to the Puzzle</h2>
+            <h2>संख्या पहेली में आपका स्वागत है</h2>
             <form onSubmit={handleLogin}>
               <div className="form-group">
-                <label>Your Name</label>
+                <label>आपका नाम</label>
                 <input
                   type="text"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
-                  placeholder="Enter your name"
+                  placeholder="अपना नाम दर्ज करें"
                   required
                 />
               </div>
               <div className="form-group">
-                <label>Secret Code</label>
+                <label>गुप्त कोड (अपना कोई भी चुनें)</label>
                 <input
                   type="text"
                   value={secretCode}
                   onChange={(e) => setSecretCode(e.target.value)}
-                  placeholder="Enter your code"
+                  placeholder="अपना कोड दर्ज करें"
                   required
                 />
               </div>
-              <button type="submit">Start Game</button>
+              <button type="submit">खेल शुरू करें</button>
             </form>
           </div>
         </div>

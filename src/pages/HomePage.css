@@ -1,13 +1,19 @@
 div {
-    width: 100%;
-    max-width: 400px; /* Mobile ke liye fix size */
-    margin: 0 auto; /* Center align */
+  width: 100%;
+  max-width: 400px; /* Mobile ke liye */
+  margin: 0 auto; /* Center align */
+}
+
+/* Tablets ke liye */
+@media (min-width: 481px) and (max-width: 1024px) {
+  div {
+      max-width: 600px; /* Tablet ke liye */
   }
-  
-  
-  @media (max-width: 480px) {
-    div {
-        width: 100%;
-      }      
+}
+
+/* PC / Large Screens ke liye (100% width) */
+@media (min-width: 1025px) {
+  div {
+      max-width: 100%; /* PC ke liye full width */
   }
-  
+}

@@ -1,7 +1,8 @@
 .puzzle-game-container {
-    max-width: 600px;
+    width: 95%;
     margin: 50px auto;
     padding: 30px;
+    margin-top: 30px;
     background: linear-gradient(135deg, #ffffff, #f0f4f8);
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
@@ -19,7 +20,6 @@
     width: 100%;
     background: #e74c3c;
     padding: 10px 0;
-    animation: slideIn 1s ease-in-out infinite alternate;
   }
   
   .timeline-bar {
@@ -29,17 +29,7 @@
     font-weight: 600;
     animation: pulse 2s infinite;
   }
-  
-  @keyframes slideIn {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(0); }
-  }
-  
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
+
   
   h1 {
     color: #2c3e50;
@@ -128,11 +118,6 @@
     margin: 0;
   }
   
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-  
   .game-controls {
     margin-top: 30px;
     display: flex;
@@ -185,11 +170,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     animation: slideDown 0.5s ease;
   }
-  
-  @keyframes slideDown {
-    0% { transform: translateY(-100px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
+
   
   .modal-content h2 {
     margin: 0 0 20px;
@@ -244,6 +225,9 @@
     .puzzle-game-container {
       margin: 20px 10px;
       padding: 20px;
+      margin-top: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
   
     h1 {

@@ -2,22 +2,25 @@
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* हॉरिजॉन्टल स्क्रॉल हटाएं */
+  overflow-x: hidden; /* Prevent horizontal scroll */
   font-family: "Arial", sans-serif;
+  background-color: #f5f5f5; /* Light background for better contrast */
 }
 
 .content-area {
   margin-top: 5px;
-  flex: 1; /* बाकी जगह ले */
-  padding-top: 5px; /* टॉप (Navbar) और बॉटम (BottomNav) के लिए पैडिंग, लेफ्ट-राइट 0 */
+  flex: 1; /* Take available space */
+  padding-top: 5px;
+  padding-bottom: 90px; /* Space for bottom navbar (80px) + extra padding */
   width: 100%;
-  box-sizing: border-box; /* पैडिंग को चौड़ाई में शामिल करें */
+  box-sizing: border-box;
 }
 
 h1 {
   text-align: center;
   margin-top: 20px;
   color: #444;
+  font-size: 24px; /* Adjusted for mobile */
 }
 
 /* Bottom Navbar */
@@ -25,6 +28,157 @@ h1 {
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: 60px; /* Your specified height */
   z-index: 1000;
-  padding: 0; /* लेफ्ट-राइट पैडिंग हटाएं */
+  padding: 0;
+  background-color: #fff; /* White background for navbar */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Install Prompt Styling */
+.install-prompt {
+  position: fixed;
+  bottom: 100px; /* 80px navbar + 20px gap */
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #00c4b4, #007bff); /* Cool teal-blue gradient */
+  padding: 12px 20px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 1001; /* Above bottom navbar */
+  max-width: 90%; /* Responsive width */
+  min-width: 300px; /* Minimum width for readability */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+  animation: swipeIn 1.5s ease-in-out infinite alternate; /* Swipe effect */
+}
+
+/* Skeleton shimmer animation for button */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+/* Prompt text styling */
+.install-prompt p {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Stronger text shadow for depth */
+  line-height: 1.5;
+  flex: 1; /* Take available space */
+
+}
+
+/* Button styling with pulsating effect */
+.install-prompt button {
+  background: linear-gradient(135deg, #ff4081, #f50057); /* Keep your original gradient */
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  animation: pulse 1.5s infinite ease-in-out; /* Keep the pulse animation */
+  overflow: hidden; /* For shimmer effect */
+}
+
+/* Add skeleton effect layer */
+.install-prompt button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200px 100%; /* Size of shimmer effect */
+  animation: shimmer 1.5s infinite linear; /* Shimmer animation */
+  opacity: 0.8; /* Adjust shimmer visibility */
+}
+
+/* Pulsating animation for the button */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Hover effect for button (desktop) */
+.install-prompt button:hover {
+  background: linear-gradient(135deg, #f50057, #c51162); /* Darker gradient on hover */
+  transform: scale(1.08);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Active state (when clicked) */
+.install-prompt button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .install-prompt {
+    bottom: 90px; /* Slightly closer but still above navbar */
+    padding: 10px 15px;
+    min-width: 260px; /* Smaller min-width for smaller screens */
+    flex-direction: row; /* Keep row layout */
+    animation: swipeIn 5s ease-in-out infinite alternate; /* Retain swipe animation */
+  }
+
+  .install-prompt p {
+    font-size: 14px; /* Smaller text for mobile */
+    line-height: 1.5;
+  }
+
+  .install-prompt button {
+    padding: 8px 14px; /* Smaller button */
+    font-size: 12px;
+    animation: pulse 1.5s infinite ease-in-out; /* Retain pulse animation */
+  }
+}
+
+/* Adjustments for very small screens */
+@media (max-width: 480px) {
+  .install-prompt {
+    bottom: 100px; /* Even closer for very small screens */
+    padding: 8px 12px;
+    min-width: 220px;
+  }
+
+  .install-prompt p {
+    font-size: 12px;
+  }
+
+  .install-prompt button {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  
 }

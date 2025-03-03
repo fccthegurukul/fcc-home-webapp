@@ -22,6 +22,7 @@
   font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--background-light);
   overflow-x: hidden;
+  padding-top: 50px;
 }
 
 /* Sidebar */

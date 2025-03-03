@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSyncAlt, faTimes, faRobot, faLanguage } from '@fortawesome/free-solid-svg-icons';
 import FcchomeAI from './fcchome-ai';
 import EnglishPracticeAssistant from '../components/EnglishPracticeAssistant';
-import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
+import { v4 as uuidv4 } from 'uuid';
 
 function Aihub() {
     const [activeTab, setActiveTab] = useState('english-practice');
-    const [isOpen, setIsOpen] = useState(false); // Toggle for switcher
-    const sessionId = React.useRef(uuidv4()); // Unique session ID for tracking
+    const [isOpen, setIsOpen] = useState(false);
+    const sessionId = React.useRef(uuidv4());
 
-    // Reusable function for logging user activity
     const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
         try {
             const activityData = {
@@ -39,7 +38,6 @@ function Aihub() {
         }
     }, [activeTab]);
 
-    // Click handlers
     const handleToggleClick = () => {
         setIsOpen((prev) => !prev);
         logUserActivity("Toggle Switcher", { is_open: !isOpen });
@@ -47,34 +45,34 @@ function Aihub() {
 
     const handleTabSwitch = (tab) => {
         setActiveTab(tab);
-        setIsOpen(false); // Close switcher after selection
+        setIsOpen(false);
         logUserActivity("Switch Tab", { selected_tab: tab });
     };
 
     return (
-        <div className="aihub-container">
+        <div className="aihub-main-wrapper">
             {/* 🔹 Floating Modern Switcher */}
-            <div className={`switcher-container ${isOpen ? 'open' : ''}`}>
-                <button className="switcher-toggle" onClick={handleToggleClick}>
+            <div className="aihub-switcher-panel">
+                <button className="aihub-toggle-button" onClick={handleToggleClick}>
                     <FontAwesomeIcon
                         icon={isOpen ? faTimes : faSyncAlt}
-                        className="switch-icon"
+                        className="aihub-toggle-icon"
                     />
                 </button>
                 {isOpen && (
-                    <div className="switcher-buttons">
+                    <div className="aihub-option-panel">
                         <button
-                            className={activeTab === 'english-practice' ? 'active' : ''}
+                            className={`aihub-option-button ${activeTab === 'english-practice' ? 'active' : ''}`}
                             onClick={() => handleTabSwitch('english-practice')}
                         >
-                            <FontAwesomeIcon icon={faLanguage} className="btn-icon" />
+                            <FontAwesomeIcon icon={faLanguage} className="aihub-option-icon" />
                             English Practice
                         </button>
                         <button
-                            className={activeTab === 'fcchome-ai' ? 'active' : ''}
+                            className={`aihub-option-button ${activeTab === 'fcchome-ai' ? 'active' : ''}`}
                             onClick={() => handleTabSwitch('fcchome-ai')}
                         >
-                            <FontAwesomeIcon icon={faRobot} className="btn-icon" />
+                            <FontAwesomeIcon icon={faRobot} className="aihub-option-icon" />
                             FCC Home AI
                         </button>
                     </div>
@@ -82,127 +80,177 @@ function Aihub() {
             </div>
 
             {/* 🔹 Page Content */}
-            <div className="tab-content">
+            <div className="aihub-content-area">
                 {activeTab === 'english-practice' && <EnglishPracticeAssistant />}
                 {activeTab === 'fcchome-ai' && <FcchomeAI />}
             </div>
 
             {/* 🔹 Modern CSS Styling */}
             <style>{`
-                /* 🌟 Full Page Layout */
-                .aihub-container {
-                    height: 90vh;
-                    padding: 10px;
-                    background: #f5f5f5;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: relative;
-                }
+  /* 🌟 Full Page Layout */
+  .aihub-main-wrapper {
+    height: 90vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #E5E7EB, #F3F4F6); /* Softer gradient background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: 'Inter', sans-serif; /* Modern font */
+  }
 
-                /* 🔹 Floating Switcher (Fixed Right Side) */
-                .switcher-container {
-                    position: fixed;
-                    top: 50%;
-                    right: 15px;
-                    transform: translateY(-50%);
-                    z-index: 1000;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
+  /* 🔹 Floating Switcher (Fixed Bottom-Right Corner) */
+  .aihub-switcher-panel {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 
-                /* 🔵 Modern Switcher Toggle */
-                .switcher-toggle {
-                    background: rgba(255, 255, 255, 0.2);
-                    backdrop-filter: blur(10px);
-                    color: rgb(62, 155, 255);
-                    border: none;
-                    padding: 14px;
-                    font-size: 22px;
-                    cursor: pointer;
-                    border-radius: 50%;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-                    transition: all 0.3s ease-in-out;
-                }
+  /* 🔵 Modern Switcher Toggle */
+  .aihub-toggle-button {
+    background: linear-gradient(135deg, #2C7A7B, #38B2AC); /* Teal gradient */
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out, transform 0.2s ease;
+  }
 
-                .switcher-toggle:hover {
-                    background: rgba(255, 255, 255, 0.4);
-                    transform: scale(1.1);
-                }
+  .aihub-toggle-button:hover {
+    background: linear-gradient(135deg, #236E6F, #2A9D8F);
+    transform: scale(1.1) rotate(15deg);
+  }
 
-                /* 🔄 Rotate Icon Effect */
-                .switch-icon {
-                    transition: transform 0.3s ease;
-                }
+  .aihub-toggle-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.4); /* Focus ring */
+  }
 
-                /* 🌟 Switcher Buttons (Glassmorphism Effect) */
-                .switcher-buttons {
-                    display: flex;
-                    flex-direction: column;
-                    background: rgba(255, 255, 255, 0.3);
-                    backdrop-filter: blur(12px);
-                    border-radius: 12px;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-                    margin-top: 12px;
-                    padding: 8px;
-                    width: 190px;
-                    text-align: center;
-                    transition: all 0.3s ease-in-out;
-                }
+  /* 🔄 Rotate Icon Effect */
+  .aihub-toggle-icon {
+    transition: transform 0.3s ease;
+  }
 
-                /* 🎨 Button Styling */
-                .switcher-buttons button {
-                    border: none;
-                    background: rgba(255, 255, 255, 0.15);
-                    color: black;
-                    padding: 12px;
-                    font-size: 16px;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    border-radius: 8px;
-                    margin: 6px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 12px;
-                }
+  .aihub-toggle-button[aria-expanded="true"] .aihub-toggle-icon {
+    transform: rotate(180deg);
+  }
 
-                /* 🟢 Active Button */
-                .switcher-buttons button.active {
-                    background: rgb(117, 183, 255);
-                    color: white;
-                    font-weight: bold;
-                    box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
-                }
+  /* 🌟 Switcher Options Panel (Cool Animation) */
+  .aihub-option-panel {
+    display: flex;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.95); /* Slightly opaque white */
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-top: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 0.5s ease-out forwards;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
 
-                /* 🔥 Hover Animation */
-                .switcher-buttons button:hover {
-                    background: rgba(0, 123, 255, 0.2);
-                    transform: translateY(-2px);
-                }
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-                /* 🔹 Tab Content (Full Page View) */
-                .tab-content {
-                    width: 100%;
-                    height: 100%;
-                    overflow: auto;
-                }
+  /* 🎨 Option Button Styling */
+  .aihub-option-button {
+    border: none;
+    background: #F3F4F6; /* Neutral background */
+    color: #1F2937; /* Dark text for contrast */
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
 
-                /* 📱 Mobile Responsive */
-                @media (max-width: 768px) {
-                    .switcher-container {
-                        right: 5px;
-                    }
-                    .switcher-buttons {
-                        width: 160px;
-                    }
-                    .switcher-toggle {
-                        padding: 12px;
-                        font-size: 20px;
-                    }
-                }
-            `}</style>
+  .aihub-option-button:hover {
+    background: #E5E7EB;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .aihub-option-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.3);
+  }
+
+  .aihub-option-button.active {
+    background: linear-gradient(135deg, #2C7A7B, #38B2AC);
+    color: white;
+    box-shadow: 0 4px 12px rgba(44, 122, 123, 0.3);
+    font-weight: 600;
+  }
+
+  /* 🔹 Option Icon */
+  .aihub-option-icon {
+    font-size: 18px;
+  }
+
+  .aihub-option-button.active .aihub-option-icon {
+    color: white;
+  }
+
+  /* 🔹 Tab Content (Full Page View) */
+  .aihub-content-area {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  /* 📱 Mobile Responsive */
+  @media (max-width: 768px) {
+    .aihub-main-wrapper {
+      padding: 10px;
+    }
+
+    .aihub-switcher-panel {
+      bottom: 48%;
+      right: 20px;
+    }
+
+    .aihub-toggle-button {
+      padding: 12px;
+      font-size: 20px;
+    }
+
+    .aihub-option-panel {
+      flex-direction: column;
+      width: 160px;
+      padding: 12px;
+    }
+
+    .aihub-option-button {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+`}</style>
         </div>
     );
 }

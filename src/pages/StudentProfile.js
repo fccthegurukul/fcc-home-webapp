@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom"; // Import useParams to extract FCC ID from URL
 import styles from "./StudentProfile.module.css";
 import { ClipLoader } from "react-spinners";
 import NotFoundImage from "../assets/404-image.jpg";
 import QrScanner from "react-qr-scanner";
 import { QrCode, ScanLine, XCircle } from "lucide-react";
 import upiQR from "../assets/upiqr.png";
-import { v4 as uuidv4 } from 'uuid'; // Import UUID v4
+import { v4 as uuidv4 } from 'uuid';
 
 const StudentProfile = () => {
   const [fccId, setFccId] = useState("");
@@ -20,9 +20,10 @@ const StudentProfile = () => {
   const [feeLoading, setFeeLoading] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const navigate = useNavigate();
+  const { fccId: urlFccId } = useParams(); // Extract FCC ID from URL (/student/:fccId)
   const inputRef = useRef(null);
   const profileCardRef = useRef(null);
-  const sessionId = useRef(uuidv4()); // Generate session ID here
+  const sessionId = useRef(uuidv4());
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -41,7 +42,6 @@ const StudentProfile = () => {
     setTimeout(() => setToast(null), 3000);
   };
 
-  // Reusable function for logging user activity
   const logUserActivity = useCallback(async (activityType, activityDetails = null) => {
     try {
       const activityData = {
@@ -87,7 +87,6 @@ const StudentProfile = () => {
         setStudent(data);
         setError("");
         localStorage.setItem("lastViewedFccId", data.fcc_id);
-
         localStorage.setItem("bypassedStudent", JSON.stringify(data));
 
         const existingRecentProfiles = JSON.parse(localStorage.getItem("recentProfiles")) || [];
@@ -105,35 +104,44 @@ const StudentProfile = () => {
 
         setRecentProfiles(updatedRecentProfiles);
         localStorage.setItem("recentProfiles", JSON.stringify(updatedRecentProfiles));
-        logUserActivity('Search Student Profile', { fcc_id: fccToSearch, search_result: 'success' }); // Log success
+        logUserActivity('Search Student Profile', { fcc_id: fccToSearch, search_result: 'success' });
       } else {
         setStudent(null);
         setError(data.error || "विद्यार्थी नहीं मिला");
         showToast(data.error || "विद्यार्थी नहीं मिला", "error");
-        logUserActivity('Search Student Profile', { fcc_id: fccToSearch, search_result: 'failure', error: data.error }); // Log failure
+        logUserActivity('Search Student Profile', { fcc_id: fccToSearch, search_result: 'failure', error: data.error });
       }
     } catch (error) {
       setError("कुछ त्रुटि हो गयी, कृपया बाद में पुनः प्रयास करें।");
       showToast("कुछ त्रुटि हो गयी, कृपया बाद में पुनः प्रयास करें।", "error");
-      logUserActivity('Search Student Profile', { fcc_id: fccToSearch, search_result: 'exception', error: error.message }); // Log exception
+      logUserActivity('Search Student Profile', { fcc_id: fccToSearch, search_result: 'exception', error: error.message });
     } finally {
       setLoading(false);
       setScanning(false);
       setFccId("");
       if (inputRef.current) inputRef.current.value = "";
     }
-  }, [apiUrl, logUserActivity]); // Added logUserActivity to useCallback deps
+  }, [apiUrl, logUserActivity]);
+
+  // Automatically trigger search when urlFccId changes (i.e., when user visits /student/:fccId)
+  useEffect(() => {
+    if (urlFccId) {
+      setFccId(urlFccId);
+      handleSearch(urlFccId);
+      logUserActivity('Auto Load Profile', { url_fcc_id: urlFccId });
+    }
+  }, [urlFccId, handleSearch, logUserActivity]);
 
   useEffect(() => {
     const savedRecentProfiles = JSON.parse(localStorage.getItem("recentProfiles")) || [];
     setRecentProfiles(savedRecentProfiles);
 
     const storedFccId = localStorage.getItem("lastViewedFccId");
-    if (storedFccId) {
+    if (!urlFccId && storedFccId) {
       setFccId(storedFccId);
       handleSearch(storedFccId);
     }
-  }, [handleSearch]);
+  }, [handleSearch, urlFccId]);
 
   useEffect(() => {
     if (student?.fcc_id) {
@@ -241,28 +249,27 @@ const StudentProfile = () => {
     logUserActivity('Click Payment Button', { fcc_id: student.fcc_id, payment_due: feeDetails?.fee_remaining });
   };
 
-  const handleViewCtcCtgButtonClick = () => { // New handler for "View Coaching Time" button
+  const handleViewCtcCtgButtonClick = () => {
     logUserActivity('Click View Coaching Time Button', { fcc_id: student.fcc_id, student_name: student.name });
     navigate("/view-ctc-ctg", {
-        state: { fccId: student.fcc_id, name: student.name, father: student.father, mobile_number: student.mobile_number, recentProfiles, student },
+      state: { fccId: student.fcc_id, name: student.name, father: student.father, mobile_number: student.mobile_number, recentProfiles, student },
     });
   };
 
-  const handleCardHubButtonClick = () => { // New handler for "View Card Hub" button
-      logUserActivity('Click View Card Hub Button', { fcc_id: student.fcc_id, student_name: student.name });
-      navigate("/card-hub", { state: { fccId: student.fcc_id, recentProfiles, student } });
+  const handleCardHubButtonClick = () => {
+    logUserActivity('Click View Card Hub Button', { fcc_id: student.fcc_id, student_name: student.name });
+    navigate("/card-hub", { state: { fccId: student.fcc_id, recentProfiles, student } });
   };
 
-  const handleLeaderboardButtonClick = () => { // New handler for "View Leaderboard" button
-      logUserActivity('Click Leaderboard Button', { fcc_id: student.fcc_id, student_name: student.name });
-      navigate("/leaderboard", { state: { fccId: student.fcc_id, student } });
+  const handleLeaderboardButtonClick = () => {
+    logUserActivity('Click Leaderboard Button', { fcc_id: student.fcc_id, student_name: student.name });
+    navigate("/leaderboard", { state: { fccId: student.fcc_id, student } });
   };
 
-  const handleClassroomButtonClick = () => { // New handler for "Go to Classroom" button
-      logUserActivity('Click Classroom Button');
-      navigate("/classroom");
+  const handleClassroomButtonClick = () => {
+    logUserActivity('Click Classroom Button');
+    navigate("/classroom");
   };
-
 
   const SkeletonProfileCard = () => (
     <div className={styles.skeletonProfileCard}>
@@ -424,7 +431,7 @@ const StudentProfile = () => {
           <div className={styles.buttonGroup}>
             <button
               className={styles.viewCtcCtgButton}
-              onClick={handleViewCtcCtgButtonClick} // Updated handler
+              onClick={handleViewCtcCtgButtonClick}
               aria-label={`${student.name} का कोचिंग टाइम देखें`}
             >
               <span className={styles.buttonTitle}>{student.name} का कोचिंग टाइम</span>
@@ -434,7 +441,7 @@ const StudentProfile = () => {
 
           <button
             className={styles.cardHubButton}
-            onClick={handleCardHubButtonClick} // Updated handler
+            onClick={handleCardHubButtonClick}
             aria-label={`${student.name} का पढ़ाई विवरण देखें`}
           >
             <span className={styles.buttonTitle}>{student.name} का पढ़ाई विवरण</span>
@@ -442,7 +449,7 @@ const StudentProfile = () => {
           </button>
           <button
             className={styles.viewLeaderboardButton}
-            onClick={handleLeaderboardButtonClick} // Updated handler
+            onClick={handleLeaderboardButtonClick}
             aria-label="लीडरबोर्ड देखें"
           >
             <span className={styles.buttonTitle}>लीडरबोर्ड</span>
@@ -450,7 +457,7 @@ const StudentProfile = () => {
           </button>
           <button
             className={styles.viewClassroomButton}
-            onClick={handleClassroomButtonClick}  // Updated handler
+            onClick={handleClassroomButtonClick}
           >
             <span className={styles.buttonTitle}>Go to Classroom</span>
             <span className={styles.buttonSubtext}>View Class ➤</span>

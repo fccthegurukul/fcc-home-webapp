@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { FaHome, FaTachometerAlt, FaPhoneAlt, FaGamepad, FaTools, FaSignInAlt, FaUserPlus, FaSignOutAlt } from "react-icons/fa";
 import './Navbar.css';
 
 const Navbar = ({ isLoggedIn, handleLogout }) => {
@@ -20,7 +21,7 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
         <div className="fcc-branding-area">
           <Link to="/" className="fcc-branding-link">
             एफसीसी होम
-            <span className="fcc-beta-badge">Beta</span>
+            <span className="fcc-beta-badge">Beta Version</span>
           </Link>
           <div className="fcc-location-label">
             <i className="fcc-location-icon">📍</i>
@@ -35,20 +36,21 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
         </div>
 
         <ul className={`fcc-nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><Link to="/" className="fcc-nav-link">होम</Link></li>
-          <li><Link to="/dashboard" className="fcc-nav-link">डैशबोर्ड</Link></li>
-          <li><Link to="/contact" className="fcc-nav-link">संपर्क</Link></li>
-          <li><Link to="/puzzle-game" className="fcc-nav-link">पहेली</Link></li>
-          {!isLoggedIn && (
+          <li><Link to="/" className="fcc-nav-link"><FaHome /> होम</Link></li>
+          <li><Link to="/dashboard" className="fcc-nav-link"><FaTachometerAlt /> डैशबोर्ड</Link></li>
+          <li className="fcc-highlight"><Link to="/troubleshooting" className="fcc-nav-link"><FaTools /> समस्या निवारण</Link></li>
+          <li className="fcc-highlight"><Link to="/contact" className="fcc-nav-link"><FaPhoneAlt /> संपर्क करें</Link></li>
+          <li><Link to="/puzzle-game" className="fcc-nav-link"><FaGamepad /> गेम</Link></li>
+
+          {!isLoggedIn ? (
             <>
-              <li><Link to="/login" className="fcc-nav-link">लॉगिन</Link></li>
-              <li><Link to="/register" className="fcc-nav-link">रजिस्टर</Link></li>
+              <li><Link to="/login" className="fcc-nav-link"><FaSignInAlt /> लॉगिन</Link></li>
+              <li><Link to="/register" className="fcc-nav-link"><FaUserPlus /> रजिस्टर</Link></li>
             </>
-          )}
-          {isLoggedIn && (
+          ) : (
             <li>
               <button onClick={handleLogout} className="fcc-nav-link fcc-logout-button">
-                लॉगआउट
+                <FaSignOutAlt /> लॉगआउट
               </button>
             </li>
           )}
