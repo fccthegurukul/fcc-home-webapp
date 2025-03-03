@@ -49,7 +49,7 @@ const App = () => {
         allowLocalhostAsSecureOrigin: true, // For local development
         autoResubscribe: true, // Automatically resubscribe users
         notifyButton: {
-            enable: true, // Show a bell icon for subscription management
+            enable: false, // Show a bell icon for subscription management
         },
     }).then(() => {
         console.log("OneSignal Initialized Successfully");
