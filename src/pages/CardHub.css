@@ -1,3 +1,5 @@
+/* CardHub.css */
+
 /* बेस रीसेट और सेटिंग्स */
 *,
 *::before,
@@ -19,7 +21,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px; /* Reduced padding for mobile */
   display: flex;
   flex-direction: column;
   background: #f4f7fa;
@@ -30,13 +32,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 15px;
+  gap: 8px; /* Reduced gap for mobile */
+  padding: 10px; /* Reduced padding */
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px; /* Slightly smaller radius */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   position: sticky;
-  top: 10px;
+  top: 5px; /* Reduced top position */
   z-index: 100;
   flex-wrap: wrap;
 }
@@ -44,12 +46,13 @@ body {
 .back-button {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 8px 15px;
+  gap: 4px; /* Reduced gap */
+  padding: 6px 12px; /* Reduced padding */
   background: #ffffff;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 6px; /* Smaller radius */
   cursor: pointer;
+  font-size: 14px; /* Smaller text */
   transition: all 0.3s ease;
 }
 
@@ -61,14 +64,13 @@ body {
 
 /* प्रोफाइल इमेज (बैक बटन ग्रुप में) */
 .current-profile-image-cardhub {
-  width: 40px;
-  height: 40px;
+  width: 30px; /* Smaller for mobile */
+  height: 30px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #4a90e2;
   transition: transform 0.3s ease;
-  margin-left: 10px;
-  align-items: center;
+  margin-left: 5px; /* Reduced margin */
 }
 
 .current-profile-image-cardhub:hover {
@@ -77,83 +79,83 @@ body {
 
 /* प्रोफाइल स्विचर */
 .profile-switcher {
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 6px 10px; /* Reduced padding */
+  border-radius: 6px; /* Smaller radius */
   border: 1px solid #e0e0e0;
   background: #fff;
-  font-size: 14px;
+  font-size: 12px; /* Smaller text */
   color: #1f2a44;
   flex-grow: 1;
-  max-width: 200px;
+  max-width: 150px; /* Reduced max-width */
   cursor: pointer;
   transition: all 0.3s ease;
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 5px 0; /* Reduced margin */
 }
 
 .profile-switcher:hover,
 .profile-switcher:focus {
   border-color: #4a90e2;
-  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
   outline: none;
 }
 
 /* हेडिंग */
 h1 {
-  font-size: 24px;
+  font-size: 20px; /* Smaller for mobile */
   font-weight: 600;
   text-align: center;
   color: #1f2a44;
-  margin: 20px 0;
+  margin: 15px 0; /* Reduced margin */
 }
 
 /* एरर मैसेज */
 .error {
   background: #ffebee;
   color: #c62828;
-  padding: 10px;
+  padding: 8px; /* Reduced padding */
   margin: 10px 0;
   border-radius: 8px;
   text-align: center;
+  font-size: 14px; /* Smaller text */
 }
 
 /* कंट्रोल्स */
 .controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  padding: 15px;
+  gap: 8px; /* Reduced gap */
+  padding: 10px; /* Reduced padding */
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  margin: 15px 0;
+  border-radius: 10px; /* Smaller radius */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 10px 0; /* Reduced margin */
 }
 
 .search-input,
 .filter-dropdown {
-  padding: 10px;
+  padding: 8px; /* Reduced padding */
   font-size: 14px;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 6px; /* Smaller radius */
   flex: 1;
-  min-width: 120px;
+  min-width: 100px; /* Reduced min-width */
 }
 
 .search-input:focus,
 .filter-dropdown:focus {
   border-color: #4a90e2;
   outline: none;
-  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
 }
 
 .clear-filter-button {
-  padding: 10px 20px;
+  padding: 8px 16px; /* Reduced padding */
   background: #ff6b6b;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px; /* Smaller radius */
   cursor: pointer;
+  font-size: 14px; /* Smaller text */
   transition: all 0.3s ease;
 }
 
@@ -164,17 +166,17 @@ h1 {
 /* कार्ड लिस्ट */
 .card-list {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 15px;
-  padding: 15px 0;
+  grid-template-columns: 1fr; /* Single column by default for mobile */
+  gap: 10px; /* Reduced gap */
+  padding: 10px 0; /* Reduced padding */
 }
 
 /* इंडिविजुअल कार्ड */
 .card {
   background: #ffffff;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px; /* Smaller radius */
+  padding: 12px; /* Reduced padding */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
@@ -182,51 +184,34 @@ h1 {
 
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card h2 {
-  font-size: 16px;
+  font-size: 16px; /* Smaller text */
   font-weight: 600;
   color: #1f2a44;
-  margin-bottom: 8px;
+  margin-bottom: 6px; /* Reduced margin */
+  text-align: left;
 }
 
 .card p {
-  font-size: 13px;
+  font-size: 12px; /* Smaller text */
   color: #6b7280;
   margin: 4px 0;
+  text-align: left;
 }
 
 /* स्किल लेवल लेबल */
 .label {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 4px 8px;
-  font-size: 11px;
+  top: 8px; /* Reduced top position */
+  right: 8px; /* Reduced right position */
+  padding: 4px 6px; /* Reduced padding */
+  font-size: 10px; /* Smaller text */
   color: white;
-  border-radius: 12px;
+  border-radius: 10px; /* Smaller radius */
   font-weight: 500;
-}
-
-/* प्ले आइकन */
-.play-icon-container {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: #4a90e2;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.play-icon {
-  color: white;
-  font-size: 14px;
 }
 
 /* मोडल ओवरले */
@@ -245,212 +230,43 @@ h1 {
 
 .modal {
   background: #ffffff;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 10px; /* Smaller radius */
+  padding: 15px; /* Reduced padding */
   width: 90%;
-  max-width: 600px;
+  max-width: 500px; /* Slightly reduced max-width */
   max-height: 85vh;
   overflow-y: auto;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px; /* Reduced gap */
 }
 
 .modal h2 {
-  font-size: 18px;
+  font-size: 16px; /* Smaller text */
   font-weight: 600;
   color: #1f2a44;
   margin-bottom: 0;
 }
 
 .modal p {
-  font-size: 14px;
+  font-size: 12px; /* Smaller text */
   color: #6b7280;
-  margin: 5px 0;
+  margin: 4px 0; /* Reduced margin */
 }
 
 /* इमेज कंटेनर (मोडल में स्किल इमेज) */
 .image-container {
   width: 100%;
-  margin: 15px 0;
+  margin: 10px 0; /* Reduced margin */
   position: relative;
-  padding-top: 56.25%; /* 16:9 आस्पेक्ट रेशियो */
+  padding-top: 56.25%; /* 16:9 aspect ratio */
   overflow: hidden;
   cursor: pointer;
-  background: #f1f5f9; /* हल्का बैकग्राउंड अगर इमेज लोड न हो */
-  max-width: 95%; /* इमेज को मोडल की चौड़ाई तक सीमित करें */
-  max-height: 300px; /* मैक्स ऊंचाई सेट करें ताकि इमेज बहुत बड़ी न हो */
+  background: #f1f5f9;
+  max-width: 95%;
+  max-height: 200px; /* Reduced max-height for mobile */
 }
-
-
-/* CardHub.css */
-/* ... pehle ke CSS styles ... */
-.video-container {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.skill-video {
-  width: 100%;
-  height: auto;
-  display: block;
-  cursor: pointer; /* Cursor hint to indicate video is clickable */
-}
-
-.video-controls {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-radius: 0 0 5px 5px;
-  font-size: 0.9em;
-  justify-content: flex-start; /* Ensure buttons and progress are aligned start */
-}
-
-.video-control-button {
-  background: none;
-  border: none;
-  color: black;
-  font-size: 1.4em;
-  cursor: pointer;
-  margin-right: 10px; /* Reduced margin slightly */
-  margin-left: 5px; /* Add a bit of left margin to space buttons better */
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.video-control-button:hover,
-.video-control-button:focus {
-  opacity: 1;
-  outline: none;
-}
-
-.video-progress {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  margin: 0 15px;
-}
-
-.video-seekbar {
-  flex-grow: 1;
-  height: 5px; /* Adjust height of seek bar */
-  -webkit-appearance: none; /* For WebKit browsers */
-  appearance: none;
-  background: #ddd; /* Default track color */
-  cursor: pointer;
-  border-radius: 5px; /* Rounded edges for seekbar */
-  margin: 0 10px;
-}
-
-/* For Chrome, Safari, Opera and Edge */
-.video-seekbar::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 12px; /* Thumb width */
-  height: 12px; /* Thumb height */
-  background: #007bff; /* Thumb color */
-  cursor: pointer;
-  border-radius: 50%; /* Make thumb circular */
-}
-
-/* For Firefox */
-.video-seekbar::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  background: #007bff;
-  cursor: pointer;
-  border-radius: 50%;
-  border: none; /* Remove border in Firefox */
-}
-
-.video-seekbar:focus {
-  outline: none; /* Remove focus outline */
-}
-.video-seekbar::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 5px;
-  background: #ddd;
-  border-radius: 5px;
-}
-
-.video-seekbar::-moz-range-track {
-  height: 5px;
-  background: #ddd;
-  border-radius: 5px;
-}
-
-.current-time,
-.total-duration {
-    margin: 0 5px;
-    color: #333; /* Time text color */
-    font-size: 0.9em;
-    white-space: nowrap; /* Prevent time text from wrapping */
-}
-
-
-.speed-control-dropdown {
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1em;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: white;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-    background-repeat: no-repeat;
-    background-position-x: 100%;
-    background-position-y: 5px;
-    cursor: pointer;
-    margin-left: 15px; /* Spacing from progress bar */
-}
-
-.speed-control-dropdown:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
-}
-
-
-
-.current-time,
-.total-duration {
-  margin: 0 5px;
-  color: #333; /* Time text color */
-  font-size: 0.9em;
-  white-space: nowrap; /* Prevent time text from wrapping */
-}
-
-
-.speed-control-dropdown {
-  padding: 8px 12px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1em;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: white;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-  background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-position-y: 5px;
-  cursor: pointer;
-  margin-left: 15px; /* Spacing from progress bar */
-}
-
-.speed-control-dropdown:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
-}
-
 
 /* स्किल इमेज */
 .skill-image {
@@ -459,11 +275,10 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* इमेज को 16:9 में फिट करने के लिए */
+  object-fit: cover;
   border-radius: 8px;
-  transition: transform 0.3s ease; /* ज़ूम इफेक्ट के लिए ट्रांज़िशन */
+  transition: transform 0.3s ease;
 }
-
 
 /* इमेज पर होवर या टैप */
 .image-container:hover .skill-image,
@@ -495,31 +310,131 @@ h1 {
 
 .zoomed-image {
   max-width: 90%;
-  max-height: 90vh;
+  max-height: 80vh; /* Slightly reduced for mobile */
   object-fit: contain;
   border-radius: 8px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* वीडियो कंटेनर */
 .video-container {
-  margin: 15px 0;
+  margin: 10px 0; /* Reduced margin */
+  width: 100%;
+  max-width: 500px; /* Slightly reduced max-width */
 }
 
-.video-container button {
-  margin-top: 10px;
-  padding: 8px 15px;
-  background: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 8px;
+.skill-video {
+  width: 100%;
+  height: auto;
+  display: block;
   cursor: pointer;
+}
+
+.video-controls {
+  display: flex;
+  align-items: center;
+  padding: 8px; /* Reduced padding */
+  background-color: #f0f0f0;
+  border-radius: 0 0 5px 5px;
+  font-size: 0.8em; /* Smaller text */
+  justify-content: flex-start;
+  flex-wrap: wrap; /* Allow wrapping for mobile */
+}
+
+.video-control-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.2em; /* Slightly smaller icons */
+  cursor: pointer;
+  margin: 4px; /* Reduced margin */
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.video-control-button:hover,
+.video-control-button:focus {
+  opacity: 1;
+  outline: none;
+}
+
+.video-progress {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  margin: 0 8px; /* Reduced margin */
+  width: 100%; /* Full width on mobile */
+}
+
+.video-seekbar {
+  flex-grow: 1;
+  height: 4px; /* Reduced height */
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0 5px; /* Reduced margin */
+}
+
+.video-seekbar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px; /* Smaller thumb */
+  height: 10px;
+  background: #007bff;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.video-seekbar::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  background: #007bff;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+}
+
+.video-seekbar:focus {
+  outline: none;
+}
+
+.current-time,
+.total-duration {
+  margin: 0 4px; /* Reduced margin */
+  color: #333;
+  font-size: 0.8em; /* Smaller text */
+  white-space: nowrap;
+}
+
+.speed-control-dropdown {
+  padding: 6px 10px; /* Reduced padding */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 0.8em; /* Smaller text */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: white;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
+  cursor: pointer;
+  margin-left: 8px; /* Reduced margin */
+}
+
+.speed-control-dropdown:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
 }
 
 /* स्किल लॉग */
 .skill-log {
-  margin-top: 15px;
-  padding: 10px;
+  margin-top: 10px; /* Reduced margin */
+  padding: 8px; /* Reduced padding */
   background: #f9fafb;
   border-radius: 8px;
 }
@@ -534,35 +449,39 @@ h1 {
   background: #4a90e2;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 4px 8px; /* Reduced padding */
+  border-radius: 4px; /* Smaller radius */
   cursor: pointer;
+  font-size: 12px; /* Smaller text */
 }
 
 .json-display {
-  font-size: 12px;
+  font-size: 10px; /* Smaller text */
   background: #f1f5f9;
-  padding: 10px;
-  border-radius: 8px;
-  max-height: 200px;
+  padding: 8px; /* Reduced padding */
+  border-radius: 6px; /* Smaller radius */
+  max-height: 150px; /* Reduced max-height */
   overflow-y: auto;
 }
 
 /* बटन ग्रुप */
 .button-group {
   display: flex;
-  gap: 10px;
+  gap: 8px; /* Reduced gap */
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 10px; /* Reduced margin */
+  flex-wrap: wrap; /* Allow wrapping for mobile */
 }
 
 .close-button,
 .practice-button {
-  padding: 10px 20px;
+  padding: 8px 16px; /* Reduced padding */
   border: none;
-  border-radius: 8px;
+  border-radius: 6px; /* Smaller radius */
   color: white;
   cursor: pointer;
+  font-size: 14px; /* Smaller text */
+  min-width: 120px; /* Ensure touch-friendly size */
 }
 
 .close-button {
@@ -580,7 +499,11 @@ h1 {
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .container {
+    padding: 20px;
   }
 }
 
@@ -596,82 +519,11 @@ h1 {
 
 @media (max-width: 480px) {
   .card-list {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .card {
-    padding: 15px;
-  }
-
-  .card span {
-    font-size: 10px;
-  }
-
-  .card h2 {
-    font-size: 16px;
-    margin-bottom: 6px;
-    text-align: left;
-    color: #333;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-
-  .card p {
-    font-size: 12px;
-    text-align: left;
-  }
-
-  .level strong {
-    color: #ff5733; /* Orange-Red color for "Level:" */
-}
-
-.level {
-    color: #3498db; /* Blue color for skill level data */
-}
-
-.status strong {
-    color: #27ae60; /* Green color for "Status:" */
-}
-
-.status {
-    color: #f39c12; /* Yellow-Orange color for status data */
-}
-
-.description strong {
-    color: #8e44ad; /* Purple color for "Description:" */
-}
-
-.description {
-    color: #2c3e50; /* Dark Grayish-Blue color for description data */
-}
-
-
-  .back-button-group-cardhub {
-    flex-direction: column;
-    align-items: stretch;
-    margin-top: 5px;
-  }
-
-  .profile-switcher {
-    max-width: none;
-    width: 100%;
-  }
-
-  .current-profile-image-cardhub {
-    width: 50px;
-    height: 50px;
-    margin-left: 5px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  .controls {
-    flex-direction: column;
+    padding: 10px;
   }
 
   .card h2 {
@@ -682,124 +534,85 @@ h1 {
     font-size: 12px;
   }
 
-  .modal {
-    width: 95%;
-    padding: 15px;
+  .back-button-group-cardhub {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px;
   }
 
+  .profile-switcher {
+    max-width: none;
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .current-profile-image-cardhub {
+    width: 40px;
+    height: 40px;
+    margin: 5px 0;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls > * {
+    margin-bottom: 8px;
+    width: 100%;
+  }
+
+  .modal {
+    width: 95%;
+    padding: 12px;
+  }
 
   .image-container {
-    padding-top: 56.25%; /* 16:9 मोबाइल में भी */
-    max-height: 200px; /* मोबाइल पर छोटी ऊंचाई */
-    margin-left: -20px;
-    width: 95%;
+    padding-top: 56.25%;
+    max-height: 180px;
+    margin: 5px 0;
   }
 
   .zoomed-image {
-    max-width: 95%;
-    max-height: 85vh;
+    max-width: 90%;
+    max-height: 70vh;
   }
 
   .modal h2 {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .modal p {
     font-size: 12px;
-    text-align: left;
-  }
-
-  .container {
-    width: 350px;
-    padding-top: 40px;
-  }
-
-  .back-button {
-    display: none;
-  }
-
-  .controls {
-    flex-direction: column; /* Stack controls vertically on smaller screens */
-    align-items: stretch; /* Make controls take full width */
-  }
-
-  .controls > * {
-    margin-bottom: 10px; /* Increased spacing when stacked */
-    width: 100%; /* Make each control element full width */
-    box-sizing: border-box; /* Include padding and border in element's total width */
   }
 
   .video-controls {
-    flex-wrap: wrap;   /* Allow controls to wrap on smaller screens */
-    justify-content: center; /* Center controls when wrapped */
+    flex-direction: column;
+    align-items: center;
   }
-  .video-control-button,
-  .speed-control-dropdown {
-    margin: 5px;      /* Adjust spacing for wrapped controls */
-  }
+
   .video-progress {
     width: 100%;
-    margin: 10px 0;
-    order: -1; /* Push progress bar above buttons on wrap */
-    justify-content: center; /* Center progress bar */
-  }
-  .video-seekbar {
-    margin: 0; /* Remove extra margin for seekbar when full width */
-  }
-  .current-time,
-  .total-duration {
-    display: inline-block; /* Keep time inline on small screens */
-    margin: 0 5px;
+    margin: 8px 0;
   }
 
-  /* CardHub.css */
+  .video-control-button,
+  .speed-control-dropdown {
+    margin: 4px;
+  }
 
-/* ... existing CSS ... */
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.practice-popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000; /* Ensure it's on top of other elements */
-}
-
-.practice-popup {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 80%; /* Adjust width as needed */
-  max-width: 500px;
-}
-
-.practice-popup h3 {
-  margin-top: 0;
-  color: #333;
-}
-
-.practice-popup p {
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.practice-popup .close-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.practice-popup .close-button:hover {
-  background-color: #0056b3;
-}
+  .close-button,
+  .practice-button {
+    width: 100%;
+    margin: 4px 0;
+  }
 }

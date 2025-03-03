@@ -30,13 +30,45 @@ import PuzzleGame from './components/PuzzleGame';
 import ColorMatchGame from './pages/ColorMatchGame';
 import EnglishPracticeAssistant from './components/EnglishPracticeAssistant';
 import Aihub from './pages/aihub';
-import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
+import { v4 as uuidv4 } from 'uuid';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
-    const sessionId = React.useRef(uuidv4()); // Unique session ID for tracking
+    const sessionId = React.useRef(uuidv4());
+
+    // OneSignal Initialization with Console Logs
+    const appId = process.env.REACT_APP_ONESIGNAL_APP_ID;
+    useEffect(() => {
+        console.log("Initializing OneSignal...");
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+                appId: appId, // .env से लिया गया एपीआई आईडी
+                allowLocalhostAsSecureOrigin: true, // लोकलहोस्ट टेस्टिंग के लिए
+            }).then(() => {
+                console.log("OneSignal initialized successfully!");
+                console.log("appId:", appId);
+                
+                // Check if user is subscribed
+                OneSignal.isPushNotificationsEnabled().then((isEnabled) => {
+                    if (isEnabled) {
+                        console.log("User is subscribed to push notifications!");
+                        OneSignal.getUserId().then((userId) => {
+                            console.log("User Push Subscription ID:", userId);
+                        });
+                    } else {
+                        console.log("User is NOT subscribed to push notifications.");
+                    }
+                }).catch((error) => {
+                    console.error("Error checking subscription status:", error);
+                });
+            }).catch((error) => {
+                console.error("OneSignal initialization failed:", error);
+            });
+        });
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -57,7 +89,6 @@ const App = () => {
         checkLoginStatus();
     }, []);
 
-    // Reusable function for logging user activity
     const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
         try {
             const activityData = {
@@ -110,6 +141,16 @@ const App = () => {
         logUserActivity('Navigate', { to: path });
     };
 
+    const handleSubscribeToNotifications = () => {
+        window.OneSignal.push(function() {
+            OneSignal.showNativePrompt().then(() => {
+                console.log("Notification permission prompt displayed!");
+            }).catch((error) => {
+                console.error("Error showing prompt:", error);
+            });
+        });
+    };
+
     const AdminProtectedRoute = ({ children }) => {
         const accessType = localStorage.getItem('accessType');
         if (!isLoggedIn) {
@@ -124,6 +165,9 @@ const App = () => {
         <div className="App">
             <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
             <div className="content-area">
+                <button onClick={handleSubscribeToNotifications} style={{ margin: "1rem" }}>
+                    Enable Push Notifications
+                </button>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/student-attendance" element={<AdminProtectedRoute><StudentsAttendance /></AdminProtectedRoute>} />
@@ -135,7 +179,6 @@ const App = () => {
                     <Route path="/taskcheck" element={<AdminProtectedRoute><Taskcheck /></AdminProtectedRoute>} />
                     <Route path="/student-admission" element={<AdminProtectedRoute><StudentAdmission /></AdminProtectedRoute>} />
                     <Route path="/report" element={<AdminProtectedRoute><Report /></AdminProtectedRoute>} />
-                    {/* Public Routes */}
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/card-hub" element={<CardHub />} />
                     <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
@@ -155,46 +198,22 @@ const App = () => {
                 </Routes>
             </div>
             <nav className="bottom-navbar">
-                <Link
-                    to="/"
-                    className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('/')}
-                >
+                <Link to="/" className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => handleNavClick('/')}>
                     <i className="fas fa-home"></i><span>होम</span>
                 </Link>
-                <Link
-                    to="/view-ctc-ctg"
-                    className={`bottom-nav-link ${location.pathname === '/view-ctc-ctg' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('/view-ctc-ctg')}
-                >
+                <Link to="/view-ctc-ctg" className={`bottom-nav-link ${location.pathname === '/view-ctc-ctg' ? 'active' : ''}`} onClick={() => handleNavClick('/view-ctc-ctg')}>
                     <i className="fas fa-calendar-day"></i><span>उपस्थिति</span>
                 </Link>
-                <Link
-                    to="/card-hub"
-                    className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('/card-hub')}
-                >
+                <Link to="/card-hub" className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`} onClick={() => handleNavClick('/card-hub')}>
                     <i className="fas fa-graduation-cap"></i><span>स्किल</span>
                 </Link>
-                <Link
-                    to="/leaderboard"
-                    className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('/leaderboard')}
-                >
+                <Link to="/leaderboard" className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`} onClick={() => handleNavClick('/leaderboard')}>
                     <i className="fas fa-trophy"></i><span>लीडरबोर्ड</span>
                 </Link>
-                <Link
-                    to="/classroom"
-                    className={`bottom-nav-link ${location.pathname === '/classroom' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('/classroom')}
-                >
+                <Link to="/classroom" className={`bottom-nav-link ${location.pathname === '/classroom' ? 'active' : ''}`} onClick={() => handleNavClick('/classroom')}>
                     <i className="fas fa-chalkboard-teacher"></i><span>क्लासरूम</span>
                 </Link>
-                <Link
-                    to="/aihub"
-                    className={`bottom-nav-link ${location.pathname === '/aihub' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('/aihub')}
-                >
+                <Link to="/aihub" className={`bottom-nav-link ${location.pathname === '/aihub' ? 'active' : ''}`} onClick={() => handleNavClick('/aihub')}>
                     <i className="fas fa-brain"></i><span>AI</span>
                 </Link>
             </nav>

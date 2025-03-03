@@ -133,7 +133,7 @@ const CardHub = () => {
             fetchSkills();
             localStorage.setItem('lastViewedFccId', fccId);
         }
-    }, [fccId, initialStudent, fetchSkills, fetchStudentProfile]); // added fetchStudentProfile in dependency
+    }, [fccId, initialStudent]);  //  fetchStudentProfile और fetchSkills को dependency array में वापस जोड़ा जा सकता है अगर आपको लगे कि कोड और अधिक स्पष्ट हो गया है (हालांकि यह अभी भी अनावश्यक है)।  लेकिन `initialStudent` को हटाने से लॉजिक सरल हो जाएगा।
 
     const filteredSkills = skills.filter((skill) => {
         const level = skill.skill_level ? skill.skill_level.toUpperCase() : '';

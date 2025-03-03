@@ -1,56 +1,111 @@
-/* Bottom Navigation Styles */
+/* BottomNav.css */
 .bottom-navbar {
     position: fixed;
-    bottom: 0;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;  /* थोड़ा छोटा किया ताकि किनारों पर जगह बचे */
-    background: rgba(255, 255, 255, 0.2); /* Glassmorphism effect */
-    backdrop-filter: blur(10px); /* Blur effect */
+    width: 90%;
+    max-width: 600px;
+    /* Modern, cool gradient: Deep teal to soft cyan for a fresh, trendy look */
+    background: linear-gradient(90deg, #072e46 0%, #078d72 100%);
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     display: flex;
-    justify-content: center;  /* Center align icons */
-    gap: 20px;  /* Icons ke beech ka gap */
-    padding: 12px 0;
-    border-radius: 15px; /* Rounded navbar */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+    border-radius: 25px; /* More rounded for a modern touch */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Stronger, cooler shadow */
     z-index: 1000;
     transition: all 0.3s ease-in-out;
-}
-
-/* Navigation Links */
-.bottom-nav-link {
+  }
+  
+  /* Navigation Links */
+  .bottom-nav-link {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: #495057;
-    font-size: 0.9rem;
-    padding: 8px; /* Padding thoda kam kiya */
+    color: #ECF0F1; /* Light grayish-white for readability */
+    font-size: 0.85rem;
+    padding: 6px 8px;
     transition: all 0.3s ease-in-out;
     position: relative;
-}
-
-/* Icons */
-.bottom-nav-link i {
-    font-size: 1.4rem; /* Slightly smaller icon */
-    margin-bottom: 3px; /* Margin thoda kam kiya */
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Adjust Navbar for Smaller Screens */
-@media (max-width: 480px) {
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* Icons */
+  .bottom-nav-link i {
+    font-size: 1.5rem; /* Slightly larger for better visibility */
+    margin-bottom: 4px;
+    color: #ECF0F1; /* White icons for contrast */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  /* Hover and Active States */
+  .bottom-nav-link:hover,
+  .bottom-nav-link.active {
+    color: #F4D03F; /* Bright, cool gold for a trendy active/hover effect */
+  }
+  
+  .bottom-nav-link:hover i,
+  .bottom-nav-link.active i {
+    transform: scale(1.15); /* Slightly more pronounced scaling */
+    color: rgb(190, 237, 255); /* Matching skyblue for icons on hover/active */
+  }
+  
+  /* Active state indicator */
+  .bottom-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%; /* Wider underline for emphasis */
+    height: 4px; /* Thicker underline */
+    background-color: rgb(190, 237, 255); /* Matching skyblue */
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 480px) {
     .bottom-navbar {
-        width: 95%;
-        padding: 8px 0;
-        gap: 15px; /* Chhoti screen par aur kam gap */
+      width: 95%;
+      padding: 6px 0;
+      border-radius: 20px; /* Slightly smaller radius */
     }
+  
     .bottom-nav-link {
-        font-size: 0.8rem;
-        padding: 6px;
+      font-size: 0.75rem;
+      padding: 4px 6px;
     }
+  
     .bottom-nav-link i {
-        font-size: 1.2rem;
+      font-size: 1.3rem; /* Slightly smaller icons */
+      margin-bottom: 2px;
     }
-}
+  }
+  
+  @media (max-width: 360px) {
+    .bottom-navbar {
+      width: 98%;
+      gap: 5px;
+    }
+  
+    .bottom-nav-link {
+      font-size: 0.7rem;
+      padding: 3px 5px;
+    }
+  
+    .bottom-nav-link i {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Ensure content doesn't overlap */
+  .content-area {
+    padding-bottom: 70px;
+  }

@@ -1,27 +1,19 @@
-:root {
-  --fcc-primary-color: #2c3e50;
-  --fcc-secondary-color: #3498db;
-  --fcc-accent-color: #cc2424;
-  --fcc-text-light: #ecf0f1;
-  --fcc-hover-transition: all 0.3s ease;
-  --fcc-gradient-bg: linear-gradient(135deg, #2c3e50, #4a69bd);
-}
-
+/* Navbar.css */
 .fcc-navbar {
-  background: var(--fcc-gradient-bg);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  /* Gradient background from deep blue to light blue - conveys trust and professionalism */
+  background: linear-gradient(90deg, #2C3E50 0%, #3498DB 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 1001;
-  padding: 0.8rem 0;
+  right: 0;
+  z-index: 1000;
 }
 
 .fcc-navbar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,52 +21,91 @@
 
 .fcc-branding-area {
   display: flex;
-  align-items: center;
-  gap: 0.8rem;
+  flex-direction: column;
 }
 
 .fcc-branding-link {
-  color: var(--fcc-text-light);
-  font-size: 1.4rem;
   text-decoration: none;
-  font-weight: 600;
-  transition: var(--fcc-hover-transition);
+  color: #ffffff; /* White text for contrast against gradient */
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.fcc-branding-link:hover {
-  color: var(--fcc-secondary-color);
-  transform: scale(1.05);
+.fcc-beta-badge {
+  background-color: #27AE60; /* Green badge for contrast */
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
 }
 
 .fcc-location-label {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  color: var(--fcc-text-light);
-  background: rgba(255, 255, 255, 0.15);
-  padding: 0.25rem 0.7rem;
-  border-radius: 15px;
-  font-size: 0.85rem;
+  gap: 0.3rem;
+  color: #E0E0E0; /* Light gray for subtle contrast */
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
 }
 
-.fcc-location-icon {
-  font-size: 1.1rem;
+.fcc-nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.fcc-nav-link {
+  text-decoration: none;
+  color: #ffffff; /* White text for visibility */
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.fcc-nav-link:hover {
+  color: #FFD700; /* Golden yellow on hover for appeal */
+}
+
+.fcc-logout-button {
+  color: #fff;
+  background-color: #E74C3C; /* Vibrant red for logout button */
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.fcc-logout-button:hover {
+  background-color: #C0392B;
+  color: #fff;
 }
 
 .fcc-menu-icon {
   display: none;
   cursor: pointer;
-  padding: 0.4rem;
+  width: 30px;
+  height: 25px;
+  position: relative;
 }
 
-.fcc-menu-icon .fcc-bar {
-  width: 22px;
-  height: 2px;
-  background-color: var(--fcc-text-light);
-  margin: 4px 0;
-  border-radius: 2px;
-  transition: var(--fcc-hover-transition);
+.fcc-bar {
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff; /* White bars for contrast */
+  position: absolute;
+  transition: all 0.3s ease;
 }
+
+.fcc-bar:nth-child(1) { top: 0; }
+.fcc-bar:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.fcc-bar:nth-child(3) { bottom: 0; }
 
 .fcc-menu-icon.open .fcc-bar:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
@@ -85,111 +116,67 @@
 }
 
 .fcc-menu-icon.open .fcc-bar:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -5px);
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 
-.fcc-nav-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-  transition: var(--fcc-hover-transition);
-}
-
-.fcc-nav-link {
-  color: var(--fcc-text-light);
-  text-decoration: none;
-  padding: 0.4rem 0.9rem;
-  border-radius: 6px;
-  position: relative;
-  font-size: 0.95rem;
-  transition: var(--fcc-hover-transition);
-  font-weight: 500;
-}
-
-.fcc-nav-link:hover {
-  color: var(--fcc-secondary-color);
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-}
-
-.fcc-nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--fcc-secondary-color);
-  transition: var(--fcc-hover-transition);
-}
-
-.fcc-nav-link:hover::after {
-  width: 100%;
-  left: 0;
-}
-
-.fcc-logout-button {
-  background: var(--fcc-accent-color);
-  border: none;
-  padding: 0.4rem 0.9rem;
-  border-radius: 6px;
-  cursor: pointer;
-  color: var(--fcc-text-light);
-  font-size: 0.95rem;
-  transition: var(--fcc-hover-transition);
-}
-
-.fcc-logout-button:hover {
-  background: #c0392b;
-  transform: scale(1.08);
-}
-
-.fcc-beta-badge {
-  display: inline-block;
-  margin-left: 0.5rem;
-  padding: 0.2rem 0.5rem;
-  background: var(--fcc-accent-color);
-  color: var(--fcc-text-light);
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 10px;
-  text-transform: uppercase;
-  vertical-align: middle;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-  .fcc-navbar {
-    padding: 0.6rem 0;
-  }
-
-  .fcc-navbar-container {
-    padding: 0 0.8rem;
-  }
-
   .fcc-menu-icon {
     display: block;
   }
 
   .fcc-nav-links {
-    position: fixed;
-    top: 50px;
-    right: -100%;
-    height: calc(100vh - 50px);
-    width: 80%;
-    max-width: 280px;
-    background: var(--fcc-gradient-bg);
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    /* Extend the gradient to mobile menu */
+    background: linear-gradient(90deg, #2C3E50 0%, #3498DB 100%);
     flex-direction: column;
-    padding: 1.5rem;
-    transition: right 0.4s ease-in-out;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .fcc-nav-links.active {
-    right: 0;
+    display: flex;
   }
 
   .fcc-nav-link {
-    padding: 0.8rem 1rem;
+    padding: 0.8rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  .fcc-logout-button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .fcc-branding-link {
+    font-size: 1.2rem;
+  }
+
+  .fcc-location-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fcc-navbar-container {
+    padding: 0.8rem;
+  }
+
+  .fcc-branding-link {
     font-size: 1rem;
+  }
+
+  .fcc-beta-badge {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .fcc-nav-link {
+    font-size: 0.9rem;
   }
 }
