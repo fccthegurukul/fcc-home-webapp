@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Routes, Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
-import OneSignal from 'react-onesignal'; // OneSignal इंपोर्ट करें
+import OneSignal from 'react-onesignal'; // OneSignal पैकेज इंपोर्ट
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import StudentAdmission from './pages/StudentAdmission';
@@ -40,30 +40,36 @@ const App = () => {
     const sessionId = React.useRef(uuidv4());
 
     // OneSignal Initialization
-    const appId = process.env.REACT_APP_ONESIGNAL_APP_ID;
     useEffect(() => {
-        console.log("Initializing OneSignal with react-onesignal...");
-        OneSignal.init({
-            appId: "d0b352ba-71ba-4093-bd85-4e3002360631", // अपनी OneSignal App ID यहाँ डालें
-            allowLocalhostAsSecureOrigin: true, // लोकलहोस्ट टेस्टिंग के लिए
-            notifyButton: {
-                enable: true, // नोटिफिकेशन बेल दिखाने के लिए (ऑप्शनल)
-            },
-        }).then(() => {
-            console.log("OneSignal initialized successfully!");
-            OneSignal.Notifications.requestPermission().then((permission) => {
-                if (permission) {
-                    console.log("User granted push notification permission!");
-                    OneSignal.User.PushSubscription.id.then((subscriptionId) => {
-                        console.log("User Push Subscription ID:", subscriptionId);
-                    });
+        const initializeOneSignal = async () => {
+            try {
+                await OneSignal.init({
+                    appId: process.env.REACT_APP_ONESIGNAL_APP_ID, // .env से App ID
+                    allowLocalhostAsSecureOrigin: true, // लोकल टेस्टिंग के लिए
+                    autoResubscribe: true, // यूज़र को फिर से सब्सक्राइब कराने के लिए
+                    notifyButton: {
+                        enable: true, // नोटिफिकेशन बेल दिखाने के लिए
+                        position: 'bottom-right', // बेल की पोजीशन
+                        size: 'medium', // बेल का साइज़
+                    },
+                });
+                console.log("OneSignal initialized successfully");
+
+                // चेक करें कि यूज़र ने परमिशन दी है या नहीं
+                const isSubscribed = await OneSignal.Notifications.isPushSupported() && await OneSignal.User.PushSubscription.optedIn;
+                if (isSubscribed) {
+                    const subscriptionId = await OneSignal.User.PushSubscription.id;
+                    console.log("User is subscribed. Subscription ID:", subscriptionId);
                 } else {
-                    console.log("User denied push notification permission.");
+                    console.log("User is not subscribed yet. Prompting for permission...");
+                    await OneSignal.Notifications.requestPermission();
                 }
-            });
-        }).catch((error) => {
-            console.error("OneSignal initialization failed:", error);
-        });
+            } catch (error) {
+                console.error("OneSignal initialization failed:", error);
+            }
+        };
+
+        initializeOneSignal();
     }, []);
 
     useEffect(() => {
