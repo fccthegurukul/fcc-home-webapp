@@ -54,11 +54,6 @@ const App = () => {
     }).catch((error) => {
         console.error("OneSignal Initialization Error:", error);
     });
-
-    // Cleanup on unmount (optional)
-    return () => {
-        OneSignal.logout(); // Logout OneSignal on component unmount
-    };
 }, []);
 
     useEffect(() => {
