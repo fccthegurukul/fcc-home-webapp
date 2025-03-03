@@ -39,38 +39,32 @@ const App = () => {
     const navigate = useNavigate();
     const sessionId = React.useRef(uuidv4());
 
-    // OneSignal Initialization
-    useEffect(() => {
-        const initializeOneSignal = async () => {
-            try {
-                await OneSignal.init({
-                    appId: process.env.REACT_APP_ONESIGNAL_APP_ID, // .env से App ID
-                    allowLocalhostAsSecureOrigin: true, // लोकल टेस्टिंग के लिए
-                    autoResubscribe: true, // यूज़र को फिर से सब्सक्राइब कराने के लिए
-                    notifyButton: {
-                        enable: true, // नोटिफिकेशन बेल दिखाने के लिए
-                        position: 'bottom-right', // बेल की पोजीशन
-                        size: 'medium', // बेल का साइज़
-                    },
-                });
-                console.log("OneSignal initialized successfully");
+  // OneSignal Initialization
+  useEffect(() => {
+    const initializeOneSignal = async () => {
+        try {
+            await OneSignal.init({
+                appId: "d0b352ba-71ba-4093-bd85-4e3002360631",
+                autoResubscribe: true,
+                notifyButton: { enable: true, position: 'bottom-right', size: 'medium' }
+            });
 
-                // चेक करें कि यूज़र ने परमिशन दी है या नहीं
-                const isSubscribed = await OneSignal.Notifications.isPushSupported() && await OneSignal.User.PushSubscription.optedIn;
-                if (isSubscribed) {
-                    const subscriptionId = await OneSignal.User.PushSubscription.id;
-                    console.log("User is subscribed. Subscription ID:", subscriptionId);
-                } else {
-                    console.log("User is not subscribed yet. Prompting for permission...");
-                    await OneSignal.Notifications.requestPermission();
-                }
-            } catch (error) {
-                console.error("OneSignal initialization failed:", error);
-            }
-        };
+            console.log("OneSignal initialized successfully");
+            const isSubscribed = await OneSignal.User.PushSubscription.optedIn;
+            if (!isSubscribed) await OneSignal.Notifications.requestPermission();
+        } catch (error) {
+            console.error("OneSignal initialization failed:", error);
+        }
+    };
+    initializeOneSignal();
+}, []);
 
-        initializeOneSignal();
-    }, []);
+useEffect(() => {
+    const checkLoginStatus = () => {
+        setIsLoggedIn(!!localStorage.getItem('authToken'));
+    };
+    checkLoginStatus();
+}, []);
 
     useEffect(() => {
         const handleResize = () => {
