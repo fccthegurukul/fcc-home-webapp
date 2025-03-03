@@ -30,9 +30,7 @@ import PuzzleGame from './components/PuzzleGame';
 import ColorMatchGame from './pages/ColorMatchGame';
 import EnglishPracticeAssistant from './components/EnglishPracticeAssistant';
 import Aihub from './pages/aihub';
-import { initializeOneSignal } from "./OneSignalSetup"; // Import OneSignal Setup
-
-
+import OneSignal from 'onesignal'; // OneSignal import karo
 import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
 
 const App = () => {
@@ -41,10 +39,18 @@ const App = () => {
     const navigate = useNavigate();
     const sessionId = React.useRef(uuidv4()); // Unique session ID for tracking
 
+    // OneSignal Initialization
     useEffect(() => {
-        initializeOneSignal(); // ✅ Proper initialization
+        OneSignal.init({
+            appId: "8045b93b-6e4f-4805-9d2e-cb83783ba0c7", // Yaha apna App ID paste karo
+            safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e", // Optional, agar Safari support chahiye
+            allowLocalhostAsSecureOrigin: true, // Local testing ke liye
+        }).then(() => {
+            console.log("OneSignal Initialized");
+        }).catch(error => {
+            console.error("OneSignal Initialization Error:", error);
+        });
     }, []);
-
 
     useEffect(() => {
         const handleResize = () => {
