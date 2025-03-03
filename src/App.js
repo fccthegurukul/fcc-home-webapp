@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Routes, Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
-import OneSignal from 'react-onesignal'; // OneSignal पैकेज इंपोर्ट
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import StudentAdmission from './pages/StudentAdmission';
@@ -31,40 +30,21 @@ import PuzzleGame from './components/PuzzleGame';
 import ColorMatchGame from './pages/ColorMatchGame';
 import EnglishPracticeAssistant from './components/EnglishPracticeAssistant';
 import Aihub from './pages/aihub';
-import { v4 as uuidv4 } from 'uuid';
+import { initializeOneSignal } from "./OneSignalSetup"; // Import OneSignal Setup
+
+
+import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
-    const sessionId = React.useRef(uuidv4());
+    const sessionId = React.useRef(uuidv4()); // Unique session ID for tracking
 
-  // OneSignal Initialization
-  useEffect(() => {
-    const initializeOneSignal = async () => {
-        try {
-            await OneSignal.init({
-                appId: "d0b352ba-71ba-4093-bd85-4e3002360631",
-                autoResubscribe: true,
-                notifyButton: { enable: true, position: 'bottom-right', size: 'medium' }
-            });
+    useEffect(() => {
+        initializeOneSignal(); // ✅ Proper initialization
+    }, []);
 
-            console.log("OneSignal initialized successfully");
-            const isSubscribed = await OneSignal.User.PushSubscription.optedIn;
-            if (!isSubscribed) await OneSignal.Notifications.requestPermission();
-        } catch (error) {
-            console.error("OneSignal initialization failed:", error);
-        }
-    };
-    initializeOneSignal();
-}, []);
-
-useEffect(() => {
-    const checkLoginStatus = () => {
-        setIsLoggedIn(!!localStorage.getItem('authToken'));
-    };
-    checkLoginStatus();
-}, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -85,6 +65,7 @@ useEffect(() => {
         checkLoginStatus();
     }, []);
 
+    // Reusable function for logging user activity
     const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
         try {
             const activityData = {
@@ -162,6 +143,7 @@ useEffect(() => {
                     <Route path="/taskcheck" element={<AdminProtectedRoute><Taskcheck /></AdminProtectedRoute>} />
                     <Route path="/student-admission" element={<AdminProtectedRoute><StudentAdmission /></AdminProtectedRoute>} />
                     <Route path="/report" element={<AdminProtectedRoute><Report /></AdminProtectedRoute>} />
+                    {/* Public Routes */}
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/card-hub" element={<CardHub />} />
                     <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
@@ -181,22 +163,46 @@ useEffect(() => {
                 </Routes>
             </div>
             <nav className="bottom-navbar">
-                <Link to="/" className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => handleNavClick('/')}>
+                <Link
+                    to="/"
+                    className={`bottom-nav-link ${location.pathname === '/' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/')}
+                >
                     <i className="fas fa-home"></i><span>होम</span>
                 </Link>
-                <Link to="/view-ctc-ctg" className={`bottom-nav-link ${location.pathname === '/view-ctc-ctg' ? 'active' : ''}`} onClick={() => handleNavClick('/view-ctc-ctg')}>
+                <Link
+                    to="/view-ctc-ctg"
+                    className={`bottom-nav-link ${location.pathname === '/view-ctc-ctg' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/view-ctc-ctg')}
+                >
                     <i className="fas fa-calendar-day"></i><span>उपस्थिति</span>
                 </Link>
-                <Link to="/card-hub" className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`} onClick={() => handleNavClick('/card-hub')}>
+                <Link
+                    to="/card-hub"
+                    className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/card-hub')}
+                >
                     <i className="fas fa-graduation-cap"></i><span>स्किल</span>
                 </Link>
-                <Link to="/leaderboard" className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`} onClick={() => handleNavClick('/leaderboard')}>
+                <Link
+                    to="/leaderboard"
+                    className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/leaderboard')}
+                >
                     <i className="fas fa-trophy"></i><span>लीडरबोर्ड</span>
                 </Link>
-                <Link to="/classroom" className={`bottom-nav-link ${location.pathname === '/classroom' ? 'active' : ''}`} onClick={() => handleNavClick('/classroom')}>
+                <Link
+                    to="/classroom"
+                    className={`bottom-nav-link ${location.pathname === '/classroom' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/classroom')}
+                >
                     <i className="fas fa-chalkboard-teacher"></i><span>क्लासरूम</span>
                 </Link>
-                <Link to="/aihub" className={`bottom-nav-link ${location.pathname === '/aihub' ? 'active' : ''}`} onClick={() => handleNavClick('/aihub')}>
+                <Link
+                    to="/aihub"
+                    className={`bottom-nav-link ${location.pathname === '/aihub' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('/aihub')}
+                >
                     <i className="fas fa-brain"></i><span>AI</span>
                 </Link>
             </nav>
