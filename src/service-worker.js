@@ -1,3 +1,9 @@
+/* eslint-disable no-restricted-globals */
+import { precacheAndRoute } from 'workbox-precaching';
+
+// Ye line Workbox ke manifest ke bina build hone se rokta hai
+precacheAndRoute(self.__WB_MANIFEST);
+
 // Version of the service worker (increase this when you update caching strategy)
 const CACHE_NAME = 'my-app-cache-v1';
 const urlsToCache = [
