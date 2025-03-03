@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Routes, Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
+import OneSignal from 'react-onesignal'; // OneSignal इंपोर्ट करें
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/Dashboard';
 import StudentAdmission from './pages/StudentAdmission';
@@ -38,35 +39,30 @@ const App = () => {
     const navigate = useNavigate();
     const sessionId = React.useRef(uuidv4());
 
-    // OneSignal Initialization with Console Logs
+    // OneSignal Initialization
     const appId = process.env.REACT_APP_ONESIGNAL_APP_ID;
     useEffect(() => {
-        console.log("Initializing OneSignal...");
-        window.OneSignal = window.OneSignal || [];
-        OneSignal.push(function() {
-            OneSignal.init({
-                appId: appId, // .env से लिया गया एपीआई आईडी
-                allowLocalhostAsSecureOrigin: true, // लोकलहोस्ट टेस्टिंग के लिए
-            }).then(() => {
-                console.log("OneSignal initialized successfully!");
-                console.log("appId:", appId);
-                
-                // Check if user is subscribed
-                OneSignal.isPushNotificationsEnabled().then((isEnabled) => {
-                    if (isEnabled) {
-                        console.log("User is subscribed to push notifications!");
-                        OneSignal.getUserId().then((userId) => {
-                            console.log("User Push Subscription ID:", userId);
-                        });
-                    } else {
-                        console.log("User is NOT subscribed to push notifications.");
-                    }
-                }).catch((error) => {
-                    console.error("Error checking subscription status:", error);
-                });
-            }).catch((error) => {
-                console.error("OneSignal initialization failed:", error);
+        console.log("Initializing OneSignal with react-onesignal...");
+        OneSignal.init({
+            appId: "d0b352ba-71ba-4093-bd85-4e3002360631", // अपनी OneSignal App ID यहाँ डालें
+            allowLocalhostAsSecureOrigin: true, // लोकलहोस्ट टेस्टिंग के लिए
+            notifyButton: {
+                enable: true, // नोटिफिकेशन बेल दिखाने के लिए (ऑप्शनल)
+            },
+        }).then(() => {
+            console.log("OneSignal initialized successfully!");
+            OneSignal.Notifications.requestPermission().then((permission) => {
+                if (permission) {
+                    console.log("User granted push notification permission!");
+                    OneSignal.User.PushSubscription.id.then((subscriptionId) => {
+                        console.log("User Push Subscription ID:", subscriptionId);
+                    });
+                } else {
+                    console.log("User denied push notification permission.");
+                }
             });
+        }).catch((error) => {
+            console.error("OneSignal initialization failed:", error);
         });
     }, []);
 
@@ -141,16 +137,6 @@ const App = () => {
         logUserActivity('Navigate', { to: path });
     };
 
-    const handleSubscribeToNotifications = () => {
-        window.OneSignal.push(function() {
-            OneSignal.showNativePrompt().then(() => {
-                console.log("Notification permission prompt displayed!");
-            }).catch((error) => {
-                console.error("Error showing prompt:", error);
-            });
-        });
-    };
-
     const AdminProtectedRoute = ({ children }) => {
         const accessType = localStorage.getItem('accessType');
         if (!isLoggedIn) {
@@ -165,9 +151,6 @@ const App = () => {
         <div className="App">
             <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
             <div className="content-area">
-                <button onClick={handleSubscribeToNotifications} style={{ margin: "1rem" }}>
-                    Enable Push Notifications
-                </button>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/student-attendance" element={<AdminProtectedRoute><StudentsAttendance /></AdminProtectedRoute>} />
