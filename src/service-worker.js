@@ -5,7 +5,7 @@ import { precacheAndRoute } from 'workbox-precaching';
 precacheAndRoute(self.__WB_MANIFEST);
 
 // Version of the service worker (increase this when you update caching strategy)
-const CACHE_NAME = 'my-app-cache-v1';
+const CACHE_NAME = 'my-app-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -48,14 +48,10 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
+      // Return cached response if found, otherwise fetch from network
       return response || fetch(event.request).then((networkResponse) => {
-        // API requests ko cache na kare (उदाहरण के लिए)
-        if (event.request.url.startsWith(`${self.location.origin}/api/`)) {
-          return networkResponse; // API request ko seedhe network se jaane de
-        }
-
-        // Cache static assets aur anya response
-        if (!networkResponse || networkResponse.status !== 200) { // type check hataya gaya
+        // Cache the new response for future use
+        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
           return networkResponse;
         }
         const responseToCache = networkResponse.clone();
