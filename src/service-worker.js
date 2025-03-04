@@ -48,10 +48,14 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Return cached response if found, otherwise fetch from network
       return response || fetch(event.request).then((networkResponse) => {
-        // Cache the new response for future use
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+        // API requests ko cache na kare (उदाहरण के लिए)
+        if (event.request.url.startsWith(`${self.location.origin}/api/`)) {
+          return networkResponse; // API request ko seedhe network se jaane de
+        }
+
+        // Cache static assets aur anya response
+        if (!networkResponse || networkResponse.status !== 200) { // type check hataya gaya
           return networkResponse;
         }
         const responseToCache = networkResponse.clone();
