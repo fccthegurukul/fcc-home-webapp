@@ -16,19 +16,29 @@ import { v4 as uuidv4 } from 'uuid';
 const Dashboard = () => {
   const API_URL = process.env.REACT_APP_API_URL;
 
+  // Section-specific data states
   const [totalAdmissions, setTotalAdmissions] = useState(null);
   const [admittedStudentsList, setAdmittedStudentsList] = useState([]);
+  const [tasksSummary, setTasksSummary] = useState({ // Tasks summary ke liye ek object state
+    completedTasksToday: null,
+    notCompletedTasksToday: null,
+    completedTasksBeforeToday: null,
+    notCompletedTasksBeforeToday: null,
+    totalStudentsRecorded: null,
+  });
   const [presentStudents, setPresentStudents] = useState(null);
   const [absentStudents, setAbsentStudents] = useState(null);
   const [presentStudentList, setPresentStudentList] = useState([]);
   const [absentStudentList, setAbsentStudentList] = useState([]);
-  const [completedTasksToday, setCompletedTasksToday] = useState(null);
-  const [notCompletedTasksToday, setNotCompletedTasksToday] = useState(null);
-  const [completedTasksBeforeToday, setCompletedTasksBeforeToday] = useState(null);
-  const [notCompletedTasksBeforeToday, setNotCompletedTasksBeforeToday] = useState(null);
-  const [totalStudentsRecorded, setTotalStudentsRecorded] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  // Section-specific loading and error states
+  const [admissionsLoading, setAdmissionsLoading] = useState(false);
+  const [admissionsError, setAdmissionsError] = useState(null);
+  const [tasksLoading, setTasksLoading] = useState(false);
+  const [tasksError, setTasksError] = useState(null);
+  const [attendanceLoading, setAttendanceLoading] = useState(false);
+  const [attendanceError, setAttendanceError] = useState(null);
+
   const [activeSection, setActiveSection] = useState("admissions");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const sessionId = React.useRef(uuidv4());
@@ -59,45 +69,84 @@ const Dashboard = () => {
     }
   }, [activeSection]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const [admissionsResponse, admittedStudentsResponse, attendanceResponse, taskCompletionResponse] = await Promise.all([
-          fetch(`${API_URL}/api/total-admissions`),
-          fetch(`${API_URL}/api/admitted-students`),
-          fetch(`${API_URL}/api/attendance-overview`),
-          fetch(`${API_URL}/api/daily-task-completion`),
-        ]);
+  // Section-specific data fetching functions
 
-        const [admissionsData, admittedStudentsData, attendanceData, taskCompletionData] = await Promise.all([
-          admissionsResponse.json(),
-          admittedStudentsResponse.json(),
-          attendanceResponse.json(),
-          taskCompletionResponse.json(),
-        ]);
+  const fetchAdmissionsData = useCallback(async () => {
+    setAdmissionsLoading(true);
+    setAdmissionsError(null);
+    try {
+      const [admissionsResponse, admittedStudentsResponse] = await Promise.all([
+        fetch(`${API_URL}/api/total-admissions`),
+        fetch(`${API_URL}/api/admitted-students`),
+      ]);
 
-        setTotalAdmissions(admissionsData.totalAdmissions);
-        setAdmittedStudentsList(admittedStudentsData);
-        setPresentStudents(attendanceData.presentStudents);
-        setAbsentStudents(attendanceData.absentStudents);
-        setPresentStudentList(attendanceData.presentStudentsDetails);
-        setAbsentStudentList(attendanceData.absentStudentsDetails);
-        setCompletedTasksToday(taskCompletionData.completedTasksToday);
-        setNotCompletedTasksToday(taskCompletionData.notCompletedTasksToday);
-        setCompletedTasksBeforeToday(taskCompletionData.completedTasksBeforeToday);
-        setNotCompletedTasksBeforeToday(taskCompletionData.notCompletedTasksBeforeToday);
-        setTotalStudentsRecorded(taskCompletionData.totalStudentsRecorded);
-      } catch (err) {
-        console.error("डैशबोर्ड डेटा प्राप्त करने में त्रुटि:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+      const [admissionsData, admittedStudentsData] = await Promise.all([
+        admissionsResponse.json(),
+        admittedStudentsResponse.json(),
+      ]);
+
+      setTotalAdmissions(admissionsData.totalAdmissions);
+      setAdmittedStudentsList(admittedStudentsData);
+    } catch (err) {
+      console.error("दाखिले डेटा प्राप्त करने में त्रुटि:", err);
+      setAdmissionsError(err.message);
+    } finally {
+      setAdmissionsLoading(false);
+    }
   }, [API_URL]);
+
+  const fetchTasksData = useCallback(async () => {
+    setTasksLoading(true);
+    setTasksError(null);
+    try {
+      const taskCompletionResponse = await fetch(`${API_URL}/api/daily-task-completion`);
+      const taskCompletionData = await taskCompletionResponse.json();
+      setTasksSummary(taskCompletionData); // Tasks summary ko object se update karen
+    } catch (err) {
+      console.error("कार्य डेटा प्राप्त करने में त्रुटि:", err);
+      setTasksError(err.message);
+    } finally {
+      setTasksLoading(false);
+    }
+  }, [API_URL]);
+
+  const fetchAttendanceData = useCallback(async () => {
+    setAttendanceLoading(true);
+    setAttendanceError(null);
+    try {
+      const attendanceResponse = await fetch(`${API_URL}/api/attendance-overview`);
+      const attendanceData = await attendanceResponse.json();
+      setPresentStudents(attendanceData.presentStudents);
+      setAbsentStudents(attendanceData.absentStudents);
+      setPresentStudentList(attendanceData.presentStudentsDetails);
+      setAbsentStudentList(attendanceData.absentStudentsDetails);
+    } catch (err) {
+      console.error("उपस्थिति डेटा प्राप्त करने में त्रुटि:", err);
+      setAttendanceError(err.message);
+    } finally {
+      setAttendanceLoading(false);
+    }
+  }, [API_URL]);
+
+
+  // सक्रिय सेक्शन बदलने पर डेटा फ़ेच करें
+  useEffect(() => {
+    switch (activeSection) {
+      case "admissions":
+        fetchAdmissionsData();
+        break;
+      case "tasks":
+        fetchTasksData();
+        break;
+      case "attendance":
+        fetchAttendanceData();
+        break;
+      // अन्य सेक्शन के लिए भी केस जोड़ें यदि उनमें डेटा फ़ेचिंग हो
+      default:
+        // डिफ़ॉल्ट केस में कुछ न करें या इनिशियल सेक्शन का डेटा फ़ेच करें यदि आवश्यक हो
+        break;
+    }
+  }, [activeSection, fetchAdmissionsData, fetchTasksData, fetchAttendanceData]); // dependency array mein sabhi fetch function joden
 
   const downloadCSV = (data, filename) => {
     const headers = ["FCC ID", "नाम", "पिता", "माता", "मोबाइल नंबर", "पता", "दाखिला तिथि"];
@@ -259,63 +308,8 @@ const Dashboard = () => {
     </div>
   );
 
-  const renderContent = () => {
-    switch (activeSection) {
-      case "admissions":
-        return (
-          <>
-            <InfoBox description="इस सेक्शन में कुल दाखिल छात्रों की संख्या और उनकी सूची देख सकते हैं।" />
-            <div className="dash-card-header">
-              <h3>कुल दाखिले: {totalAdmissions ?? "--"}</h3>
-              <button className="dash-new-window-btn" onClick={openFullPageAdmissions}>नई विंडो में खोलें</button>
-            </div>
-            {renderTable(admittedStudentsList, "दाखिल छात्रों की सूची")}
-          </>
-        );
-      case "tasks":
-        return (
-          <>
-            <InfoBox description="इस सेक्शन में दैनिक कार्य पूर्णता की स्थिति देख सकते हैं, जैसे आज और पहले के पूर्ण/अपूर्ण कार्य।" />
-            <div className="dash-card-header">
-              <h3>दैनिक कार्य पूर्णता</h3>
-              <button className="dash-new-window-btn" onClick={openFullPageTasks}>नई विंडो में खोलें</button>
-            </div>
-            <div className="dash-task-summary">
-              <p>आज पूर्ण: <span>{completedTasksToday ?? "--"}</span></p>
-              <p>आज अपूर्ण: <span>{notCompletedTasksToday ?? "--"}</span></p>
-              <p>पहले पूर्ण: <span>{completedTasksBeforeToday ?? "--"}</span></p>
-              <p>पहले अपूर्ण: <span>{notCompletedTasksBeforeToday ?? "--"}</span></p>
-              <p>कुल दर्ज: <span>{totalStudentsRecorded ?? "--"}</span></p>
-            </div>
-          </>
-        );
-      case "attendance":
-        return (
-          <>
-            <InfoBox description="इस सेक्शन में छात्रों की उपस्थिति और अनुपस्थिति की जानकारी देख सकते हैं और CSV डाउनलोड कर सकते हैं।" />
-            <div className="dash-card-header">
-              <h3>छात्र उपस्थिति</h3>
-              <div className="dash-attendance-buttons">
-                <button className="dash-new-window-btn" onClick={openFullPagePresent}>उपस्थित - नई विंडो में खोलें</button>
-                <button className="dash-new-window-btn" onClick={openFullPageAbsent}>अनुपस्थित - नई विंडो में खोलें</button>
-              </div>
-            </div>
-            <div className="dash-attendance-summary">
-              <div className="dash-attendance-header">
-                <p className="dash-present">उपस्थित: {presentStudents ?? "--"}</p>
-                <button className="dash-download-btn" onClick={handleDownloadPresent}>CSV डाउनलोड करें</button>
-              </div>
-              {renderTable(presentStudentList, "उपस्थित छात्रों का विवरण")}
-            </div>
-            <div className="dash-attendance-summary">
-              <div className="dash-attendance-header">
-                <p className="dash-absent">अनुपस्थित: {absentStudents ?? "--"}</p>
-                <button className="dash-download-btn" onClick={handleDownloadAbsent}>CSV डाउनलोड करें</button>
-              </div>
-              {renderTable(absentStudentList, "अनुपस्थित छात्रों का विवरण")}
-            </div>
-          </>
-        );
+  const renderSectionContent = (section) => {
+    switch (section) {
       case "payment":
         return (
           <>
@@ -464,8 +458,87 @@ const Dashboard = () => {
     }
   };
 
-  if (loading) return <p className="dash-loading">डैशबोर्ड डेटा लोड हो रहा है...</p>;
-  if (error) return <p className="dash-error">डैशबोर्ड डेटा प्राप्त करने में त्रुटि: {error}</p>;
+
+  const renderContent = () => {
+    switch (activeSection) {
+      case "admissions":
+        return (
+          <>
+            <InfoBox description="इस सेक्शन में कुल दाखिल छात्रों की संख्या और उनकी सूची देख सकते हैं।" />
+            <div className="dash-card-header">
+              <h3>कुल दाखिले: {totalAdmissions ?? "--"}</h3>
+              <button className="dash-new-window-btn" onClick={openFullPageAdmissions}>नई विंडो में खोलें</button>
+            </div>
+            {admissionsLoading ? <p className="dash-loading">दाखिले डेटा लोड हो रहा है...</p> : admissionsError ? <p className="dash-error">दाखिले डेटा प्राप्त करने में त्रुटि: {admissionsError}</p> : renderTable(admittedStudentsList, "दाखिल छात्रों की सूची")}
+          </>
+        );
+      case "tasks":
+        return (
+          <>
+            <InfoBox description="इस सेक्शन में दैनिक कार्य पूर्णता की स्थिति देख सकते हैं, जैसे आज और पहले के पूर्ण/अपूर्ण कार्य।" />
+            <div className="dash-card-header">
+              <h3>दैनिक कार्य पूर्णता</h3>
+              <button className="dash-new-window-btn" onClick={openFullPageTasks}>नई विंडो में खोलें</button>
+            </div>
+            {tasksLoading ? <p className="dash-loading">कार्य डेटा लोड हो रहा है...</p> : tasksError ? <p className="dash-error">कार्य डेटा प्राप्त करने में त्रुटि: {tasksError}</p> : (
+              <div className="dash-task-summary">
+                <p>आज पूर्ण: <span>{tasksSummary.completedTasksToday ?? "--"}</span></p>
+                <p>आज अपूर्ण: <span>{tasksSummary.notCompletedTasksToday ?? "--"}</span></p>
+                <p>पहले पूर्ण: <span>{tasksSummary.completedTasksBeforeToday ?? "--"}</span></p>
+                <p>पहले अपूर्ण: <span>{tasksSummary.notCompletedTasksBeforeToday ?? "--"}</span></p>
+                <p>कुल दर्ज: <span>{tasksSummary.totalStudentsRecorded ?? "--"}</span></p>
+              </div>
+            )}
+          </>
+        );
+      case "attendance":
+        return (
+          <>
+            <InfoBox description="इस सेक्शन में छात्रों की उपस्थिति और अनुपस्थिति की जानकारी देख सकते हैं और CSV डाउनलोड कर सकते हैं।" />
+            <div className="dash-card-header">
+              <h3>छात्र उपस्थिति</h3>
+              <div className="dash-attendance-buttons">
+                <button className="dash-new-window-btn" onClick={openFullPagePresent}>उपस्थित - नई विंडो में खोलें</button>
+                <button className="dash-new-window-btn" onClick={openFullPageAbsent}>अनुपस्थित - नई विंडो में खोलें</button>
+              </div>
+            </div>
+            {attendanceLoading ? <p className="dash-loading">उपस्थिति डेटा लोड हो रहा है...</p> : attendanceError ? <p className="dash-error">उपस्थिति डेटा प्राप्त करने में त्रुटि: {attendanceError}</p> : (
+              <>
+                <div className="dash-attendance-summary">
+                  <div className="dash-attendance-header">
+                    <p className="dash-present">उपस्थित: {presentStudents ?? "--"}</p>
+                    <button className="dash-download-btn" onClick={handleDownloadPresent}>CSV डाउनलोड करें</button>
+                  </div>
+                  {renderTable(presentStudentList, "उपस्थित छात्रों का विवरण")}
+                </div>
+                <div className="dash-attendance-summary">
+                  <div className="dash-attendance-header">
+                    <p className="dash-absent">अनुपस्थित: {absentStudents ?? "--"}</p>
+                    <button className="dash-download-btn" onClick={handleDownloadAbsent}>CSV डाउनलोड करें</button>
+                  </div>
+                  {renderTable(absentStudentList, "अनुपस्थित छात्रों का विवरण")}
+                </div>
+              </>
+            )}
+          </>
+        );
+      case "payment":
+      case "student-attendance":
+      case "student-list":
+      case "download-upload-data":
+      case "student-management":
+      case "fcchome-ai":
+      case "task-submission":
+      case "taskcheck":
+      case "student-admission":
+      case "report":
+      case "Skill Update":
+        // In section mein koi data fetching nahi hai, isliye loading/error check ki aavashyakta nahi hai
+        return renderSectionContent(activeSection); // Sahayak function ka upayog karke content render karen
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="dash-dashboard">

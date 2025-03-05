@@ -1124,3 +1124,450 @@
   "loginTimestamp": "2025-03-04T09:45:34.499Z"
 }
 [2025-03-04T09:45:34.516Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:11:58.063Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:11:58.481Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:11:58.441Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:11:58.794Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:11:59.316Z] LOG: Generating new session ID
+[2025-03-04T14:11:59.500Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:11:59.560Z] LOG: Client IP: ::1
+[2025-03-04T14:11:58.795Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:11:58.806Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:12:00.924Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:12:00.942Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:41:59.400Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:12:00.924Z"
+}
+[2025-03-04T14:12:01.129Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:15:40.713Z] ERROR: (node:33152) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2025-03-04T14:15:40.732Z] LOG: HTTP Server running on port 5000
+[2025-03-04T14:15:40.986Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-04T14:15:40.968Z"
+  }
+]
+[2025-03-04T14:15:40.990Z] LOG: OpenRouter API Key from env: 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
+[2025-03-04T14:15:40.991Z] LOG: English progress table ready
+[2025-03-04T14:15:40.989Z] LOG: Gemini API Key from env: AIzaSyAr7ZXIkwHGb1zS3fISAdB_rEcJQfpPbXY
+[2025-03-04T14:15:40.991Z] LOG: Conversations table ready
+[2025-03-04T14:15:40.996Z] LOG: Database connected, response: [
+  {
+    "now": "2025-03-04T14:15:40.994Z"
+  }
+]
+[2025-03-04T14:19:01.135Z] LOG: Incoming request: GET /, Origin: undefined
+[2025-03-04T14:19:01.137Z] LOG: Incoming Origin: 
+[2025-03-04T14:19:01.137Z] LOG: CORS Allowed for: undefined, Setting Access-Control-Allow-Origin: *
+[2025-03-04T14:19:01.141Z] LOG: Generating new session ID
+[2025-03-04T14:19:28.613Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:28.622Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:28.623Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:28.632Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:28.638Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:28.637Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:28.716Z] LOG: Generating new session ID
+[2025-03-04T14:19:28.734Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:19:28.972Z] LOG: Client IP: ::1
+[2025-03-04T14:19:29.441Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:19:29.442Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:49:28.733Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:19:29.441Z"
+}
+[2025-03-04T14:19:29.498Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:19:43.981Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:43.984Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:43.988Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:44.002Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:44.010Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:44.021Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:19:44.029Z] LOG: Generating new session ID
+[2025-03-04T14:19:44.043Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:19:44.044Z] LOG: Client IP: ::1
+[2025-03-04T14:19:44.831Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:19:44.832Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:49:44.042Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:19:44.831Z"
+}
+[2025-03-04T14:19:44.844Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:20:17.423Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:17.425Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:17.427Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:17.440Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:17.445Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:17.446Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:17.450Z] LOG: Generating new session ID
+[2025-03-04T14:20:17.453Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:20:17.456Z] LOG: Client IP: ::1
+[2025-03-04T14:20:18.208Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:20:18.213Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:50:17.453Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:20:18.208Z"
+}
+[2025-03-04T14:20:18.228Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:20:34.264Z] LOG: Incoming request: OPTIONS /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:34.277Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:34.279Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:34.292Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:34.293Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:34.294Z] LOG: Generating new session ID
+[2025-03-04T14:20:34.291Z] LOG: Incoming request: GET /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.177Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.182Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.183Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.194Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.197Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.198Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.204Z] LOG: Generating new session ID
+[2025-03-04T14:20:42.206Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:20:42.207Z] LOG: Client IP: ::1
+[2025-03-04T14:20:42.676Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:20:42.680Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:50:42.206Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:20:42.676Z"
+}
+[2025-03-04T14:20:42.690Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:20:42.764Z] LOG: Incoming request: OPTIONS /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.767Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.769Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.781Z] LOG: Incoming request: GET /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.784Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.792Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:42.794Z] LOG: Generating new session ID
+[2025-03-04T14:20:55.152Z] LOG: Incoming request: OPTIONS /files, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:55.153Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:55.154Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:55.159Z] LOG: Incoming request: GET /files, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:55.161Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:55.162Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:55.162Z] LOG: Generating new session ID
+[2025-03-04T14:20:59.077Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:59.078Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:59.082Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:59.092Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:59.110Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:59.110Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:59.115Z] LOG: Generating new session ID
+[2025-03-04T14:20:59.117Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:20:59.121Z] LOG: Client IP: ::1
+[2025-03-04T14:20:59.468Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:20:59.469Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:50:59.117Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:20:59.468Z"
+}
+[2025-03-04T14:20:59.475Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:20:59.548Z] LOG: Incoming request: GET /files, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:59.590Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:20:59.592Z] LOG: Generating new session ID
+[2025-03-04T14:20:59.588Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:12.831Z] LOG: Incoming request: OPTIONS /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:12.868Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:12.939Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:12.992Z] LOG: Incoming request: OPTIONS /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:13.035Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:13.058Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:13.089Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:13.111Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:13.121Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:13.126Z] LOG: Generating new session ID
+[2025-03-04T14:21:13.773Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:13.789Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:13.792Z] LOG: Generating new session ID
+[2025-03-04T14:21:13.788Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:18.145Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:18.148Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:18.150Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:18.163Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:18.164Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:18.165Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:18.169Z] LOG: Generating new session ID
+[2025-03-04T14:21:18.173Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:21:18.181Z] LOG: Client IP: ::1
+[2025-03-04T14:21:18.770Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:21:18.771Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:51:18.172Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:21:18.770Z"
+}
+[2025-03-04T14:21:18.783Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:21:18.940Z] LOG: Incoming request: OPTIONS /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:18.991Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:18.993Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.007Z] LOG: Incoming request: OPTIONS /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.016Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.021Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.029Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.069Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.077Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.082Z] LOG: Generating new session ID
+[2025-03-04T14:21:19.128Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.168Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.173Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:19.181Z] LOG: Generating new session ID
+[2025-03-04T14:21:35.997Z] LOG: Incoming request: OPTIONS /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.011Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.021Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.029Z] LOG: Incoming request: OPTIONS /api/payments, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.035Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.037Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.045Z] LOG: Incoming request: GET /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.049Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.054Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.059Z] LOG: Generating new session ID
+[2025-03-04T14:21:36.065Z] LOG: Incoming request: GET /api/payments, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.079Z] LOG: Generating new session ID
+[2025-03-04T14:21:36.070Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:36.071Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.347Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.348Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.349Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.359Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.361Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.362Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.364Z] LOG: Generating new session ID
+[2025-03-04T14:21:43.367Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:21:43.369Z] LOG: Client IP: ::1
+[2025-03-04T14:21:43.792Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:21:43.793Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:51:43.366Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:21:43.792Z"
+}
+[2025-03-04T14:21:43.802Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:21:43.868Z] LOG: Incoming request: OPTIONS /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.877Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.882Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.891Z] LOG: Incoming request: OPTIONS /api/payments, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.902Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.927Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.928Z] LOG: Generating new session ID
+[2025-03-04T14:21:43.915Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.919Z] LOG: Incoming request: GET /get-students, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.926Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.935Z] LOG: Incoming request: GET /api/payments, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.940Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.941Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:21:43.944Z] LOG: Generating new session ID
+[2025-03-04T14:22:03.987Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:03.989Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:03.991Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:04.003Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:04.005Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:04.007Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:04.013Z] LOG: Generating new session ID
+[2025-03-04T14:22:04.016Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:22:04.017Z] LOG: Client IP: ::1
+[2025-03-04T14:22:04.836Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:22:04.837Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:52:04.016Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:22:04.836Z"
+}
+[2025-03-04T14:22:05.864Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:22:19.936Z] LOG: Incoming request: OPTIONS /api/classrooms, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:19.975Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:19.977Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:19.987Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:19.985Z] LOG: Incoming request: GET /api/classrooms, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:19.988Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:19.995Z] LOG: Generating new session ID
+[2025-03-04T14:22:24.708Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:24.711Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:24.716Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:24.723Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:24.726Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:24.733Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:24.737Z] LOG: Generating new session ID
+[2025-03-04T14:22:24.739Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:22:24.743Z] LOG: Client IP: ::1
+[2025-03-04T14:22:25.086Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:22:25.087Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:52:24.738Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:22:25.086Z"
+}
+[2025-03-04T14:22:25.094Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:22:25.176Z] LOG: Incoming request: OPTIONS /api/classrooms, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:25.190Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:25.191Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:25.200Z] LOG: Incoming request: GET /api/classrooms, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:25.204Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:25.202Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:25.206Z] LOG: Generating new session ID
+[2025-03-04T14:22:27.916Z] LOG: Incoming request: OPTIONS /api/tasks?class=1, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.924Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.925Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.931Z] LOG: Incoming request: OPTIONS /api/students-by-class?classroomName=Class%201, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.932Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.935Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.947Z] LOG: Generating new session ID
+[2025-03-04T14:22:27.940Z] LOG: Incoming request: GET /api/tasks?class=1, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.945Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.944Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.952Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.955Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.954Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:27.957Z] LOG: Generating new session ID
+[2025-03-04T14:22:28.433Z] LOG: Incoming request: GET /api/students-by-class?classroomName=Class%201, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.435Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.434Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.437Z] LOG: Generating new session ID
+[2025-03-04T14:22:28.441Z] LOG: Incoming request: OPTIONS /api/attendance?classroomName=Class%201, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.443Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.444Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.452Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.455Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.472Z] LOG: Generating new session ID
+[2025-03-04T14:22:28.457Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.516Z] LOG: Incoming request: GET /api/attendance?classroomName=Class%201, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.525Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:28.527Z] LOG: Generating new session ID
+[2025-03-04T14:22:28.524Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:48.788Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:48.791Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:48.792Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:48.802Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:48.804Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:48.810Z] LOG: Generating new session ID
+[2025-03-04T14:22:48.803Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:48.815Z] LOG: Client IP: ::1
+[2025-03-04T14:22:48.812Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:22:49.533Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:22:49.535Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:52:48.812Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:22:49.533Z"
+}
+[2025-03-04T14:22:49.548Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:22:59.668Z] LOG: Incoming request: OPTIONS /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:59.770Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:59.832Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:59.856Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:59.892Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:59.897Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:22:59.900Z] LOG: Generating new session ID
+[2025-03-04T14:23:04.664Z] LOG: Incoming request: OPTIONS /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.665Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.665Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.670Z] LOG: Incoming request: POST /login, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.670Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.671Z] LOG: Generating new session ID
+[2025-03-04T14:23:04.672Z] LOG: --- /login route CALLED ---
+[2025-03-04T14:23:04.672Z] LOG: Client IP: ::1
+[2025-03-04T14:23:04.670Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.817Z] LOG: Login successful for user ID: 1, username: 1234
+[2025-03-04T14:23:04.818Z] LOG: Session after login: {
+  "cookie": {
+    "originalMaxAge": 1800000,
+    "expires": "2025-03-04T14:53:04.672Z",
+    "secure": false,
+    "httpOnly": true,
+    "path": "/",
+    "sameSite": "lax"
+  },
+  "userId": 1,
+  "accessType": "Admin",
+  "loginTimestamp": "2025-03-04T14:23:04.817Z"
+}
+[2025-03-04T14:23:04.822Z] LOG: Login event logged to login_log for user ID: 1
+[2025-03-04T14:23:04.885Z] LOG: Incoming request: OPTIONS /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.894Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.900Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.904Z] LOG: Incoming request: GET /api/payments?fcc_id=&payment_status=&payment_method=&startDate=&endDate=&monthly_cycle_days=, Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.906Z] LOG: Incoming Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.910Z] LOG: CORS Allowed for: https://fcc-home-webapp.vercel.app, Setting Access-Control-Allow-Origin: https://fcc-home-webapp.vercel.app
+[2025-03-04T14:23:04.911Z] LOG: Generating new session ID
