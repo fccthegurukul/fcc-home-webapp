@@ -17,7 +17,6 @@ const studentPhotos = {
   "9708200025": "https://posterjack.ca/cdn/shop/articles/Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.jpg?v=1738158629&width=2048"
 };
 
-
 const Classroom = () => {
   const navigate = useNavigate();
   const sessionId = useRef(uuidv4());
@@ -38,7 +37,6 @@ const Classroom = () => {
   const [taskLoading, setTaskLoading] = useState(false);
   const [taskError, setTaskError] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
-
 
   const handleApiError = async (response) => {
     if (!response.ok) {
@@ -62,11 +60,11 @@ const Classroom = () => {
         session_id: sessionId.current,
       };
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-activity-log`, { // Updated URL with headers
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-activity-log`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true" // ADD THIS LINE
+          "ngrok-skip-browser-warning": "true"
         },
         body: JSON.stringify(activityData),
       });
@@ -81,9 +79,10 @@ const Classroom = () => {
   useEffect(() => {
     const fetchClassrooms = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/classrooms`, { // Updated URL with headers
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/classrooms`, {
           headers: {
-            "ngrok-skip-browser-warning": "true" // ADD THIS LINE
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true"
           }
         });
         await handleApiError(response);
@@ -116,9 +115,10 @@ const Classroom = () => {
       setVideoError(null);
       try {
         const params = new URLSearchParams({ classroomName: selectedClassroom });
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/videos?${params}`, { // Updated URL with headers
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/videos?${params}`, {
           headers: {
-            "ngrok-skip-browser-warning": "true" // ADD THIS LINE
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true"
           }
         });
         await handleApiError(response);
@@ -135,7 +135,6 @@ const Classroom = () => {
     fetchVideos();
   }, [selectedClassroom]);
 
-
   useEffect(() => {
     const fetchAttendance = async () => {
       if (!selectedClassroom) {
@@ -147,10 +146,11 @@ const Classroom = () => {
       setAttendanceError(null);
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}`,  // Updated URL with headers
+          `${process.env.REACT_APP_API_URL}/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}`,
           {
             headers: {
-              "ngrok-skip-browser-warning": "true" // ADD THIS LINE
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "true"
             }
           }
         );
@@ -180,10 +180,11 @@ const Classroom = () => {
       try {
         const classNumber = selectedClassroom.split(" ")[1];
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/tasks?class=${classNumber}`,  // Updated URL with headers
+          `${process.env.REACT_APP_API_URL}/api/tasks?class=${classNumber}`,
           {
             headers: {
-              "ngrok-skip-browser-warning": "true" // ADD THIS LINE
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "true"
             }
           }
         );
@@ -199,7 +200,6 @@ const Classroom = () => {
     };
     fetchTasks();
   }, [selectedClassroom]);
-
 
   const handleClassroomChange = (event) => {
     const newClassroom = event.target.value;
@@ -219,7 +219,7 @@ const Classroom = () => {
   };
 
   const handleVideoClick = (video) => {
-    console.log("Video clicked:", video.video_title); // Debug log
+    console.log("Video clicked:", video.video_title);
     const videoId = new URL(video.youtube_url).searchParams.get("v");
     setPlayingVideoId(videoId === playingVideoId ? null : videoId);
     logUserActivity("Play Video", {
@@ -230,7 +230,7 @@ const Classroom = () => {
   };
 
   const handlePastVideoClick = (video) => {
-    console.log("Past Video clicked:", video.video_title); // Debug log
+    console.log("Past Video clicked:", video.video_title);
     const videoId = new URL(video.youtube_url).searchParams.get("v");
     setPlayingVideoId(videoId === playingVideoId ? null : videoId);
     logUserActivity("Play Past Video", {
@@ -239,17 +239,16 @@ const Classroom = () => {
       section: "Past Videos",
     });
   };
+
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
     logUserActivity("Filter Tasks by Date", { selected_date: event.target.value });
   };
 
-
   const filterVideos = (videos) =>
     videos.filter((video) => video.video_title.toLowerCase().includes(searchQuery.toLowerCase()));
   const filteredTodaysVideos = useMemo(() => filterVideos(todaysVideos), [todaysVideos, searchQuery]);
   const filteredPastVideos = useMemo(() => filterVideos(pastVideos), [pastVideos, searchQuery]);
-
 
   const filterTasksByDate = useCallback((tasks) => {
     return tasks.filter(task => {
@@ -283,8 +282,6 @@ const Classroom = () => {
 
   const todaysVideoPlayerOptions = useMemo(() => ({
     playerVars: {
-      // rel: 0, // Removed for "normal" embed
-      // modestbranding: 1, // Removed for "normal" embed
       autoplay: 1,
       controls: 1
     },
@@ -292,13 +289,10 @@ const Classroom = () => {
 
   const pastVideoPlayerOptions = useMemo(() => ({
     playerVars: {
-      // rel: 0,  // Removed for "normal" embed
-      // modestbranding: 1,  // Removed for "normal" embed
       autoplay: 0,
       controls: 1
     },
   }), []);
-
 
   return (
     <div className="classroom-container">
@@ -419,14 +413,11 @@ const Classroom = () => {
                 )}
               </section>
 
-              {/* Date Filter for Tasks */}
               <div className="date-filter-container">
                 <label htmlFor="dateFilter">तिथि के अनुसार कार्य फ़िल्टर करें:</label>
                 <input type="date" id="dateFilter" value={selectedDate} onChange={handleDateChange} />
               </div>
 
-
-              {/* Task Section */}
               <section className="task-section">
                 <h2 className="video-title">वर्तमान कार्य</h2>
                 {taskLoading ? (
@@ -462,7 +453,6 @@ const Classroom = () => {
                 )}
               </section>
 
-
               <section className="video-section ended-classes-section">
                 <h2 className="video-title">समाप्त कक्षाएं</h2>
                 {filteredPastVideos.length > 0 ? (
@@ -472,20 +462,20 @@ const Classroom = () => {
                         <div key={index} className="video-card">
                           <h3>{video.video_title}</h3>
                           <div className="video-iframe">
-                          {playingVideoId === new URL(video.youtube_url).searchParams.get("v") ? (
-                            <YouTube
-                              videoId={new URL(video.youtube_url).searchParams.get("v")}
-                              opts={pastVideoPlayerOptions}
-                              onReady={handleYoutubePlayerReady(new URL(video.youtube_url).searchParams.get("v"))}
-                            />
-                          ) : (
-                            <img
-                              src={`https://img.youtube.com/vi/${new URL(video.youtube_url).searchParams.get("v")}/hqdefault.jpg`}
-                              alt={video.video_title}
-                              style={{ width: '100%', cursor: 'pointer', borderRadius: '10px', height: '200px', objectFit: 'cover' }}
-                              onClick={() => handlePastVideoClick(video)}
-                            />
-                          )}
+                            {playingVideoId === new URL(video.youtube_url).searchParams.get("v") ? (
+                              <YouTube
+                                videoId={new URL(video.youtube_url).searchParams.get("v")}
+                                opts={pastVideoPlayerOptions}
+                                onReady={handleYoutubePlayerReady(new URL(video.youtube_url).searchParams.get("v"))}
+                              />
+                            ) : (
+                              <img
+                                src={`https://img.youtube.com/vi/${new URL(video.youtube_url).searchParams.get("v")}/hqdefault.jpg`}
+                                alt={video.video_title}
+                                style={{ width: '100%', cursor: 'pointer', borderRadius: '10px', height: '200px', objectFit: 'cover' }}
+                                onClick={() => handlePastVideoClick(video)}
+                              />
+                            )}
                           </div>
                           <p>Date: {new Date(video.live_date).toLocaleDateString()}</p>
                         </div>
