@@ -12,6 +12,8 @@ const TaskSubmissionPage = () => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
 
+    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
     const handleTaskSubmit = async (event) => {
         event.preventDefault();
         setMessage('');
@@ -23,7 +25,7 @@ const TaskSubmissionPage = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/tasks', {
+            const response = await fetch(`${API_BASE_URL}/api/tasks`, { // Updated URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

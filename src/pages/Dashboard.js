@@ -56,7 +56,7 @@ const Dashboard = () => {
         session_id: sessionId.current,
       };
 
-      const response = await fetch("http://localhost:5000/api/user-activity-log", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-activity-log`, { // Updated URL
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(activityData),
@@ -252,12 +252,13 @@ const Dashboard = () => {
   const openFullPageReport = () => {
     window.open(`/report`, "_blank");
     logUserActivity("Open Full Page", { section: "Report" });
+    logUserActivity("Open Full Page", { section: "Skill Update" });
   };
-
   const openFullPageSkillUpdate = () => {
     window.open(`/skill-update`, "_blank");
     logUserActivity("Open Full Page", { section: "Skill Update" });
   };
+
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
@@ -440,19 +441,19 @@ const Dashboard = () => {
             </div>
           </>
         );
-      case "Skill Update":
-        return (
-          <>
-            <InfoBox description="इस सेक्शन में छात्रों के स्किल अपडेट कर सकते हैं।" />
-            <div className="dash-card-header">
-              <h3>स्किल अपडेट</h3>
-              <button className="dash-new-window-btn" onClick={openFullPageSkillUpdate}>नई विंडो में खोलें</button>
-            </div>
-            <div className="dash-section-container">
-              <SkillUpdate />
-            </div>
-          </>
-        );
+        case "Skill Update":
+          return (
+            <>
+              <InfoBox description="इस सेक्शन में छात्रों के स्किल अपडेट कर सकते हैं।" />
+              <div className="dash-card-header">
+                <h3>स्किल अपडेट</h3>
+                <button className="dash-new-window-btn" onClick={openFullPageSkillUpdate}>नई विंडो में खोलें</button>
+              </div>
+              <div className="dash-section-container">
+                <SkillUpdate />
+              </div>
+            </>
+          );
       default:
         return null;
     }

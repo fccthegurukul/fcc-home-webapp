@@ -62,7 +62,7 @@ const Classroom = () => {
         session_id: sessionId.current,
       };
 
-      const response = await fetch("http://localhost:5000/api/user-activity-log", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-activity-log`, { // Updated URL
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const Classroom = () => {
   useEffect(() => {
     const fetchClassrooms = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/classrooms");
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/classrooms`); // Updated URL
         await handleApiError(response);
         const data = await response.json();
         setClassroomNames(data);
@@ -111,7 +111,7 @@ const Classroom = () => {
       setVideoError(null);
       try {
         const params = new URLSearchParams({ classroomName: selectedClassroom });
-        const response = await fetch(`http://localhost:5000/api/videos?${params}`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/videos?${params}`); // Updated URL
         await handleApiError(response);
         const data = await response.json();
         setTodaysVideos(data.todaysVideos);
@@ -138,7 +138,7 @@ const Classroom = () => {
       setAttendanceError(null);
       try {
         const response = await fetch(
-          `http://localhost:5000/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}`
+          `${process.env.REACT_APP_API_URL}/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}` // Updated URL
         );
         await handleApiError(response);
         const data = await response.json();
@@ -166,7 +166,7 @@ const Classroom = () => {
       try {
         const classNumber = selectedClassroom.split(" ")[1];
         const response = await fetch(
-          `http://localhost:5000/api/tasks?class=${classNumber}`
+          `${process.env.REACT_APP_API_URL}/api/tasks?class=${classNumber}` // Updated URL
         );
         await handleApiError(response);
         const data = await response.json();

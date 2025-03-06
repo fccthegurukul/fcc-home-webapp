@@ -15,10 +15,12 @@ const Taskcheck = () => {
     const [teacherFCCId, setTeacherFCCId] = useState('');
     const [actionType, setActionType] = useState('Task Check'); // Default Action Type
 
+    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
     useEffect(() => {
         const fetchClassrooms = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/classrooms");
+                const response = await fetch(`${API_BASE_URL}/api/classrooms`); // Updated URL
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 setClassroomNames(data);
@@ -37,7 +39,7 @@ const Taskcheck = () => {
                 return;
             }
             try {
-                const response = await fetch(`http://localhost:5000/api/tasks?class=${selectedClassroom.split(" ")[1]}`);
+                const response = await fetch(`${API_BASE_URL}/api/tasks?class=${selectedClassroom.split(" ")[1]}`); // Updated URL
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
 
@@ -71,7 +73,7 @@ const Taskcheck = () => {
             setError('');
             try {
                 // Students Fetch
-                const studentsResponse = await fetch(`http://localhost:5000/api/students-by-class?classroomName=${encodeURIComponent(selectedClassroom)}`);
+                const studentsResponse = await fetch(`${API_BASE_URL}/api/students-by-class?classroomName=${encodeURIComponent(selectedClassroom)}`); // Updated URL
                 if (!studentsResponse.ok) throw new Error(`HTTP error! status: ${studentsResponse.status}`);
                 const studentsData = await studentsResponse.json();
                 setStudents(studentsData);
@@ -95,7 +97,7 @@ const Taskcheck = () => {
             try {
                 // Attendance Fetch
                 const attendanceResponse = await fetch(
-                    `http://localhost:5000/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}`
+                    `${API_BASE_URL}/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}` // Updated URL
                 );
                 if (!attendanceResponse.ok) throw new Error(`HTTP error! status: ${attendanceResponse.status}`);
                 const attendanceData = await attendanceResponse.json();
@@ -159,7 +161,7 @@ const Taskcheck = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/submit-scores', {
+            const response = await fetch(`${API_BASE_URL}/api/submit-scores`, { // Updated URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -18,6 +18,7 @@ const SkillUpdate = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const limit = 10;
+  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
 
   // Skills ko fetch karna
   const fetchSkills = async () => {
@@ -25,7 +26,7 @@ const SkillUpdate = () => {
     setError(null);
     try {
       const params = new URLSearchParams({ ...filters, page, limit });
-      const response = await axios.get(`http://localhost:5000/api/skills?${params.toString()}`);
+      const response = await axios.get(`${API_BASE_URL}/api/skills?${params.toString()}`); // Updated URL
       setSkills(response.data.skills || []);
       setTotalPages(Math.ceil((response.data.total || 0) / limit));
     } catch (error) {
@@ -39,7 +40,7 @@ const SkillUpdate = () => {
   // Students ko fetch karna
   const fetchStudents = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/students');
+      const response = await axios.get(`${API_BASE_URL}/api/students`); // Updated URL
       setStudents(response.data);
     } catch (error) {
       console.error('Error fetching students:', error);
@@ -54,7 +55,7 @@ const SkillUpdate = () => {
       return;
     }
     try {
-      const response = await axios.get(`http://localhost:5000/get-student-profile/${fcc_id}`);
+      const response = await axios.get(`${API_BASE_URL}/get-student-profile/${fcc_id}`); // Updated URL
       setStudentProfile(response.data);
     } catch (error) {
       console.error('Error fetching student profile:', error);
@@ -140,14 +141,14 @@ const SkillUpdate = () => {
           throw new Error('No skill ID found for updating');
         }
         const response = await axios.put(
-          `http://localhost:5000/api/skills/${currentSkill.id}`,
+          `${API_BASE_URL}/api/skills/${currentSkill.id}`, // Updated URL
           formData,
           { headers: { 'Content-Type': 'multipart/form-data' } }
         );
         alert('Skill updated successfully!');
         setCurrentSkill(response.data);
       } else {
-        await axios.post('http://localhost:5000/api/skills', formData, {
+        await axios.post(`${API_BASE_URL}/api/skills`, formData, { // Updated URL
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         alert('Skill created successfully!');
@@ -263,7 +264,7 @@ const SkillUpdate = () => {
                     <td>
                       {skill.skill_image_url ? (
                         <img
-                          src={`http://localhost:5000${skill.skill_image_url}`}
+                          src={`${API_BASE_URL}${skill.skill_image_url}`} // Updated URL
                           alt="Skill"
                           style={{ width: '50px', height: 'auto' }}
                         />
@@ -274,7 +275,7 @@ const SkillUpdate = () => {
                     <td>
                       {skill.skill_video_url ? (
                         <video
-                          src={`http://localhost:5000${skill.skill_video_url}`}
+                          src={`${API_BASE_URL}${skill.skill_video_url}`} // Updated URL
                           controls
                           style={{ width: '50px', height: 'auto' }}
                         />
@@ -404,7 +405,7 @@ const SkillUpdate = () => {
                 <div className="current-image">
                   <p>Current Image:</p>
                   <img
-                    src={`http://localhost:5000${currentSkill.skill_image_url}`}
+                    src={`${API_BASE_URL}${currentSkill.skill_image_url}`} // Updated URL
                     alt="Current Skill"
                     style={{ width: '150px', marginTop: '10px' }}
                   />
@@ -432,7 +433,7 @@ const SkillUpdate = () => {
                 <div className="current-video">
                   <p>Current Video:</p>
                   <video
-                    src={`http://localhost:5000${currentSkill.skill_video_url}`}
+                    src={`${API_BASE_URL}${currentSkill.skill_video_url}`} // Updated URL
                     controls
                     style={{ width: '200px', height: 'auto' }}
                   />

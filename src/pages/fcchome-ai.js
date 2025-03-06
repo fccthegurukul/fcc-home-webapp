@@ -36,7 +36,7 @@ const FcchomeAI = () => {
         session_id: sessionId.current,
       };
 
-      const response = await fetch('http://localhost:5000/api/user-activity-log', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-activity-log`, { // Updated URL
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(activityData),
@@ -72,7 +72,7 @@ const FcchomeAI = () => {
     logUserActivity('Send Message', { message: messageToSend });
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat`, { // Updated URL
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -122,7 +122,7 @@ const FcchomeAI = () => {
 
     logUserActivity('Retry Message', { original_input: originalInput });
 
-    fetch('http://localhost:5000/api/chat', {
+    fetch(`${process.env.REACT_APP_API_URL}/api/chat`, { // Updated URL
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

@@ -17,6 +17,8 @@ const StudentAdmission = () => {
     admission_date: "",  // Added admission_date here
   });
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -28,19 +30,19 @@ const StudentAdmission = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/add-student", {
+      const response = await fetch(`${API_BASE_URL}/add-student`, { // Updated URL
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Something went wrong");
       }
-  
+
       const data = await response.json();
       alert("Student added successfully: " + JSON.stringify(data));
       setFormData({

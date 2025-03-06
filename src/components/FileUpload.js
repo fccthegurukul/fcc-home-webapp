@@ -11,6 +11,8 @@ const FileUpload = () => {
   const [description, setDescription] = useState("");
   const [uploadStatus, setUploadStatus] = useState("");
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -26,7 +28,7 @@ const FileUpload = () => {
     formData.append("description", description);
 
     try {
-      const response = await axios.post("http://localhost:5000/upload", formData, {
+      const response = await axios.post(`${API_BASE_URL}/upload`, formData, { // Updated URL
         headers: {
           "Content-Type": "multipart/form-data",
         },

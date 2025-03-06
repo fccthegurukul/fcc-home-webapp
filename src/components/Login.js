@@ -10,13 +10,15 @@ const Login = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
         setSuccessMessage('');
 
         try {
-            const response = await fetch('http://localhost:5000/login', {
+            const response = await fetch(`${API_BASE_URL}/login`, { // Updated URL
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
@@ -64,10 +66,10 @@ const Login = ({ setIsLoggedIn }) => {
                 textAlign: "center"
             }}>
                 <h2 style={{ marginBottom: "1rem", color: "#333" }}>Login</h2>
-                
+
                 {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
                 {error && <p style={{ color: 'red' }}>{error}</p>}
-                
+
                 <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                     <div style={{ textAlign: "left" }}>
                         <label htmlFor="username" style={{ fontWeight: "bold" }}>Username:</label>
@@ -129,8 +131,8 @@ const Login = ({ setIsLoggedIn }) => {
                         fontWeight: "bold",
                         transition: "0.3s"
                     }}
-                    onMouseOver={(e) => e.target.style.backgroundColor = "#0056b3"}
-                    onMouseOut={(e) => e.target.style.backgroundColor = "#007BFF"}
+                        onMouseOver={(e) => e.target.style.backgroundColor = "#0056b3"}
+                        onMouseOut={(e) => e.target.style.backgroundColor = "#007BFF"}
                     >
                         Login
                     </button>

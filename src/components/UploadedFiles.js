@@ -6,8 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import "./UploadedFiles.css";
 
-
-
 const UploadedFiles = () => {
   const [files, setFiles] = useState([]);
   const [startDate, setStartDate] = useState(null);
@@ -15,11 +13,13 @@ const UploadedFiles = () => {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
   // Function to fetch files
   const fetchFiles = async (params = {}) => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/files", { params });
+      const response = await axios.get(`${API_BASE_URL}/files`, { params }); // Updated URL
       setFiles(response.data);
     } catch (error) {
       console.error("Error fetching files:", error);
@@ -130,7 +130,7 @@ const UploadedFiles = () => {
                     onClick={async () => {
                       try {
                         const response = await axios.get(
-                          `http://localhost:5000/files/download/${file.id}`,
+                          `${API_BASE_URL}/files/download/${file.id}`, // Updated URL
                           { responseType: "blob" }
                         );
 

@@ -23,7 +23,8 @@ function Aihub() {
                 session_id: sessionId.current,
             };
 
-            const response = await fetch("http://localhost:5000/api/user-activity-log", {
+            // Update fetch URL to use REACT_APP_API_URL
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-activity-log`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
