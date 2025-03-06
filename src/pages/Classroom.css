@@ -4,21 +4,25 @@
   margin: 0 auto;
   background-color: #f5f6fa;
   margin-top: 30px;
+  min-height: 100vh;
 }
 
 /* Classroom selector */
 .classroom-select {
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .classroom-select label {
   font-weight: 600;
   color: #333;
-  margin-right: 0.5rem;
+  font-size: 1.1rem;
 }
 
 .classroom-select select {
-  width: 100%;
+  flex: 1;
   padding: 0.75rem;
   font-size: 1rem;
   border-radius: 8px;
@@ -62,6 +66,18 @@
   border-bottom: 2px solid #4caf50;
   padding-bottom: 0.25rem;
   display: inline-block;
+  position: relative;
+}
+
+.video-title::after {
+  content: '';
+  width: 50px;
+  height: 3px;
+  background: #4caf50;
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  border-radius: 2px;
 }
 
 .video-grid {
@@ -76,13 +92,11 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  pointer-events: none; /* Disable clicks on the card itself */
 }
 
 .video-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  pointer-events: none; /* Disable clicks on the card itself */
 }
 
 .video-iframe iframe {
@@ -90,22 +104,53 @@
   height: 200px;
   border-radius: 10px;
   border: none;
-  pointer-events: auto; /* Enable clicks only on the iframe */
+  transition: transform 0.3s ease;
 }
 
-/* Attendance section */
+.video-iframe iframe:hover {
+  transform: scale(1.02);
+}
+
+/* Attendance Section */
 .attendance-section {
-  margin-bottom: 2.5rem;
-  background: linear-gradient(135deg, #ffffff, #f9fafc);
+  margin: 0 auto;
+  background: #ffffff;
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+}
+
+.attendance-section h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.attendance-section h2::after {
+  content: '';
+  width: 40px;
+  height: 3px;
+  background: #4caf50;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 .attendance-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .student-attendance {
@@ -113,76 +158,84 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid #ebedf0;
-  background-color: #fff;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: #f9f9f9;
+  border-radius: 10px;
+  transition: background 0.3s ease;
 }
 
 .student-attendance:hover {
-  transform: translateX(5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  background: #f1f1f1;
 }
 
 .student-profile {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex: 1;
 }
 
 .profile-pic {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #4caf50;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
 
 .profile-pic:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .profile-initial {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  background: #4caf50;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   border: 2px solid #388e3c;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
 
 .profile-initial:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+.student-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .student-name {
-  font-weight: 600;
-  color: #2c3e50;
   font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.attendance-date {
+  font-size: 0.85rem;
+  color: #888;
 }
 
 .attendance-details {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .badge {
   padding: 0.4rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
-  font-weight: 500;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .badge.present {
@@ -195,33 +248,38 @@
   color: #fff;
 }
 
-.badge:hover {
-  opacity: 0.9;
-}
-
 .duration {
-  color: #666;
   font-size: 0.9rem;
+  color: #666;
+  font-weight: 400;
 }
 
 /* Date filter */
 .date-filter-container {
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .date-filter-container label {
   font-weight: 600;
   color: #333;
-  margin-right: 0.5rem;
+  font-size: 1.1rem;
 }
 
 .date-filter-container input {
-  width: 100%;
+  flex: 1;
   padding: 0.75rem;
   border-radius: 8px;
   border: 1px solid #ddd;
   font-size: 1rem;
   background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.date-filter-container input:hover {
+  border-color: #4caf50;
 }
 
 /* Task section */
@@ -294,7 +352,6 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  pointer-events: auto;
 }
 
 .view-more-btn:hover {
@@ -316,6 +373,27 @@
   animation: pulse 1.5s infinite;
 }
 
+.skeleton-title {
+  height: 20px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-iframe {
+  height: 200px;
+  background: #ddd;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-date {
+  height: 16px;
+  width: 50%;
+  background: #ddd;
+  border-radius: 4px;
+}
+
 @keyframes pulse {
   0% { opacity: 1; }
   50% { opacity: 0.6; }
@@ -324,9 +402,25 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
+  .classroom-container {
+    padding: 1rem;
+  }
+
   .video-iframe iframe {
     height: 180px;
-    pointer-events: auto; /* Enable clicks only on the iframe */
+  }
+
+  .video-title {
+    font-size: 1.5rem;
+  }
+
+  .attendance-section {
+    padding: 1rem;
+    margin: 0 1rem 2rem;
+  }
+
+  .attendance-section h2 {
+    font-size: 1.4rem;
   }
 
   .student-attendance {
@@ -335,41 +429,98 @@
     gap: 0.75rem;
   }
 
+  .profile-pic, .profile-initial {
+    width: 40px;
+    height: 40px;
+  }
+
+  .student-name {
+    font-size: 1rem;
+  }
+
+  .attendance-date {
+    font-size: 0.8rem;
+  }
+
+  .badge {
+    padding: 0.35rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .duration {
+    font-size: 0.85rem;
+  }
+
   .task-meta {
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .video-title {
-    font-size: 1.5rem;
+  .classroom-select, .date-filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+
   }
 
-  .profile-pic, .profile-initial {
-    width: 40px;
-    height: 40px;
+  .classroom-select select, .date-filter-container input {
+    width: 100%;
+  }
+
+  .classroom-select, .lebel {
+    margin-top: 30px;
   }
 }
 
 @media (max-width: 480px) {
-  .video-title, .attendance-section h2, .task-section h2 {
+  .classroom-container {
+    padding: 0.75rem;
+  }
+
+  .video-title, .task-section h2 {
     font-size: 1.25rem;
   }
 
   .video-iframe iframe {
     height: 160px;
-    pointer-events: auto; /* Enable clicks only on the iframe */
   }
 
-  .classroom-container {
-    padding: 1rem;
+  .attendance-section {
+    padding: 0.75rem;
+    margin: 0 0.5rem 1.5rem;
   }
 
-  .task-card, .video-card, .attendance-section {
-    padding: 1rem;
+  .attendance-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .student-attendance {
+    padding: 0.75rem;
+  }
+
+  .profile-pic, .profile-initial {
+    width: 36px;
+    height: 36px;
   }
 
   .student-name {
-    font-size: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .attendance-date {
+    font-size: 0.75rem;
+  }
+
+  .badge {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .duration {
+    font-size: 0.8rem;
+  }
+
+  .task-card, .video-card {
+    padding: 1rem;
   }
 }
 
@@ -410,10 +561,12 @@ input:focus, select:focus {
 .horizontal-scroll {
   overflow-x: auto;
   white-space: nowrap;
+  padding-bottom: 1rem;
 }
 
-.video-card, .task-card, .attendance-section {
-  overflow-x: auto;
+.horizontal-scroll .video-card {
+  display: inline-block;
+  margin-right: 1rem;
 }
 
 /* Smooth transitions */
