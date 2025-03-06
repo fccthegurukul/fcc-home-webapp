@@ -3,15 +3,13 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UploadedFiles from "./UploadedFiles"; // Import the UploadedFiles component
-
 import "./FileUpload.css";
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [description, setDescription] = useState("");
   const [uploadStatus, setUploadStatus] = useState("");
-
-  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+  const apiUrl = process.env.REACT_APP_API_URL; // Define apiUrl from .env
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -28,9 +26,10 @@ const FileUpload = () => {
     formData.append("description", description);
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/upload`, formData, { // Updated URL
+      const response = await axios.post(`${apiUrl}/upload`, formData, { // Use apiUrl
         headers: {
           "Content-Type": "multipart/form-data",
+          "ngrok-skip-browser-warning": "true" // Add ngrok bypass header
         },
       });
 

@@ -12,7 +12,7 @@ const TaskSubmissionPage = () => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
 
-    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable, already correct
 
     const handleTaskSubmit = async (event) => {
         event.preventDefault();
@@ -25,10 +25,11 @@ const TaskSubmissionPage = () => {
         }
 
         try {
-            const response = await fetch(`${API_BASE_URL}/api/tasks`, { // Updated URL
+            const response = await fetch(`${API_BASE_URL}/api/tasks`, { // Already using API_BASE_URL, correct
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "ngrok-skip-browser-warning": "true" // Added ngrok header
                 },
                 body: JSON.stringify({
                     task_name: taskName,

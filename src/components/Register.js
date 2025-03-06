@@ -13,6 +13,7 @@ const Register = () => {
     const [successMessage, setSuccessMessage] = useState("");
     const [isRegistered, setIsRegistered] = useState(false);
     const navigate = useNavigate();
+    const apiUrl = process.env.REACT_APP_API_URL; // Define apiUrl from .env
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -25,9 +26,12 @@ const Register = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/register", {
+            const response = await fetch(`${apiUrl}/register`, { // Updated to use apiUrl
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "true" // Added ngrok header
+                },
                 body: JSON.stringify({ username, password }),
             });
 
@@ -37,7 +41,7 @@ const Register = () => {
 
                 setTimeout(() => {
                     navigate("/login");
-                }, 10000); // Redirect after 3 seconds
+                }, 10000); // Redirect after 10 seconds
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || "Registration failed");

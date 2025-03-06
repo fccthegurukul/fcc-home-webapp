@@ -5,6 +5,8 @@ const UploadProfileImage = () => {
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
   };
@@ -22,8 +24,11 @@ const UploadProfileImage = () => {
     formData.append("fcc_id", fccId);
 
     try {
-      const response = await fetch("http://localhost:5000/upload-profile-image", {
+      const response = await fetch(`${API_BASE_URL}/upload-profile-image`, {
         method: "POST",
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Added to bypass ngrok warning
+        },
         body: formData,
       });
 

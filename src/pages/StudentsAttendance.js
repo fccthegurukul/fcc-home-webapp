@@ -19,6 +19,16 @@ const StudentsAttendance = () => {
   const [scanning, setScanning] = useState(false);
   const [qrError, setQrError] = useState("");
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
+  // Create axios instance with default headers to bypass ngrok warning
+  const apiClient = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+      "ngrok-skip-browser-warning": "true", // Added to bypass ngrok warning
+    },
+  });
+
   const inputRef = useRef(null);
 
   // Handle input changes for FCC ID (manual entry)
@@ -61,7 +71,7 @@ const StudentsAttendance = () => {
     try {
       const payload = { fcc_id: id, ctc, ctg, task_completed: taskCompleted, forceUpdate };
 
-      const response = await axios.post("http://localhost:5000/api/update-student", payload);
+      const response = await apiClient.post("/api/update-student", payload);
       const { message, ctcUpdated } = response.data;
 
       setMessage(message);
@@ -160,7 +170,7 @@ const StudentsAttendance = () => {
       minute: '2-digit',
       second: '2-digit',
       hour12: true,
-      timeZone: 'Asia/Kolkata'
+      timeZone: 'Asia/Kolkata',
     };
 
     const formatter = new Intl.DateTimeFormat('en-IN', options);

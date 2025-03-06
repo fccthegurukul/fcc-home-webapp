@@ -3,8 +3,6 @@ import axios from "axios";
 import "./FeeManagement.css";
 import qrCodeImage from "../assets/upiqr.png";
 
-
-
 const FeeManagement = () => {
   const [payments, setPayments] = useState([]);
   const [paymentData, setPaymentData] = useState({
@@ -22,10 +20,7 @@ const FeeManagement = () => {
     startDate: "",
     endDate: "",
   });
-
-  useEffect(() => {
-    fetchPayments();
-  }, [filters]);
+  const apiUrl = process.env.REACT_APP_API_URL; // Define apiUrl from .env
 
   const [isVisible, setIsVisible] = useState(true); // State for visibility of QR code
 
@@ -47,8 +42,12 @@ const FeeManagement = () => {
 
   const fetchPayments = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/payments", {
+      const response = await axios.get(`${apiUrl}/api/payments`, { // Use apiUrl
         params: filters,
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true"
+        }
       });
       setPayments(response.data);
     } catch (error) {
@@ -58,23 +57,22 @@ const FeeManagement = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setPaymentData({ ...paymentData, [name]: value });
-     let updatedValue = value;
+    let updatedValue = value;
 
-  // If the field is 'amount', calculate the total fee with 18% GST
-  if (name === 'amount' && value) {
-    const amountWithGST = parseFloat(value) * 1.18;
-    setPaymentData({
-      ...paymentData,
-      [name]: value,
-      totalFee: amountWithGST.toFixed(2), // Store the total fee
-    });
-  } else {
-    setPaymentData({
-      ...paymentData,
-      [name]: updatedValue,
-    });
-  }
+    // If the field is 'amount', calculate the total fee with 18% GST
+    if (name === 'amount' && value) {
+      const amountWithGST = parseFloat(value) * 1.18;
+      setPaymentData({
+        ...paymentData,
+        [name]: value,
+        totalFee: amountWithGST.toFixed(2), // Store the total fee
+      });
+    } else {
+      setPaymentData({
+        ...paymentData,
+        [name]: updatedValue,
+      });
+    }
   };
 
   const handleCycleChange = (e) => {
@@ -89,17 +87,21 @@ const FeeManagement = () => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/payments", paymentData);
+      const response = await axios.post(`${apiUrl}/api/payments`, paymentData, { // Use apiUrl
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true"
+        }
+      });
       const { receipt } = response.data;
-  
+
       // Open the receipt in a new window or trigger a download
-      window.open(`http://localhost:5000/${receipt}`, '_blank');
-      
+      window.open(`${apiUrl}/${receipt}`, '_blank'); // Use apiUrl for receipt URL
+
       fetchPayments(); // Refresh the payment list
       setPaymentData({
         fcc_id: "",
@@ -113,14 +115,12 @@ const FeeManagement = () => {
       console.error("Error adding payment:", error);
     }
   };
-  
-
 
   return (
     <div className="fee-management">
       <h1>Fee Management</h1>
-   {/* QR Code that hides on scroll */}
-   {isVisible && (
+      {/* QR Code that hides on scroll */}
+      {isVisible && (
         <div className="qr-code">
           <img src={qrCodeImage} alt="QR Code" className="qr-code-img" />
         </div>
@@ -149,16 +149,13 @@ const FeeManagement = () => {
           />
         </label>
         <label>
-</label>
-<label>
-  Total Fee (with 18% GST):
-  <input
-    type="text"
-    value={paymentData.totalFee || 0}
-    readOnly
-  />
-</label>
-
+          Total Fee (with 18% GST):
+          <input
+            type="text"
+            value={paymentData.totalFee || 0}
+            readOnly
+          />
+        </label>
         <label>
           Payment Method:
           <input
@@ -258,16 +255,15 @@ const FeeManagement = () => {
           />
         </label>
         <label>
-  Monthly Cycle Days:
-  <input
-    type="text"
-    name="monthly_cycle_days"
-    value={filters.monthly_cycle_days}
-    onChange={handleFilterChange}
-    placeholder="e.g., 10, 20"
-  />
-</label>
-
+          Monthly Cycle Days:
+          <input
+            type="text"
+            name="monthly_cycle_days"
+            value={filters.monthly_cycle_days}
+            onChange={handleFilterChange}
+            placeholder="e.g., 10, 20"
+          />
+        </label>
       </div>
 
       {/* Payment Table */}

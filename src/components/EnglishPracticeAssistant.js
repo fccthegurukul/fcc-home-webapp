@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './EnglishPracticeAssistant.css';
-import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
+import { v4 as uuidv4 } from 'uuid';
 
 const EnglishPracticeAssistant = () => {
   const [isListening, setIsListening] = useState(false);
@@ -25,14 +25,14 @@ const EnglishPracticeAssistant = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hindiPrompt, setHindiPrompt] = useState(false);
-
+  const apiUrl = process.env.REACT_APP_API_URL; // Define once
   const recognitionRef = useRef(null);
   const silenceTimerRef = useRef(null);
-  const sessionId = useRef(uuidv4()); // Unique session ID for tracking
+  const sessionId = useRef(uuidv4());
 
   const VOICERSS_API_KEY = '351d9f38051c43cc8556afc1a82a208f';
 
-  // Reusable function for logging user activity
+  // Log user activity
   const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
     try {
       const activityData = {
@@ -46,9 +46,12 @@ const EnglishPracticeAssistant = () => {
         session_id: sessionId.current,
       };
 
-      const response = await fetch('http://localhost:5000/api/user-activity-log', {
+      const response = await fetch(`${apiUrl}/api/user-activity-log`, { // Use apiUrl
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          "ngrok-skip-browser-warning": "true"
+        },
         body: JSON.stringify(activityData),
       });
 
@@ -57,9 +60,10 @@ const EnglishPracticeAssistant = () => {
     } catch (error) {
       console.error('Error logging user activity:', error);
     }
-  }, [userName]);
+  }, [userName, apiUrl]); // Add apiUrl as dependency
 
   useEffect(() => {
+    console.log("API URL:", apiUrl); // Debug to verify
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
       setHindiAnalysis('आपका ब्राउज़र स्पीच रिकग्निशन को सपोर्ट नहीं करता।');
@@ -112,7 +116,12 @@ const EnglishPracticeAssistant = () => {
   const fetchConversationHistory = async () => {
     if (!userName) return;
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/conversation-history?userName=${userName}`);
+      const response = await fetch(`${apiUrl}/api/conversation-history?userName=${userName}`, { // Use apiUrl
+        headers: {
+          'Content-Type': 'application/json',
+          "ngrok-skip-browser-warning": "true"
+        }
+      });
       const data = await response.json();
       if (response.ok) setConversationHistory(data);
     } catch (error) {
@@ -180,9 +189,12 @@ const EnglishPracticeAssistant = () => {
     setIsLoading(true);
     await new Promise(resolve => setTimeout(resolve, 1500));
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analyze-speech`, {
+      const response = await fetch(`${apiUrl}/api/analyze-speech`, { // Use apiUrl
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          "ngrok-skip-browser-warning": "true"
+        },
         body: JSON.stringify({ text, history: conversationHistory, userName }),
       });
       const result = await response.json();
@@ -260,9 +272,12 @@ const EnglishPracticeAssistant = () => {
     setIsLoading(true);
     await new Promise(resolve => setTimeout(resolve, 1500));
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/analyze-speech`, {
+      const response = await fetch(`${apiUrl}/api/analyze-speech`, { // Use apiUrl
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          "ngrok-skip-browser-warning": "true"
+        },
         body: JSON.stringify({ text: hindiText, history: conversationHistory, userName }),
       });
       const result = await response.json();

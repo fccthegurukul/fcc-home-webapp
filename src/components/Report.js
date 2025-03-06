@@ -13,6 +13,7 @@ const Report = () => {
     endDate: "",
     monthly_cycle_days: "",
   });
+  const apiUrl = process.env.REACT_APP_API_URL; // Define apiUrl from .env
 
   useEffect(() => {
     fetchPayments();
@@ -41,8 +42,12 @@ const Report = () => {
 
   const fetchPayments = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/payments", {
+      const response = await axios.get(`${apiUrl}/api/payments`, { // Updated to use apiUrl
         params: filters,
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true" // Added ngrok header
+        },
       });
       setPayments(response.data);
     } catch (error) {

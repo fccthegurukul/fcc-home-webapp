@@ -26,5 +26,6 @@ yarn-error.log*
 
 /public/skill_images/*
 /public/skill_videos/*
+/backend/*
 !/public/skill_images/.gitkeep
 C:\Users\FCC The Gurukul\My Projects\fcc-home-webapp\src\backend\receipts

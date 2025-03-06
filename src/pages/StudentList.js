@@ -16,10 +16,18 @@ const StudentList = () => {
   // State for modal
   const [selectedStudent, setSelectedStudent] = useState(null);
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
   useEffect(() => {
     const fetchStudents = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        const response = await fetch("http://localhost:5000/get-students");
+        const response = await fetch(`${API_BASE_URL}/get-students`, {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Added to bypass ngrok warning
+          },
+        });
 
         if (!response.ok) {
           throw new Error("Failed to fetch students data");
@@ -35,7 +43,7 @@ const StudentList = () => {
     };
 
     fetchStudents();
-  }, []);
+  }, [API_BASE_URL]);
 
   // Helper Function to Calculate Days Since Admission
   const calculateDaysSinceAdmission = (admissionDate) => {
@@ -176,9 +184,8 @@ const StudentList = () => {
                   </>
                 )}
               </td>
-
               <td>{calculateDaysSinceAdmission(student.admission_date)} days</td>
-              <td>{student.skills}</td> {/* Display skills here */}
+              <td>{student.skills || 'N/A'}</td> {/* Added fallback for skills */}
               <td>
                 <button
                   className="view-more"
@@ -227,11 +234,10 @@ const StudentList = () => {
                 </>
               )}
             </p>
-
             <p><strong>FCC Class:</strong> {selectedStudent.fcc_class}</p>
             <p><strong>FCC ID:</strong> {selectedStudent.fcc_id}</p>
             <p><strong>Admission Date:</strong> {selectedStudent.admission_date}</p>
-            <p><strong>Skills:</strong> {selectedStudent.skills}</p> {/* Display skills */}
+            <p><strong>Skills:</strong> {selectedStudent.skills || 'N/A'}</p> {/* Added fallback */}
             <p>
               <strong>Days Since Admission:</strong>{" "}
               {calculateDaysSinceAdmission(selectedStudent.admission_date)} days

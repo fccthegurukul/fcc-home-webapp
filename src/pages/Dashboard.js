@@ -19,7 +19,7 @@ const Dashboard = () => {
   // Section-specific data states
   const [totalAdmissions, setTotalAdmissions] = useState(null);
   const [admittedStudentsList, setAdmittedStudentsList] = useState([]);
-  const [tasksSummary, setTasksSummary] = useState({ // Tasks summary ke liye ek object state
+  const [tasksSummary, setTasksSummary] = useState({
     completedTasksToday: null,
     notCompletedTasksToday: null,
     completedTasksBeforeToday: null,
@@ -56,9 +56,12 @@ const Dashboard = () => {
         session_id: sessionId.current,
       };
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-activity-log`, { // Updated URL
+      const response = await fetch(`${API_URL}/api/user-activity-log`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true", // Added to bypass ngrok warning
+        },
         body: JSON.stringify(activityData),
       });
 
@@ -67,17 +70,20 @@ const Dashboard = () => {
     } catch (error) {
       console.error("Error logging user activity:", error);
     }
-  }, [activeSection]);
+  }, [activeSection, API_URL]);
 
   // Section-specific data fetching functions
-
   const fetchAdmissionsData = useCallback(async () => {
     setAdmissionsLoading(true);
     setAdmissionsError(null);
     try {
       const [admissionsResponse, admittedStudentsResponse] = await Promise.all([
-        fetch(`${API_URL}/api/total-admissions`),
-        fetch(`${API_URL}/api/admitted-students`),
+        fetch(`${API_URL}/api/total-admissions`, {
+          headers: { "ngrok-skip-browser-warning": "true" }, // Added header
+        }),
+        fetch(`${API_URL}/api/admitted-students`, {
+          headers: { "ngrok-skip-browser-warning": "true" }, // Added header
+        }),
       ]);
 
       const [admissionsData, admittedStudentsData] = await Promise.all([
@@ -99,9 +105,11 @@ const Dashboard = () => {
     setTasksLoading(true);
     setTasksError(null);
     try {
-      const taskCompletionResponse = await fetch(`${API_URL}/api/daily-task-completion`);
+      const taskCompletionResponse = await fetch(`${API_URL}/api/daily-task-completion`, {
+        headers: { "ngrok-skip-browser-warning": "true" }, // Added header
+      });
       const taskCompletionData = await taskCompletionResponse.json();
-      setTasksSummary(taskCompletionData); // Tasks summary ko object se update karen
+      setTasksSummary(taskCompletionData);
     } catch (err) {
       console.error("कार्य डेटा प्राप्त करने में त्रुटि:", err);
       setTasksError(err.message);
@@ -114,7 +122,9 @@ const Dashboard = () => {
     setAttendanceLoading(true);
     setAttendanceError(null);
     try {
-      const attendanceResponse = await fetch(`${API_URL}/api/attendance-overview`);
+      const attendanceResponse = await fetch(`${API_URL}/api/attendance-overview`, {
+        headers: { "ngrok-skip-browser-warning": "true" }, // Added header
+      });
       const attendanceData = await attendanceResponse.json();
       setPresentStudents(attendanceData.presentStudents);
       setAbsentStudents(attendanceData.absentStudents);
@@ -128,8 +138,7 @@ const Dashboard = () => {
     }
   }, [API_URL]);
 
-
-  // सक्रिय सेक्शन बदलने पर डेटा फ़ेच करें
+  // Fetch data based on active section
   useEffect(() => {
     switch (activeSection) {
       case "admissions":
@@ -141,12 +150,10 @@ const Dashboard = () => {
       case "attendance":
         fetchAttendanceData();
         break;
-      // अन्य सेक्शन के लिए भी केस जोड़ें यदि उनमें डेटा फ़ेचिंग हो
       default:
-        // डिफ़ॉल्ट केस में कुछ न करें या इनिशियल सेक्शन का डेटा फ़ेच करें यदि आवश्यक हो
         break;
     }
-  }, [activeSection, fetchAdmissionsData, fetchTasksData, fetchAttendanceData]); // dependency array mein sabhi fetch function joden
+  }, [activeSection, fetchAdmissionsData, fetchTasksData, fetchAttendanceData]);
 
   const downloadCSV = (data, filename) => {
     const headers = ["FCC ID", "नाम", "पिता", "माता", "मोबाइल नंबर", "पता", "दाखिला तिथि"];
@@ -180,7 +187,7 @@ const Dashboard = () => {
   };
 
   const handleDownloadAbsent = () => {
-    downloadCSV(absentStudentList, `absent_students_${new Date().toISOString().split("T")[0]}.css`);
+    downloadCSV(absentStudentList, `absent_students_${new Date().toISOString().split("T")[0]}.csv`); // Fixed typo: .css to .csv
     logUserActivity("Download CSV", { type: "Absent Students" });
   };
 
@@ -252,13 +259,12 @@ const Dashboard = () => {
   const openFullPageReport = () => {
     window.open(`/report`, "_blank");
     logUserActivity("Open Full Page", { section: "Report" });
-    logUserActivity("Open Full Page", { section: "Skill Update" });
   };
+
   const openFullPageSkillUpdate = () => {
     window.open(`/skill-update`, "_blank");
     logUserActivity("Open Full Page", { section: "Skill Update" });
   };
-
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
@@ -441,24 +447,23 @@ const Dashboard = () => {
             </div>
           </>
         );
-        case "Skill Update":
-          return (
-            <>
-              <InfoBox description="इस सेक्शन में छात्रों के स्किल अपडेट कर सकते हैं।" />
-              <div className="dash-card-header">
-                <h3>स्किल अपडेट</h3>
-                <button className="dash-new-window-btn" onClick={openFullPageSkillUpdate}>नई विंडो में खोलें</button>
-              </div>
-              <div className="dash-section-container">
-                <SkillUpdate />
-              </div>
-            </>
-          );
+      case "Skill Update":
+        return (
+          <>
+            <InfoBox description="इस सेक्शन में छात्रों के स्किल अपडेट कर सकते हैं।" />
+            <div className="dash-card-header">
+              <h3>स्किल अपडेट</h3>
+              <button className="dash-new-window-btn" onClick={openFullPageSkillUpdate}>नई विंडो में खोलें</button>
+            </div>
+            <div className="dash-section-container">
+              <SkillUpdate />
+            </div>
+          </>
+        );
       default:
         return null;
     }
   };
-
 
   const renderContent = () => {
     switch (activeSection) {
@@ -534,8 +539,7 @@ const Dashboard = () => {
       case "student-admission":
       case "report":
       case "Skill Update":
-        // In section mein koi data fetching nahi hai, isliye loading/error check ki aavashyakta nahi hai
-        return renderSectionContent(activeSection); // Sahayak function ka upayog karke content render karen
+        return renderSectionContent(activeSection);
       default:
         return null;
     }

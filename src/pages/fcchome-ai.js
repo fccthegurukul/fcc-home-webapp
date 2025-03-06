@@ -36,9 +36,12 @@ const FcchomeAI = () => {
         session_id: sessionId.current,
       };
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-activity-log`, { // Updated URL
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user-activity-log`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true', // Added to bypass ngrok warning
+        },
         body: JSON.stringify(activityData),
       });
 
@@ -72,9 +75,12 @@ const FcchomeAI = () => {
     logUserActivity('Send Message', { message: messageToSend });
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat`, { // Updated URL
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true', // Added to bypass ngrok warning
+        },
         body: JSON.stringify({
           message: messageToSend,
           model: selectedModel,
@@ -122,9 +128,12 @@ const FcchomeAI = () => {
 
     logUserActivity('Retry Message', { original_input: originalInput });
 
-    fetch(`${process.env.REACT_APP_API_URL}/api/chat`, { // Updated URL
+    fetch(`${process.env.REACT_APP_API_URL}/api/chat`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true', // Added to bypass ngrok warning
+      },
       body: JSON.stringify({
         message: originalInput,
         history: chatMessages,

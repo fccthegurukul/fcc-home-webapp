@@ -8,12 +8,18 @@ const StudentManagement = () => {
     const [skills, setSkills] = useState('');
     const [tutionfeePaid, setTutionfeePaid] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState('');
+    const apiUrl = process.env.REACT_APP_API_URL; // Define apiUrl from .env
 
     // Fetching students data from the backend when the component mounts
     useEffect(() => {
         const fetchStudents = async () => {
             try {
-                const response = await fetch('http://localhost:5000/get-students');
+                const response = await fetch(`${apiUrl}/get-students`, { // Updated to use apiUrl
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "ngrok-skip-browser-warning": "true" // Added ngrok header
+                    }
+                });
                 const data = await response.json();
                 setStudents(data); // Set the fetched students into state
             } catch (error) {
@@ -22,13 +28,18 @@ const StudentManagement = () => {
         };
 
         fetchStudents();
-    }, []); // Fetch students once when the component mounts
+    }, [apiUrl]); // Added apiUrl as dependency
 
     // Fetching payments data from the backend when the component mounts
     useEffect(() => {
         const fetchPayments = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/payments');
+                const response = await fetch(`${apiUrl}/api/payments`, { // Updated to use apiUrl
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "ngrok-skip-browser-warning": "true" // Added ngrok header
+                    }
+                });
                 const data = await response.json();
                 setPayments(data); // Set the fetched payments into state
             } catch (error) {
@@ -37,7 +48,7 @@ const StudentManagement = () => {
         };
 
         fetchPayments();
-    }, []); // Fetch payments once when the component mounts
+    }, [apiUrl]); // Added apiUrl as dependency
 
     // Function to format 'tutionfee_paid' (boolean) into a human-readable string
     const formatTuitionFeeStatus = (status) => {
@@ -59,10 +70,11 @@ const StudentManagement = () => {
     // Function to handle student update
     const handleUpdate = async (fccId) => {
         try {
-            const response = await fetch(`http://localhost:5000/update-student/${fccId}`, {
+            const response = await fetch(`${apiUrl}/update-student/${fccId}`, { // Updated to use apiUrl
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    "ngrok-skip-browser-warning": "true" // Added ngrok header
                 },
                 body: JSON.stringify({
                     skills: skills,

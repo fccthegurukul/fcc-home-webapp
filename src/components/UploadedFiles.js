@@ -15,14 +15,24 @@ const UploadedFiles = () => {
 
   const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
 
+  // Axios instance with default headers to bypass ngrok warning
+  const apiClient = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+      "Content-Type": "application/json",
+      "ngrok-skip-browser-warning": "true", // Added to bypass ngrok warning
+    },
+  });
+
   // Function to fetch files
   const fetchFiles = async (params = {}) => {
     setLoading(true);
     try {
-      const response = await axios.get(`${API_BASE_URL}/files`, { params }); // Updated URL
+      const response = await apiClient.get("/files", { params });
       setFiles(response.data);
     } catch (error) {
       console.error("Error fetching files:", error);
+      setFiles([]); // Fallback to empty array on error
     } finally {
       setLoading(false);
     }
@@ -37,6 +47,25 @@ const UploadedFiles = () => {
 
     fetchFiles(params);
   }, [startDate, endDate, searchTerm]);
+
+  // Download file function
+  const handleDownload = async (fileId, filename) => {
+    try {
+      const response = await apiClient.get(`/files/download/${fileId}`, {
+        responseType: "blob",
+      });
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", filename);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    }
+  };
 
   return (
     <div style={{ padding: "20px" }}>
@@ -127,24 +156,7 @@ const UploadedFiles = () => {
                 </td>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>
                   <button
-                    onClick={async () => {
-                      try {
-                        const response = await axios.get(
-                          `${API_BASE_URL}/files/download/${file.id}`, // Updated URL
-                          { responseType: "blob" }
-                        );
-
-                        const url = window.URL.createObjectURL(new Blob([response.data]));
-                        const link = document.createElement("a");
-                        link.href = url;
-                        link.setAttribute("download", file.filename);
-                        document.body.appendChild(link);
-                        link.click();
-                        link.parentNode.removeChild(link);
-                      } catch (error) {
-                        console.error("Error downloading file:", error);
-                      }
-                    }}
+                    onClick={() => handleDownload(file.id, file.filename)}
                     style={{
                       padding: "5px 10px",
                       backgroundColor: "#28a745",

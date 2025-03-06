@@ -15,12 +15,17 @@ const Taskcheck = () => {
     const [teacherFCCId, setTeacherFCCId] = useState('');
     const [actionType, setActionType] = useState('Task Check'); // Default Action Type
 
-    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable, already correct
 
     useEffect(() => {
         const fetchClassrooms = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/classrooms`); // Updated URL
+                const response = await fetch(`${API_BASE_URL}/api/classrooms`, { // Already using API_BASE_URL
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "ngrok-skip-browser-warning": "true" // Added ngrok header
+                    }
+                });
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 setClassroomNames(data);
@@ -39,7 +44,12 @@ const Taskcheck = () => {
                 return;
             }
             try {
-                const response = await fetch(`${API_BASE_URL}/api/tasks?class=${selectedClassroom.split(" ")[1]}`); // Updated URL
+                const response = await fetch(`${API_BASE_URL}/api/tasks?class=${selectedClassroom.split(" ")[1]}`, { // Already using API_BASE_URL
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "ngrok-skip-browser-warning": "true" // Added ngrok header
+                    }
+                });
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
 
@@ -51,8 +61,6 @@ const Taskcheck = () => {
                     return currentDateTime >= startTime && currentDateTime <= endTime;
                 });
                 setTasks(activeTasks);
-
-
             } catch (e) {
                 console.error("Could not fetch tasks:", e);
                 setError(`Failed to fetch tasks: ${e.message}`);
@@ -60,7 +68,6 @@ const Taskcheck = () => {
         };
         fetchTasks();
     }, [selectedClassroom]);
-
 
     useEffect(() => {
         const fetchStudentsAndAttendance = async () => {
@@ -73,7 +80,12 @@ const Taskcheck = () => {
             setError('');
             try {
                 // Students Fetch
-                const studentsResponse = await fetch(`${API_BASE_URL}/api/students-by-class?classroomName=${encodeURIComponent(selectedClassroom)}`); // Updated URL
+                const studentsResponse = await fetch(`${API_BASE_URL}/api/students-by-class?classroomName=${encodeURIComponent(selectedClassroom)}`, { // Already using API_BASE_URL
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "ngrok-skip-browser-warning": "true" // Added ngrok header
+                    }
+                });
                 if (!studentsResponse.ok) throw new Error(`HTTP error! status: ${studentsResponse.status}`);
                 const studentsData = await studentsResponse.json();
                 setStudents(studentsData);
@@ -87,8 +99,6 @@ const Taskcheck = () => {
                     });
                 });
                 setStudentScores(initialScores);
-
-
             } catch (e) {
                 console.error("Could not fetch students:", e);
                 setError(`Failed to fetch students: ${e.message}`);
@@ -97,7 +107,13 @@ const Taskcheck = () => {
             try {
                 // Attendance Fetch
                 const attendanceResponse = await fetch(
-                    `${API_BASE_URL}/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}` // Updated URL
+                    `${API_BASE_URL}/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}`, // Already using API_BASE_URL
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "ngrok-skip-browser-warning": "true" // Added ngrok header
+                        }
+                    }
                 );
                 if (!attendanceResponse.ok) throw new Error(`HTTP error! status: ${attendanceResponse.status}`);
                 const attendanceData = await attendanceResponse.json();
@@ -110,7 +126,6 @@ const Taskcheck = () => {
 
         fetchStudentsAndAttendance();
     }, [selectedClassroom, tasks]);
-
 
     const handleClassroomChange = (event) => {
         setSelectedClassroom(event.target.value);
@@ -154,17 +169,17 @@ const Taskcheck = () => {
             });
         });
 
-
         if (submissions.length === 0) {
             setError("No scores to submit.");
             return;
         }
 
         try {
-            const response = await fetch(`${API_BASE_URL}/api/submit-scores`, { // Updated URL
+            const response = await fetch(`${API_BASE_URL}/api/submit-scores`, { // Already using API_BASE_URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "ngrok-skip-browser-warning": "true" // Added ngrok header
                 },
                 body: JSON.stringify({
                     submissions,
@@ -172,7 +187,7 @@ const Taskcheck = () => {
                     classroom_name: selectedClassroom,
                     num_students_submitted: submissions.length,
                     action_type: actionType
-                 }),
+                }),
             });
 
             if (!response.ok) {
@@ -193,7 +208,6 @@ const Taskcheck = () => {
             });
             setTeacherFCCId('');
             setActionType('Task Check');
-
         } catch (e) {
             console.error("Score submission failed:", e);
             setError(`Failed to submit scores: ${e.message}`);
@@ -213,7 +227,6 @@ const Taskcheck = () => {
             return nextScores;
         });
     };
-
 
     const handleFillMaxScores = () => {
         setStudentScores(prevScores => {
@@ -244,9 +257,7 @@ const Taskcheck = () => {
         });
     };
 
-
     const absentStudents = attendanceData.filter(student => student.status === 'Absent');
-
 
     return (
         <div className="taskcheck-container">

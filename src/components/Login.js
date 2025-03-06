@@ -10,7 +10,7 @@ const Login = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable, already correct
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -18,9 +18,12 @@ const Login = ({ setIsLoggedIn }) => {
         setSuccessMessage('');
 
         try {
-            const response = await fetch(`${API_BASE_URL}/login`, { // Updated URL
+            const response = await fetch(`${API_BASE_URL}/login`, { // Already using API_BASE_URL, correct
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    "ngrok-skip-browser-warning": "true" // Added ngrok header
+                },
                 body: JSON.stringify({ username, password }),
                 credentials: 'include', // Include credentials (cookies) in the request
             });
