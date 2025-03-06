@@ -5,7 +5,7 @@ import { precacheAndRoute } from 'workbox-precaching';
 precacheAndRoute(self.__WB_MANIFEST);
 
 // Version of the service worker (increase this when you update caching strategy)
-const CACHE_NAME = 'my-app-cache-v3';
+const CACHE_NAME = 'my-app-cache-v4';
 const urlsToCache = [
   '/',
   '/index.html',
