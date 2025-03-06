@@ -42,22 +42,24 @@ const App = () => {
     const navigate = useNavigate();
     const sessionId = React.useRef(uuidv4()); // Unique session ID for tracking
     const [deferredPrompt, setDeferredPrompt] = useState(null);
-   // OneSignal Initialization
-   useEffect(() => {
-    OneSignal.init({
-        appId: "8045b93b-6e4f-4805-9d2e-cb83783ba0c7", // Replace with your OneSignal App ID
-        allowLocalhostAsSecureOrigin: true, // For local development
-        autoResubscribe: true, // Automatically resubscribe users
-        notifyButton: {
-            enable: false, // Show a bell icon for subscription management
-        },
-    }).then(() => {
-        console.log("OneSignal Initialized Successfully");
-        OneSignal.User.PushSubscription.optIn(); // Prompt user to subscribe
-    }).catch((error) => {
-        console.error("OneSignal Initialization Error:", error);
-    });
-}, []);
+    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
+    // OneSignal Initialization
+    useEffect(() => {
+        OneSignal.init({
+            appId: "8045b93b-6e4f-4805-9d2e-cb83783ba0c7", // Replace with your OneSignal App ID
+            allowLocalhostAsSecureOrigin: true, // For local development
+            autoResubscribe: true, // Automatically resubscribe users
+            notifyButton: {
+                enable: false, // Show a bell icon for subscription management
+            },
+        }).then(() => {
+            console.log("OneSignal Initialized Successfully");
+            OneSignal.User.PushSubscription.optIn(); // Prompt user to subscribe
+        }).catch((error) => {
+            console.error("OneSignal Initialization Error:", error);
+        });
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -79,32 +81,32 @@ const App = () => {
     }, []);
 
     // Capture the beforeinstallprompt event
-  useEffect(() => {
-    const handler = (e) => {
-      e.preventDefault(); // Prevent default browser prompt
-      setDeferredPrompt(e); // Store the event for later use
+    useEffect(() => {
+        const handler = (e) => {
+            e.preventDefault(); // Prevent default browser prompt
+            setDeferredPrompt(e); // Store the event for later use
+        };
+
+        window.addEventListener('beforeinstallprompt', handler);
+
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handler);
+        };
+    }, []);
+
+    // Function to trigger the install prompt
+    const handleInstallClick = async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt(); // Show the install prompt
+            const { outcome } = await deferredPrompt.userChoice; // Wait for user response
+            if (outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            } else {
+                console.log('User dismissed the install prompt');
+            }
+            setDeferredPrompt(null); // Reset the prompt
+        }
     };
-
-    window.addEventListener('beforeinstallprompt', handler);
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handler);
-    };
-  }, []);
-
-  // Function to trigger the install prompt
-  const handleInstallClick = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt(); // Show the install prompt
-      const { outcome } = await deferredPrompt.userChoice; // Wait for user response
-      if (outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      } else {
-        console.log('User dismissed the install prompt');
-      }
-      setDeferredPrompt(null); // Reset the prompt
-    }
-  };
 
     // Reusable function for logging user activity
     const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
@@ -121,7 +123,7 @@ const App = () => {
                 session_id: sessionId.current,
             };
 
-            const response = await fetch('http://localhost:5000/api/user-activity-log', {
+            const response = await fetch(`${API_BASE_URL}/api/user-activity-log`, { // Updated URL
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(activityData),
@@ -132,11 +134,11 @@ const App = () => {
         } catch (error) {
             console.error('Error logging user activity:', error);
         }
-    }, [isLoggedIn, location.pathname]);
+    }, [isLoggedIn, location.pathname, API_BASE_URL]); // API_BASE_URL as dependency
 
     const handleLogout = async () => {
         try {
-            const response = await fetch('http://localhost:5000/logout', {
+            const response = await fetch(`${API_BASE_URL}/logout`, { // Updated URL
                 method: 'POST',
                 credentials: 'include',
             });
@@ -163,42 +165,42 @@ const App = () => {
         const accessType = localStorage.getItem('accessType');
         const username = localStorage.getItem('username') || "User"; // Get username from localStorage
         const whatsappMessage = `Hello! I want to complete the verification process at FCC The Gurukul quickly.`;
-    
+
         if (!isLoggedIn) {
             return <Navigate to="/login" replace state={{ from: location }} />;
         } else if (accessType !== 'Admin') {
             return (
-                <div 
-                    style={{ 
-                        padding: "2rem", 
-                        textAlign: "center", 
-                        fontSize: "16px", 
-                        lineHeight: "1.6", 
-                        backgroundColor: "#f9f9f9", 
-                        borderRadius: "10px", 
-                        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", 
-                        maxWidth: "600px", 
-                        margin: "2rem auto" 
+                <div
+                    style={{
+                        padding: "2rem",
+                        textAlign: "center",
+                        fontSize: "16px",
+                        lineHeight: "1.6",
+                        backgroundColor: "#f9f9f9",
+                        borderRadius: "10px",
+                        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                        maxWidth: "600px",
+                        margin: "2rem auto"
                     }}
                 >
                     <p>✅ Registration was successful! 🎉</p>
                     <p>⚡ Username verification is in progress. We are verifying whether you are an instructor at FCC The Gurukul or interested in using premium app features.</p>
                     <p>🔹 To speed up the verification process, use the button below:</p>
-                    <a 
-                        href={`https://wa.me/9125263531?text=${encodeURIComponent(whatsappMessage)}`} 
-                        target="_blank" 
+                    <a
+                        href={`https://wa.me/9125263531?text=${encodeURIComponent(whatsappMessage)}`}
+                        target="_blank"
                         rel="noopener noreferrer"
-                        style={{ 
-                            display: "inline-block", 
-                            marginTop: "15px", 
-                            padding: "12px 25px", 
-                            backgroundColor: "#25D366", 
-                            color: "#fff", 
-                            borderRadius: "8px", 
-                            textDecoration: "none", 
-                            fontSize: "16px", 
-                            fontWeight: "bold", 
-                            boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)", 
+                        style={{
+                            display: "inline-block",
+                            marginTop: "15px",
+                            padding: "12px 25px",
+                            backgroundColor: "#25D366",
+                            color: "#fff",
+                            borderRadius: "8px",
+                            textDecoration: "none",
+                            fontSize: "16px",
+                            fontWeight: "bold",
+                            boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.2)",
                             transition: "all 0.3s ease-in-out"
                         }}
                         onMouseOver={(e) => e.target.style.backgroundColor = "#1EBE5D"}
@@ -210,17 +212,17 @@ const App = () => {
             );
         }
         return children;
-    };    
-    
+    };
+
     return (
         <div className="App">
             <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
             {deferredPrompt && (
-  <div className="install-prompt">
-    <p>🔥 हमारा वेब को होम स्क्रीन पर इनस्टॉल करें 🚀</p>
-    <button onClick={handleInstallClick}>अभी इंस्टॉल करें</button>
-  </div>
-)}
+                <div className="install-prompt">
+                    <p>🔥 हमारा वेब को होम स्क्रीन पर इनस्टॉल करें 🚀</p>
+                    <button onClick={handleInstallClick}>अभी इंस्टॉल करें</button>
+                </div>
+            )}
             <div className="content-area">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
