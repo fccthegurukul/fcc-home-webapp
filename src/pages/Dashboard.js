@@ -9,6 +9,8 @@ import TaskSubmissionPage from "../components/TaskSubmissionPage";
 import Taskcheck from "../components/Taskcheck";
 import StudentAdmission from "../pages/StudentAdmission";
 import Report from "../components/Report";
+import Livevideosmanage from "../components/Livevideosmanage";
+import TeacherActivityManagement from "../components/component2/TeacherActivityManagement";
 import SkillUpdate from "./SkillUpdate";
 import "./Dashboard.css";
 import { v4 as uuidv4 } from 'uuid';
@@ -266,6 +268,16 @@ const Dashboard = () => {
     logUserActivity("Open Full Page", { section: "Skill Update" });
   };
 
+  const openFullPageLivevideosmanage = () => {
+    window.open(`/Livevideosmanage`, "_blank");
+    logUserActivity("Open Full Page", { section: "Live Videos Manage" });
+  };
+
+  const openFullPageTeacherActivityManagement = () => {
+    window.open(`/TeacherActivityManagement`, "_blank");
+    logUserActivity("Open Full Page", { section: "Teacher Activity Management" });
+  };
+
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
     logUserActivity("Toggle Sidebar", { collapsed: !isSidebarCollapsed });
@@ -460,6 +472,34 @@ const Dashboard = () => {
             </div>
           </>
         );
+      case "Livevideosmanage":
+        return (
+          <>
+            <InfoBox description="इस सेक्शन में वीडियो अपलोड कर सकते हैं।" />
+            <div className="dash-card-header">
+              <h3>वीडियो अपलोड</h3>
+              <button className="dash-new-window-btn" onClick={openFullPageLivevideosmanage}>नई विंडो में खोलें</button>
+            </div>
+            <div className="dash-section-container">
+              <Livevideosmanage />
+            </div>
+          </>
+        );
+        case "TeacherActivityManagement": // ❌ गलत सेमीकोलन हटाया
+    return (
+      <>
+        <InfoBox description="इस सेक्शन में टीचर की गतिविधि अपडेट कर सकते हैं।" />
+        <div className="dash-card-header">
+          <h3>टीचर गतिविधि प्रबंधन</h3>
+          <button className="dash-new-window-btn" onClick={openFullPageTeacherActivityManagement}>
+            नई विंडो में खोलें
+          </button>
+        </div>
+        <div className="dash-section-container">
+          <TeacherActivityManagement />
+        </div>
+      </>
+    );
       default:
         return null;
     }
@@ -539,7 +579,9 @@ const Dashboard = () => {
       case "student-admission":
       case "report":
       case "Skill Update":
-        return renderSectionContent(activeSection);
+      case "Livevideosmanage":
+      case "TeacherActivityManagement":
+      return renderSectionContent(activeSection);
       default:
         return null;
     }
@@ -598,6 +640,12 @@ const Dashboard = () => {
             <li className={activeSection === "Skill Update" ? "dash-active" : ""} onClick={() => handleSectionChange("Skill Update")}>
               स्किल अपडेट
             </li>
+            <li className={activeSection === "Livevideosmanage" ? "dash-active" : ""} onClick={() => handleSectionChange("Livevideosmanage")}>
+              वीडियो अपलोड
+            </li>
+            <li className={activeSection === "TeacherActivityManagement" ? "dash-active" : ""} onClick={() => handleSectionChange("TeacherActivityManagement")}>
+              टीचर गतिविधि प्रबंधन
+              </li>
           </ul>
         </div>
       </div>

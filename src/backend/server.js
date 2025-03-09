@@ -16,6 +16,7 @@ const { v4: uuidv4 } = require('uuid');
 const ConnectPgSimple = require('connect-pg-simple')(session); // <---- Is this line EXACTLY present, including `(session)`?
 const { Pool } = require('pg'); // <---- Is this line EXACTLY present at the top?
 const fetch = require('node-fetch'); // Import node-fetch for HTTP requests
+const cookieParser = require('cookie-parser');
 
 // ... rest of your server.js code ...
 // लॉगिंग सेटअप
@@ -154,6 +155,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use(session({
   store: new ConnectPgSimple({
@@ -166,7 +168,7 @@ app.use(session({
   cookie: {
     path: '/',
     httpOnly: true,
-    maxAge: 1800000,
+    maxAge: 79200000, // 22 घंटे (22 * 60 * 60 * 1000 ms)
     secure: false,
     sameSite: 'lax'
   },
@@ -213,6 +215,32 @@ app.post('/register', async (req, res) => {
   }
 });
 
+// Add this route to your server.js file
+app.post('/auto-login', async (req, res) => {
+  const { username } = req.body;
+
+  if (!username) {
+    return res.status(400).json({ message: 'Username is required.' });
+  }
+
+  try {
+    const userResult = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+    const user = userResult.rows[0];
+
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid username.' });
+    }
+
+    // If the user exists, log them in
+    return res.status(200).json({ 
+      message: 'Auto-login successful',
+      accessType: user.access_type 
+    });
+  } catch (error) {
+    console.error("Auto-login error:", error);
+    return res.status(500).json({ message: 'Auto-login failed due to a server error.' });
+  }
+});
 
 // 2. Login Route
 app.post('/login', async (req, res) => {
@@ -279,41 +307,45 @@ app.post('/logout', (req, res) => {
   console.log("req.session:", req.session);
 
   if (req.session && req.session.userId) {
-      const userId = req.session.userId;
-      const logoutTimestamp = new Date();
-      const loginTimestamp = req.session.loginTimestamp ? new Date(req.session.loginTimestamp) : logoutTimestamp; // Get login time from session
+    const userId = req.session.userId;
+    const logoutTimestamp = new Date();
+    const loginTimestamp = req.session.loginTimestamp ? new Date(req.session.loginTimestamp) : logoutTimestamp;
 
-      const sessionDurationMs = logoutTimestamp - loginTimestamp;
-      const sessionDurationSeconds = Math.max(0, sessionDurationMs / 1000);
+    const sessionDurationMs = logoutTimestamp - loginTimestamp;
+    const sessionDurationSeconds = Math.max(0, sessionDurationMs / 1000);
 
-      pool.query(
-          'UPDATE login_log SET logout_timestamp = $1, session_duration = $2 WHERE id = (SELECT MAX(id) FROM login_log WHERE user_id = $3 AND logout_timestamp IS NULL)',
-          [logoutTimestamp, `${sessionDurationSeconds} seconds`, userId],
-          (dbErr, dbResult) => {
-              if (dbErr) {
-                  console.error("Database error updating logout info:", dbErr); // More descriptive error log
-                  // Even if DB update fails, still logout user session to prevent login problems
-              } else {
-                  console.log(`Logout info updated in login_log for user ID: ${userId}`);
-              }
+    pool.query(
+      'UPDATE login_log SET logout_timestamp = $1, session_duration = $2 WHERE id = (SELECT MAX(id) FROM login_log WHERE user_id = $3 AND logout_timestamp IS NULL)',
+      [logoutTimestamp, `${sessionDurationSeconds} seconds`, userId],
+      (dbErr, dbResult) => {
+        if (dbErr) {
+          console.error("Database error updating logout info:", dbErr);
+        } else {
+          console.log(`Logout info updated in login_log for user ID: ${userId}`);
+        }
 
-              req.session.destroy((err) => { // Destroy session *after* trying to log logout info
-                  if (err) {
-                      console.error("Error destroying session during logout:", err);
-                      return res.status(500).json({ message: 'Logout session destroy error.' });
-                  }
-                  res.clearCookie('connect.sid'); // Clear session cookie
-                  console.log(`Session destroyed and cookie cleared for user ID: ${userId}`);
-                  return res.status(200).json({ message: 'Logout successful' });
-              });
+        req.session.destroy((err) => {
+          if (err) {
+            console.error("Error destroying session during logout:", err);
+            return res.status(500).json({ message: 'Logout session destroy error.' });
           }
-      );
+
+          // Clear the session cookie
+          res.clearCookie('connect.sid');
+
+          // Clear the username cookie
+          res.clearCookie('username');
+
+          console.log(`Session destroyed and cookies cleared for user ID: ${userId}`);
+          return res.status(200).json({ message: 'Logout successful' });
+        });
+      }
+    );
   } else {
-      console.log("No active session to logout.");
-      return res.status(400).json({ message: 'No active session to logout.' });
+    console.log("No active session to logout.");
+    return res.status(400).json({ message: 'No active session to logout.' });
   }
 });
-
 // 4. Authentication Middleware (to protect routes)
 const requireLogin = (req, res, next) => {
   if (req.session && req.session.userId) {
@@ -3037,16 +3069,383 @@ app.post('/api/user-activity-log', async (req, res) => {
   }
 })
 
+// Get all live videos
+app.get("/live-videos", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM live_videos ORDER BY created_at DESC");
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Add new live video
+app.post("/live-videos", async (req, res) => {
+  const { classroom_name, video_title, youtube_url, live_date } = req.body;
+  const updated_by = req.cookies.username || "anonymous"; // Get username from cookies
+  try {
+    const result = await pool.query(
+      "INSERT INTO live_videos (classroom_name, video_title, youtube_url, live_date, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING video_id",
+      [classroom_name, video_title, youtube_url, live_date]
+    );
+    const video_id = result.rows[0].video_id;
+
+    // Log the creation
+    await pool.query(
+      "INSERT INTO live_video_logs (video_id, action_type, new_classroom_name, new_video_title, new_youtube_url, new_live_date, updated_by) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+      [video_id, "created", classroom_name, video_title, youtube_url, live_date, updated_by]
+    );
+
+    res.status(201).send("Video added successfully");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Update live video
+app.put("/live-videos/:id", async (req, res) => {
+  const { id } = req.params;
+  const { classroom_name, video_title, youtube_url, live_date } = req.body;
+  const updated_by = req.cookies.username || "anonymous"; // Get username from cookies
+
+  try {
+    // Get old values
+    const oldVideo = await pool.query("SELECT * FROM live_videos WHERE video_id = $1", [id]);
+    const oldData = oldVideo.rows[0];
+
+    // Log the update with old and new values
+    await pool.query(
+      "INSERT INTO live_video_logs (video_id, action_type, old_classroom_name, new_classroom_name, old_video_title, new_video_title, old_youtube_url, new_youtube_url, old_live_date, new_live_date, updated_by) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)",
+      [
+        id,
+        "updated",
+        oldData.classroom_name,
+        classroom_name,
+        oldData.video_title,
+        video_title,
+        oldData.youtube_url,
+        youtube_url,
+        oldData.live_date,
+        live_date,
+        updated_by,
+      ]
+    );
+
+    // Update the video
+    await pool.query(
+      "UPDATE live_videos SET classroom_name = $1, video_title = $2, youtube_url = $3, live_date = $4, updated_at = NOW() WHERE video_id = $5",
+      [classroom_name, video_title, youtube_url, live_date, id]
+    );
+
+    res.send("Video updated successfully");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Add Teacher
+app.post("/teachers", async (req, res) => {
+  const { fccid, name, subject } = req.body;
+  try {
+    await pool.query(
+      "INSERT INTO teachers (fccid, name, subject) VALUES ($1, $2, $3)",
+      [fccid, name, subject]
+    );
+    res.status(201).send("Teacher added successfully");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Get All Teachers
+app.get("/teachers", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT fccid, name, subject FROM teachers ORDER BY name");
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Record Campus Entry
+app.post("/campus-entry", async (req, res) => {
+  const { fccid } = req.body;
+  const recorded_by = req.cookies.username || "anonymous";
+  try {
+    const result = await pool.query(
+      "INSERT INTO campus_entry_exit (fccid, recorded_by) VALUES ($1, $2) RETURNING entry_id",
+      [fccid, recorded_by]
+    );
+    res.status(201).json({ message: "Entry recorded", entry_id: result.rows[0].entry_id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Record Campus Exit
+app.put("/campus-exit/:entry_id", async (req, res) => {
+  const { entry_id } = req.params;
+  try {
+    await pool.query(
+      "UPDATE campus_entry_exit SET exit_time = NOW() WHERE entry_id = $1 AND exit_time IS NULL",
+      [entry_id]
+    );
+    res.send("Exit recorded");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Start Teaching Session
+app.post("/teaching-session", async (req, res) => {
+  const { fccid } = req.body;
+  const recorded_by = req.cookies.username || "anonymous";
+  try {
+    const teacher = await pool.query("SELECT subject FROM teachers WHERE fccid = $1", [fccid]);
+    if (!teacher.rows.length) throw new Error("Teacher not found");
+    const subject = teacher.rows[0].subject;
+
+    const result = await pool.query(
+      "INSERT INTO teaching_sessions (fccid, subject, recorded_by) VALUES ($1, $2, $3) RETURNING session_id",
+      [fccid, subject, recorded_by]
+    );
+    res.status(201).json({ message: "Teaching session started", session_id: result.rows[0].session_id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// End Teaching Session
+app.put("/teaching-session/:session_id", async (req, res) => {
+  const { session_id } = req.params;
+  try {
+    await pool.query(
+      "UPDATE teaching_sessions SET end_time = NOW() WHERE session_id = $1 AND end_time IS NULL",
+      [session_id]
+    );
+    res.send("Teaching session ended");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Start Study Session
+app.post("/study-session", async (req, res) => {
+  const { fccid } = req.body;
+  const recorded_by = req.cookies.username || "anonymous";
+  try {
+    const result = await pool.query(
+      "INSERT INTO study_sessions (fccid, recorded_by) VALUES ($1, $2) RETURNING session_id",
+      [fccid, recorded_by]
+    );
+    res.status(201).json({ message: "Study session started", session_id: result.rows[0].session_id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+// Start Group Session
+app.post("/group-sessions/start", async (req, res) => {
+  const { fccid, session_type } = req.body;
+  const recorded_by = req.cookies.username || "anonymous";
+  try {
+    const result = await pool.query(
+      "INSERT INTO group_sessions (fccid, session_type, recorded_by) VALUES ($1, $2, $3) RETURNING session_id",
+      [fccid, session_type, recorded_by]
+    );
+    res.status(201).json({ message: `${session_type} session started`, session_id: result.rows[0].session_id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// End Group Session
+app.put("/group-sessions/end/:session_id", async (req, res) => {
+  const { session_id } = req.params;
+  try {
+    await pool.query(
+      "UPDATE group_sessions SET end_time = NOW() WHERE session_id = $1 AND end_time IS NULL",
+      [session_id]
+    );
+    res.send("Session ended");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Fetch Active Group Sessions
+app.get("/group-sessions/active", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT session_id, fccid, session_type, start_time FROM group_sessions WHERE end_time IS NULL"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Updated Activity Report
+app.get("/activity-report", async (req, res) => {
+  const { fccid, start_date, end_date } = req.query;
+  try {
+    const queryParams = [start_date, end_date];
+    let baseQuery = `
+      SELECT 
+        t.fccid, t.name, t.subject,
+        (SELECT COUNT(*) FROM campus_entry_exit ce WHERE ce.fccid = t.fccid AND ce.entry_time >= $1 AND ce.entry_time <= $2) as campus_visits,
+        (SELECT SUM(EXTRACT(EPOCH FROM (ce.exit_time - ce.entry_time))) FROM campus_entry_exit ce WHERE ce.fccid = t.fccid AND ce.entry_time >= $1 AND ce.entry_time <= $2 AND ce.exit_time IS NOT NULL) as total_campus_seconds,
+        (SELECT SUM(EXTRACT(EPOCH FROM (gs.end_time - gs.start_time))) FROM group_sessions gs WHERE gs.fccid = t.fccid AND gs.session_type = 'teaching' AND gs.start_time >= $1 AND gs.start_time <= $2 AND gs.end_time IS NOT NULL) as teaching_seconds,
+        (SELECT SUM(EXTRACT(EPOCH FROM (gs.end_time - gs.start_time))) FROM group_sessions gs WHERE gs.fccid = t.fccid AND gs.session_type = 'study' AND gs.start_time >= $1 AND gs.start_time <= $2 AND gs.end_time IS NOT NULL) as study_seconds,
+        (SELECT SUM(EXTRACT(EPOCH FROM (gs.end_time - gs.start_time))) FROM group_sessions gs WHERE gs.fccid = t.fccid AND gs.session_type = 'sleeping' AND gs.start_time >= $1 AND gs.start_time <= $2 AND gs.end_time IS NOT NULL) as sleeping_seconds,
+        (SELECT SUM(EXTRACT(EPOCH FROM (gs.end_time - gs.start_time))) FROM group_sessions gs WHERE gs.fccid = t.fccid AND gs.session_type = 'entertainment' AND gs.start_time >= $1 AND gs.start_time <= $2 AND gs.end_time IS NOT NULL) as entertainment_seconds,
+        (SELECT SUM(EXTRACT(EPOCH FROM (gs.end_time - gs.start_time))) FROM group_sessions gs WHERE gs.fccid = t.fccid AND gs.session_type = 'lunch' AND gs.start_time >= $1 AND gs.start_time <= $2 AND gs.end_time IS NOT NULL) as lunch_seconds,
+        (SELECT SUM(EXTRACT(EPOCH FROM (gs.end_time - gs.start_time))) FROM group_sessions gs WHERE gs.fccid = t.fccid AND gs.session_type = 'breakfast' AND gs.start_time >= $1 AND gs.start_time <= $2 AND gs.end_time IS NOT NULL) as breakfast_seconds,
+        (SELECT SUM(EXTRACT(EPOCH FROM (gs.end_time - gs.start_time))) FROM group_sessions gs WHERE gs.fccid = t.fccid AND gs.session_type = 'dinner' AND gs.start_time >= $1 AND gs.start_time <= $2 AND gs.end_time IS NOT NULL) as dinner_seconds,
+        (SELECT SUM(EXTRACT(EPOCH FROM (gs.end_time - gs.start_time))) FROM group_sessions gs WHERE gs.fccid = t.fccid AND gs.session_type = 'out_of_campus' AND gs.start_time >= $1 AND gs.start_time <= $2 AND gs.end_time IS NOT NULL) as out_of_campus_seconds,
+        (SELECT SUM(EXTRACT(EPOCH FROM (gs.end_time - gs.start_time))) FROM group_sessions gs WHERE gs.fccid = t.fccid AND gs.session_type = 'others' AND gs.start_time >= $1 AND gs.start_time <= $2 AND gs.end_time IS NOT NULL) as others_seconds
+      FROM teachers t
+    `;
+    if (fccid) {
+      baseQuery += " WHERE t.fccid = $3";
+      queryParams.push(fccid);
+    }
+    baseQuery += " GROUP BY t.fccid, t.name, t.subject";
+
+    const result = await pool.query(baseQuery, queryParams);
+    res.json(result.rows.map(row => {
+      const totalCampusSeconds = row.total_campus_seconds || 0;
+      const mealSeconds = (row.lunch_seconds || 0) + (row.breakfast_seconds || 0) + (row.dinner_seconds || 0);
+      const productiveSeconds = (row.teaching_seconds || 0) + 
+                               (row.study_seconds || 0) + 
+                               (row.sleeping_seconds || 0) + 
+                               (row.breakfast_seconds || 0) + 
+                               (row.dinner_seconds || 0); // Lunch ko productive se exclude kiya
+      const timeLostSeconds = Math.max(0, totalCampusSeconds - productiveSeconds) + 
+                              (row.entertainment_seconds || 0) + 
+                              (row.out_of_campus_seconds || 0) + 
+                              (row.lunch_seconds || 0);
+
+      console.log(`Debug - FCCID: ${row.fccid}, Total Campus: ${totalCampusSeconds}, Productive: ${productiveSeconds}, Time Lost: ${timeLostSeconds}`);
+
+      return {
+        ...row,
+        total_campus_time: formatTime(row.total_campus_seconds || 0),
+        teaching_time: formatTime(row.teaching_seconds || 0),
+        study_time: formatTime(row.study_seconds || 0),
+        sleeping_time: formatTime(row.sleeping_seconds || 0),
+        entertainment_time: formatTime(row.entertainment_seconds || 0),
+        lunch_time: formatTime(row.lunch_seconds || 0),
+        breakfast_time: formatTime(row.breakfast_seconds || 0),
+        dinner_time: formatTime(row.dinner_seconds || 0),
+        meal_time: formatTime(mealSeconds),
+        out_of_campus_time: formatTime(row.out_of_campus_seconds || 0),
+        others_time: formatTime(row.others_seconds || 0),
+        time_lost: formatTime(timeLostSeconds), // Renamed from timepass_time to time_lost
+      };
+    }));
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// server.js
+
+// Fetch Unique Session Types
+app.get("/session-types", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT DISTINCT session_type FROM group_sessions");
+    const sessionTypes = result.rows.map(row => row.session_type);
+    res.json(sessionTypes);
+  } catch (err) {
+    console.error("Error fetching session types:", err);
+    res.status(500).send("Server Error");
+  }
+});
+// server.js (or your main backend file)
+// ... your existing imports and configurations ...
+
+// Leaderboard Endpoint with Session-wise Filtering
+app.get("/leaderboard-sessions", async (req, res) => {
+  const { session_type, start_date, end_date } = req.query;
+  let query = `
+    SELECT
+      fccid,
+      session_type,
+      COUNT(*) as session_count,
+      SUM(EXTRACT(EPOCH FROM (end_time - start_time))) as total_duration_seconds
+    FROM
+      group_sessions
+    WHERE
+      end_time IS NOT NULL
+  `;
+  const params = [];
+
+  if (session_type) {
+    query += ` AND session_type = $${params.length + 1}`;
+    params.push(session_type);
+  }
+
+  if (start_date && end_date) {
+    query += ` AND start_time BETWEEN $${params.length + 1} AND $${params.length + 2}`;
+    params.push(start_date, end_date);
+  } else if (start_date) {
+    query += ` AND start_time >= $${params.length + 1}`;
+    params.push(start_date);
+  } else if (end_date) {
+    query += ` AND start_time <= $${params.length + 1}`;
+    params.push(end_date);
+  }
+
+
+  query += `
+    GROUP BY
+      fccid, session_type
+    ORDER BY
+      total_duration_seconds DESC;
+  `;
+
+  try {
+    const result = await pool.query(query, params);
+    res.json(result.rows.map(row => ({
+      ...row,
+      total_duration: formatTime(row.total_duration_seconds || 0), // Format duration in HH:MM:SS
+    })));
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// ... your existing formatTime function (if not already present in this file, add it here)
+function formatTime(seconds) {
+  if (isNaN(seconds) || seconds < 0) return "00:00:00";
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+}
+
+
 // Server Startup
 app.listen(port, async () => {
   console.log(`HTTP Server running on port ${port}`);
   try {
     const res = await pool.query('SELECT NOW()');
     console.log('Database connected, response:', res.rows);
-    console.log("Gemini API Key from env:", process.env.GEMINI_API_KEY);
-    console.log("OpenRouter API Key from env:", process.env.OPENROUTER_API_KEY); // Also check 
-    console.log('Conversations table ready');
-    console.log('English progress table ready');
   } catch (err) {
     console.error('Database connection or setup error:', err);
   }

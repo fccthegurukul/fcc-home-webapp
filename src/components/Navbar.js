@@ -15,6 +15,19 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
     setMenuOpen(!isMenuOpen);
   };
 
+  // Updated handleLogout function
+  const handleLogoutClick = async () => {
+    try {
+      // Clear the username cookie
+      document.cookie = 'username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;';
+
+      // Call the handleLogout function passed from the parent component
+      await handleLogout();
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
     <nav className="fcc-navbar">
       <div className="fcc-navbar-container">
@@ -49,7 +62,7 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
             </>
           ) : (
             <li>
-              <button onClick={handleLogout} className="fcc-nav-link fcc-logout-button">
+              <button onClick={handleLogoutClick} className="fcc-nav-link fcc-logout-button">
                 <FaSignOutAlt /> लॉगआउट
               </button>
             </li>

@@ -32,6 +32,9 @@ import EnglishPracticeAssistant from './components/EnglishPracticeAssistant';
 import Aihub from './pages/aihub';
 import StudentProfile from './pages/StudentProfile'; // Import the StudentProfile component
 import Troubleshooting from './components/Troubleshooting';
+import Livevideosmanage from './components/Livevideosmanage';
+import TeacherActivityManagement from './components/component2/TeacherActivityManagement';
+import LeaderBoard from './components/component2/LeaderBoard';
 import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
 import OneSignal from 'react-onesignal'; // OneSignal import
 
@@ -236,6 +239,8 @@ const App = () => {
                     <Route path="/student-admission" element={<AdminProtectedRoute><StudentAdmission /></AdminProtectedRoute>} />
                     <Route path="/report" element={<AdminProtectedRoute><Report /></AdminProtectedRoute>} />
                     <Route path="/dashboard" element={<AdminProtectedRoute><Dashboard /></AdminProtectedRoute>} />
+                    <Route path="/Livevideosmanage" element={<AdminProtectedRoute><Livevideosmanage /></AdminProtectedRoute>} />
+                    <Route path="/TeacherActivityManagement" element={<AdminProtectedRoute><TeacherActivityManagement /></AdminProtectedRoute>} />
                     {/* Public Routes */}
                     <Route path="/card-hub" element={<CardHub />} />
                     <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
@@ -253,7 +258,8 @@ const App = () => {
                     <Route path="/aihub" element={<Aihub />} />
                     <Route path="/student/:fccId" element={<StudentProfile />} />
                     <Route path="/troubleshooting" element={<Troubleshooting />} />
-                    <Route path="*" element={<Navigate to="/" />} />
+                    <Route path="/LeaderBoard-Group" element={<LeaderBoard />} />
+                    {/* <Route path="*" element={<Navigate to="/" />} /> */}
                 </Routes>
             </div>
             <nav className="bottom-navbar">
