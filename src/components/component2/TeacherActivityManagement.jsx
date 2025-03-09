@@ -25,9 +25,10 @@ const TeacherActivityManagement = () => {
   const [report, setReport] = useState([]);
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  // API URL from environment variables, recommended approach for configuration
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
 
-  // Session Types
+  // Session Types - descriptive array for session management buttons
   const sessionTypes = [
     { type: "teaching", label: "Start Teaching", icon: <FaChalkboardTeacher />, color: "btn-info" },
     { type: "study", label: "Start Study", icon: <FaBook />, color: "btn-warning" },
@@ -40,138 +41,195 @@ const TeacherActivityManagement = () => {
     { type: "others", label: "Start Others", icon: <FaQuestion />, color: "btn-dark" },
   ];
 
+  // useEffect hook for initial data fetching and setting up real-time clock
   useEffect(() => {
-    fetchTeachers();
-    fetchActiveSessions(); // Fetch active sessions on page load
-    const timer = setInterval(() => setCurrentTime(new Date()), 1000); // Update time every second
-    return () => clearInterval(timer);
-  }, []);
+    fetchTeachers(); // Fetch teacher data on component mount
+    fetchActiveSessions(); // Fetch active session data on component mount
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000); // Update current time every second for duration display
 
+    // Cleanup function to clear the interval when component unmounts, preventing memory leaks
+    return () => clearInterval(timer);
+  }, []); // Empty dependency array ensures this effect runs only once on mount and unmount
+
+  // Function to fetch teacher data from the API
   const fetchTeachers = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/teachers`, { withCredentials: true });
-      setTeachers(res.data);
-    } catch (err) {
-      console.error("Error fetching teachers:", err);
+      const response = await axios.get(`${API_BASE_URL}/teachers`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Bypass ngrok warning for API requests
+        },
+      });
+      setTeachers(response.data); // Update teachers state with fetched data
+    } catch (error) {
+      console.error("Error fetching teachers:", error); // Log error if fetching fails
     }
   };
 
+  // Function to fetch active session data from the API
   const fetchActiveSessions = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/group-sessions/active`, { withCredentials: true });
-      const activeSessionsData = res.data.reduce((acc, session) => {
-        acc[session.fccid] = {
+      const response = await axios.get(`${API_BASE_URL}/group-sessions/active`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Bypass ngrok warning for API requests
+        },
+      });
+      // Transform the fetched active sessions data into a more convenient format (object keyed by fccid)
+      const activeSessionsData = response.data.reduce((accumulator, session) => {
+        accumulator[session.fccid] = {
           type: session.session_type,
           id: session.session_id,
           startTime: new Date(session.start_time),
         };
-        return acc;
+        return accumulator;
       }, {});
-      setActiveSessions(activeSessionsData);
-    } catch (err) {
-      console.error("Error fetching active sessions:", err);
+      setActiveSessions(activeSessionsData); // Update activeSessions state with transformed data
+    } catch (error) {
+      console.error("Error fetching active sessions:", error); // Log error if fetching fails
     }
   };
 
-  const handleTeacherChange = (e) => setTeacher({ ...teacher, [e.target.name]: e.target.value });
-  const handleFilterChange = (e) => setFilters({ ...filters, [e.target.name]: e.target.value });
+  // Handler for input changes in the "Add Teacher" form
+  const handleTeacherChange = (event) => {
+    setTeacher({ ...teacher, [event.target.name]: event.target.value }); // Update teacher state based on input changes
+  };
 
+  // Handler for input changes in the report filter form
+  const handleFilterChange = (event) => {
+    setFilters({ ...filters, [event.target.name]: event.target.value }); // Update filters state based on input changes
+  };
+
+  // Function to add a new teacher to the database via API call
   const addTeacher = async () => {
     try {
-      await axios.post(`${API_BASE_URL}/teachers`, teacher, { withCredentials: true });
-      setTeacher({ fccid: "", name: "", subject: "" });
-      fetchTeachers();
-      alert("Teacher added!");
-    } catch (err) {
-      console.error("Error adding teacher:", err);
+      await axios.post(`${API_BASE_URL}/teachers`, teacher, {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Bypass ngrok warning for API requests
+        },
+      });
+      setTeacher({ fccid: "", name: "", subject: "" }); // Reset the teacher form after successful submission
+      fetchTeachers(); // Refresh the teacher list to include the newly added teacher
+      alert("Teacher added successfully!"); // Provide user feedback
+    } catch (error) {
+      console.error("Error adding teacher:", error); // Log error if adding teacher fails
+      alert("Failed to add teacher!"); // Provide user feedback
     }
   };
 
+  // Function to record campus entry for a teacher
   const recordEntry = async (fccid) => {
     try {
-      const res = await axios.post(`${API_BASE_URL}/campus-entry`, { fccid }, { withCredentials: true });
-      setActiveEntries((prev) => ({ ...prev, [fccid]: res.data.entry_id }));
-      alert(`Entry recorded for ${fccid}!`);
-    } catch (err) {
-      console.error("Error recording entry:", err);
-      alert("Failed to record entry!");
+      const response = await axios.post(`${API_BASE_URL}/campus-entry`, { fccid }, {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Bypass ngrok warning for API requests
+        },
+      });
+      setActiveEntries((previousEntries) => ({ ...previousEntries, [fccid]: response.data.entry_id })); // Update activeEntries state to track entry
+      alert(`Entry recorded for ${fccid}!`); // Provide user feedback
+    } catch (error) {
+      console.error("Error recording entry:", error); // Log error if recording entry fails
+      alert("Failed to record entry!"); // Provide user feedback
     }
   };
 
+  // Function to record campus exit for a teacher
   const recordExit = async (fccid) => {
-    const entryId = activeEntries[fccid];
-    if (!entryId) return alert(`No active entry for ${fccid}!`);
+    const entryId = activeEntries[fccid]; // Retrieve the entry ID from activeEntries state
+    if (!entryId) {
+      alert(`No active entry found for ${fccid}!`); // Alert if no active entry exists for the teacher
+      return; // Exit function if no active entry
+    }
     try {
-      await axios.put(`${API_BASE_URL}/campus-exit/${entryId}`, {}, { withCredentials: true });
-      setActiveEntries((prev) => ({ ...prev, [fccid]: null }));
-      alert(`Exit recorded for ${fccid}!`);
-    } catch (err) {
-      console.error("Error recording exit:", err);
-      alert("Failed to record exit!");
+      await axios.put(`${API_BASE_URL}/campus-exit/${entryId}`, {}, {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Bypass ngrok warning for API requests
+        },
+      });
+      setActiveEntries((previousEntries) => ({ ...previousEntries, [fccid]: null })); // Clear active entry for the teacher in state
+      alert(`Exit recorded for ${fccid}!`); // Provide user feedback
+    } catch (error) {
+      console.error("Error recording exit:", error); // Log error if recording exit fails
+      alert("Failed to record exit!"); // Provide user feedback
     }
   };
 
+  // Function to start a session for a teacher (e.g., teaching, study, etc.)
   const startSession = async (fccid, type) => {
     const endpoint = `group-sessions/start`;
     try {
-      const res = await axios.post(
+      const response = await axios.post(
         `${API_BASE_URL}/${endpoint}`,
         { fccid, session_type: type },
-        { withCredentials: true }
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Bypass ngrok warning for API requests
+          },
+        }
       );
-      setActiveSessions((prev) => ({
-        ...prev,
-        [fccid]: { type, id: res.data.session_id, startTime: new Date() },
+      setActiveSessions((previousSessions) => ({
+        ...previousSessions,
+        [fccid]: { type, id: response.data.session_id, startTime: new Date() }, // Update activeSessions state with new session details
       }));
-      alert(`${type} session started for ${fccid}!`);
-    } catch (err) {
-      console.error(`Error starting ${type} session:`, err);
-      alert(`Failed to start ${type} session!`);
+      alert(`${type} session started for ${fccid}!`); // Provide user feedback
+    } catch (error) {
+      console.error(`Error starting ${type} session:`, error); // Log error if starting session fails
+      alert(`Failed to start ${type} session!`); // Provide user feedback
     }
   };
 
+  // Function to end an active session for a teacher
   const endSession = async (fccid) => {
-    const session = activeSessions[fccid];
-    if (!session) return alert(`No active session for ${fccid}!`);
+    const session = activeSessions[fccid]; // Retrieve active session details from state
+    if (!session) {
+      alert(`No active session found for ${fccid}!`); // Alert if no active session exists for the teacher
+      return; // Exit function if no active session
+    }
     const endpoint = `group-sessions/end/${session.id}`;
     try {
-      await axios.put(`${API_BASE_URL}/${endpoint}`, {}, { withCredentials: true });
-      setActiveSessions((prev) => ({ ...prev, [fccid]: null }));
-      alert(`${session.type} session ended for ${fccid}!`);
-    } catch (err) {
-      console.error("Error ending session:", err);
-      alert("Failed to end session!");
+      await axios.put(`${API_BASE_URL}/${endpoint}`, {}, {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Bypass ngrok warning for API requests
+        },
+      });
+      setActiveSessions((previousSessions) => ({ ...previousSessions, [fccid]: null })); // Clear active session for the teacher in state
+      alert(`${session.type} session ended for ${fccid}!`); // Provide user feedback
+    } catch (error) {
+      console.error("Error ending session:", error); // Log error if ending session fails
+      alert("Failed to end session!"); // Provide user feedback
     }
   };
 
+  // Function to fetch activity report data based on filters
   const fetchReport = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/activity-report`, {
-        params: filters,
-        withCredentials: true,
+      const response = await axios.get(`${API_BASE_URL}/activity-report`, {
+        params: filters, // Send filters as query parameters to the API
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Bypass ngrok warning for API requests
+        },
       });
-      setReport(res.data);
-    } catch (err) {
-      console.error("Error fetching report:", err);
-      alert("Failed to fetch report!");
+      setReport(response.data); // Update report state with fetched data
+    } catch (error) {
+      console.error("Error fetching report:", error); // Log error if fetching report fails
+      alert("Failed to fetch report!"); // Provide user feedback
     }
   };
 
+  // Function to format the duration of an active session for display
   const formatDuration = (startTime) => {
-    if (!startTime) return "00:00:00";
-    const diffMs = currentTime - new Date(startTime);
-    const seconds = Math.floor(diffMs / 1000);
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    if (!startTime) return "00:00:00"; // Return "00:00:00" if start time is not available
+    const diffMs = currentTime - new Date(startTime); // Calculate time difference in milliseconds
+    const seconds = Math.floor(diffMs / 1000); // Convert milliseconds to seconds
+    const hours = Math.floor(seconds / 3600); // Extract hours
+    const minutes = Math.floor((seconds % 3600) / 60); // Extract minutes
+    const secs = seconds % 60; // Extract seconds
+    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`; // Format duration as HH:MM:SS
   };
 
   return (
     <div className="activity-container">
       <h2>Teacher Activity Management</h2>
 
-      {/* Add Teacher */}
+      {/* Section for Adding a New Teacher */}
       <div className="form-section">
         <h3>Add Teacher</h3>
         <div className="form-grid">
@@ -193,26 +251,28 @@ const TeacherActivityManagement = () => {
         </button>
       </div>
 
-      {/* Campus Entry/Exit */}
+      {/* Section for Campus Entry and Exit Recording */}
       <div className="form-section">
         <h3>Campus Entry/Exit</h3>
-        {teachers.map((t) => (
-          <div key={t.fccid} className="teacher-section">
-            <span>{t.name} ({t.fccid}) - {t.subject}</span>
+        {teachers.map((teacherData) => (
+          <div key={teacherData.fccid} className="teacher-section">
+            <span>
+              {teacherData.name} ({teacherData.fccid}) - {teacherData.subject}
+            </span>
             <div className="button-group">
               <button
                 className="btn btn-success"
-                onClick={() => recordEntry(t.fccid)}
-                disabled={!!activeEntries[t.fccid]}
-                title={activeEntries[t.fccid] ? "Entry already recorded" : "Record Entry"}
+                onClick={() => recordEntry(teacherData.fccid)}
+                disabled={!!activeEntries[teacherData.fccid]} // Disable if entry is already active
+                title={activeEntries[teacherData.fccid] ? "Entry already recorded" : "Record Entry"}
               >
                 <FaSignInAlt /> Entry
               </button>
               <button
-                className={`btn btn-danger ${activeEntries[t.fccid] ? "pulse" : ""}`}
-                onClick={() => recordExit(t.fccid)}
-                disabled={!activeEntries[t.fccid]}
-                title={!activeEntries[t.fccid] ? "No active entry" : "Record Exit"}
+                className={`btn btn-danger ${activeEntries[teacherData.fccid] ? "pulse" : ""}`} // Pulse animation if entry is active
+                onClick={() => recordExit(teacherData.fccid)}
+                disabled={!activeEntries[teacherData.fccid]} // Disable if no active entry
+                title={!activeEntries[teacherData.fccid] ? "No active entry" : "Record Exit"}
               >
                 <FaSignOutAlt /> Exit
               </button>
@@ -221,39 +281,42 @@ const TeacherActivityManagement = () => {
         ))}
       </div>
 
-      {/* Session Management */}
+      {/* Section for Session Management (Start/End Teaching, Study, etc.) */}
       <div className="form-section">
         <h3>Session Management</h3>
-        {teachers.map((t) => (
-          <div key={t.fccid} className="teacher-section">
-            <span>{t.name} ({t.fccid}) - {t.subject}</span>
+        {teachers.map((teacherData) => (
+          <div key={teacherData.fccid} className="teacher-section">
+            <span>
+              {teacherData.name} ({teacherData.fccid}) - {teacherData.subject}
+            </span>
             <div className="button-group">
               {sessionTypes.map((session) => (
                 <button
                   key={session.type}
                   className={`btn ${session.color}`}
-                  onClick={() => startSession(t.fccid, session.type)}
-                  disabled={!!activeSessions[t.fccid]}
-                  title={activeSessions[t.fccid] ? "Session already active" : session.label}
+                  onClick={() => startSession(teacherData.fccid, session.type)}
+                  disabled={!!activeSessions[teacherData.fccid]} // Disable if a session is already active
+                  title={activeSessions[teacherData.fccid] ? "Session already active" : session.label}
                 >
                   {session.icon} {session.label}
                 </button>
               ))}
               <button
-                className={`btn btn-secondary ${activeSessions[t.fccid] ? "pulse" : ""}`}
-                onClick={() => endSession(t.fccid)}
-                disabled={!activeSessions[t.fccid]}
-                title={!activeSessions[t.fccid] ? "No active session" : "End Session"}
+                className={`btn btn-secondary ${activeSessions[teacherData.fccid] ? "pulse" : ""}`} // Pulse animation if session is active
+                onClick={() => endSession(teacherData.fccid)}
+                disabled={!activeSessions[teacherData.fccid]} // Disable if no active session
+                title={!activeSessions[teacherData.fccid] ? "No active session" : "End Session"}
               >
                 <FaStop /> End Session
               </button>
             </div>
-            {activeSessions[t.fccid] && (
+            {activeSessions[teacherData.fccid] && (
               <div className="session-status">
                 <p>
-                  Active Session: <strong>{activeSessions[t.fccid].type}</strong> <br />
-                  Started at: <strong>{new Date(activeSessions[t.fccid].startTime).toLocaleTimeString()}</strong> <br />
-                  Duration: <strong>{formatDuration(activeSessions[t.fccid].startTime)}</strong>
+                  Active Session: <strong>{activeSessions[teacherData.fccid].type}</strong> <br />
+                  Started at: <strong>{new Date(activeSessions[teacherData.fccid].startTime).toLocaleTimeString()}</strong>{" "}
+                  <br />
+                  Duration: <strong>{formatDuration(activeSessions[teacherData.fccid].startTime)}</strong>
                 </p>
               </div>
             )}
@@ -261,7 +324,7 @@ const TeacherActivityManagement = () => {
         ))}
       </div>
 
-      {/* Report Filters */}
+      {/* Section for Activity Report Filters */}
       <div className="form-section">
         <h3>Activity Report</h3>
         <div className="form-grid">
@@ -283,7 +346,7 @@ const TeacherActivityManagement = () => {
         </button>
       </div>
 
-      {/* Updated Report Table */}
+      {/* Section for Displaying Activity Report in a Table */}
       <div className="report-table">
         <table>
           <thead>
