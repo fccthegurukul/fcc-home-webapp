@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TaskSubmissionPage.css'; // Import CSS file
 
 const TaskSubmissionPage = () => {
@@ -11,8 +11,36 @@ const TaskSubmissionPage = () => {
     const [teacherFCCId, setTeacherFCCId] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
+    const [classroomNames, setClassroomNames] = useState([]); // State for class names
 
     const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable, already correct
+
+    // Function to fetch classroom names
+    const fetchClassroomNames = async () => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/classrooms`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "true"
+                }
+            });
+            if (!response.ok) {
+                const message = `HTTP error! status: ${response.status}`;
+                const errorData = await response.json();
+                throw new Error(errorData?.message ? `${message} - Details: ${errorData.message}` : message);
+            }
+            const data = await response.json();
+            setClassroomNames(data);
+        } catch (e) {
+            console.error("Could not fetch classroom names:", e);
+            setError(`Failed to fetch classroom list: ${e.message}`); // Set error state
+        }
+    };
+
+    useEffect(() => {
+        fetchClassroomNames(); // Fetch classroom names on component mount
+    }, []);
+
 
     const handleTaskSubmit = async (event) => {
         event.preventDefault();
@@ -113,17 +141,9 @@ const TaskSubmissionPage = () => {
                         <label htmlFor="selectedClass">Class:</label>
                         <select id="selectedClass" value={selectedClass} onChange={(e) => setSelectedClass(e.target.value)} style={{ width: '150px' }} required> {/* Fixed width */}
                             <option value="">-- Select --</option>
-                            <option value="1">Class 1</option>
-                            <option value="2">Class 2</option>
-                            <option value="3">Class 3</option>
-                            <option value="4">Class 4</option>
-                            <option value="5">Class 5</option>
-                            <option value="6">Class 6</option>
-                            <option value="7">Class 7</option>
-                            <option value="8">Class 8</option>
-                            <option value="9">Class 9</option>
-                            <option value="10">Class 10</option>
-                            {/* Add more classes as needed */}
+                            {classroomNames.map((className, index) => ( // Dynamic options rendering
+                                <option key={index} value={className}>{className}</option>
+                            ))}
                         </select>
                     </div>
                 </section>
