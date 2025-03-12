@@ -224,6 +224,7 @@ const StudentsAttendance = () => {
                 style={{ width: "100%", maxWidth: "300px" }}
                 onError={handleError}
                 onScan={handleScan}
+                facingMode="environment"  // <-- Back camera enable karne ke liye yeh prop add karein
               />
               <button onClick={handleScanCancel} className="action-button cancel-button">
                 Cancel Scan
