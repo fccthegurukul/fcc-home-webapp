@@ -1,464 +1,365 @@
-/* Improved StudentsAttendance.css */
-
-/* CSS Variables for consistent styling - Semantic naming */
-:root {
-  --primary: #007bff; /* Primary action color (e.g., buttons) */
-  --primary-darker: #0056b3; /* Darker shade of primary for hover/active states */
-  --primary-darkest: #003d80; /* Even darker shade of primary */
-  --success: #28a745;   /* Success state color (e.g., success messages) */
-  --error: #dc3545;     /* Error state color (e.g., error messages) */
-  --bg-light: #f9f9f9;   /* Light background color */
-  --white: #fff;        /* White color */
-  --text-dark: #333;     /* Dark text color */
-  --text-medium: #555;   /* Medium text color (e.g., labels) */
-  --border-light: #ccc;  /* Light border color */
-  --bg-hover: #e9ecef;    /* Background color for hover states */
-  --shadow-light: rgba(0, 0, 0, 0.1); /* Light box shadow color */
-  --shadow-focus: rgba(0, 123, 255, 0.5); /* Box shadow for focus states */
-
-}
-
-/* General Reset and Body Styles */
-body, h1, h2, p, ul, li {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--font- основной); /* Using CSS variable for font */
-  background-color: var(--bg-light); /* Using CSS variable for background */
-  color: var(--text-dark); /* Using CSS variable for text color */
-  line-height: 1.6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* StudentsAttendance.css */
+.attendance-container {
+  padding: 30px;
+  max-width: 1280px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
   min-height: 100vh;
 }
 
-/* Smooth animations */
-* {
-  transition: all 0.3s ease;
-}
-
-/* Container Styles */
-.container {
-  max-width: 800px;
-  width: 95%;
-  margin: 20px;
-  padding: 30px;
-  background-color: var(--white); /* Using CSS variable for white background */
-  border-radius: 12px;
-  box-shadow: 0 8px 15px var(--shadow-light); /* Using CSS variable for shadow */
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Header Styles */
-.header {
+.attendance-header {
   text-align: center;
-  font-size: 32px;
-  color: var(--primary); /* Using CSS variable for primary color */
-  margin-bottom: 35px;
-  text-shadow: 0 2px 4px var(--shadow-light); /* Using CSS variable for shadow */
+  color: #1A3C34;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #1A3C34, #27AE60);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Form Group Styles - Renamed from inputGroup2 for clarity and consistency */
-.form-group {
-  margin-bottom: 25px;
-}
-
-.form-group:last-child { /* Removing extra margin from the last form group */
-    margin-bottom: 0;
-}
-
-/* Form Label Styles - Renamed from label2 for clarity and consistency */
-.form-label {
-  font-size: 16px;
-  color: var(--text-medium); /* Using CSS variable for medium text color */
-  display: block; /* Full width label */
-  margin-bottom: 8px; /* Spacing below label */
-}
-
-/* Form Label Styles for Checkboxes -  More specific class for checkbox labels */
-.checkbox-label {
-  font-size: 16px;
-  font-weight: medium;
-  color: var(--text-medium); /* Using CSS variable for medium text color */
-  margin-bottom: 12px; /* Spacing below checkbox label */
-  display: flex;          /* Use flexbox to align checkbox and text */
-  align-items: center;    /* Vertically align checkbox and text within label */
-}
-
-/* Special CSS for inputGroup2 and label2 as requested */
-
-.inputGroup2 {
-  margin-bottom: 25px; /* Spacing below each input group */
-}
-
-/* For the FCC ID input group -  label and input side-by-side on larger screens */
-.inputGroup2:first-child {
+/* Main Layout */
+.attendance-main {
   display: flex;
-  align-items: center; /* Vertically align label and input */
-  gap: 15px; /* Spacing between label and input */
+  flex-direction: column;
+  gap: 30px;
 }
 
-/* For checkbox input groups - labels stacked vertically */
-.inputGroup2:not(:first-child) {
-  display: flex;
-  flex-direction: column; /* Stack labels vertically */
-  gap: 12px; /* Spacing between checkbox labels */
-}
-
-.label2 {
-  font-size: 16px;
-  color: var(--text-medium); /* Using CSS variable for text color */
-  font-weight: medium;
-  margin-bottom: 0; /* Reset default margin */
-  display: flex; /* Enable flexbox for alignment within label */
-  align-items: center; /* Vertically align items in label */
-}
-
-/* Style for label2 specifically when it contains a checkbox */
-.label2 input[type="checkbox"] {
-  margin-right: 10px; /* Spacing between checkbox and text */
-  transform: scale(1.1); /* Slightly enlarge checkbox */
-  accent-color: var(--primary); /* Use primary color for checkbox accent */
-}
-
-/* Make label2 take full width in checkbox groups for better layout */
-.inputGroup2:not(:first-child) .label2 {
-  width: 100%; /* Full width for labels in checkbox groups */
-}
-
-
-/* Input Field Styles */
-.input {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  border: 1px solid var(--border-light); /* Using CSS variable for border */
-  border-radius: 6px;
-  background-color: var(--white); /* Using CSS variable for white background */
+/* Input Section */
+.attendance-input-section {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e4e8;
   transition: box-shadow 0.3s ease;
+  align-content: left;
 }
 
-.input:focus {
-  border-color: var(--primary); /* Using CSS variable for primary color */
-  box-shadow: 0 0 8px var(--shadow-focus); /* Using CSS variable for focus shadow */
-  outline: none;
+.attendance-input-section:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Checkboxes Styles */
-.checkbox-label input[type="checkbox"] {
-  margin-right: 10px;
-  transform: scale(1.1);
-  accent-color: var(--primary); /* Using CSS variable for primary color */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 1.5px solid var(--border-light); /* Using CSS variable for border */
-  border-radius: 3px;
-  background-color: var(--white); /* Using CSS variable for white background */
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: border-color 0.3s ease;
-  vertical-align: middle; /* Vertically align checkbox with text */
+.input-group {
+  margin-bottom: 20px;
 }
 
-.checkbox-label input[type="checkbox"]:focus {
-  outline: none;
-  border-color: var(--primary-darker); /* Using CSS variable for darker primary color */
-  box-shadow: 0 0 0 2px var(--shadow-focus); /* Using CSS variable for focus shadow */
-}
-
-.checkbox-label input[type="checkbox"]:checked::before {
-  content: '\2713'; /* Checkmark character */
+.input-label {
   display: block;
-  color: var(--white); /* Using CSS variable for white color */
-  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2C3E50;
+  font-size: 1.1rem;
 }
 
-.checkbox-label input[type="checkbox"]:checked {
-  background-color: var(--primary); /* Using CSS variable for primary color */
-  border-color: var(--primary); /* Using CSS variable for primary color */
+.input-row {
+  gap: 15px;
+  align-items: center;
 }
 
-.checkbox-label:hover input[type="checkbox"] {
-  border-color: var(--primary); /* Using CSS variable for primary color */
+.input-field {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 2px solid #d1d9e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: #f9fafc;
 }
 
+.input-field:focus {
+  border-color: #27AE60;
+  box-shadow: 0 0 8px rgba(39, 174, 96, 0.2);
+}
 
-/* Buttons Styles */
-.button {
-  display: inline-block;
-  padding: 14px 28px;
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--white); /* Using CSS variable for white color */
-  background-color: var(--primary); /* Using CSS variable for primary color */
+.action-button {
+  padding: 12px 25px;
+  background: linear-gradient(90deg, #3498DB, #2980B9);
+  color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-right: 10px;
-  box-shadow: 0 4px 6px var(--shadow-light); /* Using CSS variable for shadow */
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, background 0.3s ease;
 }
 
-.button:hover {
-  background-color: var(--primary-darker); /* Using CSS variable for darker primary color */
-  transform: translateY(-3px);
+.action-button:hover {
+  background: linear-gradient(90deg, #2980B9, #2471A3);
+  transform: translateY(-2px);
 }
 
-.button:active {
-  background-color: var(--primary-darkest); /* Using CSS variable for darkest primary color */
-  transform: translateY(0);
+.cancel-button {
+  background: linear-gradient(90deg, #E74C3C, #C0392B);
 }
 
-/* Message Styles */
-.message {
+.cancel-button:hover {
+  background: linear-gradient(90deg, #C0392B, #A93226);
+}
+
+.qr-scanner-section {
   margin-top: 20px;
-  padding: 15px;
-  font-size: 16px;
-  color: var(--white); /* Using CSS variable for white color */
-  background-color: var(--success); /* Using CSS variable for success color */
-  border-radius: 8px;
-  animation: fadeInScale 0.5s ease-in-out;
   text-align: center;
+  background: #f0f2f5;
+  padding: 15px;
+  border-radius: 10px;
 }
 
-.message.error {
-  background-color: var(--error); /* Using CSS variable for error color */
+.qr-scanner-section video {
+  border-radius: 8px;
+  border: 2px solid #3498DB;
 }
 
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.error-text {
+  color: #E74C3C;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
-/* Result Lists Styles */
-.resultLists {
-  margin-top: 40px;
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.resultLists h2 {
-  font-size: 20px;
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #34495E;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.checkbox-label:hover {
+  background: #ecf0f1;
+}
+
+.checkbox-label input {
+  accent-color: #27AE60;
+  width: 18px;
+  height: 18px;
+}
+
+.shortcut {
+  font-size: 0.85rem;
+  color: #7F8C8D;
+  margin-left: 8px;
+  background: #e0e4e8;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #27AE60, #219653);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.submit-button:hover {
+  background: linear-gradient(90deg, #219653, #1B7744);
+  transform: translateY(-2px);
+}
+
+.message-text {
+  margin-top: 15px;
+  text-align: center;
+  color: #2C3E50;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px;
+  background: #e8f4ea;
+  border-radius: 6px;
+}
+
+/* Results Section */
+.attendance-results-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.list-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e4e8;
+  transition: box-shadow 0.3s ease;
+}
+
+.list-container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.list-header {
+  font-size: 1.8rem;
+  color: #1A3C34;
   margin-bottom: 15px;
-  color: var(--text-dark); /* Using CSS variable for dark text color */
-  border-bottom: 2px solid var(--primary); /* Using CSS variable for primary color */
-  display: inline-block;
+  font-weight: 600;
+  border-bottom: 2px solid #27AE60;
   padding-bottom: 5px;
 }
 
-.resultLists ul {
+.result-list {
   list-style: none;
-  padding: 15px;
-  border: 1px solid var(--border-light); /* Using CSS variable for border */
-  border-radius: 8px;
-  max-height: 200px;
+  padding: 0;
+  max-height: 250px;
   overflow-y: auto;
-  background-color: var(--white); /* Using CSS variable for white background */
-}
-
-.resultLists ul li {
-  font-size: 16px;
-  margin-bottom: 8px;
-  padding: 8px 12px;
-  background-color: var(--white); /* Using CSS variable for white background */
+  margin-bottom: 15px;
+  border: 1px solid #e0e4e8;
   border-radius: 6px;
-  transition: background-color 0.3s ease;
-  border-bottom: 1px solid #f0f0f0;
+  background: #f9fafc;
 }
 
-.resultLists ul li:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
+.result-list li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e4e8;
+  font-size: 1rem;
+  transition: background 0.2s ease;
 }
 
-
-.resultLists ul li:hover {
-  background-color: var(--bg-hover); /* Using CSS variable for hover background */
+.result-list li:last-child {
+  border-bottom: none;
 }
 
-/* Download Buttons Container */
-.downloadButtons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+.result-list li:hover {
+  background: #ecf0f1;
 }
 
-/* Toast Notifications - No changes needed, but using CSS variables for consistency */
-.Toastify__toast {
-  border-radius: 6px !important;
+.success-list li {
+  color: #27AE60;
+  font-weight: 500;
 }
 
-.Toastify__toast--success {
-  background-color: var(--success) !important; /* Using CSS variable for success color */
-  color: var(--white) !important;       /* Using CSS variable for white color */
+.failed-list li {
+  color: #E74C3C;
+  font-weight: 500;
 }
 
-.Toastify__toast--error {
-  background-color: var(--error) !important;   /* Using CSS variable for error color */
-  color: var(--white) !important;       /* Using CSS variable for white color */
+.download-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #8E44AD, #7D3C98);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
 }
 
-.Toastify__toast-body {
-    font-size: 16px;
+.download-button:hover {
+  background: linear-gradient(90deg, #7D3C98, #6C3483);
+  transform: translateY(-2px);
 }
 
+/* Desktop Layout */
+@media (min-width: 769px) {
+  .attendance-main {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+  }
 
-/* Responsive Design */
+  .attendance-input-section {
+    width: 48%;
+  }
+
+  .attendance-results-section {
+    width: 48%;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .list-container {
+    width: 48%;
+  }
+
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 20px;
+  }
+
+  .submit-button {
+    width: auto;
+    padding: 14px 40px;
+  }
+
+  .input-row {
+    gap: 20px;
+  }
+}
+
+/* Mobile Layout */
 @media (max-width: 768px) {
-  .container {
-    padding: 20px;
-    margin: 15px;
-    border-radius: 10px;
+  .attendance-container {
+    padding: 15px;
   }
 
-  .label2 {
-    font-size: 15px; /* Slightly smaller font on smaller screens */
+  .attendance-header {
+    font-size: 1.8rem;
   }
 
-  .inputGroup2:first-child {
-    flex-direction: column; /* Stack FCC ID label and input vertically on smaller screens */
-    align-items: flex-start; /* Align items to the start in vertical layout */
-    gap: 8px; /* Reduced gap in vertical layout */
+  .attendance-input-section {
+    padding: 15px;
   }
 
-  .header {
-    font-size: 26px;
-    margin-bottom: 25px;
-  }
-
-  .form-group {
-    margin-bottom: 20px;
-  }
-
-  .checkbox-label {
-    margin-bottom: 10px;
-  }
-
-  .form-label {
-    font-size: 15px;
-    margin-bottom: 6px;
-  }
-
-  .input, .button {
-    font-size: 16px;
-    padding: 12px;
-  }
-
-  .checkbox-label {
-    font-size: 16px;
-    color: #374151; /* Consider using CSS variable if this color should be consistent */
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px;
-    margin-bottom: 16px; /* Increased margin for mobile view */
-  }
-
-  .button {
-    width: 100%;
-    margin-bottom: 10px;
-    margin-right: 0;
-  }
-
-  .downloadButtons {
+  .input-row {
     flex-direction: column;
-    align-items: stretch;
     gap: 10px;
-    margin-top: 20px;
   }
 
-  .resultLists {
-    margin-top: 30px;
+  .input-field,
+  .action-button {
+    width: 100%;
   }
 
-  .resultLists h2 {
-    font-size: 19px;
-    margin-bottom: 12px;
-  }
-
-  .resultLists ul {
-    max-height: 150px;
+  .qr-scanner-section {
+    margin: 15px 0;
     padding: 10px;
   }
 
-  .resultLists ul li {
-    font-size: 14px;
-    padding: 6px 10px;
-    margin-bottom: 6px;
+  .checkbox-group {
+    gap: 10px;
   }
 
-    .Toastify__toast-body {
-        font-size: 14px;
-    }
-}
+  .submit-button {
+    padding: 12px;
+    font-size: 1.1rem;
+  }
 
-/* Even smaller screens */
-@media (max-width: 480px) {
-    .container {
-        padding: 15px;
-        margin: 10px;
-    }
+  .list-container {
+    padding: 15px;
+  }
 
-    .label2 {
-      font-size: 14px; /* Even smaller font on very small screens */
-    }
+  .list-header {
+    font-size: 1.5rem;
+  }
 
-    .header {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    .form-label, .input, .button, .message, .resultLists h2, .resultLists ul li, .Toastify__toast-body, .checkbox-label {
-        font-size: 15px;
-    }
-    .input, .button {
-        padding: 10px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .checkbox-label {
-      font-size: 16px;
-      color: #374151; /* Consider using CSS variable if this color should be consistent */
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px; /* Increased margin for mobile view */
-    }
-
-     .resultLists ul {
-        max-height: 120px;
-        padding: 8px;
-    }
-    .resultLists ul li {
-        padding: 5px 8px;
-        margin-bottom: 5px;
-    }
+  .result-list {
+    max-height: 200px;
+  }
 }

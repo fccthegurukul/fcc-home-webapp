@@ -11,11 +11,10 @@ const TaskSubmissionPage = () => {
     const [teacherFCCId, setTeacherFCCId] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
-    const [classroomNames, setClassroomNames] = useState([]); // State for class names
+    const [classroomNames, setClassroomNames] = useState([]);
 
-    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable, already correct
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
 
-    // Function to fetch classroom names
     const fetchClassroomNames = async () => {
         try {
             const response = await fetch(`${API_BASE_URL}/api/classrooms`, {
@@ -33,14 +32,13 @@ const TaskSubmissionPage = () => {
             setClassroomNames(data);
         } catch (e) {
             console.error("Could not fetch classroom names:", e);
-            setError(`Failed to fetch classroom list: ${e.message}`); // Set error state
+            setError(`Failed to fetch classroom list: ${e.message}`);
         }
     };
 
     useEffect(() => {
-        fetchClassroomNames(); // Fetch classroom names on component mount
+        fetchClassroomNames();
     }, []);
-
 
     const handleTaskSubmit = async (event) => {
         event.preventDefault();
@@ -52,12 +50,15 @@ const TaskSubmissionPage = () => {
             return;
         }
 
+        // Remove "Class " prefix from selectedClass before submitting
+        const formattedClass = selectedClass.replace("Class ", "").trim();
+
         try {
-            const response = await fetch(`${API_BASE_URL}/api/tasks`, { // Already using API_BASE_URL, correct
+            const response = await fetch(`${API_BASE_URL}/api/tasks`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    "ngrok-skip-browser-warning": "true" // Added ngrok header
+                    "ngrok-skip-browser-warning": "true"
                 },
                 body: JSON.stringify({
                     task_name: taskName,
@@ -65,7 +66,7 @@ const TaskSubmissionPage = () => {
                     max_score: parseInt(maxScore),
                     start_time: startTime,
                     end_time: endTime,
-                    class: selectedClass,
+                    class: formattedClass, // Use the formatted class value here
                     teacher_fcc_id: teacherFCCId,
                     action_type: 'Task Create'
                 }),
@@ -90,68 +91,136 @@ const TaskSubmissionPage = () => {
         }
     };
 
+    const closePopup = () => {
+        setMessage('');
+        setError('');
+    };
+
     return (
         <div className="task-submission-container">
             <h1>Create New Task</h1>
-            {message && <p className="success-message">{message}</p>}
-            {error && <p className="error-message">{error}</p>}
             <form className="task-form" onSubmit={handleTaskSubmit}>
+                <div className="form-grid">
+                    {/* Left Column */}
+                    <div className="form-column">
+                        <section className="form-card teacher-info-card">
+                            <h2>Teacher Info</h2>
+                            <div className="form-group">
+                                <label htmlFor="teacherFCCId">Teacher FCC ID:</label>
+                                <input
+                                    type="password"
+                                    id="teacherFCCId"
+                                    value={teacherFCCId}
+                                    onChange={(e) => setTeacherFCCId(e.target.value)}
+                                    placeholder="Enter FCC ID"
+                                    required
+                                />
+                            </div>
+                        </section>
 
-                <section className="form-card teacher-info-card">
-                    <h2>Teacher Info</h2>
-                    <div className="form-row">
-                        <label htmlFor="teacherFCCId">Teacher FCC ID:</label>
-                        <input type="password" id="teacherFCCId" value={teacherFCCId} onChange={(e) => setTeacherFCCId(e.target.value)} placeholder="FCC ID" style={{ width: '200px' }} required /> {/* Fixed width */}
+                        <section className="form-card task-details-card">
+                            <h2>Task Details</h2>
+                            <div className="form-group">
+                                <label htmlFor="taskName">Task Name:</label>
+                                <input
+                                    type="text"
+                                    id="taskName"
+                                    value={taskName}
+                                    onChange={(e) => setTaskName(e.target.value)}
+                                    placeholder="Enter task name"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="description">Description:</label>
+                                <textarea
+                                    id="description"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    placeholder="Enter task description"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="maxScore">Max Score:</label>
+                                <input
+                                    type="number"
+                                    id="maxScore"
+                                    value={maxScore}
+                                    onChange={(e) => setMaxScore(e.target.value)}
+                                    placeholder="Score"
+                                    required
+                                />
+                            </div>
+                        </section>
                     </div>
-                </section>
 
-                <section className="form-card task-details-card">
-                    <h2>Task Details</h2>
-                    <div className="form-row">
-                        <label htmlFor="taskName">Task Name:</label>
-                        <input type="text" id="taskName" value={taskName} onChange={(e) => setTaskName(e.target.value)} style={{ width: '250px' }} required /> {/* Fixed width */}
-                    </div>
-                    <div className="form-row description-row">
-                        <label htmlFor="description">Description:</label>
-                        <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
-                    </div>
-                    <div className="form-row">
-                        <label htmlFor="maxScore">Max Score:</label>
-                        <input type="number" id="maxScore" value={maxScore} onChange={(e) => setMaxScore(e.target.value)} style={{ width: '80px' }} required /> {/* Fixed width */}
-                    </div>
-                </section>
+                    {/* Right Column */}
+                    <div className="form-column">
+                        <section className="form-card scheduling-card">
+                            <h2>Scheduling</h2>
+                            <div className="form-group time-group">
+                                <div>
+                                    <label htmlFor="startTime">Start Time:</label>
+                                    <input
+                                        type="datetime-local"
+                                        id="startTime"
+                                        value={startTime}
+                                        onChange={(e) => setStartTime(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="endTime">End Time:</label>
+                                    <input
+                                        type="datetime-local"
+                                        id="endTime"
+                                        value={endTime}
+                                        onChange={(e) => setEndTime(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </section>
 
-                <section className="form-card scheduling-card">
-                    <h2>Scheduling</h2>
-                    <div className="form-row time-row"> {/* time-row for horizontal time fields */}
-                        <div className="time-input-group">
-                            <label htmlFor="startTime">Start Time:</label>
-                            <input type="datetime-local" id="startTime" value={startTime} onChange={(e) => setStartTime(e.target.value)} style={{ width: '180px' }} required /> {/* Fixed width */}
-                        </div>
-                        <div className="time-input-group">
-                            <label htmlFor="endTime">End Time:</label>
-                            <input type="datetime-local" id="endTime" value={endTime} onChange={(e) => setEndTime(e.target.value)} style={{ width: '180px' }} required /> {/* Fixed width */}
-                        </div>
+                        <section className="form-card class-selection-card">
+                            <h2>Class Select</h2>
+                            <div className="form-group">
+                                <label htmlFor="selectedClass">Class:</label>
+                                <select
+                                    id="selectedClass"
+                                    value={selectedClass}
+                                    onChange={(e) => setSelectedClass(e.target.value)}
+                                    required
+                                >
+                                    <option value="">-- Select Class --</option>
+                                    {classroomNames.map((className, index) => (
+                                        <option key={index} value={className}>
+                                            {className}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </section>
                     </div>
-                </section>
-
-                <section className="form-card class-selection-card">
-                    <h2>Class Select</h2>
-                    <div className="form-row">
-                        <label htmlFor="selectedClass">Class:</label>
-                        <select id="selectedClass" value={selectedClass} onChange={(e) => setSelectedClass(e.target.value)} style={{ width: '150px' }} required> {/* Fixed width */}
-                            <option value="">-- Select --</option>
-                            {classroomNames.map((className, index) => ( // Dynamic options rendering
-                                <option key={index} value={className}>{className}</option>
-                            ))}
-                        </select>
-                    </div>
-                </section>
+                </div>
 
                 <div className="button-container">
                     <button type="submit" className="submit-button">Create Task</button>
                 </div>
             </form>
+
+            {/* Popup for Success/Error Messages */}
+            {(message || error) && (
+                <div className="popup-overlay">
+                    <div className={`popup ${message ? 'success' : 'error'}`}>
+                        <p>{message || error}</p>
+                        <button className="popup-close" onClick={closePopup}>
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

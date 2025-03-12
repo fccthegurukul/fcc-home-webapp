@@ -1,6 +1,5 @@
 /* Navbar.css */
 .fcc-navbar {
-  /* Gradient background from deep blue to light blue - conveys trust and professionalism */
   background: linear-gradient(90deg, #2C3E50 0%, #3498DB 100%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
@@ -62,6 +61,28 @@
   margin-top: 0.2rem;
 }
 
+.fcc-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fcc-toggle-navbar {
+  display: none; /* Hidden by default */
+  background: #27AE60;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.fcc-toggle-navbar:hover {
+  background: #219653;
+}
+
 .fcc-nav-links {
   display: flex;
   list-style: none;
@@ -79,6 +100,9 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between icon and text */
 }
 
 .fcc-nav-link:hover {
@@ -130,8 +154,77 @@
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* Media Queries for Responsiveness */
+/* Popup Show Button - Hidden by default */
+.fcc-show-navbar-popup {
+  display: none; /* Hidden by default */
+}
+
+/* Desktop View - Apply hide/unhide and popup only here */
+@media (min-width: 769px) {
+  .fcc-navbar {
+    transition: transform 0.3s ease; /* Smooth hide/unhide transition only on desktop */
+  }
+
+  .fcc-navbar.hidden {
+    transform: translateY(-100%); /* Hides navbar by moving it up only on desktop */
+  }
+
+  .fcc-toggle-navbar {
+    display: block; /* Show toggle button only on desktop */
+  }
+
+  .fcc-menu-icon {
+    display: none; /* Hide hamburger menu on desktop */
+  }
+
+  .fcc-nav-links {
+    display: flex !important; /* Always show nav links on desktop */
+    position: static;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .fcc-show-navbar-popup {
+    display: block; /* Show popup button only on desktop when navbar is hidden */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #27AE60;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    opacity: 0.7; /* Low opacity */
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    z-index: 999; /* Below navbar but above content */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .fcc-show-navbar-popup:hover {
+    opacity: 1; /* Full opacity on hover */
+    background: #219653;
+  }
+}
+
+/* Mobile View - No changes from original behavior */
 @media (max-width: 768px) {
+  .fcc-navbar {
+    transition: none; /* No hide/unhide transition on mobile */
+  }
+
+  .fcc-navbar.hidden {
+    transform: none; /* No hiding on mobile */
+  }
+
+  .fcc-toggle-navbar {
+    display: none; /* Hide toggle button on mobile */
+  }
+
   .fcc-menu-icon {
     display: block;
   }
@@ -142,7 +235,6 @@
     top: 100%;
     left: 0;
     right: 0;
-    /* Extend the gradient to mobile menu */
     background: linear-gradient(90deg, #2C3E50 0%, #3498DB 100%);
     flex-direction: column;
     padding: 1rem;
@@ -170,6 +262,10 @@
 
   .fcc-location-label {
     font-size: 0.8rem;
+  }
+
+  .fcc-show-navbar-popup {
+    display: none; /* Ensure popup button is hidden on mobile */
   }
 }
 

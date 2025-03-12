@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import QrScanner from "react-qr-scanner"; // Import the QR scanner component
+import QrScanner from "react-qr-scanner";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../pages/StudentsAttendance.css";
+import "./StudentsAttendance.css";
 
 const StudentsAttendance = () => {
   const [fccId, setFccId] = useState("");
@@ -12,53 +12,39 @@ const StudentsAttendance = () => {
   const [taskCompleted, setTaskCompleted] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(false);
   const [message, setMessage] = useState("");
-  const [successList, setSuccessList] = useState([]); // List of successful submissions
-  const [failedList, setFailedList] = useState([]); // List of failed submissions
-
-  // State for QR scanning
+  const [successList, setSuccessList] = useState([]);
+  const [failedList, setFailedList] = useState([]);
   const [scanning, setScanning] = useState(false);
   const [qrError, setQrError] = useState("");
 
-  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
-
-  // Create axios instance with default headers to bypass ngrok warning
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
   const apiClient = axios.create({
     baseURL: API_BASE_URL,
     headers: {
-      "ngrok-skip-browser-warning": "true", // Added to bypass ngrok warning
+      "ngrok-skip-browser-warning": "true",
     },
   });
 
   const inputRef = useRef(null);
 
-  // Handle input changes for FCC ID (manual entry)
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
-
-    // Check if the user is pasting data
     if (e.inputType === "insertFromPaste") {
-      const numericValue = inputValue.replace(/\D/g, ""); // Remove non-numeric characters
+      const numericValue = inputValue.replace(/\D/g, "");
       setFccId(numericValue);
     } else if (/^\d{4}$/.test(inputValue)) {
-      // If the input is exactly 4 digits, append "200025"
       setFccId(`${inputValue}200025`);
     } else {
-      setFccId(inputValue.replace(/\D/g, "")); // Filter non-numeric characters
+      setFccId(inputValue.replace(/\D/g, ""));
     }
   };
 
-  // Ensure the input field is focused on page load
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   }, []);
 
-  /**
-   * Modified handleSubmit now accepts two optional parameters:
-   * - autoScan (boolean): if true, the function was triggered by a QR scan.
-   * - manualFCCId (string): if provided, use this value instead of state.
-   */
   const handleSubmit = async (autoScan = false, manualFCCId = null) => {
     const id = manualFCCId !== null ? manualFCCId : fccId;
     if (!id || id.length < 4) {
@@ -70,18 +56,14 @@ const StudentsAttendance = () => {
 
     try {
       const payload = { fcc_id: id, ctc, ctg, task_completed: taskCompleted, forceUpdate };
-
       const response = await apiClient.post("/api/update-student", payload);
       const { message, ctcUpdated } = response.data;
 
       setMessage(message);
-
       if (ctcUpdated) {
         toast.success(message);
         playSound("success");
         setSuccessList((prev) => [...prev, id]);
-
-        // If triggered via QR scan and attendance was successful, clear the FCC ID and re-open scanner after a short delay.
         if (autoScan) {
           setTimeout(() => {
             setFccId("");
@@ -105,81 +87,68 @@ const StudentsAttendance = () => {
     }
   };
 
-  // Keyboard controls remain unchanged.
   useEffect(() => {
     const handleKeyPress = (e) => {
       switch (e.key) {
         case "Enter":
           e.preventDefault();
-          handleSubmit(); // Manual submission
+          handleSubmit();
           break;
         case "d":
           if (e.ctrlKey) {
             e.preventDefault();
-            setTaskCompleted((prev) => !prev); // Toggle "Task Completed"
+            setTaskCompleted((prev) => !prev);
           }
           break;
         case "c":
           if (e.ctrlKey) {
             e.preventDefault();
-            setCtc((prev) => !prev); // Toggle "Coaching to Come"
+            setCtc((prev) => !prev);
           }
           break;
         case "g":
           if (e.ctrlKey) {
             e.preventDefault();
-            setCtg((prev) => !prev); // Toggle "Coaching to Go"
+            setCtg((prev) => !prev);
           }
           break;
         case "f":
           if (e.ctrlKey) {
             e.preventDefault();
-            setForceUpdate((prev) => !prev); // Toggle "Force Update"
+            setForceUpdate((prev) => !prev);
           }
           break;
         default:
           break;
       }
     };
-
     window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
+    return () => window.removeEventListener("keydown", handleKeyPress);
   }, [fccId, ctc, ctg, taskCompleted, forceUpdate]);
 
-  // Play success or failure sound
   const playSound = (type) => {
     const soundPath = `/assets/${type}.mp3`;
     const audio = new Audio(soundPath);
-    audio.onerror = () => {
-      console.error(`Failed to load ${type} sound.`);
-    };
+    audio.onerror = () => console.error(`Failed to load ${type} sound.`);
     audio.play();
   };
 
-  // Function to get current date and time in India (IST) in YYYY-MM-DD_HH-MM-SS AM/PM format
   const getCurrentDateTimeIndia = () => {
     const date = new Date();
     const options = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
       hour12: true,
-      timeZone: 'Asia/Kolkata',
+      timeZone: "Asia/Kolkata",
     };
-
-    const formatter = new Intl.DateTimeFormat('en-IN', options);
-    const formattedDateTime = formatter.format(date).replace(/,/g, '').replace(/\//g, '-');
-
-    return formattedDateTime.replace(" ", "_").replace(":", "-");
+    const formatter = new Intl.DateTimeFormat("en-IN", options);
+    return formatter.format(date).replace(/,/g, "").replace(/\//g, "-").replace(" ", "_").replace(":", "-");
   };
 
-  // Function to download Success List
   const downloadSuccessList = () => {
     const currentDateTimeIndia = getCurrentDateTimeIndia();
     const blob = new Blob([successList.join("\n")], { type: "text/plain;charset=utf-8" });
@@ -189,7 +158,6 @@ const StudentsAttendance = () => {
     link.click();
   };
 
-  // Function to download Failed List
   const downloadFailedList = () => {
     const currentDateTimeIndia = getCurrentDateTimeIndia();
     const blob = new Blob([failedList.join("\n")], { type: "text/plain;charset=utf-8" });
@@ -199,141 +167,122 @@ const StudentsAttendance = () => {
     link.click();
   };
 
-  // ===== QR Scanner Functions =====
-
-  // When a QR code is scanned, update the FCC ID and auto-submit attendance.
   const handleScan = (data) => {
     if (data) {
-      // Extract text from scanned data (works if data is a string or an object with a 'text' property)
-      const scannedText = typeof data === "string" ? data : data.text ? data.text : "";
+      const scannedText = typeof data === "string" ? data : data.text || "";
       const numericData = scannedText.replace(/[^0-9]/g, "");
-      // Stop scanning to avoid duplicate reads
       setScanning(false);
-      // Automatically call handleSubmit with autoScan true and pass the scanned FCC ID.
       handleSubmit(true, numericData);
     }
   };
 
-  // Handle any errors from the QR scanner
   const handleError = (err) => {
     console.error("QR Scanner Error:", err);
     setQrError("QR Scanner Error: " + err.message);
     setScanning(false);
   };
 
-  // Start the QR scanning process
   const handleScanClick = () => {
     setScanning(true);
     setQrError("");
     setFccId("");
   };
 
-  // Cancel QR scanning
   const handleScanCancel = () => {
     setScanning(false);
     setQrError("");
   };
 
   return (
-    <div className="container">
-      <h1 className="header">Students Attendance Management</h1>
+    <div className="attendance-container">
+      <h1 className="attendance-header">Students Attendance Management</h1>
 
-      <div className="inputGroup2">
-        <label className="label2">FCC ID:</label>
-        <input
-          type="text"
-          value={fccId}
-          onChange={handleInputChange}
-          className="input"
-          ref={inputRef}
-          placeholder="Scan QR or type FCC ID"
-        />
-        {/* Button to start QR scanning */}
-        <button onClick={handleScanClick} className="button" style={{ marginLeft: "10px" }}>
-          Scan QR Code
-        </button>
-      </div>
+      <div className="attendance-main">
+        {/* Left Section: Input and Scanner */}
+        <div className="attendance-input-section">
+          <div className="input-group">
+            <label className="input-label">FCC ID:</label>
+            <div className="input-row">
+              <input
+                type="text"
+                value={fccId}
+                onChange={handleInputChange}
+                className="input-field"
+                ref={inputRef}
+                placeholder="Scan QR or type FCC ID"
+              />
+              <button onClick={handleScanClick} className="action-button">
+                Scan QR
+              </button>
+            </div>
+          </div>
 
-      {/* Conditionally render the QR scanner */}
-      {scanning && (
-        <div className="qrScannerContainer">
-          <QrScanner
-            delay={300}
-            style={{ width: "300px" }}
-            onError={handleError}
-            onScan={handleScan}
-          />
-          <button onClick={handleScanCancel} className="button" style={{ marginTop: "10px" }}>
-            Cancel Scan
+          {scanning && (
+            <div className="qr-scanner-section">
+              <QrScanner
+                delay={300}
+                style={{ width: "100%", maxWidth: "300px" }}
+                onError={handleError}
+                onScan={handleScan}
+              />
+              <button onClick={handleScanCancel} className="action-button cancel-button">
+                Cancel Scan
+              </button>
+              {qrError && <p className="error-text">{qrError}</p>}
+            </div>
+          )}
+
+          <div className="checkbox-group">
+            <label className="checkbox-label">
+              <input type="checkbox" checked={ctc} onChange={(e) => setCtc(e.target.checked)} />
+              Coaching to Come (CTC) <span className="shortcut">Ctrl + C</span>
+            </label>
+            <label className="checkbox-label">
+              <input type="checkbox" checked={ctg} onChange={(e) => setCtg(e.target.checked)} />
+              Coaching to Go (CTG) <span className="shortcut">Ctrl + G</span>
+            </label>
+            <label className="checkbox-label">
+              <input type="checkbox" checked={taskCompleted} onChange={(e) => setTaskCompleted(e.target.checked)} />
+              Task Completed <span className="shortcut">Ctrl + D</span>
+            </label>
+            <label className="checkbox-label">
+              <input type="checkbox" checked={forceUpdate} onChange={(e) => setForceUpdate(e.target.checked)} />
+              Force Update CTC <span className="shortcut">Ctrl + F</span>
+            </label>
+          </div>
+
+          <button onClick={() => handleSubmit()} className="submit-button">
+            Submit
           </button>
-          {qrError && <p className="error">{qrError}</p>}
+          {message && <p className="message-text">{message}</p>}
         </div>
-      )}
 
-      <div className="inputGroup2">
-        <label className="label2">
-          <input
-            type="checkbox"
-            checked={ctc}
-            onChange={(e) => setCtc(e.target.checked)}
-          />
-          Coaching to Come (CTC) ctrl + c
-        </label>
-        <label className="label2">
-          <input
-            type="checkbox"
-            checked={ctg}
-            onChange={(e) => setCtg(e.target.checked)}
-          />
-          Coaching to Go (CTG) ctrl + g 
-        </label>
-        <label className="label2">
-          <input
-            type="checkbox"
-            checked={taskCompleted}
-            onChange={(e) => setTaskCompleted(e.target.checked)}
-          />
-          Task Completed ctrl + d 
-        </label>
-      </div>
-      <div className="inputGroup2">
-        <label className="label2">
-          <input
-            type="checkbox"
-            checked={forceUpdate}
-            onChange={(e) => setForceUpdate(e.target.checked)}
-          />
-          Force Update CTC 
-        </label>
-      </div>
-      <button onClick={() => handleSubmit()} className="button">
-        Submit
-      </button>
-      {message && <p className="message">{message}</p>}
+        {/* Right Section: Success and Failed Lists */}
+        <div className="attendance-results-section">
+          <div className="list-container">
+            <h2 className="list-header">Success List</h2>
+            <ul className="result-list success-list">
+              {successList.map((id, index) => (
+                <li key={index}>{id}</li>
+              ))}
+            </ul>
+            <button onClick={downloadSuccessList} className="download-button">
+              Download Success List
+            </button>
+          </div>
 
-      {/* Success and Failed Lists */}
-      <div className="resultLists">
-        <h2>Success List</h2>
-        <ul>
-          {successList.map((id, index) => (
-            <li key={index}>{id}</li>
-          ))}
-        </ul>
-        <h2>Failed List</h2>
-        <ul>
-          {failedList.map((id, index) => (
-            <li key={index}>{id}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="downloadButtons">
-        <button onClick={downloadSuccessList} className="button">
-          Download Success List
-        </button>
-        <button onClick={downloadFailedList} className="button">
-          Download Failed List
-        </button>
+          <div className="list-container">
+            <h2 className="list-header">Failed List</h2>
+            <ul className="result-list failed-list">
+              {failedList.map((id, index) => (
+                <li key={index}>{id}</li>
+              ))}
+            </ul>
+            <button onClick={downloadFailedList} className="download-button">
+              Download Failed List
+            </button>
+          </div>
+        </div>
       </div>
 
       <ToastContainer

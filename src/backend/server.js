@@ -503,75 +503,184 @@ const validateFccId = (fccId) => {
   return regex.test(fccId);
 };
 
+// // API to update or create student data and log attendance
+// app.post("/api/update-student", async (req, res) => {
+//   const { fcc_id, ctc, ctg, task_completed, forceUpdate } = req.body;
+
+//   if (!fcc_id) {
+//     return res.status(400).json({ error: "FCC_ID is required" });
+//   }
+
+//   try {
+//     // Check if the student already exists in the `students` table
+//     const checkStudentQuery = "SELECT * FROM students WHERE fcc_id = $1";
+//     const result = await pool.query(checkStudentQuery, [fcc_id]);
+
+//     let ctcUpdated = false;
+
+//     if (result.rowCount > 0) {
+//       // Check if CTC is within 30 hours
+//       const student = result.rows[0];
+//       const currentTime = new Date();
+//       const ctcTime = new Date(student.ctc_time);
+//       const timeDiff = (currentTime - ctcTime) / (1000 * 60 * 60); // time difference in hours
+
+//       if (timeDiff > 30 && !forceUpdate) {
+//         // If CTC is older than 30 hours, don't update and return error
+//         return res.status(400).json({ message: "CTC is more than 30 hours old. Update not allowed!" });
+//       }
+
+//       // Update the CTC, CTG, and task completed fields
+//       const updateStudentQuery = `
+//         UPDATE students
+//         SET ctc_time = CASE WHEN $1 THEN NOW() ELSE ctc_time END,
+//             ctg_time = CASE WHEN $2 THEN NOW() ELSE ctg_time END,
+//             task_completed = $3
+//         WHERE fcc_id = $4;
+//       `;
+//       await pool.query(updateStudentQuery, [ctc, ctg, task_completed, fcc_id]);
+
+//       ctcUpdated = true;
+//     } else {
+//       // Insert a new student record
+//       const insertStudentQuery = `
+//         INSERT INTO students (fcc_id, ctc_time, ctg_time, task_completed)
+//         VALUES ($1, CASE WHEN $2 THEN NOW() ELSE NULL END, CASE WHEN $3 THEN NOW() ELSE NULL END, $4);
+//       `;
+//       await pool.query(insertStudentQuery, [fcc_id, ctc, ctg, task_completed]);
+
+//       ctcUpdated = true;
+//     }
+
+//     // Log attendance
+//     const logAttendanceQuery = `
+//       INSERT INTO attendance_log (fcc_id, ctc_time, ctg_time, task_completed, log_date)
+//       VALUES ($1, CASE WHEN $2 THEN NOW() ELSE NULL END, CASE WHEN $3 THEN NOW() ELSE NULL END, $4, CURRENT_DATE)
+//       ON CONFLICT (fcc_id, log_date)
+//       DO UPDATE SET
+//         ctc_time = CASE WHEN $2 THEN NOW() ELSE attendance_log.ctc_time END,
+//         ctg_time = CASE WHEN $3 THEN NOW() ELSE attendance_log.ctg_time END,
+//         task_completed = $4;
+//     `;
+//     await pool.query(logAttendanceQuery, [fcc_id, ctc, ctg, task_completed]);
+
+//     if (ctcUpdated) {
+//       res.status(200).json({ message: "Student and attendance log updated successfully.", ctcUpdated: true });
+//     } else {
+//       res.status(200).json({ message: "Student and attendance log inserted successfully.", ctcUpdated: false });
+//     }
+//   } catch (error) {
+//     console.error("Error updating or creating student and logging attendance:", error);
+//     res.status(500).json({ error: "Internal server error." });
+//   }
+// });
+
 // API to update or create student data and log attendance
 app.post("/api/update-student", async (req, res) => {
   const { fcc_id, ctc, ctg, task_completed, forceUpdate } = req.body;
 
   if (!fcc_id) {
-    return res.status(400).json({ error: "FCC_ID is required" });
+      return res.status(400).json({ error: "FCC_ID is required" });
   }
 
   try {
-    // Check if the student already exists in the `students` table
-    const checkStudentQuery = "SELECT * FROM students WHERE fcc_id = $1";
-    const result = await pool.query(checkStudentQuery, [fcc_id]);
+      // Check if the student already exists in the `students` table
+      const checkStudentQuery = "SELECT * FROM students WHERE fcc_id = $1";
+      const result = await pool.query(checkStudentQuery, [fcc_id]);
 
-    let ctcUpdated = false;
+      let ctcUpdated = false;
 
-    if (result.rowCount > 0) {
-      // Check if CTC is within 30 hours
-      const student = result.rows[0];
-      const currentTime = new Date();
-      const ctcTime = new Date(student.ctc_time);
-      const timeDiff = (currentTime - ctcTime) / (1000 * 60 * 60); // time difference in hours
+      if (result.rowCount > 0) {
+          // Check if CTC is within 30 hours
+          const student = result.rows[0];
+          const currentTime = new Date();
+          const ctcTime = new Date(student.ctc_time);
+          const timeDiff = (currentTime - ctcTime) / (1000 * 60 * 60); // time difference in hours
 
-      if (timeDiff > 30 && !forceUpdate) {
-        // If CTC is older than 30 hours, don't update and return error
-        return res.status(400).json({ message: "CTC is more than 30 hours old. Update not allowed!" });
+          if (timeDiff > 30 && !forceUpdate) {
+              // If CTC is older than 30 hours, don't update and return error
+              return res.status(400).json({ message: "CTC is more than 30 hours old. Update not allowed!" });
+          }
+
+          // Update the CTC, CTG, and task completed fields
+          const updateStudentQuery = `
+            UPDATE students
+            SET ctc_time = CASE WHEN $1 THEN NOW() ELSE ctc_time END,
+                ctg_time = CASE WHEN $2 THEN NOW() ELSE ctg_time END,
+                task_completed = $3
+            WHERE fcc_id = $4;
+          `;
+          await pool.query(updateStudentQuery, [ctc, ctg, task_completed, fcc_id]);
+
+          ctcUpdated = true;
+      } else {
+          // Insert a new student record
+          const insertStudentQuery = `
+            INSERT INTO students (fcc_id, ctc_time, ctg_time, task_completed)
+            VALUES ($1, CASE WHEN $2 THEN NOW() ELSE NULL END, CASE WHEN $3 THEN NOW() ELSE NULL END, $4);
+          `;
+          await pool.query(insertStudentQuery, [fcc_id, ctc, ctg, task_completed]);
+
+          ctcUpdated = true;
       }
 
-      // Update the CTC, CTG, and task completed fields
-      const updateStudentQuery = `
-        UPDATE students
-        SET ctc_time = CASE WHEN $1 THEN NOW() ELSE ctc_time END,
-            ctg_time = CASE WHEN $2 THEN NOW() ELSE ctg_time END,
-            task_completed = $3
-        WHERE fcc_id = $4;
+      // Log attendance
+      const logAttendanceQuery = `
+          INSERT INTO attendance_log (fcc_id, ctc_time, ctg_time, task_completed, log_date)
+          VALUES ($1, CASE WHEN $2 THEN NOW() ELSE NULL END, CASE WHEN $3 THEN NOW() ELSE NULL END, $4, CURRENT_DATE)
+          ON CONFLICT (fcc_id, log_date)
+          DO UPDATE SET
+            ctc_time = CASE WHEN $2 THEN NOW() ELSE attendance_log.ctc_time END,
+            ctg_time = CASE WHEN $3 THEN NOW() ELSE attendance_log.ctg_time END,
+            task_completed = $4;
       `;
-      await pool.query(updateStudentQuery, [ctc, ctg, task_completed, fcc_id]);
+      await pool.query(logAttendanceQuery, [fcc_id, ctc, ctg, task_completed]);
 
-      ctcUpdated = true;
-    } else {
-      // Insert a new student record
-      const insertStudentQuery = `
-        INSERT INTO students (fcc_id, ctc_time, ctg_time, task_completed)
-        VALUES ($1, CASE WHEN $2 THEN NOW() ELSE NULL END, CASE WHEN $3 THEN NOW() ELSE NULL END, $4);
-      `;
-      await pool.query(insertStudentQuery, [fcc_id, ctc, ctg, task_completed]);
 
-      ctcUpdated = true;
-    }
+      if (ctc && ctcUpdated) { // **Attendance Score Logic Added Here**
+          // Fetch fcc_class from New_Student_Admission table
+          const getStudentClassQuery = `
+              SELECT fcc_class FROM "New_Student_Admission" WHERE fcc_id = $1;
+          `;
+          const studentClassResult = await pool.query(getStudentClassQuery, [fcc_id]);
+          const fcc_class = studentClassResult.rows[0]?.fcc_class;
 
-    // Log attendance
-    const logAttendanceQuery = `
-      INSERT INTO attendance_log (fcc_id, ctc_time, ctg_time, task_completed, log_date)
-      VALUES ($1, CASE WHEN $2 THEN NOW() ELSE NULL END, CASE WHEN $3 THEN NOW() ELSE NULL END, $4, CURRENT_DATE)
-      ON CONFLICT (fcc_id, log_date)
-      DO UPDATE SET
-        ctc_time = CASE WHEN $2 THEN NOW() ELSE attendance_log.ctc_time END,
-        ctg_time = CASE WHEN $3 THEN NOW() ELSE attendance_log.ctg_time END,
-        task_completed = $4;
-    `;
-    await pool.query(logAttendanceQuery, [fcc_id, ctc, ctg, task_completed]);
+          if (fcc_class) {
+              const currentDate = new Date();
+              const task_name = `Attendance-${String(currentDate.getDate()).padStart(2, '0')}/${String(currentDate.getMonth() + 1).padStart(2, '0')}/${currentDate.getFullYear()}`;
+              const score_obtained = 10;
 
-    if (ctcUpdated) {
-      res.status(200).json({ message: "Student and attendance log updated successfully.", ctcUpdated: true });
-    } else {
-      res.status(200).json({ message: "Student and attendance log inserted successfully.", ctcUpdated: false });
-    }
+              // Insert into task_submissions table
+              const insertTaskSubmissionQuery = `
+                  INSERT INTO task_submissions (fcc_id, fcc_class, task_name, score_obtained, submission_date, submitted_at)
+                  VALUES ($1, $2, $3, $4, CURRENT_DATE, NOW())
+                  RETURNING *;
+              `;
+              await pool.query(insertTaskSubmissionQuery, [fcc_id, fcc_class, task_name, score_obtained]);
+
+              // Insert into leaderboard table
+              const insertLeaderboardQuery = `
+                  INSERT INTO leaderboard (fcc_id, fcc_class, task_name, score, submission_date, recorded_at)
+                  VALUES ($1, $2, $3, $4, CURRENT_DATE, NOW())
+                  RETURNING *;
+              `;
+              await pool.query(insertLeaderboardQuery, [fcc_id, fcc_class, task_name, score_obtained]);
+
+              console.log(`Attendance score of 10 awarded to student ${fcc_id} for ${task_name}`);
+          } else {
+              console.error(`fcc_class not found for student ${fcc_id}. Attendance score not awarded.`);
+          }
+      }
+
+
+      if (ctcUpdated) {
+          res.status(200).json({ message: "Student and attendance log updated successfully.", ctcUpdated: true });
+      } else {
+          res.status(200).json({ message: "Student and attendance log inserted successfully.", ctcUpdated: false });
+      }
   } catch (error) {
-    console.error("Error updating or creating student and logging attendance:", error);
-    res.status(500).json({ error: "Internal server error." });
+      console.error("Error updating or creating student and logging attendance:", error);
+      res.status(500).json({ error: "Internal server error." });
   }
 });
 
@@ -1110,8 +1219,6 @@ app.get('/get-classes', async (req, res) => {
   }
 });
 
-
-// Endpoint to fetch personalized leaderboard data for a student (MODIFIED to fetch fcc_class from Leaderboard)
 // Endpoint to fetch personalized leaderboard data for a student (MODIFIED to fetch fcc_class from Leaderboard AND include start_time and end_time for tasks)
 app.get('/leaderboard/:fccId', async (req, res) => {
   const { fccId } = req.params;
@@ -1174,44 +1281,6 @@ app.get('/leaderboard/:fccId', async (req, res) => {
   }
 });
 
-// Endpoint to mark a task as completed and update the score
-app.post('/complete-task', async (req, res) => {
-  const { fccId, taskId, scoreEarned } = req.body;
-  try {
-    // 1. Insert a record in Scoring_Task_Log
-    const insertResult = await pool.query(
-      `INSERT INTO Scoring_Task_Log (student_fcc_id, task_id, score_earned, status, completed_at)
-       VALUES ($1, $2, $3, 'COMPLETED', NOW())
-       RETURNING *`,
-      [fccId, taskId, scoreEarned]
-    );
-
-    // 2. Update the student's total score in Leaderboard table (Add the new score)
-    const updateResult = await pool.query(
-      `UPDATE Leaderboard
-       SET total_score = total_score + $1, last_updated = NOW()
-       WHERE student_fcc_id = $2
-       RETURNING *`,
-      [scoreEarned, fccId]
-    );
-
-    // 3. Log the update in Leaderboard_Log
-    await pool.query(
-      `INSERT INTO Leaderboard_Log (leaderboard_id, action, description)
-       VALUES ($1, 'UPDATE', 'Score updated by task completion')`,
-      [updateResult.rows[0].id]
-    );
-
-    res.json({
-      message: 'Task completed and score updated successfully',
-      taskLog: insertResult.rows[0],
-      updatedLeaderboard: updateResult.rows[0],
-    });
-  } catch (err) {
-    console.error('Error completing task:', err);
-    res.status(500).json({ error: 'Server error while completing task' });
-  }
-});
 
 // भाषा पहचान के लिए एक साधारण फ़ंक्शन
 const detectLanguage = (text) => {
@@ -1731,6 +1800,7 @@ app.get('/api/students-by-class', cors(), async (req, res) => {
       res.status(500).json({ error: 'Failed to fetch students by class' });
   }
 });
+
 app.post('/api/tasks', cors(), express.json(), async (req, res) => {
   try {
       const { task_name, description, max_score, start_time, end_time, class: classNumber, teacher_fcc_id, action_type } = req.body;
@@ -3438,7 +3508,6 @@ function formatTime(seconds) {
   const secs = Math.floor(seconds % 60);
   return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 }
-
 
 // Server Startup
 app.listen(port, async () => {

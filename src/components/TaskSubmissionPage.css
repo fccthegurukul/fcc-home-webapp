@@ -1,219 +1,242 @@
-/* TaskSubmissionPage.css */
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    color: #2c3e50;
+    min-height: 100vh;
+}
+
+/* Container */
 .task-submission-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center content horizontally */
-    padding: 20px;
-    font-family: Arial, sans-serif; /* Basic font for better readability */
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
+/* Heading */
 .task-submission-container h1 {
-    margin-bottom: 20px;
-    color: #333; /* Darker heading color */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #34495e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.success-message {
-    color: green;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #e6ffe6; /* Light green background */
-    border: 1px solid green;
-    border-radius: 5px;
-}
-
-.error-message {
-    color: red;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #ffe6e6; /* Light red background */
-    border: 1px solid red;
-    border-radius: 5px;
-}
-
+/* Form Layout */
 .task-form {
     display: flex;
     flex-direction: column;
-    width: 80%; /* Adjust form width for desktop */
-    max-width: 900px; /* Maximum width for very large screens */
-    padding: 20px;
-    border: 1px solid #ccc; /* Light border for the form */
-    border-radius: 8px;
-    background-color: #f9f9f9; /* Light background for the form */
+    gap: 25px;
 }
 
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Form Card */
 .form-card {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd; /* Card border */
-    border-radius: 6px;
-    background-color: white; /* White background for cards */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .form-card h2 {
-    margin-top: 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #2c3e50;
     margin-bottom: 15px;
-    color: #555; /* Slightly darker card heading */
-    border-bottom: 1px solid #eee; /* Separator under card heading */
-    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
 }
 
-.form-row {
+/* Form Group */
+.form-group {
     display: flex;
-    align-items: center; /* Vertically align label and input */
-    margin-bottom: 10px;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.form-row label {
-    display: inline-block;
-    width: 120px; /* Fixed width for labels for alignment */
-    text-align: right;
-    margin-right: 15px;
-    font-weight: bold;
-    color: #666; /* Label text color */
+.form-group label {
+    font-weight: 600;
+    color: #34495e;
+    font-size: 0.95rem;
 }
 
-.form-row input[type="text"],
-.form-row input[type="number"],
-.form-row input[type="datetime-local"],
-.form-row input[type="password"],
-.form-row select,
-.form-row textarea {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    color: #333; /* Input text color */
-    width: calc(100% - 155px); /* Adjust input width to fill remaining space, considering label and margin */
-    box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #dfe6e9;
+    border-radius: 6px;
+    width: 100%;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-row input[type="text"]:focus,
-.form-row input[type="number"]:focus,
-.form-row input[type="datetime-local"]:focus,
-.form-row input[type="password"]:focus,
-.form-row select:focus,
-.form-row textarea:focus {
-    border-color: #007bff; /* Highlight border on focus */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Subtle focus shadow */
-    outline: 0;
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
 }
 
-.form-row textarea {
-    height: 100px; /* Increased height for description textarea */
-    resize: vertical; /* Allow vertical resizing of textarea */
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
 }
 
-.description-row textarea {
-    width: calc(100% - 155px); /* Match textarea width to other inputs */
+.form-group input[type="number"] {
+    width: 120px;
 }
 
-.time-row {
+/* Time Group */
+.time-group {
     display: flex;
-    gap: 20px; /* Spacing between time input groups */
+    gap: 20px;
 }
 
-.time-input-group {
-    display: flex;
-    flex-direction: column; /* Stack label and time input vertically in time groups */
+.time-group > div {
+    flex: 1;
 }
 
-.time-input-group label {
-    text-align: left; /* Align label to the left within time input group */
-    width: auto; /* Reset label width within time group */
-    margin-right: 0; /* Remove right margin from label in time group */
-    margin-bottom: 5px; /* Add bottom margin for label spacing in time group */
-    font-weight: normal; /* Make labels in time group normal weight if bold is too much */
-}
-
+/* Button Container */
 .button-container {
-    margin-top: 20px;
-    text-align: center; /* Center the submit button */
+    text-align: center;
+    margin-top: 30px;
 }
 
 .submit-button {
-    padding: 12px 25px;
-    font-size: 18px;
-    color: white;
-    background-color: #007bff; /* Primary button color */
+    padding: 12px 40px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(90deg, #3498db, #2980b9);
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .submit-button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #2980b9, #3498db);
 }
 
-/* Responsive adjustments for larger screens if needed - not explicitly requested but good practice for desktop in general */
-@media (min-width: 768px) { /* Example breakpoint for larger screens */
-    .task-form {
-        width: 70%; /* Wider form on larger screens */
-    }
+/* Popup Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
-    .form-card {
-        padding: 20px; /* More padding in cards on larger screens */
-    }
+/* Popup */
+.popup {
+    padding: 25px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: popupFadeIn 0.3s ease-in-out;
+}
 
-    .form-row label {
-        width: 150px; /* Wider labels on larger screens */
-    }
+.popup.success {
+    background: #e8f5e9;
+    border: 2px solid #27ae60;
+}
 
-    .form-row input[type="text"],
-    .form-row input[type="number"],
-    .form-row input[type="datetime-local"],
-    .form-row input[type="password"],
-    .form-row select,
-    .form-row textarea {
-        width: calc(100% - 185px); /* Adjust input width for wider labels on larger screens */
+.popup.error {
+    background: #ffebee;
+    border: 2px solid #c0392b;
+}
+
+.popup p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.popup-close {
+    padding: 8px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #7f8c8d;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.popup-close:hover {
+    background-color: #95a5a6;
+}
+
+/* Popup Animation */
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .task-form {
-    width: 90%;
-  }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 
-  .form-card {
-    padding: 15px;
-  }
+    .task-submission-container {
+        margin: 20px;
+        padding: 20px;
+    }
 
-  .form-row label {
-    width: 100px;
-  }
+    .time-group {
+        flex-direction: column;
+        gap: 15px;
+    }
 
-  .form-row input[type="text"],
-  .form-row input[type="number"],
-  .form-row input[type="datetime-local"],
-  .form-row input[type="password"],
-  .form-row select,
-  .form-row textarea {
-    width: calc(100% - 120px);
-  }
-}
-
-@media (max-width: 480px) {
-  .task-form {
-    width: 100%;
-  }
-
-  .form-card {
-    padding: 10px;
-  }
-
-  .form-row label {
-    width: 80px;
-  }
-
-  .form-row input[type="text"],
-  .form-row input[type="number"],
-  .form-row input[type="datetime-local"],
-  .form-row input[type="password"],
-  .form-row select,
-  .form-row textarea {
-    width: calc(100% - 100px);
-  }
+    .popup {
+        width: 90%;
+    }
 }
