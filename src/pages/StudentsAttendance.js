@@ -16,6 +16,9 @@ const StudentsAttendance = () => {
   const [failedList, setFailedList] = useState([]);
   const [scanning, setScanning] = useState(false);
   const [qrError, setQrError] = useState("");
+  const [lastScanTime, setLastScanTime] = useState(0);
+  
+  const MIN_SCAN_DELAY = 1000; // 1 second minimum delay between scans
 
   const API_BASE_URL = process.env.REACT_APP_API_URL;
   const apiClient = axios.create({
@@ -68,7 +71,7 @@ const StudentsAttendance = () => {
           setTimeout(() => {
             setFccId("");
             setScanning(true);
-          }, 500);
+          }, MIN_SCAN_DELAY);
         } else {
           setFccId("");
         }
@@ -169,8 +172,15 @@ const StudentsAttendance = () => {
 
   const handleScan = (data) => {
     if (data) {
+      const currentTime = Date.now();
+      if (currentTime - lastScanTime < MIN_SCAN_DELAY) {
+        return;
+      }
+
       const scannedText = typeof data === "string" ? data : data.text || "";
       const numericData = scannedText.replace(/[^0-9]/g, "");
+      
+      setLastScanTime(currentTime);
       setScanning(false);
       handleSubmit(true, numericData);
     }
@@ -224,7 +234,6 @@ const StudentsAttendance = () => {
                 style={{ width: "100%", maxWidth: "300px" }}
                 onError={handleError}
                 onScan={handleScan}
-                facingMode="environment"  // <-- Back camera enable karne ke liye yeh prop add karein
               />
               <button onClick={handleScanCancel} className="action-button cancel-button">
                 Cancel Scan
@@ -232,7 +241,6 @@ const StudentsAttendance = () => {
               {qrError && <p className="error-text">{qrError}</p>}
             </div>
           )}
-
           <div className="checkbox-group">
             <label className="checkbox-label">
               <input type="checkbox" checked={ctc} onChange={(e) => setCtc(e.target.checked)} />
