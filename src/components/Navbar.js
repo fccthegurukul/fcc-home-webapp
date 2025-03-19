@@ -46,7 +46,7 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
 
           <div className="fcc-controls">
             <button className="fcc-toggle-navbar" onClick={toggleNavbarVisibility}>
-              <FaBars /> {isNavbarVisible ? 'Hide' : 'Show'}
+              <FaBars /> {isNavbarVisible ? 'छुपाएं' : 'दिखाएं'}
             </button>
             <div className={`fcc-menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
               <div className="fcc-bar"></div>
@@ -81,7 +81,7 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
       {/* Popup Show Button only for Desktop */}
       {!isNavbarVisible && (
         <button className="fcc-show-navbar-popup" onClick={toggleNavbarVisibility}>
-          <FaBars /> Show Navbar
+          <FaBars /> नैवबार दिखाएं
         </button>
       )}
     </>

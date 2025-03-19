@@ -6,7 +6,10 @@
   top: 0;
   left: 0;
   right: 0;
+  height: 60px; /* फिक्स ऊंचाई 60px */
   z-index: 1000;
+  display: flex;
+  align-items: center;
 }
 
 /* Highlight Troubleshooting and Contact */
@@ -23,21 +26,24 @@
 .fcc-navbar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  height: 100%; /* सुनिश्चित करें कि कंटेनर पूरी ऊंचाई ले */
 }
 
 .fcc-branding-area {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .fcc-branding-link {
   text-decoration: none;
   color: #ffffff; /* White text for contrast against gradient */
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* छोटा फ़ॉन्ट साइज़ ताकि 60px में फिट हो */
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -49,7 +55,7 @@
   color: white;
   padding: 0.2rem 0.5rem;
   border-radius: 12px;
-  font-size: 0.8rem;
+  font-size: 0.7rem; /* छोटा फ़ॉन्ट साइज़ */
 }
 
 .fcc-location-label {
@@ -57,7 +63,7 @@
   align-items: center;
   gap: 0.3rem;
   color: #E0E0E0; /* Light gray for subtle contrast */
-  font-size: 0.9rem;
+  font-size: 0.8rem; /* छोटा फ़ॉन्ट साइज़ */
   margin-top: 0.2rem;
 }
 
@@ -68,14 +74,14 @@
 }
 
 .fcc-toggle-navbar {
-  display: none; /* Hidden by default */
+  display: none; /* डेस्कटॉप पर दिखेगा */
   background: #27AE60;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: background-color 0.3s ease;
 }
 
@@ -88,13 +94,13 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .fcc-nav-link {
   text-decoration: none;
   color: #ffffff; /* White text for visibility */
-  font-size: 1rem;
+  font-size: 0.9rem; /* छोटा फ़ॉन्ट साइज़ ताकि 60px में फिट हो */
   transition: color 0.3s ease;
   background: none;
   border: none;
@@ -112,7 +118,7 @@
 .fcc-logout-button {
   color: #fff;
   background-color: #E74C3C; /* Vibrant red for logout button */
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
@@ -125,8 +131,8 @@
 .fcc-menu-icon {
   display: none;
   cursor: pointer;
-  width: 30px;
-  height: 25px;
+  width: 25px;
+  height: 20px;
   position: relative;
 }
 
@@ -159,7 +165,7 @@
   display: none; /* Hidden by default */
 }
 
-/* Desktop View - Apply hide/unhide and popup only here */
+/* डेस्कटॉप व्यू (769px और उससे ज्यादा) */
 @media (min-width: 769px) {
   .fcc-navbar {
     transition: transform 0.3s ease; /* Smooth hide/unhide transition only on desktop */
@@ -196,7 +202,7 @@
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     opacity: 0.7; /* Low opacity */
     transition: opacity 0.3s ease, background-color 0.3s ease;
     z-index: 999; /* Below navbar but above content */
@@ -211,10 +217,11 @@
   }
 }
 
-/* Mobile View - No changes from original behavior */
+/* मोबाइल व्यू (768px और उससे कम) */
 @media (max-width: 768px) {
   .fcc-navbar {
     transition: none; /* No hide/unhide transition on mobile */
+    height: 60px; /* फिक्स ऊंचाई 60px */
   }
 
   .fcc-navbar.hidden {
@@ -226,42 +233,45 @@
   }
 
   .fcc-menu-icon {
-    display: block;
+    display: block; /* Show hamburger menu on mobile */
   }
 
   .fcc-nav-links {
-    display: none;
+    display: none; /* By default hidden on mobile */
     position: absolute;
-    top: 100%;
+    top: 60px; /* नैवबार की ऊंचाई के बाद शुरू हो */
     left: 0;
     right: 0;
     background: linear-gradient(90deg, #2C3E50 0%, #3498DB 100%);
     flex-direction: column;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
   }
 
   .fcc-nav-links.active {
-    display: flex;
+    display: flex; /* Show when active (menu open) */
   }
 
   .fcc-nav-link {
     padding: 0.8rem;
     width: 100%;
     text-align: left;
+    font-size: 1rem;
   }
 
   .fcc-logout-button {
     width: 100%;
     margin-top: 0.5rem;
+    padding: 0.8rem;
   }
 
   .fcc-branding-link {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* छोटा फ़ॉन्ट साइज़ */
   }
 
   .fcc-location-label {
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* छोटा फ़ॉन्ट साइज़ */
   }
 
   .fcc-show-navbar-popup {
@@ -269,9 +279,10 @@
   }
 }
 
+/* बहुत छोटे स्क्रीन (480px और उससे कम) */
 @media (max-width: 480px) {
   .fcc-navbar-container {
-    padding: 0.8rem;
+    padding: 0 8px;
   }
 
   .fcc-branding-link {
@@ -279,8 +290,17 @@
   }
 
   .fcc-beta-badge {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     padding: 0.15rem 0.4rem;
+  }
+
+  .fcc-location-label {
+    font-size: 0.65rem;
+  }
+
+  .fcc-menu-icon {
+    width: 20px;
+    height: 16px;
   }
 
   .fcc-nav-link {
