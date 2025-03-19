@@ -776,6 +776,7 @@ app.get('/files/download/:id', async (req, res) => {
 });
 
 
+// POST endpoint for adding payments
 app.post("/api/payments", async (req, res) => {
   const {
     fcc_id,
@@ -788,7 +789,7 @@ app.post("/api/payments", async (req, res) => {
 
   try {
     const taxRate = 0.18; // 18% GST rate
-    const numericAmount = parseFloat(amount); // Ensure amount is a number
+    const numericAmount = parseFloat(amount);
     if (isNaN(numericAmount)) {
       throw new Error("Invalid amount provided");
     }
@@ -803,15 +804,26 @@ app.post("/api/payments", async (req, res) => {
     );
 
     const payment = paymentResult.rows[0];
-    const receiptDir = path.join(__dirname, "receipts");
 
-    // Ensure the 'receipts' directory exists
+    // If payment is completed, update tutionfee_paid to false in New_Student_Admission
+    if (payment_status === "Completed") {
+      await pool.query(
+        `UPDATE "New_Student_Admission"
+         SET tutionfee_paid = $1
+         WHERE fcc_id = $2`,
+        [false, fcc_id]
+      );
+    }
+
+    // Generate PDF receipt
+    const receiptDir = path.join(__dirname, "receipts");
     if (!fs.existsSync(receiptDir)) {
       fs.mkdirSync(receiptDir);
     }
 
     const receiptPath = path.join(receiptDir, `receipt_${payment.id}.pdf`);
     const doc = new PDFDocument({ margin: 50 });
+    doc.pipe(fs.createWriteStream(receiptPath));
 
     // Stream the PDF to file
     doc.pipe(fs.createWriteStream(receiptPath));
@@ -962,7 +974,7 @@ doc
   .text("FCC The Gurukul © 2025. All rights reserved | www.fccthegurukul.in", { align: "center" });
 
   // Add Footer Image
-const footerImgPath = "C:/Users/FCC The Gurukul/My Projects/fcc-home-webapp/src/assets/footerimg.png";
+const footerImgPath = "C:/Users/FCC The Gurukul/My_Projects/fcc-home-webapp/src/assets/footerimg.png";
 const footerImageHeight = 100;
 const footerYPosition = doc.page.height - footerImageHeight - 20;
 
@@ -1624,7 +1636,113 @@ app.get("/get-tuition-fee-details/:fcc_id", async (req, res) => {
   }
 });
 
-// ... आपके मौजूदा बैकएंड कोड ...
+// API endpoint to update tutionfee_paid status
+app.put("/update-tutionfee-status/:fcc_id", async (req, res) => {
+  const { fcc_id } = req.params;
+  const { tutionfee_paid } = req.body;
+
+  if (typeof tutionfee_paid !== 'boolean') {
+      return res.status(400).json({ error: "tutionfee_paid should be a boolean value (true or false)" });
+  }
+
+  try {
+      const updateQuery = `
+          UPDATE "New_Student_Admission"
+          SET tutionfee_paid = $1
+          WHERE fcc_id = $2
+          RETURNING *;
+      `;
+      const result = await pool.query(updateQuery, [tutionfee_paid, fcc_id]);
+
+      if (result.rowCount === 0) {
+          return res.status(404).json({ error: "Student not found" });
+      }
+
+      res.json({ message: "Tution fee status updated successfully", student: result.rows[0] });
+
+  } catch (error) {
+      console.error("Error updating tution fee status:", error);
+      res.status(500).json({ error: "Failed to update tution fee status", details: error.message });
+  }
+});
+
+// API endpoint for bulk update of tutionfee_paid status
+app.post("/bulk-update-tutionfee-status", async (req, res) => {
+  const updates = req.body;
+
+  if (!Array.isArray(updates)) {
+      return res.status(400).json({ error: "Expected an array of updates" });
+  }
+
+  if (updates.length === 0) {
+      return res.json({ message: "No updates to process" });
+  }
+
+  try {
+      await pool.query('BEGIN'); // transaction शुरू करें
+
+      for (const update of updates) {
+          const { fcc_id, tutionfee_paid } = update;
+          if (!fcc_id || typeof tutionfee_paid !== 'boolean') {
+              await pool.query('ROLLBACK'); // Rollback अगर कोई अपडेट इनवैलिड है
+              return res.status(400).json({ error: "Invalid update format in request" });
+          }
+
+          const updateQuery = `
+              UPDATE "New_Student_Admission"
+              SET tutionfee_paid = $1
+              WHERE fcc_id = $2
+              RETURNING *;
+          `;
+          await pool.query(updateQuery, [tutionfee_paid, fcc_id]);
+      }
+
+      await pool.query('COMMIT'); // ट्रांजेक्शन को commit करें अगर सारे अपडेट सही हों
+
+      res.json({ message: "Bulk tution fee statuses updated successfully", updatedCount: updates.length });
+
+  } catch (error) {
+      await pool.query('ROLLBACK'); // रोलबैक ट्रांजेक्शन अगर कोई एरर आये
+      console.error("Error during bulk update of tution fee status:", error);
+      res.status(500).json({ error: "Failed to bulk update tution fee statuses", details: error.message });
+  }
+});
+
+app.get("/get-classes-list", async (req, res) => {
+  try {
+      const query = `
+          SELECT DISTINCT fcc_class
+          FROM "New_Student_Admission"
+          ORDER BY fcc_class;
+      `;
+      const result = await pool.query(query);
+      const classNames = result.rows.map(row => row.fcc_class);
+      res.json(classNames);
+  } catch (error) {
+      console.error("Error fetching class names:", error);
+      res.status(500).json({ error: 'Failed to fetch class names' });
+  }
+});
+
+app.get('/get-students', async (req, res) => {
+  const { fcc_class } = req.query;
+  let query = 'SELECT name, fcc_id, tutionfee_paid, fcc_class FROM "New_Student_Admission"';
+  const params = [];
+
+  if (fcc_class) {
+      query += ' WHERE fcc_class = $1';
+      params.push(fcc_class);
+  }
+
+  try {
+      const result = await pool.query(query, params);
+      res.json(result.rows);
+  } catch (error) {
+      console.error('Error fetching students:', error);
+      res.status(500).json({ error: 'Failed to fetch students' });
+  }
+});
+
 
 // एपीआई एंडपॉइंट क्लासेज की लिस्ट लाने के लिए
 app.get('/api/classrooms', cors(), async (req, res) => {

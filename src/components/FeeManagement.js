@@ -20,14 +20,13 @@ const FeeManagement = () => {
     startDate: "",
     endDate: "",
   });
-  const apiUrl = process.env.REACT_APP_API_URL; // Define apiUrl from .env
+  const apiUrl = process.env.REACT_APP_API_URL;
 
-  const [isVisible, setIsVisible] = useState(true); // State for visibility of QR code
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     fetchPayments();
     const handleScroll = () => {
-      // Hide QR code when the page is scrolled down
       if (window.scrollY > 0) {
         setIsVisible(false);
       } else {
@@ -36,18 +35,17 @@ const FeeManagement = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll); // Cleanup on unmount
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [filters]);
 
   const fetchPayments = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/api/payments`, { // Use apiUrl
+      const response = await axios.get(`${apiUrl}/api/payments`, {
         params: filters,
         headers: {
           "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true"
-        }
+          "ngrok-skip-browser-warning": "true",
+        },
       });
       setPayments(response.data);
     } catch (error) {
@@ -59,13 +57,12 @@ const FeeManagement = () => {
     const { name, value } = e.target;
     let updatedValue = value;
 
-    // If the field is 'amount', calculate the total fee with 18% GST
-    if (name === 'amount' && value) {
+    if (name === "amount" && value) {
       const amountWithGST = parseFloat(value) * 1.18;
       setPaymentData({
         ...paymentData,
         [name]: value,
-        totalFee: amountWithGST.toFixed(2), // Store the total fee
+        totalFee: amountWithGST.toFixed(2),
       });
     } else {
       setPaymentData({
@@ -79,7 +76,7 @@ const FeeManagement = () => {
     const { value } = e.target;
     setPaymentData({
       ...paymentData,
-      monthly_cycle_days: value.split(',').map(day => parseInt(day.trim(), 10)),
+      monthly_cycle_days: value.split(",").map((day) => parseInt(day.trim(), 10)),
     });
   };
 
@@ -91,18 +88,34 @@ const FeeManagement = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${apiUrl}/api/payments`, paymentData, { // Use apiUrl
+      // Step 1: Submit payment
+      const response = await axios.post(`${apiUrl}/api/payments`, paymentData, {
         headers: {
           "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true"
-        }
+          "ngrok-skip-browser-warning": "true",
+        },
       });
       const { receipt } = response.data;
 
-      // Open the receipt in a new window or trigger a download
-      window.open(`${apiUrl}/${receipt}`, '_blank'); // Use apiUrl for receipt URL
+      // Step 2: If payment succeeds, update tutionfee_paid status
+      if (paymentData.payment_status === "Completed") {
+        await axios.put(
+          `${apiUrl}/update-tutionfee-status/${paymentData.fcc_id}`,
+          { tutionfee_paid: false },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "true",
+            },
+          }
+        );
+      }
 
-      fetchPayments(); // Refresh the payment list
+      // Open receipt
+      window.open(`${apiUrl}/${receipt}`, "_blank");
+
+      // Refresh payments and reset form
+      fetchPayments();
       setPaymentData({
         fcc_id: "",
         amount: "",
@@ -112,21 +125,19 @@ const FeeManagement = () => {
         monthly_cycle_days: [],
       });
     } catch (error) {
-      console.error("Error adding payment:", error);
+      console.error("Error adding payment or updating status:", error);
     }
   };
 
   return (
     <div className="fee-management">
       <h1>Fee Management</h1>
-      {/* QR Code that hides on scroll */}
       {isVisible && (
         <div className="qr-code">
           <img src={qrCodeImage} alt="QR Code" className="qr-code-img" />
         </div>
       )}
 
-      {/* Payment Form */}
       <form onSubmit={handleSubmit} className="payment-form">
         <label>
           FCC ID:
@@ -150,11 +161,7 @@ const FeeManagement = () => {
         </label>
         <label>
           Total Fee (with 18% GST):
-          <input
-            type="text"
-            value={paymentData.totalFee || 0}
-            readOnly
-          />
+          <input type="text" value={paymentData.totalFee || 0} readOnly />
         </label>
         <label>
           Payment Method:
@@ -202,7 +209,6 @@ const FeeManagement = () => {
         <button type="submit">Submit Payment</button>
       </form>
 
-      {/* Filters */}
       <h2>Filter Payments</h2>
       <div className="filters">
         <label>
@@ -254,19 +260,8 @@ const FeeManagement = () => {
             onChange={handleFilterChange}
           />
         </label>
-        <label>
-          Monthly Cycle Days:
-          <input
-            type="text"
-            name="monthly_cycle_days"
-            value={filters.monthly_cycle_days}
-            onChange={handleFilterChange}
-            placeholder="e.g., 10, 20"
-          />
-        </label>
       </div>
 
-      {/* Payment Table */}
       <table>
         <thead>
           <tr>

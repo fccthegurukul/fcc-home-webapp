@@ -1,0 +1,273 @@
+/* FeeStatusManager.css */
+
+.fee-status-manager-container-desktop {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.header-desktop {
+    text-align: center;
+    color: #0056b3;
+    margin-bottom: 20px;
+}
+
+.filters-desktop {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    gap: 10px;
+}
+
+.filter-label-desktop {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filter-select-desktop {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    margin-right: 10px;
+}
+
+.filter-button-desktop {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-button-desktop:hover {
+    background-color: #0056b3;
+}
+
+
+.students-table-desktop {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.students-table-desktop th, .students-table-desktop td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.students-table-desktop th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.students-table-desktop tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.students-table-desktop tbody tr:hover {
+    background-color: #e6f7ff;
+}
+
+.status-select-desktop {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+
+.action-buttons-desktop {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+
+.edit-button-desktop, .save-button-desktop, .cancel-button-desktop, .bulk-update-button-desktop {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.edit-button-desktop {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.save-button-desktop {
+    background-color: #28a745;
+    color: white;
+}
+
+.cancel-button-desktop {
+    background-color: #dc3545;
+    color: white;
+}
+
+.bulk-update-button-desktop {
+    background-color: #17a2b8;
+    color: white;
+    margin-top: 20px;
+}
+
+
+.edit-button-desktop:hover, .save-button-desktop:hover, .cancel-button-desktop:hover, .bulk-update-button-desktop:hover {
+    opacity: 0.85;
+}
+
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+}
+
+.loading-container p {
+    margin-top: 15px;
+    font-style: italic;
+    color: #6c757d;
+}
+
+.error-container {
+    color: #dc3545;
+    text-align: center;
+    padding: 20px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.error-container p {
+    font-weight: bold;
+}
+
+.bulk-actions-desktop {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+     flex-direction: column; /* बल्क स्टेटस सेलेक्टर और बटन को स्टैक करें */
+    align-items: flex-start; /* कंटेंट को स्टार्ट में अलाइन करें */
+}
+
+.bulk-status-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* बटन और सेलेक्टर के बीच कुछ जगह दें */
+    gap: 10px; /* लेबल और ड्रॉपडाउन के बीच गैप */
+    width: 100%; /* पूरी चौड़ाई लें */
+}
+
+.bulk-status-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.bulk-status-select-desktop {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    flex-grow: 1; /* उपलब्ध जगह भरें */
+}
+
+/* FeeStatusManager.css */
+
+/* ... पिछले CSS रूल्स ...*/
+
+.bulk-actions-desktop-top {
+    margin-bottom: 20px; /* फ़िल्टर से बल्क एक्शन को अलग करें */
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+     display: flex;              /* Flex container का इस्तेमाल करें */
+    align-items: center;        /* लंबवत केंद्र आइटम्स */
+    justify-content: space-between; /* स्पेस बिटवीन */
+}
+
+.bulk-actions-desktop-top .bulk-status-selector {
+    display: flex;           /* सेलेक्टर और लेबल को एक ही पंक्ति में रखने के लिए फ्लेक्स */
+    align-items: center;
+}
+
+.bulk-actions-desktop-top .bulk-status-label {
+    margin-right: 10px;    /* लेबल से सेलेक्ट इनपुट के बीच गैप */
+}
+
+.bulk-actions-desktop-top .bulk-status-select-desktop {
+    margin-right: 20px;    /* सेलेक्ट इनपुट से बटन के बीच गैप */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.bulk-actions-desktop-top .bulk-update-button-desktop {
+    padding: 10px 15px;     /* बटन के लिए पैडिंग */
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bulk-actions-desktop-top p {
+    margin-left: 15px;      /* काउंट टेक्स्ट को बटन से अलग करें */
+    color: #6c757d;         /* ग्रे टेक्स्ट */
+}
+
+.bulk-actions-desktop {
+    margin-top: 20px; /* पुराने CSS नियम के जैसा */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+     flex-direction: column; /* बल्क स्टेटस सेलेक्टर और बटन को स्टैक करें */
+    align-items: flex-start; /* कंटेंट को स्टार्ट में अलाइन करें */
+}
+
+.bulk-actions-desktop .bulk-status-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+    width: 100%;
+}
+
+.bulk-actions-desktop .bulk-status-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.bulk-actions-desktop .bulk-status-select-desktop {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    flex-grow: 1;
+}

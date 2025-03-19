@@ -37,7 +37,7 @@ import TeacherActivityManagement from './components/component2/TeacherActivityMa
 import LeaderBoard from './components/component2/LeaderBoard';
 import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
 import OneSignal from 'react-onesignal'; // OneSignal import
-
+import FeeStatusManager from './components/component2/FeeStatusManager'; // नया कंपोनेंट इम्पोर्ट करें
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -241,6 +241,7 @@ const App = () => {
                     <Route path="/dashboard" element={<AdminProtectedRoute><Dashboard /></AdminProtectedRoute>} />
                     <Route path="/Livevideosmanage" element={<AdminProtectedRoute><Livevideosmanage /></AdminProtectedRoute>} />
                     <Route path="/TeacherActivityManagement" element={<AdminProtectedRoute><TeacherActivityManagement /></AdminProtectedRoute>} />
+                    <Route path="/fee-status-manager" element={<AdminProtectedRoute><FeeStatusManager /></AdminProtectedRoute>} /> {/* Add the new route */}
                     {/* Public Routes */}
                     <Route path="/card-hub" element={<CardHub />} />
                     <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />

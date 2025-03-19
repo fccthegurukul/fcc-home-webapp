@@ -486,7 +486,7 @@ const StudentProfile = () => {
                             <XCircle size={20} />
                         </button>
                         <img src={upiQR} alt="UPI QR Code" className={styles.upiQrImage} />
-                        <p className={styles.modalText}><strong>UPI ID:</strong> fccthegurukul@okaxis<br /><strong>मोबाईल नंबर:</strong> 9135365331</p>
+                        <p className={styles.modalText}><strong>UPI ID:</strong> 9135365331@okbizaxis<br /><strong>मोबाईल नंबर:</strong> 9135365331</p>
                         <p className={styles.paymentNote}>ध्यान दें: भुगतान करने के बाद, आपका डेटा कुछ देर में स्वचालित रूप से अपडेट हो जाएगा।</p>
                         <p className={styles.modalText}><strong>रुपये:</strong> ₹{getPaymentAmount()}</p>
                         {feeDetails.offer_valid_till && new Date() > new Date(feeDetails.offer_valid_till) && (
