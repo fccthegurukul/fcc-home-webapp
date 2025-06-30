@@ -4,6 +4,8 @@ import QrScanner from "react-qr-scanner";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./StudentsAttendance.css";
+// Apne Supabase client ko yahan import karein
+import { supabase } from "../utils/supabaseClient"; // Maan liya aapne is path par file rakhi hai
 
 const StudentsAttendance = () => {
   const [fccId, setFccId] = useState("");
@@ -48,41 +50,175 @@ const StudentsAttendance = () => {
     }
   }, []);
 
+  // const handleSubmit = async (autoScan = false, manualFCCId = null) => {
+  //   const id = manualFCCId !== null ? manualFCCId : fccId;
+  //   if (!id || id.length < 4) {
+  //     toast.error("Please enter a valid FCC ID.");
+  //     playSound("failed");
+  //     setFailedList((prev) => [...prev, id]);
+  //     return;
+  //   }
+
+  //   try {
+  //     const payload = { fcc_id: id, ctc, ctg, task_completed: taskCompleted, forceUpdate };
+  //     const response = await apiClient.post("/api/update-student", payload);
+  //     const { message, ctcUpdated } = response.data;
+
+  //     setMessage(message);
+  //     if (ctcUpdated) {
+  //       toast.success(message);
+  //       playSound("success");
+  //       setSuccessList((prev) => [...prev, id]);
+  //       if (autoScan) {
+  //         setTimeout(() => {
+  //           setFccId("");
+  //           setScanning(true);
+  //         }, MIN_SCAN_DELAY);
+  //       } else {
+  //         setFccId("");
+  //       }
+  //     } else {
+  //       toast.error(message);
+  //       playSound("failed");
+  //       setFailedList((prev) => [...prev, id]);
+  //       setFccId("");
+  //     }
+  //   } catch (error) {
+  //     const errorMessage = error.response?.data?.message || "Something went wrong.";
+  //     toast.error(errorMessage);
+  //     playSound("failed");
+  //     setFailedList((prev) => [...prev, id]);
+  //     setFccId("");
+  //   }
+  // };
+
+    // Naya handleSubmit function - YAHAN SARA LOGIC HAI
   const handleSubmit = async (autoScan = false, manualFCCId = null) => {
     const id = manualFCCId !== null ? manualFCCId : fccId;
     if (!id || id.length < 4) {
       toast.error("Please enter a valid FCC ID.");
       playSound("failed");
-      setFailedList((prev) => [...prev, id]);
+      setFailedList((prev) => [...prev, id || "invalid"]);
       return;
     }
 
     try {
-      const payload = { fcc_id: id, ctc, ctg, task_completed: taskCompleted, forceUpdate };
-      const response = await apiClient.post("/api/update-student", payload);
-      const { message, ctcUpdated } = response.data;
+      // 1. Check karo student pehle se hai ya nahi
+      const { data: studentData, error: studentError } = await supabase
+        .from('students')
+        .select('fcc_id, ctc_time')
+        .eq('fcc_id', id)
+        .single(); // .single() ek object dega ya null
 
-      setMessage(message);
-      if (ctcUpdated) {
-        toast.success(message);
-        playSound("success");
-        setSuccessList((prev) => [...prev, id]);
-        if (autoScan) {
-          setTimeout(() => {
-            setFccId("");
-            setScanning(true);
-          }, MIN_SCAN_DELAY);
-        } else {
-          setFccId("");
+      if (studentError && studentError.code !== 'PGRST116') { // PGRST116 ka matlab 'not found', jo ki ek error nahi hai
+        throw studentError;
+      }
+      
+      let ctcUpdated = false;
+      let message = "";
+
+      // 2. Agar student hai, to update logic
+      if (studentData) {
+        // 30 ghante wala check
+        if (studentData.ctc_time) {
+            const ctcTime = new Date(studentData.ctc_time);
+            const timeDiff = (new Date() - ctcTime) / (1000 * 60 * 60);
+            if (timeDiff > 30 && !forceUpdate && ctc) {
+                toast.error("CTC is more than 30 hours old. Use Force Update.");
+                playSound("failed");
+                setFailedList((prev) => [...prev, id]);
+                return;
+            }
         }
+        
+        // Student table ko update karo
+        const { error: updateError } = await supabase
+            .from('students')
+            .update({ 
+                ctc_time: ctc ? new Date().toISOString() : studentData.ctc_time,
+                ctg_time: ctg ? new Date().toISOString() : undefined, // undefined fields update nahi hote
+                task_completed: taskCompleted
+            })
+            .eq('fcc_id', id);
+
+        if (updateError) throw updateError;
+        message = "Student updated successfully.";
+        ctcUpdated = true;
+
       } else {
-        toast.error(message);
-        playSound("failed");
-        setFailedList((prev) => [...prev, id]);
+        // 3. Agar student nahi hai, to naya insert karo
+        const { error: insertError } = await supabase
+            .from('students')
+            .insert({
+                fcc_id: id,
+                ctc_time: ctc ? new Date().toISOString() : null,
+                ctg_time: ctg ? new Date().toISOString() : null,
+                task_completed: taskCompleted,
+            });
+        
+        if (insertError) throw insertError;
+        message = "New student added and updated.";
+        ctcUpdated = true;
+      }
+      
+      // 4. Attendance log me 'upsert' karo (hamesha)
+      const { error: logError } = await supabase
+        .from('attendance_log')
+        .upsert({
+            fcc_id: id,
+            log_date: new Date().toISOString().split('T')[0], // YYYY-MM-DD
+            ctc_time: ctc ? new Date().toISOString() : undefined,
+            ctg_time: ctg ? new Date().toISOString() : undefined,
+            task_completed: taskCompleted,
+        }, { onConflict: 'fcc_id, log_date' }); // Yeh ahem hai
+
+      if (logError) throw logError;
+      
+      // 5. Task submission aur leaderboard logic (agar CTC mark hua hai)
+      if (ctc) {
+        // Student ka class pata karo
+        const { data: classData, error: classError } = await supabase
+            .from('new_student_admission')
+            .select('fcc_class')
+            .eq('fcc_id', id)
+            .single();
+
+        if (classError && classError.code !== 'PGRST116') throw classError;
+        
+        if (classData && classData.fcc_class) {
+            const task_name = `Attendance-${new Date().toLocaleDateString('en-GB')}`;
+            const score = 10;
+            
+            // task_submissions me insert karo
+            const { error: submissionError } = await supabase
+                .from('task_submissions')
+                .insert({ fcc_id: id, fcc_class: classData.fcc_class, task_name, score_obtained: score });
+            if (submissionError) throw submissionError;
+
+            // leaderboard me insert karo
+            const { error: leaderboardError } = await supabase
+                .from('leaderboard')
+                .insert({ fcc_id: id, fcc_class: classData.fcc_class, task_name, score });
+            if (leaderboardError) throw leaderboardError;
+        }
+      }
+
+      // Sab kuch safal!
+      toast.success(message);
+      playSound("success");
+      setSuccessList((prev) => [...prev, id]);
+      if (autoScan) {
+        setTimeout(() => {
+          setFccId("");
+          setScanning(true);
+        }, MIN_SCAN_DELAY);
+      } else {
         setFccId("");
       }
+
     } catch (error) {
-      const errorMessage = error.response?.data?.message || "Something went wrong.";
+      const errorMessage = error.message || "Something went wrong.";
+      console.error("Supabase operation failed:", error);
       toast.error(errorMessage);
       playSound("failed");
       setFailedList((prev) => [...prev, id]);

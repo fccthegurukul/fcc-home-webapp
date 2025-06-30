@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaTachometerAlt, FaPhoneAlt, FaGamepad, FaTools, FaSignInAlt, FaUserPlus, FaSignOutAlt, FaBars } from "react-icons/fa";
+import {
+  FaHome,
+  FaTachometerAlt,
+  FaSignInAlt,
+  FaUserPlus,
+  FaSignOutAlt,
+  FaBars,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
 import './Navbar.css';
 
 const Navbar = ({ isLoggedIn, handleLogout }) => {
@@ -58,14 +66,30 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
           <ul className={`fcc-nav-links ${isMenuOpen ? 'active' : ''}`}>
             <li><Link to="/" className="fcc-nav-link"><FaHome /> होम</Link></li>
             <li><Link to="/dashboard" className="fcc-nav-link"><FaTachometerAlt /> डैशबोर्ड</Link></li>
+
+            {/* Commented unused items */}
+            {/*
             <li className="fcc-highlight"><Link to="/troubleshooting" className="fcc-nav-link"><FaTools /> समस्या निवारण</Link></li>
             <li className="fcc-highlight"><Link to="/contact" className="fcc-nav-link"><FaPhoneAlt /> संपर्क करें</Link></li>
             <li><Link to="/puzzle-game" className="fcc-nav-link"><FaGamepad /> गेम</Link></li>
+            */}
+
+            {/* ✅ External links */}
+            <li>
+              <a href="http://resultbuzz.com/" className="fcc-nav-link" target="_blank" rel="noopener noreferrer">
+                <FaExternalLinkAlt /> ResultBuzz
+              </a>
+            </li>
+            <li>
+              <a href="https://fccthegurukul.in/" className="fcc-nav-link" target="_blank" rel="noopener noreferrer">
+                <FaExternalLinkAlt /> FCC The Gurukul
+              </a>
+            </li>
 
             {!isLoggedIn ? (
               <>
-                <li><Link to="/login" className="fcc-nav-link"><FaSignInAlt /> लॉगिन</Link></li>
-                <li><Link to="/register" className="fcc-nav-link"><FaUserPlus /> रजिस्टर</Link></li>
+                {/* <li><Link to="/login" className="fcc-nav-link"><FaSignInAlt /> लॉगिन</Link></li> */}
+                {/* <li><Link to="/register" className="fcc-nav-link"><FaUserPlus /> रजिस्टर</Link></li> */}
               </>
             ) : (
               <li>
@@ -78,7 +102,6 @@ const Navbar = ({ isLoggedIn, handleLogout }) => {
         </div>
       </nav>
 
-      {/* Popup Show Button only for Desktop */}
       {!isNavbarVisible && (
         <button className="fcc-show-navbar-popup" onClick={toggleNavbarVisibility}>
           <FaBars /> नैवबार दिखाएं

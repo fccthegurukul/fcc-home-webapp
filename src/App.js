@@ -38,7 +38,22 @@ import LeaderBoard from './components/component2/LeaderBoard';
 import { v4 as uuidv4 } from 'uuid'; // For unique session IDs
 import OneSignal from 'react-onesignal'; // OneSignal import
 import FeeStatusManager from './components/component2/FeeStatusManager'; // नया कंपोनेंट इम्पोर्ट करें
+import LiveVideoEmbed from './pages/livestream/livevideoembed'; // Import the LiveVideoEmbed component
+import LiveVideoManage from './pages/livestream/livestreammanage'; // Import the LiveVideoManage component
+import TeacherProtectedRoute from "./components/TeacherProtectedRoute";
+import ActivityDashboard from './pages/ActivityDashboard';
+import DailyReportDashboard from './components/DailyReportDashboard';
+import ReactGA from "react-ga4";
 
+// 👇 Custom hook for page view tracking
+const usePageTracking = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+        // Page view only (no re-initialize)
+        ReactGA.send({ hitType: "pageview", page: location.pathname });
+    }, [location]);
+};
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const location = useLocation();
@@ -46,6 +61,12 @@ const App = () => {
     const sessionId = React.useRef(uuidv4()); // Unique session ID for tracking
     const [deferredPrompt, setDeferredPrompt] = useState(null);
     const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+
+      useEffect(() => {
+        ReactGA.initialize("G-CKZHN5ZG9M");
+    }, []);
+
+    usePageTracking();
 
     // OneSignal Initialization
     useEffect(() => {
@@ -217,6 +238,8 @@ const App = () => {
         return children;
     };
 
+    
+
     return (
         <div className="App">
             <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
@@ -229,22 +252,28 @@ const App = () => {
             <div className="content-area">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/student-attendance" element={<AdminProtectedRoute><StudentsAttendance /></AdminProtectedRoute>} />
                     <Route path="/student-list" element={<AdminProtectedRoute><StudentList /></AdminProtectedRoute>} />
                     <Route path="/download-upload-data" element={<AdminProtectedRoute><FileUpload /></AdminProtectedRoute>} />
                     <Route path="/fee-management" element={<AdminProtectedRoute><FeeManagement /></AdminProtectedRoute>} />
                     <Route path="/student-management" element={<AdminProtectedRoute><StudentManagement /></AdminProtectedRoute>} />
-                    <Route path="/task-submition" element={<AdminProtectedRoute><TaskSubmissionPage /></AdminProtectedRoute>} />
-                    <Route path="/taskcheck" element={<AdminProtectedRoute><Taskcheck /></AdminProtectedRoute>} />
-                    <Route path="/student-admission" element={<AdminProtectedRoute><StudentAdmission /></AdminProtectedRoute>} />
                     <Route path="/report" element={<AdminProtectedRoute><Report /></AdminProtectedRoute>} />
                     <Route path="/dashboard" element={<AdminProtectedRoute><Dashboard /></AdminProtectedRoute>} />
                     <Route path="/Livevideosmanage" element={<AdminProtectedRoute><Livevideosmanage /></AdminProtectedRoute>} />
                     <Route path="/TeacherActivityManagement" element={<AdminProtectedRoute><TeacherActivityManagement /></AdminProtectedRoute>} />
                     <Route path="/fee-status-manager" element={<AdminProtectedRoute><FeeStatusManager /></AdminProtectedRoute>} /> {/* Add the new route */}
                     {/* Public Routes */}
-                    <Route path="/card-hub" element={<CardHub />} />
-                    <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
+                 {/* <Route path="/student-attendance" element={<StudentsAttendance />} />
+<Route path="/task-submition" element={<TaskSubmissionPage />} />
+<Route path="/taskcheck" element={<Taskcheck />} /> */}
+<Route path="/activity-dashboard" element={<TeacherProtectedRoute><ActivityDashboard /></TeacherProtectedRoute>} />
+<Route path="/student-attendance"  element={    <TeacherProtectedRoute> <StudentsAttendance /> </TeacherProtectedRoute>}/>
+<Route  path="/task-submition"  element={    <TeacherProtectedRoute>      <TaskSubmissionPage />    </TeacherProtectedRoute>  }/>
+<Route  path="/taskcheck"  element={ <TeacherProtectedRoute>  <Taskcheck /> </TeacherProtectedRoute>  }/>
+ <Route path="/student-admission" element={<TeacherProtectedRoute><StudentAdmission /></TeacherProtectedRoute>} />
+ <Route path="/daily-report-dashboard" element={<TeacherProtectedRoute><DailyReportDashboard /></TeacherProtectedRoute>} />
+
+<Route path="/card-hub" element={<CardHub />} />
+<Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />
                     <Route path="/quiz/:skill_topic" element={<Quiz />} />
                     <Route path="/leaderboard" element={<LeaderboardPage />} />
                     <Route path="/classroom" element={<Classroom />} />
@@ -260,6 +289,8 @@ const App = () => {
                     <Route path="/student/:fccId" element={<StudentProfile />} />
                     <Route path="/troubleshooting" element={<Troubleshooting />} />
                     <Route path="/LeaderBoard-Group" element={<LeaderBoard />} />
+                    <Route path="/live-video-embed" element={<LiveVideoEmbed />} />
+                    <Route path="/live-video-manage" element={<LiveVideoManage />} />
                     {/* <Route path="*" element={<Navigate to="/" />} /> */}
                 </Routes>
             </div>
@@ -278,13 +309,13 @@ const App = () => {
                 >
                     <i className="fas fa-calendar-day"></i><span>उपस्थिति</span>
                 </Link>
-                <Link
+                {/* <Link
                     to="/card-hub"
                     className={`bottom-nav-link ${location.pathname === '/card-hub' ? 'active' : ''}`}
                     onClick={() => handleNavClick('/card-hub')}
                 >
                     <i className="fas fa-graduation-cap"></i><span>स्किल</span>
-                </Link>
+                </Link> */}
                 <Link
                     to="/leaderboard"
                     className={`bottom-nav-link ${location.pathname === '/leaderboard' ? 'active' : ''}`}
@@ -299,13 +330,13 @@ const App = () => {
                 >
                     <i className="fas fa-chalkboard-teacher"></i><span>क्लासरूम</span>
                 </Link>
-                <Link
+                {/* <Link
                     to="/aihub"
                     className={`bottom-nav-link ${location.pathname === '/aihub' ? 'active' : ''}`}
                     onClick={() => handleNavClick('/aihub')}
                 >
                     <i className="fas fa-brain"></i><span>AI</span>
-                </Link>
+                </Link> */}
             </nav>
             <Analytics />
             <SpeedInsights />

@@ -1,430 +1,534 @@
-/* बेस रीसेट और बेसिक सेटिंग्स */
+/* Modern CSS Reset और Base Styles */
 :global(*),
 :global(*::before),
 :global(*::after) {
   box-sizing: border-box;
-}
-
-:global(body),
-.profileHeading,
-.recentProfilesHeading,
-.profileCardHeading,
-.feeDetailsHeading,
-.searchInput,
-.searchButton,
-.scanButton,
-.scanCancelButton,
-.viewCtcCtgButton,
-.cardHubButton,
-.viewLeaderboardButton,
-.viewClassroomButton {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
 }
 
-/* मुख्य कंटेनर */
+:global(body) {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+ 
+/* Main Container */
 .profileContainer {
-  max-width: 100%;
+  max-width: 420px;
   margin: 0 auto;
-  padding: 5px;
-  padding-bottom: 80px;
-  padding-top: 60px;
-  background-color: #f9f9f9;
+  padding: 16px;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  min-height: 100vh;
+  background: transparent;
 }
 
-/* हेडिंग स्टाइल */
+/* Modern Glass Card Effect */
+.glassCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
 .profileHeading {
   text-align: center;
-  margin-bottom: 15px;
-  color: #333;
-  font-size: 24px;
+  margin-bottom: 32px;
+  color: rgb(124, 0, 0);
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 800;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* सर्च बार स्टाइल */
+
+/* Search Section */
 .searchBar {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-  margin-bottom: 15px;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .searchInput {
-  flex: 1;
-  min-width: 0;
-  padding: 8px 12px;
-  font-size: 14px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.3s;
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 2px dotted #cbd5e0; /* dotted border with light gray color */
+  border-radius: 16px;
+  background: #f8fafc;
+  color: #2d3748;
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  opacity: 0.9; /* default slightly transparent */
 }
 
 .searchInput:focus {
-  border-color: #4A90E2;
-  outline: none;
+  border-color: #667eea; /* bluish border on focus */
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2), 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  opacity: 1; /* full opacity on focus */
 }
 
-/* सामान्य बटन स्टाइल */
-.searchButton,
-.scanButton,
-.scanCancelButton,
-.viewCtcCtgButton,
-.cardHubButton,
-.viewLeaderboardButton,
-.viewClassroomButton {
-  padding: 8px 12px;
-  font-size: 13px;
+.searchInput::placeholder {
+  color: #a0aec0;
+  font-weight: 400;
+}
+
+/* Base style for modern buttons (used by search, scan, etc.) */
+.modernButton {
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
   border: none;
-  border-radius: 5px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-/* सर्च बटन */
-.searchButton {
-  background-color: #4A90E2;
-  color: #fff;
-  width: 100%;
-}
-
-.searchButton:hover:not(:disabled) {
-  background-color: #3a7acb;
-}
-
-/* QR स्कैन बटन */
-.scanButton {
-  background-color: #28a745;
-  color: #fff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  width: 100%;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  outline: none;
 }
 
-.scanButton:hover:not(:disabled) {
-  background-color: #218838;
-}
-
-/* स्कैन रद्द करने का बटन */
-.scanCancelButton {
-  background-color: #dc3545;
-  color: #fff;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.scanCancelButton:hover {
-  background-color: #c82333;
-}
-
-/* डिसएबल्ड बटन */
-:global(button:disabled) {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* लोडर कंटेनर */
-.loaderContainer {
-  text-align: center;
-  margin: 15px 0;
-}
-
-.loaderText {
-  margin-top: 8px;
-  color: #555;
-  font-size: 14px;
-}
-
-/* एरर मैसेज */
-.errorMessage {
-  color: #dc3545;
-  margin: 8px 0;
-  text-align: center;
-  font-size: 14px;
-}
-
-/* QR स्कैनर कंटेनर */
-.qrScannerContainer {
-  margin: 15px 0;
-  padding: 10px;
-  background-color: #fff;
-  border: 2px dashed #4A90E2;
-  border-radius: 6px;
-  text-align: center;
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-}
-
-.qrScannerView {
+.modernButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
   width: 100%;
   height: 100%;
-  display: block;
-  object-fit: cover;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
 }
 
-/* हाल ही में देखे गए प्रोफाइल */
+.modernButton:hover::before {
+  left: 100%;
+}
+
+.modernButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.modernButton:active {
+  transform: translateY(-1px);
+}
+
+.modernButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Search Button */
+.searchButton {
+  /* Inherits from .modernButton */
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  outline: none;
+  /* Specific styles */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* QR Scan Button */
+.scanButton {
+  /* Inherits from .modernButton */
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  outline: none;
+  /* Specific styles */
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  box-shadow: 0 8px 20px rgba(72, 187, 120, 0.3);
+}
+
+/* Cancel Button */
+.scanCancelButton {
+  /* Inherits from .modernButton */
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  outline: none;
+  /* Specific styles */
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  color: white;
+  margin-top: 16px;
+  box-shadow: 0 8px 20px rgba(245, 101, 101, 0.3);
+}
+
+
+/* QR Scanner Container */
+.qrScannerContainer {
+  margin: 24px 0;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px dashed #667eea;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Recent Profiles Section */
 .recentProfiles {
-  margin-top: 20px;
+  margin: 32px 0;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .recentProfilesHeading {
-  margin-bottom: 10px;
-  color: #333;
-  font-size: 16px;
+  margin-bottom: 20px;
+  color: #2d3748;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
 }
 
 .recentProfilesSlider {
   display: flex;
-  gap: 10px;
+  gap: 16px;
   overflow-x: auto;
-  padding-bottom: 10px;
+  padding: 8px 0 16px 0;
+  scroll-behavior: smooth;
+}
+
+.recentProfilesSlider::-webkit-scrollbar {
+  height: 4px;
+}
+
+.recentProfilesSlider::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.recentProfilesSlider::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 4px;
 }
 
 .recentProfileCard {
   position: relative;
-  min-width: 90px;
-  background-color: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 8px;
+  min-width: 100px;
+  padding: 16px 12px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .recentProfileCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 .recentProfilePicture {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 5px;
-  border: 2px solid #4A90E2;
+  margin-bottom: 8px;
+  border: 3px solid #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
 
 .recentProfileName {
   font-size: 12px;
-  color: #333;
-  word-break: break-all;
+  font-weight: 600;
+  color: #2d3748;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.noPhotoText {
-  margin: 6px 0;
-  color: #555;
-  font-size: 14px;
-}
-
-/* Recent profile हटाने का बटन */
 .removeRecentProfile {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  background: transparent;
-  border: none;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: rgba(245, 101, 101, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
   cursor: pointer;
-  color: #dc3545;
+  color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0;
+  z-index: 10; /* Ensure it's on top */
+}
+
+
+.recentProfileCard:hover .removeRecentProfile {
+  opacity: 1;
 }
 
 .removeRecentProfile:hover {
-  color: #c82333;
+  background: #e53e3e;
+  transform: scale(1.1);
 }
 
-/* विद्यार्थी प्रोफाइल कार्ड */
+/* Profile Card */
 .profileCard {
-  background-color: #fff;
-  border-radius: 6px;
-  padding: 15px;
-  margin-top: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  animation: fadeIn 0.5s forwards;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px 24px;
+  margin-top: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.profileCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #48bb78, #f093fb);
+  background-size: 300% 100%;
+  animation: gradientShift 3s ease infinite;
 }
 
 .profileCardHeading {
-  margin-bottom: 10px;
-  color: #333;
-  font-size: 18px;
+  margin-bottom: 24px;
+  color: #2d3748;
+  font-size: 22px;
+  font-weight: 800;
   text-align: center;
+  letter-spacing: -0.3px;
 }
 
 .profilePicture {
   display: block;
-  margin: 0 auto 10px auto;
-  width: 100px;
-  height: 100px;
+  margin: 0 auto 24px auto;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #4A90E2;
+  border: 4px solid white;
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+  transition: transform 0.3s ease;
 }
 
+.profilePicture:hover {
+  transform: scale(1.05);
+}
+
+/* ✅ MODIFIED: Profile text is now left-aligned */
 .profileText {
-  margin: 6px 0;
-  color: #555;
-  line-height: 1.4;
-  font-size: 14px;
+  margin: 12px 0;
+  color: #4a5568;
+  line-height: 1.6;
+  font-size: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  text-align: left; /* Ensures the whole line is aligned to the left */
+}
+
+.profileText:last-of-type {
+  border-bottom: none;
 }
 
 .profileText strong {
-  color: #333;
+  color: #2d3748;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 120px; /* Aligns the labels neatly */
+  margin-right: 8px; /* Adds space between label and value */
 }
 
-/* बटन ग्रुप */
-.buttonGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 15px 0;
+.noPhotoText {
+  margin: 16px 0;
+  color: #718096;
+  font-size: 14px;
+  text-align: center;
+  font-style: italic;
 }
 
-/* कॉमन बटन स्टाइल्स */
-.buttonGroup button,
-.cardHubButton,
-.viewLeaderboardButton,
-.viewClassroomButton {
-  display: block;
-  width: 100%;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-/* View CTC/CTG Button */
-.viewCtcCtgButton {
-  background-color: #4A90E2;
-  color: #fff;
-}
-
-.viewCtcCtgButton:hover {
-  background-color: #357ABD;
-  transform: scale(1.02);
-}
-
-/* Card Hub Button */
-.cardHubButton {
-  background-color: #28a745;
-  color: #fff;
-  margin-top: 10px;
-}
-
-.cardHubButton:hover {
-  background-color: #218838;
-  transform: scale(1.02);
-}
-
-/* View Leaderboard Button */
-.viewLeaderboardButton {
-  background-color: #6d3615;
-  color: #fff;
-  margin-top: 10px;
-}
-
-.viewLeaderboardButton:hover {
-  background-color: #a72403;
-  transform: scale(1.02);
-}
-
-/* View Classroom Button */
-.viewClassroomButton {
-  background-color: #ff9800;
-  color: #fff;
-  margin-top: 10px;
-}
-
-.viewClassroomButton:hover {
-  background-color: #e68900;
-  transform: scale(1.02);
-}
-
-/* Button Title & Subtext Styling */
-.buttonTitle {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.buttonSubtext {
-  display: block;
-  font-size: 12px;
-  margin-top: 3px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* फीस विवरण टेबल स्टाइल */
+/* Fee Details Section */
 .feeDetails {
-  margin-top: 15px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 2px dashed #4A90E2;
-  border-radius: 6px;
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(102, 126, 234, 0.05);
+  border: 2px dashed #667eea;
+  border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
 }
 
 .feeDetailsHeading {
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   text-align: center;
   font-size: 18px;
-  color: #333;
+  font-weight: 700;
+  color: #2d3748;
 }
 
 .feeTable {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .feeTableHeader,
 .feeTableCell {
-  padding: 8px;
+  padding: 12px 8px;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(226, 232, 240, 0.8);
   font-size: 14px;
 }
 
 .feeTableHeader {
-  background-color: #4A90E2;
-  color: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
 }
 
 .feeTable tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: rgba(102, 126, 234, 0.05);
 }
 
 .feeLoadingText,
 .noFeeDetailsText {
-  margin: 6px 0;
-  color: #555;
+  margin: 12px 0;
+  color: #718096;
   font-size: 14px;
   text-align: center;
+  font-style: italic;
 }
 
-/* Payment Button */
+/* ✅ NEW: Container for payment-related buttons */
+.paymentActionsContainer {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* ✅ MODIFIED: Payment Button Style */
 .paymentButton {
-  background: linear-gradient(45deg, #28a745, #218838);
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 15px;
-  font-size: 14px;
-  transition: transform 0.2s, background 0.3s;
+    flex: 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    align-items: center;
+    justify-content: center;
+
 }
 
 .paymentButton:hover {
-  transform: scale(1.05);
-  background: linear-gradient(45deg, #218838, #1e7732);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
 }
 
-/* Modal Overlay */
+/* ✅ NEW: WhatsApp Button Style */
+.whatsAppButton {
+    flex: 1;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    padding: 16px 12px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.whatsAppButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+}
+
+
+/* Modal Styles */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -439,141 +543,308 @@
   animation: fadeInOverlay 0.5s ease-out;
 }
 
-/* Modal Card */
 .modalCard {
-  background: #fff;
-  border: 2px dashed #4A90E2;
-  padding: 15px;
-  border-radius: 8px;
+  background: white;
+  border: 2px dashed #667eea;
+  padding: 24px;
+  border-radius: 20px;
   width: 90%;
   max-width: 320px;
   text-align: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   animation: slideIn 0.5s ease-out;
+  position: relative;
 }
 
-/* Modal Close Button */
 .modalCloseButton {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #ff5e57;
+  top: 12px;
+  right: 12px;
+  background: #f56565;
   border: none;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
-  color: #fff;
-  transition: background 0.3s;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .modalCloseButton:hover {
-  background: #e04e47;
+  background: #e53e3e;
+  transform: scale(1.1);
 }
 
-/* UPI QR Image */
 .upiQrImage {
-  width: 150px;
-  height: 150px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 2px solid #4A90E2;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 180px;
+  height: 180px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 3px solid #667eea;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Modal Text */
 .modalText {
-  margin: 6px 0;
-  color: #555;
+  margin: 8px 0;
+  color: #4a5568;
   font-size: 14px;
+  line-height: 1.5;
 }
 
 .modalText strong {
-  color: #333;
+  color: #2d3748;
+  font-weight: 600;
 }
 
-/* Payment Note */
 .paymentNote {
-  margin-top: 10px;
+  margin-top: 16px;
   font-size: 13px;
-  color: #555;
+  color: #718096;
   text-align: center;
   font-style: italic;
+  line-height: 1.4;
 }
 
 .offerExpiredText {
-  color: red;
-  font-weight: bold;
-  margin: 6px 0;
+  color: #e53e3e;
+  font-weight: 700;
+  margin: 8px 0;
   font-size: 14px;
 }
 
-/* Skeleton Loading Styles */
-.skeletonProfileCard {
-  animation: shimmer 1.5s infinite;
-  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
-  background-size: 800px 104px;
+/* Main container for the buttons */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Buttons ke beech me space */
+  margin: 32px 0 16px 0;
+}
+
+/* Sabhi action buttons ke liye base style */
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Text aur icon ko kinaro par rakhta hai */
+  gap: 12px;
+  padding: 16px;
+  border-radius: 24px; /* Zyada gol corner */
+  color: white;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
 }
 
+.actionButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.actionButton:active {
+  transform: translateY(-2px) scale(0.98);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Har button ke liye alag color --- */
+
+.buttonCoachingTime {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 8px 25px rgba(118, 75, 162, 0.3);
+}
+
+.buttonPadeiVavran {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+}
+
+.buttonLeaderboard {
+  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+  box-shadow: 0 8px 25px rgba(237, 137, 54, 0.3);
+}
+
+.buttonClassroom {
+  background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+  box-shadow: 0 8px 25px rgba(159, 122, 234, 0.3);
+}
+
+/* --- Inner elements of the button --- */
+
+/* Icon ka style (image jaisa) */
+.buttonIcon {
+  flex-shrink: 0; /* Icon ko chhota hone se rokega */
+  background: rgba(255, 255, 255, 0.15); /* Halka transparent background */
+  padding: 12px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ✅ FIX: Text container ko jagah dega aur text ko katne se bachayega */
+.buttonTextContainer {
+  flex-grow: 1; /* Bachi hui saari jagah le lega */
+  min-width: 0; /* Yeh text ko wrap hone me madad karta hai, sabse zaroori fix hai */
+}
+
+/* Title style (e.g., "लीडरबोर्ड") */
+/* Title ka style */
+.buttonTitle {
+  font-size: 16px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Subtext style (e.g., "रैंक और टास्क देखें ➤") */
+/* Subtext ka style */
+.buttonSubtext {
+  font-size: 13px;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.buttonIconContainer {
+  /* ✨ This container holds the pill and centers the icon within it */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center; /* ✨ Centers the whole container vertically */
+  flex-shrink: 0;
+  width: 100px; /* ✨ Fixed width for the pill */
+  height: 48px; /* ✨ Fixed height for the pill */
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 24px; /* ✨ Fully rounded pill shape */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Loading States */
+.loaderContainer {
+  text-align: center;
+  margin: 32px 0;
+}
+
+.loaderText {
+  margin-top: 16px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Skeleton Loading */
+.skeletonProfileCard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 32px 24px;
+  animation: skeletonPulse 1.5s ease-in-out infinite alternate;
+}
+
 .skeletonCircle {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  margin: 0 auto 10px auto;
-  background-color: #ccc;
+  margin: 0 auto 24px auto;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s infinite;
 }
 
 .skeletonLine {
-  height: 14px;
-  width: 100%;
-  background-color: #ccc;
-  margin: 6px 0;
-  border-radius: 4px;
+  height: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s infinite;
+  border-radius: 8px;
+  margin: 12px 0;
 }
 
 .skeletonLineShort {
-  width: 50%;
-  margin: 6px auto;
+  width: 60%;
+  margin: 12px auto;
 }
 
-/* Toast Notification */
+/* Toast Notifications */
 .toast {
   position: fixed;
-  top: 15px;
-  right: 15px;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 5px;
+  top: 24px;
+  right: 24px;
+  padding: 16px 20px;
+  border-radius: 16px;
   z-index: 1000;
-  animation: slideIn 0.3s forwards;
+  animation: slideInToast 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  font-weight: 500;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .toastInfo {
-  background-color: #4A90E2;
+  background: rgba(102, 126, 234, 0.95);
+  color: white;
 }
 
 .toastWarning {
-  background-color: #f0ad4e;
+  background: rgba(237, 137, 54, 0.95);
+  color: white;
 }
 
 .toastError {
-  background-color: #dc3545;
+  background: rgba(245, 101, 101, 0.95);
+  color: white;
+}
+
+/* Error Message */
+.errorMessage {
+  color: white;
+  background: rgba(245, 101, 101, 0.9);
+  padding: 16px 20px;
+  margin: 16px 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(245, 101, 101, 0.3);
 }
 
 /* Animations */
 @keyframes fadeInOverlay {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInToast {
   from {
     opacity: 0;
     transform: translateX(100%);
@@ -584,103 +855,151 @@
   }
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -800px 0;
-  }
-  100% {
-    background-position: 800px 0;
-  }
+@keyframes skeletonPulse {
+  0% { opacity: 1; }
+  100% { opacity: 0.7; }
 }
 
-/* रिस्पॉन्सिव डिज़ाइन */
-@media (max-width: 600px) {
+@keyframes skeletonShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .profileContainer {
+    padding: 12px;
+    padding-top: 70px;
+    padding-bottom: 90px;
+  }
+
+  .profileHeading {
+    font-size: 28px;
+    margin-bottom: 24px;
+   color: rgb(124, 0, 0);
+  }
+
   .searchBar {
-    flex-direction: column;
-    align-items: stretch;
+    padding: 16px;
   }
 
-  .searchButton,
-  .scanButton {
-    width: 100%;
+  .searchInput {
+    padding: 14px 16px;
+    font-size: 16px;
   }
 
-  .recentProfilesSlider {
-    gap: 8px;
+  .modernButton {
+    padding: 14px 20px;
+    font-size: 15px;
   }
 
-  .recentProfileCard {
-    min-width: 80px;
-  }
-
-  .recentProfilePicture {
-    width: 50px;
-    height: 50px;
+  .profileCard {
+    padding: 24px 20px;
   }
 
   .profilePicture {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .profileText strong {
+    min-width: 100px;
   }
 
-  .profileText {
-    font-size: 13px;
+  .recentProfilesSlider {
+    gap: 12px;
+  }
+
+  .recentProfileCard {
+    min-width: 90px;
+    padding: 12px 8px;
+  }
+
+  .recentProfilePicture {
+    width: 56px;
+    height: 56px;
+  }
+
+  .feeTable {
+    font-size: 12px;
   }
 
   .feeTableHeader,
   .feeTableCell {
-    font-size: 12px;
-    padding: 6px;
+    padding: 8px 4px;
+  }
+  
+  .paymentActionsContainer {
+    flex-direction: column; /* Stack buttons vertically on small screens */
   }
 
-  .feeDetailsHeading {
-    font-size: 16px;
+  .actionButton {
+    padding: 14px 20px;
   }
-
+  
   .buttonTitle {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .buttonSubtext {
-    font-size: 10px;
+    font-size: 12px;
   }
 
-  .qrScannerContainer {
-    max-width: 250px;
+  .toast {
+    left: 12px;
+    right: 12px;
+    top: 20px;
+  }
+
+  .modalCard {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .upiQrImage {
+    width: 150px;
+    height: 150px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 360px) {
   .profileContainer {
-    padding: 10px;
-    padding-top: 70px;
-    width: 375px;
+    padding: 8px;
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
+  .searchBar {
+    padding: 12px;
   }
 
   .profileCard {
-    padding: 10px;
-    text-align: left;
+    padding: 20px 16px;
   }
 
   .profileText {
-    text-align: left;
+    font-size: 14px;
   }
 
-  .searchInput {
-    padding: 6px 10px;
+  .profileText strong {
+    min-width: 90px;
     font-size: 13px;
   }
+}
 
-  .searchButton,
-  .scanButton,
-  .scanCancelButton {
-    padding: 6px 10px;
-    font-size: 12px;
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .profileText {
+    color: #a0aec0;
+  }
+  
+  .profileText strong {
+    color: #e2e8f0;
   }
 }

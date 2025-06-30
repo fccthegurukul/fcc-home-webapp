@@ -1,0 +1,514 @@
+/* Classroom.modern.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- CSS Variables for Easy Theming --- */
+:root {
+  --font-family: 'Poppins', sans-serif;
+  --primary-color: #4A90E2; /* A professional blue */
+  --primary-color-dark: #357ABD;
+  --background-color: #f4f7f9;
+  --surface-color: #ffffff;
+  --text-color-primary: #333;
+  --text-color-secondary: #6c757d;
+  --border-color: #e0e0e0;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --border-radius: 12px;
+  --status-green: #28a745;
+  --status-orange: #fd7e14;
+  --status-red: #dc3545;
+}
+
+/* --- Base & Page Layout --- */
+.classroom-page {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color-primary);
+  padding: 24px;
+  min-height: 100vh;
+}
+
+.classroom-header {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 32px;
+  padding: 16px 24px;
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.classroom-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+}
+
+.main-content, .sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* --- Controls (Select, Search, Date) --- */
+.classroom-select-wrapper, .search-bar-wrapper, .date-filter-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.classroom-select-wrapper label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-color-secondary);
+  margin-bottom: 4px;
+}
+select, input[type="text"], input[type="date"] {
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+select:focus, input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.search-bar-wrapper {
+  position: relative;
+  flex-grow: 1;
+  max-width: 400px;
+}
+.search-bar-wrapper svg {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--text-color-secondary);
+}
+.search-bar-wrapper input {
+  padding-left: 40px;
+  width: 100%;
+}
+
+/* --- General Section & Card Styles --- */
+.content-section {
+  width: 100%;
+}
+.content-section.card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--text-color-primary);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+/* --- Video Grid & Cards --- */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.video-card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.video-thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.video-card:hover .play-overlay {
+  opacity: 1;
+}
+.play-overlay svg {
+  width: 48px;
+  height: 48px;
+  color: white;
+}
+.video-card-content {
+  padding: 16px;
+}
+.video-card-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.video-card-content .video-date {
+  font-size: 0.85rem;
+  color: var(--text-color-secondary);
+  margin: 0;
+}
+
+/* --- Attendance List --- */
+.attendance-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.student-attendance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+.student-attendance-item:hover {
+  background-color: var(--background-color);
+}
+.student-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-initial {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.student-name {
+  font-weight: 500;
+}
+.attendance-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.duration {
+  font-size: 0.8rem;
+  color: var(--text-color-secondary);
+}
+.badge {
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+}
+.badge.status-उपस्थित { background-color: var(--status-green); }
+.badge.status-क्लास_में_है { background-color: var(--status-orange); }
+.badge.status-अनुपस्थित { background-color: var(--status-red); }
+
+/* --- Task List & Cards --- */
+.section-header-with-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.section-header-with-filter .section-title {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.task-card {
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  border-radius: 8px;
+}
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.task-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.task-status-badge {
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+.task-status-badge.active { background-color: var(--status-green); }
+.task-status-badge.expired { background-color: var(--text-color-secondary); }
+.task-description {
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+  margin: 0 0 16px 0;
+}
+.task-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 12px;
+}
+.task-meta strong {
+  color: var(--text-color-primary);
+}
+
+/* --- Feedback & States (Empty, Error, Loading) --- */
+.page-prompt, .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-color-secondary);
+}
+.page-prompt svg, .empty-state svg {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  color: var(--primary-color);
+}
+.page-prompt h2 {
+    font-size: 1.8rem;
+    color: var(--text-color-primary);
+}
+
+.error-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--status-red);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.error-alert svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.error-alert strong { font-weight: 600; }
+.error-alert p { margin: 4px 0 0 0; font-size: 0.9rem; }
+
+.skeleton-card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.skeleton-title, .skeleton-content, .skeleton-footer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+.skeleton-title { height: 24px; margin-bottom: 12px; width: 60%; }
+.skeleton-content { height: 100px; margin-bottom: 12px; }
+.skeleton-footer { height: 16px; width: 40%; }
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Video Modal --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ========================================================= */
+/* === FULLY RESPONSIVE Video Modal (FINAL VERSION) ======== */
+/* ========================================================= */
+.video-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  background-color: black;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive video wrapper */
+.youtube-player-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;  /* Cleaner than padding-bottom trick now */
+  background: black;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.youtube-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+}
+
+/* Close Button */
+.close-modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  line-height: 36px;
+  text-align: center;
+}
+
+
+/* --- Buttons --- */
+.view-more-btn {
+  display: block;
+  width: fit-content;
+  margin: 24px auto 0;
+  padding: 12px 24px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+.view-more-btn:hover {
+  background-color: var(--primary-color-dark);
+  transform: scale(1.05);
+}
+
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+  .classroom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .classroom-page {
+    padding: 16px;
+  }
+  .classroom-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* The badge will drop below the title if needed. */
+@media (max-width: 480px) {
+  .task-header {
+    flex-wrap: wrap;
+    gap: 8px; /* Adds space between title and badge when it wraps */
+  }
+}
+
+/* --- Fix for Video Modal on all mobile/tablet screens --- */
+@media (max-width: 768px) {
+  /* Give the whole overlay some padding so the video doesn't touch the edges */
+  .video-modal-overlay {
+      padding: 16px;
+      /* This ensures padding is calculated correctly with the flex centering */
+      box-sizing: border-box; 
+  }
+
+  /* Reposition the close button to be INSIDE the modal and easily tappable */
+  .close-modal-btn {
+    /* Override desktop positioning */
+    top: 8px;
+    right: 8px;
+
+    /* Make it a proper touch target */
+    width: 36px;
+    height: 36px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 36px; /* Vertically center the '×' */
+    text-align: center;
+    padding: 0;
+  }
+}

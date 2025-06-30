@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './TaskSubmissionPage.css'; // Import CSS file
+import './TaskSubmissionPage.css';
+import { supabase } from '../utils/supabaseClient'; // SUPABASE CLIENT IMPORT
 
 const TaskSubmissionPage = () => {
+    // States (कोई बदलाव नहीं)
     const [taskName, setTaskName] = useState('');
     const [description, setDescription] = useState('');
     const [maxScore, setMaxScore] = useState('');
@@ -12,34 +14,27 @@ const TaskSubmissionPage = () => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const [classroomNames, setClassroomNames] = useState([]);
+    const [submitting, setSubmitting] = useState(false); // सबमिट करते समय लोडिंग स्टेट
 
-    const API_BASE_URL = process.env.REACT_APP_API_URL;
-
-    const fetchClassroomNames = async () => {
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/classrooms`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "ngrok-skip-browser-warning": "true"
-                }
-            });
-            if (!response.ok) {
-                const message = `HTTP error! status: ${response.status}`;
-                const errorData = await response.json();
-                throw new Error(errorData?.message ? `${message} - Details: ${errorData.message}` : message);
-            }
-            const data = await response.json();
-            setClassroomNames(data);
-        } catch (e) {
-            console.error("Could not fetch classroom names:", e);
-            setError(`Failed to fetch classroom list: ${e.message}`);
-        }
-    };
-
+    // SUPABASE: क्लासरूम के नाम लाने के लिए
     useEffect(() => {
+        const fetchClassroomNames = async () => {
+            try {
+                // हम बनाए गए RPC फंक्शन का उपयोग करेंगे
+                const { data, error } = await supabase.rpc('get_classroom_names');
+                if (error) throw error;
+                
+                const names = data.map(item => item.classroom_name);
+                setClassroomNames(names);
+            } catch (e) {
+                console.error("Could not fetch classroom names:", e.message);
+                setError(`Failed to fetch classroom list: ${e.message}`);
+            }
+        };
         fetchClassroomNames();
     }, []);
 
+    // SUPABASE: नया टास्क सबमिट करने के लिए
     const handleTaskSubmit = async (event) => {
         event.preventDefault();
         setMessage('');
@@ -50,34 +45,26 @@ const TaskSubmissionPage = () => {
             return;
         }
 
-        // Remove "Class " prefix from selectedClass before submitting
+        setSubmitting(true);
+        // "Class " प्रीफिक्स को हटा दें
         const formattedClass = selectedClass.replace("Class ", "").trim();
 
         try {
-            const response = await fetch(`${API_BASE_URL}/api/tasks`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "ngrok-skip-browser-warning": "true"
-                },
-                body: JSON.stringify({
-                    task_name: taskName,
-                    description: description,
-                    max_score: parseInt(maxScore),
-                    start_time: startTime,
-                    end_time: endTime,
-                    class: formattedClass, // Use the formatted class value here
-                    teacher_fcc_id: teacherFCCId,
-                    action_type: 'Task Create'
-                }),
+            // हम बनाए गए RPC फंक्शन को कॉल करेंगे
+            const { data, error: rpcError } = await supabase.rpc('create_new_task', {
+                p_task_name: taskName,
+                p_description: description,
+                p_max_score: parseInt(maxScore),
+                p_start_time: startTime,
+                p_end_time: endTime,
+                p_class: formattedClass,
+                p_teacher_fcc_id: teacherFCCId
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
-            }
+            if (rpcError) throw rpcError;
 
-            setMessage('Task submitted successfully!');
+            setMessage(data.message || 'Task submitted successfully!');
+            // फॉर्म को रीसेट करें
             setTaskName('');
             setDescription('');
             setMaxScore('');
@@ -86,8 +73,10 @@ const TaskSubmissionPage = () => {
             setSelectedClass('');
             setTeacherFCCId('');
         } catch (e) {
-            console.error("Task submission failed:", e);
+            console.error("Task submission failed:", e.message);
             setError(`Failed to submit task: ${e.message}`);
+        } finally {
+            setSubmitting(false);
         }
     };
 
@@ -96,6 +85,7 @@ const TaskSubmissionPage = () => {
         setError('');
     };
 
+    // --- JSX (कोई बड़ा बदलाव नहीं) ---
     return (
         <div className="task-submission-container">
             <h1>Create New Task</h1>
@@ -114,10 +104,10 @@ const TaskSubmissionPage = () => {
                                     onChange={(e) => setTeacherFCCId(e.target.value)}
                                     placeholder="Enter FCC ID"
                                     required
+                                    disabled={submitting}
                                 />
                             </div>
                         </section>
-
                         <section className="form-card task-details-card">
                             <h2>Task Details</h2>
                             <div className="form-group">
@@ -129,6 +119,7 @@ const TaskSubmissionPage = () => {
                                     onChange={(e) => setTaskName(e.target.value)}
                                     placeholder="Enter task name"
                                     required
+                                    disabled={submitting}
                                 />
                             </div>
                             <div className="form-group">
@@ -139,6 +130,7 @@ const TaskSubmissionPage = () => {
                                     onChange={(e) => setDescription(e.target.value)}
                                     placeholder="Enter task description"
                                     required
+                                    disabled={submitting}
                                 />
                             </div>
                             <div className="form-group">
@@ -150,6 +142,7 @@ const TaskSubmissionPage = () => {
                                     onChange={(e) => setMaxScore(e.target.value)}
                                     placeholder="Score"
                                     required
+                                    disabled={submitting}
                                 />
                             </div>
                         </section>
@@ -168,6 +161,7 @@ const TaskSubmissionPage = () => {
                                         value={startTime}
                                         onChange={(e) => setStartTime(e.target.value)}
                                         required
+                                        disabled={submitting}
                                     />
                                 </div>
                                 <div>
@@ -178,11 +172,11 @@ const TaskSubmissionPage = () => {
                                         value={endTime}
                                         onChange={(e) => setEndTime(e.target.value)}
                                         required
+                                        disabled={submitting}
                                     />
                                 </div>
                             </div>
                         </section>
-
                         <section className="form-card class-selection-card">
                             <h2>Class Select</h2>
                             <div className="form-group">
@@ -192,6 +186,7 @@ const TaskSubmissionPage = () => {
                                     value={selectedClass}
                                     onChange={(e) => setSelectedClass(e.target.value)}
                                     required
+                                    disabled={submitting}
                                 >
                                     <option value="">-- Select Class --</option>
                                     {classroomNames.map((className, index) => (
@@ -206,18 +201,17 @@ const TaskSubmissionPage = () => {
                 </div>
 
                 <div className="button-container">
-                    <button type="submit" className="submit-button">Create Task</button>
+                    <button type="submit" className="submit-button" disabled={submitting}>
+                        {submitting ? 'Creating Task...' : 'Create Task'}
+                    </button>
                 </div>
             </form>
 
-            {/* Popup for Success/Error Messages */}
             {(message || error) && (
                 <div className="popup-overlay">
                     <div className={`popup ${message ? 'success' : 'error'}`}>
                         <p>{message || error}</p>
-                        <button className="popup-close" onClick={closePopup}>
-                            Close
-                        </button>
+                        <button className="popup-close" onClick={closePopup}>Close</button>
                     </div>
                 </div>
             )}

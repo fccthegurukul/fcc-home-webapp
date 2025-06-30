@@ -1,0 +1,201 @@
+/* src/components/DailyReportDashboard.css (poora code) */
+
+.report-container {
+    padding: 20px;
+    background-color: #f4f7f9;
+    font-family: Arial, sans-serif;
+}
+
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.report-header h1 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.date-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-picker-wrapper label {
+    font-weight: 500;
+    color: #555;
+}
+
+.date-picker-wrapper input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.filters-panel {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.filter-group select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    min-width: 150px;
+}
+
+.filters-panel .pdf-download-btn {
+    margin-left: auto;
+    height: 38px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0 15px;
+    cursor: pointer;
+    font-weight: 500;
+}
+.filters-panel .pdf-download-btn:hover {
+    background-color: #c9302c;
+}
+
+.report-table-wrapper {
+    overflow-x: auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    min-height: 200px; /* Loading state ke liye height */
+}
+
+/* Naya: Loading aur Error states ke liye */
+.loading-state, .error-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 1.2em;
+    color: #777;
+    font-style: italic;
+}
+
+.error-state {
+    color: #d9534f;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th, .report-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eef2f5;
+    white-space: nowrap;
+}
+
+.report-table th {
+    background-color: #f9fafb;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #667085;
+    font-weight: 600;
+}
+
+.student-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.student-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.student-cell div {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-cell strong {
+    font-weight: 600;
+    color: #101828;
+}
+
+.student-cell span {
+    color: #667085;
+    font-size: 0.9em;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    display: inline-block;
+}
+
+.status-badge.present { background-color: #ecfdf3; color: #027a48; }
+.status-badge.absent { background-color: #fef3f2; color: #b42318; }
+.status-badge.completed { background-color: #f0f9ff; color: #026aa2; }
+.status-badge.pending { background-color: #fffaeb; color: #b54708; }
+.status-badge.not-submitted, .status-badge.— { background-color: #f2f4f7; color: #667085; }
+
+.no-data {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+    font-style: italic;
+}
+
+/* Modal Styles */
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background: white; padding: 25px; border-radius: 8px; width: 90%; max-width: 500px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.modal-content h2 { margin-top: 0; }
+.modal-content .form-group { margin-bottom: 15px; }
+.modal-content label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 14px; }
+.modal-content input[type="text"], .modal-content input[type="tel"], .modal-content textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+.modal-content .radio-group { display: flex; gap: 20px; }
+.modal-content .radio-group label { font-weight: normal; display: flex; align-items: center; gap: 5px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.modal-actions button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+.modal-actions .btn-secondary { background-color: #f0f0f0; color: #333; }
+.modal-actions button[type="submit"] { background-color: #007bff; color: white; }
+.modal-actions button:disabled { background-color: #ccc; cursor: not-allowed; }
+.error-message { color: #d9534f; font-size: 14px; margin-top: 10px; }
+.btn-feedback { background-color: #ffc107; color: #212529; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 12px; }
+.btn-feedback:hover { background-color: #e0a800; }
+.feedback-submitted { color: #28a745; font-weight: bold; font-size: 14px; }

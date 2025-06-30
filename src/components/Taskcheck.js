@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './Taskcheck.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle, faStar, faEraser } from '@fortawesome/free-solid-svg-icons';
+import { supabase } from '../utils/supabaseClient'; // SUPABASE CLIENT IMPORT
 
 const Taskcheck = () => {
+    // States
     const [classroomNames, setClassroomNames] = useState([]);
     const [selectedClassroom, setSelectedClassroom] = useState('');
     const [students, setStudents] = useState([]);
@@ -13,119 +15,70 @@ const Taskcheck = () => {
     const [error, setError] = useState('');
     const [attendanceData, setAttendanceData] = useState([]);
     const [teacherFCCId, setTeacherFCCId] = useState('');
-    const [actionType, setActionType] = useState('Task Check'); // Default Action Type
+    const [loading, setLoading] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
 
-    const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable, already correct
-
+    // SUPABASE: Fetch classroom names (using the function from previous steps)
     useEffect(() => {
         const fetchClassrooms = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/classrooms`, { // Already using API_BASE_URL
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "ngrok-skip-browser-warning": "true" // Added ngrok header
-                    }
-                });
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.json();
-                setClassroomNames(data);
+                const { data, error } = await supabase.rpc('get_classroom_names');
+                if (error) throw error;
+                setClassroomNames(data.map(c => c.classroom_name));
             } catch (e) {
-                console.error("Could not fetch classroom names:", e);
+                console.error("Could not fetch classroom names:", e.message);
                 setError(`Failed to fetch classroom names: ${e.message}`);
             }
         };
         fetchClassrooms();
     }, []);
 
+    // SUPABASE: Fetch all data for the selected class in one go
     useEffect(() => {
-        const fetchTasks = async () => {
-            if (!selectedClassroom) {
-                setTasks([]);
-                return;
-            }
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/tasks?class=${selectedClassroom.split(" ")[1]}`, { // Already using API_BASE_URL
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "ngrok-skip-browser-warning": "true" // Added ngrok header
-                    }
-                });
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.json();
+        if (!selectedClassroom) {
+            setStudents([]);
+            setTasks([]);
+            setAttendanceData([]);
+            return;
+        }
 
-                // Filter tasks to include only active tasks
-                const currentDateTime = new Date();
-                const activeTasks = data.filter(task => {
-                    const startTime = new Date(task.start_time);
-                    const endTime = new Date(task.end_time);
-                    return currentDateTime >= startTime && currentDateTime <= endTime;
-                });
-                setTasks(activeTasks);
-            } catch (e) {
-                console.error("Could not fetch tasks:", e);
-                setError(`Failed to fetch tasks: ${e.message}`);
-            }
-        };
-        fetchTasks();
-    }, [selectedClassroom]);
-
-    useEffect(() => {
-        const fetchStudentsAndAttendance = async () => {
-            if (!selectedClassroom) {
-                setStudents([]);
-                setAttendanceData([]);
-                return;
-            }
-
+        const fetchAllData = async () => {
+            setLoading(true);
             setError('');
             try {
-                // Students Fetch
-                const studentsResponse = await fetch(`${API_BASE_URL}/api/students-by-class?classroomName=${encodeURIComponent(selectedClassroom)}`, { // Already using API_BASE_URL
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "ngrok-skip-browser-warning": "true" // Added ngrok header
-                    }
-                });
-                if (!studentsResponse.ok) throw new Error(`HTTP error! status: ${studentsResponse.status}`);
-                const studentsData = await studentsResponse.json();
-                setStudents(studentsData);
+                const classNumber = selectedClassroom.split(" ")[1];
+                if (!classNumber) return;
 
-                // Initialize student scores state
+                const { data, error } = await supabase.rpc('get_taskcheck_data_for_class', {
+                    p_class_number: classNumber
+                });
+
+                if (error) throw error;
+                
+                setStudents(data.students || []);
+                setTasks(data.active_tasks || []);
+                setAttendanceData(data.attendance || []);
+
+                // Initialize scores state based on fetched students and tasks
                 const initialScores = {};
-                studentsData.forEach(student => {
+                (data.students || []).forEach(student => {
                     initialScores[student.fcc_id] = {};
-                    tasks.forEach(task => {
+                    (data.active_tasks || []).forEach(task => {
                         initialScores[student.fcc_id][task.task_name] = '';
                     });
                 });
                 setStudentScores(initialScores);
-            } catch (e) {
-                console.error("Could not fetch students:", e);
-                setError(`Failed to fetch students: ${e.message}`);
-            }
 
-            try {
-                // Attendance Fetch
-                const attendanceResponse = await fetch(
-                    `${API_BASE_URL}/api/attendance?classroomName=${encodeURIComponent(selectedClassroom)}`, // Already using API_BASE_URL
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            "ngrok-skip-browser-warning": "true" // Added ngrok header
-                        }
-                    }
-                );
-                if (!attendanceResponse.ok) throw new Error(`HTTP error! status: ${attendanceResponse.status}`);
-                const attendanceData = await attendanceResponse.json();
-                setAttendanceData(attendanceData);
             } catch (e) {
-                console.error("Could not fetch attendance data:", e);
-                setError(`Failed to fetch attendance data: ${e.message}`);
+                console.error("Could not fetch task check data:", e.message);
+                setError(`Failed to fetch data: ${e.message}`);
+            } finally {
+                setLoading(false);
             }
         };
 
-        fetchStudentsAndAttendance();
-    }, [selectedClassroom, tasks]);
+        fetchAllData();
+    }, [selectedClassroom]);
 
     const handleClassroomChange = (event) => {
         setSelectedClassroom(event.target.value);
@@ -134,23 +87,17 @@ const Taskcheck = () => {
     const handleScoreChange = (studentId, taskName, score) => {
         setStudentScores(prevScores => ({
             ...prevScores,
-            [studentId]: {
-                ...prevScores[studentId],
-                [taskName]: score,
-            }
+            [studentId]: { ...prevScores[studentId], [taskName]: score }
         }));
     };
 
+    // SUPABASE: Submit scores using the new RPC function
     const handleSubmitScores = async () => {
         setMessage('');
         setError('');
 
         if (!teacherFCCId) {
             setError("Please enter your Teacher FCC ID.");
-            return;
-        }
-        if (!actionType) {
-            setError("Please enter Action Type.");
             return;
         }
 
@@ -173,48 +120,41 @@ const Taskcheck = () => {
             setError("No scores to submit.");
             return;
         }
-
+        
+        setSubmitting(true);
         try {
-            const response = await fetch(`${API_BASE_URL}/api/submit-scores`, { // Already using API_BASE_URL
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "ngrok-skip-browser-warning": "true" // Added ngrok header
-                },
-                body: JSON.stringify({
-                    submissions,
-                    teacher_fcc_id: teacherFCCId,
-                    classroom_name: selectedClassroom,
-                    num_students_submitted: submissions.length,
-                    action_type: actionType
-                }),
+            const { data, error: rpcError } = await supabase.rpc('submit_scores_for_tasks', {
+                submissions: submissions, // Pass the array as JSON
+                p_teacher_fcc_id: teacherFCCId,
+                p_classroom_name: selectedClassroom,
+                p_num_students_submitted: submissions.length,
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
-            }
+            if (rpcError) throw rpcError;
 
-            setMessage('Scores submitted successfully!');
-            setStudentScores(prevState => {
-                const nextState = {};
-                students.forEach(student => {
-                    nextState[student.fcc_id] = {};
-                    tasks.forEach(task => {
-                        nextState[student.fcc_id][task.task_name] = '';
-                    });
+            setMessage(data.message || 'Scores submitted successfully!');
+            // Reset form
+            const initialScores = {};
+            students.forEach(student => {
+                initialScores[student.fcc_id] = {};
+                tasks.forEach(task => {
+                    initialScores[student.fcc_id][task.task_name] = '';
                 });
-                return nextState;
             });
+            setStudentScores(initialScores);
             setTeacherFCCId('');
-            setActionType('Task Check');
         } catch (e) {
-            console.error("Score submission failed:", e);
+            console.error("Score submission failed:", e.message);
             setError(`Failed to submit scores: ${e.message}`);
+        } finally {
+            setSubmitting(false);
         }
     };
 
-    const handleFillZeroScores = () => {
+    // --- Helper buttons ---
+    const absentStudents = attendanceData.filter(student => student.status === 'Absent');
+    
+ const handleFillZeroScores = () => {
         setStudentScores(prevScores => {
             const nextScores = {...prevScores};
             students.forEach(student => {
@@ -257,8 +197,7 @@ const Taskcheck = () => {
         });
     };
 
-    const absentStudents = attendanceData.filter(student => student.status === 'Absent');
-
+    // --- JSX ---
     return (
         <div className="taskcheck-container">
             <aside className="taskcheck-sidebar">
@@ -280,17 +219,15 @@ const Taskcheck = () => {
 
                 <div className="classroom-select-container">
                     <label htmlFor="classroomSelect">Select Classroom:</label>
-                    <select id="classroomSelect" value={selectedClassroom} onChange={handleClassroomChange}>
+                    <select id="classroomSelect" value={selectedClassroom} onChange={handleClassroomChange} disabled={loading || submitting}>
                         <option value="">-- Select classroom --</option>
                         {classroomNames.map((name, index) => (
-                            <option key={index} value={name}>
-                                {name}
-                            </option>
+                            <option key={index} value={name}>{name}</option>
                         ))}
                     </select>
                 </div>
 
-                {selectedClassroom && (
+                {loading ? <p>Loading data...</p> : selectedClassroom && (
                     <div className="task-table-section">
                         <h2>Students in {selectedClassroom}</h2>
                         {students.length > 0 ? (
@@ -306,8 +243,7 @@ const Taskcheck = () => {
                                     </thead>
                                     <tbody>
                                         {students.map(student => {
-                                            const isAbsent = absentStudents.some(absentStudent => absentStudent.name === student.name);
-
+                                            const isAbsent = absentStudents.some(absentStudent => absentStudent.fcc_id === student.fcc_id);
                                             return (
                                                 <tr key={student.fcc_id} className={isAbsent ? 'absent-student-row' : ''}>
                                                     <td>{student.name} {isAbsent ? '(Absent)' : ''}</td>
@@ -319,7 +255,7 @@ const Taskcheck = () => {
                                                                 onChange={(e) => handleScoreChange(student.fcc_id, task.task_name, e.target.value)}
                                                                 min="0"
                                                                 max={task.max_score}
-                                                                disabled={isAbsent}
+                                                                disabled={isAbsent || submitting}
                                                             />
                                                         </td>
                                                     ))}
@@ -329,39 +265,23 @@ const Taskcheck = () => {
                                     </tbody>
                                 </table>
                             </div>
-                        ) : (
-                            <p>No students in this classroom.</p>
-                        )}
+                        ) : <p>No students in this classroom.</p>}
 
                         {tasks.length > 0 && students.length > 0 && (
                             <div className="actions-container">
                                 <div className="input-group">
                                     <label htmlFor="teacherFCCId">Teacher FCC ID:</label>
-                                    <input
-                                        type="password"
-                                        id="teacherFCCId"
-                                        value={teacherFCCId}
-                                        onChange={(e) => setTeacherFCCId(e.target.value)}
-                                        placeholder="Enter FCC ID"
-                                    />
+                                    <input type="password" id="teacherFCCId" value={teacherFCCId} onChange={(e) => setTeacherFCCId(e.target.value)} placeholder="Enter FCC ID" disabled={submitting}/>
                                 </div>
                                 <div className="buttons-group">
-                                    <button className="btn btn-submit" onClick={handleSubmitScores}>
-                                        <FontAwesomeIcon icon={faCheckCircle} className="button-icon" /> Submit
-                                    </button>
-                                    <button className="btn btn-zero" onClick={handleFillZeroScores}>
-                                        <FontAwesomeIcon icon={faTimesCircle} className="button-icon" /> Fill 0
-                                    </button>
-                                    <button className="btn btn-max" onClick={handleFillMaxScores}>
-                                        <FontAwesomeIcon icon={faStar} className="button-icon" /> Fill Max
-                                    </button>
-                                    <button className="btn btn-clear" onClick={handleClearAllScores}>
-                                        <FontAwesomeIcon icon={faEraser} className="button-icon" /> Clear All
-                                    </button>
+                                    <button className="btn btn-submit" onClick={handleSubmitScores} disabled={submitting}><FontAwesomeIcon icon={faCheckCircle} /> {submitting ? 'Submitting...' : 'Submit'}</button>
+                                    <button className="btn btn-zero" onClick={handleFillZeroScores} disabled={submitting}><FontAwesomeIcon icon={faTimesCircle} /> Fill 0</button>
+                                    <button className="btn btn-max" onClick={handleFillMaxScores} disabled={submitting}><FontAwesomeIcon icon={faStar} /> Fill Max</button>
+                                    <button className="btn btn-clear" onClick={handleClearAllScores} disabled={submitting}><FontAwesomeIcon icon={faEraser} /> Clear All</button>
                                 </div>
                             </div>
                         )}
-                        {tasks.length === 0 && selectedClassroom && <p>No tasks available for {selectedClassroom}.</p>}
+                        {tasks.length === 0 && selectedClassroom && !loading && <p>No active tasks available for {selectedClassroom}.</p>}
                     </div>
                 )}
             </main>

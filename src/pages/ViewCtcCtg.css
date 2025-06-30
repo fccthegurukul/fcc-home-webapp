@@ -1,345 +1,590 @@
-/* ViewCtcCtg.css - 100% Mobile Friendly, No Left/Right Padding */
+/*
+  File: src/components/ViewCtcCtg.css
+  Design: "Modern Admin Dashboard"
+  Focus: Clarity, Data Hierarchy, Professionalism, and Responsiveness.
+*/
 
-.view-ctc-ctg-container {
-  max-width: 100%; /* स्क्रीन की पूरी चौड़ाई */
-  margin: 0; /* मार्जिन हटाया */
-  padding: 15px 0; /* टॉप और बॉटम पैडिंग, लेफ्ट-राइट 0 */
-  background: #f9f9f9;
-  border-radius: 0; /* किनारों पर राउंडेड हटाया */
-  box-shadow: none; /* मोबाइल में शैडो हटाया */
-  font-family: "Arial", sans-serif;
-  min-height: calc(100vh - 140px); /* Navbar (60px) और BottomNav (80px) के लिए */
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  box-sizing: border-box;
+/* --- CSS Variables: The Foundation for a Consistent Theme --- */
+:root {
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --primary-color: #4f46e5; /* A strong, modern indigo */
+  --primary-color-light: #e0e7ff;
+  --background-color: #f3f4f6; /* A very light, neutral grey */
+  --surface-color: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-color: #e5e7eb;
+  --success-color: #16a34a;
+  --danger-color: #dc2626;
+  --warning-color: #f59e0b;
+  --border-radius: 0.75rem; /* 12px for a softer look */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
 
-/* बैक बटन ग्रुप */
-.back-button-group {
+/* Add these styles to your ViewCtcCtg.css file */
+
+.logs-table .absent-row {
+  background-color: #f9f9f9;
+  color: #888;
+  font-style: italic;
+}
+
+.logs-table .absent-row td {
+  color: #999;
+}
+
+.status-pill {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+  text-transform: capitalize;
+}
+
+.status-pill.present {
+  background-color: #27ae60; /* Green */
+}
+
+.status-pill.absent {
+  background-color: #c0392b; /* Red */
+}
+
+.download-pdf-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.feedback-state {
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+.feedback-state.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+/* --- Base Page Layout --- */
+.view-ctc-ctg-container {
+  font-family: var(--font-family-sans);
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  padding: 1rem 1.5rem 3rem 1.5rem; /* More padding at bottom */
+  max-width: 1024px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* --- Header Controls: A Cohesive Top Bar --- */
+.header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 50px;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background-color: var(--surface-color);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.back-button:hover {
+  background-color: #f9fafb;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Redesigned Profile Switcher for a premium feel */
+.profile-switcher-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0 0 15px 0; /* लेफ्ट-राइट मार्जिन 0 */
-  padding: 0 10px; /* अंदर थोड़ा पैडिंग ताकि कंटेंट किनारे से चिपके न */
+  gap: 0.75rem;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50px; /* Pill shape */
+  padding: 0.3rem 0.3rem 0.3rem 0.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
+}
+.profile-switcher-wrapper:hover {
+  box-shadow: var(--shadow-md);
 }
 
-/* प्रोफाइल इमेज */
 .current-profile-image {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #0052cc;
-  flex-shrink: 0;
+  border: 2px solid var(--primary-color-light);
 }
 
-/* प्रोफाइल स्विचर */
 .profile-switcher {
-  padding: 6px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  background: white;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
   cursor: pointer;
-  transition: 0.3s ease-in-out;
-  font-size: 14px;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 0.5rem 2rem 0.5rem 0.5rem; /* Space for the arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1.25em 1.25em;
+}
+.profile-switcher:focus {
+  outline: none;
 }
 
-/* होवर इफेक्ट */
-.profile-switcher:hover {
-  border-color: #0052cc;
+/* --- Main Info Card: The Hero Element --- */
+.student-info-card {
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* CTC/CTG डिटेल्स */
-.ctc-ctg-details {
-  background: white;
-  padding: 12px 10px; /* लेफ्ट-राइट पैडिंग कम */
-  border-radius: 0; /* राउंडेड हटाया */
-  box-shadow: none; /* शैडो हटाया */
-  text-align: left;
-  margin: 15px 0; /* टॉप-बॉटम मार्जिन, लेफ्ट-राइट 0 */
+.student-info-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.student-main-image {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 4px var(--surface-color), 0 0 0 6px var(--primary-color);
+}
+.student-info-header-text h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.student-info-header-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-family: monospace;
 }
 
-/* सेक्शन टाइटल */
-.section-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #0052cc;
-  margin-bottom: 8px;
-  padding: 0 5px; /* थोड़ा पैडिंग ताकि किनारे से चिपके न */
+/* A structured grid for details looks much better than a list */
+/* .info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+}
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+.info-item p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+.info-item strong {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.info-item .status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.status-badge.completed { color: var(--success-color); }
+.status-badge.pending { color: var(--danger-color); } */
+
+/* --- ADD THESE NEW RULES for a highlighted, gradient effect --- */
+
+/* Add a new accent color to our theme variables at the top of the file */
+:root {
+  /* ... (keep all your existing variables) ... */
+  --primary-color-accent: #7c3aed; /* A vibrant purple to complement the indigo */
 }
 
-/* डिटेल आइटम */
-.detail-item p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #333;
-  text-align: left;
-  line-height: 1.4;
-  padding: 0 5px; /* थोड़ा पैडिंग ताकि किनारे से चिपके न */
+.info-list {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--border-color);
 }
 
-/* फिल्टर्स */
-.filters {
-  margin: 12px 0;
-  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
+.info-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0; /* 12px */
+  font-size: 1rem;
 }
 
-.filters select {
-  padding: 6px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background: white;
+.info-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.info-value {
+  color: var(--text-primary);
+  font-weight: 600; /* Bolder than the label */
+  text-align: right;
+}
+
+/* 
+  THIS IS THE NEW HIGHLIGHT STYLE FOR THE TIME VALUES 
+*/
+.info-value-highlight {
+  /* 1. Create the gradient background */
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-color-accent));
+  
+  /* 2. Clip the background to the text shape */
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* 3. Make the text color transparent to reveal the gradient */
+  color: transparent;
+
+  /* Optional: Add a subtle glow for more pop */
+  text-shadow: 0 0 15px rgba(79, 70, 229, 0.1);
+}
+
+/* 
+  IMPROVED Badge Styling for Homework Status
+  This makes them look more like modern tags.
+*/
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem; /* 4px 12px */
+  border-radius: 50px; /* Pill shape */
+  font-size: 0.9rem;
+}
+
+.status-badge.completed { 
+  color: #14532d; /* Darker green for high contrast */
+  background-color: #dcfce7; /* Light green background */
+}
+
+.status-badge.pending { 
+  color: #991b1b; /* Darker red for high contrast */
+  background-color: #fee2e2; /* Light red background */
+}
+
+/* --- Logs Section: Clear and Readable Data --- */
+.logs-section {
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+}
+
+.log-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.log-filters h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.log-filters select {
+  padding: 0.6rem 2.5rem 0.6rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background-color: var(--surface-color);
+  font-size: 0.9rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1.25em 1.25em;
   cursor: pointer;
-  font-size: 14px;
-  width: 100%;
-  box-sizing: border-box;
 }
 
-/* टेबल कंटेनर */
-.table-container {
-  overflow-x: auto;
-  margin: 12px 0;
-  flex: 1; /* बाकी जगह ले */
-  width: 100%;
+.logs-table-wrapper {
+  overflow-x: auto; /* The key to responsive tables */
 }
-
-/* लॉग डिटेल्स टेबल */
-.log-details {
-  margin: 15px 0;
-  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
-}
-
-.log-details h2 {
-  font-size: 18px;
-  color: #0052cc;
-  margin-bottom: 10px;
-}
-
-.log-details table {
+.logs-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  text-align: left;
+  white-space: nowrap; /* Prevents ugly text wrapping */
+}
+.logs-table th, .logs-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+.logs-table thead th {
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  background-color: #f9fafb;
+}
+.logs-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.logs-table tbody tr:hover {
+  background-color: var(--primary-color-light);
 }
 
-.log-details th,
-.log-details td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-  word-wrap: break-word;
-}
-
-.log-details th {
-  background: #0052cc;
-  color: white;
-  font-weight: bold;
-  font-size: 13px;
-}
-
-.log-details td {
-  font-size: 13px;
-}
-
-/* बटन ग्रुप */
-.button-group {
+/* --- Action Buttons & Footer --- */
+.page-footer {
+  margin-top: 2rem;
   display: flex;
-  justify-content: center;
-  margin: 15px 0;
-  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
+  justify-content: flex-end;
 }
-
-/* डाउनलोड PDF बटन */
 .download-pdf-button {
-  background: #28a745;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-color);
   color: white;
-  padding: 8px 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
-  font-size: 14px;
-  width: 100%;
-  max-width: 200px; /* अधिकतम चौड़ाई सेट */
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
 }
-
-/* होवर इफेक्ट */
 .download-pdf-button:hover {
-  background: #218838;
-  transform: scale(1.05);
+  background-color: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.download-pdf-button:disabled {
+  background-color: #a5b4fc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-/* एरर मैसेज */
-.error {
-  color: #e74c3c;
-  font-size: 14px;
+/* Add this to your existing ViewCtcCtg.css file */
+
+/* For the Student Info Card status */
+.student-info-card .status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #fff;
+}
+
+.student-info-card .status-badge.present {
+  background-color: #27ae60; /* Green */
+}
+
+.student-info-card .status-badge.absent {
+  background-color: #c0392b; /* Red */
+}
+
+.student-info-card .info-list-item .info-label {
+    font-weight: 500;
+    color: #555;
+}
+
+/* You probably already have these, but ensure they exist for the table pills */
+.status-pill.present {
+  background-color: #e8f5e9; /* Light Green */
+  color: #2e7d32;
+}
+
+.status-pill.absent {
+  background-color: #ffebee; /* Light Red */
+  color: #c62828;
+}
+
+/* Styling for the absent row in the main table */
+.logs-table tbody tr.absent-row {
+  background-color: #fff3f3;
+  color: #7f8c8d;
+}
+
+.logs-table tbody tr.absent-row .status-pill {
+    font-weight: bold;
+}
+
+/* Add this to your ViewCtcCtg.css file if needed */
+
+/* Center align the score column for better readability */
+.logs-table td[data-label="Task Score"],
+.logs-table th:nth-child(5) { /* 5th column is Task Score */
   text-align: center;
-  margin: 10px 0;
-  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
 }
 
-/* लोडिंग इंडिकेटर */
-.view-ctc-ctg-container p {
+/* Add this to your ViewCtcCtg.css file */
+
+.status-pill {
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 0.85em;
+  text-transform: capitalize;
+}
+
+.status-pill.present {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-pill.absent {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+/* For Task Status */
+.status-pill.completed {
+  background-color: #e0f2f1; /* Light Teal */
+  color: #00796b;
+}
+
+.status-pill.pending {
+  background-color: #fff3e0; /* Light Orange */
+  color: #ef6c00;
+}
+
+/* Center align score columns */
+.logs-table td[data-label="Avg. Score"],
+.logs-table th:nth-of-type(5) {
   text-align: center;
-  color: #555;
-  font-size: 14px;
-  margin: 10px 0;
-  padding: 0 10px; /* लेफ्ट-राइट पैडिंग कम */
+}
+.logs-table td[data-label="Task Status"],
+.logs-table th:nth-of-type(4) {
+  text-align: center;
 }
 
-/* मोबाइल रिस्पॉन्सिव स्टाइल्स (100% मोबाइल फ्रेंडली) */
+/* Final CSS for ViewCtcCtg.css */
+
+.status-pill {
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 0.85em;
+  text-transform: capitalize;
+  display: inline-block;
+  border: 1px solid transparent;
+}
+
+.status-pill.present, .status-pill.haazir {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-color: #a5d6a7;
+}
+
+.status-pill.absent, .status-pill.gair-haazir {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ef9a9a;
+}
+
+/* For Task Status */
+.status-pill.completed {
+  background-color: #e0f2f1; /* Light Teal */
+  color: #00796b;
+  border-color: #80cbc4;
+}
+
+.status-pill.pending {
+  background-color: #fff3e0; /* Light Orange */
+  color: #ef6c00;
+  border-color: #ffcc80;
+}
+
+/* Center align specific columns */
+.logs-table th:nth-of-type(4), .logs-table td[data-label="काम?"],
+.logs-table th:nth-of-type(5), .logs-table td[data-label="स्कोर"],
+.logs-table th:nth-of-type(6), .logs-table td[data-label="हाज़िरी"] {
+  text-align: center;
+}
+
+/* For student-info-card status badges */
+.student-info-card .status-badge {
+  padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 0.9em; color: #fff;
+}
+.student-info-card .status-badge.present { background-color: #27ae60; }
+.student-info-card .status-badge.absent { background-color: #c0392b; }
+
+/* --- Feedback States: Loading, Error, Empty --- */
+.feedback-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  background-color: var(--surface-color);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  margin-top: 2rem;
+}
+.feedback-state.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+.view-ctc-ctg-container > p {
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 3rem 0;
+}
+
+
+/* --- Responsive Design Adjustments --- */
 @media (max-width: 768px) {
   .view-ctc-ctg-container {
-    padding: 10px 0; /* टॉप-बॉटम पैडिंग, लेफ्ट-राइट 0 */
-    min-height: calc(100vh - 130px); /* थोड़ा कम */
+    padding: 1rem;
   }
-
-  .back-button-group {
+  .header-controls {
     flex-direction: column;
-    align-items: stretch; /* पूरी चौड़ाई ले */
-    gap: 8px;
-    padding: 0 8px; /* कम पैडिंग */
+    align-items: stretch;
   }
-
-  .current-profile-image {
-    width: 40px;
-    height: 40px;
+  .student-info-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-
-  .profile-switcher {
-    padding: 5px;
-    font-size: 13px;
+  .info-grid {
+    grid-template-columns: 1fr; /* Stack info items */
   }
-
-  .ctc-ctg-details {
-    padding: 10px 8px; /* कम पैडिंग */
-    margin: 10px 0; /* कम मार्जिन */
-  }
-
-  .section-title {
-    font-size: 16px;
-  }
-
-  .detail-item p {
-    font-size: 13px;
-    padding: 0 4px; /* और कम पैडिंग */
-  }
-
-  .filters {
-    padding: 0 8px; /* कम पैडिंग */
-  }
-
-  .filters select {
-    padding: 5px;
-    font-size: 13px;
-  }
-
-  .log-details {
-    padding: 0 8px; /* कम पैडिंग */
-  }
-
-  .log-details h2 {
-    font-size: 16px;
-  }
-
-  .log-details th,
-  .log-details td {
-    padding: 6px;
-    font-size: 12px;
-  }
-
-  .button-group {
-    padding: 0 8px; /* कम पैडिंग */
-  }
-
-  .download-pdf-button {
-    padding: 6px 10px;
-    font-size: 13px;
-  }
-}
-
-/* छोटे मोबाइल स्क्रीन के लिए */
-@media (max-width: 480px) {
-  .view-ctc-ctg-container {
-    padding: 8px 0; /* और कम */
-    min-height: calc(100vh - 120px); /* और कम */
-    width: 350px;
-    padding-top: 40px;
-  }
-
-  .back-button-group {
-    gap: 6px;
-    padding: 0 6px; /* और कम */
-  }
-
-  .current-profile-image {
-    width: 35px;
-    height: 35px;
-  }
-
-  .profile-switcher {
-    padding: 4px;
-    font-size: 12px;
-  }
-
-  .ctc-ctg-details {
-    padding: 8px 6px; /* और कम */
-    margin: 8px 0; /* और कम */
-  }
-
-  .ctc-ctg-details p {
-    text-align: left;
-  }
-
-  .section-title {
-    font-size: 14px;
-  }
-
-  .detail-item p {
-    font-size: 12px;
-    padding: 0 3px; /* और कम */
-  }
-
-  .filters {
-    padding: 0 6px; /* और कम */
-  }
-
-  .filters select {
-    padding: 4px;
-    font-size: 12px;
-  }
-
-  .log-details {
-    padding: 0 6px; /* और कम */
-  }
-
-  .log-details h2 {
-    font-size: 14px;
-    margin-top: -10px;
-  }
-
-  .log-details th,
-  .log-details td {
-    padding: 5px;
-    font-size: 11px;
-  }
-
-  .button-group {
-    padding: 0 6px; /* और कम */
-  }
-
-  .download-pdf-button {
-    padding: 5px 8px;
-    font-size: 12px;
-  }
-
-  .error,
-  .view-ctc-ctg-container p {
-    padding: 0 6px; /* और कम */
-    font-size: 12px;
+  .log-filters {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

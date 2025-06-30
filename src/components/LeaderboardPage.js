@@ -2,248 +2,192 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styles from './LeaderboardPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCrown, faCertificate } from '@fortawesome/free-solid-svg-icons';
-import { v4 as uuidv4 } from 'uuid'; // Import UUID v4
+import { v4 as uuidv4 } from 'uuid';
+import { supabase } from '../utils/supabaseClient'; // SUPABASE CLIENT IMPORT
 
 const LeaderboardPage = () => {
+    // States (no change)
     const [leaderboardData, setLeaderboardData] = useState([]);
     const [taskFilter, setTaskFilter] = useState('');
     const [taskNames, setTaskNames] = useState([]);
     const [classFilter, setClassFilter] = useState('');
     const [classNames, setClassNames] = useState([]);
     const [showFccId, setShowFccId] = useState(false);
-    const apiUrl = process.env.REACT_APP_API_URL; // Already defined, correct usage
-    const sessionId = useRef(uuidv4()); // Generate session ID here
+    const [loading, setLoading] = useState(true);
+    const sessionId = useRef(uuidv4());
 
-    // Reusable function for logging user activity
+    // User Activity Logger (no change)
     const logUserActivity = useCallback(async (activityType, activityDetails = null) => {
         try {
-            const activityData = {
+            supabase.from('user_activity_log').insert([{
                 activity_type: activityType,
                 activity_details: activityDetails ? JSON.stringify(activityDetails) : null,
                 page_url: window.location.pathname,
                 session_id: sessionId.current,
-            };
-
-            await fetch(`${apiUrl}/api/user-activity-log`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "ngrok-skip-browser-warning": "true" // Already present, correct
-                },
-                body: JSON.stringify(activityData)
+            }]).then(({ error }) => {
+                if (error) console.error("Error logging user activity:", error.message);
             });
-            console.log(`User activity '${activityType}' logged successfully.`);
         } catch (error) {
-            console.error("Error logging user activity:", error);
+            console.error("Critical error in logUserActivity:", error);
         }
-    }, [apiUrl]);
+    }, []);
 
+    // ===== यहाँ बदलाव किया गया है (Fetching Filter Data) =====
     useEffect(() => {
-        logUserActivity('View Leaderboard Page'); // Log page view
+        logUserActivity('View Leaderboard Page');
 
-        const fetchTaskNames = async () => {
+        const fetchFiltersData = async () => {
             try {
-                const response = await fetch(`${apiUrl}/api/leaderboard-task-names`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "ngrok-skip-browser-warning": "true" // Added ngrok header
-                    }
-                });
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.json();
-                setTaskNames(data);
-            } catch (error) {
-                console.error("कार्य नाम लाने में विफलता:", error); // Fetching task names failed:
-            }
-        };
+                // अब हम RPC का उपयोग नहीं कर रहे हैं, सीधे टेबल से सेलेक्ट कर रहे हैं
+                const { data: taskData, error: taskError } = await supabase
+                    .from('leaderboard')
+                    .select('task_name');
 
-        const fetchClassNames = async () => {
-            try {
-                const response = await fetch(`${apiUrl}/api/leaderboard-class-names`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "ngrok-skip-browser-warning": "true" // Added ngrok header
-                    }
-                });
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.json();
-                setClassNames(data);
+                const { data: classData, error: classError } = await supabase
+                    .from('leaderboard')
+                    .select('fcc_class');
 
+                if (taskError) throw new Error(`Task Names Error: ${taskError.message}`);
+                if (classError) throw new Error(`Class Names Error: ${classError.message}`);
+
+                // डेटा से यूनिक नाम निकालने के लिए Set का उपयोग करें
+                const uniqueTasks = [...new Set(taskData.map(item => item.task_name))];
+                const uniqueClasses = [...new Set(classData.map(item => item.fcc_class))];
+                
+                setTaskNames(uniqueTasks.sort());
+                setClassNames(uniqueClasses.sort());
+
+                // Bypassed student logic (no change)
                 const bypassedStudent = JSON.parse(localStorage.getItem("bypassedStudent"));
-                if (bypassedStudent?.fcc_class) {
-                    const className = bypassedStudent.fcc_class;
-                    if (data.includes(className)) {
-                        setClassFilter(className);
-                        console.log(`बाईपास किए गए डेटा से चयनित कक्षा: ${className}`); // Selected class from bypassed data:
-                        logUserActivity('Set Class Filter from Bypassed Data', { class_name: className }); // Log filter set from bypass
-                    } else {
-                        console.log(`कक्षा ${className} उपलब्ध कक्षाओं में नहीं मिली:`, data); // Class ${className} not found in available classes:
-                        logUserActivity('Bypassed Class Not Available', { class_name: className, available_classes: data }); // Log bypassed class not available
-                    }
+                if (bypassedStudent?.fcc_class && uniqueClasses.includes(bypassedStudent.fcc_class)) {
+                    setClassFilter(bypassedStudent.fcc_class);
+                    logUserActivity('Set Class Filter from Bypassed Data', { class_name: bypassedStudent.fcc_class });
                 }
             } catch (error) {
-                console.error("कक्षा नाम लाने में विफलता:", error); // Fetching class names failed:
+                console.error("Error fetching filter data directly from tables:", error);
             }
         };
 
-        fetchTaskNames();
-        fetchClassNames();
-    }, [apiUrl, logUserActivity]); // Added logUserActivity to dependency array
+        fetchFiltersData();
+    }, [logUserActivity]);
+    // =============================================================
 
+    // Fetching main leaderboard data (using RPC is still necessary here)
     useEffect(() => {
         const fetchLeaderboard = async () => {
+            setLoading(true);
             try {
-                let queryParams = '';
-                if (taskFilter) queryParams += `taskName=${taskFilter}&`;
-                if (classFilter) queryParams += `class=${classFilter}&`;
-                queryParams = queryParams.slice(0, -1);
-                const response = await fetch(`${apiUrl}/api/leaderboard-data${queryParams ? '?' + queryParams : ''}`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "ngrok-skip-browser-warning": "true" // Added ngrok header
-                    }
+                const taskFilterValue = taskFilter || null;
+                const classFilterValue = classFilter || null;
+
+                const { data, error } = await supabase.rpc('get_leaderboard_data', {
+                    task_filter: taskFilterValue,
+                    class_filter: classFilterValue
                 });
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.json();
-                setLeaderboardData(data);
+
+                if (error) throw new Error(`Leaderboard Data Error: ${error.message}`);
+                setLeaderboardData(data || []);
             } catch (error) {
-                console.error("लीडरबोर्ड डेटा लाने में विफलता:", error); // Fetching leaderboard data failed:
+                console.error("Error fetching leaderboard data:", error);
+                setLeaderboardData([]);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchLeaderboard();
-        logUserActivity('Fetch Leaderboard Data', { task_filter: taskFilter, class_filter: classFilter }); // Log leaderboard data fetch
-    }, [taskFilter, classFilter, apiUrl, logUserActivity]); // Added logUserActivity to dependency array
+        logUserActivity('Fetch Leaderboard Data', { task_filter: taskFilter, class_filter: classFilter });
+    }, [taskFilter, classFilter, logUserActivity]);
 
-    const handleTaskFilterChange = (event) => {
-        setTaskFilter(event.target.value);
-        logUserActivity('Change Task Filter', { task_filter: event.target.value }); // Log task filter change
-    }
-
-    const handleClassFilterChange = (event) => {
-        setClassFilter(event.target.value);
-        logUserActivity('Change Class Filter', { class_filter: event.target.value }); // Log class filter change
-    }
-
+    // --- UI Handlers and other functions (no change) ---
+    const handleTaskFilterChange = (event) => setTaskFilter(event.target.value);
+    const handleClassFilterChange = (event) => setClassFilter(event.target.value);
     const handleShowFccIdClick = () => {
-        setShowFccId(!showFccId);
-        logUserActivity(showFccId ? 'Hide FCC ID' : 'Show FCC ID'); // Log show/hide FCC ID
-    }
-
-    const getRandomColor = () => {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) color += letters[Math.floor(Math.random() * 16)];
-        return color;
+        setShowFccId(prev => !prev);
+        logUserActivity(showFccId ? 'Hide FCC ID' : 'Show FCC ID');
     };
-
+    const getRandomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
     const getRankBadge = (index) => {
-        let rankClassName = '';
-        let badgeIcon = null;
-
-        if (index === 0) {
-            badgeIcon = <FontAwesomeIcon icon={faCrown} className={styles.rankBadge1} />;
-            rankClassName = styles.topRankProfile1;
-        } else if (index === 1) {
-            badgeIcon = <FontAwesomeIcon icon={faCrown} className={styles.rankBadge2} />;
-            rankClassName = styles.topRankProfile2;
-        } else if (index === 2) {
-            badgeIcon = <FontAwesomeIcon icon={faCrown} className={styles.rankBadge3} />;
-            rankClassName = styles.topRankProfile3;
-        }
-        return { badgeIcon, rankClassName };
+        if (index === 0) return { badgeIcon: <FontAwesomeIcon icon={faCrown} className={styles.rankBadge1} />, rankClassName: styles.topRankProfile1 };
+        if (index === 1) return { badgeIcon: <FontAwesomeIcon icon={faCrown} className={styles.rankBadge2} />, rankClassName: styles.topRankProfile2 };
+        if (index === 2) return { badgeIcon: <FontAwesomeIcon icon={faCrown} className={styles.rankBadge3} />, rankClassName: styles.topRankProfile3 };
+        return { badgeIcon: null, rankClassName: '' };
     };
-
     const getScoreBadge = (score, index) => {
-        if (index > 2 && score >= 10) {
-            return <FontAwesomeIcon icon={faCertificate} className={styles.scoreBadge} />;
-        }
+        if (index > 2 && score >= 10) return <FontAwesomeIcon icon={faCertificate} className={styles.scoreBadge} />;
         return null;
     };
 
+    // --- JSX (Rendering) (no change) ---
     return (
         <div className={styles.leaderboardContainer}>
             <h1 className={styles.leaderboardTitle}>लीडरबोर्ड</h1>
-
             <div className={styles.filters}>
-                <div className={styles.filterItem}>
+                {/* ... filter JSX is same ... */}
+                 <div className={styles.filterItem}>
                     <label htmlFor="taskFilter" className={styles.filterLabel}>कार्य के अनुसार फ़िल्टर करें:</label>
                     <select id="taskFilter" value={taskFilter} onChange={handleTaskFilterChange} className={styles.filterSelect}>
                         <option value="">सभी कार्य</option>
-                        {taskNames.map((taskName, index) => (
-                            <option key={index} value={taskName}>{taskName}</option>
-                        ))}
+                        {taskNames.map((name, index) => <option key={index} value={name}>{name}</option>)}
                     </select>
                 </div>
-
                 <div className={styles.filterItem}>
                     <label htmlFor="classFilter" className={styles.filterLabel}>कक्षा के अनुसार फ़िल्टर करें:</label>
                     <select id="classFilter" value={classFilter} onChange={handleClassFilterChange} className={styles.filterSelect}>
                         <option value="">सभी कक्षाएँ</option>
-                        {classNames.map((className, index) => (
-                            <option key={index} value={className}>{className}</option>
-                        ))}
+                        {classNames.map((name, index) => <option key={index} value={name}>{name}</option>)}
                     </select>
                 </div>
             </div>
-
             <button className={styles.showFccIdBtn} onClick={handleShowFccIdClick}>
                 {showFccId ? 'एफसीसी आईडी छुपाएं' : 'एफसीसी आईडी दिखाएं'}
             </button>
-
-            <div className={styles.tableResponsive}>
-                <table className={styles.leaderboardTable}>
-                    <thead>
-                        <tr>
-                            <th className={styles.tableHeader}>फोटो</th>
-                            <th className={styles.tableHeader}>नाम</th>
-                            {showFccId && <th className={styles.tableHeader}>FCC ID</th>}
-                            <th className={styles.tableHeader}>क्लास</th>
-                            <th className={styles.tableHeader}>सब अंक</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {leaderboardData.map((student, index) => {
-                            const profileImage = student.profile_image;
-                            const placeholderColor = getRandomColor();
-                            const firstLetter = student.student_name ? student.student_name.charAt(0).toUpperCase() : '?';
-                            const { badgeIcon, rankClassName } = getRankBadge(index);
-                            const scoreBadge = getScoreBadge(student.total_score, index);
-
-                            return (
-                                <tr key={index} className={styles.tableRow}>
-                                    <td className={styles.profileCell}>
-                                        <div className={`${styles.profileImageContainer} ${rankClassName}`}>
-                                            {profileImage ? (
-                                                <img
-                                                    src={profileImage}
-                                                    alt={`${student.student_name} का प्रोफ़ाइल`} // ${student.student_name}'s Profile
-                                                    className={`${styles.profileImage} ${rankClassName}`}
-                                                />
-                                            ) : (
-                                                <div
-                                                    className={`${styles.profilePlaceholder} ${rankClassName}`}
-                                                    style={{ backgroundColor: placeholderColor }}
-                                                >
-                                                    {firstLetter}
-                                                </div>
-                                            )}
-                                            {badgeIcon}
-                                            {scoreBadge}
-                                        </div>
-                                    </td>
-                                    <td className={styles.tableCell}>{student.student_name}</td>
-                                    {showFccId && <td className={styles.tableCell}>{student.fcc_id}</td>}
-                                    <td className={styles.tableCell}>{student.fcc_class}</td>
-                                    <td className={styles.tableCell}>{student.total_score || 0}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
-
-            {leaderboardData.length === 0 && <p className={styles.noData}>कोई लीडरबोर्ड डेटा उपलब्ध नहीं है।</p>}
+            {loading ? (
+                <p className={styles.noData}>लीडरबोर्ड लोड हो रहा है...</p>
+            ) : (
+                <div className={styles.tableResponsive}>
+                    <table className={styles.leaderboardTable}>
+                        {/* ... table JSX is same ... */}
+                        <thead>
+                            <tr>
+                                <th className={styles.tableHeader}>फोटो</th>
+                                <th className={styles.tableHeader}>नाम</th>
+                                {showFccId && <th className={styles.tableHeader}>FCC ID</th>}
+                                <th className={styles.tableHeader}>क्लास</th>
+                                <th className={styles.tableHeader}>सब अंक</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {leaderboardData.map((student, index) => {
+                                const { badgeIcon, rankClassName } = getRankBadge(index);
+                                const scoreBadge = getScoreBadge(student.total_score, index);
+                                return (
+                                    <tr key={student.fcc_id || index} className={styles.tableRow}>
+                                        <td className={styles.profileCell}>
+                                            <div className={`${styles.profileImageContainer} ${rankClassName}`}>
+                                                {student.profile_image ? (
+                                                    <img src={student.profile_image} alt={`${student.student_name} का प्रोफ़ाइल`} className={`${styles.profileImage} ${rankClassName}`} />
+                                                ) : (
+                                                    <div className={`${styles.profilePlaceholder} ${rankClassName}`} style={{ backgroundColor: getRandomColor() }}>{student.student_name ? student.student_name.charAt(0).toUpperCase() : '?'}</div>
+                                                )}
+                                                {badgeIcon}
+                                                {scoreBadge}
+                                            </div>
+                                        </td>
+                                        <td className={styles.tableCell}>{student.student_name}</td>
+                                        {showFccId && <td className={styles.tableCell}>{student.fcc_id}</td>}
+                                        <td className={styles.tableCell}>{student.fcc_class}</td>
+                                        <td className={styles.tableCell}>{student.total_score || 0}</td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                    {leaderboardData.length === 0 && !loading && (
+                        <p className={styles.noData}>इस फ़िल्टर के लिए कोई लीडरबोर्ड डेटा उपलब्ध नहीं है।</p>
+                    )}
+                </div>
+            )}
         </div>
     );
 };
