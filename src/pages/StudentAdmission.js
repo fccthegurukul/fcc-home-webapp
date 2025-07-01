@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // 1. Apne banaye gaye Supabase client ko import karein
-import { supabase } from "../supabaseClient"; 
+import { supabase } from "../utils/supabaseClient";
 import "./StudentAdmission.css";
 
 const StudentAdmission = () => {
