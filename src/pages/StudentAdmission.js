@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+// 1. Apne banaye gaye Supabase client ko import karein
+import { supabase } from "../supabaseClient"; 
 import "./StudentAdmission.css";
 
 const StudentAdmission = () => {
@@ -14,10 +16,11 @@ const StudentAdmission = () => {
     fcc_class: "",
     fcc_id: "",
     skills: "",
-    admission_date: "",  // Added admission_date here
+    admission_date: "",
   });
 
-  const API_BASE_URL = process.env.REACT_APP_API_URL; // Define base URL from env variable
+  // 2. API_BASE_URL ki ab zaroorat nahi hai
+  // const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -27,24 +30,26 @@ const StudentAdmission = () => {
     });
   };
 
+  // 3. handleSubmit function ko Supabase ke liye update karein
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/add-student`, { // Updated URL
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // Supabase table me data insert karein
+      // 'new_student_admission' aapke Supabase table ka naam hai
+      const { data, error } = await supabase
+        .from("new_student_admission")
+        .insert([formData]); // formData ko array me daalein
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Something went wrong");
+      // Agar error hai to use handle karein
+      if (error) {
+        throw error;
       }
 
-      const data = await response.json();
-      alert("Student added successfully: " + JSON.stringify(data));
+      // Success hone par
+      alert("Student added successfully to Supabase!");
+      console.log("Supabase response data:", data);
+
+      // Form ko reset karein
       setFormData({
         name: "",
         father: "",
@@ -57,17 +62,19 @@ const StudentAdmission = () => {
         fcc_class: "",
         fcc_id: "",
         skills: "",
-        admission_date: "",  // Reset admission_date as well
+        admission_date: "",
       });
     } catch (error) {
+      console.error("Error adding student to Supabase:", error);
       alert("Error adding student: " + error.message);
     }
   };
 
   return (
     <div className="student-admission">
-      <h1>New Student Admission</h1>
+      <h1>New Student Admission (Direct to Supabase)</h1>
       <form onSubmit={handleSubmit}>
+        {/* Aapka baaki ka form JSX jaisa tha waisa hi rahega */}
         <label>
           Admission Date:
           <input

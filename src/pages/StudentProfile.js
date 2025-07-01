@@ -80,7 +80,7 @@ const [isInputRendered, setIsInputRendered] = useState(false);
                 activity_type: activityType,
                 activity_details: activityData.activity_details,
             }]);
-            console.log(`Activity '${activityType}' logged to Supabase.`);
+            // console.log(`Activity '${activityType}' logged to Supabase.`);
         } catch (err) {
             console.error("Supabase log error:", err);
         }
