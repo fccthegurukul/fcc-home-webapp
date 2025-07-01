@@ -1,416 +1,269 @@
-import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
-import "./Classroom.modern.css";
-import { v4 as uuidv4 } from 'uuid';
+// --- FINAL DESIGN: Classroom.js ---
+// Is component ko behtar readability aur UI/UX ke liye refine kiya gaya hai.
+
+import React, { useState, useEffect, useMemo } from 'react';
+import { supabase } from '../utils/supabaseClient'; // Path aavashyakta anusaar badlein
 import YouTube from 'react-youtube';
-import { supabase } from '../utils/supabaseClient';
+import './Classroom.css'; // Hum naya, polished CSS file use karenge
 
-// --- ICONS (for better UI, you can use a library like react-icons) ---
-const SearchIcon = () => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A8 8 0 1 0 10 18zm0-14a6 6 0 1 1-6 6 6 6 0 0 1 6-6z"/></svg>;
-const VideoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>;
-const TaskIcon = () => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6zm2-2h8v-2H8v2zm0-4h8v-2H8v2zm0-4h8v-2H8v2z"/></svg>;
-const EmptyIcon = () => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.99 8c0-.55-.45-1-1-1h-1V5c0-.55-.45-1-1-1s-1 .45-1 1v2h-4V5c0-.55-.45-1-1-1s-1 .45-1 1v2h-1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h10c.55 0 1-.45 1-1l.01-10zm-12-2h1v2h-1V6zM9.99 6h1v2h-1V6zM20 18h-8v-1c0-.55-.45-1-1-1s-1 .45-1 1v1H8v-2h10v2zm0-4H8V9h12v5z"/></svg>;
-const ErrorIcon = () => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>;
+// --- UI Helper Components (Behtar UI ke liye) ---
+const LoadingSpinner = () => <div className="spinner-overlay"><div className="spinner"></div></div>;
+const ErrorAlert = ({ message }) => <div className="alert error-alert"><strong>Error:</strong> {message}</div>;
+const EmptyState = ({ message }) => <div className="alert empty-state">{message}</div>;
 
-// --- REUSABLE COMPONENTS FOR CLEANER JSX ---
-const SkeletonCard = () => (
-  <div className="skeleton-card">
-    <div className="skeleton-title"></div>
-    <div className="skeleton-content"></div>
-    <div className="skeleton-footer"></div>
-  </div>
-);
-
-const ErrorAlert = ({ message, error }) => {
-  if (!error) return null;
-  console.error(message, error);
-  return (
-    <div className="error-alert">
-      <ErrorIcon />
-      <div>
-        <strong>{message}</strong>
-        <p>Please try refreshing the page or contact support if the problem persists.</p>
-      </div>
-    </div>
-  );
-};
-
-const EmptyState = ({ icon, message }) => (
-  <div className="empty-state">
-    {icon}
-    <p>{message}</p>
-  </div>
-);
-
+// --- Main Classroom Component ---
 const Classroom = () => {
-  const sessionId = useRef(uuidv4());
-  const [playingVideoId, setPlayingVideoId] = useState(null);
-  const [todaysVideos, setTodaysVideos] = useState([]);
-  const [pastVideos, setPastVideos] = useState([]);
-  const [visiblePastVideos, setVisiblePastVideos] = useState(4);
-  const [loadingVideos, setLoadingVideos] = useState(false);
-  const [videoError, setVideoError] = useState(null);
-  const [classroomNames, setClassroomNames] = useState([]);
-  const [selectedClassroom, setSelectedClassroom] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [attendance, setAttendance] = useState([]);
-  const [attendanceError, setAttendanceError] = useState(null);
-  const [loadingAttendance, setLoadingAttendance] = useState(false);
-  const [tasks, setTasks] = useState([]);
-  const [taskLoading, setTaskLoading] = useState(false);
-  const [taskError, setTaskError] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+    // State Management
+    const [classroomNames, setClassroomNames] = useState([]);
+    const [selectedClassroom, setSelectedClassroom] = useState('');
+    const [searchQuery, setSearchQuery] = useState(''); // Search state abhi bhi hai, lekin UI se comment out hai
+    const [attendance, setAttendance] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const [videos, setVideos] = useState([]);
+    const [playingVideoId, setPlayingVideoId] = useState(null);
 
-  // SUPABASE: User Activity Logger
-  const logUserActivity = useCallback(async (activityType, activityDetails = {}) => {
-    try {
-      supabase.from('user_activity_log').insert([{
-        activity_type: activityType,
-        activity_details: JSON.stringify({ ...activityDetails, classroom: selectedClassroom || "N/A" }),
-        page_url: window.location.pathname,
-        session_id: sessionId.current,
-      }]).then(({ error }) => { if (error) console.error("Error logging activity:", error.message); });
-    } catch (error) { console.error("Critical error in logUserActivity:", error); }
-  }, [selectedClassroom]);
+    const [loading, setLoading] = useState({ classrooms: true, data: false });
+    const [error, setError] = useState({ classrooms: null, data: null });
 
-  // SUPABASE: Fetch classroom names
-  useEffect(() => {
-    const fetchClassrooms = async () => {
-      try {
-        const { data, error } = await supabase.from('live_videos').select('classroom_name');
-        if (error) throw error;
-        const uniqueNames = [...new Set(data.map(item => item.classroom_name).filter(Boolean))];
-        setClassroomNames(uniqueNames.sort());
-        const bypassedStudent = JSON.parse(localStorage.getItem("bypassedStudent"));
-        if (bypassedStudent?.fcc_class) {
-          const className = `Class ${bypassedStudent.fcc_class}`;
-          if (uniqueNames.includes(className)) setSelectedClassroom(className);
-        }
-      } catch (e) { console.error("Could not fetch classroom names:", e.message); }
-    };
-    fetchClassrooms();
-  }, []);
+    // 1. Classrooms fetch karna aur localStorage ke basis par auto-select karna
+    useEffect(() => {
+        const fetchClassrooms = async () => {
+            setLoading(prev => ({ ...prev, classrooms: true }));
+            try {
+                const { data, error } = await supabase.from('new_student_admission').select('fcc_class');
+                if (error) throw error;
+                
+                const uniqueNames = [...new Set(data.map(item => item.fcc_class).filter(Boolean))];
+                uniqueNames.sort((a, b) => parseInt(a) - parseInt(b));
+                const formattedNames = uniqueNames.map(name => `Class ${name}`);
+                setClassroomNames(formattedNames);
 
-  // SUPABASE: Fetch videos for selected classroom
-  useEffect(() => {
-    if (!selectedClassroom) {
-      setTodaysVideos([]);
-      setPastVideos([]);
-      return;
-    }
-    const fetchVideos = async () => {
-      setLoadingVideos(true);
-      setVideoError(null);
-      try {
-        const { data, error } = await supabase.from('live_videos').select('*').eq('classroom_name', selectedClassroom).order('live_date', { ascending: false });
-        if (error) throw error;
-        const todayStr = new Date().toISOString().split('T')[0];
-        const todays = data.filter(video => video.live_date === todayStr);
-        const past = data.filter(video => video.live_date < todayStr);
-        setTodaysVideos(todays);
-        setPastVideos(past);
-      } catch (e) { setVideoError(e); } 
-      finally { setLoadingVideos(false); }
-    };
-    fetchVideos();
-  }, [selectedClassroom]);
-
-  // SUPABASE: Fetch attendance
-  useEffect(() => {
-    if (!selectedClassroom) {
-      setAttendance([]);
-      return;
-    }
-    const fetchAttendance = async () => {
-      setLoadingAttendance(true);
-      setAttendanceError(null);
-      try {
-        const classNumber = selectedClassroom.split(" ")[1];
-        if (!classNumber) return;
-        const { data: studentsList, error: studentsError } = await supabase.from('new_student_admission').select('fcc_id, name, photo_url').eq('fcc_class', classNumber);
-        if (studentsError) throw studentsError;
-        const todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
-        const todayEnd = new Date(); todayEnd.setHours(23, 59, 59, 999);
-        const { data: attendanceRecords, error: attendanceError } = await supabase.from('students').select('fcc_id, ctc_time, ctg_time').in('fcc_id', studentsList.map(s => s.fcc_id)).gte('ctc_time', todayStart.toISOString()).lte('ctc_time', todayEnd.toISOString());
-        if (attendanceError) throw attendanceError;
-        const finalAttendance = studentsList.map(student => {
-          const record = attendanceRecords.find(r => r.fcc_id === student.fcc_id);
-          let status = "अनुपस्थित"; let duration = null;
-          if (record) {
-            status = record.ctg_time ? "उपस्थित" : "क्लास_में_है";
-            if (record.ctg_time) {
-                const diffMs = new Date(record.ctg_time) - new Date(record.ctc_time);
-                const diffHours = Math.floor(diffMs / 3600000);
-                const diffMinutes = Math.floor((diffMs % 3600000) / 60000);
-                duration = `${diffHours}h ${diffMinutes}m`;
+                const bypassedStudent = JSON.parse(localStorage.getItem("bypassedStudent"));
+                if (bypassedStudent?.fcc_class) {
+                    const studentClassName = `Class ${bypassedStudent.fcc_class}`;
+                    if (formattedNames.includes(studentClassName)) {
+                        setSelectedClassroom(studentClassName);
+                    }
+                }
+            } catch (err) {
+                setError(prev => ({ ...prev, classrooms: 'Could not load classroom list.' }));
+            } finally {
+                setLoading(prev => ({ ...prev, classrooms: false }));
             }
-          }
-          return { ...student, status, duration };
-        });
-        setAttendance(finalAttendance);
-      } catch (error) { setAttendanceError(error); } 
-      finally { setLoadingAttendance(false); }
-    };
-    fetchAttendance();
-  }, [selectedClassroom]);
+        };
+        fetchClassrooms();
+    }, []);
 
-  // SUPABASE: Fetch tasks
-  useEffect(() => {
-    if (!selectedClassroom) {
-      setTasks([]);
-      return;
-    }
-    const fetchTasks = async () => {
-      setTaskLoading(true);
-      setTaskError(null);
-      try {
-        const classNumber = selectedClassroom.split(" ")[1];
-        if (!classNumber) return;
-        const { data, error } = await supabase.from('leaderboard_scoring_task').select('*').eq('class', classNumber).order('start_time', { ascending: false });
-        if (error) throw error;
-        setTasks(data);
-      } catch (error) { setTaskError(error); } 
-      finally { setTaskLoading(false); }
-    };
-    fetchTasks();
-  }, [selectedClassroom]);
-
-  // --- EVENT HANDLERS & MEMOS ---
-  const handleClassroomChange = (event) => { setSelectedClassroom(event.target.value); logUserActivity("Select Classroom", { selected_classroom: event.target.value }); };
-  const handleSearchChange = (event) => setSearchQuery(event.target.value);
-  const handleViewMore = () => setVisiblePastVideos(prev => prev + 4);
-  const handleVideoClick = (video) => setPlayingVideoId(prev => (prev === video.videoId ? null : video.videoId));
-  const handleDateChange = (event) => setSelectedDate(event.target.value);
-
-  // FIX: Safely parse video URLs to prevent crashes
-  const filteredTodaysVideos = useMemo(() => {
-    return todaysVideos
-      .filter(v => v.video_title.toLowerCase().includes(searchQuery.toLowerCase()))
-      .map(video => {
-        try {
-          // Ensure URL is a string before processing
-          if (typeof video.youtube_url !== 'string') return null;
-          const videoId = new URL(video.youtube_url).searchParams.get("v");
-          if (!videoId) return null; // Filter out if 'v' param is missing
-          return { ...video, videoId };
-        } catch (e) {
-          console.warn(`Invalid YouTube URL skipped: ${video.youtube_url}`);
-          return null; // Filter out if URL is invalid
+    // 2. Chune gaye classroom ka saara data (Attendance, Tasks, Videos) fetch karna
+    useEffect(() => {
+        if (!selectedClassroom) {
+            setAttendance([]);
+            setTasks([]);
+            setVideos([]);
+            return;
         }
-      })
-      .filter(Boolean); // Remove null entries
-  }, [todaysVideos, searchQuery]);
 
-  // FIX: Apply the same safe parsing for past videos
-  const filteredPastVideos = useMemo(() => {
-    return pastVideos
-      .filter(v => v.video_title.toLowerCase().includes(searchQuery.toLowerCase()))
-      .map(video => {
-        try {
-          if (typeof video.youtube_url !== 'string') return null;
-          const videoId = new URL(video.youtube_url).searchParams.get("v");
-          if (!videoId) return null;
-          return { ...video, videoId };
-        } catch (e) {
-          console.warn(`Invalid YouTube URL skipped: ${video.youtube_url}`);
-          return null;
-        }
-      })
-      .filter(Boolean);
-  }, [pastVideos, searchQuery]);
-  
-  const filteredTasks = useMemo(() => {
-    if (!selectedDate) return tasks;
-    return tasks.filter(task => {
-        const selected = new Date(selectedDate); const start = new Date(task.start_time); const end = new Date(task.end_time);
-        selected.setHours(0, 0, 0, 0); start.setHours(0, 0, 0, 0); end.setHours(0, 0, 0, 0);
-        return selected >= start && selected <= end;
-    });
-  }, [tasks, selectedDate]);
-  
-  const calculateDuration = (start, end) => {
-    if (!start || !end) return "N/A";
-    const diff = new Date(end) - new Date(start);
-    const days = Math.floor(diff / 86400000); const hours = Math.floor((diff % 86400000) / 3600000);
-    return days > 0 ? `${days}d ${hours}h` : `${hours}h`;
-  };
+        const classNumber = selectedClassroom.split(' ')[1];
+        const getLocalDateString = (dateInput) => {
+            if (!dateInput) return null;
+            const d = new Date(dateInput);
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        };
 
-  // FIX: Helper to convert Hindi status to a stable CSS class
-  const getStatusClass = (status) => {
-    switch (status) {
-      case "उपस्थित": return 'present';
-      case "अनुपस्थित": return 'absent';
-      case "क्लास_में_है": return 'in-class';
-      default: return 'unknown';
-    }
-  };
+        const fetchAllData = async () => {
+            setLoading({ ...loading, data: true });
+            setError({ ...error, data: null });
 
-  return (
-    <div className="classroom-page">
-      <header className="classroom-header">
-        <div className="classroom-select-wrapper">
-          <label htmlFor="classroomSelect">क्लासरूम</label>
-          <select id="classroomSelect" value={selectedClassroom} onChange={handleClassroomChange}>
-            <option value="">-- कृपया एक क्लासरूम चुनें --</option>
-            {classroomNames.map((name, index) => <option key={index} value={name}>{name}</option>)}
-          </select>
-        </div>
-        {selectedClassroom && (
-          <div className="search-bar-wrapper">
-             <SearchIcon />
-             <input type="text" placeholder="वीडियो शीर्षक खोजें..." value={searchQuery} onChange={handleSearchChange} />
-          </div>
-        )}
-      </header>
+            try {
+                // Promise.all se sabhi data ek saath fetch ho raha hai (Good for performance)
+                const [studentsRes, attendanceRes, tasksRes, videosRes] = await Promise.all([
+                    supabase.from('new_student_admission').select('fcc_id, name, photo_url').eq('fcc_class', classNumber),
+                    supabase.from('students').select('fcc_id, ctc_time, ctg_time'),
+                    supabase.from('leaderboard_scoring_task').select('*').eq('class', classNumber).order('start_time', { ascending: false }),
+                    supabase.from('live_videos').select('*').eq('classroom_name', selectedClassroom).order('live_date', { ascending: false })
+                ]);
 
-      {!selectedClassroom && (
-        <div className="page-prompt">
-          <EmptyIcon />
-          <h2>Welcome to the Classroom</h2>
-          <p>वीडियो, उपस्थिति और कार्य देखने के लिए कृपया ऊपर से एक क्लासरूम चुनें।</p>
-        </div>
-      )}
-      
-      {selectedClassroom && (
-        <div className="classroom-grid">
-          <main className="main-content">
-            <section className="content-section card">
-              <h2 className="section-title">आज की उपस्थिति</h2>
-              <ErrorAlert message="उपस्थिति लोड करने में विफल।" error={attendanceError} />
-              {loadingAttendance ? <p>उपस्थिति लोड हो रही है...</p> : 
-               attendance.length > 0 ? (
-                  <ul className="attendance-list">
-                      {attendance.map((student, idx) => (
-                        <li key={idx} className="student-attendance-item">
-                          <div className="student-profile">
-                            {student.photo_url ? <img src={student.photo_url} alt={student.name} className="profile-pic" /> : <div className="profile-initial">{student.name.charAt(0).toUpperCase()}</div>}
-                            <span className="student-name">{student.name}</span>
-                          </div>
-                          <div className="attendance-status">
-                            {/* FIX: Use the helper function for a stable CSS class */}
-                            <span className={`badge status-${getStatusClass(student.status)}`}>{student.status}</span>
-                            {student.duration && <span className="duration">{student.duration}</span>}
-                          </div>
-                        </li>
-                      ))}
-                  </ul>
-               ) : <p>इस कक्षा के लिए कोई छात्र डेटा उपलब्ध नहीं है।</p>}
-            </section>
+                if (studentsRes.error) throw new Error(`Students: ${studentsRes.error.message}`);
+                if (attendanceRes.error) throw new Error(`Attendance: ${attendanceRes.error.message}`);
+                if (tasksRes.error) throw new Error(`Tasks: ${tasksRes.error.message}`);
+                if (videosRes.error) throw new Error(`Videos: ${videosRes.error.message}`);
 
-            <section className="content-section card">
-              <div className="section-header-with-filter">
-                <h2 className="section-title">कार्य</h2>
-                <div className="date-filter-wrapper">
-                  <input type="date" id="dateFilter" value={selectedDate} onChange={handleDateChange} />
-                </div>
-              </div>
-              <ErrorAlert message="कार्य लोड करने में विफल।" error={taskError} />
-              {taskLoading ? <SkeletonCard /> : 
-               filteredTasks.length > 0 ? (
-                  <div className="task-list">
-                      {filteredTasks.map((task) => (
-                        <div key={task.task_id} className="task-card">
-                            <div className="task-header">
-                              <h3>{task.task_name}</h3>
-                              <div className={`task-status-badge ${new Date() > new Date(task.end_time) ? 'expired' : 'active'}`}>{new Date() > new Date(task.end_time) ? 'समाप्त' : 'सक्रिय'}</div>
-                            </div>
-                            <p className="task-description">{task.description}</p>
-                            <div className="task-meta">
-                              <span className="task-score">Max Score: <strong>{task.max_score}</strong></span>
-                              <span className="task-duration">Duration: <strong>{calculateDuration(task.start_time, task.end_time)}</strong></span>
-                            </div>
-                        </div>
-                      ))}
-                  </div>
-               ) : <EmptyState icon={<TaskIcon />} message="चयनित तिथि के लिए कोई कार्य उपलब्ध नहीं है।" />}
-            </section>
-          </main>
-
-          <aside className="sidebar-content">
-            <section className="content-section">
-              <h2 className="section-title">आज की कक्षाएं</h2>
-              <ErrorAlert message="आज की कक्षाएं लोड करने में विफल।" error={videoError} />
-              {loadingVideos ? (
-                  <div className="video-grid">{[...Array(2)].map((_, i) => <SkeletonCard key={i} />)}</div>
-              ) : filteredTodaysVideos.length > 0 ? (
-                  <div className="video-grid">
-                    {/* FIX: Use pre-validated `video.videoId` */}
-                    {filteredTodaysVideos.map((video) => (
-                      <div className="video-card" key={video.video_id} onClick={() => handleVideoClick(video)}>
-                        <div className="video-thumbnail">
-                          <img src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`} alt={video.video_title} />
-                          <div className="play-overlay"><VideoIcon/></div>
-                        </div>
-                        <div className="video-card-content">
-                            <h3>{video.video_title}</h3>
-                            <p className="video-date">Date: {new Date(video.live_date).toLocaleDateString()}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-              ) : (
-                  <EmptyState icon={<VideoIcon />} message="इस क्लासरूम में आज के लिए कोई कक्षा निर्धारित नहीं है।" />
-              )}
-            </section>
-
-            <section className="content-section">
-              <h2 className="section-title">समाप्त कक्षाएं</h2>
-              {loadingVideos ? (
-                  <div className="video-grid">{[...Array(4)].map((_, i) => <SkeletonCard key={i} />)}</div>
-              ) : filteredPastVideos.length > 0 ? (
-                  <>
-                    <div className="video-grid">
-                        {/* FIX: Use pre-validated `video.videoId` */}
-                        {filteredPastVideos.slice(0, visiblePastVideos).map((video) => (
-                            <div className="video-card" key={video.video_id} onClick={() => handleVideoClick(video)}>
-                              <div className="video-thumbnail">
-                                <img src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`} alt={video.video_title} />
-                                <div className="play-overlay"><VideoIcon/></div>
-                              </div>
-                              <div className="video-card-content">
-                                <h3>{video.video_title}</h3>
-                                <p className="video-date">Date: {new Date(video.live_date).toLocaleDateString()}</p>
-                              </div>
-                            </div>
-                        ))}
-                    </div>
-                    {filteredPastVideos.length > visiblePastVideos && <button className="view-more-btn" onClick={handleViewMore}>और देखें</button>}
-                  </>
-              ) : (
-                  <EmptyState icon={<VideoIcon />} message="इस क्लासरूम के लिए कोई समाप्त कक्षाएं उपलब्ध नहीं हैं।" />
-              )}
-            </section>
-          </aside>
-        </div>
-      )}
-
-     {playingVideoId && (
-        <div className="video-modal-overlay" onClick={() => setPlayingVideoId(null)}>
-            <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-modal-btn" onClick={() => setPlayingVideoId(null)}>×</button>
-            <div className="youtube-player-container">
-                <YouTube
-                    videoId={playingVideoId}
-                    className="youtube-player"
-                    opts={{
-                        width: '100%',
-                        height: '100%',
-                        playerVars: {
-                        autoplay: 1,
-                        modestbranding: 1,
-                        rel: 0,
-                        controls: 1,
-                        fs: 0,
-                        iv_load_policy: 3,
-                        showinfo: 0
+                const studentsList = studentsRes.data;
+                const attendanceRecords = attendanceRes.data;
+                const todayStr = getLocalDateString(new Date());
+                
+                // Attendance status calculate karne ka logic
+                const finalAttendance = studentsList.map(student => {
+                    const latestRecord = attendanceRecords
+                        .filter(r => r.fcc_id === student.fcc_id && r.ctc_time)
+                        .sort((a, b) => new Date(b.ctc_time) - new Date(a.ctc_time))[0];
+                    let status = "Absent", duration = null;
+                    if (latestRecord) {
+                        const ctcLocalDate = getLocalDateString(latestRecord.ctc_time);
+                        if (ctcLocalDate === todayStr) {
+                            const ctgLocalDate = getLocalDateString(latestRecord.ctg_time);
+                            status = ctgLocalDate === todayStr ? "Present" : "In Class";
+                            if (status === "Present" && latestRecord.ctg_time) {
+                                const diffMs = new Date(latestRecord.ctg_time) - new Date(latestRecord.ctc_time);
+                                if (diffMs > 0) {
+                                    const hours = Math.floor(diffMs / 3600000);
+                                    const minutes = Math.floor((diffMs % 3600000) / 60000);
+                                    duration = `${hours}h ${minutes}m`;
+                                }
+                            }
                         }
-                    }}
-                />
+                    }
+                    return { ...student, status, duration };
+                });
+
+                // Status ke hisab se sort karna
+                finalAttendance.sort((a, b) => {
+                    const order = { "In Class": 1, "Present": 2, "Absent": 3 };
+                    return order[a.status] - order[b.status];
+                });
+
+                setAttendance(finalAttendance);
+                setTasks(tasksRes.data);
+                setVideos(videosRes.data);
+
+            } catch (err) {
+                setError({ ...error, data: `Failed to load classroom data: ${err.message}` });
+                console.error(err);
+            } finally {
+                setLoading({ ...loading, data: false });
+            }
+        };
+
+        fetchAllData();
+    }, [selectedClassroom]);
+    
+    // Videos ko 'Today's' aur 'Past' me filter karne ke liye useMemo
+    const filteredVideos = useMemo(() => {
+        const todayStr = new Date().toISOString().slice(0, 10);
+        const all = searchQuery ? videos.filter(v => v.video_title.toLowerCase().includes(searchQuery.toLowerCase())) : videos;
+        return {
+            todays: all.filter(v => v.live_date === todayStr),
+            past: all.filter(v => v.live_date < todayStr),
+        };
+    }, [searchQuery, videos]);
+
+    // Helper functions
+    const getStatusClass = (status) => status.toLowerCase().replace(' ', '-');
+    const getYouTubeId = (url) => { try { return new URL(url).searchParams.get('v'); } catch { return null; } };
+
+    return (
+        <div className="classroom-container">
+            {loading.data && <LoadingSpinner />}
+            <header className="classroom-header">
+                   <h1>Classroom</h1>
+                <div className="controls">
+                    <select value={selectedClassroom} onChange={(e) => setSelectedClassroom(e.target.value)} disabled={loading.classrooms}>
+                        <option value="">-- Select a Classroom --</option>
+                        {loading.classrooms ? <option>Loading...</option> : classroomNames.map(name => <option key={name} value={name}>{name}</option>)}
+                    </select>
+                    
+                    {/* --- Search Video ko aapke request ke anusaar comment kar diya gaya hai --- */}
+                    {/* {selectedClassroom && <input type="text" placeholder="Search videos..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />} */}
+                </div>
+            </header>
+            <div className="classroom-body">
+                {error.classrooms && <ErrorAlert message={error.classrooms} />}
+
+                {!selectedClassroom && !loading.classrooms && (
+                    <div className="page-prompt">
+                        <h2>Welcome!</h2>
+                        <p>Please select a classroom to see student attendance, tasks, and videos.</p>
+                    </div>
+                )}
+                
+                {error.data && !loading.data && <ErrorAlert message={error.data} />}
+
+                {selectedClassroom && !loading.data && !error.data && (
+                    <div className="classroom-grid">
+                        <main className="main-content">
+                            <section className="card">
+                                <h2>Today's Attendance</h2>
+                                {attendance.length > 0 ? (
+                                    <ul className="attendance-list">
+                                        {attendance.map(student => (
+                                            <li key={student.fcc_id} className="student-item">
+                                                <img src={student.photo_url || `https://ui-avatars.com/api/?name=${student.name.replace(' ', '+')}&background=random&color=fff`} alt={student.name} className="profile-pic" />
+                                                <div className="student-info">
+                                                    <span className="student-name">{student.name}</span>
+                                                    {student.duration && <span className="duration-text">({student.duration})</span>}
+                                                </div>
+                                                <span className={`status-badge ${getStatusClass(student.status)}`}>{student.status}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : <EmptyState message="No student data found for this class." />}
+                            </section>
+                            <section className="card">
+                                <h2>Tasks</h2>
+                                {tasks.length > 0 ? (
+                                    <div className="task-list">
+                                        {tasks.map(task => (
+                                            <div key={task.task_id} className="task-card">
+                                                <h3>{task.task_name}</h3>
+                                                <p>{task.description}</p>
+                                                <div className="task-meta">
+                                                    <span>Max Score: <strong>{task.max_score}</strong></span>
+                                                    <span>Ends: <strong>{new Date(task.end_time).toLocaleDateString()}</strong></span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : <EmptyState message="No tasks have been assigned yet." />}
+                            </section>
+                        </main>
+                        <aside className="sidebar-content">
+                            <section className="card">
+                                <h2>Today's Videos</h2>
+                                {filteredVideos.todays.length > 0 ? (
+                                    <div className="video-list">
+                                        {filteredVideos.todays.map(v => {
+                                            const id = getYouTubeId(v.youtube_url);
+                                            return id && (
+                                                <div key={v.video_id} className="video-card" onClick={() => setPlayingVideoId(id)}>
+                                                    <img src={`https://img.youtube.com/vi/${id}/mqdefault.jpg`} alt={v.video_title}/>
+                                                    <h3>{v.video_title}</h3>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                ) : <EmptyState message="No videos for today." />}
+                            </section>
+                            <section className="card">
+                                <h2>Past Videos</h2>
+                                {filteredVideos.past.length > 0 ? (
+                                    <div className="video-list">
+                                        {filteredVideos.past.map(v => {
+                                            const id = getYouTubeId(v.youtube_url);
+                                            return id && (
+                                                <div key={v.video_id} className="video-card" onClick={() => setPlayingVideoId(id)}>
+                                                    <img src={`https://img.youtube.com/vi/${id}/mqdefault.jpg`} alt={v.video_title}/>
+                                                    <h3>{v.video_title}</h3>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                ) : <EmptyState message="No past videos found." />}
+                        </section>
+                        </aside>
+                    </div>
+                )}
             </div>
-            </div>
+
+            {playingVideoId && (
+                <div className="modal-overlay" onClick={() => setPlayingVideoId(null)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <button className="close-button" onClick={() => setPlayingVideoId(null)}>×</button>
+                        <YouTube videoId={playingVideoId} className="youtube-player" opts={{ width: '100%', height: '100%', playerVars: { autoplay: 1 } }}/>
+                    </div>
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default Classroom;

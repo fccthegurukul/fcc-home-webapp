@@ -1,4 +1,4 @@
-/* CSS Reset and Base Styles */
+/* CSS Reset and Base Styles
 * {
   margin: 0;
   padding: 0;
@@ -10,24 +10,6 @@ body {
   line-height: 1.6;
   background: #f5f7fa;
   color: #2d3748;
-}
-
-/* Custom Properties */
-:root {
-  --primary-color: #4f46e5;
-  --secondary-color: #10b981;
-  --mic-color: #ef4444;
-  --text-dark: #1f2937;
-  --text-light: #6b7280;
-  --card-bg: #ffffff;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.1);
-  --border-radius: 14px;
-  --spacing-sm: 10px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --gradient-bg: linear-gradient(145deg, #f9fafb, #e5e7eb);
-  --ai-bg: #f0f4ff;
 }
 
 /* Container */

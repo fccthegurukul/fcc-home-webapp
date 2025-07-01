@@ -398,6 +398,9 @@ const addFooters = (doc) => {
           </div>
         </div>
       )}
+        <div className="page-footer">
+        <button onClick={downloadPDF} className="download-pdf-button" disabled={!processedLogs.length || !student}>PDF रिपोर्ट डाउनलोड करे</button>
+      </div>
 
       {processedLogs.length > 0 ? (
         <div className="logs-section">
@@ -429,10 +432,6 @@ const addFooters = (doc) => {
           </div>
         </div>
       ) : (!loading && fccId && <div className="feedback-state">चयनित अवधि के लिए कोई उपस्थिति लॉग नहीं मिला.</div>)}
-
-      <div className="page-footer">
-        <button onClick={downloadPDF} className="download-pdf-button" disabled={!processedLogs.length || !student}>PDF रिपोर्ट डाउनलोड करे</button>
-      </div>
     </div>
   );
 }

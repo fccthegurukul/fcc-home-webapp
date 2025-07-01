@@ -301,7 +301,8 @@
   background: var(--surface-color);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-md);
-  padding: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
 
 .log-filters {
@@ -368,6 +369,8 @@
   margin-top: 2rem;
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem;  
 }
 .download-pdf-button {
   display: inline-flex;
