@@ -50,48 +50,6 @@ const StudentsAttendance = () => {
     }
   }, []);
 
-  // const handleSubmit = async (autoScan = false, manualFCCId = null) => {
-  //   const id = manualFCCId !== null ? manualFCCId : fccId;
-  //   if (!id || id.length < 4) {
-  //     toast.error("Please enter a valid FCC ID.");
-  //     playSound("failed");
-  //     setFailedList((prev) => [...prev, id]);
-  //     return;
-  //   }
-
-  //   try {
-  //     const payload = { fcc_id: id, ctc, ctg, task_completed: taskCompleted, forceUpdate };
-  //     const response = await apiClient.post("/api/update-student", payload);
-  //     const { message, ctcUpdated } = response.data;
-
-  //     setMessage(message);
-  //     if (ctcUpdated) {
-  //       toast.success(message);
-  //       playSound("success");
-  //       setSuccessList((prev) => [...prev, id]);
-  //       if (autoScan) {
-  //         setTimeout(() => {
-  //           setFccId("");
-  //           setScanning(true);
-  //         }, MIN_SCAN_DELAY);
-  //       } else {
-  //         setFccId("");
-  //       }
-  //     } else {
-  //       toast.error(message);
-  //       playSound("failed");
-  //       setFailedList((prev) => [...prev, id]);
-  //       setFccId("");
-  //     }
-  //   } catch (error) {
-  //     const errorMessage = error.response?.data?.message || "Something went wrong.";
-  //     toast.error(errorMessage);
-  //     playSound("failed");
-  //     setFailedList((prev) => [...prev, id]);
-  //     setFccId("");
-  //   }
-  // };
-
     // Naya handleSubmit function - YAHAN SARA LOGIC HAI
   const handleSubmit = async (autoScan = false, manualFCCId = null) => {
     const id = manualFCCId !== null ? manualFCCId : fccId;

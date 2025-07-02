@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './Taskcheck.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle, faStar, faEraser } from '@fortawesome/free-solid-svg-icons';
@@ -13,18 +13,23 @@ const Taskcheck = () => {
     const [studentScores, setStudentScores] = useState({});
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
-    const [attendanceData, setAttendanceData] = useState([]);
+    const [absentStudentIds, setAbsentStudentIds] = useState(new Set()); // Use a Set for efficient lookup
     const [teacherFCCId, setTeacherFCCId] = useState('');
     const [loading, setLoading] = useState(false);
     const [submitting, setSubmitting] = useState(false);
 
-    // SUPABASE: Fetch classroom names (using the function from previous steps)
+    // --- FIX 1: Fetch classroom names (Same as before, this part is likely OK) ---
     useEffect(() => {
         const fetchClassrooms = async () => {
             try {
-                const { data, error } = await supabase.rpc('get_classroom_names');
+                // Using a direct query which is often clearer than RPC for simple tasks
+                const { data, error } = await supabase.from('new_student_admission').select('fcc_class');
                 if (error) throw error;
-                setClassroomNames(data.map(c => c.classroom_name));
+                
+                const uniqueClasses = [...new Set(data.map(item => item.fcc_class).filter(Boolean))];
+                uniqueClasses.sort((a, b) => parseInt(a) - parseInt(b)); // Sort numerically
+                setClassroomNames(uniqueClasses.map(c => `Class ${c}`));
+                
             } catch (e) {
                 console.error("Could not fetch classroom names:", e.message);
                 setError(`Failed to fetch classroom names: ${e.message}`);
@@ -33,38 +38,70 @@ const Taskcheck = () => {
         fetchClassrooms();
     }, []);
 
-    // SUPABASE: Fetch all data for the selected class in one go
+    // --- FIX 2: REVISED Data fetching logic. No more custom RPC function. ---
+    // This fetches all required data in parallel once a classroom is selected.
     useEffect(() => {
         if (!selectedClassroom) {
             setStudents([]);
             setTasks([]);
-            setAttendanceData([]);
+            setAbsentStudentIds(new Set());
             return;
         }
 
-        const fetchAllData = async () => {
+        const fetchAllDataForClass = async () => {
             setLoading(true);
             setError('');
+            setMessage('');
             try {
                 const classNumber = selectedClassroom.split(" ")[1];
                 if (!classNumber) return;
 
-                const { data, error } = await supabase.rpc('get_taskcheck_data_for_class', {
-                    p_class_number: classNumber
-                });
+                // Today's date in YYYY-MM-DD format for Supabase query
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const todayStart = today.toISOString();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(today.getDate() + 1);
+                const tomorrowStart = tomorrow.toISOString();
 
-                if (error) throw error;
+
+                // Fetch students, active tasks, and today's attendance in parallel
+                const [studentRes, taskRes, attendanceRes] = await Promise.all([
+                    supabase.from('new_student_admission').select('fcc_id, name').eq('fcc_class', classNumber),
+                    supabase.from('leaderboard_scoring_task').select('*').eq('class', classNumber).gt('end_time', new Date().toISOString()), // Only active tasks
+                    supabase.from('students').select('fcc_id, ctc_time').gte('ctc_time', todayStart).lt('ctc_time', tomorrowStart) // Attendance for today
+                ]);
+
+                if (studentRes.error) throw new Error(`Students: ${studentRes.error.message}`);
+                if (taskRes.error) throw new Error(`Tasks: ${taskRes.error.message}`);
+                if (attendanceRes.error) throw new Error(`Attendance: ${attendanceRes.error.message}`);
                 
-                setStudents(data.students || []);
-                setTasks(data.active_tasks || []);
-                setAttendanceData(data.attendance || []);
+                const fetchedStudents = studentRes.data || [];
+                const fetchedTasks = taskRes.data || [];
+
+                setStudents(fetchedStudents);
+                setTasks(fetchedTasks);
+                
+                // --- FIX 3: Correctly determine absent students ---
+                const presentStudentIds = new Set(attendanceRes.data.map(att => att.fcc_id));
+                const absentIds = new Set(
+                    fetchedStudents
+                        .filter(student => !presentStudentIds.has(student.fcc_id))
+                        .map(student => student.fcc_id)
+                );
+                setAbsentStudentIds(absentIds);
 
                 // Initialize scores state based on fetched students and tasks
                 const initialScores = {};
-                (data.students || []).forEach(student => {
+                (fetchedStudents).forEach(student => {
                     initialScores[student.fcc_id] = {};
-                    (data.active_tasks || []).forEach(task => {
-                        initialScores[student.fcc_id][task.task_name] = '';
+                    (fetchedTasks).forEach(task => {
+                        // Pre-fill 0 for absent students
+                        if (absentIds.has(student.fcc_id)) {
+                             initialScores[student.fcc_id][task.task_name] = '0';
+                        } else {
+                             initialScores[student.fcc_id][task.task_name] = '';
+                        }
                     });
                 });
                 setStudentScores(initialScores);
@@ -77,8 +114,14 @@ const Taskcheck = () => {
             }
         };
 
-        fetchAllData();
+        fetchAllDataForClass();
     }, [selectedClassroom]);
+
+    // This useMemo hook efficiently calculates the list of absent students for the sidebar
+    const absentStudentsList = useMemo(() => {
+        return students.filter(student => absentStudentIds.has(student.fcc_id));
+    }, [students, absentStudentIds]);
+
 
     const handleClassroomChange = (event) => {
         setSelectedClassroom(event.target.value);
@@ -91,8 +134,9 @@ const Taskcheck = () => {
         }));
     };
 
-    // SUPABASE: Submit scores using the new RPC function
+    // This function for submitting scores should work fine if the RPC exists
     const handleSubmitScores = async () => {
+        // ... (Your submission logic is complex and likely correct, assuming the RPC function `submit_scores_for_tasks` exists and works as intended. We will keep it as is.)
         setMessage('');
         setError('');
 
@@ -105,6 +149,7 @@ const Taskcheck = () => {
         students.forEach(student => {
             tasks.forEach(task => {
                 const score = studentScores[student.fcc_id]?.[task.task_name];
+                // Only submit if a score has been entered
                 if (score !== '' && score !== undefined) {
                     submissions.push({
                         fcc_id: student.fcc_id,
@@ -124,7 +169,7 @@ const Taskcheck = () => {
         setSubmitting(true);
         try {
             const { data, error: rpcError } = await supabase.rpc('submit_scores_for_tasks', {
-                submissions: submissions, // Pass the array as JSON
+                submissions: submissions,
                 p_teacher_fcc_id: teacherFCCId,
                 p_classroom_name: selectedClassroom,
                 p_num_students_submitted: submissions.length,
@@ -132,17 +177,11 @@ const Taskcheck = () => {
 
             if (rpcError) throw rpcError;
 
-            setMessage(data.message || 'Scores submitted successfully!');
-            // Reset form
-            const initialScores = {};
-            students.forEach(student => {
-                initialScores[student.fcc_id] = {};
-                tasks.forEach(task => {
-                    initialScores[student.fcc_id][task.task_name] = '';
-                });
-            });
-            setStudentScores(initialScores);
+            setMessage(data?.message || 'Scores submitted successfully!');
+            // Reset form by re-fetching data for the class
+            handleClassroomChange({target: { value: selectedClassroom }}); 
             setTeacherFCCId('');
+
         } catch (e) {
             console.error("Score submission failed:", e.message);
             setError(`Failed to submit scores: ${e.message}`);
@@ -150,15 +189,14 @@ const Taskcheck = () => {
             setSubmitting(false);
         }
     };
-
-    // --- Helper buttons ---
-    const absentStudents = attendanceData.filter(student => student.status === 'Absent');
     
- const handleFillZeroScores = () => {
+    // --- Helper buttons ---
+    const handleFillZeroScores = () => {
         setStudentScores(prevScores => {
-            const nextScores = {...prevScores};
+            const nextScores = JSON.parse(JSON.stringify(prevScores)); // Deep copy
             students.forEach(student => {
                 tasks.forEach(task => {
+                    // Only fill if empty
                     if (nextScores[student.fcc_id] && (nextScores[student.fcc_id][task.task_name] === '' || nextScores[student.fcc_id][task.task_name] === undefined)) {
                         nextScores[student.fcc_id][task.task_name] = '0';
                     }
@@ -170,14 +208,13 @@ const Taskcheck = () => {
 
     const handleFillMaxScores = () => {
         setStudentScores(prevScores => {
-            const nextScores = {...prevScores};
+            const nextScores = JSON.parse(JSON.stringify(prevScores)); // Deep copy
             students.forEach(student => {
-                const isAbsent = absentStudents.some(absentStudent => absentStudent.name === student.name);
+                const isAbsent = absentStudentIds.has(student.fcc_id);
                 tasks.forEach(task => {
-                    if (isAbsent) {
-                        nextScores[student.fcc_id][task.task_name] = '0';
-                    } else if (nextScores[student.fcc_id][task.task_name] === '' || nextScores[student.fcc_id][task.task_name] === undefined) {
-                        nextScores[student.fcc_id][task.task_name] = String(task.max_score);
+                    // Only fill if empty
+                     if (nextScores[student.fcc_id] && (nextScores[student.fcc_id][task.task_name] === '' || nextScores[student.fcc_id][task.task_name] === undefined)) {
+                        nextScores[student.fcc_id][task.task_name] = isAbsent ? '0' : String(task.max_score);
                     }
                 });
             });
@@ -187,26 +224,30 @@ const Taskcheck = () => {
 
     const handleClearAllScores = () => {
         setStudentScores(prevScores => {
-            const nextScores = {...prevScores};
+            const nextScores = JSON.parse(JSON.stringify(prevScores)); // Deep copy
             students.forEach(student => {
+                const isAbsent = absentStudentIds.has(student.fcc_id);
                 tasks.forEach(task => {
-                    nextScores[student.fcc_id][task.task_name] = '';
+                    // Don't clear scores for absent students (as they are locked to 0)
+                    if (!isAbsent) {
+                       nextScores[student.fcc_id][task.task_name] = '';
+                    }
                 });
             });
             return nextScores;
         });
     };
 
-    // --- JSX ---
+    // --- JSX (Minor improvements for clarity) ---
     return (
         <div className="taskcheck-container">
             <aside className="taskcheck-sidebar">
-                {selectedClassroom && absentStudents.length > 0 && (
+                {selectedClassroom && absentStudentsList.length > 0 && (
                     <div className="absent-students-section">
                         <h3>Absent Students Today</h3>
                         <ul>
-                            {absentStudents.map((student, index) => (
-                                <li key={index}>{student.name}</li>
+                            {absentStudentsList.map((student) => (
+                                <li key={student.fcc_id}>{student.name}</li>
                             ))}
                         </ul>
                     </div>
@@ -243,7 +284,7 @@ const Taskcheck = () => {
                                     </thead>
                                     <tbody>
                                         {students.map(student => {
-                                            const isAbsent = absentStudents.some(absentStudent => absentStudent.fcc_id === student.fcc_id);
+                                            const isAbsent = absentStudentIds.has(student.fcc_id);
                                             return (
                                                 <tr key={student.fcc_id} className={isAbsent ? 'absent-student-row' : ''}>
                                                     <td>{student.name} {isAbsent ? '(Absent)' : ''}</td>
@@ -265,7 +306,7 @@ const Taskcheck = () => {
                                     </tbody>
                                 </table>
                             </div>
-                        ) : <p>No students in this classroom.</p>}
+                        ) : <p>No students found in this classroom.</p>}
 
                         {tasks.length > 0 && students.length > 0 && (
                             <div className="actions-container">
@@ -274,7 +315,7 @@ const Taskcheck = () => {
                                     <input type="password" id="teacherFCCId" value={teacherFCCId} onChange={(e) => setTeacherFCCId(e.target.value)} placeholder="Enter FCC ID" disabled={submitting}/>
                                 </div>
                                 <div className="buttons-group">
-                                    <button className="btn btn-submit" onClick={handleSubmitScores} disabled={submitting}><FontAwesomeIcon icon={faCheckCircle} /> {submitting ? 'Submitting...' : 'Submit'}</button>
+                                    <button className="btn btn-submit" onClick={handleSubmitScores} disabled={submitting || !teacherFCCId}><FontAwesomeIcon icon={faCheckCircle} /> {submitting ? 'Submitting...' : 'Submit'}</button>
                                     <button className="btn btn-zero" onClick={handleFillZeroScores} disabled={submitting}><FontAwesomeIcon icon={faTimesCircle} /> Fill 0</button>
                                     <button className="btn btn-max" onClick={handleFillMaxScores} disabled={submitting}><FontAwesomeIcon icon={faStar} /> Fill Max</button>
                                     <button className="btn btn-clear" onClick={handleClearAllScores} disabled={submitting}><FontAwesomeIcon icon={faEraser} /> Clear All</button>
