@@ -19,7 +19,12 @@ const StudentsAttendance = () => {
   const [scanning, setScanning] = useState(false);
   const [qrError, setQrError] = useState("");
   const [lastScanTime, setLastScanTime] = useState(0);
-  
+
+  // --- NAYA BADLAV (NEW CHANGE) START ---
+  // Yah state camera ko control karegi: 'environment' = back camera, 'user' = front camera
+  const [facingMode, setFacingMode] = useState("environment"); 
+  // --- NAYA BADLAV (NEW CHANGE) END ---
+
   const MIN_SCAN_DELAY = 1000; // 1 second minimum delay between scans
 
   const API_BASE_URL = process.env.REACT_APP_API_URL;
@@ -282,7 +287,12 @@ const StudentsAttendance = () => {
 
   const handleError = (err) => {
     console.error("QR Scanner Error:", err);
-    setQrError("QR Scanner Error: " + err.message);
+    // Behtar error message dikhane ke liye
+    if (err?.name === 'NotAllowedError') {
+        setQrError("Camera access denied. Please allow camera permission in your browser settings.");
+    } else {
+        setQrError("QR Scanner Error: " + (err?.message || "Could not start camera."));
+    }
     setScanning(false);
   };
 
@@ -296,6 +306,13 @@ const StudentsAttendance = () => {
     setScanning(false);
     setQrError("");
   };
+
+  // --- NAYA FUNCTION (NEW FUNCTION) START ---
+  const handleSwitchCamera = () => {
+    setFacingMode(prevMode => (prevMode === "user" ? "environment" : "user"));
+  };
+  // --- NAYA FUNCTION (NEW FUNCTION) END ---
+
 
   return (
     <div className="attendance-container">
@@ -324,17 +341,30 @@ const StudentsAttendance = () => {
           {scanning && (
             <div className="qr-scanner-section">
               <QrScanner
+                // --- MODIFIED CODE START ---
+                constraints={{
+                  video: { facingMode: facingMode }, // Yah batata hai kaunsa camera use karna hai
+                }}
+                // --- MODIFIED CODE END ---
                 delay={300}
-                style={{ width: "100%", maxWidth: "300px" }}
+                style={{ width: "100%", maxWidth: "300px", marginBottom: "10px" }}
                 onError={handleError}
                 onScan={handleScan}
               />
-              <button onClick={handleScanCancel} className="action-button cancel-button">
-                Cancel Scan
-              </button>
+              <div className="scanner-controls" style={{ display: 'flex', gap: '10px' }}>
+                <button onClick={handleScanCancel} className="action-button cancel-button">
+                  Cancel Scan
+                </button>
+                {/* --- NAYA BUTTON (NEW BUTTON) START --- */}
+                <button onClick={handleSwitchCamera} className="action-button">
+                  Switch Camera
+                </button>
+                {/* --- NAYA BUTTON (NEW BUTTON) END --- */}
+              </div>
               {qrError && <p className="error-text">{qrError}</p>}
             </div>
           )}
+
           <div className="checkbox-group">
             <label className="checkbox-label">
               <input type="checkbox" checked={ctc} onChange={(e) => setCtc(e.target.checked)} />
