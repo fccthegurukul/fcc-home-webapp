@@ -27,8 +27,7 @@ const StudentProfile = () => {
     const inputRef = useRef(null);
     const sessionId = useRef(uuidv4());
     const profileCardRef = useRef(null);
-    // ✅ Add this line
-const [isInputRendered, setIsInputRendered] = useState(false);
+    const [isInputRendered, setIsInputRendered] = useState(false);
 
 
     const apiUrl = process.env.REACT_APP_API_URL;
@@ -429,7 +428,16 @@ console.log("❓ Supabase error:", error);
 
             {scanning && (
                 <div className={styles.qrScannerContainer}>
-                    <QrScanner delay={300} onError={handleError} onScan={handleScan} style={{ width: "100%" }} />
+                    {/* ✅ FIX: पिछला कैमरा खोलने के लिए यह prop जोड़ें */}
+                    <QrScanner
+                        delay={300}
+                        onError={handleError}
+                        onScan={handleScan}
+                        style={{ width: "100%" }}
+                        constraints={{
+                            video: { facingMode: "environment" }
+                        }}
+                    />
                     <button className={styles.scanCancelButton} onClick={handleScanCancel}>रद्द करें</button>
                     {error && <p className={styles.errorMessage}>{error}</p>}
                 </div>

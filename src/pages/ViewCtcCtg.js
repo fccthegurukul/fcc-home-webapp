@@ -8,21 +8,30 @@ import "./ViewCtcCtg.css";
 import NotFoundImage from '../assets/404-image.jpg';
 import { v4 as uuidv4 } from 'uuid';
 import { supabase } from "../utils/supabaseClient";
-import QRCode from 'qrcode'; // <<--- YEH NAYI LINE ADD KAREIN
+import QRCode from 'qrcode';
 
-// Helper function to add footers to the PDF
-const addFooters = (doc) => {
+// This helper function is defined once, outside the component.
+const addFootersToPDF = (doc) => {
   const pageCount = doc.internal.getNumberOfPages();
   doc.setFont('helvetica', 'italic');
   doc.setFontSize(8);
   for (let i = 1; i <= pageCount; i++) {
     doc.setPage(i);
+    // Branding on the left
+    doc.text(
+      'Performance Matters. We Track It Better. | FCC The Gurukul',
+      14,
+      doc.internal.pageSize.getHeight() - 10,
+      { align: 'left' }
+    );
+    // Page number in the center
     doc.text(
       `Page ${i} of ${pageCount}`,
       doc.internal.pageSize.getWidth() / 2,
       doc.internal.pageSize.getHeight() - 10,
       { align: 'center' }
     );
+    // Generation date on the right
     doc.text(
       `Report Generated: ${new Date().toLocaleDateString('en-IN')}`,
       doc.internal.pageSize.getWidth() - 14,
@@ -31,6 +40,7 @@ const addFooters = (doc) => {
     );
   }
 };
+
 
 const ViewCtcCtg = () => {
   const location = useLocation();
@@ -56,13 +66,11 @@ const ViewCtcCtg = () => {
     }
   }, []);
 
-  // *** UPDATED: Logic for score calculation and task completion ***
   const processAttendanceForDateRange = useCallback((logs, scores, filterType) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     let startDate = new Date(today);
 
-    // Group scores by date to handle multiple tasks on the same day
     const groupedScoresByDate = new Map();
     scores.forEach(entry => {
       if (entry.submission_date) {
@@ -74,7 +82,6 @@ const ViewCtcCtg = () => {
       }
     });
 
-    // Calculate the final average score for each day
     const finalScoresMap = new Map();
     for (const [dateKey, data] of groupedScoresByDate.entries()) {
       const sum = data.scores.reduce((acc, current) => acc + current, 0);
@@ -84,7 +91,6 @@ const ViewCtcCtg = () => {
       } else if (data.fcc_class === '9/9th') {
         divisor = 2;
       } else {
-        // Fallback: average by the number of tasks submitted
         divisor = data.scores.length || 1; 
       }
       const averageScore = Math.round(sum / divisor);
@@ -157,7 +163,6 @@ const ViewCtcCtg = () => {
           supabase.from('new_student_admission').select('*').eq('fcc_id', fccId).single(),
           supabase.from('students').select('fcc_id, ctc_time, ctg_time, task_completed').eq('fcc_id', fccId).single(),
           supabase.from('attendance_log').select('fcc_id, ctc_time, ctg_time, task_completed, log_date').eq('fcc_id', fccId).order('log_date', { ascending: false }),
-          // *** UPDATED: Fetch fcc_class and filter out attendance scores (score=10) ***
           supabase.from('leaderboard').select('submission_date, score, fcc_class').eq('fcc_id', fccId).neq('score', 10)
         ]);
 
@@ -192,43 +197,41 @@ const ViewCtcCtg = () => {
     localStorage.setItem("lastViewedFccId", fccId);
   }, [fccId, logUserActivity]);
 
+  // *** FIXED: This useEffect now correctly combines live and historical data ***
   useEffect(() => {
-    setProcessedLogs(processAttendanceForDateRange(allLogs, leaderboardData, filter));
-  }, [filter, allLogs, leaderboardData, processAttendanceForDateRange]);
+    // Create a mutable copy of the logs from the database
+    let combinedLogs = [...allLogs];
 
-  // Helper function to add footers to the PDF
-const addFooters = (doc) => {
-  const pageCount = doc.internal.getNumberOfPages();
-  doc.setFont('helvetica', 'italic');
-  doc.setFontSize(8);
-  for (let i = 1; i <= pageCount; i++) {
-    doc.setPage(i);
-    
-    // BADLAV: Left me branding add ki gayi hai
-    doc.text(
-      'Performance Matters. We Track It Better. | FCC The Gurukul',
-      14,
-      doc.internal.pageSize.getHeight() - 10,
-      { align: 'left' }
-    );
+    // Check if the student is marked present today based on the live data
+    if (isPresentToday && data) {
+      const todayStr = new Date().toISOString().split('T')[0];
 
-    doc.text(
-      `Page ${i} of ${pageCount}`,
-      doc.internal.pageSize.getWidth() / 2,
-      doc.internal.pageSize.getHeight() - 10,
-      { align: 'center' }
-    );
-    
-    doc.text(
-      `Report Generated: ${new Date().toLocaleDateString('en-IN')}`,
-      doc.internal.pageSize.getWidth() - 14,
-      doc.internal.pageSize.getHeight() - 10,
-      { align: 'right' }
-    );
-  }
-};
+      // Check if a log for today already exists in the historical logs to avoid duplicates
+      const todayLogExists = combinedLogs.some(log => 
+        new Date(log.log_date).toISOString().split('T')[0] === todayStr
+      );
 
-// Naya, updated downloadPDF function
+      // If today's log is NOT in the historical logs, create one from the live data.
+      // This handles cases where attendance_log might have a slight delay.
+      if (!todayLogExists) {
+        const todayLogEntry = {
+          fcc_id: data.fcc_id,
+          ctc_time: data.ctc_time,
+          ctg_time: data.ctg_time,
+          task_completed: data.task_completed,
+          log_date: new Date(data.ctc_time).toISOString(), // Use the CTC timestamp for the date
+        };
+        // Add the new log entry to the beginning of our list
+        combinedLogs.unshift(todayLogEntry);
+      }
+    }
+
+    // Process the combined list of logs (historical + today's live data if it was missing)
+    setProcessedLogs(processAttendanceForDateRange(combinedLogs, leaderboardData, filter));
+
+  }, [filter, allLogs, leaderboardData, data, isPresentToday, processAttendanceForDateRange]);
+
+
   const downloadPDF = async () => {
     if (!student || processedLogs.length === 0) {
       alert("PDF banane ke liye data nahi hai.");
@@ -239,20 +242,17 @@ const addFooters = (doc) => {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     
-    // BADLAV (Step 1): Image fetching logic ko QR code generation se replace kiya gaya hai
     let qrCodeImage = null;
     try {
       const studentProfileUrl = `https://fccthegurukul.in/student/${fccId}`;
       qrCodeImage = await QRCode.toDataURL(studentProfileUrl, {
-          width: 256, // High quality QR
+          width: 256,
           margin: 1,
       });
     } catch (e) {
       console.error("Failed to generate QR Code:", e);
-      // Agar QR code nahi bana, to fallback text dikhayenge
     }
 
-    // --- PDF Content Generation ---
     doc.setTextColor(30, 30, 30);
     doc.setFontSize(20);
     doc.setFont("helvetica", "bold");
@@ -262,22 +262,19 @@ const addFooters = (doc) => {
     
     const startY = 38; 
     
-    // BADLAV (Step 2): Image ki jagah QR Code ko add kiya ja raha hai
     doc.setDrawColor(200);
-    doc.rect(14, startY, 30, 30); // QR code ke liye box
+    doc.rect(14, startY, 30, 30);
     if (qrCodeImage) {
       doc.addImage(qrCodeImage, 'PNG', 14, startY, 30, 30);
     } else {
       doc.setTextColor(150);
       doc.text("QR Error", 29, startY + 15, { align: 'center' });
     }
-    // BADLAV (Step 3): QR Code ke neeche label add kiya gaya hai
     doc.setFontSize(7);
     doc.setTextColor(100);
     doc.text('Scan for Live Data', 29, startY + 34, { align: 'center' });
 
     
-    // Student Info Section (waisa hi rahega)
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
@@ -300,7 +297,6 @@ const addFooters = (doc) => {
     doc.setFont("helvetica", "bold");
     doc.text(`Attendance: ${attendancePercentage}%`, pageWidth - 14, startY + 25, { align: 'right' });
 
-    // Table (waisa hi rahega)
     const head = [['Date', 'CTC', 'CTG', 'Task Status', 'Avg. Score', 'Attendance']];
     const body = processedLogs.map(log => [
       new Date(log.log_date).toLocaleDateString("en-IN"),
@@ -340,7 +336,7 @@ const addFooters = (doc) => {
       }
     });
     
-    addFooters(doc);
+    addFootersToPDF(doc);
     const safeFileName = (student?.name || 'Student').replace(/[^a-zA-Z0-9]/g, '_');
     doc.save(`Report_${safeFileName}_${fccId}.pdf`);
   };

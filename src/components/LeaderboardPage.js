@@ -32,13 +32,12 @@ const LeaderboardPage = () => {
         }
     }, []);
 
-    // ===== यहाँ बदलाव किया गया है (Fetching Filter Data) =====
+    // Fetching Filter Data (no change)
     useEffect(() => {
         logUserActivity('View Leaderboard Page');
 
         const fetchFiltersData = async () => {
             try {
-                // अब हम RPC का उपयोग नहीं कर रहे हैं, सीधे टेबल से सेलेक्ट कर रहे हैं
                 const { data: taskData, error: taskError } = await supabase
                     .from('leaderboard')
                     .select('task_name');
@@ -50,14 +49,12 @@ const LeaderboardPage = () => {
                 if (taskError) throw new Error(`Task Names Error: ${taskError.message}`);
                 if (classError) throw new Error(`Class Names Error: ${classError.message}`);
 
-                // डेटा से यूनिक नाम निकालने के लिए Set का उपयोग करें
                 const uniqueTasks = [...new Set(taskData.map(item => item.task_name))];
                 const uniqueClasses = [...new Set(classData.map(item => item.fcc_class))];
                 
                 setTaskNames(uniqueTasks.sort());
                 setClassNames(uniqueClasses.sort());
 
-                // Bypassed student logic (no change)
                 const bypassedStudent = JSON.parse(localStorage.getItem("bypassedStudent"));
                 if (bypassedStudent?.fcc_class && uniqueClasses.includes(bypassedStudent.fcc_class)) {
                     setClassFilter(bypassedStudent.fcc_class);
@@ -70,9 +67,9 @@ const LeaderboardPage = () => {
 
         fetchFiltersData();
     }, [logUserActivity]);
-    // =============================================================
-
-    // Fetching main leaderboard data (using RPC is still necessary here)
+    
+    // ===== यहाँ बदलाव किया गया है =====
+    // Fetching and Processing main leaderboard data
     useEffect(() => {
         const fetchLeaderboard = async () => {
             setLoading(true);
@@ -86,7 +83,29 @@ const LeaderboardPage = () => {
                 });
 
                 if (error) throw new Error(`Leaderboard Data Error: ${error.message}`);
-                setLeaderboardData(data || []);
+                
+                // ===== स्कोर को संशोधित करने वाला लॉजिक यहाँ है =====
+                if (data) {
+                    const processedData = data.map(student => {
+                        let finalScore = student.total_score;
+
+                        // आपके डेटाबेस में क्लास का नाम 'Class 9', 'Class 10' आदि होना चाहिए
+                        if (student.fcc_class === '10') {
+                            finalScore = Math.floor(student.total_score / 2.69);
+                        } else if (student.fcc_class === '9') {
+                            finalScore = Math.floor(student.total_score / 1.8);
+                        }
+                        
+                        // छात्र ऑब्जेक्ट को नए स्कोर के साथ अपडेट करें
+                        return { ...student, total_score: finalScore };
+                    }).sort((a, b) => b.total_score - a.total_score); // नए स्कोर के आधार पर फिर से सॉर्ट करें
+                    
+                    setLeaderboardData(processedData);
+                } else {
+                    setLeaderboardData([]);
+                }
+                // =========================================================
+
             } catch (error) {
                 console.error("Error fetching leaderboard data:", error);
                 setLeaderboardData([]);
@@ -98,6 +117,7 @@ const LeaderboardPage = () => {
         fetchLeaderboard();
         logUserActivity('Fetch Leaderboard Data', { task_filter: taskFilter, class_filter: classFilter });
     }, [taskFilter, classFilter, logUserActivity]);
+    // =====================================
 
     // --- UI Handlers and other functions (no change) ---
     const handleTaskFilterChange = (event) => setTaskFilter(event.target.value);
@@ -123,7 +143,6 @@ const LeaderboardPage = () => {
         <div className={styles.leaderboardContainer}>
             <h1 className={styles.leaderboardTitle}>लीडरबोर्ड</h1>
             <div className={styles.filters}>
-                {/* ... filter JSX is same ... */}
                  <div className={styles.filterItem}>
                     <label htmlFor="taskFilter" className={styles.filterLabel}>कार्य के अनुसार फ़िल्टर करें:</label>
                     <select id="taskFilter" value={taskFilter} onChange={handleTaskFilterChange} className={styles.filterSelect}>
@@ -147,7 +166,6 @@ const LeaderboardPage = () => {
             ) : (
                 <div className={styles.tableResponsive}>
                     <table className={styles.leaderboardTable}>
-                        {/* ... table JSX is same ... */}
                         <thead>
                             <tr>
                                 <th className={styles.tableHeader}>फोटो</th>

@@ -42,6 +42,7 @@ import LiveVideoEmbed from './pages/livestream/livevideoembed'; // Import the Li
 import LiveVideoManage from './pages/livestream/livestreammanage'; // Import the LiveVideoManage component
 import TeacherProtectedRoute from "./components/TeacherProtectedRoute";
 import ActivityDashboard from './pages/ActivityDashboard';
+import FeeManagementPanelSP from './pages/FeeManagementPanelSP'; // Import the FeeManagementPanelSP component
 import DailyReportDashboard from './components/DailyReportDashboard';
 import ReactGA from "react-ga4";
 
@@ -271,6 +272,7 @@ const App = () => {
 <Route  path="/taskcheck"  element={ <TeacherProtectedRoute>  <Taskcheck /> </TeacherProtectedRoute>  }/>
  <Route path="/student-admission" element={<TeacherProtectedRoute><StudentAdmission /></TeacherProtectedRoute>} />
  <Route path="/daily-report-dashboard" element={<TeacherProtectedRoute><DailyReportDashboard /></TeacherProtectedRoute>} />
+ <Route path="/fee-management-panel-sp" element={<TeacherProtectedRoute><FeeManagementPanelSP /></TeacherProtectedRoute>} />    
 
 <Route path="/card-hub" element={<CardHub />} />
 <Route path="/view-ctc-ctg" element={<ViewCtcCtg />} />

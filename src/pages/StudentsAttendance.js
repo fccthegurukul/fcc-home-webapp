@@ -55,87 +55,83 @@ const StudentsAttendance = () => {
     }
   }, []);
 
-    // Naya handleSubmit function - YAHAN SARA LOGIC HAI
-  const handleSubmit = async (autoScan = false, manualFCCId = null) => {
-    const id = manualFCCId !== null ? manualFCCId : fccId;
-    if (!id || id.length < 4) {
-      toast.error("Please enter a valid FCC ID.");
-      playSound("failed");
-      setFailedList((prev) => [...prev, id || "invalid"]);
-      return;
+  const getISTTimestamp = () => {
+  const now = new Date();
+  const istOffset = 5.5 * 60 * 60 * 1000;
+  const istTime = new Date(now.getTime() + istOffset);
+  return istTime.toISOString().replace("Z", "+05:30");
+};
+
+const handleSubmit = async (autoScan = false, manualFCCId = null) => {
+  const id = manualFCCId !== null ? manualFCCId : fccId;
+  if (!id || id.length < 4) {
+    toast.error("Please enter a valid FCC ID.");
+    playSound("failed");
+    setFailedList((prev) => [...prev, id || "invalid"]);
+    return;
+  }
+
+  try {
+    const { data: studentData, error: studentError } = await supabase
+      .from('students')
+      .select('fcc_id, ctc_time')
+      .eq('fcc_id', id)
+      .single();
+
+    if (studentError && studentError.code !== 'PGRST116') {
+      throw studentError;
     }
 
-    try {
-      // 1. Check karo student pehle se hai ya nahi
-      const { data: studentData, error: studentError } = await supabase
-        .from('students')
-        .select('fcc_id, ctc_time')
-        .eq('fcc_id', id)
-        .single(); // .single() ek object dega ya null
+    let message = "";
 
-      if (studentError && studentError.code !== 'PGRST116') { // PGRST116 ka matlab 'not found', jo ki ek error nahi hai
-        throw studentError;
-      }
-      
-      let ctcUpdated = false;
-      let message = "";
-
-      // 2. Agar student hai, to update logic
-      if (studentData) {
-        // 30 ghante wala check
-        if (studentData.ctc_time) {
-            const ctcTime = new Date(studentData.ctc_time);
-            const timeDiff = (new Date() - ctcTime) / (1000 * 60 * 60);
-            if (timeDiff > 30 && !forceUpdate && ctc) {
-                toast.error("CTC is more than 30 hours old. Use Force Update.");
-                playSound("failed");
-                setFailedList((prev) => [...prev, id]);
-                return;
-            }
+    if (studentData) {
+      if (studentData.ctc_time) {
+        const ctcTime = new Date(studentData.ctc_time);
+        const timeDiff = (new Date() - ctcTime) / (1000 * 60 * 60);
+        if (timeDiff > 30 && !forceUpdate && ctc) {
+          toast.error("CTC is more than 30 hours old. Use Force Update.");
+          playSound("failed");
+          setFailedList((prev) => [...prev, id]);
+          return;
         }
-        
-        // Student table ko update karo
-        const { error: updateError } = await supabase
-            .from('students')
-            .update({ 
-                ctc_time: ctc ? new Date().toISOString() : studentData.ctc_time,
-                ctg_time: ctg ? new Date().toISOString() : undefined, // undefined fields update nahi hote
-                task_completed: taskCompleted
-            })
-            .eq('fcc_id', id);
-
-        if (updateError) throw updateError;
-        message = "Student updated successfully.";
-        ctcUpdated = true;
-
-      } else {
-        // 3. Agar student nahi hai, to naya insert karo
-        const { error: insertError } = await supabase
-            .from('students')
-            .insert({
-                fcc_id: id,
-                ctc_time: ctc ? new Date().toISOString() : null,
-                ctg_time: ctg ? new Date().toISOString() : null,
-                task_completed: taskCompleted,
-            });
-        
-        if (insertError) throw insertError;
-        message = "New student added and updated.";
-        ctcUpdated = true;
       }
-      
-      // 4. Attendance log me 'upsert' karo (hamesha)
-      const { error: logError } = await supabase
-        .from('attendance_log')
-        .upsert({
-            fcc_id: id,
-            log_date: new Date().toISOString().split('T')[0], // YYYY-MM-DD
-            ctc_time: ctc ? new Date().toISOString() : undefined,
-            ctg_time: ctg ? new Date().toISOString() : undefined,
-            task_completed: taskCompleted,
-        }, { onConflict: 'fcc_id, log_date' }); // Yeh ahem hai
 
-      if (logError) throw logError;
+      const { error: updateError } = await supabase
+        .from('students')
+        .update({
+          ctc_time: ctc ? getISTTimestamp() : studentData.ctc_time,
+          ctg_time: ctg ? getISTTimestamp() : undefined,
+          task_completed: taskCompleted
+        })
+        .eq('fcc_id', id);
+
+      if (updateError) throw updateError;
+      message = "Student updated successfully.";
+    } else {
+      const { error: insertError } = await supabase
+        .from('students')
+        .insert({
+          fcc_id: id,
+          ctc_time: ctc ? getISTTimestamp() : null,
+          ctg_time: ctg ? getISTTimestamp() : null,
+          task_completed: taskCompleted,
+        });
+
+      if (insertError) throw insertError;
+      message = "New student added and updated.";
+    }
+
+    const { error: logError } = await supabase
+      .from('attendance_log')
+      .upsert({
+        fcc_id: id,
+        log_date: new Date().toISOString().split('T')[0],
+        ctc_time: ctc ? getISTTimestamp() : undefined,
+        ctg_time: ctg ? getISTTimestamp() : undefined,
+        task_completed: taskCompleted,
+      }, { onConflict: 'fcc_id, log_date' });
+
+    if (logError) throw logError;
       
       // 5. Task submission aur leaderboard logic (agar CTC mark hua hai)
       if (ctc) {
@@ -166,28 +162,27 @@ const StudentsAttendance = () => {
         }
       }
 
-      // Sab kuch safal!
       toast.success(message);
-      playSound("success");
-      setSuccessList((prev) => [...prev, id]);
-      if (autoScan) {
-        setTimeout(() => {
-          setFccId("");
-          setScanning(true);
-        }, MIN_SCAN_DELAY);
-      } else {
+    playSound("success");
+    setSuccessList((prev) => [...prev, id]);
+    if (autoScan) {
+      setTimeout(() => {
         setFccId("");
-      }
-
-    } catch (error) {
-      const errorMessage = error.message || "Something went wrong.";
-      console.error("Supabase operation failed:", error);
-      toast.error(errorMessage);
-      playSound("failed");
-      setFailedList((prev) => [...prev, id]);
+        setScanning(true);
+      }, MIN_SCAN_DELAY);
+    } else {
       setFccId("");
     }
-  };
+
+  } catch (error) {
+    const errorMessage = error.message || "Something went wrong.";
+    console.error("Supabase operation failed:", error);
+    toast.error(errorMessage);
+    playSound("failed");
+    setFailedList((prev) => [...prev, id]);
+    setFccId("");
+  }
+};
 
   useEffect(() => {
     const handleKeyPress = (e) => {
