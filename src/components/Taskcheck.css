@@ -1,235 +1,203 @@
-/* Taskcheck.css */
+/* General Layout */
 .taskcheck-container {
     display: flex;
-    min-height: 100vh;
-    background-color: #f4f7f6;
+    font-family: sans-serif;
 }
 
 .taskcheck-sidebar {
-    width: 250px; /* Adjust sidebar width as needed */
-    background-color: #e9ecef;
+    width: 250px;
     padding: 20px;
-    border-right: 1px solid #d3d3d3;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .taskcheck-main-content {
     flex-grow: 1;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-h1 {
-    color: #343a40;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-h2 {
-    color: #343a40;
-    margin-top: 15px;
-    margin-bottom: 10px;
-}
-
-h3 {
-    color: #495057;
-    margin-bottom: 15px;
-}
-
-.success-message {
-    color: #28a745;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
-
-.error-message {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
-
-.classroom-select-container {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-}
-
-.classroom-select-container label {
-    margin-right: 10px;
-    font-weight: bold;
-    color: #495057;
-}
-
-.classroom-select-container select {
-    padding: 8px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.task-table-section {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.table-responsive {
     overflow-x: auto;
 }
 
+h1, h2, h3 {
+    color: #333;
+}
+
+/* Absent Students Section */
+.absent-students-section h3 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+.absent-students-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+.absent-students-section li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Classroom Selector */
+.classroom-select-container {
+    margin-bottom: 20px;
+}
+.classroom-select-container label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+.classroom-select-container select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Table Styles */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 20px;
 }
-
 th, td {
-    border: 1px solid #dee2e6;
-    padding: 10px;
-    text-align: left;
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    min-width: 150px;
 }
-
 th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-    color: #495057;
+    background-color: #007bff;
+    color: white;
 }
-
-tbody tr:nth-child(even) {
-    background-color: #f8f9fa;
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.absent-student-row {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+.absent-student-row input {
+    background-color: #ced4da;
+    cursor: not-allowed;
 }
 
 input[type="number"] {
     width: 80px;
     padding: 8px;
-    border: 1px solid #ced4da;
+    text-align: center;
+    border: 1px solid #ccc;
     border-radius: 4px;
 }
-input[type="number"]:disabled {
-    background-color: #e0e0e0;
-    cursor: not-allowed;
-}
 
-
+/* Actions Container */
 .actions-container {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
-
-.input-group {
+.input-group, .buttons-group {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
-.input-group label {
-    font-weight: bold;
-    color: #495057;
-    min-width: 120px; /* Adjust as needed for label width */
-    text-align: right;
-}
-
-.input-group input[type="password"],
-.input-group input[type="text"] {
+#teacherFCCId {
     padding: 8px;
-    border: 1px solid #ced4da;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    flex-grow: 1; /* Allows input to take available space */
 }
-
-
-.buttons-group {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
-button {
+.btn {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    color: white;
     cursor: pointer;
-    font-size: 16px;
+    color: white;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.btn-submit { background-color: #28a745; }
+.btn-submit:hover { background-color: #218838; }
+
+/* Styles for actions in Table Header */
+.th-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+.th-actions button {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 6px;
+    font-size: 0.8em;
+    line-height: 1;
+    color: #333;
+}
+.th-actions button:hover {
+    background: #e0e0e0;
+}
+.th-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
+    z-index: 1000;
 }
-
-button .icon {
-    font-size: 1em; /* Adjust icon size if needed */
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-left: 5px solid;
 }
-
-.buttons-group {
-    display: flex;
-    gap: 10px;
+.modal-content h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
 }
+.modal-success { border-left-color: #28a745; }
+.modal-success h3 { color: #28a745; }
+.modal-error { border-left-color: #dc3545; }
+.modal-error h3 { color: #dc3545; }
 
-.buttons-group button {
+.modal-close-btn {
+    margin-top: 20px;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.buttons-group button i {
-    margin-right: 5px;
-}
-
-.btn-submit {
-    background-color: #28a745;
-    color: white;
-}
-
-.btn-zero {
-    background-color: #dc3545;
-    color: white;
-}
-
-.btn-max {
-    background-color: #ffc107;
-    color: black;
-}
-
-.btn-clear {
     background-color: #6c757d;
     color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
-
-.absent-students-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.absent-students-section li {
-    padding: 5px 0;
-    border-bottom: 1px dashed #d3d3d3;
-}
-.absent-students-section li:last-child {
-    border-bottom: none;
-}
-
-.absent-student-row {
-    background-color: #ffe0b2; /* Light orange/amber to highlight absent students rows */
-}
-.absent-student-row td {
-    color: #555; /* Optional: darker text for absent student rows */
+.modal-close-btn:hover {
+    background-color: #5a6268;
 }
