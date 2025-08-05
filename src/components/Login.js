@@ -168,8 +168,10 @@ const Login = ({ setIsLoggedIn, logUserActivity }) => {
           </p>
         )}
 
+        {/* 👇 YAHAN BADLAV KIYA GAYA HAI (Change is made here) */}
         <form
           onSubmit={handleLogin}
+          autoComplete="off" // Autocomplete ko form level par band kiya
           style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
         >
           <div style={{ textAlign: "left" }}>
@@ -179,6 +181,8 @@ const Login = ({ setIsLoggedIn, logUserActivity }) => {
             <input
               type="text"
               id="fccId"
+              // 👇 YAHAN BHI BADLAV KIYA GAYA HAI (Change is also made here)
+              autoComplete="off" // Autocomplete ko input level par bhi band kiya
               value={fccId}
               onChange={(e) => setFccId(e.target.value)}
               required
