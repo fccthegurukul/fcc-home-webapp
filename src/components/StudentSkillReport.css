@@ -1,0 +1,301 @@
+/* ==========================================================================
+   Global Styles & Container
+   ========================================================================== */
+body {
+    background-color: #f4f7f9;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    color: #4a4a4a;
+}
+
+.skill-report-container {
+    max-width: 950px;
+    margin: 30px auto;
+    padding: 25px 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.skill-report-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Filter Bar & Inputs
+   ========================================================================== */
+.filter-bar {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.filter-bar input,
+.filter-bar select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fdfdfd;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.filter-bar input {
+    flex-grow: 1;
+}
+
+.filter-bar select {
+    flex-grow: 2;
+}
+
+
+/* ==========================================================================
+   Report Header & Student Info
+   ========================================================================== */
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.student-profile-summary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 15px;
+    border-left: 4px solid #007bff;
+}
+
+.student-details {
+    line-height: 1.4;
+}
+
+.student-name2 {
+    margin: 0;
+    font-size: 2em;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.student-info {
+    margin: 2px 0 0;
+    color: #7f8c8d;
+    font-size: 1.05em;
+}
+
+.download-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.download-btn:hover {
+    background-color: #218838;
+}
+
+.download-btn:active {
+    transform: translateY(1px);
+}
+
+/* ==========================================================================
+   Accordion Styles
+   ========================================================================== */
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.accordion-item {
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    transition: box-shadow 0.2s ease;
+}
+
+.accordion-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.accordion-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    cursor: pointer;
+    background-color: #fafafa;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #34495e;
+}
+
+.status-and-arrow {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.accordion-arrow {
+    color: #95a5a6;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-arrow.open {
+    transform: rotate(90deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #ffffff;
+    padding: 0 20px; /* Horizontal padding */
+}
+
+.content-section {
+    padding: 20px 5px; /* Vertical padding */
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.content-section:last-child {
+    border-bottom: none;
+}
+
+.content-section h4 {
+    color: #0056b3;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Content Lists (Sub-topics & Tests)
+   ========================================================================== */
+.subtopic-list, .test-list {
+    list-style: none;
+    padding-left: 5px;
+    margin: 0;
+}
+
+.subtopic-list li, .test-list li {
+    padding: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #34495e;
+}
+
+.subtopic-arrow {
+    color: #007bff;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.test-icon {
+    flex-shrink: 0;
+    margin-top: 3px;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2328a745"><path d="M16 2H8C6.9 2 6 2.9 6 4v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-4 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm4-10H8v-2h8v2zm0-4H8V4h8v2z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.test-details {
+    line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   Status Tags - Enhanced Color Palette
+   ========================================================================== */
+.status {
+    padding: 5px 15px;
+    border-radius: 999px; /* Pill shape */
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.status-not-started {
+    background-color: #f0f2f5;
+    color: #6c757d;
+    border-color: #e9ecef;
+}
+
+.status-beginner {
+    background-color: #fffbe6;
+    color: #d46b08;
+    border-color: #ffe58f;
+}
+
+.status-studying {
+    background-color: #e6f7ff;
+    color: #096dd9;
+    border-color: #91d5ff;
+}
+
+.status-intermediate {
+    background-color: #f9f0ff;
+    color: #722ed1;
+    border-color: #d3adf7;
+}
+
+.status-expert {
+    background-color: #f6ffed;
+    color: #389e0d;
+    border-color: #b7eb8f;
+}
+
+.status-missed {
+    color: #d93025; /* Strong, clear red */
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Helper & Message Classes
+   ========================================================================== */
+.loading-message, .error-message {
+    text-align: center;
+    padding: 25px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.error-message {
+    color: #a94442;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+}

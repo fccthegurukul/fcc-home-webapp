@@ -1,0 +1,180 @@
+/* ==========================================================================
+   फाइनल प्रीमियम कैरोसेल स्टाइल (मोबाइल-फर्स्ट अप्रोच)
+   ========================================================================== */
+
+/* --- बेस स्टाइल (यह मोबाइल के लिए है) --- */
+.carousel-container {
+    width: 100%;
+    position: relative;
+    padding-top: 70px;
+}
+
+@keyframes shimmer {
+    0% { background-position: -1200px 0; }
+    100% { background-position: 1200px 0; }
+}
+
+.skeleton-loader {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    background: #e0e0e0;
+    background-image: linear-gradient(to right, #e0e0e0 0%, #f0f0f0 20%, #e0e0e0 40%, #e0e0e0 100%);
+    background-repeat: no-repeat;
+    background-size: 2500px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+/* मुख्य कैरोसेल */
+.custom-carousel .carousel.carousel-slider {
+    border-radius: 0;
+}
+
+.slide-item {
+    position: relative;
+    display: block; /* 'a' और 'div' दोनों के लिए काम करेगा */
+    width: 100%;
+    aspect-ratio: 16 / 9; /* प्रोफेशनल 16:9 अनुपात */
+    overflow: hidden;
+    background-color: #ccc;
+    text-decoration: none; /* लिंक से अंडरलाइन हटाने के लिए */
+}
+
+/* जो स्लाइड लिंक है, उस पर कर्सर बदलें */
+.slide-item.is-link {
+    cursor: pointer;
+}
+
+.image-wrapper {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+.slide-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease-out, filter 0.4s ease;
+}
+
+/* एक्टिव स्लाइड पर इमेज को थोड़ा ज़ूम करें */
+.slide.selected .slide-item img {
+    transform: scale(1.05);
+}
+
+/* लिंक वाली स्लाइड पर हॉवर इफ़ेक्ट (सिर्फ डेस्कटॉप पर) */
+@media (hover: hover) {
+    .slide-item.is-link:hover img {
+        transform: scale(1.1);
+        filter: brightness(1.1);
+    }
+}
+
+/* ग्रेडिएंट ओवरले - टेक्स्ट को हमेशा पढ़ने योग्य बनाता है */
+.slide-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+    transition: opacity 0.4s ease;
+}
+
+/* --- कैप्शन (Legend) - मोबाइल के लिए --- */
+.legend-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    padding: 1rem 1.5rem 2.8rem 1.5rem; /* डॉट्स के लिए नीचे ज़्यादा जगह */
+    z-index: 2;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.legend-text {
+    color: #ffffff;
+    font-size: 18px; /* मोबाइल के लिए परफेक्ट साइज */
+    font-weight: 600;
+    line-height: 1.3;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s;
+    text-align: left;
+}
+
+.slide.selected .legend-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- इंडिकेटर डॉट्स - मोबाइल के लिए --- */
+.custom-carousel .control-dots {
+    position: absolute;
+    bottom: 1rem !important;
+    left: 1.5rem !important;
+    margin: 0 !important;
+    text-align: left !important;
+    width: auto !important;
+    z-index: 3;
+}
+
+.custom-carousel .control-dots .dot {
+    background: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: none !important;
+    width: 20px !important;
+    height: 4px !important;
+    border-radius: 2px !important;
+    margin: 0 3px !important;
+    transition: background 0.3s ease, width 0.3s ease;
+}
+
+.custom-carousel .control-dots .dot.selected {
+    background: #ffffff !important;
+    width: 35px !important;
+}
+
+/* ==========================================================================
+   टैबलेट और डेस्कटॉप के लिए स्टाइल (768px से बड़ी स्क्रीन)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .carousel-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding-top: 70px;
+    }
+
+    .custom-carousel .carousel.carousel-slider,
+    .slide-item,
+    .skeleton-loader {
+        border-radius: 16px; /* डेस्कटॉप पर गोल कोने */
+    }
+
+    .slide-item::after {
+        border-radius: 0 0 16px 16px;
+    }
+    
+    .legend-container {
+        padding: 2rem 3rem;
+    }
+
+    .legend-text {
+        font-size: 18px; /* डेस्कटॉप पर बड़ा फॉन्ट */
+    }
+
+    /* डेस्कटॉप पर डॉट्स को सेंटर में रखें */
+    .custom-carousel .control-dots {
+        left: 50% !important;
+        transform: translateX(-50%);
+        bottom: 1.5rem !important;
+    }
+
+    /* डेस्कटॉप पर एरो दिखाएं */
+    .custom-carousel .control-arrow {
+        display: block !important;
+    }
+}

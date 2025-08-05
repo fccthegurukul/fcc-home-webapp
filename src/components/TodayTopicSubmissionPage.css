@@ -1,0 +1,328 @@
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- CSS Variables for Easy Theming --- */
+:root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #495057;
+    --bg-color: #eef2f7; /* Soft background color */
+    --card-bg-color: #ffffff;
+    --border-color: #dee2e6;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
+}
+
+/* --- Global Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* --- Main Container --- */
+.topic-submission-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+/* --- Page Header & Messages --- */
+.page-header {
+    margin-bottom: 1.5rem;
+}
+
+.teacher-info {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    background-color: var(--card-bg-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+}
+
+.message {
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+/* --- Main Content Layout (Flexbox) --- */
+.main-content-area {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* --- Card Styles --- */
+.topic-submission-card, .recent-topics-card {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.topic-submission-card:hover, .recent-topics-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.topic-submission-card {
+    flex: 2; /* Main card takes more space */
+}
+
+.recent-topics-card {
+    flex: 1; /* Side card takes less space */
+    position: sticky; /* Keeps it in view on scroll */
+    top: 2rem;
+}
+
+.card-content {
+    padding: 2rem;
+}
+
+.card-content h2, .card-content h3 {
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.card-content h3 .fa-list-check {
+    margin-right: 0.5rem;
+}
+
+/* --- Form Styling --- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.form-group .input-icon {
+    position: absolute;
+    top: 45px;
+    left: 15px;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add padding to inputs that have an icon */
+.form-group input[id="targetName"],
+.form-group input[id="targetDays"],
+.form-group input[id="subTopicName"] {
+    padding-left: 45px;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* --- Button Styles --- */
+.submit-btn, .complete-btn {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.complete-btn {
+    background-color: var(--danger-color);
+    color: white;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+}
+
+.complete-btn:hover {
+    background-color: #c82333;
+}
+
+.submit-btn:disabled, .complete-btn:disabled {
+    background-color: var(--secondary-color);
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.submit-btn:active, .complete-btn:active {
+    transform: scale(0.98);
+}
+
+/* --- Specific View Styles --- */
+.target-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.target-header h2 {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.active-target-info {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid var(--primary-color);
+}
+
+.active-target-info p {
+    margin-bottom: 0.5rem;
+}
+
+.active-target-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Recent Topics List --- */
+.recent-topics-list {
+    list-style: none;
+    margin-top: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px; /* For scrollbar */
+}
+
+.recent-topics-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.recent-topics-list li:last-child {
+    border-bottom: none;
+}
+
+.recent-topics-list li span:first-child {
+    font-weight: 500;
+}
+
+.topic-date {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+/* --- Loading Spinner --- */
+.loading-spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--light-color);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .main-content-area {
+        flex-direction: column;
+    }
+    .recent-topics-card {
+        position: static; /* Remove sticky on smaller screens */
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .topic-submission-container {
+        padding: 1rem;
+    }
+    .card-content {
+        padding: 1.5rem;
+    }
+    .target-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}

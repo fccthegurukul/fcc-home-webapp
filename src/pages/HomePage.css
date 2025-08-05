@@ -17,3 +17,15 @@ div {
       max-width: 100%; /* PC ke liye full width */
   }
 }
+
+/* HomePage.css */
+
+.homepage-container {
+  width: 100%;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px; /* मोबाइल पर साइड से थोड़ी जगह */
+}

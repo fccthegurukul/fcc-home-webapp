@@ -1,0 +1,225 @@
+/* ==========================================================================
+   स्किल रिपोर्ट सेक्शन स्टाइल (Skill Report Section Styles)
+   ========================================================================== */
+
+/* पूरे सेक्शन के लिए कार्ड जैसा कंटेनर */
+.skillsSection {
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    border: 1px solid #eef2f7;
+}
+
+/* सेक्शन का मुख्य शीर्षक */
+.skillsHeader {
+    font-size: 1.5rem; /* थोड़ा बड़ा फ़ॉन्ट */
+    font-weight: 600;
+    color: #2c3e50; /* गहरा नीला-ग्रे रंग */
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eef2f7;
+}
+
+/* लोडिंग या कोई डेटा न होने पर टेक्स्ट का स्टाइल */
+.loaderText, .noDataText {
+    padding: 40px 20px;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.noDataTextSmall {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    padding: 10px 0;
+}
+
+/* Accordion Styles (नया और मॉडर्न) */
+.accordionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* आइटम्स के बीच गैप */
+}
+
+.accordionItem {
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.accordionItem:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.accordionTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    background-color: #f7f9fc;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.accordionTitle:hover {
+    background-color: #edf2f9;
+}
+
+.targetName {
+    color: #34495e;
+    font-size: 1.05rem;
+}
+
+.statusAndArrow {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* स्टेटस और तीर के बीच गैप */
+}
+
+.accordionArrow {
+    color: #5a6a7b;
+    transition: transform 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.accordionArrow.open {
+    transform: rotate(90deg);
+}
+
+/* Accordion का कंटेंट (खुलने पर) */
+.accordionContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    background-color: #ffffff;
+    padding: 0 20px;
+}
+
+/* क्लास लगाकर स्मूथ ट्रांजीशन सुनिश्चित करें */
+.accordionContent.openContent {
+    max-height: 1000px; /* एक बड़ी वैल्यू दें ताकि कंटेंट फिट हो जाये */
+    padding: 15px 20px;
+}
+
+.contentSection {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eef2f7;
+}
+.contentSection:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+}
+
+.contentSection h4 {
+    color: #0056b3;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.detailsList {
+    list-style: none;
+    padding-left: 5px;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.7;
+}
+
+.detailsList li strong {
+    color: #2c3e50;
+}
+
+/* स्टेटस टैग (बेहतर स्टाइल) */
+.status {
+    padding: 4px 14px;
+    border-radius: 16px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+.statusMissed {
+    color: #c0392b;
+    font-weight: 600;
+}
+
+/* अलग-अलग स्टेटस के लिए रंग */
+.statusNotStarted { background-color: #f1f2f6; color: #576574; border-color: #dcdde1; }
+.statusStudying { background-color: #e0f2fe; color: #0284c7; border-color: #bae6fd; }
+.statusBeginner { background-color: #fef9c3; color: #ca8a04; border-color: #fde68a; }
+.statusIntermediate { background-color: #ede9fe; color: #7c3aed; border-color: #ddd6fe; }
+.statusExpert { background-color: #dcfce7; color: #16a34a; border-color: #bbf7d0; }
+
+/* "और देखें" बटन */
+.viewMoreButton {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 10px auto;
+    background-color: #3498db; /* आकर्षक नीला रंग */
+    color: #ffffff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.4);
+}
+
+.viewMoreButton:hover {
+    background-color: #2980b9; /* हॉवर पर गहरा नीला */
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   मोबाइल फ्रेंडली बनाने के लिए (Responsive Design)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .skillsSection {
+        padding: 15px;
+    }
+
+    .skillsHeader {
+        font-size: 1.3rem;
+    }
+
+    /* मोबाइल पर Accordion Title को वर्टिकली अलाइन करें */
+    .accordionTitle {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px; /* वर्टिकल गैप */
+        padding: 12px 15px;
+    }
+
+    .targetName {
+        font-size: 1rem;
+    }
+
+    .statusAndArrow {
+        width: 100%;
+        justify-content: space-between; /* स्टेटस को लेफ्ट और एरो को राईट में रखें */
+    }
+
+    .accordionContent.openContent {
+        padding: 15px;
+    }
+
+    .detailsList {
+        font-size: 0.9rem;
+    }
+}

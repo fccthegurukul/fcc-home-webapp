@@ -1,0 +1,131 @@
+/* Test Management Panel CSS */
+.test-panel-container {
+    width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
+    position: relative;
+    top: 2px;
+}
+
+.tabs button.active {
+    font-weight: bold;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+.tab-content {
+    padding: 10px;
+}
+
+/* Form Styles */
+.test-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.test-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.test-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.test-form input, .test-form select, .test-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.test-form select[multiple] {
+    height: 150px;
+}
+
+.test-form button {
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.test-form button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.test-form button:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.message.success { background-color: #d4edda; color: #155724; }
+.message.error { background-color: #f8d7da; color: #721c24; }
+
+
+/* Live Tests and Grading List Styles */
+.test-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.test-card, .grade-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.test-card.live { border-left: 5px solid #ffc107; }
+.test-card.scheduled { border-left: 5px solid #17a2b8; }
+.grade-card { border-left: 5px solid #dc3545; }
+
+
+.test-card h3, .grade-card h3 { margin-top: 0; }
+.test-card button, .grade-card button { margin-top: 10px; width: 100%; }
+
+/* Grading Table */
+.grading-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.grading-table th, .grading-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.grading-table th { background-color: #f2f2f2; }
+.grading-table input, .grading-table select {
+    width: 100%;
+    padding: 5px;
+}

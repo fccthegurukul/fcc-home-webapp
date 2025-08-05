@@ -1,0 +1,184 @@
+/* General Layout */
+.taskcheck-container {
+    padding: 20px;
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.taskcheck-main-content {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.taskcheck-main-content h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* Controls (Dropdowns, Date picker) */
+.controls-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.control-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.control-group select,
+.control-group input[type="date"],
+.control-group input[type="password"] {
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: 1px solid #bdc3c7;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    background-color: white;
+}
+
+.control-group select:focus,
+.control-group input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.date-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.date-input-wrapper .fa-calendar-alt {
+    position: absolute;
+    left: 12px;
+    color: #7f8c8d;
+    pointer-events: none;
+}
+
+.date-input-wrapper input[type="date"] {
+    padding-left: 35px;
+}
+
+/* Table Styling */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    vertical-align: middle;
+}
+
+table th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+}
+
+.task-header-title {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.task-header-details {
+    font-size: 0.9em;
+    font-weight: normal;
+    color: #ecf0f1;
+}
+.task-header-dates {
+    font-size: 0.8em;
+    font-weight: normal;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 2px 5px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+table input[type="number"] {
+    width: 60px;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Actions Area */
+.actions-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.btn-submit {
+    background-color: #27ae60;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-submit:hover:not(:disabled) {
+    background-color: #2ecc71;
+}
+
+.btn-submit:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
+/* Informational & Loading Text */
+.loading-text, .info-text {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+/* Modal Styling */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;z-index:1000}
+.modal-content{background:white;padding:25px;border-radius:8px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,0.3);width:90%;max-width:400px}
+.modal-success h3{color:#27ae60}
+.modal-error h3{color:#c0392b}
+.modal-close-btn{padding:10px 20px;margin-top:15px;border:none;border-radius:5px;background-color:#3498db;color:white;cursor:pointer;font-size:1rem}
