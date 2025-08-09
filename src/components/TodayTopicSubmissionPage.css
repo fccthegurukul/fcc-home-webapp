@@ -1,63 +1,43 @@
-/* --- Google Font Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* === Google Font Import === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* --- CSS Variables for Easy Theming --- */
-:root {
-    --primary-color: #007bff;
-    --primary-hover-color: #0056b3;
-    --success-color: #28a745;
-    --danger-color: #dc3545;
-    --warning-color: #ffc107;
-    --light-color: #f8f9fa;
-    --dark-color: #343a40;
-    --text-color: #495057;
-    --bg-color: #eef2f7; /* Soft background color */
-    --card-bg-color: #ffffff;
-    --border-color: #dee2e6;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --border-radius: 12px;
-}
-
-/* --- Global Styles --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* === General Body & Container Styles === */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--light-bg);
 }
 
-/* --- Main Container --- */
 .topic-submission-container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
 }
 
-/* --- Page Header & Messages --- */
+/* === Page Header & Teacher Info === */
 .page-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
 }
 
 .teacher-info {
-    font-size: 1.1rem;
-    color: var(--dark-color);
-    background-color: var(--card-bg-color);
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    margin-bottom: 1rem;
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin: 0;
 }
 
+.teacher-info strong {
+    color: var(--primary-color);
+}
+
+/* === Message/Alert Styles === */
 .message {
-    padding: 1rem;
-    border-radius: 8px;
+    padding: 12px 20px;
+    margin-top: 15px;
+    border-radius: 6px;
     font-weight: 500;
-    text-align: center;
     border: 1px solid transparent;
 }
 
@@ -73,225 +53,220 @@ body {
     border-color: #f5c6cb;
 }
 
-/* --- Main Content Layout (Flexbox) --- */
+/* === Main Content Area === */
 .main-content-area {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
+    width: 100%;
 }
 
-/* --- Card Styles --- */
-.topic-submission-card, .recent-topics-card {
-    background-color: var(--card-bg-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.topic-submission-card:hover, .recent-topics-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
+/* === Card Base Style === */
 .topic-submission-card {
-    flex: 2; /* Main card takes more space */
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Ensures content respects border-radius */
 }
 
-.recent-topics-card {
-    flex: 1; /* Side card takes less space */
-    position: sticky; /* Keeps it in view on scroll */
-    top: 2rem;
+.topic-submission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
 }
 
 .card-content {
-    padding: 2rem;
+    padding: 25px 30px;
 }
 
-.card-content h2, .card-content h3 {
-    color: var(--dark-color);
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
-    display: inline-block;
-}
-
-.card-content h3 .fa-list-check {
-    margin-right: 0.5rem;
-}
-
-/* --- Form Styling --- */
-form {
+/* === Target List View (Grid) === */
+.list-header {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap; /* For smaller screens */
+    gap: 15px;
+}
+
+.list-header h2 {
+    margin: 0;
+    font-size: 1.8em;
+    color: var(--text-color);
+}
+
+.targets-grid {
+    display: grid;
+    /* Responsive Grid: Columns are at least 450px, and they fill the space */
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 25px;
+}
+
+.target-item-card .target-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.target-item-card h3 {
+    margin: 0 0 15px 0;
+    color: var(--primary-color);
+    font-size: 1.4em;
+}
+
+.active-target-info p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+    color: var(--text-light);
+}
+
+.active-target-info p svg {
+    color: var(--primary-color);
+    width: 16px;
+}
+
+/* === Form Styles === */
+form h4 {
+    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 .form-group {
+    margin-bottom: 20px;
     position: relative;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
     font-weight: 600;
-    color: var(--dark-color);
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
 }
 
 .form-group .input-icon {
     position: absolute;
-    top: 45px;
+    top: 45px; /* Adjust as per your label height */
     left: 15px;
-    color: var(--text-color);
-    opacity: 0.6;
+    color: var(--text-light);
 }
 
-.form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Add padding to inputs that have an icon */
-.form-group input[id="targetName"],
-.form-group input[id="targetDays"],
-.form-group input[id="subTopicName"] {
-    padding-left: 45px;
-}
-
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    padding-left: 40px; /* Space for the icon */
 }
 
 textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 80px;
 }
 
-/* --- Button Styles --- */
-.submit-btn, .complete-btn {
-    padding: 12px 20px;
-    font-size: 1.1rem;
+/* === Button Styles === */
+.submit-btn, .complete-btn, .create-new-btn, .back-btn {
+    padding: 12px 25px;
+    font-size: 1em;
     font-weight: 600;
+    color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    display: flex;
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.submit-btn {
-    background-color: var(--primary-color);
-    color: white;
-}
+.submit-btn:hover, .create-new-btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+.submit-btn, .create-new-btn { background-color: var(--primary-color); }
 
-.submit-btn:hover {
-    background-color: var(--primary-hover-color);
-}
+.complete-btn { background-color: var(--warning-color); color: #212529; }
+.complete-btn:hover { background-color: #e0a800; transform: translateY(-2px); }
 
-.complete-btn {
-    background-color: var(--danger-color);
-    color: white;
-    font-size: 0.9rem;
-    padding: 8px 15px;
-}
+.back-btn { background-color: var(--secondary-color); }
+.back-btn:hover { background-color: var(--secondary-hover); transform: translateY(-2px); }
 
-.complete-btn:hover {
-    background-color: #c82333;
-}
-
-.submit-btn:disabled, .complete-btn:disabled {
-    background-color: var(--secondary-color);
-    opacity: 0.7;
+button:disabled {
+    background-color: #cccccc;
+    color: #666666;
     cursor: not-allowed;
+    transform: none;
 }
 
-.submit-btn:active, .complete-btn:active {
-    transform: scale(0.98);
+/* === History List Styles === */
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #e9ecef;
+    margin: 25px 0;
 }
 
-/* --- Specific View Styles --- */
-.target-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
+.recent-topics-history h4 {
+    margin-bottom: 10px;
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    color: var(--text-color);
 }
 
-.target-header h2 {
-    margin-bottom: 0;
-    border-bottom: none;
-}
-
-.active-target-info {
-    background-color: var(--bg-color);
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    border-left: 5px solid var(--primary-color);
-}
-
-.active-target-info p {
-    margin-bottom: 0.5rem;
-}
-
-.active-target-info p:last-child {
-    margin-bottom: 0;
-}
-
-/* --- Recent Topics List --- */
 .recent-topics-list {
     list-style: none;
-    margin-top: 1rem;
-    max-height: 400px;
+    padding: 0;
+    margin: 0;
+    max-height: 250px; /* Limit history height */
     overflow-y: auto;
-    padding-right: 10px; /* For scrollbar */
+    padding-right: 10px; /* Space for scrollbar */
 }
 
 .recent-topics-list li {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 10px 5px;
+    border-bottom: 1px solid #f1f1f1;
 }
 
 .recent-topics-list li:last-child {
     border-bottom: none;
 }
 
-.recent-topics-list li span:first-child {
-    font-weight: 500;
-}
-
 .topic-date {
-    font-size: 0.85rem;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    padding: 4px 8px;
-    border-radius: 5px;
+    font-size: 0.9em;
+    color: var(--text-light);
+    white-space: nowrap;
+    margin-left: 15px;
 }
 
-/* --- Loading Spinner --- */
+/* === Loading Spinner === */
 .loading-spinner-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 200px;
+    min-height: 300px;
 }
 
 .loading-spinner {
     width: 50px;
     height: 50px;
-    border: 5px solid var(--light-color);
+    border: 5px solid #f3f3f3;
     border-top: 5px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -302,27 +277,27 @@ textarea {
     100% { transform: rotate(360deg); }
 }
 
-/* --- Responsive Design --- */
-@media (max-width: 992px) {
-    .main-content-area {
-        flex-direction: column;
-    }
-    .recent-topics-card {
-        position: static; /* Remove sticky on smaller screens */
-        width: 100%;
-    }
-}
-
+/* === Responsive Media Queries === */
 @media (max-width: 768px) {
     .topic-submission-container {
-        padding: 1rem;
+        padding: 0 15px;
     }
-    .card-content {
-        padding: 1.5rem;
-    }
-    .target-header {
+    
+    .list-header {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .list-header h2 {
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    .targets-grid {
+        grid-template-columns: 1fr; /* Stack cards on top of each other */
+    }
+
+    .card-content {
+        padding: 20px;
     }
 }

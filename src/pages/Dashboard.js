@@ -522,7 +522,7 @@ if (!user) {
         {/* ✅ **नया बदलाव: User info और Logout button** */}
         <div className="dash-sidebar-footer">
           <div className="dash-user-info">
-            <p className="dash-user-name">{user.name}</p>
+            <p className="dash-user-name">:)</p>
             <p className="dash-user-role">{user.accessType}</p>
           </div>
           <button onClick={handleLogout} className="dash-logout-btn">

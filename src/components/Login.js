@@ -178,25 +178,28 @@ const Login = ({ setIsLoggedIn, logUserActivity }) => {
             <label htmlFor="fccId" style={{ fontWeight: "bold", color: "#555" }}>
               Enter Your FCC ID:
             </label>
-            <input
-              type="text"
-              id="fccId"
-              // 👇 YAHAN BHI BADLAV KIYA GAYA HAI (Change is also made here)
-              autoComplete="off" // Autocomplete ko input level par bhi band kiya
-              value={fccId}
-              onChange={(e) => setFccId(e.target.value)}
-              required
-              placeholder="e.g., FCC001"
-              style={{
-                width: "100%",
-                padding: "12px",
-                borderRadius: "5px",
-                border: "1px solid #ccc",
-                marginTop: "5px",
-                fontSize: "1rem",
-                boxSizing: 'border-box'
-              }}
-            />
+<input
+  type="password"                // Dots me dikhane ke liye
+  id="fccId"
+  name="fccId"
+  autoComplete="off"              // Suggestions disable
+  autoCorrect="off"               // Autocorrect disable
+  autoCapitalize="none"           // Capital letters avoid
+  spellCheck={false}              // Spell check disable
+  value={fccId}
+  onChange={(e) => setFccId(e.target.value)}
+  required
+  placeholder="Enter FCC ID"
+  style={{
+    width: "100%",
+    padding: "12px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+    marginTop: "5px",
+    fontSize: "1rem",
+    boxSizing: 'border-box'
+  }}
+/>
           </div>
 
           <button
