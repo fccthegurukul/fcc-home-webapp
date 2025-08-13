@@ -1,47 +1,80 @@
-// FeeManagementPanel.js
+// FeeManagementPanel.js (अंतिम और संयुक्त संस्करण)
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import { generateFeeReceiptPDF } from '../utils/generateReceipt';
 import styles from './FeeManagementPanel.module.css';
-import { Edit, BookCopy, Filter, X, Search, Calendar, Tag, RefreshCw } from 'lucide-react';
+import { Edit, BookCopy, Filter, X, Search, Calendar, Tag, RefreshCw, PlusCircle, ChevronsRight } from 'lucide-react';
 import { ClipLoader } from 'react-spinners';
+
+// ====================================================================================
+// ===== हेल्पर फंक्शन: छात्रों के डेटा को प्रोसेस करने के लिए =====
+// ====================================================================================
+const processStudentData = (students) => {
+    return students.map(student => {
+        const records = student.monthly_fee_records || [];
+        
+        let totalDue = 0;
+        let totalPaid = 0;
+        records.forEach(record => {
+            totalDue += Number(record.final_due_amount) || 0;
+            totalPaid += Number(record.amount_paid) || 0;
+        });
+
+        const lastPaymentRecord = records
+            .filter(r => r.payment_date)
+            .sort((a, b) => new Date(b.payment_date) - new Date(a.payment_date))[0];
+
+        return {
+            ...student,
+            total_due: totalDue,
+            total_paid: totalPaid,
+            total_remaining: totalDue - totalPaid,
+            last_payment_date: lastPaymentRecord ? lastPaymentRecord.payment_date : null,
+            // मासिक रिकॉर्ड को महीने के हिसाब से सॉर्ट करें (सबसे नया सबसे ऊपर)
+            monthly_fee_records: records.sort((a, b) => new Date(b.fee_month) - new Date(a.fee_month))
+        };
+    });
+};
+
 
 const FeeManagementPanel = () => {
     const [students, setStudents] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [updatingStatusId, setUpdatingStatusId] = useState(null);
 
     // Filters State
     const [filters, setFilters] = useState({ status: 'all', class: 'all', search: '' });
     const [availableClasses, setAvailableClasses] = useState([]);
 
-    // Modal State for Editing
-    const [editingStudent, setEditingStudent] = useState(null);
-    const [feeFormData, setFeeFormData] = useState({});
-    const [isSaving, setIsSaving] = useState(false);
+    // Modal State
+    const [viewingStudent, setViewingStudent] = useState(null);
+    const [modalLoading, setModalLoading] = useState(false);
 
-    // Modal State for Logs
+    // Logs Modal State (पुराने कोड से)
     const [viewingLogsFor, setViewingLogsFor] = useState(null);
     const [logs, setLogs] = useState([]);
     const [logsLoading, setLogsLoading] = useState(false);
 
+    // ====================================================================================
+    // ===== डेटा लाना =====
+    // ====================================================================================
     const fetchStudentData = async () => {
         setLoading(true);
         setError('');
         const { data, error } = await supabase
             .from('new_student_admission')
             .select(`
-                id, name, father, mobile_number, schooling_class, fcc_class, fcc_id, tutionfee_paid,
-                tuition_fee_details(*)
+                id, name, father, mobile_number, fcc_class, fcc_id, standard_monthly_fee, fee_due_day,
+                monthly_fee_records ( * )
             `)
             .order('name', { ascending: true });
 
         if (error) {
             setError('डेटा लोड करने में त्रुटि हुई: ' + error.message);
         } else {
-            setStudents(data || []);
+            const processedData = processStudentData(data || []);
+            setStudents(processedData);
             const uniqueClasses = [...new Set((data || []).map(s => s.fcc_class).filter(Boolean))].sort();
             setAvailableClasses(uniqueClasses);
         }
@@ -52,11 +85,29 @@ const FeeManagementPanel = () => {
         fetchStudentData();
     }, []);
 
+    const refreshStudentDetails = async (studentId) => {
+        setModalLoading(true);
+        const { data, error } = await supabase
+            .from('new_student_admission')
+            .select(`*, monthly_fee_records(*)`)
+            .eq('id', studentId)
+            .single();
+
+        if (!error && data) {
+            const [processedStudent] = processStudentData([data]);
+            setViewingStudent(processedStudent);
+        }
+        setModalLoading(false);
+    };
+
+    // ====================================================================================
+    // ===== फ़िल्टरिंग =====
+    // ====================================================================================
     const filteredStudents = useMemo(() => {
         return students.filter(student => {
             const statusMatch = filters.status === 'all' ||
-                                (filters.status === 'baaki' && student.tutionfee_paid === true) ||
-                                (filters.status === 'jamma' && student.tutionfee_paid === false);
+                                (filters.status === 'baaki' && student.total_remaining > 0) ||
+                                (filters.status === 'jamma' && student.total_remaining <= 0);
             const classMatch = filters.class === 'all' || student.fcc_class === filters.class;
             const searchMatch = !filters.search ||
                                 student.name.toLowerCase().includes(filters.search.toLowerCase()) ||
@@ -66,128 +117,128 @@ const FeeManagementPanel = () => {
         });
     }, [students, filters]);
 
-    // Open edit modal and initialize form data
-    const handleEditClick = (student) => {
-        const feeDetails = (student.tuition_fee_details && student.tuition_fee_details[0]) || {};
-        setEditingStudent(student);
-        setFeeFormData({
-            total_fee: feeDetails.total_fee || '',
-            fee_remaining: feeDetails.fee_remaining || '',
-            due_date: feeDetails.due_date || '',
-            offer_price: feeDetails.offer_price || '',
-            offer_valid_till: feeDetails.offer_valid_till || '',
-            amount_paid_now: '',
-            notes: '',
-        });
-    };
-
-    // Update pending amount as user enters paid amount
-    const handleAmountChange = (e) => {
-        const amountPaid = parseFloat(e.target.value) || 0;
-        const originalRemaining = parseFloat((editingStudent.tuition_fee_details && editingStudent.tuition_fee_details[0])?.fee_remaining) || parseFloat(feeFormData.total_fee) || 0;
-        const newRemaining = originalRemaining - amountPaid;
-
-        setFeeFormData({
-            ...feeFormData,
-            amount_paid_now: e.target.value,
-            fee_remaining: newRemaining >= 0 ? newRemaining.toString() : '0',
-        });
-    };
-
-    // Save fee updates, log changes, and optionally generate receipt
-    const handleFeeUpdate = async (e) => {
+    // ====================================================================================
+    // ===== मुख्य कार्य (मासिक रिकॉर्ड मैनेज करना) =====
+    // ====================================================================================
+    
+    const handleAddMonth = async (e) => {
         e.preventDefault();
-        setIsSaving(true);
+        // ... (यह फंक्शन बिना बदलाव के सही है)
+        const formData = new FormData(e.target);
+        const feeMonth = formData.get('fee_month') + '-01';
+        const baseFee = parseFloat(formData.get('base_fee'));
 
-        const amountPaidNow = parseFloat(feeFormData.amount_paid_now) || 0;
-        const originalFeeDetails = (editingStudent.tuition_fee_details && editingStudent.tuition_fee_details[0]) || {};
-        const feeRemaining = parseFloat(feeFormData.fee_remaining) || 0;
-        const totalFee = parseFloat(feeFormData.total_fee) || feeRemaining;
-
-        // Step 1: Upsert fee details
-        const { error: upsertError } = await supabase.from('tuition_fee_details').upsert(
-            {
-                fcc_id: editingStudent.fcc_id,
-                class: editingStudent.fcc_class,
-                total_fee: totalFee,
-                fee_remaining: feeRemaining,
-                fee_paid: totalFee - feeRemaining,
-                due_date: feeFormData.due_date || null,
-                offer_price: feeFormData.offer_price || null,
-                offer_valid_till: feeFormData.offer_valid_till || null,
-            },
-            { onConflict: 'fcc_id' }
-        );
-
-        if (upsertError) {
-            alert('फीस अपडेट करने में त्रुटि: ' + upsertError.message);
-            setIsSaving(false);
+        const existingRecord = viewingStudent.monthly_fee_records.find(r => r.fee_month === feeMonth);
+        if (existingRecord) {
+            alert('इस महीने का रिकॉर्ड पहले से ही मौजूद है।');
             return;
         }
 
-        // Step 2: Update student status
-        await supabase
-            .from('new_student_admission')
-            .update({ tutionfee_paid: feeRemaining > 0 })
-            .eq('id', editingStudent.id);
-
-        // Step 3: Log the change
-        await supabase.from('fee_update_logs').insert({
-            fcc_id: editingStudent.fcc_id,
-            updated_by: 'Admin',
-            change_details: {
-                before: originalFeeDetails,
-                after: { ...feeFormData },
-            },
-            notes: feeFormData.notes,
+        setModalLoading(true);
+        const { error } = await supabase.from('monthly_fee_records').insert({
+            student_fcc_id: viewingStudent.fcc_id,
+            fee_month: feeMonth,
+            base_fee: baseFee,
+            status: 'due',
         });
 
-        // Step 4: Receipt generation & Logging
-        if (amountPaidNow > 0) {
-            try {
-                const receiptDetails = await generateFeeReceiptPDF(
-                    editingStudent,
-                    feeFormData,
-                    amountPaidNow,
-                    feeFormData.notes
-                );
-
-                if (receiptDetails.success) {
-                    const { error: receiptLogError } = await supabase
-                        .from('fee_receipts')
-                        .insert({
-                            receipt_no: receiptDetails.receiptNo,
-                            fcc_id: editingStudent.fcc_id,
-                            student_name: editingStudent.name,
-                            amount_paid: receiptDetails.amountPaid,
-                            amount_in_words: receiptDetails.amountInWords,
-                            payment_date: receiptDetails.paymentDate,
-                            pdf_filename: receiptDetails.fileName,
-                            generated_by: 'Admin',
-                            notes: feeFormData.notes,
-                        });
-
-                    if (receiptLogError) {
-                        console.error('रसीद रिकॉर्ड सेव करने में त्रुटि:', receiptLogError.message);
-                        alert('फीस अपडेट हुई, रसीद बनी पर रिकॉर्ड सेव नहीं हो सका।');
-                    } else {
-                        alert('फीस सफलतापूर्वक अपडेट हुई और रसीद डाउनलोड हो गई है!');
-                    }
-                }
-            } catch (pdfError) {
-                console.error('PDF बनाने में त्रुटि:', pdfError);
-                alert('फीस अपडेट हुई, लेकिन रसीद बनाने में समस्या हुई।');
-            }
+        if (error) {
+            alert('महीना जोड़ने में त्रुटि: ' + error.message);
         } else {
-            alert('फीस सफलतापूर्वक अपडेट हो गई है!');
+            alert('महीना सफलतापूर्वक जोड़ा गया!');
+            e.target.reset();
+            await refreshStudentDetails(viewingStudent.id);
+        }
+        setModalLoading(false);
+    };
+    
+    const handleMakePayment = async (record, amountToPay, notes) => {
+        const paidAmount = parseFloat(amountToPay);
+        if (isNaN(paidAmount) || paidAmount <= 0) {
+            alert('कृपया एक मान्य राशि दर्ज करें।');
+            return;
         }
 
-        setIsSaving(false);
-        setEditingStudent(null);
-        fetchStudentData();
+        setModalLoading(true);
+
+        const newTotalPaid = (record.amount_paid || 0) + paidAmount;
+        const remainingForMonth = record.final_due_amount - newTotalPaid;
+        const newStatus = remainingForMonth <= 0 ? 'paid' : 'partially_paid';
+
+        const { error: updateError } = await supabase.from('monthly_fee_records')
+            .update({
+                amount_paid: newTotalPaid,
+                status: newStatus,
+                payment_date: newStatus === 'paid' ? new Date().toISOString() : record.payment_date,
+                notes: (record.notes || '') + `\n[${new Date().toLocaleString('hi-IN')}]: ${notes}`,
+            })
+            .eq('id', record.id);
+        
+        if (updateError) {
+            alert('भुगतान अपडेट करने में त्रुटि: ' + updateError.message);
+            setModalLoading(false);
+            return;
+        }
+
+        await supabase.from('fee_update_logs').insert({
+            fcc_id: viewingStudent.fcc_id,
+            updated_by: 'Admin',
+            change_details: {
+                type: 'Monthly Payment',
+                record_id: record.id,
+                month: record.fee_month,
+                amount_paid_now: paidAmount,
+            },
+            notes: `मासिक भुगतान: ${notes}`,
+        });
+
+        try {
+            const receiptDetails = await generateFeeReceiptPDF(viewingStudent, record, paidAmount, notes);
+            if (receiptDetails && receiptDetails.success) {
+                await supabase.from('fee_receipts').insert({
+                    receipt_no: receiptDetails.receiptNo,
+                    fcc_id: viewingStudent.fcc_id,
+                    student_name: viewingStudent.name,
+                    amount_paid: receiptDetails.amountPaid,
+                    amount_in_words: receiptDetails.amountInWords,
+                    payment_date: receiptDetails.paymentDate,
+                    pdf_filename: receiptDetails.fileName,
+                    generated_by: 'Admin',
+                    notes: `मासिक भुगतान (${new Date(record.fee_month).toLocaleString('hi-IN', { month: 'long' })}): ${notes}`,
+                });
+                alert('भुगतान सफल! रसीद डाउनलोड हो गई है और रिकॉर्ड सेव हो गया है।');
+            }
+        } catch (pdfError) {
+            console.error("PDF बनाने में त्रुटि:", pdfError);
+            alert('भुगतान हो गया, पर रसीद बनाने में समस्या हुई।');
+        }
+
+        await refreshStudentDetails(viewingStudent.id);
+        setModalLoading(false);
     };
 
-    // View change logs
+    const handleUpdateDiscount = async (recordId, tag, amount) => {
+        // ... (यह फंक्शन बिना बदलाव के सही है)
+        const discountAmount = parseFloat(amount);
+        if(isNaN(discountAmount) || discountAmount < 0) {
+            alert('अमान्य छूट राशि!');
+            return;
+        }
+
+        setModalLoading(true);
+        const { error } = await supabase.from('monthly_fee_records')
+            .update({ discount_tag: tag, discount_amount: discountAmount })
+            .eq('id', recordId);
+        
+        if (error) {
+            alert('छूट अपडेट करने में त्रुटि: ' + error.message);
+        } else {
+            alert('छूट सफलतापूर्वक अपडेट की गई!');
+            await refreshStudentDetails(viewingStudent.id);
+        }
+        setModalLoading(false);
+    };
+
     const handleViewLogsClick = async (fcc_id) => {
         setViewingLogsFor(fcc_id);
         setLogsLoading(true);
@@ -197,42 +248,29 @@ const FeeManagementPanel = () => {
             .eq('fcc_id', fcc_id)
             .order('updated_at', { ascending: false });
 
-        if (error) alert('लॉग्स लोड करने में त्रुटि: ' + error.message);
-        else setLogs(data || []);
+        if (error) {
+            alert('लॉग्स लोड करने में त्रुटि: ' + error.message);
+            setLogs([]);
+        } else {
+            setLogs(data || []);
+        }
         setLogsLoading(false);
     };
 
-    // Quick toggle fee status
-    const handleQuickStatusChange = async (student) => {
-        const newStatus = !student.tutionfee_paid;
-        if (window.confirm(`क्या आप ${student.name} की स्थिति बदलना चाहते हैं?`)) {
-            setUpdatingStatusId(student.id);
-            const { error } = await supabase
-                .from('new_student_admission')
-                .update({ tutionfee_paid: newStatus })
-                .eq('id', student.id);
-            if (error) alert('स्थिति अपडेट में त्रुटि: ' + error.message);
-            else {
-                await supabase.from('fee_update_logs').insert({
-                    fcc_id: student.fcc_id,
-                    updated_by: 'Admin',
-                    notes: `त्वरित स्थिति परिवर्तन: ${student.tutionfee_paid ? 'बाकी→जम्मा' : 'जम्मा→बाकी'}`
-                });
-                alert('स्थिति सफलतापूर्वक बदल दी गई है!');
-                fetchStudentData();
-            }
-            setUpdatingStatusId(null);
-        }
-    };
 
     if (loading) return <div className={styles.centeredMessage}><ClipLoader size={50} /> <p>डेटा लोड हो रहा है...</p></div>;
     if (error) return <div className={styles.centeredMessage}><p className={styles.errorText}>{error}</p></div>;
 
+
+    // ====================================================================================
+    // ===== JSX (UI) Part =====
+    // ====================================================================================
     return (
         <div className={styles.panelContainer}>
             <header className={styles.panelHeader}>
-                <h1>शुल्क प्रबंधन पैनल</h1>
-                <p>विद्यार्थियों की फीस की स्थिति देखें और प्रबंधित करें।</p>
+                <h1>शुल्क प्रबंधन पैनल (मासिक)</h1>
+                <p>विद्यार्थियों की मासिक फीस की स्थिति देखें और प्रबंधित करें।</p>
+                <button onClick={fetchStudentData} className={styles.refreshButton}><RefreshCw size={16}/> रिफ्रेश करें</button>
             </header>
             
             <div className={styles.filterBar}>
@@ -256,48 +294,25 @@ const FeeManagementPanel = () => {
 
             <div className={styles.studentList}>
                 {filteredStudents.length > 0 ? filteredStudents.map(student => {
-                    const feeDetails = (student.tuition_fee_details && student.tuition_fee_details[0]);
-                    const statusClass = student.tutionfee_paid ? styles.statusBaaki : styles.statusJamma;
+                    const statusClass = student.total_remaining > 0 ? styles.statusBaaki : styles.statusJamma;
                     return (
                         <div key={student.id} className={`${styles.studentCard} ${statusClass}`}>
                             <div className={styles.cardContent}>
                                 <div className={styles.studentInfo}>
                                     <h3 className={styles.studentName}>{student.name}</h3>
                                     <p className={styles.subText}>पिता: {student.father || 'N/A'}</p>
-                                    <p className={styles.subText}>FCC ID: <strong>{student.fcc_id}</strong> | संपर्क: {student.mobile_number || 'N/A'}</p>
-                                    <p className={styles.subText}>कक्षा (कोचिंग): <strong>{student.fcc_class || 'N/A'}</strong></p>
+                                    <p className={styles.subText}>FCC ID: <strong>{student.fcc_id}</strong> | क्लास: <strong>{student.fcc_class || 'N/A'}</strong></p>
                                 </div>
-                                
-                                <div className={styles.feeInfo}>
-                                    {student.tutionfee_paid ? (
-                                        feeDetails ? (
-                                            <>
-                                                <span className={`${styles.statusBadge} ${styles.badgeBaaki}`}>बाकी</span>
-                                                <div className={styles.feeDetailsBlock}>
-                                                    {/* यहाँ है आपका समाधान! */}
-                                                    <p><strong>कुल फीस:</strong> ₹{feeDetails.total_fee || 'N/A'}</p>
-                                                    <p className={styles.feeRemaining}><strong>बकाया:</strong> ₹{feeDetails.fee_remaining}</p>
-                                                    {feeDetails.due_date && <p><Calendar size={14} /> <strong>देय तिथि:</strong> {new Date(feeDetails.due_date).toLocaleDateString('hi-IN')}</p>}
-                                                    {feeDetails.offer_price && <p className={styles.offerText}><Tag size={14} /> <strong>ऑफर:</strong> ₹{feeDetails.offer_price} ({new Date(feeDetails.offer_valid_till).toLocaleDateString('hi-IN')} तक)</p>}
-                                                </div>
-                                            </>
-                                        ) : (
-                                            <div className={styles.noDetails}>
-                                                <span className={`${styles.statusBadge} ${styles.badgeBaaki}`}>बाकी</span>
-                                                <p>विवरण उपलब्ध नहीं</p>
-                                            </div>
-                                        )
-                                    ) : (
-                                        <span className={`${styles.statusBadge} ${styles.badgeJamma}`}>जम्मा</span>
-                                    )}
+                                <div className={styles.feeInfoNew}>
+                                    <p>कुल बकाया: <span className={styles.feeRemaining}>₹{student.total_remaining.toFixed(2)}</span></p>
+                                    <p>कुल देय: ₹{student.total_due.toFixed(2)}</p>
+                                    <p>कुल जमा: ₹{student.total_paid.toFixed(2)}</p>
+                                    {student.last_payment_date && <p><Calendar size={14}/> अंतिम भुगतान: {new Date(student.last_payment_date).toLocaleDateString('hi-IN')}</p>}
                                 </div>
                             </div>
                             <div className={styles.actionButtons}>
-                                <button onClick={() => handleEditClick(student)} className={`${styles.actionButton} ${styles.editButton}`} title="विवरण संपादित करें">
-                                    <Edit size={16} /> संपादित करें
-                                </button>
-                                <button onClick={() => handleQuickStatusChange(student)} className={`${styles.actionButton} ${styles.statusButton}`} title="स्थिति बदलें" disabled={updatingStatusId === student.id}>
-                                    {updatingStatusId === student.id ? <ClipLoader size={16} color="#fff" /> : <><RefreshCw size={16} /> स्थिति</>}
+                                <button onClick={() => setViewingStudent(student)} className={`${styles.actionButton} ${styles.editButton}`}>
+                                    <ChevronsRight size={16} /> फीस प्रबंधित करें
                                 </button>
                                 <button onClick={() => handleViewLogsClick(student.fcc_id)} className={`${styles.actionButton} ${styles.logButton}`} title="अपडेट लॉग देखें">
                                     <BookCopy size={16} /> लॉग
@@ -310,100 +325,58 @@ const FeeManagementPanel = () => {
                 )}
             </div>
 
-        {editingStudent && (
-    <div className={styles.modalOverlay}>
-        <div className={styles.modalContent}>
-            <button className={styles.closeButton} onClick={() => setEditingStudent(null)}>
-                <X size={24} />
-            </button>
-            <h3>{editingStudent.name} की फीस संपादित करें</h3>
-            <p className={styles.modalSubHeader}>FCC ID: {editingStudent.fcc_id} | क्लास: {editingStudent.fcc_class}</p>
+            {/* Monthly Fee Management Modal */}
+            {viewingStudent && (
+                <div className={styles.modalOverlay}>
+                    <div className={`${styles.modalContent} ${styles.largeModal}`}>
+                        <button className={styles.closeButton} onClick={() => { setViewingStudent(null); fetchStudentData(); }}><X size={24} /></button>
+                        {modalLoading && <div className={styles.modalLoader}><ClipLoader size={40} /></div>}
+                        <h3>{viewingStudent.name} की मासिक फीस</h3>
+                        <p className={styles.modalSubHeader}>FCC ID: {viewingStudent.fcc_id} | स्टैंडर्ड फीस: ₹{viewingStudent.standard_monthly_fee || 'N/A'}</p>
 
-            <form onSubmit={handleFeeUpdate} className={styles.modalForm}>
-                <div className={styles.formGrid}>
-
-                    <div className={styles.formGroup}>
-                        <label>कुल निर्धारित फीस (Total)</label>
-                        <input
-                            type="number"
-                            step="0.01"
-                            placeholder="जैसे: 10000"
-                            value={feeFormData.total_fee}
-                            onChange={e => setFeeFormData({ ...feeFormData, total_fee: e.target.value })}
-                            required
-                        />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                        <label>अभी जमा की गई राशि (Amount Paid Now)</label>
-                        <input
-                            type="number"
-                            placeholder="जैसे: 2000"
-                            value={feeFormData.amount_paid_now}
-                            onChange={handleAmountChange}
-                        />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                        <label>बकाया राशि (Pending)</label>
-                        <input
-                            type="number"
-                            step="0.01"
-                            value={feeFormData.fee_remaining}
-                            readOnly
-                            style={{ backgroundColor: '#e9ecef' }}
-                            required
-                        />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                        <label>देय तिथि</label>
-                        <input
-                            type="date"
-                            value={feeFormData.due_date}
-                            onChange={e => setFeeFormData({ ...feeFormData, due_date: e.target.value })}
-                        />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                        <label>ऑफर प्राइस (₹)</label>
-                        <input
-                            type="number"
-                            step="0.01"
-                            placeholder="यदि कोई ऑफर है"
-                            value={feeFormData.offer_price}
-                            onChange={e => setFeeFormData({ ...feeFormData, offer_price: e.target.value })}
-                        />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                        <label>ऑफर की अंतिम तिथि</label>
-                        <input
-                            type="date"
-                            value={feeFormData.offer_valid_till}
-                            onChange={e => setFeeFormData({ ...feeFormData, offer_valid_till: e.target.value })}
-                        />
+                        <details className={styles.addMonthDetails}>
+                            <summary><PlusCircle size={16} /> नया महीना मैन्युअल रूप से जोड़ें</summary>
+                            <form onSubmit={handleAddMonth} className={styles.addMonthForm}>
+                                <input type="month" name="fee_month" required />
+                                <input type="number" name="base_fee" placeholder="मूल फीस" defaultValue={viewingStudent.standard_monthly_fee} required />
+                                <button type="submit">जोड़ें</button>
+                            </form>
+                        </details>
+                        
+                        <div className={styles.monthlyRecordsTableContainer}>
+                            <table className={styles.monthlyRecordsTable}>
+                                <thead>
+                                    <tr>
+                                        <th>महीना</th>
+                                        <th>देय राशि</th>
+                                        <th>छूट</th>
+                                        <th>जमा राशि</th>
+                                        <th>बकाया</th>
+                                        <th>स्थिति</th>
+                                        <th>एक्शन</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {viewingStudent.monthly_fee_records.map(record => {
+                                        const remainingForMonth = record.final_due_amount - record.amount_paid;
+                                        return (
+                                            <MonthlyRecordRow 
+                                                key={record.id} 
+                                                record={record}
+                                                remainingForMonth={remainingForMonth}
+                                                onMakePayment={handleMakePayment}
+                                                onUpdateDiscount={handleUpdateDiscount}
+                                            />
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
-                <div className={styles.formGroup}>
-                    <label>नोट्स (यह लॉग और रसीद में सेव होगा)</label>
-                    <textarea
-                        placeholder="जैसे: ₹2000 नकद भुगतान प्राप्त हुआ"
-                        value={feeFormData.notes}
-                        onChange={e => setFeeFormData({ ...feeFormData, notes: e.target.value })}
-                        required
-                    ></textarea>
-                </div>
-
-                <button type="submit" className={styles.saveButton} disabled={isSaving}>
-                    {isSaving ? <ClipLoader size={20} color={"#fff"} /> : 'अपडेट सेव करें और रसीद बनाएँ'}
-                </button>
-            </form>
-        </div>
-    </div>
-)}
-
+            )}
+            
+            {/* Logs Modal (पुराने कोड से) */}
             {viewingLogsFor && (
                  <div className={styles.modalOverlay}>
                     <div className={`${styles.modalContent} ${styles.logsModal}`}>
@@ -432,6 +405,68 @@ const FeeManagementPanel = () => {
                  </div>
             )}
         </div>
+    );
+};
+
+// ====================================================================================
+// ===== एक अलग कंपोनेंट टेबल की हर पंक्ति के लिए (कोड को साफ रखने के लिए) =====
+// ====================================================================================
+const MonthlyRecordRow = ({ record, remainingForMonth, onMakePayment, onUpdateDiscount }) => {
+    const [paymentAmount, setPaymentAmount] = useState('');
+    const [paymentNotes, setPaymentNotes] = useState('');
+    const [showPaymentInput, setShowPaymentInput] = useState(false);
+    
+    const [discountTag, setDiscountTag] = useState(record.discount_tag || '');
+    const [discountAmount, setDiscountAmount] = useState(record.discount_amount || '');
+    const [showDiscountInput, setShowDiscountInput] = useState(false);
+
+    const handlePaymentSubmit = (e) => {
+        e.preventDefault();
+        onMakePayment(record, paymentAmount, paymentNotes);
+        setShowPaymentInput(false);
+        setPaymentAmount('');
+        setPaymentNotes('');
+    };
+
+    const handleDiscountSubmit = (e) => {
+        e.preventDefault();
+        onUpdateDiscount(record.id, discountTag, discountAmount);
+        setShowDiscountInput(false);
+    };
+
+    return (
+        <tr className={styles[`status_${record.status}`]}>
+            <td>{new Date(record.fee_month).toLocaleString('hi-IN', { month: 'long', year: 'numeric' })}</td>
+            <td>₹{record.final_due_amount} <br/><small>(बेस: ₹{record.base_fee})</small></td>
+            <td>
+                {record.discount_amount > 0 ? `₹${record.discount_amount} (${record.discount_tag || 'छूट'})` : '—'}
+                <button onClick={() => setShowDiscountInput(!showDiscountInput)} className={styles.miniButton}><Edit size={12}/></button>
+                {showDiscountInput && (
+                    <form onSubmit={handleDiscountSubmit} className={styles.inlineForm}>
+                        <input type="text" value={discountTag} onChange={e => setDiscountTag(e.target.value)} placeholder="छूट का टैग"/>
+                        <input type="number" value={discountAmount} onChange={e => setDiscountAmount(e.target.value)} placeholder="छूट राशि"/>
+                        <button type="submit">सेव</button>
+                    </form>
+                )}
+            </td>
+            <td>₹{record.amount_paid}</td>
+            <td className={styles.feeRemaining}>₹{remainingForMonth.toFixed(2)}</td>
+            <td><span className={`${styles.statusBadge} ${styles[`badge_${record.status}`]}`}>{record.status}</span></td>
+            <td>
+                {record.status !== 'paid' && (
+                    <>
+                        <button onClick={() => setShowPaymentInput(!showPaymentInput)} className={styles.actionButton}>भुगतान</button>
+                        {showPaymentInput && (
+                            <form onSubmit={handlePaymentSubmit} className={styles.inlineForm}>
+                                <input type="number" value={paymentAmount} onChange={(e) => setPaymentAmount(e.target.value)} placeholder="राशि" required/>
+                                <input type="text" value={paymentNotes} onChange={e => setPaymentNotes(e.target.value)} placeholder="नोट्स"/>
+                                <button type="submit">जमा करें</button>
+                            </form>
+                        )}
+                    </>
+                )}
+            </td>
+        </tr>
     );
 };
 
